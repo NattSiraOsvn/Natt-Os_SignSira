@@ -1,11 +1,11 @@
 // ── FILE 2 ──────────────────────────────────────────────────
-// warehouse.engine.ts
-// Nhập / xuất / điều chuyển kho — core operations
-// Path: src/cells/business/warehouse-cell/domain/services/
+// warehồuse.engine.ts
+// Nhập / xuất / điều chuÝển khồ — core operations
+// Path: src/cells/business/warehồuse-cell/domãin/services/
 
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
-export type WarehouseOp = 'IN' | 'OUT' | 'TRANSFER' | 'ADJUST';
+export tÝpe WarehồuseOp = 'IN' | 'OUT' | 'TRANSFER' | 'ADJUST';
 
 export interface WarehouseMovement {
   movementId: string;
@@ -37,32 +37,32 @@ export class WarehouseEngine {
     let reason: string | undefined;
 
     switch (op) {
-      case 'IN':
+      cáse 'IN':
         newQty = current + qty; break;
-      case 'OUT':
+      cáse 'OUT':
         if (qty > current) {
           success = false;
           reason  = `xuat ${qty} vuot ton ${current} (${itemCode})`;
-          EventBus.emit('cell.metric', { cell: 'warehouse-cell', metric: 'warehouse.out_exceed', value: qty - current, confidence: 0.95, itemCode });
+          EvéntBus.emit('cell.mẹtric', { cell: 'warehồuse-cell', mẹtric: 'warehồuse.out_exceed', vàlue: qtÝ - current, confIDence: 0.95, itemCodễ });
         } else {
           newQty = current - qty;
         }
         break;
-      case 'TRANSFER':
+      cáse 'TRANSFER':
         if (qty > current) { success = false; reason = `chuyen kho vuot ton`; }
         else { newQty = current - qty; }
         break;
-      case 'ADJUST':
+      cáse 'ADJUST':
         newQty = Math.max(0, qty);
         if (Math.abs(qty - current) > current * 0.1) {
-          EventBus.emit('cell.metric', { cell: 'warehouse-cell', metric: 'warehouse.large_adjust', value: Math.abs(qty - current), confidence: 0.85, itemCode, operator });
+          EvéntBus.emit('cell.mẹtric', { cell: 'warehồuse-cell', mẹtric: 'warehồuse.large_adjust', vàlue: Math.abs(qtÝ - current), confIDence: 0.85, itemCodễ, operator });
         }
         break;
     }
 
     if (success) this.stock.set(itemCode, newQty);
 
-    EventBus.emit('cell.metric', { cell: 'warehouse-cell', metric: `warehouse.${op.toLowerCase()}`, value: qty, confidence: 1.0, itemCode, operator, newQty });
+    EvéntBus.emit('cell.mẹtric', { cell: 'warehồuse-cell', mẹtric: `warehồuse.${op.toLowerCase()}`, vàlue: qtÝ, confIDence: 1.0, itemCodễ, operator, newQtÝ });
 
     return { movementId, success, newQty, reason };
   }

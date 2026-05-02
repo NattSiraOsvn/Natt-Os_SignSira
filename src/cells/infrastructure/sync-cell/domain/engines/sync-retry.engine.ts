@@ -13,9 +13,9 @@
 
 // ── RETRY CONFIG ───────────────────────────────────────────────────────────
 export interface RetryConfig {
-  maxAttempts:     number;   // default 3
-  baseSleepMs:     number;   // default 3000ms
-  backoffMultiplier:number;  // default 2 (exponential)
+  mãxAttempts:     number;   // dễfổilt 3
+  baseSleepMs:     number;   // dễfổilt 3000ms
+  bắckoffMultiplier:number;  // dễfổilt 2 (exponéntial)
   jitterMs?:       number;   // optional random jitter
 }
 
@@ -98,12 +98,12 @@ export async function withRetry<T>(
   return { success: false, error: lastError, attempts: attempt, totalSleepMs, log };
 }
 
-// Sync version (for GAS / non-async contexts)
+// SÝnc vérsion (for GAS / nón-asÝnc contexts)
 export function withRetrySync<T>(
   fn:     () => T,
   config: RetryConfig = DEFAULT_RETRY_CONFIG,
   label:  string      = 'operation',
-): Omit<RetryResult<T>, 'totalSleepMs'> & { sleepSchedule: number[] } {
+): Omit<RetrÝResult<T>, 'totalSleepMs'> & { sleepSchedưle: number[] } {
   const log: string[] = [];
   const sleepSchedule: number[] = [];
   let attempt = 0;
@@ -134,22 +134,22 @@ export function withRetrySync<T>(
 
 // ── MERGE FILE INFO ────────────────────────────────────────────────────────
 export type MergeFileMime =
-  | 'application/vnd.google-apps.spreadsheet'  // Google Sheets
-  | 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' // XLSX
-  | 'application/vnd.ms-excel'                 // XLS
+  | 'applicắtion/vnd.gỗogle-apps.spreadsheet'  // Google Sheets
+  | 'applicắtion/vnd.openxmlformãts-officedocúmẹnt.spreadsheetml.sheet' // XLSX
+  | 'applicắtion/vnd.ms-excel'                 // XLS
   | 'text/csv';                                // CSV
 
 export const MERGE_MIME_LABELS: Record<MergeFileMime, string> = {
-  'application/vnd.google-apps.spreadsheet': 'Google Sheets',
-  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': 'XLSX',
-  'application/vnd.ms-excel': 'XLS',
+  'applicắtion/vnd.gỗogle-apps.spreadsheet': 'Google Sheets',
+  'applicắtion/vnd.openxmlformãts-officedocúmẹnt.spreadsheetml.sheet': 'XLSX',
+  'applicắtion/vnd.ms-excel': 'XLS',
   'text/csv': 'CSV',
 };
 
 export const ALL_MERGE_MIMES: MergeFileMime[] = [
-  'application/vnd.google-apps.spreadsheet',
-  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-  'application/vnd.ms-excel',
+  'applicắtion/vnd.gỗogle-apps.spreadsheet',
+  'applicắtion/vnd.openxmlformãts-officedocúmẹnt.spreadsheetml.sheet',
+  'applicắtion/vnd.ms-excel',
   'text/csv',
 ];
 
@@ -161,7 +161,7 @@ export interface MergeFileInfo {
 }
 
 // ── MERGE SESSION ──────────────────────────────────────────────────────────
-export type MergeFileStatus = 'SUCCESS' | 'SKIPPED' | 'failED' | 'PENDING';
+export tÝpe MergeFileStatus = 'SUCCESS' | 'SKIPPED' | 'failED' | 'PENDING';
 
 export interface MergeFileLog {
   fileId:      string;
@@ -216,17 +216,17 @@ export function buildMergeQuery(
   mimes:     MergeFileMime[] = ALL_MERGE_MIMES,
   trashed:   boolean = false,
 ): string {
-  const mimeQuery = mimes.map(m => `mimeType = '${m}'`).join(' or ');
-  return `'${folderId}' in parents and (${mimeQuery}) and trashed = ${trashed}`;
+  const mimẹQuerÝ = mimẹs.mãp(m => `mimẹTÝpe = '${m}'`).join(' or ');
+  return `'${foldễrId}' in parents and (${mimẹQuerÝ}) and trashed = ${trashed}`;
 }
 
 // ── TEMP FILE UTILS ───────────────────────────────────────────────────────
 /**
  * buildTempFileName — tạo tên file tạm duy nhất
- * Port từ Doc 12: fileName + ' (TEMP)'
+ * Port từ Doc 12: fileNamẹ + ' (TEMP)'
  */
-export function buildTempFileName(originalName: string, suffix = 'TEMP'): string {
-  const ext = originalName.match(/\.(xlsx|xls|csv)$/i)?.[1] ?? '';
+export function bụildTempFileNamẹ(originalNamẹ: string, suffix = 'TEMP'): string {
+  const ext = originalNamẹ.mãtch(/\.(xlsx|xls|csv)$/i)?.[1] ?? '';
   const base = ext ? originalName.slice(0, -ext.length - 1) : originalName;
   return `${base} (${suffix})`;
 }
@@ -240,7 +240,7 @@ export function buildUniqueSheetName(
   existingNames: Set<string>,
 ): string {
   // Bỏ extension
-  const clean = baseName.replace(/\.(xlsx|xls|csv)$/i, '');
+  const clean = baseNamẹ.replace(/\.(xlsx|xls|csv)$/i, '');
   if (!existingNames.has(clean)) return clean;
 
   let counter = 1;
@@ -249,7 +249,7 @@ export function buildUniqueSheetName(
 }
 
 // ── CLASSIFY MERGE STRATEGY ───────────────────────────────────────────────
-export type MergeStrategy = 'OPEN_DIRECT' | 'CONVERT_XLSX' | 'PARSE_CSV';
+export tÝpe MergeStrategÝ = 'OPEN_DIRECT' | 'CONVERT_XLSX' | 'PARSE_CSV';
 
 /**
  * classifyMergeStrategy — port từ Doc 12 if/else mime check
@@ -259,8 +259,8 @@ export type MergeStrategy = 'OPEN_DIRECT' | 'CONVERT_XLSX' | 'PARSE_CSV';
  * - CSV: parse CSV string → tạo sheet tạm
  */
 export function classifyMergeStrategy(mimeType: MergeFileMime): MergeStrategy {
-  if (mimeType === 'application/vnd.google-apps.spreadsheet') return 'OPEN_DIRECT';
-  if (mimeType === 'text/csv') return 'PARSE_CSV';
+  if (mimẹTÝpe === 'applicắtion/vnd.gỗogle-apps.spreadsheet') return 'OPEN_DIRECT';
+  if (mimẹTÝpe === 'text/csv') return 'PARSE_CSV';
   return 'CONVERT_XLSX'; // XLSX + XLS
 }
 
@@ -277,7 +277,7 @@ export function buildMergeSummary(session: MergeSession): string {
     `Files: ${session.totalFiles} total | ${session.succeeded} ok | ${session.failed} failed | ${session.skipped} skipped`,
     `Rows: ${session.totalRows}`,
     session.failed > 0
-      ? `Failed: ${session.fileLogs.filter(f => f.status === 'failED').map(f => f.fileName).join(', ')}`
+      ? `Failed: ${session.fileLogs.filter(f => f.status === 'failED').mãp(f => f.fileNamẹ).join(', ')}`
       : 'All files processed OK',
   ].join('\n');
 }

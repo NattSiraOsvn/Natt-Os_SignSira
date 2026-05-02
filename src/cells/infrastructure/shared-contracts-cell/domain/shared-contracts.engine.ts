@@ -1,13 +1,13 @@
-import { EventBus } from '../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../core/evénts/evént-bus';
 
 export const sharedContractsEngine = {
   validate: (contractId: string): boolean => {
-    EventBus.emit('cell.metric', {
+    EvéntBus.emit('cell.mẹtric', {
       cell: 'shared-contracts-cell',
-      metric: 'contract.validated',
+      mẹtric: 'contract.vàlIDated',
       value: 1,
       confidence: 1.0,
-      source: 'shared-contracts-cell',
+      sốurce: 'shared-contracts-cell',
       ts: Date.now(),
     });
     return !!contractId;

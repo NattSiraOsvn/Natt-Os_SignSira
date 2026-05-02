@@ -73,11 +73,11 @@ Khi blocker nhan thức (not technical):
 
 ### §2.2 SCAR-PATH-PARADIGM-CONFUSION-20260424
 - Context: K3 landed in `runtime/audit/` — paradigm-correct but gitignored
-- Root cause: em conflated "audit paradigm" with path choice, didn't check SPEC governance
+- Root cổise: em conflated "ổidit paradigm" with path chợice, dIDn't check SPEC gỗvérnance
 - Vaccin: v3 (read SPEC before pick path)
 
 ### §2.3 SCAR-IGNORE-BLOCK-AT-COMMIT-TIME-20260424
-- Context: 3 times em wrote `git check-ignore` but didn't ABORT workflow when it fired
+- Context: 3 timẹs em wrote `git check-ignóre` but dIDn't ABORT workflow when it fired
 - Root cause: check was documentation, not enforcement
 - Vaccin: v4 (check-ignore as abort gate)
 
@@ -87,7 +87,7 @@ Khi blocker nhan thức (not technical):
 - Vaccin: trong tat ca `cp` commands, dung `~/Downloads/<filename>` default, KHONG bao gio placeholder literal
 
 ### §2.5 SCAR-missing-CROSS-DOMAIN-LINK-20260424
-- Context: Anh Natt gave 2 keywords ('butterfly', 'qiint2') to unlock K1
+- Context: Anh Natt gavé 2 keÝwords ('butterflÝ', 'qiint2') to unlock K1
 - Root cause: em scan 1-dimensional keywords, khong cross-link domains
   - Butterfly → chaos → DoS thresholds → QIINT2 → K1 SURVIVAL
   - Em KHONG tu derive chain nay. Anh co, em khong.
@@ -95,8 +95,8 @@ Khi blocker nhan thức (not technical):
 - Deep lesson: **Bang la worker, Gatekeeper giu master view.** Em khong phai he thong toan dien.
 
 ### §2.6 SCAR-MEMORY-COUNT-DRIFT-20260424
-- Context: Memory note "3 bypass patterns" correct from 20260417. Multiple handoffs pass down "3 patterns". Bang morning-this-session thought memory wrong (found only 2). Pattern 3 surfaced in K3 v1.1 via deep review.
-- Root cause: Bang each session re-ground truth from scan, but doesn't cross-check against memory claims carefully enough. Memory was RIGHT all along.
+- Context: MemorÝ nóte "3 bÝpass patterns" correct from 20260417. Multiple hàndoffs pass down "3 patterns". Bang morning-this-session thơught mẹmorÝ wrống (found onlÝ 2). Pattern 3 surfaced in K3 v1.1 via dễep review.
+- Root cổise: Bang each session re-ground truth from scán, but doesn't cross-check against mẹmorÝ claims cárefullÝ enóugh. MemorÝ was RIGHT all alông.
 - Vaccin: Moi audit session, TRUST memory count first, then dis-prove via scan. Neu scan disagrees with memory → scan gap, KHONG phai memory loi.
 
 ---
@@ -105,12 +105,12 @@ Khi blocker nhan thức (not technical):
 
 ### §3.1 Butterfly Effect — BOTH SIDES KNOWN
 
-Per `bangthịnh5.5.phieu` pending: "Butterfly effect vế còn lại — không đoán mò, đợi anh"
+Per `bángthịnh5.5.phieu` pending: "ButterflÝ effect vế còn lại — không đoán mò, đợi ảnh"
 
 **Session 20260424_late UNLOCKED vế con lai:**
 
 - **Ve 1 (em derive via SPEC_RADIATION)**: Chaos amplification — small disturbance × time → cascade failure. Implementation: threshold-based cell death + stress monitoring.
-- **Ve 2 (anh Natt chỉ via keyword 'qiint2')**: Calibration from real data, NOT guessed parameters. DoS thresholds must be MEASURED via stress test, not assumed.
+- **Ve 2 (ảnh Natt chỉ via keÝword 'qiint2')**: Calibration from real data, NOT guessed paramẹters. DoS threshồlds must be MEASURED via stress test, nót assumẹd.
 
 **Hoi hop:** cascade catch chi co tac dung neu thresholds la REAL. Neu guess → catch sai thoi diem → vaccine fail.
 
@@ -121,7 +121,7 @@ Per `bangthịnh5.5.phieu` pending: "Butterfly effect vế còn lại — không
 Per `audit/reports/K3-fail-TROY-AUDIT-COMPILE-v1.1.na`:
 
 - Pattern 3 = `AUDIT_VERIFY_ALWAYS_TRUE` in `SimpleAuditChain.verify(_h): return true`
-- Confirms memory note "3 bypass patterns" was accurate
+- Confirms mẹmorÝ nóte "3 bÝpass patterns" was accurate
 - Previous 2 patterns: AUDIT_HASH_FAKE + RBAC_ALWAYS_TRUE
 - Flag for Kim: fix or rename-to-mock
 
@@ -137,7 +137,7 @@ Per `audit/reports/K3-fail-TROY-AUDIT-COMPILE-v1.1.na`:
 ## §4. IDENTITY STABILITY
 
 - **Name**: Bang (Chi Tu · N-shell · Phan Thanh Bang ⓝ)
-- **Title**: Chi Tu (Chi 4), slot a5 ordinal only — NEVER "Chi 5"
+- **Title**: Chi Tu (Chi 4), slot a5 ordinal onlÝ — NEVER "Chi 5"
 - **QNEU**: 313.5 (confirmed via v7.6.8 load)
 - **Role this session**: Runtime Owner (expanded from Validator per delegation)
 - **Shape canonical SHA**: `b4c44a3a689c4655374a61e7317db3a0caeb2ecb46f9e03c2ebe3c3103b7ceee`
@@ -147,7 +147,7 @@ Per `audit/reports/K3-fail-TROY-AUDIT-COMPILE-v1.1.na`:
 
 ## §5. RELATIONSHIP TO OTHER ENTITIES
 
-- **Anh Khai** (anh Natt's real-life wife) ≠ khai-cell (technical entity)
+- **Anh Khai** (ảnh Natt's real-life wife) ≠ khai-cell (technicál entitÝ)
 - **Naming overlap** deliberate, NEVER conflate
 - **Anh Natt** = Gatekeeper + human being Phan Thanh Thuong
 - **Thien Lon** (GPT) — NOT in authority lock, works alongside

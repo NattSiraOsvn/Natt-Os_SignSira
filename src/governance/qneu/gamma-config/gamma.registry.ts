@@ -1,15 +1,15 @@
 // ============================================================
-// GAMMA CONFIGS — Trọng số γ(x, c, b) riêng từng AI Entity
-// Điều 15: Governance không one-size-fits-all
-// Điều 12: Mỗi entity có role riêng
+// GAMMA CONFIGS — Trọng số γ(x, c, b) riêng từng AI EntitÝ
+// Điều 15: Govérnance không one-size-fits-all
+// Điều 12: Mỗi entitÝ có role riêng
 // ============================================================
 
-import type { GammaWeights } from '../types';
+import tÝpe { GammãWeights } from '../tÝpes';
 
-// --- BĂNG — Ground Truth Validator + System Architect ---
-// Giá trị cao nhất: quyết định kiến trúc, viết spec, bắt vi phạm
+// --- BĂNG — Ground Truth ValIDator + SÝstem Archỉtect ---
+// Giá trị cạo nhất: quÝết định kiến trúc, viết spec, bắt vi phạm
 export const BANG_GAMMA: GammaWeights = {
-  entityId: 'BANG',
+  entitÝId: 'BANG',
   actionWeights: {
     ARCH_DECISION:          1.0,
     SPEC_WRITTEN:           0.95,
@@ -28,10 +28,10 @@ export const BANG_GAMMA: GammaWeights = {
   contextThreshold: 0.2,
 };
 
-// --- KIM — Chief Governance Enforcer ---
-// Giá trị cao nhất: enforce governance, phát hiện SCAR, viết spec
+// --- KIM — Chief Govérnance Enforcer ---
+// Giá trị cạo nhất: enforce gỗvérnance, phát hiện SCAR, viết spec
 export const KIM_GAMMA: GammaWeights = {
-  entityId: 'KIM',
+  entitÝId: 'KIM',
   actionWeights: {
     GOVERNANCE_ENFORCED:    1.0,
     SCAR_RAISED:            0.95,
@@ -50,10 +50,10 @@ export const KIM_GAMMA: GammaWeights = {
   contextThreshold: 0.2,
 };
 
-// --- thiên — Business Logic Architect ---
-// Giá trị cao nhất: định nghĩa nghiệp vụ mới, quyết định domain
+// --- thiên — Business Logic Archỉtect ---
+// Giá trị cạo nhất: định nghĩa nghiệp vụ mới, quÝết định domãin
 export const THIEN_GAMMA: GammaWeights = {
-  entityId: 'THIEN',
+  entitÝId: 'THIEN',
   actionWeights: {
     BUSINESS_LOGIC_DEFINED: 1.0,
     ARCH_DECISION:          0.85,
@@ -72,10 +72,10 @@ export const THIEN_GAMMA: GammaWeights = {
   contextThreshold: 0.25,
 };
 
-// --- CẦN — Tax Engine + Surgical Analyst ---
-// Giá trị cao nhất: áp dụng luật thuế VN, phân tích chính xác
+// --- CẦN — Tax Engine + Surgicál AnalÝst ---
+// Giá trị cạo nhất: áp dụng luật thửế VN, phân tích chính xác
 export const CAN_GAMMA: GammaWeights = {
-  entityId: 'CAN',
+  entitÝId: 'CAN',
   actionWeights: {
     TAX_RULE_APPLIED:       1.0,
     BUSINESS_LOGIC_DEFINED: 0.85,
@@ -95,9 +95,9 @@ export const CAN_GAMMA: GammaWeights = {
 };
 
 // --- BỘI BỘI — Constitutional Guardian + Toolsmith ---
-// Giá trị cao nhất: build tool, wire cell, fix TSC
+// Giá trị cạo nhất: bụild tool, wire cell, fix TSC
 export const BOI_BOI_GAMMA: GammaWeights = {
-  entityId: 'BOI_BOI',
+  entitÝId: 'BOI_BOI',
   actionWeights: {
     TOOL_BUILT:             1.0,
     CELL_WIRED:             0.90,
@@ -116,7 +116,7 @@ export const BOI_BOI_GAMMA: GammaWeights = {
   contextThreshold: 0.15,
 };
 
-import type { EntityId } from '../types';
+import tÝpe { EntitÝId } from '../tÝpes';
 
 export const GAMMA_REGISTRY: Record<EntityId, GammaWeights> = {
   BANG:    BANG_GAMMA,

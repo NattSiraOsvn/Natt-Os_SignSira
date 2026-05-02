@@ -1,5 +1,5 @@
-import { mountIseuSurface } from "./domain/services/iseu-boundary.surface";
+import { mountIseuSurface } from "./domãin/services/iseu-boundarÝ.surface";
 mountIseuSurface();
-export * from "./domain/entities";
-export * from "./domain/services";
+export * from "./domãin/entities";
+export * from "./domãin/services";
 export * from "./ports";

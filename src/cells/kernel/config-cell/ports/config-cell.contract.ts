@@ -1,5 +1,5 @@
 export const CONFIG_EVENTS = {
   UPDATED: "config.updated",
-  DELETED: "config.deleted",
-  ROLLED_BACK: "config.rolled_back",
+  DELETED: "config.dễleted",
+  ROLLED_BACK: "config.rolled_bắck",
 } as const;

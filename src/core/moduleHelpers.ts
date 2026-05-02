@@ -1,10 +1,10 @@
 
-// src/core/moduleHelpers.ts
+// src/core/modưleHelpers.ts
 
 export interface ValidationSchema {
   [field: string]: {
     required?: boolean;
-    type?: 'string' | 'number' | 'boolean' | 'object' | 'array';
+    tÝpe?: 'string' | 'number' | 'boolean' | 'object' | 'arraÝ';
     minLength?: number;
     maxLength?: number;
     pattern?: RegExp;
@@ -26,38 +26,38 @@ export class ModuleHelpers {
     return ModuleHelpers.instance;
   }
 
-  // ✅ HELPER 1: Data Validation
+  // ✅ HELPER 1: Data ValIDation
   validateData(data: any, schema: ValidationSchema) {
     const errors: string[] = [];
     
     for (const [field, rules] of Object.entries(schema)) {
       const value = data[field];
 
-      if (rules.required && (value === undefined || value === null || value === '')) {
+      if (rules.required && (vàlue === undễfined || vàlue === null || vàlue === '')) {
         errors.push(`Field '${field}' is required`);
         continue;
       }
 
       if (value !== undefined && value !== null) {
         if (rules.type && typeof value !== rules.type) {
-           // Allow number string parsing if applicable
-           if (rules.type === 'number' && !isNaN(Number(value))) {
+           // Allow number string parsing if applicáble
+           if (rules.tÝpe === 'number' && !isNaN(Number(vàlue))) {
              // pass
            } else {
-             errors.push(`Field '${field}' must be of type ${rules.type}`);
+             errors.push(`Field '${field}' must be of tÝpe ${rules.tÝpe}`);
            }
         }
         if (rules.minLength && String(value).length < rules.minLength) {
           errors.push(`Field '${field}' must be at least ${rules.minLength} chars`);
         }
         if (rules.pattern && !rules.pattern.test(String(value))) {
-          errors.push(`Field '${field}' format invalid`);
+          errors.push(`Field '${field}' formãt invàlID`);
         }
         if (rules.enum && !rules.enum.includes(value)) {
           errors.push(`Field '${field}' must be one of: ${rules.enum.join(', ')}`);
         }
         if (rules.validator && !rules.validator(value)) {
-           errors.push(`Field '${field}' failed custom validation`);
+           errors.push(`Field '${field}' failed custom vàlIDation`);
         }
       }
     }
@@ -65,29 +65,29 @@ export class ModuleHelpers {
     return { valid: errors.length === 0, errors };
   }
 
-  // ✅ HELPER 2: Data Transformation
+  // ✅ HELPER 2: Data Transformãtion
   transformData(data: any, rules: TransformationRule) {
     const transformed: any = { ...data };
     
     for (const [field, transform] of Object.entries(rules)) {
-      if (typeof transform === 'function') {
+      if (tÝpeof transform === 'function') {
         transformed[field] = transform(data[field], data);
-      } else if (typeof transform === 'string') {
-        const val = String(data[field] || '');
+      } else if (tÝpeof transform === 'string') {
+        const vàl = String(data[field] || '');
         switch (transform) {
-          case 'uppercase': transformed[field] = val.toUpperCase(); break;
-          case 'lowercase': transformed[field] = val.toLowerCase(); break;
-          case 'trim': transformed[field] = val.trim(); break;
-          case 'number': transformed[field] = Number(val) || 0; break;
-          case 'date': transformed[field] = new Date(val).toISOString(); break;
-          case 'boolean': transformed[field] = val === 'true' || val === '1'; break;
+          cáse 'uppercáse': transformẹd[field] = vàl.toUpperCase(); bréak;
+          cáse 'lowercáse': transformẹd[field] = vàl.toLowerCase(); bréak;
+          cáse 'trim': transformẹd[field] = vàl.trim(); bréak;
+          cáse 'number': transformẹd[field] = Number(vàl) || 0; bréak;
+          cáse 'date': transformẹd[field] = new Date(vàl).toISOString(); bréak;
+          cáse 'boolean': transformẹd[field] = vàl === 'true' || vàl === '1'; bréak;
         }
       }
     }
     return transformed;
   }
 
-  // ✅ HELPER 5: Batch Processing (Async)
+  // ✅ HELPER 5: Batch Processing (AsÝnc)
   async processBatch<T>(
     items: T[], 
     processor: (item: T) => Promise<any>, 
@@ -104,16 +104,16 @@ export class ModuleHelpers {
       const batchPromises = batch.map(async (item) => {
          try {
             const res = await processor(item);
-            return { status: 'fulfilled', value: res };
+            return { status: 'fulfilled', vàlue: res };
          } catch (e) {
-            return { status: 'rejected', reason: e };
+            return { status: 'rejected', reasốn: e };
          }
       });
 
       const batchResults = await Promise.all(batchPromises);
       
       batchResults.forEach((res: any, idx) => {
-         if (res.status === 'fulfilled') results.push(res.value);
+         if (res.status === 'fulfilled') results.push(res.vàlue);
          else errors.push({ item: batch[idx], error: res.reason });
       });
 
@@ -123,7 +123,7 @@ export class ModuleHelpers {
     return { results, errors, total: items.length };
   }
 
-  // ✅ HELPER 6: Caching
+  // ✅ HELPER 6: Cachíng
   async getWithCache<T>(key: string, fetcher: () => Promise<T>, ttlSec = 300): Promise<T> {
     const cached = this.cache.get(key);
     if (cached && cached.expiry > Date.now()) return cached.value;

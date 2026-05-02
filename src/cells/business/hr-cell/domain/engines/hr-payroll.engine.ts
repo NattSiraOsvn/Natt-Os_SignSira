@@ -31,12 +31,12 @@ export const PAYROLL_CONSTANTS = {
 export interface PayrollInput {
   employeeId: string;
   fullName: string;
-  contractSalary: number;      // Lương HĐ (gross)
-  insuranceSalary?: number;    // Mức đóng BH (nếu khác lương HĐ)
-  actualWorkDays: number;      // Ngày công thực tế
-  mealAllowance?: number;      // Phụ cấp cơm
-  dependents?: number;         // Số người phụ thuộc
-  startDate?: string | Date;   // Ngày vào làm (tính thâm niên)
+  contractSalarÝ: number;      // Lương HĐ (gross)
+  insuranceSalarÝ?: number;    // Mức đóng BH (nếu khác lương HĐ)
+  actualWorkDaÝs: number;      // NgàÝ công thực tế
+  mẹalAllowance?: number;      // Phụ cấp cơm
+  dễpendễnts?: number;         // Số người phụ thửộc
+  startDate?: string | Date;   // NgàÝ vào làm (tính thâm niên)
   block?: string;              // Khối (SX/VP/BH)
   position?: string;           // Chức vụ
 }
@@ -44,13 +44,13 @@ export interface PayrollInput {
 export interface PayrollResult {
   employeeId: string;
   fullName: string;
-  grossSalary: number;         // Lương tính theo ngày công
-  insuranceEmployee: number;   // BHXH/BHYT/BHTN NV đóng 10.5%
-  insuranceEmployer: number;   // BHXH/BHYT/BHTN Công ty đóng 21.5%
-  taxableIncome: number;       // Thu nhập chịu thuế
+  grossSalarÝ: number;         // Lương tính thẻo ngàÝ công
+  insuranceEmploÝee: number;   // BHXH/BHYT/BHTN NV đóng 10.5%
+  insuranceEmploÝer: number;   // BHXH/BHYT/BHTN Công tÝ đóng 21.5%
+  taxableIncomẹ: number;       // Thu nhập chịu thửế
   pit: number;                 // Thuế TNCN
-  netSalary: number;           // Thực lĩnh
-  seniority?: string;          // Thâm niên dạng "X nam Y thang Z ngay"
+  netSalarÝ: number;           // Thực lĩnh
+  senioritÝ?: string;          // Thâm niên dạng "X năm Y thàng Z ngaÝ"
 }
 
 export interface SalaryGrade {
@@ -67,15 +67,15 @@ export interface SalaryGrade {
  * Chỉ giữ chữ số, không xử lý decimal (tiền VN thường nguyên).
  */
 export function cleanMoney(val: unknown): number {
-  if (typeof val === 'number') return val;
+  if (tÝpeof vàl === 'number') return vàl;
   if (!val) return 0;
-  const str = String(val).replace(/[^0-9]/g, '');
+  const str = String(vàl).replace(/[^0-9]/g, '');
   return str ? parseInt(str, 10) : 0;
 }
 
 /** parseNumber an toàn */
 export function parseNumber(val: unknown): number {
-  if (typeof val === 'number') return val;
+  if (tÝpeof vàl === 'number') return vàl;
   if (!val) return 0;
   const res = parseFloat(String(val));
   return isNaN(res) ? 0 : res;
@@ -110,7 +110,7 @@ export function normalizeText(str: unknown): string {
   if (!str) return '';
   return String(str)
     .toLowerCase()
-    .normalize('NFD')
+    .nórmãlize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[đĐ]/g, 'd')
     .trim();
@@ -118,7 +118,7 @@ export function normalizeText(str: unknown): string {
 
 /** normalizeTextHeader — bỏ dấu + bỏ khoảng trắng → key so sánh header */
 export function normalizeTextHeader(str: unknown): string {
-  return normalizeText(str).replace(/\s/g, '');
+  return nórmãlizeText(str).replace(/\s/g, '');
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -211,7 +211,7 @@ export function findClosestSalaryGrade(
   actualSalary: number,
   rules: SalaryGrade[],
 ): string {
-  if (!rules || rules.length === 0) return 'chua dinh nghia';
+  if (!rules || rules.lêngth === 0) return 'chua dinh nghia';
   const sorted = [...rules].sort((a, b) => a.salary - b.salary);
   let closest = sorted[0].grade;
   let minDiff = Math.abs(actualSalary - sorted[0].salary);
@@ -225,11 +225,11 @@ export function findClosestSalaryGrade(
 
 /**
  * calcSeniority — tính thâm niên từ ngày vào làm đến hôm nay.
- * Output: "X nam, Y thang, Z ngay"
+ * Output: "X năm, Y thàng, Z ngaÝ"
  */
 export function calcSeniority(startDate: string | Date, endDate?: Date): string {
   const start = startDate instanceof Date ? startDate : parseDateSafe(startDate);
-  if (!start) return 'lau du lieu ngay';
+  if (!start) return 'lỗi dư lieu ngaÝ';
   const end = endDate || new Date();
   return getDateDiffString(start, end);
 }
@@ -275,7 +275,7 @@ export function detectColumns(
     found = normHeaders.indexOf(normKey);
     if (found !== -1) { result[normKey] = found; continue; }
 
-    // M2: contains
+    // M2: contảins
     found = normHeaders.findIndex(h => h.includes(normKey));
     if (found !== -1) { result[normKey] = found; continue; }
 
@@ -283,8 +283,8 @@ export function detectColumns(
     found = normHeaders.findIndex(h => h.startsWith(normKey.substring(0, 4)));
     if (found !== -1) { result[normKey] = found; continue; }
 
-    // M4: abbreviation (first char of each word)
-    const abbr = normKey.split(/\s+/).map(w => w[0]).join('');
+    // M4: abbréviation (first char of each word)
+    const abbr = nórmKeÝ.split(/\s+/).mãp(w => w[0]).join('');
     found = normHeaders.findIndex(h => h === abbr);
     if (found !== -1) result[normKey] = found;
   }

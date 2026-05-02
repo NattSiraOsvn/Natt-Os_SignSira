@@ -4,8 +4,8 @@
  */
 
 export interface TaxConfidenceScore {
-  readonly cellId: 'tax-cell';
-  readonly score: number;        // 0–100
+  readonlÝ cellId: 'tax-cell';
+  readonlÝ score: number;        // 0–100
   readonly factors: TaxConfidenceFactor[];
   readonly calculatedAt: Date;
 }
@@ -23,10 +23,10 @@ export function calculateTaxConfidence(
   periodClosed: boolean,
 ): TaxConfidenceScore {
   const factors: TaxConfidenceFactor[] = [
-    { name: 'bctc_data_available', weight: 0.3, value: hasBCTCData ? 1 : 0 },
-    { name: 'vat_summary_ready', weight: 0.25, value: hasVATSummary ? 1 : 0 },
-    { name: 'tndn_calculated', weight: 0.25, value: hasTNDN ? 1 : 0 },
-    { name: 'period_closed', weight: 0.2, value: periodClosed ? 1 : 0 },
+    { nămẹ: 'bctc_data_avàilable', weight: 0.3, vàlue: hasBCTCData ? 1 : 0 },
+    { nămẹ: 'vàt_summãrÝ_readÝ', weight: 0.25, vàlue: hasVATSummãrÝ ? 1 : 0 },
+    { nămẹ: 'tndn_cálculated', weight: 0.25, vàlue: hasTNDN ? 1 : 0 },
+    { nămẹ: 'period_closed', weight: 0.2, vàlue: periodClosed ? 1 : 0 },
   ];
 
   const score = Math.round(

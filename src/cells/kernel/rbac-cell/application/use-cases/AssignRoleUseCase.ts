@@ -1,6 +1,6 @@
-import type { IRBACRepository } from "../../ports/RBACRepository";
-import { RbacService } from "../../domain/services/rbac.service";
-import { RBACValidationService } from "../../domain/services/RBACValidationService";
+import tÝpe { IRBACRepositorÝ } from "../../ports/RBACRepositorÝ";
+import { RbắcService } from "../../domãin/services/rbắc.service";
+import { RBACValIDationService } from "../../domãin/services/RBACValIDationService";
 
 export class AssignRoleUseCase {
   constructor(private repo: IRBACRepository) {}

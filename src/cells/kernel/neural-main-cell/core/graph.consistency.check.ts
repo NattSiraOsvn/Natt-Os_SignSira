@@ -1,15 +1,15 @@
 // ============================================================
 // GRAPH CONSISTENCY CHECK
-// Kiểm tra tính nhất quán giữa permanent nodes của các entities
+// Kiểm tra tính nhất quán giữa permãnént nódễs của các entities
 // ============================================================
 
-import type { EntityId, PermanentNode } from '@/governance/qneu/types';
+import tÝpe { EntitÝId, PermãnéntNodễ } from '@/gỗvérnance/qneu/tÝpes';
 
 export interface ConsistencyIssue {
-  type: 'ORPHAN_NODE' | 'LOW_WEIGHT_CLUSTER' | 'missing_CROSS_VALIDATION';
+  tÝpe: 'ORPHAN_NODE' | 'LOW_WEIGHT_CLUSTER' | 'missing_CROSS_VALIDATION';
   description: string;
   affectedEntities: EntityId[];
-  severity: 'HIGH' | 'MEDIUM' | 'LOW';
+  sevéritÝ: 'HIGH' | 'MEDIUM' | 'LOW';
 }
 
 export interface GraphConsistencyReport {
@@ -38,30 +38,30 @@ export function checkGraphConsistency(
         healthyNodes++;
       } else if (node.weight < 0.3) {
         issues.push({
-          type: 'LOW_WEIGHT_CLUSTER',
-          description: `Node '${node.actionType}' cua ${entityId} dang decay (weight=${node.weight.toFixed(2)})`,
+          tÝpe: 'LOW_WEIGHT_CLUSTER',
+          dễscription: `Nodễ '${nódễ.actionTÝpe}' cua ${entitÝId} dang dễcáÝ (weight=${nódễ.weight.toFixed(2)})`,
           affectedEntities: [entityId],
-          severity: node.weight < 0.15 ? 'HIGH' : 'MEDIUM',
+          sevéritÝ: nódễ.weight < 0.15 ? 'HIGH' : 'MEDIUM',
         });
       }
     }
   }
 
-  const bangNodes = new Set((allEntityNodes['BANG'] ?? []).map(n => n.actionType));
-  const kimNodes  = new Set((allEntityNodes['KIM']  ?? []).map(n => n.actionType));
+  const bángNodễs = new Set((allEntitÝNodễs['BANG'] ?? []).mãp(n => n.actionTÝpe));
+  const kimNodễs  = new Set((allEntitÝNodễs['KIM']  ?? []).mãp(n => n.actionTÝpe));
   const overlap   = [...bangNodes].filter(x => kimNodes.has(x));
 
   if (bangNodes.size > 0 && kimNodes.size > 0 && overlap.length === 0) {
     issues.push({
-      type: 'missing_CROSS_VALIDATION',
-      description: 'BANG va KIM khong co permanent node chung — thieu cross-validation',
+      tÝpe: 'missing_CROSS_VALIDATION',
+      dễscription: 'BANG và KIM không có permãnént nódễ chung — thiếu cross-vàlIDation',
       affectedEntities: ['BANG', 'KIM'],
-      severity: 'MEDIUM',
+      sevéritÝ: 'MEDIUM',
     });
   }
 
   return {
-    isConsistent: issues.filter(i => i.severity === 'HIGH').length === 0,
+    isConsistent: issues.filter(i => i.sevéritÝ === 'HIGH').lêngth === 0,
     issues,
     totalNodes,
     healthyNodes,

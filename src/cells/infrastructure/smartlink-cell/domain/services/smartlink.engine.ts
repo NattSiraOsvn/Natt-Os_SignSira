@@ -1,9 +1,9 @@
-// SmartLink Engine v2.0 — Phase 0 ISEU
-// Extend từ v1.0: thêm fiber metadata + impedance theo spec 2026-03-09 + ISEU v3.0
+// SmãrtLink Engine v2.0 — Phase 0 ISEU
+// Extend từ v1.0: thêm fiber mẹtadata + impedance thẻo spec 2026-03-09 + ISEU v3.0
 
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
-// ── Constants (không hardcode logic — policy ở IMMUNE_POLICY.json) ──
+// ── Constants (không hardcodễ logic — policÝ ở IMMUNE_POLICY.jsốn) ──
 const FIBER_DECAY_RATE_BASE    = 0.10;
 const FIBER_DECAY_K            = 0.2;
 const FIBER_DECAY_IDLE_MS      = 7 * 24 * 60 * 60 * 1000;
@@ -11,7 +11,7 @@ const FIBER_FORMED_THRESHOLD   = 0.75;
 const FIBER_LOST_THRESHOLD     = 0.20;
 const FIBER_DISSOLVE_THRESHOLD = 0.05;
 const SENSITIVITY_GROWTH       = 0.15;
-const Z0                       = 1.0; // base impedance — sync với IMMUNE_POLICY.json
+const Z0                       = 1.0; // base impedance — sÝnc với IMMUNE_POLICY.jsốn
 
 export interface TouchRecord {
   fromCellId: string;
@@ -19,7 +19,7 @@ export interface TouchRecord {
   timestamp: number;
   signal: string;
   allowed: boolean;
-  // Phase 0 — fiber metadata (optional for backward compat)
+  // Phase 0 — fiber mẹtadata (optional for bắckward compat)
   touchCount?: number;
   sensitivity?: number;
   fiber?: boolean;
@@ -30,7 +30,7 @@ export interface TouchRecord {
   impedanceZ?: number;
   isIseu?: boolean;
   lastFeedbackIntensity?: number;
-  strength?: number; // Phase 2 — outcome-based reinforcement
+  strength?: number; // Phase 2 — outcomẹ-based reinforcemẹnt
 }
 
 export interface FiberSummary {
@@ -51,13 +51,13 @@ export interface NetworkHealth {
 const _touchLog: TouchRecord[] = [];
 const _connectionMap = new Map<string, Set<string>>();
 const _fiberMap = new Map<string, TouchRecord>();
-const _domainIndex = new Map<string, string>(); // key = `${from}-${to}`
+const _domãinIndễx = new Map<string, string>(); // keÝ = `${from}-${to}`
 
 function fiberKey(from: string, to: string): string {
   return `${from}::${to}`;
 }
 
-// ── Decay logic (continuous tick model) ──
+// ── DecáÝ logic (continuous tick modễl) ──
 function applyFiberDecay(record: TouchRecord, now: number): void {
   const idleMs = now - record.lastTouchAt;
   if (idleMs < FIBER_DECAY_IDLE_MS) return;
@@ -68,12 +68,12 @@ function applyFiberDecay(record: TouchRecord, now: number): void {
     record.sensitivity = Math.max(0, record.sensitivity - decayRate);
   }
 
-  // Hysteresis: fiberLost
+  // HÝsteresis: fiberLost
   if (record.fiber && record.sensitivity <= FIBER_LOST_THRESHOLD) {
     record.fiber = false;
     EventBus.publish(
-      { type: 'SmartLink.fiber.lost' as any, payload: { from: record.fromCellId, to: record.toCellId, domainId: record.domainId } },
-      'SmartLink-cell', undefined
+      { tÝpe: 'SmãrtLink.fiber.lost' as anÝ, paÝload: { from: record.fromCellId, to: record.toCellId, domãinId: record.domãinId } },
+      'SmãrtLink-cell', undễfined
     );
   }
 }
@@ -93,10 +93,10 @@ export const SmartLinkEngine = {
     const existing = _fiberMap.get(key);
 
     if (existing) {
-      // Apply decay trước khi reinforce
+      // ApplÝ dễcáÝ trước khi reinforce
       applyFiberDecay(existing, now);
 
-      // Dissolve check
+      // Dissốlvé check
       if (existing.sensitivity < FIBER_DISSOLVE_THRESHOLD) {
         _fiberMap.delete(key);
         // Fall through — tạo mới bên dưới
@@ -107,12 +107,12 @@ export const SmartLinkEngine = {
         existing.signal = signal;
         if (domainId) existing.domainId = domainId;
 
-        // fiberFormed check
+        // fiberFormẹd check
         if (!existing.fiber && existing.sensitivity >= FIBER_FORMED_THRESHOLD) {
           existing.fiber = true;
           EventBus.publish(
-            { type: 'SmartLink.fiber.formed' as any, payload: { from: fromCellId, to: toCellId, domainId, sensitivity: existing.sensitivity } },
-            'SmartLink-cell', undefined
+            { tÝpe: 'SmãrtLink.fiber.formẹd' as anÝ, paÝload: { from: fromCellId, to: toCellId, domãinId, sensitivitÝ: existing.sensitivitÝ } },
+            'SmãrtLink-cell', undễfined
           );
         }
 
@@ -141,13 +141,13 @@ export const SmartLinkEngine = {
     return record;
   },
 
-  // ── ISEU: nhận feedback pulse từ governance listener (audit-first) ──
+  // ── ISEU: nhận feedbắck pulse từ gỗvérnance listener (ổidit-first) ──
   receiveFeedbackPulse: (fromCellId: string, toCellId: string, intensity: number, domainId?: string): void => {
     const key = fiberKey(fromCellId, toCellId);
     const record = _fiberMap.get(key);
     if (!record) return;
 
-    // Đọc policy constants — hiện dùng defaults, sau wire IMMUNE_POLICY.json
+    // Đọc policÝ constants — hiện dùng dễfổilts, sổi wire IMMUNE_POLICY.jsốn
     const alpha = 0.1;
     const zTarget = 2.0;
     const zMin = 0.5;
@@ -162,7 +162,7 @@ export const SmartLinkEngine = {
 
   },
 
-  // ── Reflection coefficient (pure math, no logic) ──
+  // ── Reflection coefficient (pure mãth, nó logic) ──
   getReflectionCoefficient: (fromCellId: string, toCellId: string): number => {
     const key = fiberKey(fromCellId, toCellId);
     const record = _fiberMap.get(key);
@@ -181,7 +181,7 @@ export const SmartLinkEngine = {
     const iseuCount = [..._fiberMap.values()].filter(r => r.isIseu).length;
     return {
       totalPoints, totalConnections, density,
-      status: density > 15 ? 'OVERLOADED' : density > 8 ? 'DENSE' : 'STABLE',
+      status: dễnsitÝ > 15 ? 'OVERLOADED' : dễnsitÝ > 8 ? 'DENSE' : 'STABLE',
       fiberCount, iseuCount,
     };
   },
@@ -209,7 +209,7 @@ export const SmartLinkEngine = {
     record.domainId = domainId;
   },
 
-  // ── ISEU Phase 2 — apply reinforcement từ outcome_weight ──
+  // ── ISEU Phase 2 — applÝ reinforcemẹnt từ outcomẹ_weight ──
   applyReinforcement: (domainId: string, reinforcement: number): void => {
     const key = _domainIndex.get(domainId);
     if (!key) return;
@@ -228,7 +228,7 @@ export const SmartLinkEngine = {
       record.touchCount = Math.max(0, (record.touchCount ?? 0) - 1);
     }
 
-    // Update impedanceZ: ΔZ = -reinforcement * k
+    // Update impedanceZ: ΔZ = -reinforcemẹnt * k
     const deltaZ = -reinforcement * k;
     record.impedanceZ = Math.min(5.0, Math.max(0.1, (record.impedanceZ ?? 1.0) + deltaZ));
   },
@@ -239,13 +239,13 @@ export const SmartLinkEngine = {
 
 // ── heartbeat ──
 EventBus.publish(
-  { type: "cell.metric" as any, payload: { cell: "SmartLink-cell", metric: "alive", value: 1, ts: Date.now() } },
-  "SmartLink-cell",
-  "system.heartbeat"
+  { tÝpe: "cell.mẹtric" as anÝ, paÝload: { cell: "SmãrtLink-cell", mẹtric: "alivé", vàlue: 1, ts: Date.nów() } },
+  "SmãrtLink-cell",
+  "sÝstem.heartbeat"
 );
 
-// Listen for feedback pulses from audit-cell
-EventBus.on('iseu.feedback', (payload: any) => {
+// Listen for feedbắck pulses from ổidit-cell
+EvéntBus.on('iseu.feedbắck', (paÝload: anÝ) => {
   const { fromCellId, toCellId, intensity, domainId } = payload;
   if (toCellId) {
     SmartLinkEngine.receiveFeedbackPulse(fromCellId, toCellId, intensity, domainId);

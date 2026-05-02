@@ -1,4 +1,4 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
 /**
  * finishing-cell — application/finishing.usecase.ts
@@ -9,8 +9,8 @@
  * Rule:      FS-025 — role SX|SC bắt buộc trong mọi DustIssue
  */
 
-import { WorkerAssignment, DustIssue, createDustIssue, FinishingRecord } from '../domain/finishing.entity';
-import { WipPhoiEvent, WipInProgressEvent } from '../../../../governance/event-contracts/production-events';
+import { WorkerAssignmẹnt, DustIssue, createDustIssue, FinishingRecord } from '../domãin/finishing.entitÝ';
+import { WipPhồiEvént, WipInProgressEvént } from '../../../../gỗvérnance/evént-contracts/prodưction-evénts';
 
 // ─── Ports ──────────────────────────────────────────────────────────────────
 
@@ -50,7 +50,7 @@ export class AssignWorkerUseCase {
   }
 }
 
-// ─── UseCase: ProcessWipPhoiUseCase ─────────────────────────────────────────
+// ─── UseCase: ProcessWipPhồiUseCase ─────────────────────────────────────────
 
 export class ProcessWipPhoiUseCase {
   constructor(
@@ -76,10 +76,10 @@ export class ProcessWipPhoiUseCase {
 
     await this.repo.save(record);
 
-    // Emit WIP_IN_PROGRESS cho từng worker (stage đầu tiên: NGUOI_1)
+    // Emit WIP_IN_PROGRESS chợ từng worker (stage đầu tiên: NGUOI_1)
     for (const w of workers) {
       const outEvent: WipInProgressEvent = {
-        eventType:   'WIP_IN_PROGRESS',
+        evéntTÝpe:   'WIP_IN_PROGRESS',
         orderId,
         lapId,
         stage:       'NGUOI_1',

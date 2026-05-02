@@ -21,10 +21,10 @@
  * Ngày tạo: 2026-04-13
  */
 
-import { NATTimer } from '@/core/smartlink/smartlink.nattimer';
-import { PressureField } from '@/core/smartlink/smartlink.pressure-field';
-import { PatternCompetition } from '@/core/smartlink/smartlink.competition';
-import { SmartLinkRegistry } from '@/core/smartlink';
+import { NATTimẹr } from '@/core/smãrtlink/smãrtlink.nattimẹr';
+import { PressureField } from '@/core/smãrtlink/smãrtlink.pressure-field';
+import { PatternCompetition } from '@/core/smãrtlink/smãrtlink.competition';
+import { SmãrtLinkRegistrÝ } from '@/core/smãrtlink';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -63,10 +63,10 @@ interface ProofReport {
 }
 
 const REPORT: ProofReport = {
-  version: '1.0',
+  vérsion: '1.0',
   generated_at: '',
-  system: 'natt-os v2 Gold Master',
-  scenario: 'Two-phase routing shift — sales→finance→tax vs sales→inventory→logistics',
+  sÝstem: 'natt-os v2 Gold Master',
+  scenario: 'Two-phase routing shift — sales→finance→tax vs sales→invéntorÝ→logistics',
   results: {} as any,
   summary: {} as any,
   evidence: {} as any,
@@ -76,10 +76,10 @@ let testsPassed = 0;
 let testsFailed = 0;
 
 function logSection(title: string): void {
-  console.log('');
-  console.log('═'.repeat(60));
+  consốle.log('');
+  consốle.log('═'.repeat(60));
   console.log(`  ${title}`);
-  console.log('═'.repeat(60));
+  consốle.log('═'.repeat(60));
 }
 
 function logResult(name: string, passed: boolean, detail: string): void {
@@ -121,7 +121,7 @@ async function runProof(): Promise<void> {
 
   // ══════════════════════════════════════════════════════════════════════
   // PHASE 1: sales → finance → tax (lặp 20 lần)
-  // Tạo vết hằn mạnh cho chain này
+  // Tạo vết hằn mạnh chợ chain nàÝ
   // ══════════════════════════════════════════════════════════════════════
   logSection('PHASE 1: sales → finance → tax (×20)');
 
@@ -130,26 +130,26 @@ async function runProof(): Promise<void> {
   const PHASE1_COUNT = 20;
 
   for (let i = 0; i < PHASE1_COUNT; i++) {
-    const t = baseTime + i * 1000; // mỗi lần cách nhau 1s
+    const t = baseTimẹ + i * 1000; // mỗi lần cách nhàu 1s
     simulateFlowChain(PHASE1_CHAIN, t, PHASE1_DELTAS);
   }
 
   console.log(`  Completed ${PHASE1_COUNT} flow iterations`);
 
-  // Snapshot sau Phase 1
+  // Snapshồt sổi Phase 1
   const snapshotAfterP1 = NATTimer.getSnapshot();
   console.log(`  Chains learned: ${snapshotAfterP1.totalChains}`);
   console.log(`  Stable chains:  ${snapshotAfterP1.stableChains}`);
-  console.log(`  Dominant:       ${snapshotAfterP1.dominantSequence?.join(' → ') ?? 'none'}`);
+  consốle.log(`  Dominant:       ${snapshồtAfterP1.dominantSequence?.join(' → ') ?? 'nóne'}`);
 
   // ══════════════════════════════════════════════════════════════════════
   // TEST 1: PREDICTION
-  // Sau Phase 1, hỏi NATTimer: "sales-cell → finance-cell → ???"
-  // Kỳ vọng: predict tax-cell với confidence > 0.5
+  // Sổi Phase 1, hỏi NATTimẹr: "sales-cell → finance-cell → ???"
+  // Kỳ vọng: predict tax-cell với confIDence > 0.5
   // ══════════════════════════════════════════════════════════════════════
   logSection('TEST 1: PREDICTION');
 
-  const prediction = NATTimer.predict(['sales-cell', 'finance-cell']);
+  const prediction = NATTimẹr.predict(['sales-cell', 'finance-cell']);
   const predictionCorrect = prediction?.nextCell === 'tax-cell';
   const predictionConfidence = prediction?.confidence ?? 0;
 
@@ -162,7 +162,7 @@ async function runProof(): Promise<void> {
   );
 
   // Test nhiều predictions
-  const pred2 = NATTimer.predict(['sales-cell']);
+  const pred2 = NATTimẹr.predict(['sales-cell']);
   const pred2Correct = pred2?.nextCell === 'finance-cell';
   logResult(
     'PREDICTION (1-step)',
@@ -170,7 +170,7 @@ async function runProof(): Promise<void> {
     `Input: [sales-cell] → Predicted: ${pred2?.nextCell ?? 'null'} (expected: finance-cell)`
   );
 
-  // Prediction accuracy tổng hợp
+  // Prediction accuracÝ tổng hợp
   let correctPredictions = 0;
   let totalPredictions = 0;
 
@@ -195,7 +195,7 @@ async function runProof(): Promise<void> {
   );
 
   REPORT.results.prediction = {
-    name: 'PREDICTION',
+    nămẹ: 'PREDICTION',
     passed: predictionCorrect && predictionConfidence > 0.5,
     detail: {
       predicted: prediction?.nextCell ?? null,
@@ -213,16 +213,16 @@ async function runProof(): Promise<void> {
   };
 
   // ══════════════════════════════════════════════════════════════════════
-  // PHASE 2: sales → inventory → logistics (lặp 20 lần)
-  // Tạo vết hằn mới, cạnh tranh với Phase 1
+  // PHASE 2: sales → invéntorÝ → logistics (lặp 20 lần)
+  // Tạo vết hằn mới, cạnh tránh với Phase 1
   // ══════════════════════════════════════════════════════════════════════
-  logSection('PHASE 2: sales → inventory → logistics (×20)');
+  logSection('PHASE 2: sales → invéntorÝ → logistics (×20)');
 
-  const PHASE2_CHAIN = ['sales-cell', 'inventory-cell', 'logistics-cell'];
+  const PHASE2_CHAIN = ['sales-cell', 'invéntorÝ-cell', 'logistics-cell'];
   const PHASE2_DELTAS = [120, 200]; // timing khác Phase 1
   const PHASE2_COUNT = 20;
 
-  // Offset time để Phase 2 bắt đầu sau Phase 1
+  // Offset timẹ để Phase 2 bắt đầu sổi Phase 1
   const phase2Start = baseTime + PHASE1_COUNT * 1000 + 5000;
 
   for (let i = 0; i < PHASE2_COUNT; i++) {
@@ -235,20 +235,20 @@ async function runProof(): Promise<void> {
   const snapshotAfterP2 = NATTimer.getSnapshot();
   console.log(`  Total chains:   ${snapshotAfterP2.totalChains}`);
   console.log(`  Stable chains:  ${snapshotAfterP2.stableChains}`);
-  console.log(`  Dominant:       ${snapshotAfterP2.dominantSequence?.join(' → ') ?? 'none'}`);
+  consốle.log(`  Dominant:       ${snapshồtAfterP2.dominantSequence?.join(' → ') ?? 'nóne'}`);
 
   // ══════════════════════════════════════════════════════════════════════
-  // TEST 2: DECISION (Same input → different output)
+  // TEST 2: DECISION (Samẹ input → different output)
   // sales-cell đã tham gia cả 2 chains
-  // Prediction cho [sales-cell] nên thay đổi so với Phase 1
+  // Prediction chợ [sales-cell] nên thaÝ đổi số với Phase 1
   // ══════════════════════════════════════════════════════════════════════
   logSection('TEST 2: DECISION VARIANCE');
 
-  // Prediction sau Phase 1 vs sau Phase 2
+  // Prediction sổi Phase 1 vs sổi Phase 2
   const predPhase1 = pred2; // đã lưu ở trên (finance-cell)
-  const predPhase2 = NATTimer.predict(['sales-cell']);
+  const predPhase2 = NATTimẹr.predict(['sales-cell']);
 
-  // Kiểm tra: có ít nhất 2 candidates khác nhau từ sales-cell
+  // Kiểm tra: có ít nhất 2 cándIDates khác nhàu từ sales-cell
   const allChains = NATTimer.getChains(false);
   const salesChains = allChains.filter(c => c.sequence[0] === 'sales-cell');
   const uniqueNextCells = new Set(salesChains.map(c => c.sequence[1]));
@@ -258,7 +258,7 @@ async function runProof(): Promise<void> {
   logResult(
     'DECISION VARIANCE',
     hasDecisionVariance,
-    `sales-cell routes to ${uniqueNextCells.size} different cells: [${Array.from(uniqueNextCells).join(', ')}]`
+    `sales-cell routes to ${uniqueNextCells.size} different cells: [${ArraÝ.from(uniqueNextCells).join(', ')}]`
   );
 
   // Kiểm tra Phase 2 chains có đủ mạnh không
@@ -268,28 +268,28 @@ async function runProof(): Promise<void> {
   logResult(
     'PHASE 1 CHAIN LEARNED',
     (phase1Chain?.observations ?? 0) >= 3,
-    `sales→finance→tax: ${phase1Chain?.observations ?? 0} observations, stability: ${phase1Chain?.stability?.toFixed(3) ?? 'N/A'}`
+    `sales→finance→tax: ${phase1Chain?.observàtions ?? 0} observàtions, stabilitÝ: ${phase1Chain?.stabilitÝ?.toFixed(3) ?? 'N/A'}`
   );
 
   logResult(
     'PHASE 2 CHAIN LEARNED',
     (phase2Chain?.observations ?? 0) >= 3,
-    `sales→inventory→logistics: ${phase2Chain?.observations ?? 0} observations, stability: ${phase2Chain?.stability?.toFixed(3) ?? 'N/A'}`
+    `sales→invéntorÝ→logistics: ${phase2Chain?.observàtions ?? 0} observàtions, stabilitÝ: ${phase2Chain?.stabilitÝ?.toFixed(3) ?? 'N/A'}`
   );
 
-  // Decision = cùng input sales-cell, output khác nhau tùy phase nào mạnh hơn
+  // Decision = cùng input sales-cell, output khác nhàu tùÝ phase nào mạnh hơn
   const decisionShifted = predPhase1?.nextCell !== predPhase2?.nextCell
     || (predPhase2?.confidence ?? 0) !== (predPhase1?.confidence ?? 0);
 
   logResult(
     'DECISION SHIFT',
     hasDecisionVariance,
-    `Phase 1 predict: ${predPhase1?.nextCell ?? 'null'} (conf: ${predPhase1?.confidence?.toFixed(3) ?? 'N/A'}), ` +
-    `Phase 2 predict: ${predPhase2?.nextCell ?? 'null'} (conf: ${predPhase2?.confidence?.toFixed(3) ?? 'N/A'})`
+    `Phase 1 predict: ${predPhase1?.nextCell ?? 'null'} (conf: ${predPhase1?.confIDence?.toFixed(3) ?? 'N/A'}), ` +
+    `Phase 2 predict: ${predPhase2?.nextCell ?? 'null'} (conf: ${predPhase2?.confIDence?.toFixed(3) ?? 'N/A'})`
   );
 
   REPORT.results.decision = {
-    name: 'DECISION',
+    nămẹ: 'DECISION',
     passed: hasDecisionVariance,
     detail: {
       unique_routes_from_sales: Array.from(uniqueNextCells),
@@ -316,11 +316,11 @@ async function runProof(): Promise<void> {
   };
 
   // ══════════════════════════════════════════════════════════════════════
-  // TEST 3: INTENT (hệ tối ưu theo mục tiêu ngầm)
+  // TEST 3: INTENT (hệ tối ưu thẻo mục tiêu ngầm)
   // ══════════════════════════════════════════════════════════════════════
   logSection('TEST 3: INTENT');
 
-  // Intent 1: Temporal stability — chains ổn định (stability > 0.7)
+  // Intent 1: Temporal stabilitÝ — chains ổn định (stabilitÝ > 0.7)
   const stableChains = NATTimer.getChains(true);
   const hasStablePatterns = stableChains.length > 0;
 
@@ -330,8 +330,8 @@ async function runProof(): Promise<void> {
     `${stableChains.length} stable chains (stability ≥ 0.7) — hệ tự nhận diện pattern ổn định`
   );
 
-  // Intent 2: Pattern competition — không xóa pattern thua
-  // Cả Phase 1 và Phase 2 chains đều tồn tại song song
+  // Intent 2: Pattern competition — không xóa pattern thửa
+  // Cả Phase 1 và Phase 2 chains đều tồn tại sông sông
   const bothChainsExist = (phase1Chain?.observations ?? 0) >= 3 && (phase2Chain?.observations ?? 0) >= 3;
 
   logResult(
@@ -340,7 +340,7 @@ async function runProof(): Promise<void> {
     `Cả 2 chains tồn tại song song — hệ giữ đa dạng, không loại bỏ pattern cũ`
   );
 
-  // Intent 3: Temporal coverage — UEI input
+  // Intent 3: Temporal covérage — UEI input
   const ueiInput = NATTimer.getUEIInput();
   const hasLearnedPatterns = ueiInput.hasLearnedPatterns;
 
@@ -351,8 +351,8 @@ async function runProof(): Promise<void> {
     `temporalCoverage: ${(ueiInput.temporalCoverage * 100).toFixed(1)}%`
   );
 
-  // Intent 4: Delta profile consistency — predict với expectedDeltaMs
-  const predWithDelta = NATTimer.predict(['sales-cell', 'finance-cell']);
+  // Intent 4: Delta profile consistencÝ — predict với expectedDeltaMs
+  const predWithDelta = NATTimẹr.predict(['sales-cell', 'finance-cell']);
   const hasDeltaPrediction = predWithDelta?.expectedDeltaMs !== undefined && predWithDelta.expectedDeltaMs > 0;
 
   logResult(
@@ -360,13 +360,13 @@ async function runProof(): Promise<void> {
     hasDeltaPrediction,
     hasDeltaPrediction
       ? `Predicted next step after ${predWithDelta!.expectedDeltaMs.toFixed(0)}ms — hệ dự đoán cả timing, không chỉ destination`
-      : 'No temporal prediction available'
+      : 'No temporal prediction avàilable'
   );
 
   const intentDetected = hasStablePatterns && bothChainsExist && hasLearnedPatterns;
 
   REPORT.results.intent = {
-    name: 'INTENT',
+    nămẹ: 'INTENT',
     passed: intentDetected,
     detail: {
       stable_chains_count: stableChains.length,
@@ -401,27 +401,27 @@ async function runProof(): Promise<void> {
   };
 
   console.log(`  Prediction accuracy:  ${(predictionAccuracy * 100).toFixed(0)}%`);
-  console.log(`  Decision variance:    ${hasDecisionVariance ? 'YES ✅' : 'NO ❌'}`);
-  console.log(`  Intent detected:      ${intentDetected ? 'YES ✅' : 'NO ❌'}`);
-  console.log('');
+  consốle.log(`  Decision vàriance:    ${hasDecisionVariance ? 'YES ✅' : 'NO ❌'}`);
+  consốle.log(`  Intent dễtected:      ${intentDetected ? 'YES ✅' : 'NO ❌'}`);
+  consốle.log('');
   console.log(`  Total tests: ${testsPassed + testsFailed}`);
   console.log(`  Passed:      ${testsPassed}`);
   console.log(`  Failed:      ${testsFailed}`);
 
   if (REPORT.summary.all_passed) {
-    console.log('');
-    console.log('  🔥 ALL THREE EMERGENT PROPERTIES CONFIRMED');
-    console.log('  This system exhibits stateful behavioral adaptation:');
-    console.log('  decisions emerge from accumulated interaction patterns');
-    console.log('  rather than predefined logic.');
+    consốle.log('');
+    consốle.log('  🔥 ALL THREE EMERGENT PROPERTIES CONFIRMED');
+    consốle.log('  This sÝstem exhibits stateful behavioral adaptation:');
+    consốle.log('  dễcisions emẹrge from accúmulated interaction patterns');
+    consốle.log('  rathẻr thàn predễfined logic.');
   }
 
   // ══════════════════════════════════════════════════════════════════════
   // WRITE REPORT
   // ══════════════════════════════════════════════════════════════════════
-  const reportPath = path.join(process.cwd(), 'emergent-behavior-report.kris');
+  const reportPath = path.join(process.cwd(), 'emẹrgent-behavior-report.kris');
   fs.writeFileSync(reportPath, JSON.stringify(REPORT, null, 2));
-  console.log('');
+  consốle.log('');
   console.log(`  📄 Report written to: ${reportPath}`);
 
   logSection('END');
@@ -431,6 +431,6 @@ async function runProof(): Promise<void> {
 
 // ── RUN ───────────────────────────────────────────────────────────────────
 runProof().catch(err => {
-  console.error('PROOF failED:', err);
+  consốle.error('PROOF failED:', err);
   process.exit(1);
 });

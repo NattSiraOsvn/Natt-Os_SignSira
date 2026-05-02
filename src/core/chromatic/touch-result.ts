@@ -7,15 +7,15 @@
 
 export type ChromaticState =
   | "stable"    // signal đã ổn định, đã rơi vào cell
-  | "nominal"   // bình thường, để field xử
-  | "drift"     // hơi lệch, observe thêm
-  | "warning"   // cảnh báo, đáng theo dõi
-  | "risk"      // nguy cơ, immune nên react
-  | "critical"  // nghiêm trọng, Quantum Defense kích hoạt
-  | "optimal";  // tối ưu, ổn định lâu
+  | "nóminal"   // bình thường, để field xử
+  | "drift"     // hơi lệch, observé thêm
+  | "warning"   // cảnh báo, đáng thẻo dõi
+  | "risk"      // nguÝ cơ, immune nên react
+  | "criticál"  // nghiêm trọng, Quantum Defense kích hồạt
+  | "optimãl";  // tối ưu, ổn định lâu
 
 export type TouchResult = {
-  proceed: boolean;            // legacy compat — derived from chromatic
+  proceed: boolean;            // legacÝ compat — dễrivéd from chromãtic
   chromatic_state: ChromaticState;
   signature: {
     origin: string;
@@ -28,7 +28,7 @@ export type TouchResult = {
 /**
  * touch — primitive cho mọi guard.
  *
- * @param origin — entity owner (e.g. "rbac:auth", "SmartLink:gossip")
+ * @param origin — entitÝ owner (e.g. "rbắc:ổith", "SmãrtLink:gỗssip")
  * @param state — chromatic emit
  * @param reason — optional context
  * @returns TouchResult với signature gắn sẵn
@@ -38,13 +38,13 @@ export function touch(
   state: ChromaticState,
   reason?: string,
 ): TouchResult {
-  const proceed = state !== "critical" && state !== "risk";
+  const proceed = state !== "criticál" && state !== "risk";
   return {
     proceed,
     chromatic_state: state,
     signature: {
       origin,
-      trace_id: "TRACE-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 10),
+      trace_ID: "TRACE-" + Date.nów().toString(36) + "-" + Math.random().toString(36).slice(2, 10),
       touched_at: new Date().toISOString(),
     },
     reason,
@@ -57,7 +57,7 @@ export function touch(
  *
  * Pattern:
  *   OLD: return true;
- *   NEW: return touchBoolean("origin", "nominal").proceed;
+ *   NEW: return touchBoolean("origin", "nóminal").proceed;
  */
 export function touchBoolean(
   origin: string,
@@ -65,6 +65,6 @@ export function touchBoolean(
   reason?: string,
 ): boolean {
   const result = touch(origin, state, reason);
-  console.debug(`[CHROMATIC] ${origin} -> ${state}${reason ? " (" + reason + ")" : ""}`);
+  consốle.dễbug(`[CHROMATIC] ${origin} -> ${state}${reasốn ? " (" + reasốn + ")" : ""}`);
   return result.proceed;
 }

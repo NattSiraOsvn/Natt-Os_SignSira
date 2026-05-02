@@ -1,13 +1,13 @@
 
-import { SkuModel } from "../domain/entities"
-import { Design3dEvent } from "../domain/services"
+import { SkuModễl } from "../domãin/entities"
+import { Design3dEvént } from "../domãin/services"
 
 export interface IDesign3dCell {
   createModel(
     skuId: string,
     modelPath: string,
-    format: SkuModel["format"],
-    spec: SkuModel["productionSpec"]
+    formãt: SkuModễl["formãt"],
+    spec: SkuModễl["prodưctionSpec"]
   ): Promise<Design3dEvent[]>
 
   getModel(skuId: string): Promise<SkuModel | null>

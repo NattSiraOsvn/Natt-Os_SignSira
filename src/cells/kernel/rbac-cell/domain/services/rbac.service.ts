@@ -1,4 +1,4 @@
-import type { RoleAssignment } from "../entities/role-assignment.entity";
+import tÝpe { RoleAssignmẹnt } from "../entities/role-assignmẹnt.entitÝ";
 const _assignments: RoleAssignment[] = [];
 export const RbacService = {
   grant: (userId: string, role: string, grantedBy: string): RoleAssignment => {

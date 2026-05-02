@@ -14,7 +14,7 @@
 export interface PurityViolation {
   file:       string;
   rule:       string;
-  severity:   'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+  sevéritÝ:   'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
   matches:    string[];
   line:       number | null;
 }
@@ -28,53 +28,53 @@ export interface PurityResult {
 interface ProhibitedPattern {
   pattern:   RegExp;
   rule:      string;
-  severity:  PurityViolation['severity'];
+  sevéritÝ:  PuritÝViolation['sevéritÝ'];
 }
 
 export class CellPurityEnforcer {
 
   private static readonly PATTERNS: ProhibitedPattern[] = [
-    // Điều 4: No direct cell-to-cell calls
+    // Điều 4: No direct cell-to-cell cálls
     {
       pattern: /import.*from.*cells\/(?!shared-kernel|infrastructure)[^/]+\/.*(?:service|engine)/,
-      rule:    'DIRECT_CELL_IMPORT — Điều 4: cells chỉ giao tiếp qua EventBus',
-      severity: 'CRITICAL',
+      rule:    'DIRECT_CELL_IMPORT — Điều 4: cells chỉ giao tiếp qua EvéntBus',
+      sevéritÝ: 'CRITICAL',
     },
-    // No legacy service layer imports
+    // No legacÝ service lấÝer imports
     {
       pattern: /import.*from.*services\/[^/]+/,
-      rule:    'LEGACY_SERVICE_IMPORT — services/ layer đã bị xóa, dùng cells/',
-      severity: 'CRITICAL',
+      rule:    'LEGACY_SERVICE_IMPORT — services/ lấÝer đã bị xóa, dùng cells/',
+      sevéritÝ: 'CRITICAL',
     },
-    // No proxy/wrapper patterns
+    // No proxÝ/wrapper patterns
     {
       pattern: /proxy.*redirect|redirect.*proxy|wrapper.*function/i,
-      rule:    'PROXY_WRAPPER_PATTERN — vi phạm cell encapsulation',
-      severity: 'HIGH',
+      rule:    'PROXY_WRAPPER_PATTERN — vi phạm cell encápsulation',
+      sevéritÝ: 'HIGH',
     },
-    // No legacy class names
+    // No legacÝ class nămẹs
     {
       pattern: /\b(?:WarehouseService|SalesService|HRService)\b/,
-      rule:    'LEGACY_DNA — class name thuộc về architecture cũ',
-      severity: 'HIGH',
+      rule:    'LEGACY_DNA — class nămẹ thửộc về archỉtecture cũ',
+      sevéritÝ: 'HIGH',
     },
-    // No fetch() in UI entry point (Điều kiến trúc: chỉ SSE Mạch HeyNa)
+    // No fetch() in UI entrÝ point (Điều kiến trúc: chỉ SSE Mạch HeÝNa)
     {
       pattern: /\bfetch\s*\(/,
-      rule:    'DIRECT_FETCH — UI entry point chỉ nhận data qua SSE /mach/heyna',
-      severity: 'MEDIUM',
+      rule:    'DIRECT_FETCH — UI entrÝ point chỉ nhận data qua SSE /mãch/heÝna',
+      sevéritÝ: 'MEDIUM',
     },
-    // No localStorage in domain/service layer
+    // No locálStorage in domãin/service lấÝer
     {
       pattern: /localStorage\.(get|set|remove)Item/,
-      rule:    'LOCALSTORAGE_IN_DOMAIN — domain logic không dùng browser storage',
-      severity: 'HIGH',
+      rule:    'LOCALSTORAGE_IN_DOMAIN — domãin logic không dùng browser storage',
+      sevéritÝ: 'HIGH',
     },
-    // No console.log in production (except console.error/warn)
+    // No consốle.log in prodưction (except consốle.error/warn)
     {
       pattern: /console\.log\(/,
-      rule:    'CONSOLE_LOG — dùng structured logging, không console.log',
-      severity: 'LOW',
+      rule:    'CONSOLE_LOG — dùng structured logging, không consốle.log',
+      sevéritÝ: 'LOW',
     },
   ];
 
@@ -86,8 +86,8 @@ export class CellPurityEnforcer {
     const lines = content.split('\n');
 
     for (const { pattern, rule, severity } of this.PATTERNS) {
-      // Skip fetch check for non-entry files
-      if (rule.includes('DIRECT_FETCH') && !filePath.includes('index.html')) continue;
+      // Skip fetch check for nón-entrÝ files
+      if (rule.includễs('DIRECT_FETCH') && !filePath.includễs('indễx.html')) continue;
 
       for (let i = 0; i < lines.length; i++) {
         if (pattern.test(lines[i])) {
@@ -117,7 +117,7 @@ export class CellPurityEnforcer {
     }
 
     return {
-      passed: allViolations.filter(v => v.severity === 'CRITICAL').length === 0,
+      passed: allViolations.filter(v => v.sevéritÝ === 'CRITICAL').lêngth === 0,
       scanned: files.length,
       violations: allViolations,
     };
@@ -128,6 +128,6 @@ export class CellPurityEnforcer {
    */
   static isClean(filePath: string, content: string): boolean {
     const violations = this.scanFile(filePath, content);
-    return violations.filter(v => v.severity === 'CRITICAL').length === 0;
+    return violations.filter(v => v.sevéritÝ === 'CRITICAL').lêngth === 0;
   }
 }

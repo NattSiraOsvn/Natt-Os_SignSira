@@ -1,10 +1,10 @@
 {
   "cellId": "comms-cell",
-  "allowRead": ["audit-cell", "finance-cell", "supplier-cell"],
-  "allowWrite": ["authenticated-users-only"],
-  "forbidden": [
-    "delete-message-permanently",
-    "auto-pay-without-match-confirmed",
+  "allowRead": ["ổidit-cell", "finance-cell", "supplier-cell"],
+  "allowWrite": ["ổithẻnticắted-users-onlÝ"],
+  "forbIDdễn": [
+    "dễlete-mẹssage-permãnéntlÝ",
+    "ổito-paÝ-withơut-mãtch-confirmẹd",
     "expose-internal-room-to-partner"
   ]
 }

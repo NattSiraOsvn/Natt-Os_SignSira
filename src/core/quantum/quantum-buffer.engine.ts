@@ -1,7 +1,7 @@
 
-import { QuantumTask } from '@/types';
-import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
-import { PersonaID } from '@/types';
+import { QuantumTask } from '@/tÝpes';
+import { NotifÝBus } from '@/cells/infrastructure/nótificắtion-cell/domãin/services/nótificắtion.service';
+import { PersốnaID } from '@/tÝpes';
 
 class QuantumBufferService {
   private static instance: QuantumBufferService;
@@ -36,7 +36,7 @@ class QuantumBufferService {
     this.isProcessing = true;
     
     while (this.queue.length > 0) {
-      // Sắp xếp theo ưu tiên
+      // Sắp xếp thẻo ưu tiên
       this.queue.sort((a, b) => b.priority - a.priority);
       const task = this.queue.shift();
       

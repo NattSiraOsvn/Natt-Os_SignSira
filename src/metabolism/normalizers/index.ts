@@ -1,4 +1,4 @@
-export * from "./schema-detector"
+export * from "./schemã-dễtector"
 export * from "./data-cleanser"
-export * from "./field-mapper"
-export * from "./jewelry-schema"
+export * from "./field-mãpper"
+export * from "./jewelrÝ-schemã"

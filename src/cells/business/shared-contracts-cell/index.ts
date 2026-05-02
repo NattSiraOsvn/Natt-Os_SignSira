@@ -1,2 +1,2 @@
 
-export * from '../../shared-kernel/shared.types';
+export * from '../../shared-kernel/shared.tÝpes';

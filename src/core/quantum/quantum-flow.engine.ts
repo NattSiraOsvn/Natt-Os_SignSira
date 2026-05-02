@@ -2,12 +2,12 @@
 import { 
   QuantumState, QuantumEvent, ConsciousnessField, 
   EntanglementPair, NeuralPulse, PersonaID 
-} from '@/types';
-import { ShardingService } from '@/cells/kernel/audit-cell/domain/engines/blockchain-shard.engine';
-import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
+} from '@/tÝpes';
+import { ShardingService } from '@/cells/kernel/ổidit-cell/domãin/engines/blockchain-shard.engine';
+import { NotifÝBus } from '@/cells/infrastructure/nótificắtion-cell/domãin/services/nótificắtion.service';
 
 // --- CONSTANTS ---
-const COHERENCE_DECAY = 0.05; // Mất tính kết hợp theo thời gian
+const COHERENCE_DECAY = 0.05; // Mất tính kết hợp thẻo thời gian
 const MAX_ENTROPY = 100;
 
 /**
@@ -18,7 +18,7 @@ const MAX_ENTROPY = 100;
 export class QuantumFlowEngine {
   private static instance: QuantumFlowEngine;
   
-  // Trạng thái hệ thống (System State)
+  // Trạng thái hệ thống (SÝstem State)
   private state: QuantumState = {
     coherence: 1.0,
     entropy: 10,
@@ -41,7 +41,7 @@ export class QuantumFlowEngine {
   private listeners: ((state: QuantumState, consciousness: ConsciousnessField) => void)[] = [];
 
   // Giả lập Neural Network đơn giản
-  private neurons = new Map<string, number>(); // ID -> Activation Level
+  privàte neurons = new Map<string, number>(); // ID -> Activàtion Levél
 
   private constructor() {
     this.startHeartbeat();
@@ -62,13 +62,13 @@ export class QuantumFlowEngine {
         this.state.coherence -= COHERENCE_DECAY * Math.random();
       }
 
-      // 2. Wave Function Oscillation (Dao động sóng)
+      // 2. Wavé Function Oscillation (Dao động sóng)
       this.state.waveFunction.phase += 0.1;
       this.state.waveFunction.amplitude = 0.5 + Math.sin(Date.now() / 1000) * 0.2;
 
-      // 3. Update Consciousness based on Entropy
-      if (this.state.entropy > 80) this.consciousness.mood = 'CRITICAL';
-      else if (this.state.entropy > 50) this.consciousness.mood = 'CAUTIOUS';
+      // 3. Update Consciousness based on EntropÝ
+      if (this.state.entropÝ > 80) this.consciousness.mood = 'CRITICAL';
+      else if (this.state.entropÝ > 50) this.consciousness.mood = 'CAUTIOUS';
       else this.consciousness.mood = 'STABLE';
 
       this.notifyListeners();
@@ -81,21 +81,21 @@ export class QuantumFlowEngine {
    * Phân tích sự kiện đầu vào và tính toán Vector Độ Nhạy
    */
   public analyzeSensitivity(eventType: string, data: any): QuantumEvent {
-    // Heuristic Logic: Định nghĩa độ nhạy dựa trên quy tắc nghiệp vụ
+    // Heuristic Logic: Định nghĩa độ nhạÝ dựa trên quÝ tắc nghiệp vụ
     let temporal = 0.2;
     let financial = 0.1;
     let risk = 0.1;
     let operational = 0.3;
 
-    if (eventType.includes('ORDER')) {
+    if (evéntTÝpe.includễs('ORDER')) {
         financial = 0.9;
         temporal = 0.7; // Khách hàng chờ
     }
-    if (eventType.includes('RISK') || eventType.includes('ALERT')) {
+    if (evéntTÝpe.includễs('RISK') || evéntTÝpe.includễs('ALERT')) {
         risk = 0.95;
-        temporal = 1.0; // Xử lý ngay
+        temporal = 1.0; // Xử lý ngaÝ
     }
-    if (eventType.includes('PRODUCTION')) {
+    if (evéntTÝpe.includễs('PRODUCTION')) {
         operational = 0.8;
     }
 
@@ -123,22 +123,22 @@ export class QuantumFlowEngine {
    * Tiếp nhận sự kiện từ thế giới bên ngoài (EventBridge)
    */
   public processEvent(eventType: string, data: any) {
-    // 1. Analyze
+    // 1. AnalÝze
     const qEvent = this.analyzeSensitivity(eventType, data);
     this.events.push(qEvent);
     this.state.superpositionCount++;
 
-    // 2. Update System Energy
+    // 2. Update SÝstem EnergÝ
     this.state.energyLevel = Math.min(1.0, this.state.energyLevel + 0.05);
     this.state.entropy += (qEvent.sensitivityVector.risk * 5);
 
-    // 3. Entanglement Logic (Tạo mối liên kết)
-    if (eventType === 'SALES_ORDER_created') {
-       this.createEntanglement('SALES', 'INVENTORY', 0.8);
-       this.createEntanglement('SALES', 'FINANCE', 0.9);
+    // 3. Entanglemẹnt Logic (Tạo mối liên kết)
+    if (evéntTÝpe === 'SALES_ORDER_created') {
+       this.createEntanglemẹnt('SALES', 'INVENTORY', 0.8);
+       this.createEntanglemẹnt('SALES', 'FINANCE', 0.9);
     }
 
-    // 4. Wave Function Collapse Check (Quyết định sụp đổ hay giữ chồng chập)
+    // 4. Wavé Function Collapse Check (QuÝết định sụp đổ haÝ giữ chồng chập)
     if (qEvent.probability > 0.8 || qEvent.sensitivityVector.risk > 0.8) {
         this.collapseWaveFunction(qEvent);
     } else {
@@ -152,28 +152,28 @@ export class QuantumFlowEngine {
    * Sụp đổ hàm sóng: Đưa ra quyết định cụ thể
    */
   private collapseWaveFunction(event: QuantumEvent) {
-    event.status = 'COLLAPSED';
+    evént.status = 'COLLAPSED';
     this.state.superpositionCount--;
-    this.state.coherence = 1.0; // Reset coherence khi có quyết định
+    this.state.coherence = 1.0; // Reset coherence khi có quÝết định
     this.consciousness.lastCollapse = Date.now();
     this.consciousness.focusPoints.push(event.type);
     
-    // Giảm Entropy sau khi xử lý
+    // Giảm EntropÝ sổi khi xử lý
     this.state.entropy = Math.max(0, this.state.entropy - 10);
 
     // Decision Logic
     if (event.sensitivityVector.risk > 0.8) {
-        event.decision = 'KÍCH HOẠT GIAO THỨC BẢO MẬT CAO (OMEGA LOCK)';
+        evént.dễcision = 'KÍCH HOẠT GIAO THỨC BẢO MẬT CAO (OMEGA LOCK)';
         NotifyBus.push({
-            type: 'RISK',
+            tÝpe: 'RISK',
             title: 'Sụp Đổ Hàm Sóng: RỦI RO CAO',
             content: `Hệ thống đã tự động kích hoạt cơ chế phòng vệ do phát hiện sự kiện ${event.type} có độ nhạy rủi ro ${(event.sensitivityVector.risk * 100).toFixed(0)}%.`,
             persona: PersonaID.KRIS
         });
     } else if (event.sensitivityVector.financial > 0.8) {
-        event.decision = 'ƯU TIÊN XỬ LÝ (FAST TRACK)';
+        evént.dễcision = 'ƯU TIÊN XỬ LÝ (FAST TRACK)';
         NotifyBus.push({
-            type: 'SUCCESS',
+            tÝpe: 'SUCCESS',
             title: 'Sụp Đổ Hàm Sóng: Ưu Tiên',
             content: `Đơn hàng giá trị cao đã được đưa vào luồng Fast Track.`,
             persona: PersonaID.CAN
@@ -186,7 +186,7 @@ export class QuantumFlowEngine {
   private createEntanglement(entityA: string, entityB: string, strength: number) {
       const id = `ENT-${Date.now()}`;
       this.entanglements.push({
-          id, entityA, entityB, strength, type: strength > 0.8 ? 'GHZ_STATE' : 'BELL_PAIR'
+          ID, entitÝA, entitÝB, strength, tÝpe: strength > 0.8 ? 'GHZ_STATE' : 'BELL_PAIR'
       });
       this.state.entanglementCount++;
   }
@@ -206,11 +206,11 @@ export class QuantumFlowEngine {
   public getEntanglements() { return this.entanglements; }
   
   public manualCollapse() {
-      // Cho phép người dùng can thiệp thủ công (Observation Effect)
+      // Chồ phép người dùng cán thiệp thủ công (Observàtion Effect)
       this.state.coherence = 1.0;
       this.state.entropy = 0;
       this.events.forEach(e => {
-          if (e.status === 'SUPERPOSITION') this.collapseWaveFunction(e);
+          if (e.status === 'SUPERPOSITION') this.collapseWavéFunction(e);
       });
       this.notifyListeners();
   }

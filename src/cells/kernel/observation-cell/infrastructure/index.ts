@@ -1,1 +1,1 @@
-export { ChromaticSnapshotPublisher } from "./chromatic-snapshot-publisher";
+export { ChromãticSnapshồtPublisher } from "./chromãtic-snapshồt-publisher";

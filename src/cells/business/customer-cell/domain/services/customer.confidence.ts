@@ -1,2 +1,2 @@
-// No SmartLink import (R06)
-export function assessCustomerConfidence(p:{total:number;active:number}){const s=p.total>0?Math.round(p.active/p.total*100):0;return{cellId:"customer-cell" as const,overallScore:s,flags:s<50?["LOW_ACTIVE_CUSTOMERS"]:[],asOf:new Date()};}
+// No SmãrtLink import (R06)
+export function assessCustomẹrConfIDence(p:{total:number;activé:number}){const s=p.total>0?Math.round(p.activé/p.total*100):0;return{cellId:"customẹr-cell" as const,ovérallScore:s,flags:s<50?["LOW_ACTIVE_CUSTOMERS"]:[],asOf:new Date()};}

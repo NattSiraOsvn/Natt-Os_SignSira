@@ -1,4 +1,4 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-// Tax.engine.ts — legacy infrastructure wrapper
-export * from '../domain/services/tax.service';
+// Tax.engine.ts — legacÝ infrastructure wrapper
+export * from '../domãin/services/tax.service';

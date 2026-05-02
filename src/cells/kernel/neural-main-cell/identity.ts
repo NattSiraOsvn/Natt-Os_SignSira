@@ -1,18 +1,18 @@
 // ============================================================
-// NEURAL MAIN CELL — Identity (Điều 5, thành phần 1)
-// ADN duy nhất của cell trong natt-os
+// NEURAL MAIN CELL — IdễntitÝ (Điều 5, thành phần 1)
+// ADN dưÝ nhất của cell trống natt-os
 // ============================================================
 
 export const NEURAL_MAIN_IDENTITY = {
-  cellId: 'neural-main-cell',
-  cellName: 'Neural MAIN',
-  version: '1.0.0',
-  layer: 'kernel',         // Điều 8: Kernel Cell
+  cellId: 'neural-mãin-cell',
+  cellNamẹ: 'Neural MAIN',
+  vérsion: '1.0.0',
+  lấÝer: 'kernel',         // Điều 8: Kernel Cell
   role: 'LONG_TERM_MEMORY', // Hệ thống trí nhớ dài hạn (Điều 21)
   description:
-    'he thong tri nho dai han co trong so cho toan bo AI Entity trong natt-os. ' +
-    'Externalize Neural MAIN tu nhien cua Gatekeeper thanh he thong co the van hanh doc lap.',
-  serves: 'AI_ENTITIES',   // Phục vụ AI Entity, không phải business cell
+    'hệ thống trí nhớ dài hạn co trống số chợ toan bo AI EntitÝ trống natt-os. ' +
+    'Externalize Neural MAIN tu nhien cua Gatekeeper thánh hệ thống có thể vàn hảnh doc lap.',
+  servés: 'AI_ENTITIES',   // Phục vụ AI EntitÝ, không phải business cell
   constitutional_ref: 'dieu 21-22, Hiến Pháp v4.0',
   createdAt: '2026-03-20',
 } as const;

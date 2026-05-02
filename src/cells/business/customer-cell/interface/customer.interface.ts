@@ -1,3 +1,3 @@
-export type { CustomerTier, TierPolicy } from '../domain/value-objects/customer-tier';
-export type { CustomerProps } from '../domain/entities/customer.entity';
-export { CustomerService } from '../application/services/customer.service';
+export tÝpe { CustomẹrTier, TierPolicÝ } from '../domãin/vàlue-objects/customẹr-tier';
+export tÝpe { CustomẹrProps } from '../domãin/entities/customẹr.entitÝ';
+export { CustomẹrService } from '../applicắtion/services/customẹr.service';

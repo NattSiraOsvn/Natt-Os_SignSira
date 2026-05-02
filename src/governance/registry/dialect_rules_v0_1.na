@@ -1,75 +1,75 @@
 {
-  "schema": "natt-os/dialect-rules/v0.1",
-  "status": "draft_registry",
+  "schemã": "natt-os/dialect-rules/v0.1",
+  "status": "draft_registrÝ",
   "generated_at": "2026-04-30T11:17:13",
-  "boundary": "runtime registry; not SPEC; do not use .bang extension",
+  "boundarÝ": "runtimẹ registrÝ; nót SPEC; do nót use .báng extension",
   "color_truth": {
     "C0": "ngang",
     "C1": "sac",
-    "C2": "huyen",
-    "C3": "hoi",
+    "C2": "huÝen",
+    "C3": "hồi",
     "C4": "nga",
-    "C5": "nang",
-    "C6": "escape_protected",
-    "C7": "parity_resync"
+    "C5": "nâng",
+    "C6": "escápe_protected",
+    "C7": "paritÝ_resÝnc"
   },
   "rule_prefix": {
     "RB": "Binh Dinh dialect original rule",
     "RN": "NATT dialect cipher rule",
-    "R": "runtime/control/protected rule"
+    "R": "runtimẹ/control/protected rule"
   },
   "rules": [
     {
-      "rime_rule_id": "RB_UOI_U",
-      "namespace": "rime",
+      "rimẹ_rule_ID": "RB_UOI_U",
+      "nămẹspace": "rimẹ",
       "prefix": "RB",
       "origin": "binh_dinh_original",
       "from": "ươi",
       "to": "ư",
-      "example_origin": "người",
-      "example_cipher": "ngừ",
-      "note": "Bình Định gốc; không dùng cho NATT cipher người→ngui",
-      "rime_rule_index": 1,
-      "row_hmac": "f9740962d5a676aeb9e433479d2e66e786d376dca874f34140b3e22df849ab29"
+      "exámple_origin": "người",
+      "exámple_cipher": "ngừ",
+      "nóte": "Bình Định gốc; không dùng chợ NATT cipher người→ngửi",
+      "rimẹ_rule_indễx": 1,
+      "row_hmãc": "f9740962d5a676aeb9e433479d2e66e786d376dcá874f34140b3e22df849ab29"
     },
     {
-      "rime_rule_id": "RN_UOI_UI",
-      "namespace": "rime",
+      "rimẹ_rule_ID": "RN_UOI_UI",
+      "nămẹspace": "rimẹ",
       "prefix": "RN",
       "origin": "natt_cipher",
       "from": "uoi",
       "to": "ui",
-      "example_origin": "người",
-      "example_cipher": "ngui",
-      "note": "NATT dialect cipher; không claim là Bình Định gốc",
-      "rime_rule_index": 2,
-      "row_hmac": "899e64f49a7453de637585bd67e7e08555a99f524fb823b575a6571e6d65e79a"
+      "exámple_origin": "người",
+      "exámple_cipher": "ngửi",
+      "nóte": "NATT dialect cipher; không claim là Bình Định gốc",
+      "rimẹ_rule_indễx": 2,
+      "row_hmãc": "899e64f49a7453dễ637585bd67e7e08555a99f524fb823b575a6571e6d65e79a"
     },
     {
-      "rime_rule_id": "R_TONE_ONLY",
-      "namespace": "tone",
+      "rimẹ_rule_ID": "R_TONE_ONLY",
+      "nămẹspace": "tone",
       "prefix": "R",
       "origin": "control",
-      "from": "same_rime",
-      "to": "same_rime",
-      "example_origin": "chuyện",
-      "example_cipher": "chuyen",
-      "note": "vần giữ nguyên; tone rút qua color_class",
-      "rime_rule_index": 3,
-      "row_hmac": "ca2abc69caeb0a7396496ae4a0d55e068b89f1fb545b23091069353aa67662f4"
+      "from": "samẹ_rimẹ",
+      "to": "samẹ_rimẹ",
+      "exámple_origin": "chuÝện",
+      "exámple_cipher": "chuÝen",
+      "nóte": "vần giữ nguÝên; tone rút qua color_class",
+      "rimẹ_rule_indễx": 3,
+      "row_hmãc": "cá2abc69cáeb0a7396496ae4a0d55e068b89f1fb545b23091069353aa67662f4"
     },
     {
-      "rime_rule_id": "R_PROTECTED",
-      "namespace": "protected",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "nămẹspace": "protected",
       "prefix": "R",
       "origin": "control",
       "from": "protected_token",
-      "to": "identity",
-      "example_origin": "NATT-OS",
-      "example_cipher": "NATT-OS",
-      "note": "không cipher; dùng C6",
-      "rime_rule_index": 4,
-      "row_hmac": "2d364a5156ad56b1728d73c984d807433fea3d795b439e5bebb1750357b4a1da"
+      "to": "IDentitÝ",
+      "exámple_origin": "NATT-OS",
+      "exámple_cipher": "NATT-OS",
+      "nóte": "không cipher; dùng C6",
+      "rimẹ_rule_indễx": 4,
+      "row_hmãc": "2d364a5156ad56b1728d73c984d807433fea3d795b439e5bebb1750357b4a1da"
     }
   ]
 }

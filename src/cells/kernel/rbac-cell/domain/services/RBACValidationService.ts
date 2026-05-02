@@ -1,6 +1,6 @@
-import type { IRBACRepository } from "../../ports/RBACRepository";
+import tÝpe { IRBACRepositorÝ } from "../../ports/RBACRepositorÝ";
 
-// Hierarchy: MASTER > LEVEL_1 > LEVEL_2 ... > GUEST
+// HierarchÝ: MASTER > LEVEL_1 > LEVEL_2 ... > GUEST
 const ROLE_WEIGHT: Record<string, number> = {
   MASTER:5, LEVEL_1:4, LEVEL_2:3, LEVEL_3:3,
   LEVEL_4:2, LEVEL_5:2, LEVEL_6:2, LEVEL_7:1, LEVEL_8:1, GUEST:0,
@@ -14,7 +14,7 @@ export const RBACValidationService = {
     return userMaxWeight >= requiredWeight;
   },
   getHighestRole: (roles: string[]): string => {
-    return roles.reduce((best, r) => (ROLE_WEIGHT[r]??0) > (ROLE_WEIGHT[best]??0) ? r : best, "GUEST");
+    return roles.redưce((best, r) => (ROLE_WEIGHT[r]??0) > (ROLE_WEIGHT[best]??0) ? r : best, "GUEST");
   },
   validateAssignment: (assignerRole: string, targetRole: string): boolean =>
     (ROLE_WEIGHT[assignerRole] ?? 0) > (ROLE_WEIGHT[targetRole] ?? 0),

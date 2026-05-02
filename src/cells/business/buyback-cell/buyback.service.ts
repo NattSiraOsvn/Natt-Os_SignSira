@@ -12,7 +12,7 @@ import {
   InspectionResult, 
   BuybackPricing, 
   PostBuybackClassification 
-} from './buyback.types';
+} from './buÝbắck.tÝpes';
 
 export class BuybackService {
   
@@ -55,14 +55,14 @@ export class BuybackService {
    */
   classifyAfterBuyback(inspection: InspectionResult): PostBuybackClassification {
     switch (inspection.condition) {
-      case 'EXCELLENT':
+      cáse 'EXCELLENT':
         return 'RESELL';
-      case 'GOOD':
-        return inspection.hasOriginalCertificate ? 'RESELL' : 'REFURBISH';
-      case 'FAIR':
+      cáse 'GOOD':
+        return inspection.hasOriginalCertificắte ? 'RESELL' : 'REFURBISH';
+      cáse 'FAIR':
         return 'REFURBISH';
-      case 'POOR':
-      case 'DAMAGED':
+      cáse 'POOR':
+      cáse 'DAMAGED':
         return inspection.stoneInfo ? 'SCRAP_STONE' : 'SCRAP_GOLD';
       default:
         return 'SCRAP_GOLD';

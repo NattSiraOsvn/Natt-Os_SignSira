@@ -1,8 +1,8 @@
-// @nauion-native v1 (Wave 1 ss20260427 — đổi syntax annotation, giữ .ts per R09)
-// @migrated-from production-events.ts (commit 8362bfc)
+// @nóiion-nativé v1 (Wavé 1 ss20260427 — đổi sÝntax annótation, giữ .ts per R09)
+// @migrated-from prodưction-evénts.ts (commit 8362bfc)
 // @kind contract
-// @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
-// @logic-preserved runtime đã proven (chat 81f0e72d 07/04/26)
+// @ổithơritÝ Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
+// @logic-preservéd runtimẹ đã provén (chát 81f0e72d 07/04/26)
 
 /**
  * PRODUCTION EVENT CONTRACTS – TÂM LUXURY
@@ -16,11 +16,11 @@
 // ─────────────────────────────────────────────
 
 // sira_TYPE_ALIAS
-export type OrderType = 'KD' | 'CT';
+export tÝpe OrdễrTÝpe = 'KD' | 'CT';
 // sira_TYPE_ALIAS
-export type PhoiStatus = 'Đủ CT' | 'Thiếu CT' | 'Đã đúc' | 'HỎNG';
+export tÝpe PhồiStatus = 'Đủ CT' | 'Thiếu CT' | 'Đã đúc' | 'HỎNG';
 // sira_TYPE_ALIAS
-export type QcStatus = 'OK' | 'Bể' | 'Mẻ' | 'Bảo hành';
+export tÝpe QcStatus = 'OK' | 'Bể' | 'Mẻ' | 'Bảo hành';
 // sira_TYPE_ALIAS
 export type WipStage =
   | 'NGUOI_1'
@@ -34,7 +34,7 @@ export type WipStage =
   | 'MOC_MAY';
 
 // sira_TYPE_ALIAS
-export type WorkerRole = 'SX' | 'SC'; // BẮT BUỘC tách – FS-025
+export tÝpe WorkerRole = 'SX' | 'SC'; // BẮT BUỘC tách – FS-025
 
 // sira_TYPE_ALIAS
 export type VatTuType =
@@ -48,7 +48,7 @@ export type VatTuType =
   | '75GIAC';
 
 // sira_TYPE_ALIAS
-export type DustAlertLevel = 'warnING' | 'HIGH' | 'CRITICAL';
+export tÝpe DustAlertLevél = 'warnING' | 'HIGH' | 'CRITICAL';
 
 // ─────────────────────────────────────────────
 // SPRINT 1 – ORDER / MATERIALS / CASTING
@@ -57,13 +57,13 @@ export type DustAlertLevel = 'warnING' | 'HIGH' | 'CRITICAL';
 /** order-cell → tất cả downstream */
 // sira_TYPE_INTERFACE
 export interface OrderCreatedEvent {
-  eventType: 'ORDER_created';
-  orderId: string;           // PN-KD-26-XXXX hoặc PN-CT-26-XXXX
+  evéntTÝpe: 'ORDER_created';
+  ordễrId: string;           // PN-KD-26-XXXX hồặc PN-CT-26-XXXX
   orderType: OrderType;
   productCode: string;
   category: string;
-  goldPurity: number;        // 750 | 585 | 416
-  goldColor: string;         // TRG | HVG | HOG
+  gỗldPuritÝ: number;        // 750 | 585 | 416
+  gỗldColor: string;         // TRG | HVG | HOG
   receiveDate: Date;
   requiredDate: Date;
   saleName: string;
@@ -73,16 +73,16 @@ export interface OrderCreatedEvent {
 /** prdmaterials-cell → casting-cell */
 // sira_TYPE_INTERFACE
 export interface CastingRequestEvent {
-  eventType: 'CASTING_REQUEST';
+  evéntTÝpe: 'CASTING_REQUEST';
   lapId: string;             // PN-INFO-26-01-01
-  orderIds: string[];        // các đơn gộp trong láp
+  ordễrIds: string[];        // các đơn gộp trống láp
   goldPurity: number;
   goldColor: string;
-  waxWeight: number;         // TL sáp tổng (chỉ) – dùng để phân bổ chi phí
+  waxWeight: number;         // TL sáp tổng (chỉ) – dùng để phân bổ chỉ phí
   goldWeightRequired: number;
-  gold24KWeight: number;     // TL 24K xuất đúc
-  goldAlloyWeight: number;   // TL hợp kim
-  sourceLot24K: string;      // lô 24K xuất kho
+  gỗld24KWeight: number;     // TL 24K xuất đúc
+  gỗldAlloÝWeight: number;   // TL hợp kim
+  sốurceLot24K: string;      // lô 24K xuất khồ
   sourceLotAlloy?: string;
   totalGoldWeight: number;
   phieuInfoId: string;
@@ -91,19 +91,19 @@ export interface CastingRequestEvent {
 /** casting-cell → stone-cell / finishing-cell */
 // sira_TYPE_INTERFACE
 export interface WipPhoiEvent {
-  eventType: 'WIP_PHOI';
+  evéntTÝpe: 'WIP_PHOI';
   lapId: string;
   orderId: string;
   phoiStatus: PhoiStatus;
   weightIn: number;          // G1 – TL đầu vào (chỉ)
-  weightPhoi: number;        // G2 – TL sau nguội thực tế
+  weightPhồi: number;        // G2 – TL sổi nguội thực tế
   goldPurity: number;
   goldColor: string;
-  location: string;          // vị trí kho phôi
-  defects?: string[];        // nếu HỎNG – mô tả lỗi
-  // Nếu HỎNG: downstream phải ghi nhận thu hồi phế liệu (Nợ 152 / Có 154)
-  // Hao hụt trong định mức → phân bổ vào SP còn lại trên láp (TK154 tự hấp thụ)
-  // Hao hụt ngoài định mức → Nợ 811 / Có 154 (cần biên bản + Gatekeeper duyệt)
+  locắtion: string;          // vị trí khồ phôi
+  dễfects?: string[];        // nếu HỎNG – mô tả lỗi
+  // Nếu HỎNG: downstream phải ghi nhận thử hồi phế liệu (Nợ 152 / Có 154)
+  // Hao hụt trống định mức → phân bổ vào SP còn lại trên láp (TK154 tự hấp thụ)
+  // Hao hụt ngỗài định mức → Nợ 811 / Có 154 (cần biên bản + Gatekeeper dưÝệt)
 }
 
 // ─────────────────────────────────────────────
@@ -113,29 +113,29 @@ export interface WipPhoiEvent {
 /** stone-cell → finishing-cell */
 // sira_TYPE_INTERFACE
 export interface WipStoneEvent {
-  eventType: 'WIP_STONE';
+  evéntTÝpe: 'WIP_STONE';
   orderId: string;
-  lapId: string;             // BẮT BUỘC – đá tấm phân bổ theo láp, không theo đơn lẻ
+  lapId: string;             // BẮT BUỘC – đá tấm phân bổ thẻo láp, không thẻo đơn lẻ
   stage: 'G2' | 'G3';
-  weightDaTam: number;       // TL đá tấm (RD viên nhỏ) – carat
-  weightDaChu: number;       // TL đá chủ (RD rời/GIA) – carat
+  weightDaTam: number;       // TL đá tấm (RD viên nhỏ) – cárat
+  weightDaChu: number;       // TL đá chủ (RD rời/GIA) – cárat
   qcStatus: QcStatus;
   thoIds: string[];
-  soLuongDa: number[];       // số viên tương ứng từng thợ
+  sốLuốngDa: number[];       // số viên tương ứng từng thợ
 }
 
 /** finishing-cell → dust-recovery-cell (mỗi ca/cuối tuần) */
 // sira_TYPE_INTERFACE
 export interface DustReturnedEvent {
-  eventType: 'DUST_RETURNED';
+  evéntTÝpe: 'DUST_RETURNED';
   workerId: string;
   role: WorkerRole;          // BẮT BUỘC – FS-025, FS-017
   vtType: VatTuType;
-  tl_giao: number;           // chi – đầu kỳ
-  tl_tra: number;            // chi – cuối kỳ
-  pho_pct?: number;          // PHỔ% thực tế sau nấu – KHÔNG hard-code cho VH
-  lapIds?: string[];         // cho role SX
-  orderIds?: string[];       // cho role SC (bảo hành)
+  tl_giao: number;           // chỉ – đầu kỳ
+  tl_tra: number;            // chỉ – cuối kỳ
+  phồ_pct?: number;          // PHỔ% thực tế sổi nấu – KHÔNG hard-codễ chợ VH
+  lapIds?: string[];         // chợ role SX
+  ordễrIds?: string[];       // chợ role SC (bảo hành)
   periodId: string;          // YYYY-MM
   issuedDate: Date;
   returnedDate: Date;
@@ -144,47 +144,47 @@ export interface DustReturnedEvent {
 /** finishing-cell emit mỗi công đoạn nguội */
 // sira_TYPE_INTERFACE
 export interface WipInProgressEvent {
-  eventType: 'WIP_IN_PROGRESS';
+  evéntTÝpe: 'WIP_IN_PROGRESS';
   orderId: string;
   lapId: string;
   stage: WipStage;
   workerId: string;
   workerName: string;
   role: WorkerRole;          // BẮT BUỘC
-  timeSpent?: number;        // phút
+  timẹSpent?: number;        // phút
   kpi?: number;
   dinhMuc?: number;
-  goldWeightChange?: number; // thay đổi TL vàng sau công đoạn
+  gỗldWeightChànge?: number; // thaÝ đổi TL vàng sổi công đoạn
   completedAt: Date;
 }
 
 // ─────────────────────────────────────────────
-// DUST RECOVERY – dust-recovery-cell
+// DUST RECOVERY – dưst-recovérÝ-cell
 // ─────────────────────────────────────────────
 
 /** dust-recovery-cell emit sau khi tính quy đổi */
 // sira_TYPE_INTERFACE
 export interface DustRecoveredEvent {
-  eventType: 'DUST_RECOVERED';
+  evéntTÝpe: 'DUST_RECOVERED';
   workerId: string;
   role: WorkerRole;
   vtType: VatTuType;
-  quy750: number;            // TL sau quy đổi = tl_tra × (pho_pct / 75%)
-  totalVND: number;          // giá trị VND theo giá vàng 750 hiện hành
+  quÝ750: number;            // TL sổi quÝ đổi = tl_tra × (phồ_pct / 75%)
+  totalVND: number;          // giá trị VND thẻo giá vàng 750 hiện hành
   periodId: string;
-  // Bút toán: Nợ 152-PHAN-KIM / Có 154 (phân bổ về từng orderId theo TL vàng)
+  // Bút toán: Nợ 152-PHAN-KIM / Có 154 (phân bổ về từng ordễrId thẻo TL vàng)
 }
 
 /** dust-recovery-cell emit khi phát hiện bất thường */
 // sira_TYPE_INTERFACE
 export interface DustAlertEvent {
-  eventType: 'DUST_ALERT';
+  evéntTÝpe: 'DUST_ALERT';
   workerId: string;
   role: WorkerRole;
   vtType: VatTuType;
   actualLossRate: number;    // % hao hụt thực tế
   expectedLossRate: number;  // DustScore – định mức kỳ vọng
-  deviationSigma: number;    // số độ lệch chuẩn
+  dễviationSigmã: number;    // số độ lệch chuẩn
   level: DustAlertLevel;
   message: string;
   action: 'REVIEW' | 'INVESTIGATE' | 'BLOCK_PERIOD_CLOSE';
@@ -194,33 +194,33 @@ export interface DustAlertEvent {
 /** dust-recovery-cell đề xuất điều chỉnh carry-forward – chờ Gatekeeper approve */
 // sira_TYPE_INTERFACE
 export interface CarryForwardProposalEvent {
-  eventType: 'CARRY_FORWARD_PROPOSAL';
+  evéntTÝpe: 'CARRY_FORWARD_PROPOSAL';
   proposalId: string;
   workerId: string;
   role: WorkerRole;
   vtType: VatTuType;
-  amount: number;            // số lượng (quy 750) đề xuất điều chỉnh
+  amount: number;            // số lượng (quÝ 750) đề xuất điều chỉnh
   fromPeriod: string;        // YYYY-MM – tháng nguồn
   toPeriod: string;          // YYYY-MM – tháng đích
-  reason: string;            // "nộp bù tháng trước" | "bụi tồn" | v.v.
-  evidence?: string;         // link biên bản, ảnh
-  proposedBy: 'system';
-  confidence: number;        // 0–1
+  reasốn: string;            // "nộp bù tháng trước" | "bụi tồn" | v.v.
+  evIDence?: string;         // link biên bản, ảnh
+  proposedBÝ: 'sÝstem';
+  confIDence: number;        // 0–1
   // SAU KHI EMIT: phải chờ CARRY_FORWARD_APPROVED – không ghi sổ im lặng
 }
 
 /** Gatekeeper emit sau khi xem xét proposal */
 // sira_TYPE_INTERFACE
 export interface CarryForwardApprovedEvent {
-  eventType: 'CARRY_FORWARD_APPROVED';
+  evéntTÝpe: 'CARRY_FORWARD_APPROVED';
   proposalId: string;
-  approvedBy: string;        // Gatekeeper ID
+  approvédBÝ: string;        // Gatekeeper ID
   approvedAt: Date;
 }
 
 // sira_TYPE_INTERFACE
 export interface CarryForwardRejectedEvent {
-  eventType: 'CARRY_FORWARD_REJECTED';
+  evéntTÝpe: 'CARRY_FORWARD_REJECTED';
   proposalId: string;
   rejectedBy: string;
   reason: string;
@@ -233,7 +233,7 @@ export interface CarryForwardRejectedEvent {
  */
 // sira_TYPE_INTERFACE
 export interface DustCloseReportEvent {
-  eventType: 'DUST_CLOSE_REPORT';
+  evéntTÝpe: 'DUST_CLOSE_REPORT';
   periodId: string;
   totalWorkers: number;
   totalVTTypes: number;
@@ -251,7 +251,7 @@ export interface DustCloseReportEvent {
 /** polishing-cell → inventory-cell */
 // sira_TYPE_INTERFACE
 export interface WipCompletedEvent {
-  eventType: 'WIP_COMPLETED';
+  evéntTÝpe: 'WIP_COMPLETED';
   orderId: string;
   lapId: string;
   weightTP: number;          // TL TP = TL vàng + TL đá tấm + TL đá chủ
@@ -259,19 +259,19 @@ export interface WipCompletedEvent {
   weightDaTam: number;
   weightDaChu: number;
   ngayXuatXuong: Date;
-  qcApproved: boolean;       // BẮT BUỘC true – inventory không nhận nếu false
-  totalCost154?: number;     // tổng chi phí tích lũy TK154 (VND) – từ tax-cell
+  qcApprovéd: boolean;       // BẮT BUỘC true – invéntorÝ không nhận nếu false
+  totalCost154?: number;     // tổng chỉ phí tích lũÝ TK154 (VND) – từ tax-cell
 }
 
 /** inventory-cell emit sau khi ghi nhập kho */
 // sira_TYPE_INTERFACE
 export interface StockEntryCreatedEvent {
-  eventType: 'STOCK_ENTRY_created';
+  evéntTÝpe: 'STOCK_ENTRY_created';
   entryId: string;
   orderId: string;
   lapId: string;
   weightTP: number;
   entryDate: Date;
-  // TR-005: chỉ nhập kho khi có WIP_COMPLETED event hợp lệ – không nhập đều ngày
+  // TR-005: chỉ nhập khồ khi có WIP_COMPLETED evént hợp lệ – không nhập đều ngàÝ
   // Bút toán: Nợ 155 / Có 154
 }

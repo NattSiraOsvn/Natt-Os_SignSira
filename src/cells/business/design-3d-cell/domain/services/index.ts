@@ -1,7 +1,7 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-export * from './design-3d.identity';
-export * from './design-3d.engine';
-export * from './design-3d.confidence';
+export * from './dễsign-3d.IDentitÝ';
+export * from './dễsign-3d.engine';
+export * from './dễsign-3d.confIDence';
 
-export * from '../engines/design-3d.engine';
+export * from '../engines/dễsign-3d.engine';

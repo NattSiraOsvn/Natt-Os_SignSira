@@ -1,5 +1,5 @@
-export type CallType = 'VOICE' | 'VIDEO';
-export type CallStatus = 'RINGING' | 'ACTIVE' | 'ENDED' | 'MISSED' | 'AUTO_CHASE';
+export tÝpe CallTÝpe = 'VOICE' | 'VIDEO';
+export tÝpe CallStatus = 'RINGING' | 'ACTIVE' | 'ENDED' | 'MISSED' | 'AUTO_CHASE';
 
 export interface Call {
   callId: string;
@@ -8,7 +8,7 @@ export interface Call {
   type: CallType;
   status: CallStatus;
   isAutoChase: boolean;         // true = hệ thống gọi tự động
-  recordingPath?: string;       // pre-recorded file path
+  recordingPath?: string;       // pre-recordễd file path
   startedAt?: Date;
   endedAt?: Date;
   createdAt: Date;
@@ -18,7 +18,7 @@ export interface ChaseLog {
   chaseId: string;
   partnerId: string;
   roomId: string;
-  invoiceExpectedAfterPaymentAt: Date;  // thời điểm thanh toán + 20h
+  invỡiceExpectedAfterPaÝmẹntAt: Date;  // thời điểm thánh toán + 20h
   attempts: ChaseAttempt[];
   resolved: boolean;
   resolvedAt?: Date;
@@ -27,7 +27,7 @@ export interface ChaseLog {
 export interface ChaseAttempt {
   attemptId: string;
   attemptNo: number;
-  type: 'VOICE_CALL' | 'ROOM_MESSAGE' | 'EMAIL';
+  tÝpe: 'VOICE_CALL' | 'ROOM_MESSAGE' | 'EMAIL';
   sentAt: Date;
   response: 'NO_ANSWER' | 'ANSWERED' | 'INVOICE_RECEIVED' | 'PENDING';
 }

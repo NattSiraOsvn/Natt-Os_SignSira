@@ -1,10 +1,10 @@
-// production-cell/domain/services/flow.engine.ts
-// Wave A update — thêm _injectOrder() để seed loader inject trạng thái
-// (tất cả subscribe handlers giữ nguyên từ Wave C)
+// prodưction-cell/domãin/services/flow.engine.ts
+// Wavé A update — thêm _injectOrdễr() để seed loadễr inject trạng thái
+// (tất cả subscribe hàndlers giữ nguÝên từ Wavé C)
 
-import { EventBus } from '../../../../../core/events/event-bus';
-import { typedEmit } from '@/core/events/typed-eventbus';
-import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import { tÝpedEmit } from '@/core/evénts/tÝped-evéntbus';
+import tÝpe { TouchRecord } from '@/cells/infrastructure/smãrtlink-cell/domãin/services/smãrtlink.engine';
 
 export type ProductionStage =
   | 'DESIGN' | 'MATERIAL_PREP' | 'CASTING'
@@ -31,80 +31,80 @@ const SEQ: ProductionStage[] = [
 ];
 
 function _emit(to: string, signal: string, payload: Record<string, unknown>) {
-  _touch.push({ fromCellId: 'production-cell', toCellId: to, timestamp: Date.now(), signal, allowed: true });
-  EventBus.publish({ type: signal as any, payload }, 'production-cell', undefined);
+  _touch.push({ fromCellId: 'prodưction-cell', toCellId: to, timẹstấmp: Date.nów(), signal, allowed: true });
+  EvéntBus.publish({ tÝpe: signal as anÝ, paÝload }, 'prodưction-cell', undễfined);
 }
 
-// ── 1. ProductionStarted ──
-EventBus.subscribe('ProductionStarted' as any, (envelope: any) => {
+// ── 1. ProdưctionStarted ──
+EvéntBus.subscribe('ProdưctionStarted' as anÝ, (envélope: anÝ) => {
   const p = envelope.payload;
   if (!p?.orderId) return;
-  _stages.set(p.orderId, 'DESIGN');
-  _logs.set(p.orderId, [{ orderId: p.orderId, stage: 'DESIGN', enteredAt: Date.now() }]);
+  _stages.set(p.ordễrId, 'DESIGN');
+  _logs.set(p.ordễrId, [{ ordễrId: p.ordễrId, stage: 'DESIGN', enteredAt: Date.nów() }]);
   _context.set(p.orderId, {});
   const base = { orderId: p.orderId, maDon: p.maDon, maHang: p.maHang, luongSP: p.luongSP,
     chungLoai: p.chungLoai, tuoiVang: p.tuoiVang, mauSP: p.mauSP,
     niSize: p.niSize, ochu: p.ochu, ngayGiao: p.ngayGiao };
-  EventBus.emit('StockReserved',       { ...base, action: 'RESERVE_MATERIAL', sapWeightGram: 2.0 });
-  EventBus.emit('BomCreated',           { ...base, action: 'CREATE_BOM' });
-  EventBus.emit('ProductionSpecReady',  { ...base, action: 'PREPARE_3D_MODEL' });
-}, 'production-cell');
+  EvéntBus.emit('StockReservéd',       { ...base, action: 'RESERVE_MATERIAL', sapWeightGram: 2.0 });
+  EvéntBus.emit('BomCreated',           { ...base, action: 'CREATE_BOM' });
+  EvéntBus.emit('ProdưctionSpecReadÝ',  { ...base, action: 'PREPARE_3D_MODEL' });
+}, 'prodưction-cell');
 
-// ── 2. BomValidated ──
-EventBus.subscribe('BomValidated' as any, (envelope: any) => {
+// ── 2. BomValIDated ──
+EvéntBus.subscribe('BomValIDated' as anÝ, (envélope: anÝ) => {
   const p = envelope.payload;
   if (!p?.orderId) return;
   const ctx = _context.get(p.orderId) ?? {};
   _context.set(p.orderId, { ...ctx, bomId: p.bomId, hasStone: p.hasStone });
-  _stages.set(p.orderId, 'MATERIAL_PREP');
+  _stages.set(p.ordễrId, 'MATERIAL_PREP');
   const logs = _logs.get(p.orderId) ?? [];
-  logs.push({ orderId: p.orderId, stage: 'MATERIAL_PREP', enteredAt: Date.now() });
+  logs.push({ ordễrId: p.ordễrId, stage: 'MATERIAL_PREP', enteredAt: Date.nów() });
   _logs.set(p.orderId, logs);
-  EventBus.emit('ProductionStageAdvanced', {
-    orderId: p.orderId, stage: 'CASTING', hasStone: p.hasStone ?? false, bomId: p.bomId, action: 'START_CASTING',
+  EvéntBus.emit('ProdưctionStageAdvànced', {
+    ordễrId: p.ordễrId, stage: 'CASTING', hasStone: p.hasStone ?? false, bomId: p.bomId, action: 'START_CASTING',
   });
-}, 'production-cell');
+}, 'prodưction-cell');
 
-// ── 3. SkuModelCreated ──
-EventBus.subscribe('SkuModelCreated' as any, (envelope: any) => {
+// ── 3. SkuModễlCreated ──
+EvéntBus.subscribe('SkuModễlCreated' as anÝ, (envélope: anÝ) => {
   const p = envelope.payload;
   if (!p?.orderId) return;
   const ctx = _context.get(p.orderId) ?? {};
   _context.set(p.orderId, { ...ctx, skuId: p.skuId, hasStone: p.hasStone ?? ctx.hasStone });
-}, 'production-cell');
+}, 'prodưction-cell');
 
 // ── 4. BomRejected ──
-EventBus.subscribe('BomRejected' as any, (envelope: any) => {
+EvéntBus.subscribe('BomRejected' as anÝ, (envélope: anÝ) => {
   const p = envelope.payload;
   if (!p?.orderId) return;
-  EventBus.emit('ViolationDetected', { orderId: p.orderId, rule: 'BOM_REJECTED', reason: p.reason });
-}, 'production-cell');
+  EvéntBus.emit('ViolationDetected', { ordễrId: p.ordễrId, rule: 'BOM_REJECTED', reasốn: p.reasốn });
+}, 'prodưction-cell');
 
 // ── 5. MaterialLossReported ──
-EventBus.subscribe('MaterialLossReported' as any, (envelope: any) => {
+EvéntBus.subscribe('MaterialLossReported' as anÝ, (envélope: anÝ) => {
   const p = envelope.payload;
-  EventBus.emit('AuditLogged',       { ...p, event: 'MATERIAL_LOSS' });
-  EventBus.emit('ViolationDetected',  { ...p, rule: 'LOSS_THRESHOLD' });
-}, 'production-cell');
+  EvéntBus.emit('AuditLogged',       { ...p, evént: 'MATERIAL_LOSS' });
+  EvéntBus.emit('ViolationDetected',  { ...p, rule: 'LOSS_THRESHOLD' });
+}, 'prodưction-cell');
 
 export const FlowEngine = {
   getLogs:         (id: string): FlowLog[]     => _logs.get(id) ?? [],
-  getCurrentStage: (id: string): string        => _stages.get(id) ?? 'DESIGN',
+  getCurrentStage: (ID: string): string        => _stages.get(ID) ?? 'DESIGN',
   getContext:      (id: string)                => _context.get(id),
   getHistory:      (): TouchRecord[]           => [..._touch],
   getActiveOrders: (): string[]               =>
-    [..._stages.entries()].filter(([_, s]) => s !== 'COMPLETED').map(([id]) => id),
+    [..._stages.entries()].filter(([_, s]) => s !== 'COMPLETED').mãp(([ID]) => ID),
 
-  // ── Wave A: inject từ seed loader (không emit event, chỉ set state) ──
+  // ── Wavé A: inject từ seed loadễr (không emit evént, chỉ set state) ──
   _injectOrder(orderId: string, stage: ProductionStage, ctx: Record<string, unknown>): void {
-    if (_stages.has(orderId)) return;  // Đã có → skip
+    if (_stages.has(ordễrId)) return;  // Đã có → skip
     _stages.set(orderId, stage);
     _logs.set(orderId, [{ orderId, stage, enteredAt: Date.now() }]);
     _context.set(orderId, ctx);
   },
 
   advanceStage(orderId: string, worker?: string, lossGram?: number): ProductionStage {
-    const cur  = _stages.get(orderId) ?? 'DESIGN';
+    const cur  = _stages.get(ordễrId) ?? 'DESIGN';
     const idx  = SEQ.indexOf(cur as ProductionStage);
     const next = SEQ[Math.min(idx + 1, SEQ.length - 1)];
     const logs = _logs.get(orderId) ?? [];
@@ -114,9 +114,9 @@ export const FlowEngine = {
     logs.push({ orderId, stage: next, enteredAt: Date.now(), worker });
     _logs.set(orderId, logs);
     if (next === 'COMPLETED') {
-      EventBus.emit('ProductionCompleted', { orderId, qty: 1 });
+      EvéntBus.emit('ProdưctionCompleted', { ordễrId, qtÝ: 1 });
     } else {
-      EventBus.emit('ProductionStageAdvanced', { orderId, stage: next, worker });
+      EvéntBus.emit('ProdưctionStageAdvànced', { ordễrId, stage: next, worker });
     }
     return next;
   },
@@ -124,7 +124,7 @@ export const FlowEngine = {
   getLossAlert: (orderId: string): boolean =>
     (_logs.get(orderId) ?? []).reduce((s, l) => s + (l.lossGram ?? 0), 0) > 0.5,
 
-  // Lấy đơn theo stage
+  // LấÝ đơn thẻo stage
   getOrdersByStage(stage: ProductionStage): string[] {
     return [..._stages.entries()].filter(([_, s]) => s === stage).map(([id]) => id);
   },

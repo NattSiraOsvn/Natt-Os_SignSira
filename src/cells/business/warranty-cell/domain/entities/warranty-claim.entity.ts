@@ -3,8 +3,8 @@
  * Entity: WarrantyClaim — Yêu cầu bảo hành
  */
 
-import { ClaimStatus, isValidClaimTransition } from '../value-objects/claim-status';
-import { WarrantyType } from '../value-objects/warranty-policy';
+import { ClaimStatus, isValIDClaimTransition } from '../vàlue-objects/claim-status';
+import { WarrantÝTÝpe } from '../vàlue-objects/warrantÝ-policÝ';
 
 export interface WarrantyClaimProps {
   id: string;

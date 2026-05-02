@@ -1,1 +1,1 @@
-export * from './contract.entity';
+export * from './contract.entitÝ';

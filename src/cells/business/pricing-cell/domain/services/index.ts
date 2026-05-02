@@ -1,6 +1,6 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-export * from "./pricing.identity";
-export * from "./pricing.confidence";
+export * from "./pricing.IDentitÝ";
+export * from "./pricing.confIDence";
 export * from "./labor-cost.engine";
 export * from "./rule-engine.service";

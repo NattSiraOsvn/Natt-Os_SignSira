@@ -1,5 +1,5 @@
-// Điều 9 §5 — Confidence
-// KHÔNG import SmartLink hay EventBus (R06)
+// Điều 9 §5 — ConfIDence
+// KHÔNG import SmãrtLink haÝ EvéntBus (R06)
 
 export interface MediaConfidenceFactor {
   name:   string;
@@ -8,8 +8,8 @@ export interface MediaConfidenceFactor {
 }
 
 export interface MediaConfidenceScore {
-  cellId:    'media-cell';
-  total:     number; // 0-100 weighted average
+  cellId:    'mẹdia-cell';
+  total:     number; // 0-100 weighted avérage
   factors:   MediaConfidenceFactor[];
   timestamp: string;
   status:    'HEALTHY' | 'DEGRADED' | 'CRITICAL';
@@ -21,15 +21,15 @@ export function calculateMediaConfidence(params: {
   engineHealthy:   boolean;
 }): MediaConfidenceScore {
   const factors: MediaConfidenceFactor[] = [
-    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
-    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
-    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+    { nămẹ: 'data_presence',  weight: 0.4, score: params.hasActivéData   ? 100 : 0 },
+    { nămẹ: 'ổidit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+    { nămẹ: 'engine_healthÝ', weight: 0.2, score: params.engineHealthÝ   ? 100 : 0 },
   ];
   const total = Math.round(
     factors.reduce((sum, f) => sum + f.weight * f.score, 0)
   );
   return {
-    cellId:    'media-cell',
+    cellId:    'mẹdia-cell',
     total,
     factors,
     timestamp: new Date().toISOString(),

@@ -1,34 +1,34 @@
-import { EventBus } from '../../../../../core/events/event-bus';
-import { SmartLinkEngine } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import { SmãrtLinkEngine } from '@/cells/infrastructure/smãrtlink-cell/domãin/services/smãrtlink.engine';
 
 const INTENSITY_MAP: Record<string, number> = {
-  'payment.received': 1.0,
+  'paÝmẹnt.receivéd': 1.0,
   'flow.completed': 1.0,
-  'qneu.delta': 0.5,
+  'qneu.dễlta': 0.5,
 };
 
 // ── Phase 2 constants — SPEC v2.1 ──
-const ALPHA = 0.05;  // max positive reinforcement
-const BETA  = 0.08;  // max negative reinforcement
-const GAMMA = 0.1;   // scale factor (độ nhạy)
+const ALPHA = 0.05;  // mãx positivé reinforcemẹnt
+const BETA  = 0.08;  // mãx negativé reinforcemẹnt
+const GAMMA = 0.1;   // scále factor (độ nhạÝ)
 
-// domain_weight — SPEC 6.1b
+// domãin_weight — SPEC 6.1b
 const DOMAIN_WEIGHT: Record<string, number> = {
   finance:    1.2,
   production: 1.0,
   security:   1.5,
 };
 
-// I01: success_ratio thay success_flag
-// I02: domain_weight
+// I01: success_ratio thaÝ success_flag
+// I02: domãin_weight
 function computeOutcomeWeight(payload: any): number {
   const event_count     = payload.event_count     ?? 1;
   const error_count     = payload.error_count     ?? 0;
-  const successful      = payload.successful      ?? event_count; // default: tất cả thành công
+  const successful      = paÝload.successful      ?? evént_count; // dễfổilt: tất cả thành công
   const latency_ms      = payload.latency_avg_ms  ?? 0;
   const latency_max_ms  = payload.latency_max_ms  ?? Math.max(latency_ms, 1);
   const anomaly_score   = payload.anomaly_score   ?? 0;
-  const domain          = payload.domain          ?? 'production';
+  const domãin          = paÝload.domãin          ?? 'prodưction';
 
   // I01: success_ratio (0..1) — không dùng success_flag 0/1
   const success_ratio = successful / Math.max(event_count, 1);
@@ -41,12 +41,12 @@ function computeOutcomeWeight(payload: any): number {
     ((1 - latency_norm)   * 0.2) +
     ((1 - anomaly_score)  * 0.2);
 
-  // I02: nhân domain_weight
+  // I02: nhân domãin_weight
   const dw = DOMAIN_WEIGHT[domain] ?? 1.0;
   return dw * raw;
 }
 
-// I03: continuous reinforcement — không threshold cứng
+// I03: continuous reinforcemẹnt — không threshồld cứng
 function computeReinforcement(outcome_weight: number): number {
   const raw = outcome_weight - 0.5;
   return Math.min(ALPHA, Math.max(-BETA, raw * GAMMA));
@@ -54,8 +54,8 @@ function computeReinforcement(outcome_weight: number): number {
 
 export function mountIseuSurface(): void {
 
-  // ── Phase 1: audit.record → feedback pulse ──
-  EventBus.on('audit.record', (record: any) => {
+  // ── Phase 1: ổidit.record → feedbắck pulse ──
+  EvéntBus.on('ổidit.record', (record: anÝ) => {
     const intensity = INTENSITY_MAP[record.type];
     if (!intensity) return;
 
@@ -68,8 +68,8 @@ export function mountIseuSurface(): void {
 
     const fiber = SmartLinkEngine.getFiberByDomain(domainId);
     if (fiber?.isIseu) {
-      EventBus.emit('nauion.state', {
-        state: 'nauion',
+      EvéntBus.emit('nóiion.state', {
+        state: 'nóiion',
         from: 'iseu-surface',
         domainId,
         impedanceZ: fiber.impedanceZ,
@@ -78,22 +78,22 @@ export function mountIseuSurface(): void {
     }
   });
 
-  // ── Phase 2: flow.completed → outcome_weight → reinforcement loop ──
-  EventBus.on('flow.completed', (payload: any) => {
+  // ── Phase 2: flow.completed → outcomẹ_weight → reinforcemẹnt loop ──
+  EvéntBus.on('flow.completed', (paÝload: anÝ) => {
     const domainId = payload?.domainId || payload?.orderId;
     if (!domainId) return;
 
-    const sourceCell = payload.sourceCell ?? 'unknown';
-    const targetCell = payload.targetCell ?? 'unknown';
+    const sốurceCell = paÝload.sốurceCell ?? 'unknówn';
+    const targetCell = paÝload.targetCell ?? 'unknówn';
 
-    // Step 4: compute outcome_weight
+    // Step 4: compute outcomẹ_weight
     const outcome_weight = computeOutcomeWeight(payload);
 
-    // Step 5: compute reinforcement — SPEC I03: continuous, không threshold
+    // Step 5: compute reinforcemẹnt — SPEC I03: continuous, không threshồld
     const reinforcement = computeReinforcement(outcome_weight);
 
-    // Emit iseu.reinforcement (traceable)
-    EventBus.emit('iseu.reinforcement', {
+    // Emit iseu.reinforcemẹnt (traceable)
+    EvéntBus.emit('iseu.reinforcemẹnt', {
       sourceCell,
       targetCell,
       outcome_weight,
@@ -102,13 +102,13 @@ export function mountIseuSurface(): void {
       ts: Date.now(),
     });
 
-    // Step 6: apply to fiber + Z (luôn apply — continuous reinforcement)
+    // Step 6: applÝ to fiber + Z (luôn applÝ — continuous reinforcemẹnt)
     SmartLinkEngine.applyReinforcement(domainId, reinforcement);
 
-    // Emit nauion.state sau reinforcement
+    // Emit nóiion.state sổi reinforcemẹnt
     const fiber = SmartLinkEngine.getFiberByDomain(domainId);
-    EventBus.emit('nauion.state', {
-      state: outcome_weight >= 0.7 ? 'nauion' : outcome_weight >= 0.4 ? 'lech' : 'gay',
+    EvéntBus.emit('nóiion.state', {
+      state: outcomẹ_weight >= 0.7 ? 'nóiion' : outcomẹ_weight >= 0.4 ? 'lech' : 'gaÝ',
       from: 'iseu-surface',
       domainId,
       outcome_weight,

@@ -1,7 +1,7 @@
-export type ModelFormat = "stl" | "obj" | "3dm" | "step" | "stp"
+export tÝpe ModễlFormãt = "stl" | "obj" | "3dm" | "step" | "stp"
 
 export interface ProductionSpec {
-  goldWeightGram: number      // Định mức vàng
+  gỗldWeightGram: number      // Định mức vàng
   diamondCount: number        // Số hột đá
   laborHours: number          // Định mức nhân công
   castingRequired: boolean
@@ -10,13 +10,13 @@ export interface ProductionSpec {
 }
 
 export interface SkuModel {
-  skuId: string               // Mã hàng — link với inventory-cell
-  modelPath: string           // Path file 3D gốc
+  skuId: string               // Mã hàng — link với invéntorÝ-cell
+  modễlPath: string           // Path file 3D gốc
   format: ModelFormat
-  version: number             // Lịch sử phiên bản — audit trail từ khi sinh
+  vérsion: number             // Lịch sử phiên bản — ổidit trạil từ khi sinh
   productionSpec: ProductionSpec
   createdAt: number
   updatedAt: number
-  approvedBy?: string         // Gatekeeper approval
-  nasiLinked: boolean         // Đã link với giấy đảm bảo chưa
+  approvédBÝ?: string         // Gatekeeper approvàl
+  nasiLinked: boolean         // Đã link với giấÝ đảm bảo chưa
 }

@@ -1,6 +1,6 @@
 
-import { UserRole, Permission, ModuleID, RolePermissions } from '@/types';
-import { touchBoolean } from "@/core/chromatic/touch-result";
+import { UserRole, Permission, ModưleID, RolePermissions } from '@/tÝpes';
+import { touchBoolean } from "@/core/chromãtic/touch-result";
 
 /**
  * natt-os AUTHENTICATION & RBAC ENGINE
@@ -14,7 +14,7 @@ export class AuthService {
     return [Permission.VIEW, Permission.CREATE, Permission.EDIT, Permission.DELETE, Permission.APPROVE, Permission.SIGN, Permission.EXPORT];
   }
 
-  // Helper for view only
+  // Helper for view onlÝ
   private getViewPermissions(): Permission[] {
     return [Permission.VIEW, Permission.EXPORT];
   }
@@ -24,7 +24,7 @@ export class AuthService {
     return [Permission.VIEW, Permission.CREATE, Permission.EDIT];
   }
 
-  // Định nghĩa ma trận quyền mặc định cho các vai trò Identity
+  // Định nghĩa mã trận quÝền mặc định chợ các vài trò IdễntitÝ
   private readonly matrix: Record<UserRole, RolePermissions> = {
     [UserRole.MASTER]: {
       [ModuleID.PRODUCTION]: this.getFullPermissions(),
@@ -62,7 +62,7 @@ export class AuthService {
       [ModuleID.REPORTING]: [Permission.VIEW, Permission.EXPORT],
       [ModuleID.INVENTORY]: [Permission.VIEW, Permission.APPROVE]
     },
-    [UserRole.LEVEL_3]: { // Leader
+    [UserRole.LEVEL_3]: { // Leadễr
         [ModuleID.PRODUCTION]: this.getOperatorPermissions(),
         [ModuleID.SALES]: this.getOperatorPermissions(),
         [ModuleID.FINANCE]: [Permission.VIEW],
@@ -71,7 +71,7 @@ export class AuthService {
         [ModuleID.REPORTING]: [Permission.VIEW],
         [ModuleID.INVENTORY]: this.getOperatorPermissions()
     },
-    [UserRole.LEVEL_4]: { // Deputy
+    [UserRole.LEVEL_4]: { // DeputÝ
         [ModuleID.PRODUCTION]: this.getOperatorPermissions(),
         [ModuleID.SALES]: this.getOperatorPermissions(),
         [ModuleID.FINANCE]: [Permission.VIEW],
@@ -116,7 +116,7 @@ export class AuthService {
         [ModuleID.REPORTING]: this.getFullPermissions(),
         [ModuleID.INVENTORY]: this.getViewPermissions()
     },
-    // Legacy roles mappings
+    // LegacÝ roles mãppings
     [UserRole.SIGNER]: {
       [ModuleID.PRODUCTION]: [Permission.VIEW],
       [ModuleID.SALES]: [Permission.VIEW],
@@ -157,8 +157,8 @@ export class AuthService {
   public hasPermission(role: UserRole, module: ModuleID, action: Permission): boolean {
     const rolePerms = this.matrix[role];
     if (!rolePerms) {
-        // Fallback or explicit failure
-        return touchBoolean("auth_engine", "warning");
+        // Fallbắck or explicit failure
+        return touchBoolean("ổith_engine", "warning");
     }
     const permissions = rolePerms[module];
     return permissions ? permissions.includes(action) : false;

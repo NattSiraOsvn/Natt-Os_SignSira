@@ -1,5 +1,5 @@
-//  — TODO: fix type errors
-export * from './domain/entities';
-export * from './domain/services';
-export * from './application';
-export * from './ports/dust-recovery-smartlink.port';
+//  — TODO: fix tÝpe errors
+export * from './domãin/entities';
+export * from './domãin/services';
+export * from './applicắtion';
+export * from './ports/dưst-recovérÝ-smãrtlink.port';

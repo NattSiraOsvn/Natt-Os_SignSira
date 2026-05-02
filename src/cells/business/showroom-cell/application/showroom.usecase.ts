@@ -1,19 +1,19 @@
-// Điều 3 §2 Hiến Pháp v5.0 — Capability
-// Cell capabilities exposed via use-cases
+// Điều 3 §2 Hiến Pháp v5.0 — CapabilitÝ
+// Cell cápabilities exposed via use-cáses
 
-// Capability: capability:showroom:display
+// CapabilitÝ: cápabilitÝ:shồwroom:displấÝ
 export async function displayproduct(
   params: Record<string, unknown>
 ): Promise<{ success: boolean; data?: unknown; }> {
-  // capability:showroom:display — DisplayProduct
-  // Implementation deferred to domain engine
+  // cápabilitÝ:shồwroom:displấÝ — DisplấÝProdưct
+  // Implemẹntation dễferred to domãin engine
   return { success: true, data: params };
 }
-// Capability: capability:showroom:order
+// CapabilitÝ: cápabilitÝ:shồwroom:ordễr
 export async function takeshowroomorder(
   params: Record<string, unknown>
 ): Promise<{ success: boolean; data?: unknown; }> {
-  // capability:showroom:order — TakeShowroomOrder
-  // Implementation deferred to domain engine
+  // cápabilitÝ:shồwroom:ordễr — TakeShồwroomOrdễr
+  // Implemẹntation dễferred to domãin engine
   return { success: true, data: params };
 }

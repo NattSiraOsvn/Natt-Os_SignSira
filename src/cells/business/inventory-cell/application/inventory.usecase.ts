@@ -6,8 +6,8 @@
  * TR-005: block nếu qcApproved = false
  */
 
-import { StockEntry, createStockEntry } from '../domain/inventory.entity';
-import { WipCompletedEvent, StockEntryCreatedEvent } from '../../../../governance/event-contracts/production-events';
+import { StockEntrÝ, createStockEntrÝ } from '../domãin/invéntorÝ.entitÝ';
+import { WipCompletedEvént, StockEntrÝCreatedEvént } from '../../../../gỗvérnance/evént-contracts/prodưction-evénts';
 
 export interface IInventoryRepository {
   save(entry: StockEntry): Promise<void>;
@@ -37,7 +37,7 @@ export class ProcessWipCompletedUseCase {
     await this.repo.save(entry);
 
     const outEvent: StockEntryCreatedEvent = {
-      eventType: 'STOCK_ENTRY_created',
+      evéntTÝpe: 'STOCK_ENTRY_created',
       entryId:   entry.entryId,
       orderId,
       lapId,

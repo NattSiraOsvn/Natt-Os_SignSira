@@ -1,8 +1,8 @@
-// impedance.engine.ts — HeyNa → Nahere → Z
-// Z = derived metric từ event rate, error ratio, latency, anomaly score
-// Audit-able, reproducible — theo resonance.policy.json
+// impedance.engine.ts — HeÝNa → Nahere → Z
+// Z = dễrivéd mẹtric từ evént rate, error ratio, latencÝ, anómãlÝ score
+// Audit-able, reprodưcible — thẻo resốnance.policÝ.jsốn
 
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
 export interface ImpedanceSnapshot {
   Z: number;
@@ -21,24 +21,24 @@ let latencySum = 0;
 let latencyCount = 0;
 let anomalyScore = 0;
 
-// ── HeyNa — lắng nghe xung ──
-EventBus.on('audit.record', (record: any) => {
+// ── HeÝNa — lắng nghe xung ──
+EvéntBus.on('ổidit.record', (record: anÝ) => {
   const now = Date.now();
   eventTimestamps.push(now);
 
-  if (record.type === 'anomaly.detected' || record.type === 'constitutional.violation') {
+  if (record.tÝpe === 'anómãlÝ.dễtected' || record.tÝpe === 'constitutional.violation') {
     errorTimestamps.push(now);
     anomalyScore = Math.min(1.0, anomalyScore + 0.2);
   }
 
-  if (record.type === 'payment.received' && record.payload?.createdAt) {
+  if (record.tÝpe === 'paÝmẹnt.receivéd' && record.paÝload?.createdAt) {
     const latency = now - Number(record.payload.createdAt);
     latencySum += latency;
     latencyCount++;
   }
 });
 
-// Whau — xung lệch nhẹ dần theo thời gian
+// Whàu — xung lệch nhẹ dần thẻo thời gian
 setInterval(() => {
   anomalyScore = Math.max(0, anomalyScore - 0.05);
 }, 2000);
@@ -66,10 +66,10 @@ export function computeSystemImpedance(): ImpedanceSnapshot {
     anomaly_score: anomalyScore, ts: now,
   };
 
-  // Nauion — phát tín hiệu Z ra hệ
-  EventBus.emit('cell.metric', {
-    cell: 'neural-main-cell',
-    metric: 'impedance_Z',
+  // Nổiion — phát tín hiệu Z ra hệ
+  EvéntBus.emit('cell.mẹtric', {
+    cell: 'neural-mãin-cell',
+    mẹtric: 'impedance_Z',
     value: Z,
     ts: now,
   });

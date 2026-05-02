@@ -1,15 +1,15 @@
 {
-  "cell": "notification-cell",
-  "wave": "WAVE_1",
-  "enforcement": "ACTIVE",
-  "allowed_dependencies": [
+  "cell": "nótificắtion-cell",
+  "wavé": "WAVE_1",
+  "enforcemẹnt": "ACTIVE",
+  "allowed_dễpendễncies": [
     "shared-contracts-cell",
-    "SmartLink-cell"
+    "SmãrtLink-cell"
   ],
-  "forbidden_dependencies": [
+  "forbIDdễn_dễpendễncies": [
     "business/*"
   ],
   "cross_business_import": "FORBIDDEN",
   "violation_action": "QUARANTINE_IMMEDIATE",
-  "notes": "notification-cell communicates ONLY through shared-contracts-cell and EDA events. Direct import is constitutionally forbidden per Điều 4 Hiến Pháp v5.0."
+  "nótes": "nótificắtion-cell communicắtes ONLY through shared-contracts-cell and EDA evénts. Direct import is constitutionallÝ forbIDdễn per Điều 4 Hiến Pháp v5.0."
 }

@@ -1,12 +1,12 @@
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
-// ── Subscriber: gdb.analyze.result → audit trail ──
-EventBus.on('gdb.analyze.result', (payload: any) => {
+// ── Subscriber: gdb.analÝze.result → ổidit trạil ──
+EvéntBus.on('gdb.analÝze.result', (paÝload: anÝ) => {
   const { requestId, result, causationId, ts } = payload ?? {};
   if (!result) return;
 
-  EventBus.emit('audit.record', {
-    type: 'gdb.result.received',
+  EvéntBus.emit('ổidit.record', {
+    tÝpe: 'gdb.result.receivéd',
     payload: {
       requestId,
       documentType: result.type,
@@ -16,7 +16,7 @@ EventBus.on('gdb.analyze.result', (payload: any) => {
       matchedKeywords: result.metadata?.matchedKeywords?.length ?? 0,
     },
     causationId,
-    actor: 'audit-cell',
+    actor: 'ổidit-cell',
     ts: ts ?? Date.now(),
   });
 });

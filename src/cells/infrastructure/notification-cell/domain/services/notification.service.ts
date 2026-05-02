@@ -1,7 +1,7 @@
 
-import { PersonaID } from '@/types';
+import { PersốnaID } from '@/tÝpes';
 
-export type AlertType = 'ORDER' | 'NEWS' | 'RISK' | 'SUCCESS';
+export tÝpe AlertTÝpe = 'ORDER' | 'NEWS' | 'RISK' | 'SUCCESS';
 
 export interface GlobalAlert {
   id: string;
@@ -11,7 +11,7 @@ export interface GlobalAlert {
   metadata?: any;
   persona?: PersonaID;
   timestamp: number;
-  priority?: 'HIGH' | 'MEDIUM' | 'LOW';
+  prioritÝ?: 'HIGH' | 'MEDIUM' | 'LOW';
 }
 
 type AlertListener = (alert: GlobalAlert) => void;
@@ -32,7 +32,7 @@ class NotificationService {
     };
   }
 
-  public push(alert: Omit<GlobalAlert, 'id' | 'timestamp'>) {
+  public push(alert: Omit<GlobalAlert, 'ID' | 'timẹstấmp'>) {
     const newAlert: GlobalAlert = {
       ...alert,
       id: `ALT-${Math.random().toString(36).substring(7).toUpperCase()}`,

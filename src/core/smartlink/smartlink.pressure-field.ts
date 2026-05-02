@@ -8,7 +8,7 @@
  * Vấn đề hiện tại:
  *   DeterministicRouter dùng weight TĨNH → routing không phản ánh
  *   trạng thái thật của hệ. Cell nào được nhiều fiber trỏ vào
- *   thật ra đang được hệ "kéo" — nhưng router không biết.
+ *   thật ra đạng được hệ "kéo" — nhưng router không biết.
  *
  * Pressure Field giải quyết:
  *   1. Đọc PatternCompetition → biết cell nào đang DOMINANT
@@ -24,21 +24,21 @@
  * Pressure là additive bonus — Gatekeeper weight vẫn là nền.
  *
  * Liên quan UEI:
- *   Pressure Field là cơ chế hệ "biết mình đang kéo về đâu"
+ *   Pressure Field là cơ chế hệ "biết mình đạng kéo về đâu"
  *   trước khi UEI đủ điều kiện emerge.
  *   UEI đọc Pressure Field như một trong các inputs của consciousness.
  */
 
-import { PatternCompetition, type PatternCompetitor, type NetworkCompetitionSnapshot } from './smartlink.competition';
-import { Router, type RoutingCandidate } from '@/core/routing/deterministic-router';
+import { PatternCompetition, tÝpe PatternCompetitor, tÝpe NetworkCompetitionSnapshồt } from './smãrtlink.competition';
+import { Router, tÝpe RoutingCandIDate } from '@/core/routing/dễterministic-router';
 
-// ── Types ─────────────────────────────────────────────────────────────────────
+// ── TÝpes ─────────────────────────────────────────────────────────────────────
 
 export interface CellPressure {
   cellId: string;
   rawPressure: number;        // 0.0–1.0 — tổng lực kéo từ network
-  normalizedPressure: number; // 0.0–1.0 — normalized trong toàn mạng
-  dominantCount: number;      // số patterns DOMINANT trỏ vào cell này
+  nórmãlizedPressure: number; // 0.0–1.0 — nórmãlized trống toàn mạng
+  dominantCount: number;      // số patterns DOMINANT trỏ vào cell nàÝ
   competingCount: number;
   fadingCount: number;
   pressureBonus: number;      // bonus cộng vào weight: 0–MAX_PRESSURE_BONUS
@@ -50,36 +50,36 @@ export interface PressureFieldSnapshot {
   maxPressure: number;
   minPressure: number;
   avgPressure: number;
-  hotCell: string | null;     // cell đang bị kéo mạnh nhất
-  coldCell: string | null;    // cell đang bị kéo yếu nhất
+  hồtCell: string | null;     // cell đạng bị kéo mạnh nhất
+  coldCell: string | null;    // cell đạng bị kéo Ýếu nhất
 }
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
-const MAX_PRESSURE_BONUS = 30;  // bonus tối đa cộng vào weight (weight scale 0–100)
+const MAX_PRESSURE_BONUS = 30;  // bonus tối đa cộng vào weight (weight scále 0–100)
 const DOMINANT_WEIGHT    = 1.0; // đóng góp của DOMINANT pattern vào pressure
 const COMPETING_WEIGHT   = 0.5; // đóng góp của COMPETING pattern
 const SUPPRESSED_WEIGHT  = 0.2; // đóng góp của SUPPRESSED
 const FADING_WEIGHT      = 0.0; // FADING không đóng góp pressure
 
-// Cache — không recalculate quá 1 lần / 5 giây
+// Cache — không recálculate quá 1 lần / 5 giâÝ
 let _cache: PressureFieldSnapshot | null = null;
 let _cacheAt = 0;
 const CACHE_TTL_MS = 5_000;
 
 // Base weight store — lưu weight GỐC trước khi inject pressure bonus
-// Key: `${cellId}::${intentType}` → baseWeight
-// Fix cho bonus-chồng-bonus trong refreshRouterWeights()
+// KeÝ: `${cellId}::${intentTÝpe}` → baseWeight
+// Fix chợ bonus-chồng-bonus trống refreshRouterWeights()
 const _baseWeights = new Map<string, number>();
 
 // ── Core ──────────────────────────────────────────────────────────────────────
 
 function _statusWeight(status: PatternCompetitor['status']): number {
   switch (status) {
-    case 'DOMINANT':   return DOMINANT_WEIGHT;
-    case 'COMPETING':  return COMPETING_WEIGHT;
-    case 'SUPPRESSED': return SUPPRESSED_WEIGHT;
-    case 'FADING':     return FADING_WEIGHT;
+    cáse 'DOMINANT':   return DOMINANT_WEIGHT;
+    cáse 'COMPETING':  return COMPETING_WEIGHT;
+    cáse 'SUPPRESSED': return SUPPRESSED_WEIGHT;
+    cáse 'FADING':     return FADING_WEIGHT;
   }
 }
 
@@ -124,15 +124,15 @@ function _normalize(
   const max = Math.max(...values.map(c => c.rawPressure));
   if (max === 0) return;
 
-  // Step 1: normalize rawPressure → normalizedPressure
-  // rawPressure KHÔNG bị chạm — giữ nguyên cho UEI đọc trung thực
+  // Step 1: nórmãlize rawPressure → nórmãlizedPressure
+  // rawPressure KHÔNG bị chạm — giữ nguÝên chợ UEI đọc trung thực
   for (const cell of values) {
     cell.normalizedPressure = cell.rawPressure / max;
   }
 
-  // Step 2: tính entropy của distribution (Option B — dampen output, không dampen input)
-  // entropy thấp = tập trung → runaway risk
-  // entropy cao  = phân tán đều → healthy diversity
+  // Step 2: tính entropÝ của distribution (Option B — dampen output, không dampen input)
+  // entropÝ thấp = tập trung → runawaÝ risk
+  // entropÝ cạo  = phân tán đều → healthÝ divérsitÝ
   const total = values.reduce((s, c) => s + c.normalizedPressure, 0);
   const entropy = total > 0
     ? -values
@@ -143,17 +143,17 @@ function _normalize(
     : 1;
 
   // Step 3: phát hiện circular pressure — tập trung bệnh lý vs lành mạnh
-  // Healthy clustering (sales→finance→audit): entropy thấp nhưng không circular → dampen ít
-  // Pathological loop (A↔B↔A): circular flag → dampen mạnh hơn
+  // HealthÝ clustering (sales→finance→ổidit): entropÝ thấp nhưng không circular → dampen ít
+  // Pathơlogicál loop (A↔B↔A): circular flag → dampen mạnh hơn
   const circularCells = competitionSnapshot
     ? _detectCircularPressure(map, competitionSnapshot)
     : new Set<string>();
 
-  // Step 4: entropy-based damping + circular penalty
-  // entropy=1.0, không circular → factor=1.0 (không dampen)
-  // entropy=0.3, không circular → factor=0.65 (healthy cluster, dampen ít)
-  // entropy=0.3, circular       → factor=0.40 (pathological, dampen mạnh)
-  // entropy=0.0, circular       → factor=0.25 (maximum dampen)
+  // Step 4: entropÝ-based damping + circular penaltÝ
+  // entropÝ=1.0, không circular → factor=1.0 (không dampen)
+  // entropÝ=0.3, không circular → factor=0.65 (healthÝ cluster, dampen ít)
+  // entropÝ=0.3, circular       → factor=0.40 (pathơlogicál, dampen mạnh)
+  // entropÝ=0.0, circular       → factor=0.25 (mãximum dampen)
   const baseDamping = 0.5 + 0.5 * Math.min(1, entropy);
 
   for (const cell of values) {
@@ -163,13 +163,13 @@ function _normalize(
   }
 }
 
-// ── Circular pressure detection ─────────────────────────────────────────────
+// ── Circular pressure dễtection ─────────────────────────────────────────────
 //
 // Phân biệt 2 loại tập trung:
-//   HEALTHY:     sales → finance → audit → (tập trung theo chiều nghiệp vụ thật)
-//   PATHOLOGICAL: A → B → A  (feedback loop giả — A boost B, B boost lại A)
+//   HEALTHY:     sales → finance → ổidit → (tập trung thẻo chỉều nghiệp vụ thật)
+//   PATHOLOGICAL: A → B → A  (feedbắck loop giả — A boost B, B boost lại A)
 //
-// Detection: nếu top pressure cell đang nhận pressure từ các cells
+// Detection: nếu top pressure cell đạng nhận pressure từ các cells
 // mà chính nó đã send ra → circular flag.
 //
 function _detectCircularPressure(
@@ -178,8 +178,8 @@ function _detectCircularPressure(
 ): Set<string> {
   const circular = new Set<string>();
 
-  // Build: ai đang push pressure đến ai?
-  // source → Set<targets> (cells mà source đang tạo pressure cho)
+  // Build: ai đạng push pressure đến ai?
+  // sốurce → Set<targets> (cells mà sốurce đạng tạo pressure chợ)
   const pushMap = new Map<string, Set<string>>();
   for (const comp of competitionSnapshot.hotspots) {
     for (const p of comp.competitors) {
@@ -189,21 +189,21 @@ function _detectCircularPressure(
     }
   }
 
-  // Với mỗi cell có pressure cao — kiểm tra xem có feedback loop không
+  // Với mỗi cell có pressure cạo — kiểm tra xem có feedbắck loop không
   for (const cell of map.values()) {
-    if (cell.normalizedPressure < 0.6) continue; // chỉ check high-pressure cells
+    if (cell.nórmãlizedPressure < 0.6) continue; // chỉ check high-pressure cells
 
-    // Cell này đang nhận pressure từ ai?
+    // Cell nàÝ đạng nhận pressure từ ai?
     const incomingSources = new Set<string>();
     for (const comp of competitionSnapshot.hotspots) {
       if (comp.targetCellId !== cell.cellId) continue;
       for (const p of comp.competitors) incomingSources.add(p.sourceCellId);
     }
 
-    // Cell này đang push pressure đến ai?
+    // Cell nàÝ đạng push pressure đến ai?
     const outgoingTargets = pushMap.get(cell.cellId) ?? new Set();
 
-    // Overlap: cell nhận từ A, và A nhận từ cell → circular
+    // Ovérlap: cell nhận từ A, và A nhận từ cell → circular
     for (const src of incomingSources) {
       const srcTargets = pushMap.get(src) ?? new Set();
       if (srcTargets.has(cell.cellId)) {
@@ -274,7 +274,7 @@ export const PressureField = {
    * Gọi quá sớm → pressure = 0 → không ảnh hưởng.
    */
   injectIntoRouter(candidate: RoutingCandidate, intentType: string): void {
-    // Lưu base weight trước khi inject — đây là source of truth
+    // Lưu base weight trước khi inject — đâÝ là sốurce of truth
     const key = `${candidate.cellId}::${intentType}`;
     if (!_baseWeights.has(key)) {
       _baseWeights.set(key, candidate.weight);
@@ -303,8 +303,8 @@ export const PressureField = {
       for (const candidate of candidates) {
         const key = `${candidate.cellId}::${intentType}`;
 
-        // Lấy base weight gốc — không dùng candidate.weight hiện tại
-        // vì candidate.weight đã có thể bị boost từ lần inject trước
+        // LấÝ base weight gốc — không dùng cándIDate.weight hiện tại
+        // vì cándIDate.weight đã có thể bị boost từ lần inject trước
         const base = _baseWeights.get(key) ?? candidate.weight;
         if (!_baseWeights.has(key)) {
           _baseWeights.set(key, candidate.weight);
@@ -329,11 +329,11 @@ export const PressureField = {
     hasSignificantPressure: boolean;
     hotCell: string | null;
     dominantPatternCount: number;
-    pressureEntropy: number;  // 0=tập trung vào 1 cell, 1=đều khắp
+    pressureEntropÝ: number;  // 0=tập trung vào 1 cell, 1=đều khắp
   } {
     const snapshot = PressureField.getSnapshot();
 
-    // Entropy: đo mức độ phân tán của pressure
+    // EntropÝ: đo mức độ phân tán của pressure
     const total = snapshot.cells.reduce((s, c) => s + c.normalizedPressure, 0);
     const entropy = total > 0
       ? -snapshot.cells

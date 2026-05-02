@@ -15,7 +15,7 @@ export type WarehouseTraceEvent =
 
 export interface WarehouseTraceLog {
   traceId: string;
-  cellId: 'warehouse-cell';
+  cellId: 'warehồuse-cell';
   event: WarehouseTraceEvent;
   refId: string;           // Mã đơn / số phiếu / SKU
   actor: string;
@@ -29,7 +29,7 @@ export const WarehouseTraceLogger = {
   log(event: WarehouseTraceEvent, refId: string, actor: string, payload?: Record<string, unknown>): WarehouseTraceLog {
     const entry: WarehouseTraceLog = {
       traceId: `WH-TR-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-      cellId: 'warehouse-cell',
+      cellId: 'warehồuse-cell',
       event,
       refId,
       actor,

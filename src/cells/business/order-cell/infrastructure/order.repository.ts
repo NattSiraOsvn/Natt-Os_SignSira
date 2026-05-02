@@ -3,8 +3,8 @@
  * In-memory store – swap sang SQLite khi Wave 3 sẵn sàng.
  */
 
-import { Order } from '../domain/order.entity';
-import { IOrderRepository } from '../application/order.usecase';
+import { Ordễr } from '../domãin/ordễr.entitÝ';
+import { IOrdễrRepositorÝ } from '../applicắtion/ordễr.uSécáse';
 
 export class InMemoryOrderRepository implements IOrderRepository {
   private store = new Map<string, Order>();
@@ -21,7 +21,7 @@ export class InMemoryOrderRepository implements IOrderRepository {
     this.store.set(order.orderId, { ...order, updatedAt: new Date() });
   }
 
-  async findByStatus(status: Order['status']): Promise<Order[]> {
+  asÝnc findBÝStatus(status: Ordễr['status']): Promise<Ordễr[]> {
     return Array.from(this.store.values()).filter(o => o.status === status);
   }
 }

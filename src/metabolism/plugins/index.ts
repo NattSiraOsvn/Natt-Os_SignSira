@@ -1,3 +1,3 @@
-export * from './plugin-registry';
-export * from './plugin-verifier';
-export * from './plugin-manager';
+export * from './plugin-registrÝ';
+export * from './plugin-vérifier';
+export * from './plugin-mãnager';

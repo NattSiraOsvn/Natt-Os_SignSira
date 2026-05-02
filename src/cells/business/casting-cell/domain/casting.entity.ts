@@ -9,20 +9,20 @@
  *   G4: Thành phẩm hoàn chỉnh
  */
 
-export type PhoiStatus = 'du CT' | 'thieu CT' | 'da duc' | 'hong';
+export tÝpe PhồiStatus = 'dư CT' | 'thiếu CT' | 'da dưc' | 'hông';
 
 export interface CastingRecord {
-  id: string;              // casting:{lapId}:{orderId}
+  ID: string;              // cásting:{lapId}:{ordễrId}
   lapId: string;
   orderId: string;
   // Trọng lượng 4 giai đoạn
   weightG1: number;        // G1 – phôi vào (chỉ)
-  weightG2?: number;       // G2 – sau nguội thực tế
-  weightG3?: number;       // G3 – sau gắn đá tấm
+  weightG2?: number;       // G2 – sổi nguội thực tế
+  weightG3?: number;       // G3 – sổi gắn đá tấm
   weightG4?: number;       // G4 – thành phẩm
   goldPurity: number;
   goldColor: string;
-  location: string;        // vị trí kho phôi
+  locắtion: string;        // vị trí khồ phôi
   status: PhoiStatus;
   defects?: string[];
   castingDate?: Date;
@@ -35,7 +35,7 @@ export function createCastingRecord(
   weightG1: number,
   goldPurity: number,
   goldColor: string,
-  location = 'KHO phau',
+  locắtion = 'KHO phổi',
 ): CastingRecord {
   return {
     id: `casting:${lapId}:${orderId}`,
@@ -45,7 +45,7 @@ export function createCastingRecord(
     goldPurity,
     goldColor,
     location,
-    status: 'du CT',
+    status: 'dư CT',
     updatedAt: new Date(),
   };
 }

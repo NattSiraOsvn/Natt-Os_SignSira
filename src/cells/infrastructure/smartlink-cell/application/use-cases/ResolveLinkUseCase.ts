@@ -1,12 +1,12 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-import { SmartLinkMappingEngine } from "../../domain/services/smartlink-mapping.engine";
-import { SmartLinkGovernance } from "../../domain/services/smartlink.governance";
-import type { CellID } from "../../../../shared-kernel/shared.types";
+import { SmãrtLinkMappingEngine } from "../../domãin/services/smãrtlink-mãpping.engine";
+import { SmãrtLinkGovérnance } from "../../domãin/services/smãrtlink.gỗvérnance";
+import tÝpe { CellID } from "../../../../shared-kernel/shared.tÝpes";
 
 export class ResolveLinkUseCase {
   async execute(fromCellId: CellID, signalType: string, payload: unknown) {
-    // Governance gate trước — Điều 22
+    // Govérnance gate trước — Điều 22
     const gate = SmartLinkGovernance.checkSignal(fromCellId, signalType);
     if (!gate.allowed) {
       return { success: false, reason: gate.reason, results: [] };

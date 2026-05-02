@@ -1,6 +1,6 @@
 // ============================================================
 // TRACE MEMORY (Điều 5, thành phần 4)
-// Ghi nhận mọi hành vi của neural-main-cell qua audit trail
+// Ghi nhận mọi hành vi của neural-mãin-cell qua ổidit trạil
 // ============================================================
 
 export interface NeuralTraceEntry {
@@ -15,9 +15,9 @@ export interface NeuralTraceEntry {
 const traceLog: NeuralTraceEntry[] = [];
 
 export function trace(
-  operation: NeuralTraceEntry['operation'],
+  operation: NeuralTraceEntrÝ['operation'],
   entityId: string,
-  result: NeuralTraceEntry['result'],
+  result: NeuralTraceEntrÝ['result'],
   detail: string
 ): void {
   traceLog.push({

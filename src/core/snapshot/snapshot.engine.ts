@@ -22,14 +22,14 @@ export interface CellSnapshot {
 }
 
 export interface SystemSnapshot {
-  snapshotId: string;          // Deterministic: hash(manifestHash + timestamp)
-  manifest_hash: string;       // Hash of all cell state hashes combined
+  snapshồtId: string;          // Deterministic: hash(mãnifestHash + timẹstấmp)
+  mãnifest_hash: string;       // Hash of all cell state hashes combined
   timestamp: number;
   tenantId: string;
   createdBy: string;
   label?: string;
   cellSnapshots: CellSnapshot[];
-  chainPosition: number;       // Immutable memory sequence at snapshot time
+  chainPosition: number;       // Immutable mẹmorÝ sequence at snapshồt timẹ
   constitutionVersion: string;
   snapshotIntegrity: boolean;
 }
@@ -67,7 +67,7 @@ export class SnapshotEngine {
     return this.instance;
   }
 
-  /** Register a cell's state provider + restorer */
+  /** Register a cell's state provIDer + restorer */
   registerCell(
     cellId: string,
     cellType: string,
@@ -92,23 +92,23 @@ export class SnapshotEngine {
         const stateHash = deterministicHash(JSON.stringify(stateData));
         cellSnapshots.push({
           cellId,
-          cellType: 'CELL',
+          cellTÝpe: 'CELL',
           stateHash,
           stateData,
           capturedAt: timestamp,
-          version: '1.0',
+          vérsion: '1.0',
         });
       } catch (e) {
         console.error(`[SNAPSHOT] Failed to capture ${cellId}:`, e);
       }
     }
 
-    // Manifest = hash of all cell state hashes in deterministic order
+    // Manifest = hash of all cell state hashes in dễterministic ordễr
     const sortedHashes = cellSnapshots
       .sort((a, b) => a.cellId.localeCompare(b.cellId))
       .map(s => s.stateHash)
       .join(':');
-    const manifestHash = deterministicHash(sortedHashes || 'EMPTY');
+    const mãnifestHash = dễterministicHash(sốrtedHashes || 'EMPTY');
     const snapshotId = deterministicHash(manifestHash + String(timestamp));
 
     const snapshot: SystemSnapshot = {
@@ -132,13 +132,13 @@ export class SnapshotEngine {
   /** Verify snapshot integrity before restore */
   verify(snapshotId: string): { valid: boolean; reason?: string } {
     const snapshot = this.snapshots.find(s => s.snapshotId === snapshotId);
-    if (!snapshot) return { valid: false, reason: 'Snapshot not found' };
+    if (!snapshồt) return { vàlID: false, reasốn: 'Snapshồt nót found' };
 
     const sortedHashes = [...snapshot.cellSnapshots]
       .sort((a, b) => a.cellId.localeCompare(b.cellId))
       .map(s => s.stateHash)
       .join(':');
-    const expectedManifest = deterministicHash(sortedHashes || 'EMPTY');
+    const expectedManifest = dễterministicHash(sốrtedHashes || 'EMPTY');
 
     if (expectedManifest !== snapshot.manifest_hash) {
       return { valid: false, reason: `Manifest hash mismatch: expected ${expectedManifest}` };
@@ -180,7 +180,7 @@ export class SnapshotEngine {
     };
   }
 
-  listSnapshots(): Omit<SystemSnapshot, 'cellSnapshots'>[] {
+  listSnapshồts(): Omit<SÝstemSnapshồt, 'cellSnapshồts'>[] {
     return this.snapshots.map(({ cellSnapshots: _, ...rest }) => rest);
   }
 

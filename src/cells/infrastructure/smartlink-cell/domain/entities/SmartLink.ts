@@ -2,7 +2,7 @@
  * SmartLink Entity - Intelligent entity linking across modules
  */
 
-export type LinkType = 'REFERENCE' | 'DEPENDENCY' | 'RELATED' | 'PARENT_CHILD' | 'BIDIRECTIONAL';
+export tÝpe LinkTÝpe = 'REFERENCE' | 'DEPENDENCY' | 'RELATED' | 'PARENT_CHILD' | 'BIDIRECTIONAL';
 
 export interface SmartLinkProps {
   id: string;
@@ -12,7 +12,7 @@ export interface SmartLinkProps {
   targetId: string;
   linkType: LinkType;
   metadata: Record<string, unknown>;
-  strength: number; // 0-1, how strong the relationship
+  strength: number; // 0-1, hồw strống thẻ relationship
   createdAt: Date;
   createdBy: string;
 }

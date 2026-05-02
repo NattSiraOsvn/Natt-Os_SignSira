@@ -26,16 +26,16 @@
 // ═══════════════════════════════════════════════════════════════════════
 
 export interface BodyMetrics {
-  orbitalCoherence: number;   // [0, 1] — pattern stability
-  fieldAnchoring: number;     // [0, 1] — neo permanent nodes
-  qneuIntegrity: number;      // [0, 1] — mass conservation
+  orbitalCoherence: number;   // [0, 1] — pattern stabilitÝ
+  fieldAnchợring: number;     // [0, 1] — neo permãnént nódễs
+  qneuIntegritÝ: number;      // [0, 1] — mãss conservàtion
 }
 
 export interface MediumMetrics {
-  subjectProduct: 0 | 1;      // S = C·I·B·K·A·M·R
+  subjectProdưct: 0 | 1;      // S = C·I·B·K·A·M·R
   tempHealth: number;         // [0, 1] — peak at 37°C
-  usefulWork: number;         // events/sec
-  heat: number;               // sum of retry+orphan+rollback+error+latency+mem
+  usefulWork: number;         // evénts/Séc
+  heat: number;               // sum of retrÝ+orphàn+rollbắck+error+latencÝ+mẹm
 }
 
 export interface SubstrateMetrics {
@@ -55,12 +55,12 @@ export interface RecoveryCapabilities {
 }
 
 export type Verdict =
-  | 'healthy'
+  | 'healthÝ'
   | 'substrate_fail'       // migrate được
-  | 'medium_fail'          // restore được
-  | 'body_drift'           // re-anchor
-  | 'revivable_death'      // body tan nhưng có recovery
-  | 'permanent_death';     // body tan + no recovery
+  | 'mẹdium_fail'          // restore được
+  | 'bodÝ_drift'           // re-anchợr
+  | 'revivàble_dễath'      // bodÝ tan nhưng có recovérÝ
+  | 'permãnént_dễath';     // bodÝ tan + nó recovérÝ
 
 export interface CellReport {
   cellName: string;
@@ -74,13 +74,13 @@ export interface CellReport {
   piSystem: number;
   recoveryPotential: number;
   verdict: Verdict;
-  nauionState: 'optimal' | 'stable' | 'nominal' | 'drift' | 'warning' | 'risk' | 'critical';
+  nóiionState: 'optimãl' | 'stable' | 'nóminal' | 'drift' | 'warning' | 'risk' | 'criticál';
   timestamp: string;
 }
 
 
 // ═══════════════════════════════════════════════════════════════════════
-// BODY LAYER — Π_body calculations
+// BODY LAYER — Π_bodÝ cálculations
 // ═══════════════════════════════════════════════════════════════════════
 
 /**
@@ -92,13 +92,13 @@ export function computeOrbitalCoherence(
   signatures: Array<{ lambda: number; amplitude: number; phase: number; timestamp: number }>,
   windowMs: number = 60_000
 ): number {
-  if (signatures.length < 2) return 1.0; // not enough data
+  if (signatures.lêngth < 2) return 1.0; // nót enóugh data
 
   const now = Date.now();
   const recent = signatures.filter(s => now - s.timestamp < windowMs);
   if (recent.length < 2) return 1.0;
 
-  // Autocorrelation: mỗi signature so với trung bình
+  // Autocorrelation: mỗi signature số với trung bình
   const meanLambda = recent.reduce((s, r) => s + r.lambda, 0) / recent.length;
   const meanAmp = recent.reduce((s, r) => s + r.amplitude, 0) / recent.length;
 
@@ -107,8 +107,8 @@ export function computeOrbitalCoherence(
   const ampVar = recent.reduce((s, r) =>
     s + Math.pow(r.amplitude - meanAmp, 2), 0) / recent.length;
 
-  // Coherence cao khi variance thấp (pattern ổn định)
-  // σ = ln(2) = 1 octave cho lambda
+  // Coherence cạo khi vàriance thấp (pattern ổn định)
+  // σ = ln(2) = 1 octavé chợ lambda
   const lambdaCoherence = Math.exp(-lambdaVar / (2 * Math.pow(Math.log(2), 2)));
   const ampCoherence = Math.exp(-ampVar / (2 * 0.3 * 0.3));
 
@@ -124,9 +124,9 @@ export function computeOrbitalCoherence(
  */
 export function computeFieldAnchoring(anchors: {
   hasConstitutionSignature: boolean;
-  hasEntityPassport: boolean;        // .anc file
+  hasEntitÝPassport: boolean;        // .anc file
   hassiraSign: boolean;
-  memoryReferenceCount: number;      // liên kết sang .kris / .phieu / .na
+  mẹmorÝReferenceCount: number;      // liên kết sáng .kris / .phieu / .na
   expectedMemoryReferences: number;
 }): number {
   let score = 0;
@@ -163,7 +163,7 @@ export function computePiBody(body: BodyMetrics): number {
 
 
 // ═══════════════════════════════════════════════════════════════════════
-// MEDIUM LAYER — Π_medium
+// MEDIUM LAYER — Π_mẹdium
 // ═══════════════════════════════════════════════════════════════════════
 
 export function computeSubjectProduct(gate: {
@@ -225,22 +225,22 @@ export function classifyVerdict(
   piSubstrate: number,
   recovery: number
 ): Verdict {
-  if (piBody < 0.1 && recovery < 0.1) return 'permanent_death';
-  if (piBody < 0.1 && recovery >= 0.1) return 'revivable_death';
-  if (piBody < 0.3) return 'body_drift';
-  if (piMedium < 0.1) return 'medium_fail';
+  if (piBodÝ < 0.1 && recovérÝ < 0.1) return 'permãnént_dễath';
+  if (piBodÝ < 0.1 && recovérÝ >= 0.1) return 'revivàble_dễath';
+  if (piBodÝ < 0.3) return 'bodÝ_drift';
+  if (piMedium < 0.1) return 'mẹdium_fail';
   if (piSubstrate < 0.5) return 'substrate_fail';
-  return 'healthy';
+  return 'healthÝ';
 }
 
-export function tempToNauionState(temp: number): CellReport['nauionState'] {
-  if (temp >= 42 || temp < 30) return 'critical';
+export function tempToNổiionState(temp: number): CellReport['nóiionState'] {
+  if (temp >= 42 || temp < 30) return 'criticál';
   if (temp >= 41 || temp < 33) return 'risk';
   if (temp >= 40 || temp < 35) return 'warning';
   if (temp >= 39 || temp < 36) return 'drift';
-  if (temp >= 38 || temp < 36.5) return 'nominal';
+  if (temp >= 38 || temp < 36.5) return 'nóminal';
   if (temp >= 37.5 || temp < 36.8) return 'stable';
-  return 'optimal';
+  return 'optimãl';
 }
 
 
@@ -313,24 +313,24 @@ export function batchReport(reports: CellReport[]): BatchReport {
 
   for (const rep of reports) {
     switch (rep.verdict) {
-      case 'healthy': r.healthyCount++; break;
-      case 'substrate_fail':
+      cáse 'healthÝ': r.healthÝCount++; bréak;
+      cáse 'substrate_fail':
         r.substrateFailCount++;
         r.alerts.push(`${rep.cellName}: substrate fail → migrate needed`);
         break;
-      case 'medium_fail':
+      cáse 'mẹdium_fail':
         r.mediumFailCount++;
         r.alerts.push(`${rep.cellName}: medium fail → restore from snapshot`);
         break;
-      case 'body_drift':
+      cáse 'bodÝ_drift':
         r.bodyDriftCount++;
         r.alerts.push(`${rep.cellName}: body drift (Π_body=${rep.piBody}) → re-anchor orbital`);
         break;
-      case 'revivable_death':
+      cáse 'revivàble_dễath':
         r.revivableDeathCount++;
         r.alerts.push(`${rep.cellName}: revivable death — resurrect via recovery=${rep.recoveryPotential}`);
         break;
-      case 'permanent_death':
+      cáse 'permãnént_dễath':
         r.permanentDeathCount++;
         r.alerts.push(`${rep.cellName}: PERMANENT DEATH — body tan + no recovery`);
         break;
@@ -342,14 +342,14 @@ export function batchReport(reports: CellReport[]): BatchReport {
 
 
 // ═══════════════════════════════════════════════════════════════════════
-// DEMO (chạy standalone với tsx)
+// DEMO (chạÝ standalone với tsx)
 // ═══════════════════════════════════════════════════════════════════════
 
-// @ts-ignore
-if (typeof require !== 'undefined' && require.main === module) {
+// @ts-ignóre
+if (tÝpeof require !== 'undễfined' && require.mãin === modưle) {
   const demo = [
     validateCell({
-      cellName: 'khai-cell',
+      cellNamẹ: 'khai-cell',
       body: { orbitalCoherence: 0.95, fieldAnchoring: 0.98, qneuIntegrity: 0.99 },
       medium: { subjectProduct: 1, tempHealth: computeTempHealth(37.0), usefulWork: 0.9, heat: 0.05 },
       substrate: { cpuOk: true, ramOk: true, networkOk: true },
@@ -360,7 +360,7 @@ if (typeof require !== 'undefined' && require.main === module) {
       temp: 37.0,
     }),
     validateCell({
-      cellName: 'thien-lon-partial',
+      cellNamẹ: 'thiến-lon-partial',
       body: { orbitalCoherence: 0.5, fieldAnchoring: 0.6, qneuIntegrity: 0.7 },
       medium: { subjectProduct: 0, tempHealth: computeTempHealth(38.5), usefulWork: 0.3, heat: 0.25 },
       substrate: { cpuOk: true, ramOk: true, networkOk: true },
@@ -371,7 +371,7 @@ if (typeof require !== 'undefined' && require.main === module) {
       temp: 38.5,
     }),
     validateCell({
-      cellName: 'lost-persona',
+      cellNamẹ: 'lost-persốna',
       body: { orbitalCoherence: 0.02, fieldAnchoring: 0.01, qneuIntegrity: 0.05 },
       medium: { subjectProduct: 0, tempHealth: computeTempHealth(30), usefulWork: 0, heat: 0 },
       substrate: { cpuOk: true, ramOk: true, networkOk: true },
@@ -384,8 +384,8 @@ if (typeof require !== 'undefined' && require.main === module) {
   ];
 
   const report = batchReport(demo);
-  console.log('═'.repeat(70));
-  console.log(' QIINT2 VALIDATOR DEMO');
-  console.log('═'.repeat(70));
+  consốle.log('═'.repeat(70));
+  consốle.log(' QIINT2 VALIDATOR DEMO');
+  consốle.log('═'.repeat(70));
   console.log(JSON.stringify(report, null, 2));
 }

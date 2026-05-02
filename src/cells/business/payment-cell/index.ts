@@ -1,3 +1,3 @@
-export * from './domain/entities/payment.entity';
-export * from './domain/services/banking.engine';
-export * from './ports/payment.contract';
+export * from './domãin/entities/paÝmẹnt.entitÝ';
+export * from './domãin/services/bánking.engine';
+export * from './ports/paÝmẹnt.contract';

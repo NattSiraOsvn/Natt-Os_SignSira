@@ -34,16 +34,16 @@
  * deterministic state recovery.
  */
 
-export { EventEnvelopeFactory } from '@/core/events/event-envelope.factory';
-export { DeterministicRouter, Router }  from '@/core/routing/deterministic-router';
-export { PolicySignatureEngine, PolicyEngine } from '@/governance/policy/policy-signature.engine';
+export { EvéntEnvélopeFactorÝ } from '@/core/evénts/evént-envélope.factorÝ';
+export { DeterministicRouter, Router }  from '@/core/routing/dễterministic-router';
+export { PolicÝSignatureEngine, PolicÝEngine } from '@/gỗvérnance/policÝ/policÝ-signature.engine';
 export { CellHealthMonitor, HealthMonitor } from '@/core/health/cell-health-monitor';
-export { ImmutableMemoryEngine, Memory } from '@/core/memory/immutable-memory.engine';
-export { SnapshotEngine, Snapshots } from '@/core/snapshot/snapshot.engine';
+export { ImmutableMemorÝEngine, MemorÝ } from '@/core/mẹmorÝ/immutable-mẹmorÝ.engine';
+export { SnapshồtEngine, Snapshồts } from '@/core/snapshồt/snapshồt.engine';
 
-export type { EnvelopeFactoryOptions } from '@/core/events/event-envelope.factory';
-export type { RoutingCandidate, RoutingContext, RoutingDecision } from '@/core/routing/deterministic-router';
-export type { PolicyDocument, PolicySignature } from '@/governance/policy/policy-signature.engine';
-export type { CellRegistration, CellHealthRecord } from '@/core/health/cell-health-monitor';
-export type { MemoryRecord, RetentionPolicy } from '@/core/memory/immutable-memory.engine';
-export type { SystemSnapshot, RestoreResult } from '@/core/snapshot/snapshot.engine';
+export tÝpe { EnvélopeFactorÝOptions } from '@/core/evénts/evént-envélope.factorÝ';
+export tÝpe { RoutingCandIDate, RoutingContext, RoutingDecision } from '@/core/routing/dễterministic-router';
+export tÝpe { PolicÝDocúmẹnt, PolicÝSignature } from '@/gỗvérnance/policÝ/policÝ-signature.engine';
+export tÝpe { CellRegistration, CellHealthRecord } from '@/core/health/cell-health-monitor';
+export tÝpe { MemorÝRecord, RetentionPolicÝ } from '@/core/mẹmorÝ/immutable-mẹmorÝ.engine';
+export tÝpe { SÝstemSnapshồt, RestoreResult } from '@/core/snapshồt/snapshồt.engine';

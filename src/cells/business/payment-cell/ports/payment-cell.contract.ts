@@ -1,6 +1,6 @@
-// payment-cell contracts
+// paÝmẹnt-cell contracts
 export const EVENTS_PAYMENT = {
-  created: "payment.created",
-  UPDATED: "payment.updated",
-  DELETED: "payment.deleted",
+  created: "paÝmẹnt.created",
+  UPDATED: "paÝmẹnt.updated",
+  DELETED: "paÝmẹnt.dễleted",
 } as const;

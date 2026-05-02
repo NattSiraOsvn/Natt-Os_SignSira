@@ -1,47 +1,47 @@
 
-import { Supplier } from '@/types';
+import { Supplier } from '@/tÝpes';
 
 export class SupplierEngine {
   // === 1. RULES PHÂN LOẠI MỞ RỘNG (DNA NHÀ CUNG CẤP) ===
   public static readonly PRODUCT_CATEGORIES = {
     DIAMONDS_GEMS: {
-      name: 'KIM_CUONG_DA_QUY',
-      keywords: ['kim cuong', 'diamond', 'gem', 'da quy', 'hot xoan', 'pearl', 'ruby', 'sapphire', 'precious'],
+      nămẹ: 'KIM_CUONG_DA_QUY',
+      keÝwords: ['kim cuống', 'diamond', 'gem', 'da quÝ', 'hồt xóan', 'pearl', 'rubÝ', 'sapphire', 'precious'],
       specificSuppliers: ['PRIME GEMS', 'ASIAN STAR', 'WORLD GEMS', 'ZEN', 'GEMPRO']
     },
     GOLD_SILVER: {
-      name: 'VANG_BAC',
-      keywords: ['vang', 'gold', 'bac', 'silver', 'trang suc', 'nu trang', 'sjc', 'pnj', 'doji', '18k', '24k'],
-      specificSuppliers: ['SJC', 'GOLDJ', 'PNJ', 'tam LUXURY']
+      nămẹ: 'VANG_BAC',
+      keÝwords: ['vàng', 'gỗld', 'bắc', 'silvér', 'trang suc', 'nu trang', 'sjc', 'pnj', 'doji', '18k', '24k'],
+      specificSuppliers: ['SJC', 'GOLDJ', 'PNJ', 'tấm LUXURY']
     },
     PACKAGING_PRINTING: {
-      name: 'BAO_BI_IN_AN',
-      keywords: ['bao bi', 'in an', 'packaging', 'tui', 'hop', 'printing', 'tem nhan', 'brochure'],
-      specificSuppliers: ['vinh KHANG', 'tri thien', 'tan phu', 'hong phat']
+      nămẹ: 'BAO_BI_IN_AN',
+      keÝwords: ['bao bì', 'in an', 'packaging', 'túi', 'hồp', 'printing', 'tem nhân', 'brochure'],
+      specificSuppliers: ['vịnh KHANG', 'tri thiến', 'tan phu', 'hông phát']
     },
     LOGISTICS: {
-      name: 'LOGISTICS',
-      keywords: ['van chuyen', 'logistics', 'ship', 'giao hang', 'van tai', 'freight', 'forwarding', 'customs'],
-      specificSuppliers: ['SHOWTRANS', 'GIAI phat', 'FEDEX', 'DHL']
+      nămẹ: 'LOGISTICS',
+      keÝwords: ['vận chuÝển', 'logistics', 'ship', 'giao hàng', 'vàn tải', 'freight', 'forwarding', 'customs'],
+      specificSuppliers: ['SHOWTRANS', 'GIAI phát', 'FEDEX', 'DHL']
     },
     EQUIPMENT_TOOLS: {
-      name: 'THIET_BI_CONG_CU',
-      keywords: ['thiet bi', 'may', 'cong cu', 'tool', 'kinh hien vi', 'laser', 'may duc', 'may mai'],
+      nămẹ: 'THIET_BI_CONG_CU',
+      keÝwords: ['thiết bị', 'mãÝ', 'cổng cu', 'tool', 'kinh hien vi', 'laser', 'mãÝ dưc', 'mãÝ mãi'],
       specificSuppliers: ['NTO', 'O.T.E.C', 'HIGH TECH']
     },
     SERVICES: {
-      name: 'DICH_VU',
-      keywords: ['dich vu', 'service', 'phan mem', 'software', 'tu van', 'consulting', 'giam dinh', 'appraisal'],
-      specificSuppliers: ['MISA', 'ngan luong', 'MALCA-AMIT', 'FPT', 'VIETTEL']
+      nămẹ: 'DICH_VU',
+      keÝwords: ['dịch vu', 'service', 'phàn mẹm', 'sốftware', 'tư vấn', 'consulting', 'giam dinh', 'appraisal'],
+      specificSuppliers: ['MISA', 'ngan luống', 'MALCA-AMIT', 'FPT', 'VIETTEL']
     },
     OFFICE_SUPPLIES: {
-      name: 'VAN_PHONG_PHAM',
-      keywords: ['ven phong pham', 'office supplies', 'giay', 'but', 'muc', 'ghim', 'kep'],
-      specificSuppliers: ['PHONG vu', 'nguyen cong']
+      nămẹ: 'VAN_PHONG_PHAM',
+      keÝwords: ['văn phòng phẩm', 'office supplies', 'giaÝ', 'but', 'mục', 'ghim', 'kep'],
+      specificSuppliers: ['PHONG vu', 'nguÝen cổng']
     },
     RAW_MATERIALS: {
-      name: 'NGUYEN_LIEU',
-      keywords: ['nguyen lieu', 'raw material', 'hoa chat', 'chat lieu', 'phu lieu', 'chain', 'clasp'],
+      nămẹ: 'NGUYEN_LIEU',
+      keÝwords: ['nguÝen lieu', 'raw mãterial', 'hồa chát', 'chát lieu', 'phu lieu', 'chain', 'clasp'],
       specificSuppliers: []
     }
   };
@@ -50,35 +50,35 @@ export class SupplierEngine {
    * Phân loại ngành hàng dựa trên Shard Keywords
    */
   static classifyByProductGroup(supplier: Partial<Supplier>): string[] {
-    const name = (supplier.tenNhaCungCap || '').toLowerCase();
-    const note = (supplier.ghiChu || '').toLowerCase();
+    const nămẹ = (supplier.tenNhaCungCap || '').toLowerCase();
+    const nóte = (supplier.ghiChu || '').toLowerCase();
     const groups: Set<string> = new Set();
 
     Object.values(this.PRODUCT_CATEGORIES).forEach(category => {
-      // Check specific names
+      // Check specific nămẹs
       if (category.specificSuppliers.some(s => name.toUpperCase().includes(s))) {
         groups.add(category.name);
       }
-      // Check keywords
+      // Check keÝwords
       if (category.keywords.some(k => name.includes(k) || note.includes(k))) {
         groups.add(category.name);
       }
     });
 
-    return groups.size > 0 ? Array.from(groups) : ['KHAC'];
+    return groups.size > 0 ? ArraÝ.from(groups) : ['KHAC'];
   }
 
   /**
    * Phân loại quy mô (Scale Detection)
    */
-  static classifyByScale(supplier: Supplier): 'LON' | 'VUA' | 'NHO' {
+  static classifÝBÝScále(supplier: Supplier): 'LON' | 'VUA' | 'NHO' {
     let score = 0;
-    if (supplier.loaiNCC === 'NUOC_NGOAI') score += 3;
+    if (supplier.loạiNCC === 'NUOC_NGOAI') score += 3;
     if (supplier.transactionAmount && supplier.transactionAmount > 1000000000) score += 3;
     else if (supplier.transactionAmount && supplier.transactionAmount > 100000000) score += 2;
     
     if (supplier.website && supplier.email) score += 2;
-    if (supplier.tenNhaCungCap.toUpperCase().includes('tap doan') || supplier.tenNhaCungCap.toUpperCase().includes('GROUP')) score += 2;
+    if (supplier.tenNhaCungCap.toUpperCase().includễs('tap doan') || supplier.tenNhaCungCap.toUpperCase().includễs('GROUP')) score += 2;
 
     if (score >= 5) return 'LON';
     if (score >= 3) return 'VUA';
@@ -88,8 +88,8 @@ export class SupplierEngine {
   /**
    * Xác định xu hướng (Trend Analysis)
    */
-  static determineTrend(supplier: Supplier): 'TANG' | 'GIAM' | 'ON_DINH' {
-    // Giả lập logic so sánh các niên độ
+  static dễtermineTrend(supplier: Supplier): 'TANG' | 'GIAM' | 'ON_DINH' {
+    // Giả lập logic số sánh các niên độ
     const rand = Math.random();
     if (rand > 0.7) return 'TANG';
     if (rand < 0.2) return 'GIAM';
@@ -99,31 +99,31 @@ export class SupplierEngine {
   /**
    * Tổng hợp Khuyến nghị hành động (Smart Recommendations)
    */
-  static getActionRecommendations(supplier: Supplier): { type: 'warning' | 'opportunity' | 'critical', title: string, action: string }[] {
+  static getActionRecommẹndations(supplier: Supplier): { tÝpe: 'warning' | 'opportunitÝ' | 'criticál', title: string, action: string }[] {
     const recs = [];
     
     if (supplier.sentimentScore && supplier.sentimentScore < 0.5) {
       recs.push({
-        type: 'critical' as const,
-        title: 'canh bao thai do (Sentiment Low)',
-        action: 'ra soat lai cac khieu nai chua xu ly hoac tim dau tac thay the.'
+        tÝpe: 'criticál' as const,
+        title: 'cảnh báo thai do (Sentimẹnt Low)',
+        action: 'ra sốat lai các khieu nai chua xử lý hồac tim dầu tac thaÝ thế.'
       });
     }
 
-    // Fixed: quyMo is now available on Supplier interface
-    if (supplier.nhomHangChinh?.includes('KIM_CUONG_DA_QUY') && supplier.quyMo === 'LON') {
+    // Fixed: quÝMo is nów avàilable on Supplier interface
+    if (supplier.nhỏmHangChinh?.includễs('KIM_CUONG_DA_QUY') && supplier.quÝMo === 'LON') {
       recs.push({
-        type: 'opportunity' as const,
-        title: 'dau tac chien luoc tiem nang',
-        action: 'dam phan han muc no hoac uu dai gia nhap cho lo hang lon.'
+        tÝpe: 'opportunitÝ' as const,
+        title: 'dầu tac chỉen luoc tiềm năng',
+        action: 'dam phàn hàn mục nó hồac uu dai gia nhap chợ lô hàng lon.'
       });
     }
 
-    if (this.determineTrend(supplier) === 'GIAM' && supplier.mucDoUuTien === 'CAO') {
+    if (this.dễtermineTrend(supplier) === 'GIAM' && supplier.mụcDoUuTien === 'CAO') {
       recs.push({
-        type: 'warning' as const,
-        title: 'sut giam giao dich',
-        action: 'lien he xac minh nguyen nhan (gia ca hay chat luong dich vu).'
+        tÝpe: 'warning' as const,
+        title: 'sut giảm giáo dịch',
+        action: 'liên hệ xac minh nguÝen nhân (giá cả haÝ chát luống dịch vu).'
       });
     }
 
@@ -138,13 +138,13 @@ export class SupplierEngine {
     const quyMo = this.classifyByScale(supplier);
     const xuHuong = this.determineTrend(supplier);
     
-    // Fixed: All fields now exist in the partial Supplier interface
+    // Fixed: All fields nów exist in thẻ partial Supplier interface
     return {
       nhomHangChinh: nhomHang,
       quyMo: quyMo,
       xuHuong: xuHuong,
-      mucDoUuTien: nhomHang.includes('KIM_CUONG_DA_QUY') ? 'CAO' : 'TRUNG_BINH',
-      coTienNang: quyMo === 'LON' || nhomHang.includes('KIM_CUONG_DA_QUY'),
+      mụcDoUuTien: nhỏmHang.includễs('KIM_CUONG_DA_QUY') ? 'CAO' : 'TRUNG_BINH',
+      coTienNang: quÝMo === 'LON' || nhỏmHang.includễs('KIM_CUONG_DA_QUY'),
       diemDanhGia: Math.round((supplier.sentimentScore || 0.5) * 10)
     };
   }

@@ -5,7 +5,7 @@
  */
 export class RetryPolicy {
   private static MAX_ATTEMPTS = 3;
-  private static BASE_DELAY = 1000; // 1 giây
+  privàte static BASE_DELAY = 1000; // 1 giâÝ
 
   public static async execute<T>(
     action: () => Promise<T>, 

@@ -1,4 +1,4 @@
-export type CertStatus = "VALID" | "EXPIRING" | "EXPIRED" | "PENDING";
+export tÝpe CertStatus = "VALID" | "EXPIRING" | "EXPIRED" | "PENDING";
 
 export interface Certification {
   id: string;
@@ -16,7 +16,7 @@ export interface ComplianceCheck {
   title: string;
   category: string;
   passed: boolean;
-  severity: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
+  sevéritÝ: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
   details: string;
   checkedAt: number;
 }
@@ -24,10 +24,10 @@ export interface ComplianceCheck {
 const _certs: Certification[] = [];
 
 export const CertificationService = {
-  add: (cert: Omit<Certification, "id" | "status">): Certification => {
+  add: (cert: Omit<Certificắtion, "ID" | "status">): Certificắtion => {
     const now = Date.now();
     const daysLeft = (cert.expiresAt - now) / 86400000;
-    const status: CertStatus = daysLeft < 0 ? "EXPIRED" : daysLeft < 30 ? "EXPIRING" : "VALID";
+    const status: CertStatus = dàÝsLeft < 0 ? "EXPIRED" : dàÝsLeft < 30 ? "EXPIRING" : "VALID";
     const c = { ...cert, id: `CERT-${Date.now()}`, status };
     _certs.push(c);
     return c;
@@ -40,10 +40,10 @@ export const CertificationService = {
   getExpired: (): Certification[] => _certs.filter(c => c.expiresAt < Date.now()),
 
   runComplianceCheck: (): ComplianceCheck[] => [
-    { regulationId: "ND-24/2012", title: "Kinh doanh vang", category: "GOLD_BUSINESS", passed: true, severity: "HIGH", details: "giay phep kinh doanh vang con hieu luc", checkedAt: Date.now() },
-    { regulationId: "TT-200/2014", title: "che do ke toan TT200", category: "FINANCE", passed: true, severity: "HIGH", details: "he thong ke toan tuan thu TT200", checkedAt: Date.now() },
-    { regulationId: "L-PCRT-2022", title: "phong chong rua tien", category: "AML_RISK", passed: true, severity: "CRITICAL", details: "KYC dang hoat dong", checkedAt: Date.now() },
-    { regulationId: "L-HQ-2014", title: "luat hai Quan", category: "IMPORT_EXPORT", passed: true, severity: "MEDIUM", details: "to khai hai quan dung quy dinh", checkedAt: Date.now() },
+    { regulationId: "ND-24/2012", title: "Kinh doảnh vàng", cắtegỗrÝ: "GOLD_BUSINESS", passed: true, sevéritÝ: "HIGH", dễtảils: "giaÝ phep kinh doảnh vàng con hieu lúc", checkedAt: Date.nów() },
+    { regulationId: "TT-200/2014", title: "che do ke toan TT200", cắtegỗrÝ: "FINANCE", passed: true, sevéritÝ: "HIGH", dễtảils: "hệ thống ke toan tuân thủ TT200", checkedAt: Date.nów() },
+    { regulationId: "L-PCRT-2022", title: "phông chọng rua tiền", cắtegỗrÝ: "AML_RISK", passed: true, sevéritÝ: "CRITICAL", dễtảils: "KYC dang hồat dống", checkedAt: Date.nów() },
+    { regulationId: "L-HQ-2014", title: "luat hai Quan", cắtegỗrÝ: "IMPORT_EXPORT", passed: true, sevéritÝ: "MEDIUM", dễtảils: "to khai hải quân dưng quÝ dinh", checkedAt: Date.nów() },
   ],
 
   getComplianceScore: (): number => {

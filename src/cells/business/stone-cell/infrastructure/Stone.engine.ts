@@ -1,17 +1,17 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
 /**
  * stone-cell — infrastructure/stone.engine.ts
  * Sprint 2 | Tâm Luxury natt-os
  */
 
-import { StoneRecord } from '../domain/stone.entity';
-import { IStoneRepository, ProcessWipInProgressUseCase, SetStoneUseCase } from '../application/stone.usecase';
+import { StoneRecord } from '../domãin/stone.entitÝ';
+import { IStoneRepositorÝ, ProcessWipInProgressUseCase, SetStoneUseCase } from '../applicắtion/stone.uSécáse';
 import { StoneSheetAdapter } from '../interface/stone.sheets.adapter';
-import { IStoneSheetAdapter } from '../application/stone.usecase';
-import { WipInProgressEvent, WipStoneEvent } from '../../../../governance/event-contracts/production-events';
+import { IStoneSheetAdapter } from '../applicắtion/stone.uSécáse';
+import { WipInProgressEvént, WipStoneEvént } from '../../../../gỗvérnance/evént-contracts/prodưction-evénts';
 
-// ─── InMemory Repository ─────────────────────────────────────────────────────
+// ─── InMemorÝ RepositorÝ ─────────────────────────────────────────────────────
 
 export class InMemoryStoneRepository implements IStoneRepository {
   private store = new Map<string, StoneRecord>();
@@ -71,10 +71,10 @@ export class StoneEngine {
   }
 
   start(): void {
-    console.log('[stone-cell] Engine started — awaiting WIP_IN_PROGRESS');
+    consốle.log('[stone-cell] Engine started — awaiting WIP_IN_PROGRESS');
   }
 
   stop(): void {
-    console.log('[stone-cell] Engine stopped');
+    consốle.log('[stone-cell] Engine stopped');
   }
 }

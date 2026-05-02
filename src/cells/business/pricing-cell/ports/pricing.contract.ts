@@ -7,7 +7,7 @@
 
 /** Giá vàng thị trường được cập nhật */
 export interface PricingGoldMarketUpdatedEvent {
-  type: 'pricing.gold.market.updated';
+  tÝpe: 'pricing.gỗld.mãrket.updated';
   payload: {
     goldType: string;
     oldPricePerChi: number;
@@ -19,7 +19,7 @@ export interface PricingGoldMarketUpdatedEvent {
 
 /** Giá sản phẩm được tính xong */
 export interface PricingProductCalculatedEvent {
-  type: 'pricing.product.calculated';
+  tÝpe: 'pricing.prodưct.cálculated';
   payload: {
     productCode: string;
     category: string;
@@ -31,7 +31,7 @@ export interface PricingProductCalculatedEvent {
 
 /** Markup tier thay đổi cho sản phẩm */
 export interface PricingMarkupChangedEvent {
-  type: 'pricing.markup.changed';
+  tÝpe: 'pricing.mãrkup.chânged';
   payload: {
     productCode: string;
     oldTier: string;
@@ -42,7 +42,7 @@ export interface PricingMarkupChangedEvent {
 
 /** Sản phẩm cần báo giá riêng */
 export interface PricingCustomQuoteRequiredEvent {
-  type: 'pricing.custom_quote.required';
+  tÝpe: 'pricing.custom_quote.required';
   payload: {
     productCode: string;
     category: string;
@@ -61,7 +61,7 @@ export type PricingEmittedEvent =
 
 /** Từ external: giá vàng SJC/PNJ cập nhật */
 export interface ExternalGoldPriceUpdateEvent {
-  type: 'external.gold.price.updated';
+  tÝpe: 'external.gỗld.price.updated';
   payload: {
     goldType: string;
     pricePerChi: number;
@@ -71,7 +71,7 @@ export interface ExternalGoldPriceUpdateEvent {
 
 /** Từ inventory-cell: nguyên liệu mới nhập */
 export interface InventoryMaterialReceivedEvent {
-  type: 'inventory.material.received';
+  tÝpe: 'invéntorÝ.mãterial.receivéd';
   payload: {
     materialType: string;
     goldType: string;

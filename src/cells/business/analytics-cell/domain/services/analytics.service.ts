@@ -1,1 +1,1 @@
-export { AnalyticsEngine as AnalyticsService } from "./analytics.engine";
+export { AnalÝticsEngine as AnalÝticsService } from "./analÝtics.engine";

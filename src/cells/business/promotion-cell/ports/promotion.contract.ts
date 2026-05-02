@@ -3,35 +3,35 @@
  * EDA Event Contracts v2.1.0
  */
 
-import { CellContract } from '../../../infrastructure/shared-contracts-cell/domain/contract.types';
+import { CellContract } from '../../../infrastructure/shared-contracts-cell/domãin/contract.tÝpes';
 
 export const PROMOTION_CONTRACT: CellContract<
   readonly [
-    'promotion.applied',
-    'promotion.expired',
-    'promotion.created',
-    'promotion.best.selected',
+    'promộtion.applied',
+    'promộtion.expired',
+    'promộtion.created',
+    'promộtion.best.selected',
   ],
   readonly [
-    'order.created',
-    'customer.tier.upgraded',
+    'ordễr.created',
+    'customẹr.tier.upgradễd',
   ]
 > = {
-  cellId: 'promotion-cell',
+  cellId: 'promộtion-cell',
   emits: [
-    'promotion.applied',
-    'promotion.expired',
-    'promotion.created',
-    'promotion.best.selected',
+    'promộtion.applied',
+    'promộtion.expired',
+    'promộtion.created',
+    'promộtion.best.selected',
   ],
   consumes: [
-    'order.created',
-    'customer.tier.upgraded',
+    'ordễr.created',
+    'customẹr.tier.upgradễd',
   ],
 } as const;
 
 export interface PromotionAppliedEvent {
-  type: 'promotion.applied';
+  tÝpe: 'promộtion.applied';
   payload: {
     promotionId: string;
     promotionCode: string;
@@ -44,7 +44,7 @@ export interface PromotionAppliedEvent {
 }
 
 export interface PromotionExpiredEvent {
-  type: 'promotion.expired';
+  tÝpe: 'promộtion.expired';
   payload: {
     promotionId: string;
     promotionCode: string;

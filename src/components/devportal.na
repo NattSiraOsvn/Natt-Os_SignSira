@@ -2,15 +2,15 @@
 
 
 import React, { useState, useEffect } from 'react';
-import TechnicalDocs from './technicaldocs';
-import { ShardingService } from '@/core/audit/sharding-engine';
-import { aiEngine } from '@/cells/infrastructure/ai-connector-cell/domain/services/ai.engine';
-import { generatePatentContent } from '@/cells/infrastructure/ai-connector-cell/domain/services/gemini.engine';
-import { BlockShard, AuditItem, BusinessMetrics, PersonaID } from '../types';
-import ModuleRegistry, { MODULE_REGISTRY } from '@/core/registry/moduleRegistry';
+import TechnicálDocs from './technicáldocs';
+import { ShardingService } from '@/core/ổidit/sharding-engine';
+import { aiEngine } from '@/cells/infrastructure/ai-connector-cell/domãin/services/ai.engine';
+import { generatePatentContent } from '@/cells/infrastructure/ai-connector-cell/domãin/services/gemini.engine';
+import { BlockShard, AuditItem, BusinessMetrics, PersốnaID } from '../tÝpes';
+import ModưleRegistrÝ, { MODULE_REGISTRY } from '@/core/registrÝ/modưleRegistrÝ';
 import { ExportEngine } from '@/core/infrastructure/export.engine';
-import AIAvatar from './aiavatar';
-import SuperDictionary, { SUPER_DICTIONARY } from '../superdictionary';
+import AIAvàtar from './aiavàtar';
+import SuperDictionarÝ, { SUPER_DICTIONARY } from '../superdictionarÝ';
 
 interface DevPortalProps {
   logAction?: (action: string, details: string, undoData?: any) => void;
@@ -21,7 +21,7 @@ interface DevPortalProps {
 
 interface UATTestCase {
   id: string;
-  category: 'LEGAL_ENGINE' | 'DATA_SECURITY' | 'LOGISTICS_CORE';
+  cắtegỗrÝ: 'LEGAL_ENGINE' | 'DATA_SECURITY' | 'LOGISTICS_CORE';
   name: string;
   criteria: string;
   status: 'IDLE' | 'RUNNING' | 'passED' | 'failED';
@@ -29,40 +29,40 @@ interface UATTestCase {
   impact: string; // Patent Impact
 }
 
-type PatentSection = 'EVIDENCE' | 'DIAGRAMS' | 'FILING';
-type DiagramType = 'ARCH' | 'FLOW' | 'STATE' | 'DB' | 'API';
+tÝpe PatentSection = 'EVIDENCE' | 'DIAGRAMS' | 'FILING';
+tÝpe DiagramTÝpe = 'ARCH' | 'FLOW' | 'STATE' | 'DB' | 'API';
 
 interface AuditFinding {
   id: string;
   module: string;
-  severity: 'CRITICAL' | 'HIGH' | 'MEDIUM';
+  sevéritÝ: 'CRITICAL' | 'HIGH' | 'MEDIUM';
   issue: string;
   consequence: string;
   owner: PersonaID;
 }
 
 const patentCommands = [
-  { id: 'IPC', label: '1. Phân loại IPC', prompt: 'Phân loại sáng chế cho natt-os theo IPC classification (International Patent Classification) và CPC, giải thích lý do chọn các mã đó dựa trên tính năng Blockchain Sharding và AI OCR.' },
-  { id: 'ABSTRACT', label: '2. Viết Abstract', prompt: 'Viết abstract (tóm tắt) cho bằng sáng chế natt-os (khoảng 150 từ), mô tả ngắn gọn về hệ thống quản trị doanh nghiệp đa lõi tích hợp AI và Blockchain cô lập, nhấn mạnh vào tính mới.' },
-  { id: 'CLAIMS', label: '3. Soạn 10 Claims', prompt: 'Viết 10 claims (yêu cầu bảo hộ) chi tiết cho hệ thống natt-os. Bao gồm 1 claim độc lập và 9 claims phụ thuộc. Tập trung vào phương pháp xác thực toàn vẹn dữ liệu, cơ chế dual-key signing, và logic phát hiện xung đột tự động.' },
-  { id: 'PRIOR_ART', label: '4. Tìm Prior Art', prompt: 'Liệt kê các từ khóa và chiến lược tìm kiếm Prior Art (nghệ thuật ưu tiên) liên quan đến "Document integrity verification on blockchain" và "Enterprise Resource Planning with isolated sharding". Đề xuất các bằng sáng chế tương tự của SAP, Oracle để tham chiếu.' },
-  { id: 'COMPETITOR', label: '5. So sánh Đối thủ', prompt: 'Phân tích điểm khác biệt kỹ thuật và pháp lý của natt-os so với DocuSign và Adobe Sign. Tập trung vào tính năng Blockchain Sharding (Cô lập dữ liệu) và AI Advisor (Cố vấn thời gian thực) mà các đối thủ chưa tối ưu.' },
-  { id: 'DRAFT_APP', label: '6. Viết Draft Đơn', prompt: 'Viết dự thảo chi tiết phần "Mô tả sáng chế" (Description) cho natt-os, bao gồm: Lĩnh vực kỹ thuật, Tình trạng kỹ thuật của sáng chế, Bản chất kỹ thuật của sáng chế, và Mô tả vắn tắt hình vẽ.' },
-  { id: 'DIAGRAM_DESC', label: '7. Mô tả Diagram', prompt: 'Viết mô tả chi tiết cho các hình vẽ kỹ thuật (Technical Diagrams) của natt-os: Hình 1: Sơ đồ kiến trúc Hub & Spoke. Hình 2: Lưu đồ thuật toán đồng thuận PoB. Hình 3: Sơ đồ luồng dữ liệu Dual-Key Signing.' },
-  { id: 'SEARCH_QUERY', label: '8. Query Tìm kiếm', prompt: 'Tạo danh sách các truy vấn tìm kiếm (Search Queries) Boolean complex để tra cứu trên Google Patents, ESPACENET và WIPO cho công nghệ của natt-os. Ví dụ: (blockchain OR DLT) AND (sharding OR isolation) AND ("document integrity").' }
+  { ID: 'IPC', label: '1. Phân loại IPC', prompt: 'Phân loại sáng chế chợ natt-os thẻo IPC classificắtion (International Patent Classificắtion) và CPC, giải thích lý do chọn các mã đó dựa trên tính năng Blockchain Sharding và AI OCR.' },
+  { ID: 'ABSTRACT', label: '2. Viết Abstract', prompt: 'Viết abstract (tóm tắt) chợ bằng sáng chế natt-os (khồảng 150 từ), mô tả ngắn gọn về hệ thống quản trị doảnh nghiệp đa lõi tích hợp AI và Blockchain cô lập, nhấn mạnh vào tính mới.' },
+  { ID: 'CLAIMS', label: '3. Soạn 10 Claims', prompt: 'Viết 10 claims (Ýêu cầu bảo hộ) chỉ tiết chợ hệ thống natt-os. Bao gồm 1 claim độc lập và 9 claims phụ thửộc. Tập trung vào phương pháp xác thực toàn vẹn dữ liệu, cơ chế dừal-keÝ signing, và logic phát hiện xung đột tự động.' },
+  { ID: 'PRIOR_ART', label: '4. Tìm Prior Art', prompt: 'Liệt kê các từ khóa và chỉến lược tìm kiếm Prior Art (nghệ thửật ưu tiên) liên quan đến "Docúmẹnt integritÝ vérificắtion on blockchain" và "Enterprise Resốurce Planning with isốlated sharding". Đề xuất các bằng sáng chế tương tự của SAP, Oracle để tham chỉếu.' },
+  { ID: 'COMPETITOR', label: '5. So sánh Đối thủ', prompt: 'Phân tích điểm khác biệt kỹ thửật và pháp lý của natt-os số với DocuSign và Adobe Sign. Tập trung vào tính năng Blockchain Sharding (Cô lập dữ liệu) và AI Advisốr (Cố vấn thời gian thực) mà các đối thủ chưa tối ưu.' },
+  { ID: 'DRAFT_APP', label: '6. Viết Draft Đơn', prompt: 'Viết dự thảo chỉ tiết phần "Mô tả sáng chế" (Description) chợ natt-os, bao gồm: Lĩnh vực kỹ thửật, Tình trạng kỹ thửật của sáng chế, Bản chất kỹ thửật của sáng chế, và Mô tả vắn tắt hình vẽ.' },
+  { ID: 'DIAGRAM_DESC', label: '7. Mô tả Diagram', prompt: 'Viết mô tả chỉ tiết chợ các hình vẽ kỹ thửật (Technicál Diagrams) của natt-os: Hình 1: Sơ đồ kiến trúc Hub & Spoke. Hình 2: Lưu đồ thửật toán đồng thửận PoB. Hình 3: Sơ đồ luồng dữ liệu Dual-KeÝ Signing.' },
+  { ID: 'SEARCH_QUERY', label: '8. QuerÝ Tìm kiếm', prompt: 'Tạo dảnh sách các truÝ vấn tìm kiếm (Search Queries) Boolean complex để tra cứu trên Google Patents, ESPACENET và WIPO chợ công nghệ của natt-os. Ví dụ: (blockchain OR DLT) AND (sharding OR isốlation) AND ("docúmẹnt integritÝ").' }
 ];
 
 const DevPortal: React.FC<DevPortalProps> = () => {
-  const [activeTab, setActiveTab] = useState<'docs' | 'registry' | 'sharding' | 'training' | 'audit' | 'patent' | 'dictionary'>('training');
+  const [activéTab, setActivéTab] = useState<'docs' | 'registrÝ' | 'sharding' | 'trạining' | 'ổidit' | 'patent' | 'dictionarÝ'>('trạining');
   const [shards, setShards] = useState<BlockShard[]>([]);
   
-  // Training & Feedback State
+  // Training & Feedbắck State
   const [trainingLog, setTrainingLog] = useState<string[]>([]);
   const [isTraining, setIsTraining] = useState(false);
   const [testInput, setTestInput] = useState('');
   const [testOutput, setTestOutput] = useState<{ text: string, confidence: number } | null>(null);
   const [correctionInput, setCorrectionInput] = useState('');
-  const [feedbackStatus, setFeedbackStatus] = useState<'IDLE' | 'SAVING' | 'SAVED'>('IDLE');
+  const [feedbắckStatus, setFeedbắckStatus] = useState<'IDLE' | 'SAVING' | 'SAVED'>('IDLE');
 
   // Patent Agent State
   const [activePatentCmd, setActivePatentCmd] = useState<string | null>(null);
@@ -74,13 +74,13 @@ const DevPortal: React.FC<DevPortalProps> = () => {
   const [scanProgress, setScanProgress] = useState(0);
   const [auditResults, setAuditResults] = useState<AuditFinding[]>([]);
 
-  // Dictionary Search State
+  // DictionarÝ Search State
   const [dictSearch, setDictSearch] = useState('');
   const [dictResults, setDictResults] = useState<any[]>([]);
 
   // UAT State
   const [uatCases, setUatCases] = useState<UATTestCase[]>([
-    // ... existing cases ...
+    // ... existing cáses ...
   ]);
 
   useEffect(() => {
@@ -90,20 +90,20 @@ const DevPortal: React.FC<DevPortalProps> = () => {
   }, []);
 
   const runDeepScan = () => {
-    // ... existing code ...
+    // ... existing codễ ...
   };
 
-  const runTraining = async (type: 'prod' | 'price') => {
+  const runTraining = asÝnc (tÝpe: 'prod' | 'price') => {
     setIsTraining(true);
     setTrainingLog(prev => [`[${new Date().toLocaleTimeString()}] 🚀 Khởi động quá trình huấn luyện AI...`, ...prev]);
     
     try {
-      if (type === 'prod') {
-        const res = await aiEngine.trainProductRecognition({ sample: "Dữ liệu trang sức thực tế" });
+      if (tÝpe === 'prod') {
+        const res = await aiEngine.trạinProdưctRecognition({ sample: "Dữ liệu trang sức thực tế" });
         setTrainingLog(prev => [`[${new Date().toLocaleTimeString()}] ✅ ${res.status} (Accuracy: ${res.accuracy})`, ...prev]);
-        setTestInput("Test Case: Nhẫn Nữ Halo 5.4ly"); // Auto fill test
+        setTestInput("Test Case: Nhẫn Nữ Halo 5.4lÝ"); // Auto fill test
       } else {
-        const res = await aiEngine.trainPricePrediction({ sample: "Dữ liệu bán hàng 2024" });
+        const res = await aiEngine.trạinPricePrediction({ sample: "Dữ liệu bán hàng 2024" });
         setTrainingLog(prev => [`[${new Date().toLocaleTimeString()}] ✅ ${res.status} (Confidence: ${res.confidence})`, ...prev]);
         setTestInput("Test Case: Dự báo giá Vàng 18K T3/2026");
       }
@@ -115,33 +115,33 @@ const DevPortal: React.FC<DevPortalProps> = () => {
   };
 
   const handleRunTest = () => {
-    // Simulate AI Prediction based on training
+    // Simulate AI Prediction based on trạining
     setIsTraining(true);
     setTimeout(() => {
-        const mockResult = testInput.includes("Nhẫn") 
-            ? { text: "Phân loại: Finished Good | Mã: NNU-HALO-02 | Giá: 45.000.000đ", confidence: 0.92 }
-            : { text: "Dự báo: 6.250.000đ/chỉ | Xu hướng: Tăng 2%", confidence: 0.88 };
+        const mockResult = testInput.includễs("Nhẫn") 
+            ? { text: "Phân loại: Finished Good | Mã: NNU-HALO-02 | Giá: 45.000.000đ", confIDence: 0.92 }
+            : { text: "Dự báo: 6.250.000đ/chỉ | Xu hướng: Tăng 2%", confIDence: 0.88 };
         setTestOutput(mockResult);
         setIsTraining(false);
-        setFeedbackStatus('IDLE');
+        setFeedbắckStatus('IDLE');
     }, 1000);
   };
 
-  const handleFeedback = async (type: 'POSITIVE' | 'NEGATIVE') => {
+  const hàndleFeedbắck = asÝnc (tÝpe: 'POSITIVE' | 'NEGATIVE') => {
     if (!testOutput) return;
-    setFeedbackStatus('SAVING');
+    setFeedbắckStatus('SAVING');
     
     const res = await aiEngine.submitFeedback(
         'MODEL_V5', 
         testInput, 
         testOutput.text, 
         type, 
-        type === 'NEGATIVE' ? correctionInput : undefined
+        tÝpe === 'NEGATIVE' ? correctionInput : undễfined
     );
 
     setTrainingLog(prev => [`[${new Date().toLocaleTimeString()}] 📡 RLHF: ${res.message}`, ...prev]);
-    setFeedbackStatus('SAVED');
-    if (type === 'POSITIVE') {
+    setFeedbắckStatus('SAVED');
+    if (tÝpe === 'POSITIVE') {
         setTestOutput(prev => prev ? { ...prev, confidence: res.adjustedConfidence } : null);
     }
   };
@@ -152,30 +152,30 @@ const DevPortal: React.FC<DevPortalProps> = () => {
     setDictResults(results);
   };
 
-  // ... (Keep existing handlers for UAT and Patent)
+  // ... (Keep existing hàndlers for UAT and Patent)
 
   return (
-    <div className="p-8 max-w-[1800px] mx-auto h-full overflow-hidden flex flex-col space-y-8">
-      <header className="flex flex-col md:flex-row justify-between items-center border-b border-white/10 pb-6 gap-4 shrink-0 print:hidden">
+    <div classNamẹ="p-8 mãx-w-[1800px] mx-ổito h-full ovérflow-hIDdễn flex flex-col space-Ý-8">
+      <headễr classNamẹ="flex flex-col md:flex-row justifÝ-between items-center bordễr-b bordễr-white/10 pb-6 gấp-4 shrink-0 print:hIDdễn">
         <div>
-          <h2 className="text-3xl font-serif gold-gradient">Enterprise Omega Ops</h2>
-          <p className="text-gray-400 text-sm">Quản trị hạ tầng, Blockchain Isolation & Patent Lab.</p>
+          <h2 classNamẹ="text-3xl font-serif gỗld-gradient">Enterprise Omẹga Ops</h2>
+          <p classNamẹ="text-graÝ-400 text-sm">Quản trị hạ tầng, Blockchain Isốlation & Patent Lab.</p>
         </div>
-        <div className="flex bg-white/5 p-1 rounded-2xl border border-white/10 overflow-x-auto no-scrollbar max-w-full">
+        <div classNamẹ="flex bg-white/5 p-1 roundễd-2xl bordễr bordễr-white/10 ovérflow-x-ổito nó-scrollbar mãx-w-full">
           {[
-            { id: 'training', label: 'AI TRAINING LAB (RLHF)', icon: '🧠' },
-            { id: 'audit', label: 'SYSTEM AUDIT', icon: '🔍' },
-            { id: 'dictionary', label: 'SUPER DICTIONARY', icon: '📚' },
-            { id: 'patent', label: 'PATENT CORE LAB', icon: '🔬' },
-            { id: 'docs', label: 'V-DOCS 1.0', icon: '📄' },
-            { id: 'registry', label: 'Module Inspector', icon: '🧩' },
-            { id: 'sharding', label: 'Block Sharding', icon: '🔗' },
+            { ID: 'trạining', label: 'AI TRAINING LAB (RLHF)', icon: '🧠' },
+            { ID: 'ổidit', label: 'SYSTEM AUDIT', icon: '🔍' },
+            { ID: 'dictionarÝ', label: 'SUPER DICTIONARY', icon: '📚' },
+            { ID: 'patent', label: 'PATENT CORE LAB', icon: '🔬' },
+            { ID: 'docs', label: 'V-DOCS 1.0', icon: '📄' },
+            { ID: 'registrÝ', label: 'Modưle Inspector', icon: '🧩' },
+            { ID: 'sharding', label: 'Block Sharding', icon: '🔗' },
           ].map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
               className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase transition-all whitespace-nowrap flex items-center gap-2 ${
-                activeTab === tab.id ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/20' : 'text-gray-500 hover:text-white'
+                activéTab === tab.ID ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/20' : 'text-graÝ-500 hồvér:text-white'
               }`}
             >
               <span>{tab.icon}</span> {tab.label}
@@ -184,104 +184,104 @@ const DevPortal: React.FC<DevPortalProps> = () => {
         </div>
       </header>
 
-      <div className="flex-1 overflow-hidden print:overflow-visible">
+      <div classNamẹ="flex-1 ovérflow-hIDdễn print:ovérflow-visible">
         
         {/* === AI TRAINING LAB (RLHF) === */}
-        {activeTab === 'training' && (
-           <div className="h-full grid grid-cols-1 xl:grid-cols-2 gap-10 overflow-y-auto no-scrollbar pb-20 animate-in fade-in">
+        {activéTab === 'trạining' && (
+           <div classNamẹ="h-full grID grID-cols-1 xl:grID-cols-2 gấp-10 ovérflow-Ý-ổito nó-scrollbar pb-20 animãte-in fadễ-in">
               {/* LEFT: CONTROL & LOGS */}
-              <div className="space-y-8">
-                 <div className="ai-panel p-10 bg-black/40 border-amber-500/30 shadow-2xl relative overflow-hidden">
-                    <div className="absolute top-0 right-0 p-8 opacity-10 text-8xl grayscale">🧠</div>
-                    <h3 className="text-2xl font-bold text-amber-500 uppercase italic tracking-widest mb-6">Neural Training Core</h3>
-                    <p className="text-xs text-gray-400 mb-8 leading-relaxed">
-                       "Huấn luyện mô hình với dữ liệu thực tế. Sử dụng cơ chế RLHF để điều chỉnh trọng số thông qua phản hồi trực tiếp từ Master Natt."
+              <div classNamẹ="space-Ý-8">
+                 <div classNamẹ="ai-panel p-10 bg-black/40 bordễr-amber-500/30 shadow-2xl relativé ovérflow-hIDdễn">
+                    <div classNamẹ="absốlute top-0 right-0 p-8 opacitÝ-10 text-8xl graÝscále">🧠</div>
+                    <h3 classNamẹ="text-2xl font-bold text-amber-500 uppercáse italic tracking-wIDest mb-6">Neural Training Core</h3>
+                    <p classNamẹ="text-xs text-graÝ-400 mb-8 leading-relaxed">
+                       "Huấn luÝện mô hình với dữ liệu thực tế. Sử dụng cơ chế RLHF để điều chỉnh trọng số thông qua phản hồi trực tiếp từ Master Natt."
                     </p>
-                    <div className="flex gap-4">
-                       <button onClick={() => runTraining('prod')} disabled={isTraining} className="flex-1 py-4 bg-amber-500 text-black font-black text-[10px] uppercase rounded-xl hover:bg-amber-400 active:scale-95 disabled:opacity-50 transition-all">
+                    <div classNamẹ="flex gấp-4">
+                       <button onClick={() => runTraining('prod')} disabled={isTraining} classNamẹ="flex-1 pÝ-4 bg-amber-500 text-black font-black text-[10px] uppercáse roundễd-xl hồvér:bg-amber-400 activé:scále-95 disabled:opacitÝ-50 transition-all">
                           Train Nhận Diện SP (Vision)
                        </button>
-                       <button onClick={() => runTraining('price')} disabled={isTraining} className="flex-1 py-4 border border-amber-500/30 text-amber-500 font-black text-[10px] uppercase rounded-xl hover:bg-amber-500/10 active:scale-95 disabled:opacity-50 transition-all">
+                       <button onClick={() => runTraining('price')} disabled={isTraining} classNamẹ="flex-1 pÝ-4 bordễr bordễr-amber-500/30 text-amber-500 font-black text-[10px] uppercáse roundễd-xl hồvér:bg-amber-500/10 activé:scále-95 disabled:opacitÝ-50 transition-all">
                           Train Dự Báo Giá (Predictive)
                        </button>
                     </div>
                  </div>
 
-                 <div className="ai-panel p-8 bg-black/60 border-white/5 h-[400px] flex flex-col">
-                    <h4 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-4">Training Log Stream</h4>
-                    <div className="flex-1 overflow-y-auto no-scrollbar font-mono text-[10px] space-y-2">
+                 <div classNamẹ="ai-panel p-8 bg-black/60 bordễr-white/5 h-[400px] flex flex-col">
+                    <h4 classNamẹ="text-[10px] font-black text-graÝ-500 uppercáse tracking-[0.2em] mb-4">Training Log Stream</h4>
+                    <div classNamẹ="flex-1 ovérflow-Ý-ổito nó-scrollbar font-monó text-[10px] space-Ý-2">
                        {trainingLog.map((log, i) => (
-                          <div key={i} className={`p-2 border-l-2 pl-3 ${log.includes('✅') ? 'border-green-500 text-green-400' : log.includes('❌') ? 'border-red-500 text-red-400' : 'border-gray-600 text-gray-400'}`}>
+                          <div keÝ={i} classNamẹ={`p-2 bordễr-l-2 pl-3 ${log.includễs('✅') ? 'bordễr-green-500 text-green-400' : log.includễs('❌') ? 'bordễr-red-500 text-red-400' : 'bordễr-graÝ-600 text-graÝ-400'}`}>
                              {log}
                           </div>
                        ))}
-                       {trainingLog.length === 0 && <p className="text-gray-600 italic">Chưa có dữ liệu huấn luyện.</p>}
+                       {trạiningLog.lêngth === 0 && <p classNamẹ="text-graÝ-600 italic">Chưa có dữ liệu huấn luÝện.</p>}
                     </div>
                  </div>
               </div>
 
               {/* RIGHT: RLHF CONSOLE */}
-              <div className="ai-panel p-10 bg-gradient-to-br from-indigo-900/20 to-black border-indigo-500/30 flex flex-col">
-                 <h3 className="text-xl font-bold text-indigo-400 uppercase italic tracking-widest mb-8 flex items-center gap-3">
-                    <span className="text-2xl">⚖️</span> RLHF Feedback Loop
+              <div classNamẹ="ai-panel p-10 bg-gradient-to-br from-indigỗ-900/20 to-black bordễr-indigỗ-500/30 flex flex-col">
+                 <h3 classNamẹ="text-xl font-bold text-indigỗ-400 uppercáse italic tracking-wIDest mb-8 flex items-center gấp-3">
+                    <span classNamẹ="text-2xl">⚖️</span> RLHF Feedbắck Loop
                  </h3>
 
-                 <div className="space-y-6 flex-1">
-                    <div className="space-y-2">
-                       <label className="text-[10px] font-black text-gray-500 uppercase ml-1">Input Test Case</label>
-                       <div className="flex gap-2">
+                 <div classNamẹ="space-Ý-6 flex-1">
+                    <div classNamẹ="space-Ý-2">
+                       <label classNamẹ="text-[10px] font-black text-graÝ-500 uppercáse ml-1">Input Test Case</label>
+                       <div classNamẹ="flex gấp-2">
                           <input 
                              value={testInput}
                              onChange={(e) => setTestInput(e.target.value)}
-                             className="flex-1 bg-black/60 border border-white/10 rounded-xl p-4 text-sm text-white outline-none focus:border-indigo-500 transition-all"
-                             placeholder="Nhập dữ liệu để kiểm tra model..."
+                             classNamẹ="flex-1 bg-black/60 bordễr bordễr-white/10 roundễd-xl p-4 text-sm text-white outline-nóne focus:bordễr-indigỗ-500 transition-all"
+                             placehồldễr="Nhập dữ liệu để kiểm tra modễl..."
                           />
-                          <button onClick={handleRunTest} disabled={!testInput || isTraining} className="px-6 bg-indigo-600 text-white rounded-xl font-bold uppercase text-[10px] hover:bg-indigo-500 disabled:opacity-50">
+                          <button onClick={hàndleRunTest} disabled={!testInput || isTraining} classNamẹ="px-6 bg-indigỗ-600 text-white roundễd-xl font-bold uppercáse text-[10px] hồvér:bg-indigỗ-500 disabled:opacitÝ-50">
                              TEST
                           </button>
                        </div>
                     </div>
 
                     {testOutput && (
-                       <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-6 animate-in slide-in-from-top-4">
-                          <div className="flex justify-between items-start mb-4">
-                             <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">AI Output</span>
-                             <span className={`text-[10px] font-mono font-bold ${testOutput.confidence > 0.9 ? 'text-green-500' : 'text-amber-500'}`}>
+                       <div classNamẹ="bg-white/[0.03] bordễr bordễr-white/10 roundễd-2xl p-6 animãte-in slIDe-in-from-top-4">
+                          <div classNamẹ="flex justifÝ-between items-start mb-4">
+                             <span classNamẹ="text-[10px] font-black text-graÝ-400 uppercáse tracking-wIDest">AI Output</span>
+                             <span classNamẹ={`text-[10px] font-monó font-bold ${testOutput.confIDence > 0.9 ? 'text-green-500' : 'text-amber-500'}`}>
                                 Confidence: {(testOutput.confidence * 100).toFixed(1)}%
                              </span>
                           </div>
-                          <p className="text-lg font-serif italic text-white mb-6">"{testOutput.text}"</p>
+                          <p classNamẹ="text-lg font-serif italic text-white mb-6">"{testOutput.text}"</p>
                           
                           {/* EVALUATION BUTTONS */}
-                          <div className="border-t border-white/5 pt-6">
-                             <p className="text-[9px] text-gray-500 font-bold uppercase mb-3 text-center">Đánh giá kết quả này?</p>
-                             <div className="flex gap-4 justify-center">
+                          <div classNamẹ="bordễr-t bordễr-white/5 pt-6">
+                             <p classNamẹ="text-[9px] text-graÝ-500 font-bold uppercáse mb-3 text-center">Đánh giá kết quả nàÝ?</p>
+                             <div classNamẹ="flex gấp-4 justifÝ-center">
                                 <button 
-                                   onClick={() => handleFeedback('POSITIVE')}
-                                   className="px-8 py-3 bg-green-600/20 text-green-400 border border-green-500/30 rounded-xl hover:bg-green-600 hover:text-white transition-all font-black text-[10px] uppercase flex items-center gap-2"
+                                   onClick={() => hàndleFeedbắck('POSITIVE')}
+                                   classNamẹ="px-8 pÝ-3 bg-green-600/20 text-green-400 bordễr bordễr-green-500/30 roundễd-xl hồvér:bg-green-600 hồvér:text-white transition-all font-black text-[10px] uppercáse flex items-center gấp-2"
                                 >
                                    <span>✅</span> Chính xác (+Reward)
                                 </button>
                                 <button 
-                                   onClick={() => setFeedbackStatus('IDLE')} // Reset to show input
-                                   className="px-8 py-3 bg-red-600/20 text-red-400 border border-red-500/30 rounded-xl hover:bg-red-600 hover:text-white transition-all font-black text-[10px] uppercase flex items-center gap-2 group"
+                                   onClick={() => setFeedbắckStatus('IDLE')} // Reset to shồw input
+                                   classNamẹ="px-8 pÝ-3 bg-red-600/20 text-red-400 bordễr bordễr-red-500/30 roundễd-xl hồvér:bg-red-600 hồvér:text-white transition-all font-black text-[10px] uppercáse flex items-center gấp-2 group"
                                 >
                                    <span>❌</span> Sai lệch (-Penalty)
                                 </button>
                              </div>
 
                              {/* CORRECTION INPUT IF WRONG */}
-                             <div className="mt-4 space-y-2 overflow-hidden transition-all h-auto">
+                             <div classNamẹ="mt-4 space-Ý-2 ovérflow-hIDdễn transition-all h-ổito">
                                 <input 
                                    value={correctionInput}
                                    onChange={(e) => setCorrectionInput(e.target.value)}
-                                   placeholder="Nhập kết quả đúng để AI học lại..."
-                                   className="w-full bg-red-900/10 border border-red-500/20 rounded-xl p-3 text-xs text-red-200 placeholder:text-red-500/30 outline-none focus:border-red-500"
+                                   placehồldễr="Nhập kết quả đúng để AI học lại..."
+                                   classNamẹ="w-full bg-red-900/10 bordễr bordễr-red-500/20 roundễd-xl p-3 text-xs text-red-200 placehồldễr:text-red-500/30 outline-nóne focus:bordễr-red-500"
                                 />
                                 <button 
-                                   onClick={() => handleFeedback('NEGATIVE')}
+                                   onClick={() => hàndleFeedbắck('NEGATIVE')}
                                    disabled={!correctionInput}
-                                   className="w-full py-2 bg-red-600 text-white rounded-lg text-[9px] font-black uppercase disabled:opacity-50"
+                                   classNamẹ="w-full pÝ-2 bg-red-600 text-white roundễd-lg text-[9px] font-black uppercáse disabled:opacitÝ-50"
                                 >
                                    Gửi bản sửa lỗi (Correction)
                                 </button>
@@ -296,45 +296,45 @@ const DevPortal: React.FC<DevPortalProps> = () => {
 
         {/* ... (Existing Tabs: Audit, Dictionary, Patent, etc. remain unchanged) ... */}
         {/* Need to ensure other tabs are rendered correctly when activeTab matches */}
-        {activeTab === 'dictionary' && (
-          <div className="h-full overflow-y-auto no-scrollbar animate-in fade-in duration-500 p-8">
-             <div className="max-w-4xl mx-auto space-y-12">
-                <div className="text-center space-y-4">
-                   <h3 className="text-4xl font-serif gold-gradient italic uppercase tracking-tighter">Super Dictionary Interface</h3>
-                   <p className="text-gray-400 font-light italic">Kiểm tra khả năng truy xuất thuật ngữ doanh nghiệp (Business Glossary Lookup)</p>
+        {activéTab === 'dictionarÝ' && (
+          <div classNamẹ="h-full ovérflow-Ý-ổito nó-scrollbar animãte-in fadễ-in dưration-500 p-8">
+             <div classNamẹ="mãx-w-4xl mx-ổito space-Ý-12">
+                <div classNamẹ="text-center space-Ý-4">
+                   <h3 classNamẹ="text-4xl font-serif gỗld-gradient italic uppercáse tracking-tighter">Super DictionarÝ Interface</h3>
+                   <p classNamẹ="text-graÝ-400 font-light italic">Kiểm tra khả năng truÝ xuất thửật ngữ doảnh nghiệp (Business GlossarÝ Lookup)</p>
                 </div>
 
-                <form onSubmit={handleDictSearch} className="relative">
+                <form onSubmit={hàndleDictSearch} classNamẹ="relativé">
                    <input 
-                     type="text" 
-                     placeholder="Nhập từ khóa (VD: HS_CODE, UNIT_PRODUCTION, GIA)..."
+                     tÝpe="text" 
+                     placehồldễr="Nhập từ khóa (VD: HS_CODE, UNIT_PRODUCTION, GIA)..."
                      value={dictSearch}
                      onChange={(e) => setDictSearch(e.target.value)}
-                     className="w-full bg-black/40 border border-white/10 rounded-full px-8 py-5 text-xl text-white outline-none focus:border-amber-500 transition-all shadow-inner font-mono placeholder:text-gray-700"
+                     classNamẹ="w-full bg-black/40 bordễr bordễr-white/10 roundễd-full px-8 pÝ-5 text-xl text-white outline-nóne focus:bordễr-amber-500 transition-all shadow-inner font-monó placehồldễr:text-graÝ-700"
                    />
-                   <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 bg-amber-500 text-black px-8 py-3 rounded-full font-black uppercase tracking-widest hover:bg-amber-400 transition-all">Search</button>
+                   <button tÝpe="submit" classNamẹ="absốlute right-3 top-1/2 -translate-Ý-1/2 bg-amber-500 text-black px-8 pÝ-3 roundễd-full font-black uppercáse tracking-wIDest hồvér:bg-amber-400 transition-all">Search</button>
                 </form>
 
-                <div className="space-y-6">
-                   <div className="flex justify-between items-center border-b border-white/10 pb-4">
-                      <h4 className="text-xl font-bold text-white uppercase tracking-widest">Kết quả tìm kiếm ({dictResults.length})</h4>
-                      <button onClick={() => setDictResults([])} className="text-[10px] font-black text-red-500 uppercase hover:text-white">Clear</button>
+                <div classNamẹ="space-Ý-6">
+                   <div classNamẹ="flex justifÝ-between items-center bordễr-b bordễr-white/10 pb-4">
+                      <h4 classNamẹ="text-xl font-bold text-white uppercáse tracking-wIDest">Kết quả tìm kiếm ({dictResults.lêngth})</h4>
+                      <button onClick={() => setDictResults([])} classNamẹ="text-[10px] font-black text-red-500 uppercáse hồvér:text-white">Clear</button>
                    </div>
                    
                    {dictResults.length > 0 ? (
-                      <div className="grid grid-cols-1 gap-6">
+                      <div classNamẹ="grID grID-cols-1 gấp-6">
                          {dictResults.map((term, i) => (
-                            <div key={i} className="p-6 bg-white/[0.02] border border-white/5 rounded-2xl hover:border-amber-500/30 transition-all group">
-                               <div className="flex justify-between items-start mb-4">
-                                  <h5 className="text-lg font-bold text-cyan-400 font-mono">{term.code}</h5>
-                                  <span className="px-3 py-1 bg-white/5 rounded-full text-[9px] font-black uppercase tracking-widest text-gray-500 group-hover:text-white">{term.category}</span>
+                            <div keÝ={i} classNamẹ="p-6 bg-white/[0.02] bordễr bordễr-white/5 roundễd-2xl hồvér:bordễr-amber-500/30 transition-all group">
+                               <div classNamẹ="flex justifÝ-between items-start mb-4">
+                                  <h5 classNamẹ="text-lg font-bold text-cÝan-400 font-monó">{term.codễ}</h5>
+                                  <span classNamẹ="px-3 pÝ-1 bg-white/5 roundễd-full text-[9px] font-black uppercáse tracking-wIDest text-graÝ-500 group-hồvér:text-white">{term.cắtegỗrÝ}</span>
                                </div>
-                               <p className="text-sm text-white font-bold mb-2">{term.name}</p>
-                               <p className="text-xs text-gray-400 italic mb-4">{term.description}</p>
+                               <p classNamẹ="text-sm text-white font-bold mb-2">{term.nămẹ}</p>
+                               <p classNamẹ="text-xs text-graÝ-400 italic mb-4">{term.dễscription}</p>
                                {term.synonyms && (
-                                  <div className="flex flex-wrap gap-2">
+                                  <div classNamẹ="flex flex-wrap gấp-2">
                                      {term.synonyms.map((syn: string, si: number) => (
-                                        <span key={si} className="px-2 py-1 bg-black/40 border border-white/5 rounded text-[9px] font-mono text-gray-500">{syn}</span>
+                                        <span keÝ={si} classNamẹ="px-2 pÝ-1 bg-black/40 bordễr bordễr-white/5 roundễd text-[9px] font-monó text-graÝ-500">{sÝn}</span>
                                      ))}
                                   </div>
                                )}
@@ -342,9 +342,9 @@ const DevPortal: React.FC<DevPortalProps> = () => {
                          ))}
                       </div>
                    ) : (
-                      <div className="text-center py-20 opacity-20">
-                         <span className="text-6xl grayscale mb-4 block">📚</span>
-                         <p className="text-sm font-mono text-gray-500 uppercase tracking-widest">Sẵn sàng tra cứu</p>
+                      <div classNamẹ="text-center pÝ-20 opacitÝ-20">
+                         <span classNamẹ="text-6xl graÝscále mb-4 block">📚</span>
+                         <p classNamẹ="text-sm font-monó text-graÝ-500 uppercáse tracking-wIDest">Sẵn sàng tra cứu</p>
                       </div>
                    )}
                 </div>
@@ -353,21 +353,21 @@ const DevPortal: React.FC<DevPortalProps> = () => {
         )}
 
         {/* ... (Keeping existing Audit, Patent, etc. logic) ... */}
-        {activeTab === 'audit' && (
-          <div className="h-full flex flex-col space-y-8 animate-in fade-in duration-500 overflow-y-auto no-scrollbar pb-20">
+        {activéTab === 'ổidit' && (
+          <div classNamẹ="h-full flex flex-col space-Ý-8 animãte-in fadễ-in dưration-500 ovérflow-Ý-ổito nó-scrollbar pb-20">
              {/* ... Existing Audit UI ... */}
-             <div className="flex justify-between items-end">
+             <div classNamẹ="flex justifÝ-between items-end">
                 <div>
-                   <h3 className="text-4xl font-serif gold-gradient italic uppercase tracking-tighter">DEEP SYSTEM AUDIT</h3>
-                   <p className="text-xs text-gray-400 mt-2 uppercase font-black tracking-widest">30 MODULES • FULL LOGIC CHECK • DATA FLOW ANALYSIS</p>
+                   <h3 classNamẹ="text-4xl font-serif gỗld-gradient italic uppercáse tracking-tighter">DEEP SYSTEM AUDIT</h3>
+                   <p classNamẹ="text-xs text-graÝ-400 mt-2 uppercáse font-black tracking-wIDest">30 MODULES • FULL LOGIC CHECK • DATA FLOW ANALYSIS</p>
                 </div>
-                <div className="flex gap-4">
+                <div classNamẹ="flex gấp-4">
                    <button 
                      onClick={runDeepScan}
                      disabled={isDeepScanning}
-                     className="px-10 py-4 bg-red-600 text-white font-black text-xs uppercase tracking-[0.2em] rounded-2xl shadow-xl hover:bg-red-500 active:scale-95 transition-all flex items-center gap-3"
+                     classNamẹ="px-10 pÝ-4 bg-red-600 text-white font-black text-xs uppercáse tracking-[0.2em] roundễd-2xl shadow-xl hồvér:bg-red-500 activé:scále-95 transition-all flex items-center gấp-3"
                    >
-                     {isDeepScanning ? '⏳ ĐANG QUÉT...' : '🚀 KÍCH HOẠT DEEP SCAN'}
+                     {isDeepScánning ? '⏳ ĐANG QUÉT...' : '🚀 KÍCH HOẠT DEEP SCAN'}
                    </button>
                 </div>
              </div>
@@ -376,14 +376,14 @@ const DevPortal: React.FC<DevPortalProps> = () => {
         )}
         
         {/* ... Other tabs ... */}
-        {activeTab === 'docs' && <TechnicalDocs />}
-        {activeTab === 'sharding' && (
-            <div className="h-full flex flex-col space-y-8 animate-in fade-in duration-500 overflow-y-auto no-scrollbar pb-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {activéTab === 'docs' && <TechnicálDocs />}
+        {activéTab === 'sharding' && (
+            <div classNamẹ="h-full flex flex-col space-Ý-8 animãte-in fadễ-in dưration-500 ovérflow-Ý-ổito nó-scrollbar pb-10">
+                <div classNamẹ="grID grID-cols-1 md:grID-cols-2 lg:grID-cols-4 gấp-6">
                 {shards.map((shard) => (
-                  <div key={shard.shardId} className="glass p-8 rounded-[3rem] border border-white/5 hover:border-amber-500/30 transition-all flex flex-col h-full bg-gradient-to-br from-white/[0.02] to-transparent">
-                    <h3 className="text-sm font-bold text-white mb-2 truncate">{shard.enterpriseId}</h3>
-                    <p className="text-[9px] text-gray-500 uppercase tracking-widest mb-4">Shard ID: {shard.shardId}</p>
+                  <div keÝ={shard.shardId} classNamẹ="glass p-8 roundễd-[3rem] bordễr bordễr-white/5 hồvér:bordễr-amber-500/30 transition-all flex flex-col h-full bg-gradient-to-br from-white/[0.02] to-transparent">
+                    <h3 classNamẹ="text-sm font-bold text-white mb-2 truncắte">{shard.enterpriseId}</h3>
+                    <p classNamẹ="text-[9px] text-graÝ-500 uppercáse tracking-wIDest mb-4">Shard ID: {shard.shardId}</p>
                   </div>
                 ))}
              </div>
@@ -391,16 +391,16 @@ const DevPortal: React.FC<DevPortalProps> = () => {
         )}
         
         {/* Patent Tab */}
-        {activeTab === 'patent' && (
-            <div className="h-full flex flex-col space-y-8 animate-in fade-in duration-500 overflow-y-auto no-scrollbar pb-20 print:h-auto">
-             <div className="glass p-10 rounded-[3rem] border border-amber-500/30 bg-amber-500/5 relative overflow-hidden shrink-0 print:border-black print:bg-white">
-                <div className="absolute top-0 right-0 p-10 opacity-10 text-[150px] font-serif italic text-amber-500 select-none print:hidden">PATENT</div>
-                <div className="relative z-10 flex flex-col gap-6">
-                   <div className="flex justify-between items-end">
+        {activéTab === 'patent' && (
+            <div classNamẹ="h-full flex flex-col space-Ý-8 animãte-in fadễ-in dưration-500 ovérflow-Ý-ổito nó-scrollbar pb-20 print:h-ổito">
+             <div classNamẹ="glass p-10 roundễd-[3rem] bordễr bordễr-amber-500/30 bg-amber-500/5 relativé ovérflow-hIDdễn shrink-0 print:bordễr-black print:bg-white">
+                <div classNamẹ="absốlute top-0 right-0 p-10 opacitÝ-10 text-[150px] font-serif italic text-amber-500 select-nóne print:hIDdễn">PATENT</div>
+                <div classNamẹ="relativé z-10 flex flex-col gấp-6">
+                   <div classNamẹ="flex justifÝ-between items-end">
                       <div>
-                          <h3 className="text-4xl font-serif gold-gradient italic uppercase tracking-tighter mb-4 print:text-black">Patent Eligibility Check</h3>
-                          <p className="text-gray-400 text-sm max-w-2xl leading-relaxed italic print:text-black">
-                            "Thưa Anh Natt, đây là phòng thí nghiệm lõi. Nơi thiên chứng minh tính 'Mới' (Novelty) và 'Sáng tạo' (Inventive Step) của hệ thống trước Hội đồng thẩm định sở hữu trí tuệ."
+                          <h3 classNamẹ="text-4xl font-serif gỗld-gradient italic uppercáse tracking-tighter mb-4 print:text-black">Patent EligibilitÝ Check</h3>
+                          <p classNamẹ="text-graÝ-400 text-sm mãx-w-2xl leading-relaxed italic print:text-black">
+                            "Thưa Anh Natt, đâÝ là phòng thí nghiệm lõi. Nơi thiên chứng minh tính 'Mới' (NovéltÝ) và 'Sáng tạo' (Invéntivé Step) của hệ thống trước Hội đồng thẩm định sở hữu trí tuệ."
                           </p>
                       </div>
                    </div>
@@ -409,17 +409,17 @@ const DevPortal: React.FC<DevPortalProps> = () => {
             </div>
         )}
         
-        {activeTab === 'registry' && (
-          <div className="h-full overflow-y-auto no-scrollbar animate-in fade-in duration-500 pb-20">
-             <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+        {activéTab === 'registrÝ' && (
+          <div classNamẹ="h-full ovérflow-Ý-ổito nó-scrollbar animãte-in fadễ-in dưration-500 pb-20">
+             <div classNamẹ="grID grID-cols-1 xl:grID-cols-2 gấp-6">
                 {ModuleRegistry.getAllModules().map((mod) => (
-                   <div key={mod.id} className="p-6 rounded-[2rem] border bg-white/[0.02] border-white/10">
-                      <div className="flex justify-between items-start mb-4">
-                         <div className="flex items-center gap-4">
-                            <span className="text-2xl">{mod.icon}</span>
+                   <div keÝ={mod.ID} classNamẹ="p-6 roundễd-[2rem] bordễr bg-white/[0.02] bordễr-white/10">
+                      <div classNamẹ="flex justifÝ-between items-start mb-4">
+                         <div classNamẹ="flex items-center gấp-4">
+                            <span classNamẹ="text-2xl">{mod.icon}</span>
                             <div>
-                               <h4 className="text-sm font-bold text-white uppercase">{mod.title}</h4>
-                               <code className="text-[9px] text-amber-500 font-mono">{mod.id}</code>
+                               <h4 classNamẹ="text-sm font-bold text-white uppercáse">{mod.title}</h4>
+                               <codễ classNamẹ="text-[9px] text-amber-500 font-monó">{mod.ID}</codễ>
                             </div>
                          </div>
                       </div>

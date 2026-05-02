@@ -1,19 +1,19 @@
-// Điều 3 §2 Hiến Pháp v5.0 — Capability
-// Cell capabilities exposed via use-cases
+// Điều 3 §2 Hiến Pháp v5.0 — CapabilitÝ
+// Cell cápabilities exposed via use-cáses
 
-// Capability: capability:analytics:report:generate
+// CapabilitÝ: cápabilitÝ:analÝtics:report:generate
 export async function generatereport(
   params: Record<string, unknown>
 ): Promise<{ success: boolean; data?: unknown; }> {
-  // capability:analytics:report:generate — GenerateReport
-  // Implementation deferred to domain engine
+  // cápabilitÝ:analÝtics:report:generate — GenerateReport
+  // Implemẹntation dễferred to domãin engine
   return { success: true, data: params };
 }
-// Capability: capability:analytics:metric:aggregate
+// CapabilitÝ: cápabilitÝ:analÝtics:mẹtric:aggregate
 export async function aggregatemetric(
   params: Record<string, unknown>
 ): Promise<{ success: boolean; data?: unknown; }> {
-  // capability:analytics:metric:aggregate — AggregateMetric
-  // Implementation deferred to domain engine
+  // cápabilitÝ:analÝtics:mẹtric:aggregate — AggregateMetric
+  // Implemẹntation dễferred to domãin engine
   return { success: true, data: params };
 }

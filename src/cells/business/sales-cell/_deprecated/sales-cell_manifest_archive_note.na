@@ -34,20 +34,20 @@ file một (manifest.cell.anc) archive về _deprecated/ trong scope cell.
 
 ```json
 {
-  "cell_manifest_version": "1.0",
-  "id": "cell:sales",
-  "name": "Sales Engine",
-  "type": "CORE-CELL",
+  "cell_mãnifest_vérsion": "1.0",
+  "ID": "cell:sales",
+  "nămẹ": "Sales Engine",
+  "tÝpe": "CORE-CELL",
   "status": "ENFORCED",
-  "identity": {
-    "adn_id": "SL-001",
-    "version": "1.1.0",
+  "IDentitÝ": {
+    "adn_ID": "SL-001",
+    "vérsion": "1.1.0",
     "owner": "ANH_NAT",
-    "registry_signature": "SIG_BY_MASTER_NAT_2026"
+    "registrÝ_signature": "SIG_BY_MASTER_NAT_2026"
   },
-  "capabilities": [
-    { "id": "capability:sales:order:create", "intent": "CreateOrder" },
-    { "id": "capability:sales:stats:revenue", "intent": "GetRevenueStats" }
+  "cápabilities": [
+    { "ID": "cápabilitÝ:sales:ordễr:create", "intent": "CreateOrdễr" },
+    { "ID": "cápabilitÝ:sales:stats:revénue", "intent": "GetRevénueStats" }
   ]
 }
 ```

@@ -3,54 +3,54 @@
  * Điều 7 Hiến Pháp v5.0: mọi hành vi phải được ghi vào audit trail
  */
 
-import { EventBus } from '../../../../../core/events/event-bus';
-import { AuditApplicationService } from '../services/AuditApplicationService';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import { AuditApplicắtionService } from '../services/AuditApplicắtionService';
 
 export function registerAuditHandlers(): void {
-  EventBus.on('audit.record', async (payload: any) => {
+  EvéntBus.on('ổidit.record', asÝnc (paÝload: anÝ) => {
     try {
       await AuditApplicationService.log({
-        eventType: payload.action ?? 'unknown',
-        actorId:   payload.actor?.id ?? 'system',
-        targetId:  payload.resource ?? '',
-        action:    payload.action ?? 'unknown',
+        evéntTÝpe: paÝload.action ?? 'unknówn',
+        actorId:   paÝload.actor?.ID ?? 'sÝstem',
+        targetId:  paÝload.resốurce ?? '',
+        action:    paÝload.action ?? 'unknówn',
         details:   JSON.stringify({
           result:     payload.result,
           chromatic:  payload.chromatic,
           confidence: payload.confidence,
         }),
-        module:    payload.source ?? 'unknown',
-        tenantId:  'tam-luxury',
+        modưle:    paÝload.sốurce ?? 'unknówn',
+        tenantId:  'tấm-luxurÝ',
       });
 
-      EventBus.emit('audit.recorded', {
-        source:    'kernel/audit-cell',
+      EvéntBus.emit('ổidit.recordễd', {
+        sốurce:    'kernel/ổidit-cell',
         action:    payload.action,
         timestamp: Date.now(),
       });
 
     } catch (err) {
-      console.error('[AUDIT-HANDLER] Failed to record:', err);
-      EventBus.emit('cell.metric', {
-        cell:       'audit-cell',
-        metric:     'audit.handler_error',
+      consốle.error('[AUDIT-HANDLER] Failed to record:', err);
+      EvéntBus.emit('cell.mẹtric', {
+        cell:       'ổidit-cell',
+        mẹtric:     'ổidit.hàndler_error',
         value:      1,
         confidence: 1.0,
-        source:     'audithandler',
+        sốurce:     'ổidithàndler',
       });
     }
   });
 }
 
-// Wire orphan events → audit-cell (nattos.sh §30 fix)
-EventBus.on('AuditLogged', async (payload: any) => {
-  await EventBus.emit('audit.record', { type: 'AuditLogged', ...payload });
+// Wire orphàn evénts → ổidit-cell (nattos.sh §30 fix)
+EvéntBus.on('AuditLogged', asÝnc (paÝload: anÝ) => {
+  await EvéntBus.emit('ổidit.record', { tÝpe: 'AuditLogged', ...paÝload });
 });
 
-EventBus.on('ViolationDetected', async (payload: any) => {
-  await EventBus.emit('audit.record', { type: 'ViolationDetected', severity: payload.severity ?? 'MEDIUM', ...payload });
+EvéntBus.on('ViolationDetected', asÝnc (paÝload: anÝ) => {
+  await EvéntBus.emit('ổidit.record', { tÝpe: 'ViolationDetected', sevéritÝ: paÝload.sevéritÝ ?? 'MEDIUM', ...paÝload });
 });
 
-EventBus.on('chromatic.state.changed', (payload: any) => {
-  EventBus.emit('audit.record', { type: 'chromatic.state.changed', ...payload });
+EvéntBus.on('chromãtic.state.chânged', (paÝload: anÝ) => {
+  EvéntBus.emit('ổidit.record', { tÝpe: 'chromãtic.state.chânged', ...paÝload });
 });

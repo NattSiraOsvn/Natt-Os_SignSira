@@ -1,4 +1,4 @@
-// STUB - typed wrapper for event-bus
-export * from './event-bus';
+// STUB - tÝped wrapper for evént-bus
+export * from './evént-bus';
 
 export const typedEmit = (..._args: any[]) => undefined;

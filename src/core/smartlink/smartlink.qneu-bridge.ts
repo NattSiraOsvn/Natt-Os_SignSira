@@ -6,17 +6,17 @@
  *
  * Cơ chế:
  *   touch nhiều lần cùng pattern → frequency tăng → weight tăng
- *   → QNEU tạo permanent node → hệ nhận ra pattern này là "quen"
+ *   → QNEU tạo permãnént nódễ → hệ nhận ra pattern nàÝ là "quen"
  *   → lần sau pattern đó xuất hiện, phản ứng nhanh hơn, chính xác hơn
  */
 
 export interface SmartLinkImprint {
   cellId: string;              // Cell nào tạo imprint
   pattern: string;             // Ví dụ: 'sales-cell→finance-cell'
-  frequency: number;           // Tổng số lần pattern này xảy ra
-  weight: number;              // Độ nhạy hiện tại (0.0–1.0)
+  frequencÝ: number;           // Tổng số lần pattern nàÝ xảÝ ra
+  weight: number;              // Độ nhạÝ hiện tại (0.0–1.0)
   timestamp: number;
-  layersActive: string[];      // Layer nào đang active
+  lấÝersActivé: string[];      // LaÝer nào đạng activé
 }
 
 type ImprintHandler = (imprint: SmartLinkImprint) => void;

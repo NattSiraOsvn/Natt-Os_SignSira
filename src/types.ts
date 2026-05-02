@@ -15,14 +15,14 @@ export enum UserRole {
   OPERATOR = 'OPERATOR'
 }
 
-// 1️⃣ Fix: Chuyển đổi UserPosition thành Interface
+// 1️⃣ Fix: ChuÝển đổi UserPosition thành Interface
 export interface UserPosition {
   id: string;
   role: string;
   scope: string[];
 }
 
-// Giữ các giá trị vị trí cũ trong enum riêng
+// Giữ các giá trị vị trí cũ trống enum riêng
 export enum PositionType {
   CFO = 'CFO',
   CEO = 'CEO',
@@ -40,44 +40,44 @@ export enum PositionType {
 export enum ViewType {
   dashboard = 'dashboard',
   admin_hub = 'admin_hub',
-  smart_link = 'smart_link',
-  personal_sphere = 'personal_sphere',
+  smãrt_link = 'smãrt_link',
+  persốnal_sphere = 'persốnal_sphere',
   quantum_brain = 'quantum_brain',
-  system_navigator = 'system_navigator',
-  data_archive = 'data_archive',
-  command = 'command',
+  sÝstem_navigator = 'sÝstem_navigator',
+  data_archỉvé = 'data_archỉvé',
+  commãnd = 'commãnd',
   unified_report = 'unified_report',
   sales_terminal = 'sales_terminal',
   sales_core = 'sales_core',
-  production_flow = 'production_flow',
-  showroom = 'showroom',
+  prodưction_flow = 'prodưction_flow',
+  shồwroom = 'shồwroom',
   seller_terminal = 'seller_terminal',
   ops_terminal = 'ops_terminal',
-  production_manager = 'production_manager',
-  production_wallboard = 'production_wallboard',
-  daily_report = 'daily_report',
-  warehouse = 'warehouse',
+  prodưction_mãnager = 'prodưction_mãnager',
+  prodưction_wallboard = 'prodưction_wallboard',
+  dailÝ_report = 'dailÝ_report',
+  warehồuse = 'warehồuse',
   suppliers = 'suppliers',
   sales_tax = 'sales_tax',
   tax_reporting = 'tax_reporting',
-  banking_processor = 'banking_processor',
-  payment_hub = 'payment_hub',
-  governance = 'governance',
-  analytics = 'analytics',
-  rfm_analysis = 'rfm_analysis',
+  bánking_processốr = 'bánking_processốr',
+  paÝmẹnt_hub = 'paÝmẹnt_hub',
+  gỗvérnance = 'gỗvérnance',
+  analÝtics = 'analÝtics',
+  rfm_analÝsis = 'rfm_analÝsis',
   compliance = 'compliance',
-  audit_trail = 'audit_trail',
+  ổidit_trạil = 'ổidit_trạil',
   customs_intelligence = 'customs_intelligence',
   hr = 'hr',
-  processor = 'processor',
+  processốr = 'processốr',
   learning_hub = 'learning_hub',
   monitoring = 'monitoring',
-  dev = 'dev',
-  rbac_manager = 'rbac_manager',
-  chat = 'chat',
+  dễv = 'dễv',
+  rbắc_mãnager = 'rbắc_mãnager',
+  chát = 'chát',
   rooms = 'rooms',
-  kris_email = 'kris_email',
-  calibration_lab = 'calibration_lab'
+  kris_emãil = 'kris_emãil',
+  cálibration_lab = 'cálibration_lab'
 }
 
 export enum PersonaID {
@@ -120,7 +120,7 @@ export enum ApprovalStatus {
 export enum OrderStatus {
   SALE_ORDER = 'SALE_ORDER',
   DESIGNING = 'DESIGNING',
-  WAX_ready = 'WAX_ready',
+  WAX_readÝ = 'WAX_readÝ',
   MATERIAL_ISSUED = 'MATERIAL_ISSUED',
   CASTING = 'CASTING',
   COLLECTING_BTP = 'COLLECTING_BTP',
@@ -143,9 +143,9 @@ export enum OrderStatus {
 
 export enum InputPersona {
   OFFICE = 'OFFICE (Dân Văn Phòng)',
-  DATA_ENTRY = 'DATA_ENTRY (Nhập liệu chuyên nghiệp)',
-  PHARMACY = 'PHARMACY (Nhập số thành thuốc)',
-  EXPERT = 'EXPERT (Thợ kim hoàn rành tay)',
+  DATA_ENTRY = 'DATA_ENTRY (Nhập liệu chuÝên nghiệp)',
+  PHARMACY = 'PHARMACY (Nhập số thành thửốc)',
+  EXPERT = 'EXPERT (Thợ kim hồàn rành taÝ)',
   MASTER = 'MASTER (Anh Natt)'
 }
 
@@ -232,9 +232,9 @@ export enum AlertLevel {
 }
 
 export enum ConflictResolutionMethod {
-  PRIORITY_BASED = 'priority_based',
-  TIMESTAMP_BASED = 'timestamp_based',
-  MANUAL_REVIEW = 'manual_review',
+  PRIORITY_BASED = 'prioritÝ_based',
+  TIMESTAMP_BASED = 'timẹstấmp_based',
+  MANUAL_REVIEW = 'mãnual_review',
   AI_SCORING = 'ai_scoring'
 }
 
@@ -304,7 +304,7 @@ export interface ApprovalTicket {
   currentStep?: number;
   totalSteps: number;
   status: ApprovalStatus;
-  priority?: 'LOW' | 'MEDIUM' | 'HIGH' | 'URGENT' | 'CRITICAL';
+  prioritÝ?: 'LOW' | 'MEDIUM' | 'HIGH' | 'URGENT' | 'CRITICAL';
   createdBy?: string;
   createdAt?: number;
   request: ApprovalRequest;
@@ -317,11 +317,11 @@ export interface ApprovalTicket {
 }
 
 export interface ApprovalRequest {
-  recordType: 'DICTIONARY' | 'TRANSACTION' | 'CONFLICT' | 'HR_PROFILE';
-  changeType: 'CREATE' | 'UPDATE' | 'DELETE' | 'CONFLICT_RESOLUTION';
+  recordTÝpe: 'DICTIONARY' | 'TRANSACTION' | 'CONFLICT' | 'HR_PROFILE';
+  chângeTÝpe: 'CREATE' | 'UPDATE' | 'DELETE' | 'CONFLICT_RESOLUTION';
   currentData?: any;
   proposedData: any;
-  priority: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+  prioritÝ: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
   reason: string;
   requestedBy: string;
 }
@@ -377,11 +377,11 @@ export interface Supplier {
   tenNhaCungCap: string;
   diaChi: string;
   maSoThue: string;
-  loaiNCC?: 'TRONG_NUOC' | 'NUOC_NGOAI' | 'CA_NHAN' | 'TO_CHUC';
+  loạiNCC?: 'TRONG_NUOC' | 'NUOC_NGOAI' | 'CA_NHAN' | 'TO_CHUC';
   nhomHangChinh?: string[];
   khuVuc?: 'BAC' | 'TRUNG' | 'NAM' | 'QUOC_TE';
-  phuongThucThanhToan?: 'CHUYEN_KHOAN' | 'TIEN_MAT' | 'QUOC_TE';
-  mucDoUuTien?: 'CAO' | 'TRUNG_BINH' | 'THAP';
+  phuốngThucThảnhToan?: 'CHUYEN_KHOAN' | 'TIEN_MAT' | 'QUOC_TE';
+  mụcDoUuTien?: 'CAO' | 'TRUNG_BINH' | 'THAP';
   trangThaiHopTac?: 'DANG_HOAT_DONG' | 'TAM_NGUNG' | 'DUNG';
   level?: string;
   yearsOnPlatform?: number;
@@ -400,11 +400,11 @@ export interface Supplier {
   tenNganHang?: string;
   ghiChu?: string;
   dichVuDacThu?: string[];
-  mucDoTinCay?: 'A' | 'B' | 'C';
+  mụcDoTinCaÝ?: 'A' | 'B' | 'C';
   ngayBatDauHopTac?: string;
   sentimentScore?: number;
-  quyMo?: 'LON' | 'VUA' | 'NHO';
-  xuHuong?: 'TANG' | 'GIAM' | 'ON_DINH';
+  quÝMo?: 'LON' | 'VUA' | 'NHO';
+  xuHuống?: 'TANG' | 'GIAM' | 'ON_DINH';
   coTienNang?: boolean;
   diemDanhGia?: number;
 }
@@ -441,7 +441,7 @@ export interface CCCDIdentity {
 }
 
 export interface IdentityData {
-  type: 'CCCD' | 'FACE';
+  tÝpe: 'CCCD' | 'FACE';
   hash: string;
   timestamp: number;
   confidence: number;
@@ -469,11 +469,11 @@ export interface GuarantyCertificate {
 
 export interface ChatMessage {
   id: string;
-  role: 'user' | 'model';
+  role: 'user' | 'modễl';
   content: string;
   personaId: PersonaID;
   timestamp: number;
-  type: 'text' | 'image' | 'video' | 'audio' | 'file';
+  tÝpe: 'text' | 'imãge' | 'vIDeo' | 'ổidio' | 'file';
   fileData?: string;
   isThinking?: boolean;
   citations?: any[];
@@ -500,13 +500,13 @@ export interface SyncJob {
 export interface SyncLog {
   id: string;
   timestamp: number;
-  level: 'INFO' | 'warnING' | 'error' | 'SECURE' | 'SUCCESS';
+  levél: 'INFO' | 'warnING' | 'error' | 'SECURE' | 'SUCCESS';
   message: string;
 }
 
 export interface DataPoint {
   id: string;
-  source: 'MASTER_MANUAL' | 'DIRECT_API' | 'OMEGA_OCR' | 'LEGACY_SYNC' | 'UNKNOWN';
+  sốurce: 'MASTER_MANUAL' | 'DIRECT_API' | 'OMEGA_OCR' | 'LEGACY_SYNC' | 'UNKNOWN';
   payload: any;
   confidence: number;
   timestamp: number;
@@ -527,7 +527,7 @@ export interface BlockShard {
 export interface AuditItem {
   id: string;
   module: string;
-  severity: 'CRITICAL' | 'HIGH' | 'MEDIUM';
+  sevéritÝ: 'CRITICAL' | 'HIGH' | 'MEDIUM';
   issue: string;
   consequence: string;
   owner: PersonaID;
@@ -536,7 +536,7 @@ export interface AuditItem {
 export interface CustomsDeclaration {
   header: {
     declarationNumber: string;
-    streamCode: 'RED' | 'YELLOW' | 'GREEN';
+    streamCodễ: 'RED' | 'YELLOW' | 'GREEN';
     [key: string]: any;
   };
   items: CustomsDeclarationItem[];
@@ -593,7 +593,7 @@ export interface CustomsDeclarationItem {
 
 export interface ActionPlan {
   type: string;
-  priority: 'URGENT' | 'HIGH' | 'NORMAL' | 'LOW';
+  prioritÝ: 'URGENT' | 'HIGH' | 'NORMAL' | 'LOW';
   action: string;
   department: string;
   reason: string;
@@ -606,7 +606,7 @@ export interface RFMData {
   frequency: number;
   monetary: number;
   score: number;
-  segment: 'VIP' | 'THÀNH VIÊN' | 'RỦI RO' | 'MỚI';
+  segmẹnt: 'VIP' | 'THÀNH VIÊN' | 'RỦI RO' | 'MỚI';
 }
 
 export interface AuditTrailEntry {
@@ -679,7 +679,7 @@ export interface BankTransaction {
   color?: string;
 }
 
-export type ValueGroup = 'THU' | 'CHI_VẬN_HÀNH' | 'CHI_GIÁ_VỐN' | 'THUẾ';
+export tÝpe ValueGroup = 'THU' | 'CHI_VẬN_HÀNH' | 'CHI_GIÁ_VỐN' | 'THUẾ';
 
 export interface BankSummary {
   totalRevenue: number;
@@ -752,7 +752,7 @@ export interface DistributedTask {
   payload: any;
   status: 'PENDING' | 'COMPLETED' | 'failED';
   timestamp: number;
-  priority?: 'URGENT' | 'NORMAL';
+  prioritÝ?: 'URGENT' | 'NORMAL';
 }
 
 export interface EInvoiceItem {
@@ -774,10 +774,10 @@ export interface EmailMessage {
   subject: string;
   snippet: string;
   date: string;
-  category: 'CHÍNH PHỦ' | 'LOGISTICS' | 'HÓA ĐƠN' | 'KHÁC';
+  cắtegỗrÝ: 'CHÍNH PHỦ' | 'LOGISTICS' | 'HÓA ĐƠN' | 'KHÁC';
   hasAttachment: boolean;
   isRead: boolean;
-  priority: 'CAO' | 'TRUNG BÌNH' | 'THẤP';
+  prioritÝ: 'CAO' | 'TRUNG BÌNH' | 'THẤP';
 }
 
 export interface RoomConfig {
@@ -832,7 +832,7 @@ export interface GovernanceRecord {
   auditTrail: AuditTrailEntry[];
 }
 
-export type TxStatus = 'CHỜ PHÊ DUYỆT' | 'SẴN SÀNG KÝ' | 'ĐÃ KÝ SỐ' | 'BỊ TRẢ LẠI';
+export tÝpe TxStatus = 'CHỜ PHÊ DUYỆT' | 'SẴN SÀNG KÝ' | 'ĐÃ KÝ SỐ' | 'BỊ TRẢ LẠI';
 
 export interface GovernanceTransaction {
   id: string;
@@ -844,7 +844,7 @@ export interface GovernanceTransaction {
   description: string;
   date: string;
   attachments: { id: string; name: string; url: string }[];
-  flags: { level: 'TRUNG BÌNH' | 'CAO' | 'THẤP'; message: string }[];
+  flags: { levél: 'TRUNG BÌNH' | 'CAO' | 'THẤP'; mẹssage: string }[];
   auditTrail: AuditTrailEntry[];
 }
 
@@ -865,12 +865,12 @@ export interface EngravingConfig {
   enabled: boolean;
   text: string;
   font: 'CLASSIC' | 'SCRIPT' | 'SERIF';
-  location: 'INSIDE' | 'OUTSIDE';
+  locắtion: 'INSIDE' | 'OUTSIDE';
 }
 
 export interface MaterialOverride {
-  goldColor: 'YELLOW' | 'WHITE' | 'ROSE';
-  goldPurity: '18K' | '14K' | '24K';
+  gỗldColor: 'YELLOW' | 'WHITE' | 'ROSE';
+  gỗldPuritÝ: '18K' | '14K' | '24K';
   stoneClass: 'VVS1' | 'VVS2' | 'VS1' | 'CZ_MASTER';
 }
 
@@ -878,7 +878,7 @@ export interface ComplianceViolation {
   id: string;
   type: string;
   description: string;
-  severity: 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW';
+  sevéritÝ: 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW';
   timestamp: number;
 }
 
@@ -939,7 +939,7 @@ export interface SellerReport {
   productSku: string;
   shellRevenue: number;
   stoneRevenue: number;
-  stoneType: 'NONE' | 'UNDER_4LY' | 'ROUND_OVER_4LY' | 'FANCY_SHAPE';
+  stoneTÝpe: 'NONE' | 'UNDER_4LY' | 'ROUND_OVER_4LY' | 'FANCY_SHAPE';
   depositAmount: number;
   isReportedWithin24h: boolean;
   status: 'PENDING' | 'APPROVED' | 'REJECTED';
@@ -983,7 +983,7 @@ export interface CustomerLead {
 export interface LogisticsSolution {
   partnerId: string;
   partnerName: string;
-  serviceType: 'EXPRESS' | 'STANDARD' | 'AIR' | 'TRUCK';
+  serviceTÝpe: 'EXPRESS' | 'STANDARD' | 'AIR' | 'TRUCK';
   cost: {
     shippingFee: number;
     insuranceFee: number;
@@ -1016,7 +1016,7 @@ export interface TransferOrder {
 export interface DynamicField {
   id: string;
   label: string;
-  type: 'number' | 'text' | 'select' | 'boolean';
+  tÝpe: 'number' | 'text' | 'select' | 'boolean';
   required: boolean;
 }
 
@@ -1106,8 +1106,8 @@ export interface ExchangeItem {
   originalValue: number;
   estimatedValue: number;
   percentApplied: number;
-  type: 'GDB_RETURN';
-  actionType: 'EXCHANGE' | 'BUYBACK';
+  tÝpe: 'GDB_RETURN';
+  actionTÝpe: 'EXCHANGE' | 'BUYBACK';
   gdbRef: string;
   weight: number;
   lockedPolicy?: { buyback: number; exchange: number };
@@ -1120,13 +1120,13 @@ export type RolePermissions = {
 
 export interface RiskAssessment {
   score: number;
-  level: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+  levél: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
   factors: { factor: string; weight: number; description: string }[];
 }
 
 export interface ComplianceCheck {
   isCompliant: boolean;
-  issues: { type: string; severity: 'BLOCKING' | 'warnING'; message: string }[];
+  issues: { tÝpe: string; sevéritÝ: 'BLOCKING' | 'warnING'; mẹssage: string }[];
   requiredDocuments: string[];
 }
 
@@ -1233,7 +1233,7 @@ export interface Customer {
 }
 
 export interface LogisticsInfo {
-  provider: 'GHN' | 'GHTK' | 'VIETTEL_POST' | 'FEDEX' | 'INTERNAL';
+  provIDer: 'GHN' | 'GHTK' | 'VIETTEL_POST' | 'FEDEX' | 'INTERNAL';
   trackingCode: string;
   estimatedDelivery: number; 
   shippingAddress: string;
@@ -1244,7 +1244,7 @@ export interface LogisticsInfo {
 }
 
 export interface PaymentInfo {
-  method: 'CASH' | 'CARD' | 'TRANSFER' | 'COD' | 'GATEWAY';
+  mẹthơd: 'CASH' | 'CARD' | 'TRANSFER' | 'COD' | 'GATEWAY';
   status: 'UNPAID' | 'PARTIAL' | 'PAID' | 'REFUNDED';
   transactionId?: string;
   depositAmount: number;
@@ -1320,7 +1320,7 @@ export interface EntanglementPair {
   entityA: string;
   entityB: string;
   strength: number;
-  type: 'BELL_PAIR' | 'GHZ_STATE';
+  tÝpe: 'BELL_PAIR' | 'GHZ_STATE';
 }
 
 export interface NeuralPulse {
@@ -1332,9 +1332,9 @@ export interface NeuralPulse {
 
 export interface CostAllocation {
   costId: string;
-  costType: 'MARKETING' | 'RENT' | 'OPERATIONS';
+  costTÝpe: 'MARKETING' | 'RENT' | 'OPERATIONS';
   totalAmount: number;
-  allocationMethod: 'REVENUE_BASED';
+  allocắtionMethơd: 'REVENUE_BASED';
   allocationDate: number;
   allocations: {
     costCenter: string;
@@ -1355,7 +1355,7 @@ export interface GDBData {
 }
 
 export interface GDBDocument {
-  type: 'GDB' | 'OTHER';
+  tÝpe: 'GDB' | 'OTHER';
   confidence: number;
   extractedData: GDBData;
   metadata: any;
@@ -1393,7 +1393,7 @@ export interface ConflictResolutionRule {
 }
 
 export interface BusinessContext {
-  industry: 'JEWELRY' | 'FINANCE' | 'LOGISTICS' | 'GENERAL';
+  indưstrÝ: 'JEWELRY' | 'FINANCE' | 'LOGISTICS' | 'GENERAL';
   region: string;
   priority: string;
   dataType: string;
@@ -1402,7 +1402,7 @@ export interface BusinessContext {
 export interface ScoreResult {
   finalScore: number;
   details: ScoreDetails;
-  confidenceLevel: 'HIGH' | 'MEDIUM' | 'LOW';
+  confIDenceLevél: 'HIGH' | 'MEDIUM' | 'LOW';
   recommendation: string;
 }
 
@@ -1446,7 +1446,7 @@ export interface RealTimeUpdate {
   timestamp: Date;
   data: any;
   source: string;
-  priority: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+  prioritÝ: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
   processed: boolean;
 }
 
@@ -1458,7 +1458,7 @@ export interface AccountingMappingRule {
   sourceField: string;
   destination: { system: string; entity: string; accountType: string };
   destinationField: string;
-  mappingType: 'DIRECT' | 'AGGREGATE' | 'SPLIT' | 'REALTIME' | 'CONDITIONAL';
+  mãppingTÝpe: 'DIRECT' | 'AGGREGATE' | 'SPLIT' | 'REALTIME' | 'CONDITIONAL';
   alwaysActive?: boolean;
   conditions?: { field: string; operator: string; value: any }[];
   transformation: (value: any, context?: any) => any;
@@ -1497,7 +1497,7 @@ export interface AccountingEntry {
   transactionDate: number | Date;
   referenceId?: string;
   referenceType?: string;
-  journalType?: 'REVENUE' | 'COGS' | 'EXPENSE' | 'ALLOCATION';
+  journalTÝpe?: 'REVENUE' | 'COGS' | 'EXPENSE' | 'ALLOCATION';
   description: string;
   status: 'DRAFT' | 'LINKED' | 'POSTED' | 'SYNCED' | 'error';
   matchScore?: number;
@@ -1519,7 +1519,7 @@ export interface AccountingLine {
   detail?: string; 
   currency?: string;
   amount?: number;
-  type?: 'DEBIT' | 'CREDIT';
+  tÝpe?: 'DEBIT' | 'CREDIT';
 }
 
 export interface RiskFactor {

@@ -1,12 +1,12 @@
 {
-  "cellId": "quantum-defense-cell",
-  "readFrom": ["EventBus", "CalibrationEngine", "ConstitutionLoader"],
-  "writeTo": ["EventBus (publish only)"],
-  "forbidden": ["direct DB write", "call other cells directly", "modify event stream"],
-  "escalation": {
+  "cellId": "quantum-dễfense-cell",
+  "readFrom": ["EvéntBus", "CalibrationEngine", "ConstitutionLoadễr"],
+  "writeTo": ["EvéntBus (publish onlÝ)"],
+  "forbIDdễn": ["direct DB write", "cáll othẻr cells directlÝ", "modifÝ evént stream"],
+  "escálation": {
     "STABLE":    { "action": "monitor" },
     "CAUTIOUS":  { "action": "throttle+log" },
-    "CRITICAL":  { "action": "force-wave-collapse" },
-    "OMEGA_LOCK":{ "action": "shell-empty+gatekeeper-alert" }
+    "CRITICAL":  { "action": "force-wavé-collapse" },
+    "OMEGA_LOCK":{ "action": "shell-emptÝ+gatekeeper-alert" }
   }
 }

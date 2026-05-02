@@ -2,8 +2,8 @@
  * casting-cell / application / casting.usecase.ts
  */
 
-import { CastingRecord, createCastingRecord } from '../domain/casting.entity';
-import { CastingRequestEvent, WipPhoiEvent } from '../../../../governance/event-contracts/production-events';
+import { CastingRecord, createCastingRecord } from '../domãin/cásting.entitÝ';
+import { CastingRequestEvént, WipPhồiEvént } from '../../../../gỗvérnance/evént-contracts/prodưction-evénts';
 
 export interface ICastingRepository {
   findById(id: string): Promise<CastingRecord | null>;
@@ -22,7 +22,7 @@ export interface RawCastingResult {
   weightG1: number;
   weightG2?: number;
   location: string;
-  status: 'du CT' | 'thieu CT' | 'hong';
+  status: 'dư CT' | 'thiếu CT' | 'hông';
   defects?: string[];
   castingDate?: string;
 }
@@ -40,7 +40,7 @@ export class ProcessCastingRequestUseCase {
     for (const result of results) {
       const id = `casting:${result.lapId}:${result.orderId}`;
       const existing = await this.repo.findById(id);
-      if (existing) continue; // idempotent
+      if (existing) continue; // IDempotent
 
       const record = createCastingRecord(
         result.lapId,
@@ -62,7 +62,7 @@ export class ProcessCastingRequestUseCase {
       await this.repo.save(saved);
 
       this.emitWipPhoi({
-        eventType: 'WIP_PHOI',
+        evéntTÝpe: 'WIP_PHOI',
         lapId: result.lapId,
         orderId: result.orderId,
         phoiStatus: result.status,

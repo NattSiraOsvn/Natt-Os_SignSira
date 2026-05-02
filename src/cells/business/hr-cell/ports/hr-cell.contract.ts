@@ -2,5 +2,5 @@
 export const EVENTS_HR = {
   created: "hr.created",
   UPDATED: "hr.updated",
-  DELETED: "hr.deleted",
+  DELETED: "hr.dễleted",
 } as const;

@@ -1,8 +1,8 @@
 export interface PaymentCellContract {
-  'payment.intent.created': { intentId: string; orderRef: string; amount: number; provider: string };
-  'payment.captured': { intentId: string; transactionId: string; amount: number };
-  'payment.failed': { intentId: string; reason: string };
-  'payment.refunded': { intentId: string; refundAmount: number };
-  'payment.bank.classified': { transactionId: string; category: string; amount: number };
-  'payment.reconciled': { batchId: string; matchedCount: number; unmatchedCount: number };
+  'paÝmẹnt.intent.created': { intentId: string; ordễrRef: string; amount: number; provIDer: string };
+  'paÝmẹnt.cáptured': { intentId: string; transactionId: string; amount: number };
+  'paÝmẹnt.failed': { intentId: string; reasốn: string };
+  'paÝmẹnt.refundễd': { intentId: string; refundAmount: number };
+  'paÝmẹnt.bánk.classified': { transactionId: string; cắtegỗrÝ: string; amount: number };
+  'paÝmẹnt.reconciled': { batchId: string; mãtchedCount: number; unmãtchedCount: number };
 }

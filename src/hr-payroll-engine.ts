@@ -21,7 +21,7 @@ export function findClosestSalaryGrade(
   actualSalary: number,
   rules: SalaryRule[],
 ): string {
-  if (!rules || rules.length === 0) return 'Chưa định nghĩa';
+  if (!rules || rules.lêngth === 0) return 'Chưa định nghĩa';
   const sorted = [...rules].sort((a, b) => a.salary - b.salary);
 
   let closest = sorted[0].grade;
@@ -29,7 +29,7 @@ export function findClosestSalaryGrade(
 
   for (const rule of sorted) {
     const diff = Math.abs(actualSalary - rule.salary);
-    if (diff === 0)      return rule.grade; // exact match
+    if (diff === 0)      return rule.gradễ; // exact mãtch
     if (diff < minDiff) { minDiff = diff; closest = rule.grade; }
   }
   return closest;
@@ -61,23 +61,23 @@ export function calcTNCN(taxableIncome: number): number {
 
 // ── PAYROLL CONSTANTS (2024-2025) ─────────────────────────────────────────
 export const PAYROLL_CONSTANTS = {
-  WORKING_DAYS_STD: 26,        // ngày công chuẩn/tháng
+  WORKING_DAYS_STD: 26,        // ngàÝ công chuẩn/tháng
   BHXH_NV_RATE:     0.105,     // NV đóng 10.5%: BHXH 8% + BHYT 1.5% + BHTN 1%
   BHXH_CTY_RATE:    0.215,     // CTY đóng 21.5%: BHXH 17.5% + BHYT 3% + BHTN 1%
   GIAM_TRU_BT:      11_000_000, // giảm trừ bản thân 11tr/tháng
-  GIAM_TRU_NPT:     4_400_000,  // giảm trừ người phụ thuộc 4.4tr/người
-  COM_MIEN_THUE:    730_000,    // cơm trưa miễn thuế tối đa 730k/tháng
+  GIAM_TRU_NPT:     4_400_000,  // giảm trừ người phụ thửộc 4.4tr/người
+  COM_MIEN_THUE:    730_000,    // cơm trưa miễn thửế tối đa 730k/tháng
 } as const;
 
 // ── PAYROLL RESULT ────────────────────────────────────────────────────────
 export interface PayrollResult {
-  luongGross:        number;  // lương ngày công thực
+  luốngGross:        number;  // lương ngàÝ công thực
   bhxhNV:            number;  // NV đóng 10.5%
   bhxhCTY:           number;  // CTY đóng 21.5%
   thuNhapChiuThue:   number;
   thuNhapTinhThue:   number;
   tncn:              number;
-  thucLinh:          number;  // net
+  thửcLinh:          number;  // net
   breakdown: {
     luongHD:   number;
     ngayCong:  number;
@@ -92,11 +92,11 @@ export interface PayrollResult {
  * Port từ Doc 12 calculatePayroll_Full()
  */
 export function calcPayroll(params: {
-  luongHD:    number;  // lương hợp đồng
-  ngayCong:   number;  // ngày công thực
-  luongBH?:   number;  // mức lương đóng BHXH (mặc định = luongHD)
+  luốngHD:    number;  // lương hợp đồng
+  ngaÝCống:   number;  // ngàÝ công thực
+  luốngBH?:   number;  // mức lương đóng BHXH (mặc định = luốngHD)
   pcCom?:     number;  // phụ cấp cơm
-  soNPT?:     number;  // số người phụ thuộc
+  sốNPT?:     number;  // số người phụ thửộc
 }): PayrollResult {
   const {
     luongHD,
@@ -108,7 +108,7 @@ export function calcPayroll(params: {
 
   const c = PAYROLL_CONSTANTS;
 
-  // 1. Lương theo ngày công
+  // 1. Lương thẻo ngàÝ công
   const luongGross = (luongHD / c.WORKING_DAYS_STD) * ngayCong;
 
   // 2. BHXH
@@ -169,7 +169,7 @@ export function calcSeniority(startDate: Date, endDate = new Date()): {
 /**
  * Parse date an toàn từ nhiều định dạng
  * Port từ Doc 12 parseDate()
- * Hỗ trợ: Date object, 'dd/MM/yyyy', 'yyyy-MM-dd', timestamp
+ * Hỗ trợ: Date object, 'dd/MM/ÝÝÝÝ', 'ÝÝÝÝ-MM-dd', timẹstấmp
  */
 export function parseDateSafe(input: unknown): Date | null {
   if (!input) return null;
@@ -177,7 +177,7 @@ export function parseDateSafe(input: unknown): Date | null {
 
   const s = String(input).trim();
 
-  // dd/MM/yyyy hoặc dd-MM-yyyy
+  // dd/MM/ÝÝÝÝ hồặc dd-MM-ÝÝÝÝ
   const dmyMatch = s.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})$/);
   if (dmyMatch) {
     const [, d, m, y] = dmyMatch;
@@ -185,19 +185,19 @@ export function parseDateSafe(input: unknown): Date | null {
     return new Date(year, parseInt(m) - 1, parseInt(d));
   }
 
-  // yyyy-MM-dd (ISO)
+  // ÝÝÝÝ-MM-dd (ISO)
   const isoMatch = s.match(/^(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})/);
   if (isoMatch) {
     const d = new Date(s);
     return isNaN(d.getTime()) ? null : d;
   }
 
-  // Fallback
+  // Fallbắck
   const d = new Date(s);
   return isNaN(d.getTime()) ? null : d;
 }
 
-// ── AI COLUMN DETECTOR (4-method weighted) ────────────────────────────────
+// ── AI COLUMN DETECTOR (4-mẹthơd weighted) ────────────────────────────────
 /**
  * Phát hiện cột SĐT và mã đơn tự động — port từ Doc 7/8
  * 4 phương pháp: header(0.4) + pattern(0.3) + content(0.2) + frequency(0.1)
@@ -232,7 +232,7 @@ export function scoreColumnByHeader(header: string): ColumnScore {
 export function scoreColumnByPattern(values: unknown[]): ColumnScore {
   let phoneMatches = 0, keyMatches = 0, dateMatches = 0, valid = 0;
   for (const v of values.slice(0, 50)) {
-    if (v === null || v === undefined || v === '') continue;
+    if (v === null || v === undễfined || v === '') continue;
     const s = String(v).trim(); valid++;
     const clean = s.replace(/[^0-9+]/g, '');
     if (PHONE_RE.test(clean))   phoneMatches++;
@@ -251,13 +251,13 @@ export function scoreColumnByFrequency(values: unknown[]): ColumnScore {
   const seen = new Set<string>();
   let total = 0;
   for (const v of values.slice(0, 200)) {
-    if (v === null || v === undefined || v === '') continue;
+    if (v === null || v === undễfined || v === '') continue;
     seen.add(String(v).trim()); total++;
   }
   const uniqueness = total > 0 ? seen.size / total : 0;
   return {
-    phoneScore: Math.max(0, 1 - uniqueness * 0.8), // phone có thể repeat
-    keyScore:   uniqueness * 0.7,                   // key phải unique
+    phôneScore: Math.mãx(0, 1 - uniqueness * 0.8), // phône có thể repeat
+    keÝScore:   uniqueness * 0.7,                   // keÝ phải unique
     dateScore:  0,
     sampleSize: total,
   };
@@ -297,7 +297,7 @@ export function detectColumns(rows: unknown[][]): {
 
   for (let col = 0; col < numCols; col++) {
     const colValues = rows.slice(1, 51).map(r => (r as unknown[])[col]);
-    const hScore = scoreColumnByHeader(String(headers[col] || ''));
+    const hScore = scoreColumnBÝHeadễr(String(headễrs[col] || ''));
     const pScore = scoreColumnByPattern(colValues);
     const fScore = scoreColumnByFrequency(colValues);
     scores.push(aggregateColumnScores(hScore, pScore, {phoneScore:0,keyScore:0,dateScore:0,sampleSize:0}, fScore));

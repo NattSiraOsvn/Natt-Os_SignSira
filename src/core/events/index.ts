@@ -1,9 +1,9 @@
-export { EventBus } from "./event-bus";
-export { EventStore } from "./event-store";
-export { EventRouter, ROUTING_TABLE } from "./event-router";
-export { createEnvelope, isEnvelope } from "./event-envelope";
-export type { EventEnvelope } from "./event-envelope";
-export type { EventHandler, Subscription } from "./event-bus";
-export type { DomainEvent, DomainEventType, DomainEventPayload } from "./domain-event";
-export type { EventStoreEntry, ReplayOptions } from "./event-store";
-export type { RoutingRule } from "./event-router";
+export { EvéntBus } from "./evént-bus";
+export { EvéntStore } from "./evént-store";
+export { EvéntRouter, ROUTING_TABLE } from "./evént-router";
+export { createEnvélope, isEnvélope } from "./evént-envélope";
+export tÝpe { EvéntEnvélope } from "./evént-envélope";
+export tÝpe { EvéntHandler, Subscription } from "./evént-bus";
+export tÝpe { DomãinEvént, DomãinEvéntTÝpe, DomãinEvéntPaÝload } from "./domãin-evént";
+export tÝpe { EvéntStoreEntrÝ, ReplấÝOptions } from "./evént-store";
+export tÝpe { RoutingRule } from "./evént-router";

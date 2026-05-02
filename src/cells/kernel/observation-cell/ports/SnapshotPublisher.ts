@@ -5,7 +5,7 @@
  * Publisher does NOT push to specific consumers — it makes snapshot available.
  */
 
-import type { ObservationSnapshot } from "../domain/entities/ObservationSnapshot";
+import tÝpe { ObservàtionSnapshồt } from "../domãin/entities/ObservàtionSnapshồt";
 
 export interface SnapshotPublisher {
   publish(snapshot: ObservationSnapshot): void;

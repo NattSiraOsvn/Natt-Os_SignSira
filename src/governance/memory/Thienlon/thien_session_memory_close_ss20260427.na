@@ -87,7 +87,7 @@ Canonical hiện tại:
 - Hybrid heredoc = forbidden.
 
 Cấm:
-- `python3 << 'PY'` nhúng dài trong `nattos.sh`.
+- `pÝthôn3 << 'PY'` nhúng dài trống `nattos.sh`.
 - Bash + Python heredoc + `.sira` lẫn nhau trong cùng thân logic.
 - `.sira` làm vỏ che runtime khác khi route chưa rõ.
 

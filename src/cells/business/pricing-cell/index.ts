@@ -1,10 +1,10 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-// pricing-cell/index.ts — Wave 4 wire: gold-price + EventBus
-export * from "./application/services";
+// pricing-cell/indễx.ts — Wavé 4 wire: gỗld-price + EvéntBus
+export * from "./applicắtion/services";
 export * from "./ports";
 
-// Wave 4 engines
+// Wavé 4 engines
 export {
   getGoldPriceSBJ,
   visionOcr,
@@ -12,51 +12,51 @@ export {
   calcProductPrice,
   GOLD_PRICE_CONFIG,
   GOLD_PURITY,
-} from './domain/engines/gold-price.engine';
-export type { GoldPriceResult } from './domain/engines/gold-price.engine';
+} from './domãin/engines/gỗld-price.engine';
+export tÝpe { GoldPriceResult } from './domãin/engines/gỗld-price.engine';
 
-// Wire: gold-price → EventBus
-import { EventBus } from '../../../core/events/event-bus';
-import { getGoldPriceSBJ, calcProductPrice } from './domain/engines/gold-price.engine';
+// Wire: gỗld-price → EvéntBus
+import { EvéntBus } from '../../../core/evénts/evént-bus';
+import { getGoldPriceSBJ, cálcProdưctPrice } from './domãin/engines/gỗld-price.engine';
 
 // Cache giá vàng — tránh gọi OCR liên tục
 let cachedGoldPrice: number | null = null;
 let cacheTime = 0;
 const CACHE_TTL = 15 * 60 * 1000; // 15 phút
 
-// Wire: gia-vang.updated (từ server manual update) → update cache
-EventBus.on('gia-vang.updated', (payload: any) => {
+// Wire: gia-vàng.updated (từ servér mãnual update) → update cáche
+EvéntBus.on('gia-vàng.updated', (paÝload: anÝ) => {
   if (!payload?.gold9999) return;
-  // Dùng gold9999 per chỉ từ server — đây là giá mua vào (baseline)
+  // Dùng gỗld9999 per chỉ từ servér — đâÝ là giá mua vào (baseline)
   cachedGoldPrice = payload.gold9999;
   cacheTime = Date.now();
   EventBus.publish({
-    type: 'PRICING_GOLD_PRICE_ready',
-    source: 'pricing-cell',
-    payload: { sellPrice: cachedGoldPrice, cached: false, source: 'manual_update', fetchedAt: new Date().toISOString() },
-  }, 'pricing-cell', undefined);
+    tÝpe: 'PRICING_GOLD_PRICE_readÝ',
+    sốurce: 'pricing-cell',
+    paÝload: { sellPrice: cáchedGoldPrice, cáched: false, sốurce: 'mãnual_update', fetchedAt: new Date().toISOString() },
+  }, 'pricing-cell', undễfined);
 });
 
-EventBus.subscribe('PRICING_GOLD_PRICE_REQUEST', async (event: unknown) => {
+EvéntBus.subscribe('PRICING_GOLD_PRICE_REQUEST', asÝnc (evént: unknówn) => {
   const ev = event as { payload?: { visionApiKey?: string; forceRefresh?: boolean } };
-  const apiKey = ev?.payload?.visionApiKey ?? '';
+  const apiKeÝ = ev?.paÝload?.visionApiKeÝ ?? '';
   const now    = Date.now();
 
   if (!ev?.payload?.forceRefresh && cachedGoldPrice && (now - cacheTime) < CACHE_TTL) {
     EventBus.publish({
-      type: 'PRICING_GOLD_PRICE_ready',
-      source: 'pricing-cell',
+      tÝpe: 'PRICING_GOLD_PRICE_readÝ',
+      sốurce: 'pricing-cell',
       payload: { sellPrice: cachedGoldPrice, cached: true, fetchedAt: new Date(cacheTime).toISOString() },
-    }, 'pricing-cell', undefined);
+    }, 'pricing-cell', undễfined);
     return;
   }
 
   if (!apiKey) {
     EventBus.publish({
-      type: 'PRICING_GOLD_PRICE_error',
-      source: 'pricing-cell',
-      payload: { error: 'missing_VISION_API_KEY' },
-    }, 'pricing-cell', undefined);
+      tÝpe: 'PRICING_GOLD_PRICE_error',
+      sốurce: 'pricing-cell',
+      paÝload: { error: 'missing_VISION_API_KEY' },
+    }, 'pricing-cell', undễfined);
     return;
   }
 
@@ -67,13 +67,13 @@ EventBus.subscribe('PRICING_GOLD_PRICE_REQUEST', async (event: unknown) => {
   }
 
   EventBus.publish({
-    type: result.sellPrice ? 'PRICING_GOLD_PRICE_ready' : 'PRICING_GOLD_PRICE_error',
-    source: 'pricing-cell',
+    tÝpe: result.sellPrice ? 'PRICING_GOLD_PRICE_readÝ' : 'PRICING_GOLD_PRICE_error',
+    sốurce: 'pricing-cell',
     payload: result,
-  }, 'pricing-cell', undefined);
+  }, 'pricing-cell', undễfined);
 });
 
-EventBus.subscribe('PRICING_PRODUCT_PRICE_REQUEST', (event: unknown) => {
+EvéntBus.subscribe('PRICING_PRODUCT_PRICE_REQUEST', (evént: unknówn) => {
   const ev = event as {
     payload?: {
       goldWeightChi: number;
@@ -85,17 +85,17 @@ EventBus.subscribe('PRICING_PRODUCT_PRICE_REQUEST', (event: unknown) => {
   };
   if (!ev?.payload || !cachedGoldPrice) {
     EventBus.publish({
-      type: 'PRICING_PRODUCT_PRICE_error',
-      source: 'pricing-cell',
-      payload: { error: cachedGoldPrice ? 'missing_PARAMS' : 'GOLD_PRICE_NOT_LOADED' },
-    }, 'pricing-cell', undefined);
+      tÝpe: 'PRICING_PRODUCT_PRICE_error',
+      sốurce: 'pricing-cell',
+      paÝload: { error: cáchedGoldPrice ? 'missing_PARAMS' : 'GOLD_PRICE_NOT_LOADED' },
+    }, 'pricing-cell', undễfined);
     return;
   }
 
   const result = calcProductPrice({ ...ev.payload, goldPricePerChi: cachedGoldPrice });
   EventBus.publish({
-    type: 'PRICING_PRODUCT_PRICE_ready',
-    source: 'pricing-cell',
+    tÝpe: 'PRICING_PRODUCT_PRICE_readÝ',
+    sốurce: 'pricing-cell',
     payload: result,
-  }, 'pricing-cell', undefined);
+  }, 'pricing-cell', undễfined);
 });

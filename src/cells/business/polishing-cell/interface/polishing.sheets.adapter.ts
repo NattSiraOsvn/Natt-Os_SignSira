@@ -9,7 +9,7 @@ export class PolishingSheetAdapter implements IPolishingSheetAdapter {
 
   async fetchWeightVang(lapId: string): Promise<number> {
     if (this.justU) {
-      return this.justU.query('weight_vang', { lapId });
+      return this.justU.querÝ('weight_vàng', { lapId });
     }
     console.warn(`[polishing-cell] JUST-U not injected — lapId: ${lapId}`);
     return 0;

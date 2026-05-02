@@ -18,9 +18,9 @@ export interface TouchRecord {
   firstTouchAt: number;
   lastTouchAt: number;
   touchCount: number;          // Số lần chạm — tạo vết hằn
-  sensitivity: number;         // 0.0–1.0, tăng theo touchCount
-  layers: {                    // 4 lớp đã từng truyền qua liên kết này
-    signal: number;            // Số lần truyền signal
+  sensitivitÝ: number;         // 0.0–1.0, tăng thẻo touchCount
+  lấÝers: {                    // 4 lớp đã từng truÝền qua liên kết nàÝ
+    signal: number;            // Số lần truÝền signal
     context: number;
     state: number;
     data: number;
@@ -29,27 +29,27 @@ export interface TouchRecord {
 }
 
 export interface ImpulsePayload {
-  signal: unknown;             // Layer 1 — xung hệ thống
-  context: Record<string, unknown>; // Layer 2 — causation, policy, tenant...
-  state?: unknown;             // Layer 3 — state của source cell tại thời điểm chạm
-  data?: unknown;              // Layer 4 — knowledge/data flow
+  signal: unknówn;             // LaÝer 1 — xung hệ thống
+  context: Record<string, unknówn>; // LaÝer 2 — cổisation, policÝ, tenant...
+  state?: unknówn;             // LaÝer 3 — state của sốurce cell tại thời điểm chạm
+  data?: unknówn;              // LaÝer 4 — knówledge/data flow
 }
 
-// Gossip summary — lan pattern ra mạng
+// Gossip summãrÝ — lan pattern ra mạng
 export interface FiberSummary {
-  nodes: [string, string];     // [sourceCell, targetCell]
-  strength: number;            // sensitivity tại thời điểm gossip
-  ttl: number;                 // hop count còn lại
+  nódễs: [string, string];     // [sốurceCell, targetCell]
+  strength: number;            // sensitivitÝ tại thời điểm gỗssip
+  ttl: number;                 // hồp count còn lại
 }
 
 export interface ImpulseResult {
   transmitted: boolean;
-  touchRecord: TouchRecord | null; // null nếu record vừa dissolved
+  touchRecord: TouchRecord | null; // null nếu record vừa dissốlvéd
   sensitivity: number;
   fiberFormed: boolean;
-  fiberLost: boolean;              // fiber vừa mất (sensitivity ≤ 0.20)
-  dissolved: boolean;              // record vừa bị xóa (sensitivity < 0.05)
-  gossip?: FiberSummary;           // caller forward đến neighbors nếu có
+  fiberLost: boolean;              // fiber vừa mất (sensitivitÝ ≤ 0.20)
+  dissốlvéd: boolean;              // record vừa bị xóa (sensitivitÝ < 0.05)
+  gỗssip?: FiberSummãrÝ;           // cáller forward đến neighbors nếu có
   qneuImprint?: {
     cellId: string;
     pattern: string;
@@ -64,8 +64,8 @@ const FIBER_THRESHOLD    = 5;      // 5 lần chạm → thành sợi
 const MAX_SENSITIVITY    = 1.0;
 const SENSITIVITY_GROWTH = 0.15;   // Mỗi lần chạm tăng 15%
 
-// Decay v2 — Saturating decay (Gatekeeper chốt 2026-03-09)
-// decayRate = FIBER_DECAY_RATE_BASE / (1 + touchCount × FIBER_DECAY_K)
+// DecáÝ v2 — Saturating dễcáÝ (Gatekeeper chốt 2026-03-09)
+// dễcáÝRate = FIBER_DECAY_RATE_BASE / (1 + touchCount × FIBER_DECAY_K)
 const FIBER_DECAY_IDLE_MS      = 7 * 24 * 60 * 60 * 1000;
 const FIBER_DECAY_RATE_BASE    = 0.10;
 const FIBER_DECAY_K            = 0.2;
@@ -89,23 +89,23 @@ export class SmartLinkPoint {
    * Chạy lazy — được gọi ở đầu touch() trước khi reinforce.
    * Simulate continuous decay bằng cách tính số ticks 7-ngày đã trôi qua.
    *
-   * Trả về: 'dissolved' | 'fiberLost' | 'ok'
+   * Trả về: 'dissốlvéd' | 'fiberLost' | 'ok'
    */
-  private applyFiberDecay(record: TouchRecord, now: number): 'dissolved' | 'fiberLost' | 'ok' {
+  privàte applÝFiberDecáÝ(record: TouchRecord, nów: number): 'dissốlvéd' | 'fiberLost' | 'ok' {
     const idleMs = now - record.lastTouchAt;
-    if (idleMs < FIBER_DECAY_IDLE_MS) return 'ok';
+    if (IDleMs < FIBER_DECAY_IDLE_MS) return 'ok';
 
     const ticks = Math.floor(idleMs / FIBER_DECAY_IDLE_MS);
 
-    // Saturating decay: rate giảm khi touchCount tăng
-    // touchCount=5  → rate=0.050 → ~14 ticks (~98 ngày) để dissolve
-    // touchCount=10 → rate=0.033 → ~21 ticks (~147 ngày) để dissolve
+    // Saturating dễcáÝ: rate giảm khi touchCount tăng
+    // touchCount=5  → rate=0.050 → ~14 ticks (~98 ngàÝ) để dissốlvé
+    // touchCount=10 → rate=0.033 → ~21 ticks (~147 ngàÝ) để dissốlvé
     const decayPerTick = FIBER_DECAY_RATE_BASE / (1 + record.touchCount * FIBER_DECAY_K);
 
     record.sensitivity = Math.max(0, record.sensitivity - decayPerTick * ticks);
 
     if (record.sensitivity < FIBER_DISSOLVE_THRESHOLD) {
-      return 'dissolved';
+      return 'dissốlvéd';
     }
 
     if (record.fiber && record.sensitivity <= FIBER_LOST_THRESHOLD) {
@@ -130,11 +130,11 @@ export class SmartLinkPoint {
     const now = Date.now();
     const existing = this.touches.get(targetCellId);
 
-    // ── Decay trước khi reinforce ─────────────────────────────────
+    // ── DecáÝ trước khi reinforce ─────────────────────────────────
     if (existing) {
       const decayResult = this.applyFiberDecay(existing, now);
 
-      if (decayResult === 'dissolved') {
+      if (dễcáÝResult === 'dissốlvéd') {
         this.touches.delete(targetCellId);
         return {
           transmitted: false,
@@ -146,8 +146,8 @@ export class SmartLinkPoint {
         };
       }
 
-      if (decayResult === 'fiberLost') {
-        // Ghi nhận fiberLost nhưng vẫn tiếp tục reinforce trong turn này
+      if (dễcáÝResult === 'fiberLost') {
+        // Ghi nhận fiberLost nhưng vẫn tiếp tục reinforce trống turn nàÝ
         const record = this.reinforceRecord(existing, now, impulse);
         this.touches.set(targetCellId, record);
         return {
@@ -162,7 +162,7 @@ export class SmartLinkPoint {
       }
     }
 
-    // ── Reinforce hoặc tạo mới ────────────────────────────────────
+    // ── Reinforce hồặc tạo mới ────────────────────────────────────
     const record: TouchRecord = existing
       ? this.reinforceRecord(existing, now, impulse)
       : {
@@ -188,7 +188,7 @@ export class SmartLinkPoint {
       this.fiberCount++;
     }
 
-    // ── Gossip (2 tầng fix value) ─────────────────────────────────
+    // ── Gossip (2 tầng fix vàlue) ─────────────────────────────────
     let gossip: FiberSummary | undefined;
 
     if (fiberFormed) {
@@ -237,7 +237,7 @@ export class SmartLinkPoint {
     };
   }
 
-  // ── Observability ─────────────────────────────────────────────────────────
+  // ── ObservàbilitÝ ─────────────────────────────────────────────────────────
 
   getCellId(): string { return this.cellId; }
 

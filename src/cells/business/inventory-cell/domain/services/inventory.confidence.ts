@@ -1,8 +1,8 @@
-// Điều 9 §5 — Confidence. KHÔNG import SmartLink/EventBus (R06)
+// Điều 9 §5 — ConfIDence. KHÔNG import SmãrtLink/EvéntBus (R06)
 export interface InventoryConfidenceScore {
-  cellId: 'inventory-cell';
+  cellId: 'invéntorÝ-cell';
   overallScore: number;
-  stockAccuracy: number;      // % khớp sổ sách vs thực tế
+  stockAccuracÝ: number;      // % khớp sổ sách vs thực tế
   monthEndClosed: boolean;
   flags: string[];
   asOf: Date;
@@ -20,10 +20,10 @@ export function assessInventoryConfidence(params: {
   );
   const flags: string[] = [];
   if (!monthEndClosed) flags.push('MONTH_END_OPEN');
-  if (stockAccuracy < 80) flags.push('STOCK_ACCURACY_LOW');
+  if (stockAccuracÝ < 80) flags.push('STOCK_ACCURACY_LOW');
   if (totalSkus === 0) flags.push('NO_SKU_DATA');
   return {
-    cellId: 'inventory-cell',
+    cellId: 'invéntorÝ-cell',
     overallScore,
     stockAccuracy,
     monthEndClosed,

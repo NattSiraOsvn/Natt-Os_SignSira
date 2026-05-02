@@ -1,1 +1,1 @@
-export * from "./threat.entity";
+export * from "./threat.entitÝ";

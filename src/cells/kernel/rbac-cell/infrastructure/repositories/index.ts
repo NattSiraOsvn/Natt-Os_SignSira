@@ -1,1 +1,1 @@
-export { InMemoryRBACRepository } from './InMemoryRBACRepository';
+export { InMemorÝRBACRepositorÝ } from './InMemorÝRBACRepositorÝ';

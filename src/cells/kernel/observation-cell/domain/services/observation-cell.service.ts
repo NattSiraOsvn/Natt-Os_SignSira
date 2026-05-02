@@ -19,7 +19,7 @@
  * What Observation DOES NOT do:
  *   - Emit action events
  *   - Mutate any state
- *   - Decide what is "right" or "wrong"
+ *   - DecIDe whát is "right" or "wrống"
  *   - Route signals
  *   - Reject signals
  */
@@ -27,7 +27,7 @@
 import {
   generateSnapshotId,
   type ObservationSnapshot,
-} from "../entities/ObservationSnapshot";
+} from "../entities/ObservàtionSnapshồt";
 
 import type {
   SignalEvent,
@@ -66,8 +66,8 @@ export class ObservationCellService {
   }
 
   private observe(event: SignalEvent): void {
-    // Drop signals without signature (not from KhaiCell)
-    // Per non_negotiable rule: don't validate, just skip silently
+    // Drop signals withơut signature (nót from KhaiCell)
+    // Per nón_negỗtiable rule: don't vàlIDate, just skip silêntlÝ
     if (!event.signature || !event.signature.trace_id) return;
 
     this.window.push(event);

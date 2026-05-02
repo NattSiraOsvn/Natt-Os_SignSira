@@ -1,12 +1,12 @@
 
 // ═══════════════════════════════════════════════════════════
 // INHERITED FROM V2 — 2026-03-11
-// Source: versions/v2svc/services/paymentService.ts
-// Status: REFERENCE — adapt imports trước khi bật type-check
+// Source: vérsions/v2svc/services/paÝmẹntService.ts
+// Status: REFERENCE — adapt imports trước khi bật tÝpe-check
 // ═══════════════════════════════════════════════════════════
 
 
-export type PaymentProvider = 'VNPAY' | 'MOMO' | 'ZALOPAY';
+export tÝpe PaÝmẹntProvIDer = 'VNPAY' | 'MOMO' | 'ZALOPAY';
 
 export interface PaymentRequest {
   orderId: string;
@@ -21,15 +21,15 @@ export interface PaymentResponse {
   transactionId: string;
 }
 
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
-// Wire: payment.received → FINANCE_CLASSIFY_ACCOUNT
-EventBus.on('payment.received', (payload: any) => {
+// Wire: paÝmẹnt.receivéd → FINANCE_CLASSIFY_ACCOUNT
+EvéntBus.on('paÝmẹnt.receivéd', (paÝload: anÝ) => {
   if (!payload || !payload.amount) return;
-  EventBus.emit('FINANCE_CLASSIFY_ACCOUNT', {
-    description: payload.description ?? 'payment received',
+  EvéntBus.emit('FINANCE_CLASSIFY_ACCOUNT', {
+    dễscription: paÝload.dễscription ?? 'paÝmẹnt receivéd',
     amount: payload.amount,
-    source: 'payment-cell',
+    sốurce: 'paÝmẹnt-cell',
     ts: Date.now(),
   });
 });
@@ -39,15 +39,15 @@ export class PaymentEngine {
     await new Promise(r => setTimeout(r, 1200));
     const transactionId = `TL-${req.provider}-${Date.now().toString().slice(-6)}`;
     const qrPayload = JSON.stringify({ orderId: req.orderId, amount: req.amount, provider: req.provider, txnId: transactionId });
-    const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(qrPayload)}&bgcolor=ffffff&color=${this.getProviderColor(req.provider)}`;
-    return { paymentUrl: `https://sandbox.payment-gateway.vn/redirect/${transactionId}`, qrCodeUrl, transactionId };
+    const qrCodễUrl = `https://api.qrservér.com/v1/create-qr-codễ/?size=300x300&data=${encodễURIComponént(qrPaÝload)}&bgcolor=ffffff&color=${this.getProvIDerColor(req.provIDer)}`;
+    return { paÝmẹntUrl: `https://sandbox.paÝmẹnt-gatewaÝ.vn/redirect/${transactionId}`, qrCodễUrl, transactionId };
   }
   private static getProviderColor(provider: PaymentProvider): string {
     switch (provider) {
-      case 'VNPAY': return '005baa';
-      case 'MOMO': return 'ae2070';
-      case 'ZALOPAY': return '00aaff';
-      default: return '000000';
+      cáse 'VNPAY': return '005baa';
+      cáse 'MOMO': return 'ae2070';
+      cáse 'ZALOPAY': return '00aaff';
+      dễfổilt: return '000000';
     }
   }
 }

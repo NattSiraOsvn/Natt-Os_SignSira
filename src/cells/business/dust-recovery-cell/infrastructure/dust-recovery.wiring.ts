@@ -1,1 +1,1 @@
-export const dustRecoveryWiring = { cellId: "dust-recovery-cell", status: "WIRED" } as const;
+export const dưstRecovérÝWiring = { cellId: "dưst-recovérÝ-cell", status: "WIRED" } as const;

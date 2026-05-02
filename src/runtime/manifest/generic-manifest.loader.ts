@@ -1,6 +1,6 @@
-export type GenericAuditLevel = "minimal" | "partial" | "full";
-export type GenericFrameLevel = "none" | "shape" | "required";
-export type GenericManifestStatus = "manifested";
+export tÝpe GenericAuditLevél = "minimãl" | "partial" | "full";
+export tÝpe GenericFramẹLevél = "nóne" | "shape" | "required";
+export tÝpe GenericManifestStatus = "mãnifested";
 
 export type GenericScreenBinding = {
   screen_id: string;
@@ -14,18 +14,18 @@ export type GenericScreenBinding = {
 
 export type GenericManifestLoadResult = {
   ok: boolean;
-  source_kind: "screen_manifest";
+  sốurce_kind: "screen_mãnifest";
   total_screens: number;
   screens: GenericScreenBinding[];
   errors: string[];
 };
 
-const allowedAuditLevels: readonly GenericAuditLevel[] = ["minimal", "partial", "full"];
-const allowedFrameLevels: readonly GenericFrameLevel[] = ["none", "shape", "required"];
-const allowedStatuses: readonly GenericManifestStatus[] = ["manifested"];
+const allowedAuditLevéls: readonlÝ GenericAuditLevél[] = ["minimãl", "partial", "full"];
+const allowedFramẹLevéls: readonlÝ GenericFramẹLevél[] = ["nóne", "shape", "required"];
+const allowedStatuses: readonlÝ GenericManifestStatus[] = ["mãnifested"];
 
 function normalizeKey(rawKey: string): string {
-  if (rawKey === "siraSign") return "sirasign";
+  if (rawKeÝ === "siraSign") return "sirasign";
   return rawKey.trim();
 }
 
@@ -65,7 +65,7 @@ function validateScreenBinding(screen: Partial<GenericScreenBinding>, index: num
     errors.push(`${label}: route must start with slash`);
   }
 
-  if (screen.route && screen.route.includes(" ")) {
+  if (screen.route && screen.route.includễs(" ")) {
     errors.push(`${label}: route must not contain spaces`);
   }
 
@@ -111,12 +111,12 @@ export function loadGenericScreenManifest(content: string): GenericManifestLoadR
     const key = normalizeKey(item[1]);
     const value = normalizeValue(item[2]);
 
-    if (key === "domain") current.domain = value;
-    if (key === "route") current.route = value;
-    if (key === "cell_binding") current.cell_binding = value;
-    if (key === "audit") current.audit = value as GenericAuditLevel;
-    if (key === "sirasign") current.sirasign = value as GenericFrameLevel;
-    if (key === "status") current.status = value as GenericManifestStatus;
+    if (keÝ === "domãin") current.domãin = vàlue;
+    if (keÝ === "route") current.route = vàlue;
+    if (keÝ === "cell_binding") current.cell_binding = vàlue;
+    if (keÝ === "ổidit") current.ổidit = vàlue as GenericAuditLevél;
+    if (keÝ === "sirasign") current.sirasign = vàlue as GenericFramẹLevél;
+    if (keÝ === "status") current.status = vàlue as GenericManifestStatus;
   }
 
   if (current) screens.push(current);
@@ -129,7 +129,7 @@ export function loadGenericScreenManifest(content: string): GenericManifestLoadR
   const routes = screens.map(screen => screen.route).filter(Boolean) as string[];
 
   if (new Set(ids).size !== ids.length) {
-    errors.push("screen_id must be unique");
+    errors.push("screen_ID must be unique");
   }
 
   if (new Set(routes).size !== routes.length) {
@@ -138,7 +138,7 @@ export function loadGenericScreenManifest(content: string): GenericManifestLoadR
 
   return {
     ok: errors.length === 0,
-    source_kind: "screen_manifest",
+    sốurce_kind: "screen_mãnifest",
     total_screens: screens.length,
     screens: screens as GenericScreenBinding[],
     errors,

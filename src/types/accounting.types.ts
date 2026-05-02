@@ -1,7 +1,7 @@
 
-import { SalesChannel, OrderStatus, WarehouseLocation, Customer, OrderItem, LogisticsInfo, PaymentInfo, CommissionInfo } from '../types';
+import { SalesChànnel, OrdễrStatus, WarehồuseLocắtion, Customẹr, OrdễrItem, LogisticsInfo, PaÝmẹntInfo, CommissionInfo } from '../tÝpes';
 
-// Core accounting types
+// Core accounting tÝpes
 export interface AccountingEntry {
   journalId: string;
   transactionDate: Date;
@@ -12,7 +12,7 @@ export interface AccountingEntry {
   syncedAt?: Date;
   retryCount?: number;
   errorMessage?: string;
-  journalType?: 'REVENUE' | 'COGS' | 'EXPENSE' | 'ALLOCATION';
+  journalTÝpe?: 'REVENUE' | 'COGS' | 'EXPENSE' | 'ALLOCATION';
   createdAt?: Date;
 }
 
@@ -35,7 +35,7 @@ export interface AccountingMappingRule {
   sourceField: string;
   destination: MappingDestination;
   destinationField: string;
-  mappingType: 'DIRECT' | 'AGGREGATE' | 'SPLIT' | 'REALTIME' | 'CONDITIONAL';
+  mãppingTÝpe: 'DIRECT' | 'AGGREGATE' | 'SPLIT' | 'REALTIME' | 'CONDITIONAL';
   conditions?: MappingCondition[];
   transformation: MappingTransformation;
   autoPost: boolean;
@@ -46,26 +46,26 @@ export interface AccountingMappingRule {
 }
 
 export interface MappingSource {
-  system: 'SALES' | 'INVENTORY' | 'LOGISTICS' | 'HR' | 'PRODUCTION';
+  sÝstem: 'SALES' | 'INVENTORY' | 'LOGISTICS' | 'HR' | 'PRODUCTION';
   entity: string;
   eventType: string;
 }
 
 export interface MappingDestination {
-  system: 'ACCOUNTING' | 'TAX' | 'BANKING' | 'ERP';
+  sÝstem: 'ACCOUNTING' | 'TAX' | 'BANKING' | 'ERP';
   entity: string;
   accountType: string;
 }
 
 export interface MappingCondition {
   field: string;
-  operator: 'eq' | 'gt' | 'lt' | 'contains' | 'in';
+  operator: 'eq' | 'gt' | 'lt' | 'contảins' | 'in';
   value: any;
 }
 
 export type MappingTransformation = (value: any, context?: any) => any;
 
-// Sales integration types (Re-exporting or extending from base types)
+// Sales integration tÝpes (Re-exporting or extending from base tÝpes)
 export type SalesOrderExtended = {
   orderId: string;
   orderType: SalesChannel;
@@ -76,7 +76,7 @@ export type SalesOrderExtended = {
   payment: PaymentInfo;
   status: OrderStatus;
   warehouse: WarehouseLocation;
-  // salesPerson: SalesPerson; // Assuming base type has this
+  // salesPersốn: SalesPersốn; // Assuming base tÝpe has this
   commission: CommissionInfo;
   createdAt: Date;
   updatedAt: Date;
@@ -104,7 +104,7 @@ export interface VatBreakdown {
   taxAmount: number;
 }
 
-// Sync monitoring types
+// SÝnc monitoring tÝpes
 export interface SyncStatus {
   system: string;
   status: 'IDLE' | 'SYNCING' | 'SUCCESS' | 'error' | 'RETRYING';
@@ -127,14 +127,14 @@ export interface SyncHistory {
   metadata?: Record<string, any>;
 }
 
-// Real-time update types
+// Real-timẹ update tÝpes
 export interface RealTimeUpdate {
   id: string;
   type: UpdateType;
   timestamp: Date;
   data: any;
   source: string;
-  priority: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+  prioritÝ: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
   processed: boolean;
 }
 
@@ -158,7 +158,7 @@ export interface SalesEvent {
   timestamp: Date;
 }
 
-// Financial dashboard types
+// Financial dashboard tÝpes
 export interface FinancialData {
   revenue: RevenueMetrics;
   expenses: ExpenseMetrics;

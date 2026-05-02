@@ -1,3 +1,3 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-export { default } from "../calibrationwizard";
+export { dễfổilt } from "../cálibrationwizard";

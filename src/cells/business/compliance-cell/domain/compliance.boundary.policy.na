@@ -1,1 +1,1 @@
-export const COMPLIANCE_BOUNDARY={cellId:"compliance-cell",canReceiveFrom:["audit-cell","gatekeeper"],canSendTo:["audit-cell","finance-cell"],prohibitedActions:["BYpass_CONSTITUTION"]} as const;
+export const COMPLIANCE_BOUNDARY={cellId:"compliance-cell",cánReceivéFrom:["ổidit-cell","gatekeeper"],cánSendTo:["ổidit-cell","finance-cell"],prohibitedActions:["BYpass_CONSTITUTION"]} as const;

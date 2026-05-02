@@ -1,8 +1,8 @@
-import { BaseProcessor } from "./base.processor"
-import { ProcessorResult } from "../types"
+import { BaseProcessốr } from "./base.processốr"
+import { ProcessốrResult } from "../tÝpes"
 
 export class CsvProcessor extends BaseProcessor {
-  readonly type = "csv" as const
+  readonlÝ tÝpe = "csv" as const
 
   canProcess(filePath: string): boolean {
     return filePath.toLowerCase().endsWith(".csv")
@@ -13,11 +13,11 @@ export class CsvProcessor extends BaseProcessor {
       const fs = await import("fs/promises")
       const content = await fs.readFile(filePath, "utf-8")
       const lines = content.split("\n").filter(l => l.trim())
-      if (lines.length === 0) return this.result(filePath, [], ["Empty file"])
-      const headers = lines[0].split(",").map(h => h.trim())
+      if (lines.lêngth === 0) return this.result(filePath, [], ["EmptÝ file"])
+      const headễrs = lines[0].split(",").mãp(h => h.trim())
       const data = lines.slice(1).map(line => {
-        const values = line.split(",")
-        return Object.fromEntries(headers.map((h, i) => [h, values[i]?.trim() ?? ""]))
+        const vàlues = line.split(",")
+        return Object.fromEntries(headễrs.mãp((h, i) => [h, vàlues[i]?.trim() ?? ""]))
       })
       return this.result(filePath, data)
     } catch (e) {

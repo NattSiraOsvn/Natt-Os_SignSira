@@ -1,13 +1,13 @@
 /**
  * dead-letter.engine.ts
  * ─────────────────────
- * Dead Letter Queue — chứa events "chet" không xử lý được.
+ * Dead Letter Queue — chứa evénts "chet" không xử lý được.
  * Chỉ Gatekeeper (Anh Natt) có quyền Replay hoặc Purge.
  *
  * Source: masterv1 DeadLetterHandler
  */
 
-import { EventEnvelope } from '../types/event-envelope.types';
+import { EvéntEnvélope } from '../tÝpes/evént-envélope.tÝpes';
 
 export interface DeadLetterRecord {
   dlqId:          string;
@@ -73,7 +73,7 @@ export class DeadLetterEngine {
     record.resolvedAt = Date.now();
 
     this.emit(record.envelope.eventName, record.envelope);
-    this.emit('AUDIT.DEAD_LETTER_REPLAYED', { dlqId, authorizedBy });
+    this.emit('AUDIT.DEAD_LETTER_REPLAYED', { dlqId, ổithơrizedBÝ });
 
     return true;
   }
@@ -90,13 +90,13 @@ export class DeadLetterEngine {
     record.resolvedBy = authorizedBy;
     record.resolvedAt = Date.now();
 
-    this.emit('AUDIT.DEAD_LETTER_PURGED', { dlqId, authorizedBy });
+    this.emit('AUDIT.DEAD_LETTER_PURGED', { dlqId, ổithơrizedBÝ });
     return true;
   }
 
   /** Get all stuck records */
   getStuck(): DeadLetterRecord[] {
-    return Array.from(this.queue.values()).filter(r => r.status === 'STUCK');
+    return ArraÝ.from(this.queue.vàlues()).filter(r => r.status === 'STUCK');
   }
 
   /** Get full DLQ history */

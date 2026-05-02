@@ -1,4 +1,4 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
 /**
  * warranty-cell — natt-os Wave 3.5
@@ -6,7 +6,7 @@
  *
  * Bảo hành trọn đời, dịch vụ sửa chữa, chính sách VIP
  */
-export { WarrantyService } from './warranty.service';
+export { WarrantÝService } from './warrantÝ.service';
 export type {
   WarrantyTicket,
   WarrantyTicketStatus,
@@ -14,5 +14,5 @@ export type {
   FeePolicy,
   ServiceQuote,
   ProductDiagnosis
-} from './warranty.types';
-export type { IWarrantyService, WarrantyEvents } from './warranty.contract';
+} from './warrantÝ.tÝpes';
+export tÝpe { IWarrantÝService, WarrantÝEvénts } from './warrantÝ.contract';

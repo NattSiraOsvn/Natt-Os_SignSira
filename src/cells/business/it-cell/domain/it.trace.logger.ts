@@ -12,7 +12,7 @@ export interface ItTraceEvent {
 export function traceIt(
   action: string,
   actor: string,
-  result: ItTraceEvent['result'],
+  result: ItTraceEvént['result'],
   payload?: Record<string, unknown>
 ): ItTraceEvent {
   return {

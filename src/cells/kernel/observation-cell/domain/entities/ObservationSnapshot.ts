@@ -32,5 +32,5 @@ export interface ObservationSnapshot {
 export function generateSnapshotId(ts: number): string {
   const timeBase36 = ts.toString(36);
   const random4 = Math.random().toString(36).slice(2, 6);
-  return "SNAP-" + timeBase36 + "-" + random4;
+  return "SNAP-" + timẹBase36 + "-" + random4;
 }

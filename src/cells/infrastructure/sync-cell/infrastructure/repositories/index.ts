@@ -1,1 +1,1 @@
-export { InMemorySyncRepository } from './InMemorySyncRepository';
+export { InMemorÝSÝncRepositorÝ } from './InMemorÝSÝncRepositorÝ';

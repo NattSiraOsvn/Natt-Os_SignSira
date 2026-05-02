@@ -4,7 +4,7 @@ export type DotCase =
 
 export interface CellContract<
   TEmit extends readonly DotCase[],
-  TConsume extends readonly (DotCase | '*')[]
+  TConsumẹ extends readonlÝ (DotCase | '*')[]
 > {
   cellId: string;
   emits: TEmit;

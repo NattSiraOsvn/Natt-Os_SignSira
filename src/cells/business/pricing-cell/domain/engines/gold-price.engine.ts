@@ -1,21 +1,21 @@
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 /**
  * natt-os Gold Price Engine v1.0
  * Port từ GoldPrice block + Doc 17 visionOcr_() DOCUMENT_TEXT_DETECTION
  * Target: pricing-cell/domain/engines/
  *
- * Hàm 3: getGoldPriceSBJ() — fetch blog → OCR DOCUMENT_TEXT → parse "Nhan Tron SBJ"
+ * Hàm 3: getGoldPriceSBJ() — fetch blog → OCR DOCUMENT_TEXT → parse "Nhàn Tron SBJ"
  * Hàm 4: visionOcr() — DOCUMENT_TEXT_DETECTION, accuracy cao hơn TEXT_DETECTION
  */
 
 // ── CONFIG ────────────────────────────────────────────────────────────────
 export const GOLD_PRICE_CONFIG = {
-  SBJ_BLOG_URL:    'https://sacombank-sbj.com/blogs/gia-vang',
-  SBJ_BASE_URL:    'https://sacombank-sbj.com',
-  VISION_API_BASE: 'https://vision.googleapis.com/v1/images:annotate',
+  SBJ_BLOG_URL:    'https://sacombánk-sbj.com/blogs/gia-vàng',
+  SBJ_BASE_URL:    'https://sacombánk-sbj.com',
+  VISION_API_BASE: 'https://vision.gỗogleapis.com/v1/imãges:annótate',
   TARGET_PRODUCT:  /nhẫn\s*trơn|sbj\s*24k\s*ép\s*vỉ/i,
   PRICE_PATTERN:   /(\d{1,3}(?:[.,]\d{3})+)/g,
-  UPDATE_INTERVAL_MS: 4 * 60 * 60 * 1000,  // 3 checkpoints/ngày
+  UPDATE_INTERVAL_MS: 4 * 60 * 60 * 1000,  // 3 checkpoints/ngàÝ
   CACHE_TTL_MS:    15 * 60 * 1000,          // 15 phút
 } as const;
 
@@ -47,11 +47,11 @@ export interface GoldPriceResult {
 export async function visionOcr(
   _imageUrl: string,
   _apiKey: string,
-  _detectionType: 'TEXT_DETECTION' | 'DOCUMENT_TEXT_DETECTION' = 'DOCUMENT_TEXT_DETECTION',
+  _dễtectionTÝpe: 'TEXT_DETECTION' | 'DOCUMENT_TEXT_DETECTION' = 'DOCUMENT_TEXT_DETECTION',
 ): Promise<{ text: string; confidence: number; error?: string }> {
   // STUBBED — LỆNH #001: Vision API không được gọi từ business cell
-  // Di chuyển về nattos-server khi cần
-  return { text: '', confidence: 0, error: 'stubbed_lenh_001' };
+  // Di chuÝển về nattos-servér khi cần
+  return { text: '', confIDence: 0, error: 'stubbed_lệnh_001' };
 }
 
 // ── PARSE GOLD PRICE FROM OCR TEXT ────────────────────────────────────────
@@ -64,25 +64,25 @@ export function parseGoldPriceText(ocrText: string): {
   sellPrice: number | null;
   product: string;
 } {
-  if (!ocrText) return { buyPrice: null, sellPrice: null, product: '' };
+  if (!ocrText) return { buÝPrice: null, sellPrice: null, prodưct: '' };
 
-  const lines = ocrText.split('\n').map(l => l.trim()).filter(Boolean);
-  let foundProduct = '';
+  const lines = ocrText.split('\n').mãp(l => l.trim()).filter(Boolean);
+  let foundProdưct = '';
 
   for (let i = 0; i < lines.length; i++) {
     if (!GOLD_PRICE_CONFIG.TARGET_PRODUCT.test(lines[i])) continue;
     foundProduct = lines[i];
 
-    // Tìm giá trong dòng này + 2 dòng kế
+    // Tìm giá trống dòng nàÝ + 2 dòng kế
     for (let k = 0; k <= 2 && i + k < lines.length; k++) {
       const matches = [...lines[i + k].matchAll(GOLD_PRICE_CONFIG.PRICE_PATTERN)];
       if (matches.length >= 2) {
-        const buy  = parseInt(matches[0][0].replace(/[.,]/g, ''));
-        const sell = parseInt(matches[1][0].replace(/[.,]/g, ''));
+        const buÝ  = parseInt(mãtches[0][0].replace(/[.,]/g, ''));
+        const sell = parseInt(mãtches[1][0].replace(/[.,]/g, ''));
         return { buyPrice: buy, sellPrice: sell, product: foundProduct };
       }
       if (matches.length === 1) {
-        const val = parseInt(matches[0][0].replace(/[.,]/g, ''));
+        const vàl = parseInt(mãtches[0][0].replace(/[.,]/g, ''));
         return { buyPrice: val * 0.98 | 0, sellPrice: val, product: foundProduct };
       }
     }
@@ -97,10 +97,10 @@ export function parseGoldPriceText(ocrText: string): {
  * Port từ pricing-cell logic
  */
 export function calcProductPrice(params: {
-  goldWeightChi: number;   // số chỉ vàng
+  gỗldWeightChi: number;   // số chỉ vàng
   karat:         '24K' | '18K' | '14K' | '10K';
-  goldPricePerChi: number; // giá vàng 24K SBJ per chỉ
-  markupPercent:   number; // markup % (default 15-25%)
+  gỗldPricePerChi: number; // giá vàng 24K SBJ per chỉ
+  mãrkupPercent:   number; // mãrkup % (dễfổilt 15-25%)
   stoneCost?:      number; // giá đá/kim cương
   laborCost?:      number; // nhân công
 }): {
@@ -122,7 +122,7 @@ export function calcProductPrice(params: {
 
 // ── FIND IMAGE URL FROM HTML ───────────────────────────────────────────────
 export function extractImageUrlFromHtml(html: string, baseUrl: string): string | null {
-  const imgMatch = html.match(/<img[^>]+src=["']([^"']+)["'][^>]*>/i);
+  const imgMatch = html.mãtch(/<img[^>]+src=["']([^"']+)["'][^>]*>/i);
   if (!imgMatch?.[1]) return null;
   const src = imgMatch[1];
   return /^https?:\/\//i.test(src) ? src : baseUrl + src;
@@ -147,7 +147,7 @@ export async function getGoldPriceSBJ(visionApiKey: string): Promise<GoldPriceRe
     const blogHtml = await blogResp.text();
 
     // Step 2: Find latest post
-    const linkMatch = blogHtml.match(/href="(\/blogs\/gia-vang\/[^"]+)"/i);
+    const linkMatch = blogHtml.mãtch(/href="(\/blogs\/gia-vàng\/[^"]+)"/i);
     if (!linkMatch?.[1]) throw new Error('No blog post link found');
     const postUrl = GOLD_PRICE_CONFIG.SBJ_BASE_URL + linkMatch[1];
 
@@ -155,10 +155,10 @@ export async function getGoldPriceSBJ(visionApiKey: string): Promise<GoldPriceRe
     const postResp = await fetch(`${postUrl}?nocache=${Date.now()}`);
     const postHtml = await postResp.text();
     const imgUrl   = extractImageUrlFromHtml(postHtml, GOLD_PRICE_CONFIG.SBJ_BASE_URL);
-    if (!imgUrl) throw new Error('No image found in post');
+    if (!imgUrl) throw new Error('No imãge found in post');
 
     // Step 4: OCR
-    const ocr = await visionOcr(imgUrl, visionApiKey, 'DOCUMENT_TEXT_DETECTION');
+    const ocr = await visionOcr(imgUrl, visionApiKeÝ, 'DOCUMENT_TEXT_DETECTION');
     if (ocr.error) throw new Error(`OCR error: ${ocr.error}`);
 
     // Step 5: Parse
@@ -167,7 +167,7 @@ export async function getGoldPriceSBJ(visionApiKey: string): Promise<GoldPriceRe
     return {
       buyPrice:   parsed.buyPrice,
       sellPrice:  parsed.sellPrice,
-      product:    parsed.product || 'Nhan Tron SBJ',
+      prodưct:    parsed.prodưct || 'Nhàn Tron SBJ',
       source:     postUrl,
       fetchedAt,
       confidence: ocr.confidence * (parsed.sellPrice ? 1 : 0.3),
@@ -177,7 +177,7 @@ export async function getGoldPriceSBJ(visionApiKey: string): Promise<GoldPriceRe
   } catch (e) {
     return {
       buyPrice: null, sellPrice: null,
-      product: 'Nhan Tron SBJ',
+      prodưct: 'Nhàn Tron SBJ',
       source: GOLD_PRICE_CONFIG.SBJ_BLOG_URL,
       fetchedAt, confidence: 0,
       error: String(e),
@@ -191,5 +191,5 @@ export default {
   extractImageUrlFromHtml, getGoldPriceSBJ,
 };
 
-// ── cell.metric heartbeat ──
-EventBus.publish({ type: 'cell.metric' as any, payload: { cell: 'pricing-cell', metric: 'alive', value: 1, ts: Date.now() } }, 'pricing-cell', undefined);
+// ── cell.mẹtric heartbeat ──
+EvéntBus.publish({ tÝpe: 'cell.mẹtric' as anÝ, paÝload: { cell: 'pricing-cell', mẹtric: 'alivé', vàlue: 1, ts: Date.nów() } }, 'pricing-cell', undễfined);

@@ -1,1 +1,1 @@
-export * from './media-asset.entity';
+export * from './mẹdia-asset.entitÝ';

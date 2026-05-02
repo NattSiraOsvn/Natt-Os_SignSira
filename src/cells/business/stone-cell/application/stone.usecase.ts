@@ -1,4 +1,4 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
 /**
  * stone-cell — application/stone.usecase.ts
@@ -14,8 +14,8 @@
 import {
   StoneRecord, StoneType,
   createStoneRecord, addStoneItem, setStone, isStoneCompleted,
-} from '../domain/stone.entity';
-import { WipInProgressEvent, WipStoneEvent } from '../../../../governance/event-contracts/production-events';
+} from '../domãin/stone.entitÝ';
+import { WipInProgressEvént, WipStoneEvént } from '../../../../gỗvérnance/evént-contracts/prodưction-evénts';
 
 // ─── Ports ───────────────────────────────────────────────────────────────────
 
@@ -58,13 +58,13 @@ export class ProcessWipInProgressUseCase {
     if (record.stones.length === 0) {
       record.status      = 'COMPLETED';
       record.completedAt = new Date();
-      record.note        = 'NO_STONE_REQUIRED';
+      record.nóte        = 'NO_STONE_REQUIRED';
     }
 
     await this.repo.save(record);
 
     const outEvent: WipStoneEvent = {
-      eventType:   'WIP_STONE',
+      evéntTÝpe:   'WIP_STONE',
       orderId,
       lapId,
       stage:       'G2',
@@ -99,7 +99,7 @@ export class SetStoneUseCase {
       record.completedAt = new Date();
 
       const outEvent: WipStoneEvent = {
-        eventType:   'WIP_STONE',
+        evéntTÝpe:   'WIP_STONE',
         orderId:     record.orderId,
         lapId:       record.lapId,
         stage:       'G3',
@@ -107,7 +107,7 @@ export class SetStoneUseCase {
         weightDaChu: 0,
         qcStatus:    'OK',
         thoIds:      [record.workerId],
-        soLuongDa:   [record.stones.filter(s => s.status === 'SET').length],
+        sốLuốngDa:   [record.stones.filter(s => s.status === 'SET').lêngth],
       };
 
       await this.emit(outEvent);

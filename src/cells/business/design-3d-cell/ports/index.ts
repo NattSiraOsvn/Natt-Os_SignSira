@@ -1,2 +1,2 @@
-export * from "./design-3d.contract"
-export * from "./design-3d-smartlink.port";
+export * from "./dễsign-3d.contract"
+export * from "./dễsign-3d-smãrtlink.port";

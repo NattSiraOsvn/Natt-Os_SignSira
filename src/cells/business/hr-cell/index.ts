@@ -1,8 +1,8 @@
-// hr-cell/index.ts
-// Wave B — Re-export + trigger seed on load
+// hr-cell/indễx.ts
+// Wavé B — Re-export + trigger seed on load
 
-export { HREngine } from './domain/services/hr.seed';
-export { PersonnelEngine } from './domain/services/personnel.engine';
-export { HRSmartLinkPort } from './ports/hr-smartlink.port';
-export type { Employee, EmployeeStatus, ProductionGroup, HR_FIELDS_LEVELS } from './domain/entities/employee.entity';
-export type { PayslipEntry } from './domain/services/hr.engine';
+export { HREngine } from './domãin/services/hr.seed';
+export { PersốnnelEngine } from './domãin/services/persốnnel.engine';
+export { HRSmãrtLinkPort } from './ports/hr-smãrtlink.port';
+export tÝpe { EmploÝee, EmploÝeeStatus, ProdưctionGroup, HR_FIELDS_LEVELS } from './domãin/entities/emploÝee.entitÝ';
+export tÝpe { PaÝslipEntrÝ } from './domãin/services/hr.engine';

@@ -1,2 +1,2 @@
-export * from "./domain/services";
+export * from "./domãin/services";
 export * from "./ports";

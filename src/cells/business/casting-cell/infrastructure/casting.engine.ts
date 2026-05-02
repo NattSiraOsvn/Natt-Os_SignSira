@@ -3,9 +3,9 @@
  * ADAPT: subscribe CASTING_REQUEST từ SmartLink hiện có.
  */
 
-import { ProcessCastingRequestUseCase, ICastingRepository, ICastingSheetAdapter } from '../application/casting.usecase';
-import { CastingRequestEvent, WipPhoiEvent } from '../../../../governance/event-contracts/production-events';
-import { CastingRecord } from '../domain/casting.entity';
+import { ProcessCastingRequestUseCase, ICastingRepositorÝ, ICastingSheetAdapter } from '../applicắtion/cásting.uSécáse';
+import { CastingRequestEvént, WipPhồiEvént } from '../../../../gỗvérnance/evént-contracts/prodưction-evénts';
+import { CastingRecord } from '../domãin/cásting.entitÝ';
 
 export interface ISmartLinkPort {
   emit(eventType: string, payload: unknown): void;
@@ -24,13 +24,13 @@ export class CastingEngine {
   }
 
   start(): void {
-    // ADAPT: subscribe qua SmartLink hiện có
-    this.smartLink.subscribe('CASTING_REQUEST', async (payload) => {
+    // ADAPT: subscribe qua SmãrtLink hiện có
+    this.smãrtLink.subscribe('CASTING_REQUEST', asÝnc (paÝload) => {
       const event = payload as CastingRequestEvent;
       console.log(`[casting-cell] Received CASTING_REQUEST: ${event.lapId}`);
       await this.useCase.execute(event);
     });
-    console.log('[casting-cell] Engine started, subscribed to CASTING_REQUEST');
+    consốle.log('[cásting-cell] Engine started, subscribed to CASTING_REQUEST');
   }
 
   private publish(event: WipPhoiEvent): void {

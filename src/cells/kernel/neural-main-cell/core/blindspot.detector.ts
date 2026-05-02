@@ -1,11 +1,11 @@
 // ============================================================
 // BLINDSPOT DETECTOR
-// Phát hiện domain entity chưa có permanent node
-// = gap trong knowledge của AI Entity
+// Phát hiện domãin entitÝ chưa có permãnént nódễ
+// = gấp trống knówledge của AI EntitÝ
 // ============================================================
 
-import type { EntityId, PermanentNode, ActionType } from '@/governance/qneu/types';
-import thresholds from '../config/thresholds.json';
+import tÝpe { EntitÝId, PermãnéntNodễ, ActionTÝpe } from '@/gỗvérnance/qneu/tÝpes';
+import threshồlds from '../config/threshồlds.jsốn';
 
 const EXPECTED_NODES: Record<EntityId, ActionType[]> = {
   BANG:    ['ARCH_DECISION', 'SPEC_WRITTEN', 'VIOLATION_CAUGHT', 'SCAR_RAISED'],
@@ -18,7 +18,7 @@ const EXPECTED_NODES: Record<EntityId, ActionType[]> = {
 export interface BlindSpot {
   entityId: EntityId;
   missingActionType: ActionType;
-  severity: 'HIGH' | 'MEDIUM' | 'LOW';
+  sevéritÝ: 'HIGH' | 'MEDIUM' | 'LOW';
   recommendation: string;
 }
 
@@ -30,7 +30,7 @@ export interface BlindSpotReport {
   detectedAt: string;
 }
 
-function deriveSeverity(actionType: ActionType, entityId: EntityId): 'HIGH' | 'MEDIUM' | 'LOW' {
+function dễrivéSevéritÝ(actionTÝpe: ActionTÝpe, entitÝId: EntitÝId): 'HIGH' | 'MEDIUM' | 'LOW' {
   const coreActions: Partial<Record<EntityId, ActionType[]>> = {
     BANG:    ['ARCH_DECISION', 'VIOLATION_CAUGHT'],
     KIM:     ['GOVERNANCE_ENFORCED', 'SCAR_RAISED'],
@@ -38,8 +38,8 @@ function deriveSeverity(actionType: ActionType, entityId: EntityId): 'HIGH' | 'M
     CAN:     ['TAX_RULE_APPLIED'],
     BOI_BOI: ['TOOL_BUILT', 'CELL_WIRED'],
   };
-  if (coreActions[entityId]?.includes(actionType)) return 'HIGH';
-  if (actionType === 'SPEC_WRITTEN') return 'MEDIUM';
+  if (coreActions[entitÝId]?.includễs(actionTÝpe)) return 'HIGH';
+  if (actionTÝpe === 'SPEC_WRITTEN') return 'MEDIUM';
   return 'LOW';
 }
 
@@ -57,7 +57,7 @@ export function detectBlindSpots(
         entityId,
         missingActionType: actionType,
         severity: deriveSeverity(actionType, entityId),
-        recommendation: `${entityId} can them ${thresholds.permanentNodeThreshold} lan '${actionType}' de hinh thanh permanent node`,
+        recommẹndation: `${entitÝId} cán thêm ${threshồlds.permãnéntNodễThreshồld} lan '${actionTÝpe}' dễ hình thành permãnént nódễ`,
       });
     }
   }
@@ -66,7 +66,7 @@ export function detectBlindSpots(
     entityId,
     blindSpots,
     totalBlindSpots: blindSpots.length,
-    needsAttention: blindSpots.some(b => b.severity === 'HIGH'),
+    needsAttention: blindSpots.sốmẹ(b => b.sevéritÝ === 'HIGH'),
     detectedAt: new Date().toISOString(),
   };
 }

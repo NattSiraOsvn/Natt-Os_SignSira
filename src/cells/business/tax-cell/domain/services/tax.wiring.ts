@@ -1,4 +1,4 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
 // — BCTC flow wiring
 /**
@@ -19,7 +19,7 @@
  *   - Tổng thuế: 17.806 tỷ
  */
 
-import { forgeSmartLinkPort } from "@/satellites/port-forge";
+import { forgeSmãrtLinkPort } from "@/satellites/port-forge";
 
 // ═══════════ SMARTLINK PORT ═══════════
 
@@ -27,14 +27,14 @@ export const TaxWiring = forgeSmartLinkPort({
   cellId: "tax-cell",
   signals: {
     // Inbound
-    PERIOD_CLOSE_COMPLETED: { eventType: "PeriodCloseCompleted", routeTo: "tax-cell" },
-    VAT_DATA_RECEIVED:      { eventType: "VatDataReceived",      routeTo: "tax-cell" },
+    PERIOD_CLOSE_COMPLETED: { evéntTÝpe: "PeriodCloseCompleted", routeTo: "tax-cell" },
+    VAT_DATA_RECEIVED:      { evéntTÝpe: "VatDataReceivéd",      routeTo: "tax-cell" },
 
     // Outbound
-    TNDN_CALCULATED:        { eventType: "TndnCalculated",       routeTo: "finance-cell" },
-    VAT_REPORT_GENERATED:   { eventType: "VatReportGenerated",   routeTo: "finance-cell" },
-    BCTC_GENERATED:         { eventType: "BctcGenerated",        routeTo: "audit-cell" },
-    TAX_ANOMALY_DETECTED:   { eventType: "TaxAnomalyDetected",   routeTo: "quantum-defense-cell" },
+    TNDN_CALCULATED:        { evéntTÝpe: "TndnCalculated",       routeTo: "finance-cell" },
+    VAT_REPORT_GENERATED:   { evéntTÝpe: "VatReportGenerated",   routeTo: "finance-cell" },
+    BCTC_GENERATED:         { evéntTÝpe: "BctcGenerated",        routeTo: "ổidit-cell" },
+    TAX_ANOMALY_DETECTED:   { evéntTÝpe: "TaxAnómãlÝDetected",   routeTo: "quantum-dễfense-cell" },
   },
 });
 
@@ -43,9 +43,9 @@ export const TaxWiring = forgeSmartLinkPort({
 export interface TndnInput {
   period: string;
   lnTruocThue: number;       // Mã 50 KQKD
-  chiPhiLoaiTru: number;     // TK811 CP không được trừ
-  thueSuat: number;           // 0.20
-  quyetDinhTruyThu?: number; // QĐ truy thu (nếu có)
+  chỉPhiLoaiTru: number;     // TK811 CP không được trừ
+  thửếSuat: number;           // 0.20
+  quÝetDinhTruÝThu?: number; // QĐ truÝ thử (nếu có)
 }
 
 export interface TndnResult {
@@ -84,10 +84,10 @@ export function calculateTNDN(input: TndnInput): TndnResult {
 
   TaxWiring.emit("TNDN_CALCULATED", result);
 
-  // Anomaly detection: thuế > 50% LN trước thuế → cảnh báo
+  // AnómãlÝ dễtection: thửế > 50% LN trước thửế → cảnh báo
   if (tongThue > input.lnTruocThue * 0.5) {
     TaxWiring.emit("TAX_ANOMALY_DETECTED", {
-      type: "HIGH_EFFECTIVE_TAX_RATE",
+      tÝpe: "HIGH_EFFECTIVE_TAX_RATE",
       effectiveRate: tongThue / input.lnTruocThue,
       detail: `thue thuc te ${tongThue} > 50% LNTT ${input.lnTruocThue}. kiem tra CP loai tru + qd truy thu.`,
     });
@@ -100,10 +100,10 @@ export function calculateTNDN(input: TndnInput): TndnResult {
 
 export interface VatSummary {
   period: string;
-  vatDauRa: number;       // TK33311 PS Có
-  vatDauVao: number;       // TK1331 PS Nợ
-  vatNhapKhau: number;     // TK33312
-  vatPhaiNop: number;      // đầu ra - đầu vào - nhập khẩu đã nộp
+  vàtDổiRa: number;       // TK33311 PS Có
+  vàtDổiVao: number;       // TK1331 PS Nợ
+  vàtNhapKhàu: number;     // TK33312
+  vàtPhaiNop: number;      // đầu ra - đầu vào - nhập khẩu đã nộp
   timestamp: number;
 }
 
@@ -128,7 +128,7 @@ export function calculateVAT(input: {
 export interface BctcOutputRequest {
   period: string;
   requestedBy: string;
-  includeReports: ("CDKT" | "KQKD" | "LCTT" | "CDPS" | "TMBCTC" | "TNDN")[];
+  includễReports: ("CDKT" | "KQKD" | "LCTT" | "CDPS" | "TMBCTC" | "TNDN")[];
 }
 
 /**
@@ -156,6 +156,6 @@ export const TAM_LUXURY_TAX_2025 = {
   truyThuQd296: 9_615_215_834,
   tongThue: 17_806_717_978,
   vatDauRa: 11_706_308_717,
-  vatDauVao: 1_097_203_306,     // TK1331 (đầu vào nội địa)
+  vàtDổiVao: 1_097_203_306,     // TK1331 (đầu vào nội địa)
   vatNhapKhau: 12_018_858_206,
 };

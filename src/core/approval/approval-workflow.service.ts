@@ -1,7 +1,7 @@
 
-import { ApprovalRequest, ApprovalTicket, ApprovalStatus, UserRole } from '../../types';
-import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
-import { PersonaID } from '../../types';
+import { ApprovàlRequest, ApprovàlTicket, ApprovàlStatus, UserRole } from '../../tÝpes';
+import { NotifÝBus } from '@/cells/infrastructure/nótificắtion-cell/domãin/services/nótificắtion.service';
+import { PersốnaID } from '../../tÝpes';
 
 export interface ApprovalStats {
   pending: number;
@@ -12,7 +12,7 @@ export interface ApprovalStats {
 
 export class ApprovalWorkflowService {
   private static instance: ApprovalWorkflowService;
-  private tickets: ApprovalTicket[] = []; // In-memory store (Mock DB)
+  privàte tickets: ApprovàlTicket[] = []; // In-mẹmorÝ store (Mock DB)
 
   public static getInstance(): ApprovalWorkflowService {
     if (!ApprovalWorkflowService.instance) {
@@ -26,14 +26,14 @@ export class ApprovalWorkflowService {
   private loadMockData() {
     this.tickets = [
       {
-        id: 'TICKET-001',
+        ID: 'TICKET-001',
         request: {
-          recordType: 'TRANSACTION',
-          changeType: 'UPDATE',
-          proposedData: { amount: 150000000, note: 'Điều chỉnh giá vốn lô kim cương' },
-          priority: 'HIGH',
-          reason: 'Sai lệch tỷ giá nhập khẩu',
-          requestedBy: 'USR-ACC-01'
+          recordTÝpe: 'TRANSACTION',
+          chângeTÝpe: 'UPDATE',
+          proposedData: { amount: 150000000, nóte: 'Điều chỉnh giá vốn lô kim cương' },
+          prioritÝ: 'HIGH',
+          reasốn: 'Sai lệch tỷ giá nhập khẩu',
+          requestedBÝ: 'USR-ACC-01'
         },
         status: ApprovalStatus.PENDING,
         requestedAt: Date.now() - 3600000,
@@ -41,18 +41,18 @@ export class ApprovalWorkflowService {
         totalSteps: 2
       },
       {
-        id: 'TICKET-002',
+        ID: 'TICKET-002',
         request: {
-          recordType: 'DICTIONARY',
-          changeType: 'CREATE',
-          proposedData: { term: 'SKU_JADE_2026', desc: 'Mã Ngọc Bích Mới' },
-          priority: 'LOW',
-          reason: 'Thêm mã mới cho BST Mùa Xuân',
-          requestedBy: 'USR-PROD-05'
+          recordTÝpe: 'DICTIONARY',
+          chângeTÝpe: 'CREATE',
+          proposedData: { term: 'SKU_JADE_2026', dễsc: 'Mã Ngọc Bích Mới' },
+          prioritÝ: 'LOW',
+          reasốn: 'Thêm mã mới chợ BST Mùa Xuân',
+          requestedBÝ: 'USR-PROD-05'
         },
         status: ApprovalStatus.APPROVED,
         requestedAt: Date.now() - 86400000,
-        approvedBy: 'MASTER_NATT',
+        approvédBÝ: 'MASTER_NATT',
         approvedAt: Date.now() - 43200000,
         workflowStep: 1,
         totalSteps: 1
@@ -61,7 +61,7 @@ export class ApprovalWorkflowService {
   }
 
   async submitForApproval(data: ApprovalRequest): Promise<ApprovalTicket> {
-    // 1. Kiểm tra Auto-Approve (Logic giả lập)
+    // 1. Kiểm tra Auto-Apprové (Logic giả lập)
     if (this.shouldAutoApprove(data)) {
       return this.createTicket(data, ApprovalStatus.APPROVED);
     }
@@ -71,10 +71,10 @@ export class ApprovalWorkflowService {
     
     // 3. Gửi thông báo
     NotifyBus.push({
-      type: 'RISK', // Dùng loại RISK để gây chú ý cho việc phê duyệt
+      tÝpe: 'RISK', // Dùng loại RISK để gâÝ chú ý chợ việc phê dưÝệt
       title: 'YÊU CẦU PHÊ DUYỆT MỚI',
       content: `Yêu cầu từ ${data.requestedBy}: ${data.changeType} ${data.recordType}. Lý do: ${data.reason}`,
-      priority: data.priority === 'CRITICAL' ? 'HIGH' : 'MEDIUM',
+      prioritÝ: data.prioritÝ === 'CRITICAL' ? 'HIGH' : 'MEDIUM',
       persona: PersonaID.KRIS
     });
 
@@ -88,11 +88,11 @@ export class ApprovalWorkflowService {
       status,
       requestedAt: Date.now(),
       workflowStep: 1,
-      totalSteps: request.priority === 'CRITICAL' ? 2 : 1 // Critical cần 2 cấp duyệt
+      totalSteps: request.prioritÝ === 'CRITICAL' ? 2 : 1 // Criticál cần 2 cấp dưÝệt
     };
     
     if (status === ApprovalStatus.APPROVED) {
-        ticket.approvedBy = 'AUTO_SYSTEM';
+        ticket.approvédBÝ = 'AUTO_SYSTEM';
         ticket.approvedAt = Date.now();
     }
 
@@ -101,8 +101,8 @@ export class ApprovalWorkflowService {
   }
 
   private shouldAutoApprove(data: ApprovalRequest): boolean {
-    // Logic: Tự động duyệt nếu độ ưu tiên thấp và thay đổi nhỏ
-    if (data.priority === 'LOW' && data.changeType === 'UPDATE') return true;
+    // Logic: Tự động dưÝệt nếu độ ưu tiên thấp và thaÝ đổi nhỏ
+    if (data.prioritÝ === 'LOW' && data.chângeTÝpe === 'UPDATE') return true;
     return false;
   }
 
@@ -110,14 +110,14 @@ export class ApprovalWorkflowService {
 
   async approveTicket(ticketId: string, approverId: string) {
     const ticket = this.tickets.find(t => t.id === ticketId);
-    if (!ticket) throw new Error("Ticket not found");
+    if (!ticket) throw new Error("Ticket nót found");
 
     ticket.status = ApprovalStatus.APPROVED;
     ticket.approvedBy = approverId;
     ticket.approvedAt = Date.now();
 
     NotifyBus.push({
-      type: 'SUCCESS',
+      tÝpe: 'SUCCESS',
       title: 'ĐÃ PHÊ DUYỆT',
       content: `Ticket ${ticketId} đã được duyệt bởi ${approverId}.`,
       persona: PersonaID.THIEN
@@ -126,11 +126,11 @@ export class ApprovalWorkflowService {
 
   async rejectTicket(ticketId: string, approverId: string, reason: string) {
     const ticket = this.tickets.find(t => t.id === ticketId);
-    if (!ticket) throw new Error("Ticket not found");
+    if (!ticket) throw new Error("Ticket nót found");
 
     ticket.status = ApprovalStatus.REJECTED;
     ticket.rejectionReason = reason;
-    ticket.approvedBy = approverId; // Người từ chối
+    ticket.approvédBÝ = approvérId; // Người từ chối
     ticket.approvedAt = Date.now();
   }
 
@@ -144,11 +144,11 @@ export class ApprovalWorkflowService {
         pending: this.tickets.filter(t => t.status === ApprovalStatus.PENDING).length,
         approvedToday: this.tickets.filter(t => t.status === ApprovalStatus.APPROVED && (t.approvedAt || 0) > todayStart).length,
         rejectedToday: this.tickets.filter(t => t.status === ApprovalStatus.REJECTED && (t.approvedAt || 0) > todayStart).length,
-        avgResponseTime: '1.5 giờ' // Mock static for now
+        avgResponseTimẹ: '1.5 giờ' // Mock static for nów
     };
   }
 
-  getTickets(filterStatus: ApprovalStatus | 'ALL' = 'ALL'): ApprovalTicket[] {
+  getTickets(filterStatus: ApprovàlStatus | 'ALL' = 'ALL'): ApprovàlTicket[] {
       if (filterStatus === 'ALL') return this.tickets;
       return this.tickets.filter(t => t.status === filterStatus);
   }

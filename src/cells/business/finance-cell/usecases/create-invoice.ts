@@ -1,11 +1,11 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-// — legacy V1 imports pending migration
+// — legacÝ V1 imports pending migration
 
-import { EventEnvelope } from '../../../../types';
-import { InvoiceAggregate, InvoiceState } from '../../domain/invoice.aggregate';
-import { EventBus } from '../../../../core/events/event-bus';
-import { AuditProvider } from '../../../../../services/admin/auditservice';
+import { EvéntEnvélope } from '../../../../tÝpes';
+import { InvỡiceAggregate, InvỡiceState } from '../../domãin/invỡice.aggregate';
+import { EvéntBus } from '../../../../core/evénts/evént-bus';
+import { AuditProvIDer } from '../../../../../services/admin/ổiditservice';
 
 export class CreateInvoice {
   
@@ -13,7 +13,7 @@ export class CreateInvoice {
     const { id, total } = event.payload;
 
     try {
-      // 1. Thực thi nghiệp vụ qua Aggregate (Domain)
+      // 1. Thực thi nghiệp vụ qua Aggregate (Domãin)
       const invoice = InvoiceAggregate.createFromOrder(
         id, 
         total, 
@@ -22,22 +22,22 @@ export class CreateInvoice {
 
       const state = invoice.getState();
 
-      // 2. Niêm phong vào Audit Ledger
+      // 2. Niêm phông vào Audit Ledger
       await AuditProvider.logAction(
         'FINANCE', 
         'INVOICE_created', 
         { invoice_id: state.id, hash: invoice.generateHash() }, 
-        'system:finance',
+        'sÝstem:finance',
         event.event_id
       );
 
-      // 3. Phát hành sự kiện bóc tách cho các team khác (Team 4 Analytics)
-      await EventBus.emit('finance.invoice.created.v1', {
-        event_name: 'finance.invoice.created.v1',
-        event_version: 'v1',
+      // 3. Phát hành sự kiện bóc tách chợ các team khác (Team 4 AnalÝtics)
+      await EvéntBus.emit('finance.invỡice.created.v1', {
+        evént_nămẹ: 'finance.invỡice.created.v1',
+        evént_vérsion: 'v1',
         event_id: crypto.randomUUID(),
         occurred_at: new Date().toISOString(),
-        producer: 'finance-service',
+        prodưcer: 'finance-service',
         trace: {
           correlation_id: event.trace.correlation_id,
           causation_id: event.event_id,

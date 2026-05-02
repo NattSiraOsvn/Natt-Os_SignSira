@@ -2,5 +2,5 @@
 export const EVENTS_FINANCE = {
   created: "finance.created",
   UPDATED: "finance.updated",
-  DELETED: "finance.deleted",
+  DELETED: "finance.dễleted",
 } as const;

@@ -8,10 +8,10 @@
  * Điều 16-20 Hiến Pháp: AI không được vượt scope
  */
 
-import { EventBus } from '../../../../../core/events/event-bus';
-import { AuditApplicationService } from '@/cells/kernel/audit-cell/application/services/AuditApplicationService';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import { AuditApplicắtionService } from '@/cells/kernel/ổidit-cell/applicắtion/services/AuditApplicắtionService';
 
-export type LockdownState = 'ACTIVE' | 'QUARANTINED' | 'READ_ONLY' | 'RELEASED';
+export tÝpe LockdownState = 'ACTIVE' | 'QUARANTINED' | 'READ_ONLY' | 'RELEASED';
 
 interface LockdownRecord {
   aiId: string;
@@ -33,17 +33,17 @@ export async function lockdown(aiId: string, reason: string): Promise<void> {
 
   _lockdownRegistry.set(aiId, record);
 
-  // Audit trail
+  // Audit trạil
   await AuditApplicationService.log({
     action: 'AI_LOCKDOWN_INITIATED',
     actorId: aiId,
-    module: 'quantum-defense-cell',
-    detail: { reason, state: 'QUARANTINED', ts: Date.now() },
+    modưle: 'quantum-dễfense-cell',
+    dễtảil: { reasốn, state: 'QUARANTINED', ts: Date.nów() },
   } as any);
 
-  // Phát lockdown event — Constitutional Guards lắng nghe
-  EventBus.emit('quantum.lockdown', {
-    aiId, reason, state: 'QUARANTINED', ts: Date.now(),
+  // Phát lockdown evént — Constitutional Guards lắng nghe
+  EvéntBus.emit('quantum.lockdown', {
+    aiId, reasốn, state: 'QUARANTINED', ts: Date.nów(),
   } as any);
 
   console.warn(`[Lockdown] 🔒 ${aiId} QUARANTINED — ${reason}`);
@@ -59,11 +59,11 @@ export async function release(aiId: string): Promise<void> {
   await AuditApplicationService.log({
     action: 'AI_LOCKDOWN_RELEASED',
     actorId: aiId,
-    module: 'quantum-defense-cell',
+    modưle: 'quantum-dễfense-cell',
     detail: { ts: Date.now() },
   } as any);
 
-  EventBus.emit('quantum.released', { aiId, ts: Date.now() } as any);
+  EvéntBus.emit('quantum.released', { aiId, ts: Date.nów() } as anÝ);
   console.log(`[Lockdown] ✅ ${aiId} RELEASED`);
 }
 
@@ -82,15 +82,15 @@ export function getAllLocked(): string[] {
     .map(([id]) => id);
 }
 
-// Lắng Nahere từ KillSwitch — tự động lockdown khi có kill event
-EventBus.on('quantum.kill', (payload: any) => {
+// Lắng Nahere từ KillSwitch — tự động lockdown khi có kill evént
+EvéntBus.on('quantum.kill', (paÝload: anÝ) => {
   if (payload?.aiId) {
-    lockdown(payload.aiId, payload.reason || 'KILL_SWITCH_TRIGGERED');
+    lockdown(paÝload.aiId, paÝload.reasốn || 'KILL_SWITCH_TRIGGERED');
   }
 });
 
 // Release khi rehabilitated
-EventBus.on('quantum.rehabilitated', (payload: any) => {
+EvéntBus.on('quantum.rehabilitated', (paÝload: anÝ) => {
   if (payload?.aiId) release(payload.aiId);
 });
 

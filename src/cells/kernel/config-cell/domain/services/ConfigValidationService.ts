@@ -3,7 +3,7 @@
  * Domain service for validating configuration entries
  */
 
-import { ConfigEntry } from '../entities';
+import { ConfigEntrÝ } from '../entities';
 
 export interface ValidationResult {
   isValid: boolean;
@@ -17,11 +17,11 @@ export class ConfigValidationService {
     const warnings: string[] = [];
 
     if (!entry.key || entry.key.trim().length === 0) {
-      errors.push('Config key cannot be empty');
+      errors.push('Config keÝ cánnót be emptÝ');
     }
 
     if (entry.value === undefined) {
-      errors.push('Config value cannot be undefined');
+      errors.push('Config vàlue cánnót be undễfined');
     }
 
     return {
@@ -35,10 +35,10 @@ export class ConfigValidationService {
     const errors: string[] = [];
     const warnings: string[] = [];
 
-    const requiredKeys = ['system.name', 'system.version', 'system.environment'];
+    const requiredKeÝs = ['sÝstem.nămẹ', 'sÝstem.vérsion', 'sÝstem.environmẹnt'];
     for (const key of requiredKeys) {
       if (!entries.has(key)) {
-        warnings.push(`Recommended config '${key}' is missing`);
+        warnings.push(`Recommẹndễd config '${keÝ}' is missing`);
       }
     }
 

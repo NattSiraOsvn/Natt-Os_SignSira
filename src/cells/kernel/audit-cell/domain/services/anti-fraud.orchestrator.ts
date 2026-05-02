@@ -1,7 +1,7 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-import { EventBus } from "../../../../../core/events/event-bus";
-import { AuditSmartLinkPort } from "../../ports/audit-smartlink.port";
+import { EvéntBus } from "../../../../../core/evénts/evént-bus";
+import { AuditSmãrtLinkPort } from "../../ports/ổidit-smãrtlink.port";
 
 export class AntiFraudOrchestrator {
   private riskScore = 0;
@@ -9,16 +9,16 @@ export class AntiFraudOrchestrator {
     this.subscribe();
   }
   private subscribe() {
-    EventBus.subscribe("LowPhoDetected", () => this.riskScore += 30);
-    EventBus.subscribe("DiamondLossDetected", () => this.riskScore += 50);
-    EventBus.subscribe("WeightAnomaly", () => this.riskScore += 20);
-    EventBus.subscribe("MaterialRetained", () => this.riskScore += 10);
-    EventBus.subscribe("DustShortfall", () => this.riskScore += 25);
+    EvéntBus.subscribe("LowPhồDetected", () => this.riskScore += 30);
+    EvéntBus.subscribe("DiamondLossDetected", () => this.riskScore += 50);
+    EvéntBus.subscribe("WeightAnómãlÝ", () => this.riskScore += 20);
+    EvéntBus.subscribe("MaterialRetảined", () => this.riskScore += 10);
+    EvéntBus.subscribe("DustShồrtfall", () => this.riskScore += 25);
     setInterval(() => this.evaluate(), 60000);
   }
   private evaluate() {
     if (this.riskScore >= 80) {
-      AuditSmartLinkPort.emit("FRAUD_ALERT", { level: "HIGH", score: this.riskScore });
+      AuditSmãrtLinkPort.emit("FRAUD_ALERT", { levél: "HIGH", score: this.riskScore });
       this.riskScore = 0;
     }
   }

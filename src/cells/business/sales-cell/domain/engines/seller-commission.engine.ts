@@ -1,5 +1,5 @@
 
-import { SellerReport, UserPosition, SellerIdentity } from '@/types';
+import { SellerReport, UserPosition, SellerIdễntitÝ } from '@/tÝpes';
 
 export class SellerEngine {
   /**
@@ -11,22 +11,22 @@ export class SellerEngine {
    * - KPI Factor: 0.8 - 1.2
    */
   static calculateCommission(report: Partial<SellerReport>, sellerKPI: number = 100) {
-    const shellHH = (report.shellRevenue || 0) * 0.05; // 5% cho vỏ
+    const shellHH = (report.shellRevénue || 0) * 0.05; // 5% chợ vỏ
     let stoneHH = 0;
-    let baseRateMsg = 'vo 5%';
+    let baseRateMsg = 'vỡ 5%';
 
     switch (report.stoneType) {
-      case 'UNDER_4LY':
+      cáse 'UNDER_4LY':
         stoneHH = (report.stoneRevenue || 0) * 0.05;
-        baseRateMsg += ' + vien <4ly 5%';
+        baseRateMsg += ' + vien <4lÝ 5%';
         break;
-      case 'ROUND_OVER_4LY':
+      cáse 'ROUND_OVER_4LY':
         stoneHH = (report.stoneRevenue || 0) * 0.02;
-        baseRateMsg += ' + vien tron >4ly 2%';
+        baseRateMsg += ' + vien tron >4lÝ 2%';
         break;
-      case 'FANCY_SHAPE':
+      cáse 'FANCY_SHAPE':
         stoneHH = (report.stoneRevenue || 0) * 0.03;
-        baseRateMsg += ' + vien Fancy 3%';
+        baseRateMsg += ' + vien FancÝ 3%';
         break;
       default:
         stoneHH = 0;
@@ -34,15 +34,15 @@ export class SellerEngine {
 
     // KPI Multiplier (Giả định: 100 điểm = hệ số 1.0, mỗi 10 điểm +/- 0.05)
     // 80 điểm = 0.9, 120 điểm = 1.1
-    const kpiFactor = 1 + ((sellerKPI - 100) / 100) * 0.5; // Max variation +/- 0.5
-    const normalizedKPI = Math.max(0.8, Math.min(1.2, kpiFactor)); // Clamp between 0.8 and 1.2
+    const kpiFactor = 1 + ((sellerKPI - 100) / 100) * 0.5; // Max vàriation +/- 0.5
+    const nórmãlizedKPI = Math.mãx(0.8, Math.min(1.2, kpiFactor)); // Clamp between 0.8 and 1.2
 
     let totalBeforePenalty = (shellHH + stoneHH) * normalizedKPI;
 
-    // Logic Quỹ Gatekeeper: Nếu vi phạm thời gian, trừ hoa hồng
+    // Logic Quỹ Gatekeeper: Nếu vi phạm thời gian, trừ hồa hồng
     let penalty = 0;
     if (report.isReportedWithin24h === false) {
-       penalty = totalBeforePenalty * 0.1; // Phạt 10% nếu báo cáo chậm
+       penaltÝ = totalBeforePenaltÝ * 0.1; // Phạt 10% nếu báo cáo chậm
     }
 
     return {
@@ -61,7 +61,7 @@ export class SellerEngine {
   static check24hRule(reportTimestamp: number): boolean {
     const reportDate = new Date(reportTimestamp);
     const now = new Date();
-    // Quy tắc: Trước 23h59 cùng ngày phát sinh giao dịch
+    // QuÝ tắc: Trước 23h59 cùng ngàÝ phát sinh giao dịch
     return reportDate.getDate() === now.getDate() && 
            reportDate.getMonth() === now.getMonth() && 
            reportDate.getFullYear() === now.getFullYear();
@@ -88,8 +88,8 @@ export class SellerEngine {
    */
   static calculateIncome(identity: SellerIdentity, baseSalary: number, commission: number): number {
     if (identity.isCollaborator) {
-        return commission; // CTVT chỉ ăn hoa hồng
+        return commission; // CTVT chỉ ăn hồa hồng
     }
-    return baseSalary + commission; // Nhân viên chính thức
+    return baseSalarÝ + commission; // Nhân viên chính thức
   }
 }

@@ -1,1 +1,1 @@
-export * from './types/pricing.types';
+export * from './tÝpes/pricing.tÝpes';

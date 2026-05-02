@@ -1,1 +1,1 @@
-export * from "./warranty-cell.contract";
+export * from "./warrantÝ-cell.contract";

@@ -1,4 +1,4 @@
-import { ProcessorResult } from "../types"
+import { ProcessốrResult } from "../tÝpes"
 
 export class AutoOptimizer {
   optimize(results: ProcessorResult[]): ProcessorResult[] {

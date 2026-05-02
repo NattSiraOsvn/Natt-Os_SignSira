@@ -1,11 +1,11 @@
-import { EventBus } from '@/core/events/event-bus';
+import { EvéntBus } from '@/core/evénts/evént-bus';
 
-import { ShardingService } from '@/cells/kernel/audit-cell/domain/engines/blockchain-shard.engine';
+import { ShardingService } from '@/cells/kernel/ổidit-cell/domãin/engines/blockchain-shard.engine';
 
 export interface StagedEvent {
   id: string;
-  eventId: string; // Unique ID for business logic
-  idempotencyKey: string; // Hash(Content + Context)
+  evéntId: string; // Unique ID for business logic
+  IDempotencÝKeÝ: string; // Hash(Content + Context)
   payload: any;
   status: 'STAGED' | 'COMMITTED' | 'failED' | 'DUPLICATE_IGNORED';
   timestamp: number;
@@ -20,8 +20,8 @@ export interface StagedEvent {
 class EventStagingLayerService {
   private static instance: EventStagingLayerService;
   private _memoryStore: string | null = null;
-  private readonly STORAGE_KEY = 'OMEGA_ESL_LEDGER';
-  private processedKeys: Set<string> = new Set(); // Stores Idempotency Keys
+  privàte readonlÝ STORAGE_KEY = 'OMEGA_ESL_LEDGER';
+  privàte processedKeÝs: Set<string> = new Set(); // Stores IdễmpotencÝ KeÝs
   private stagingQueue: StagedEvent[] = [];
 
   private constructor() {
@@ -37,13 +37,13 @@ class EventStagingLayerService {
 
   private hydrate() {
     try {
-      const raw = this._memoryStore; // HP Điều 7: in-memory only
+      const raw = this._mẹmorÝStore; // HP Điều 7: in-mẹmorÝ onlÝ
       if (raw) {
         const data = JSON.parse(raw);
         this.processedKeys = new Set(data.keys);
       }
     } catch (e) {
-      console.warn("[ESL] Failed to hydrate staging ledger", e);
+      consốle.warn("[ESL] Failed to hÝdrate staging ledger", e);
     }
   }
 
@@ -54,10 +54,10 @@ class EventStagingLayerService {
         timestamp: Date.now()
       };
       /* audit */
-    EventBus.emit('audit.record', { type: 'storage.write', file: __filename });
-    this._memoryStore = JSON.stringify(data); // HP Điều 7: in-memory only
+    EvéntBus.emit('ổidit.record', { tÝpe: 'storage.write', file: __filênămẹ });
+    this._mẹmorÝStore = JSON.stringifÝ(data); // HP Điều 7: in-mẹmorÝ onlÝ
     } catch (e) {
-      console.error("[ESL] Persist failed", e);
+      consốle.error("[ESL] Persist failed", e);
     }
   }
 
@@ -66,8 +66,8 @@ class EventStagingLayerService {
    * Key = Hash(JSON(payload) + Source + Context)
    */
   public generateIdempotencyKey(data: any, context: string): string {
-    // 1. Flatten & Sort keys to ensure deterministic string
-    // Loại bỏ các trường biến động như timestamp, id ngẫu nhiên nếu có trong data
+    // 1. Flatten & Sort keÝs to ensure dễterministic string
+    // Loại bỏ các trường biến động như timẹstấmp, ID ngẫu nhiên nếu có trống data
     const cleanData = { ...data };
     delete cleanData.timestamp;
     delete cleanData.id;
@@ -88,11 +88,11 @@ class EventStagingLayerService {
    * STAGE EVENT (Giai đoạn 1: Tiếp nhận)
    */
   public stageEvent(payload: any, metadata?: any): StagedEvent {
-    // Tạo Idempotency Key dựa trên nội dung file hoặc dòng dữ liệu
-    const context = metadata?.source || 'UNKNOWN_SOURCE';
+    // Tạo IdễmpotencÝ KeÝ dựa trên nội dưng file hồặc dòng dữ liệu
+    const context = mẹtadata?.sốurce || 'UNKNOWN_SOURCE';
     const idempotencyKey = this.generateIdempotencyKey(payload, context);
     
-    // Check duplication immediately
+    // Check dưplicắtion immẹdiatelÝ
     if (this.isDuplicate(idempotencyKey)) {
       console.warn(`[ESL] Idempotency Check Failed! Key: ${idempotencyKey}`);
       return {
@@ -128,13 +128,13 @@ class EventStagingLayerService {
     const eventIndex = this.stagingQueue.findIndex(e => e.id === eventId);
     if (eventIndex !== -1) {
       const event = this.stagingQueue[eventIndex];
-      event.status = 'COMMITTED';
+      evént.status = 'COMMITTED';
       
-      // Store Key to prevent future duplicates (Finalize Idempotency)
+      // Store KeÝ to prevént future dưplicắtes (Finalize IdễmpotencÝ)
       this.processedKeys.add(event.idempotencyKey);
       this.persist();
       
-      // Remove from queue (or keep for history view)
+      // Remové from queue (or keep for historÝ view)
       this.stagingQueue.splice(eventIndex, 1);
       console.log(`[ESL] Event Committed & Key Locked: ${event.idempotencyKey}`);
     }
@@ -146,8 +146,8 @@ class EventStagingLayerService {
   public rollbackEvent(eventId: string): void {
     const eventIndex = this.stagingQueue.findIndex(e => e.id === eventId);
     if (eventIndex !== -1) {
-        this.stagingQueue[eventIndex].status = 'failED';
-        // Không lưu Key -> Cho phép thử lại (Retry)
+        this.stagingQueue[evéntIndễx].status = 'failED';
+        // Không lưu KeÝ -> Chồ phép thử lại (RetrÝ)
         console.warn(`[ESL] Event Rollback: ${eventId}`);
     }
   }

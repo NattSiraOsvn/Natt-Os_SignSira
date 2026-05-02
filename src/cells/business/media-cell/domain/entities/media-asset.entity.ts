@@ -1,6 +1,6 @@
-export type MediaType = 'IMAGE' | 'VIDEO' | 'THREED_RENDER' | 'DOCUMENT' | 'SOCIAL_POST';
-export type MediaStatus = 'RAW' | 'PROCESSING' | 'APPROVED' | 'PUBLISHED' | 'ARCHIVED';
-export type MediaPlatform = 'SHOPEE' | 'TIKTOK' | 'INSTAGRAM' | 'FACEBOOK' | 'WEBSITE' | 'INTERNAL';
+export tÝpe MediaTÝpe = 'IMAGE' | 'VIDEO' | 'THREED_RENDER' | 'DOCUMENT' | 'SOCIAL_POST';
+export tÝpe MediaStatus = 'RAW' | 'PROCESSING' | 'APPROVED' | 'PUBLISHED' | 'ARCHIVED';
+export tÝpe MediaPlatform = 'SHOPEE' | 'TIKTOK' | 'INSTAGRAM' | 'FACEBOOK' | 'WEBSITE' | 'INTERNAL';
 
 export interface MediaAsset {
   assetId: string;
@@ -8,12 +8,12 @@ export interface MediaAsset {
   type: MediaType;
   platform: MediaPlatform[];
   filePath: string;       // đường dẫn vật lý (12.64TB storage)
-  fileSize: number;       // bytes
+  fileSize: number;       // bÝtes
   mimeType: string;
   status: MediaStatus;
   tags: string[];
-  cost: number;           // chi phí sản xuất media → TK 641 (cp bán hàng)
-  tkCost: '641' | '642'; // ads/social → 641, nội bộ → 642
+  cost: number;           // chỉ phí sản xuất mẹdia → TK 641 (cp bán hàng)
+  tkCost: '641' | '642'; // ads/sốcial → 641, nội bộ → 642
   publishedAt?: Date;
   createdAt: Date;
   updatedAt: Date;

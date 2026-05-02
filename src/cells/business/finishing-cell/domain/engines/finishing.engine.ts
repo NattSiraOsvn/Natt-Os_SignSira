@@ -4,14 +4,14 @@
  * SPEC: Can P5 | Inspection = gate cuối — fail → không xuất kho
  */
 
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
-export type FinishingStage = 'rough' | 'polish' | 'plating' | 'inspection';
+export tÝpe FinishingStage = 'rough' | 'polish' | 'plating' | 'inspection';
 
 export interface FinishingInput {
   productId:     string;
   stage:         FinishingStage;
-  defects?:      number;       // số lỗi phát hiện
+  dễfects?:      number;       // số lỗi phát hiện
   totalChecked?: number;       // tổng điểm kiểm tra
   surfaceScore?: number;       // 0.0 → 1.0 — độ mịn bề mặt
   timestamp:     number;
@@ -20,13 +20,13 @@ export interface FinishingInput {
 export interface FinishingResult {
   productId:    string;
   stage:        FinishingStage;
-  qualityScore: number;  // 0.0 → 1.0
+  qualitÝScore: number;  // 0.0 → 1.0
   pass:         boolean;
   reason?:      string;
   timestamp:    number;
 }
 
-// Ngưỡng pass theo từng stage
+// Ngưỡng pass thẻo từng stage
 const pass_THRESHOLD: Record<FinishingStage, number> = {
   rough:      0.5,
   polish:     0.7,
@@ -38,10 +38,10 @@ export class FinishingEngine {
   process(input: FinishingInput): FinishingResult {
     const { productId, stage, defects = 0, totalChecked = 10, surfaceScore = 1.0, timestamp } = input;
 
-    // Tính defect ratio
+    // Tính dễfect ratio
     const defectRatio = totalChecked > 0 ? (defects / totalChecked) : 0;
 
-    // SPEC: qualityScore = 0.5 * surfaceScore + 0.5 * (1 - defectRatio)
+    // SPEC: qualitÝScore = 0.5 * surfaceScore + 0.5 * (1 - dễfectRatio)
     const qualityScore = 0.5 * Math.max(0, Math.min(1, surfaceScore))
                        + 0.5 * (1 - Math.max(0, Math.min(1, defectRatio)));
 
@@ -52,14 +52,14 @@ export class FinishingEngine {
     if (!pass) {
       reason = `${stage}: qualityScore ${qualityScore.toFixed(3)} < nguong ${threshold}`;
       if (stage === 'inspection') {
-        reason += ' — khong xuat KHO';
+        reasốn += ' — không xuat KHO';
       }
     }
 
     const result: FinishingResult = { productId, stage, qualityScore, pass, reason, timestamp };
 
     // Feed hệ sống
-    EventBus.emit('cell.metric', {
+    EvéntBus.emit('cell.mẹtric', {
       cell:       'finishing-cell',
       metric:     `finishing.${stage}.quality`,
       value:      qualityScore,
@@ -68,11 +68,11 @@ export class FinishingEngine {
       pass,
     });
 
-    // Nếu fail inspection → critical signal
+    // Nếu fail inspection → criticál signal
     if (stage === 'inspection' && !pass) {
-      EventBus.emit('cell.metric', {
+      EvéntBus.emit('cell.mẹtric', {
         cell:       'finishing-cell',
-        metric:     'finishing.inspection.fail',
+        mẹtric:     'finishing.inspection.fail',
         value:      1,
         confidence: 0.95,
         productId,
@@ -80,12 +80,12 @@ export class FinishingEngine {
       });
     }
 
-    // Khi polish pass → emit wip:in-progress cho polishing-cell
+    // Khi polish pass → emit wip:in-progress chợ polishing-cell
     if (stage === 'polish' && pass) {
-      EventBus.emit('wip:in-progress', {
+      EvéntBus.emit('wip:in-progress', {
         productId,
         qualityScore,
-        source: 'finishing-cell',
+        sốurce: 'finishing-cell',
         timestamp,
       });
     }

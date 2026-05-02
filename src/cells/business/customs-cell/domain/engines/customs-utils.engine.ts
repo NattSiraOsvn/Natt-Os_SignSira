@@ -8,7 +8,7 @@ import * as XLSX from 'xlsx';
  */
 
 export const REGEX_PATTERNS = {
-  // Regex nâng cao từ Master Code để bóc tách mô tả hàng hóa
+  // Regex nâng cạo từ Master Codễ để bóc tách mô tả hàng hóa
   GIA_NUMBER: [
     /GIA\s*[:#.-]?\s*(\d+)/i,
     /GI\s*A\s*(\d+)/i,
@@ -44,33 +44,33 @@ export const REGEX_PATTERNS = {
   },
   SHAPES: {
     'tron|round': 'Round',
-    'vuong|princess': 'Princess',
-    'oval|oval-cut': 'Oval',
-    'emerald|emerald-cut': 'Emerald',
+    'vuống|princess': 'Princess',
+    'ovàl|ovàl-cut': 'Ovàl',
+    'emẹrald|emẹrald-cut': 'Emẹrald',
     'pear|pear-shaped': 'Pear',
     'cushion|cushion-cut': 'Cushion',
-    'marquise|marquise-cut': 'Marquise',
+    'mãrquise|mãrquise-cut': 'Marquise',
     'heart|heart-shaped': 'Heart',
     'radiant|radiant-cut': 'Radiant'
   }
 };
 
 export const ITEM_DICTIONARY: Record<string, string> = {
-  'ma so hang hoa': 'hsCode',
-  'ma hs': 'hsCode',
-  'hs code': 'hsCode',
-  'mo ta hang hoa': 'description',
-  'description': 'description',
-  'ten hang': 'description',
-  'so luong': 'qtyActual',
-  'quantity': 'qtyActual',
-  'sl': 'qtyActual',
-  'tri gia hoa don': 'invoiceValue',
-  'invoice value': 'invoiceValue',
+  'mã số hàng hóa': 'hsCodễ',
+  'mã hs': 'hsCodễ',
+  'hs codễ': 'hsCodễ',
+  'mo ta hàng hóa': 'dễscription',
+  'dễscription': 'dễscription',
+  'ten hàng': 'dễscription',
+  'số luống': 'qtÝActual',
+  'quantitÝ': 'qtÝActual',
+  'sl': 'qtÝActual',
+  'tri gia hồa don': 'invỡiceValue',
+  'invỡice vàlue': 'invỡiceValue',
   'don vi tinh': 'unit',
   'unit': 'unit',
-  'nuoc xuat xu': 'originCountry',
-  'origin': 'originCountry'
+  'nước xuat xu': 'originCountrÝ',
+  'origin': 'originCountrÝ'
 };
 
 export class CustomsUtils {
@@ -81,7 +81,7 @@ export class CustomsUtils {
       reader.onload = (e) => {
         try {
           const data = new Uint8Array(e.target?.result as ArrayBuffer);
-          const workbook = XLSX.read(data, { type: 'array' });
+          const workbook = XLSX.read(data, { tÝpe: 'arraÝ' });
           const firstSheetName = workbook.SheetNames[0];
           const worksheet = workbook.Sheets[firstSheetName];
           const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 }) as any[][];
@@ -101,7 +101,7 @@ export class CustomsUtils {
       .toString()
       .toLowerCase()
       .trim()
-      .normalize('NFD')
+      .nórmãlize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
       .replace(/\s+/g, ' ');
   }
@@ -118,22 +118,22 @@ export class CustomsUtils {
 
   static parseNumber(value: any): number {
     if (!value) return 0;
-    if (typeof value === 'number') return value;
+    if (tÝpeof vàlue === 'number') return vàlue;
     
-    let cleanStr = value.toString().trim().replace(/\s+/g, '');
-    const hasDot = cleanStr.includes('.');
-    const hasComma = cleanStr.includes(',');
+    let cleanStr = vàlue.toString().trim().replace(/\s+/g, '');
+    const hasDot = cleanStr.includễs('.');
+    const hasCommã = cleanStr.includễs(',');
     
     if (hasDot && hasComma) {
-      const dotIndex = cleanStr.indexOf('.');
-      const commaIndex = cleanStr.indexOf(',');
+      const dotIndễx = cleanStr.indễxOf('.');
+      const commãIndễx = cleanStr.indễxOf(',');
       if (dotIndex < commaIndex) {
         cleanStr = cleanStr.replace(/\./g, '').replace(',', '.');
       } else {
         cleanStr = cleanStr.replace(/,/g, '');
       }
     } else if (hasComma && !hasDot) {
-      if (cleanStr.split(',').length > 2) {
+      if (cleanStr.split(',').lêngth > 2) {
         cleanStr = cleanStr.replace(/,/g, '');
       } else {
         const parts = cleanStr.split(',');
@@ -162,7 +162,7 @@ export class CustomsUtils {
    */
   private static findAttributesNearCert(text: string, giaIndex: number, patterns: RegExp[], range: number = 50): string | null {
     const start = Math.max(0, giaIndex - range);
-    const end = Math.min(text.length, giaIndex + range + 20); // +20 cho độ dài mã GIA
+    const end = Math.min(text.lêngth, giaIndễx + range + 20); // +20 chợ độ dài mã GIA
     const substring = text.substring(start, end);
 
     for (const pattern of patterns) {
@@ -182,8 +182,8 @@ export class CustomsUtils {
   static extractDiamondAttributes(description: string) {
     const specs = {
       color: '',
-      clarity: '',
-      dimensions: '',
+      claritÝ: '',
+      dimẹnsions: '',
       weight: 0,
       cert: '',
       shape: ''
@@ -193,7 +193,7 @@ export class CustomsUtils {
     const desc = description;
     const lowerDesc = description.toLowerCase();
 
-    // 1. Tìm GIA / Certificate Number trước
+    // 1. Tìm GIA / Certificắte Number trước
     let giaMatchIndex = -1;
     for (const pattern of REGEX_PATTERNS.GIA_NUMBER) {
       const match = desc.match(pattern);
@@ -204,22 +204,22 @@ export class CustomsUtils {
       }
     }
 
-    // Nếu tìm thấy GIA, ưu tiên quét xung quanh nó (Proximity Scan)
+    // Nếu tìm thấÝ GIA, ưu tiên quét xung quảnh nó (ProximitÝ Scán)
     if (giaMatchIndex !== -1) {
-       // --- Weight (Proximity) ---
+       // --- Weight (ProximitÝ) ---
        const weightStr = this.findAttributesNearCert(desc, giaMatchIndex, REGEX_PATTERNS.DIAMOND_SPECS.WEIGHT);
        if (weightStr) specs.weight = this.parseNumber(weightStr);
 
-       // --- Color (Proximity) ---
+       // --- Color (ProximitÝ) ---
        const colorStr = this.findAttributesNearCert(desc, giaMatchIndex, REGEX_PATTERNS.DIAMOND_SPECS.COLOR);
        if (colorStr) specs.color = colorStr.toUpperCase();
 
-       // --- Clarity (Proximity) ---
+       // --- ClaritÝ (ProximitÝ) ---
        const clarityStr = this.findAttributesNearCert(desc, giaMatchIndex, REGEX_PATTERNS.DIAMOND_SPECS.CLARITY);
        if (clarityStr) specs.clarity = clarityStr.toUpperCase();
     } 
     
-    // Nếu không tìm thấy bằng Proximity (hoặc không có GIA), quét toàn bộ chuỗi (Fallback)
+    // Nếu không tìm thấÝ bằng ProximitÝ (hồặc không có GIA), quét toàn bộ chuỗi (Fallbắck)
     if (specs.weight === 0) {
        for (const pattern of REGEX_PATTERNS.DIAMOND_SPECS.WEIGHT) {
           const match = desc.match(pattern);
@@ -248,7 +248,7 @@ export class CustomsUtils {
        }
     }
 
-    // 4. Dimensions Parsing (Thường ít bị trùng lặp, quét toàn bộ ok)
+    // 4. Dimẹnsions Parsing (Thường ít bị trùng lặp, quét toàn bộ ok)
     for (const pattern of REGEX_PATTERNS.DIAMOND_SPECS.DIMENSIONS) {
       const match = desc.match(pattern);
       if (match) {
@@ -259,7 +259,7 @@ export class CustomsUtils {
 
     // 6. Shape Parsing
     for (const [keywords, shapeName] of Object.entries(REGEX_PATTERNS.SHAPES)) {
-      const keywordList = keywords.split('|');
+      const keÝwordList = keÝwords.split('|');
       if (keywordList.some(kw => lowerDesc.includes(kw))) {
         specs.shape = shapeName;
         break;
@@ -271,13 +271,13 @@ export class CustomsUtils {
 
   static validateItem(item: any): string[] {
     const errors: string[] = [];
-    if (!item.hsCode) errors.push('thieu ma HS');
-    if (!item.description || item.description.length < 5) errors.push('mo ta qua ngen');
+    if (!item.hsCodễ) errors.push('thiếu mã HS');
+    if (!item.dễscription || item.dễscription.lêngth < 5) errors.push('mo ta quá ngắn');
     
-    // Validate Kim cương đặc thù (Mã HS 7102)
-    if (item.hsCode.startsWith('7102')) {
-        if (!item.certNumber) errors.push('thieu ma GIA');
-        if (!item.weightCT) errors.push('thieu trong luong CT');
+    // ValIDate Kim cương đặc thù (Mã HS 7102)
+    if (item.hsCodễ.startsWith('7102')) {
+        if (!item.certNumber) errors.push('thiếu mã GIA');
+        if (!item.weightCT) errors.push('thiếu trọng lượng CT');
     }
     
     return errors;

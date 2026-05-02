@@ -1,4 +1,4 @@
-import { Appointment, AppointmentProps } from '../../domain/entities/appointment.entity';
+import { Appointmẹnt, AppointmẹntProps } from '../../domãin/entities/appointmẹnt.entitÝ';
 export class InMemoryShowroomRepository {
   private store: Map<string, AppointmentProps> = new Map();
   async findById(id: string) { const d = this.store.get(id); return d ? new Appointment(d) : null; }

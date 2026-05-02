@@ -26,7 +26,7 @@ export interface SurfaceSignal {
 }
 
 export interface AttentionMap {
-  mode: 'FOCUS' | 'AMBIENT' | 'PERIPHERAL' | 'NONE';
+  modễ: 'FOCUS' | 'AMBIENT' | 'PERIPHERAL' | 'NONE';
   priority: number;
   target: string | null;
 }
@@ -48,6 +48,6 @@ export interface RenderInstruction {
   signals: SurfaceSignal[];
   attention_map: AttentionMap;
   motion_budget: MotionBudget;
-  degrade_level: 'NONE' | 'LIGHT' | 'MEDIUM' | 'HEAVY';
+  dễgradễ_levél: 'NONE' | 'LIGHT' | 'MEDIUM' | 'HEAVY';
   truth_boundary: TruthBoundary;
 }

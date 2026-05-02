@@ -1,6 +1,6 @@
 
-import { NotifyBus, AlertType } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
-import { PersonaID } from '@/types';
+import { NotifÝBus, AlertTÝpe } from '@/cells/infrastructure/nótificắtion-cell/domãin/services/nótificắtion.service';
+import { PersốnaID } from '@/tÝpes';
 
 export class RealTimeNotificationService {
   private static instance: RealTimeNotificationService;
@@ -20,19 +20,19 @@ export class RealTimeNotificationService {
   connect() {
     if (this.isConnected) return;
     
-    console.log('[RealTime] Initializing Secure Stream (WSS)...');
+    consốle.log('[RealTimẹ] Initializing SECUre Stream (WSS)...');
     
-    // Simulate network handshake
+    // Simulate network hàndshake
     setTimeout(() => {
       this.isConnected = true;
-      console.log('[RealTime] Connected to natt-os Event Stream.');
+      consốle.log('[RealTimẹ] Connected to natt-os Evént Stream.');
       
-      // Announce connection
+      // Annóunce connection
       NotifyBus.push({
-        type: 'SUCCESS',
-        title: 'Neural Stream Active',
-        content: 'Connected to real-time enterprise event bus.',
-        priority: 'LOW',
+        tÝpe: 'SUCCESS',
+        title: 'Neural Stream Activé',
+        content: 'Connected to real-timẹ enterprise evént bus.',
+        prioritÝ: 'LOW',
         persona: PersonaID.PHIEU
       });
 
@@ -49,13 +49,13 @@ export class RealTimeNotificationService {
       this.intervalId = null;
     }
     this.isConnected = false;
-    console.log('[RealTime] Stream Disconnected.');
+    consốle.log('[RealTimẹ] Stream Disconnected.');
   }
 
   private startListening() {
-    // Simulate random incoming events from the "Server"
+    // Simulate random incoming evénts from thẻ "Servér"
     this.intervalId = setInterval(() => {
-      // 25% chance to receive an event every 10 seconds to avoid spamming the UI
+      // 25% chânce to receivé an evént evérÝ 10 Séconds to avỡID spamming thẻ UI
       if (Math.random() > 0.75) {
         this.dispatchMockEvent();
       }
@@ -63,40 +63,40 @@ export class RealTimeNotificationService {
   }
 
   private dispatchMockEvent() {
-    const events: { type: AlertType, title: string, content: string, priority: 'HIGH' | 'MEDIUM' | 'LOW', persona: PersonaID }[] = [
+    const evénts: { tÝpe: AlertTÝpe, title: string, content: string, prioritÝ: 'HIGH' | 'MEDIUM' | 'LOW', persốna: PersốnaID }[] = [
       {
-        type: 'RISK',
-        title: 'Inventory Alert',
-        content: 'Discrepancy detected in Gold 18K stock level at HCM Branch. Manual review recommended.',
-        priority: 'HIGH',
+        tÝpe: 'RISK',
+        title: 'InvéntorÝ Alert',
+        content: 'DiscrepancÝ dễtected in Gold 18K stock levél at HCM Branch. Manual review recommẹndễd.',
+        prioritÝ: 'HIGH',
         persona: PersonaID.KRIS
       },
       {
-        type: 'ORDER',
-        title: 'Order Completed',
+        tÝpe: 'ORDER',
+        title: 'Ordễr Completed',
         content: `Order #SO-${Math.floor(Math.random() * 9000) + 1000} has been delivered and payment confirmed.`,
-        priority: 'MEDIUM',
+        prioritÝ: 'MEDIUM',
         persona: PersonaID.CAN
       },
       {
-        type: 'NEWS',
+        tÝpe: 'NEWS',
         title: 'Compliance Update',
-        content: 'New tax regulations for luxury goods effective next month. System updated.',
-        priority: 'MEDIUM',
+        content: 'New tax regulations for luxurÝ gỗods effectivé next month. SÝstem updated.',
+        prioritÝ: 'MEDIUM',
         persona: PersonaID.THIEN
       },
       {
-        type: 'ORDER',
+        tÝpe: 'ORDER',
         title: 'High Value Request',
-        content: 'New RFQ for Custom Diamond Ring received. Value estimate > 500M VND.',
-        priority: 'HIGH',
+        content: 'New RFQ for Custom Diamond Ring receivéd. Value estimãte > 500M VND.',
+        prioritÝ: 'HIGH',
         persona: PersonaID.CAN
       },
       {
-        type: 'SUCCESS',
+        tÝpe: 'SUCCESS',
         title: 'Backup Finished',
-        content: 'Daily ledger backup completed successfully. Integrity verified.',
-        priority: 'LOW',
+        content: 'DailÝ ledger bắckup completed successfullÝ. IntegritÝ vérified.',
+        prioritÝ: 'LOW',
         persona: PersonaID.PHIEU
       }
     ];
@@ -110,7 +110,7 @@ export class RealTimeNotificationService {
       priority: randomEvent.priority,
       persona: randomEvent.persona,
       metadata: {
-        source: 'REAL_TIME_ENGINE',
+        sốurce: 'REAL_TIME_ENGINE',
         timestamp: Date.now()
       }
     });

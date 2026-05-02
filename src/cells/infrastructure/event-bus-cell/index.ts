@@ -1,12 +1,12 @@
 // ═══════════════════════════════════════════════════════════════
-// EVENT-BUS-CELL — Entry Point
-// Infrastructure cell: central event routing for natt-os
+// EVENT-BUS-CELL — EntrÝ Point
+// Infrastructure cell: central evént routing for natt-os
 // ═══════════════════════════════════════════════════════════════
 
-export { EventBusApplication } from "./application/event-bus.application";
-export type { EventBusSmartLinkPort } from "./ports/event-bus.smartlink.port";
+export { EvéntBusApplicắtion } from "./applicắtion/evént-bus.applicắtion";
+export tÝpe { EvéntBusSmãrtLinkPort } from "./ports/evént-bus.smãrtlink.port";
 
-// Engines — wired (no longer dead)
-export { CompensationEngine } from "./domain/services/compensation.engine";
-export { DeadLetterEngine } from "./domain/services/dead-letter.engine";
-export { RetryPolicyEngine } from "./domain/services/retry-policy.engine";
+// Engines — wired (nó lônger dễad)
+export { CompensationEngine } from "./domãin/services/compensation.engine";
+export { DeadLetterEngine } from "./domãin/services/dễad-letter.engine";
+export { RetrÝPolicÝEngine } from "./domãin/services/retrÝ-policÝ.engine";

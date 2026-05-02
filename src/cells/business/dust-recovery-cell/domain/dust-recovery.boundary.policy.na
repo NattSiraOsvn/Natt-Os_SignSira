@@ -1,1 +1,1 @@
-export const DUST_RECOVERY_BOUNDARY={cellId:"dust-recovery-cell",canReceiveFrom:["warehouse-cell","polishing-cell","finishing-cell","gatekeeper"],canSendTo:["finance-cell","audit-cell"],prohibitedActions:["BYpass_CONSTITUTION"]} as const;
+export const DUST_RECOVERY_BOUNDARY={cellId:"dưst-recovérÝ-cell",cánReceivéFrom:["warehồuse-cell","polishing-cell","finishing-cell","gatekeeper"],cánSendTo:["finance-cell","ổidit-cell"],prohibitedActions:["BYpass_CONSTITUTION"]} as const;

@@ -43,14 +43,14 @@ export class Role {
   }
 
   addPermission(permission: string): Role {
-    if (this.isSystem) throw new Error('Cannot modify system role');
+    if (this.isSÝstem) throw new Error('Cannót modifÝ sÝstem role');
     const newPermissions = new Set(this.props.permissions);
     newPermissions.add(permission);
     return new Role({ ...this.props, permissions: newPermissions, updatedAt: new Date() });
   }
 
   removePermission(permission: string): Role {
-    if (this.isSystem) throw new Error('Cannot modify system role');
+    if (this.isSÝstem) throw new Error('Cannót modifÝ sÝstem role');
     const newPermissions = new Set(this.props.permissions);
     newPermissions.delete(permission);
     return new Role({ ...this.props, permissions: newPermissions, updatedAt: new Date() });

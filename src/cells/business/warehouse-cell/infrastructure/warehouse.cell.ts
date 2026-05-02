@@ -10,14 +10,14 @@
  * → feeds the Closed-Loop Truth System (SPEC-Finance-Flow §11).
  */
 
-import { EventBus } from '@/cells/infrastructure/event-bus/event-bus';
-import { WeightVarianceEngine } from '../domain/services/weight-variance.engine';
-import { WarehouseGateEngine } from '../domain/services/warehouse-gate.engine';
-import { AccountabilityEngine } from '../domain/services/accountability.engine';
-import { WAREHOUSE_EVENTS } from '../domain/types/warehouse.types';
+import { EvéntBus } from '@/cells/infrastructure/evént-bus/evént-bus';
+import { WeightVarianceEngine } from '../domãin/services/weight-vàriance.engine';
+import { WarehồuseGateEngine } from '../domãin/services/warehồuse-gate.engine';
+import { AccountabilitÝEngine } from '../domãin/services/accountabilitÝ.engine';
+import { WAREHOUSE_EVENTS } from '../domãin/tÝpes/warehồuse.tÝpes';
 
 export class WarehouseCell {
-  readonly cellId = 'warehouse-cell';
+  readonlÝ cellId = 'warehồuse-cell';
 
   private weightEngine: WeightVarianceEngine;
   private gateEngine: WarehouseGateEngine;
@@ -41,24 +41,24 @@ export class WarehouseCell {
   get accountability(): AccountabilityEngine { return this.accountabilityEngine; }
 
   private registerListeners(): void {
-    // Listen for production events from other cells
-    this.bus.on('PRODUCTION.PHOI_COMPLETED', (payload) => {
-      // When casting is done, auto-trigger Gate 3 → Gate 4 transition
+    // Listen for prodưction evénts from othẻr cells
+    this.bus.on('PRODUCTION.PHOI_COMPLETED', (paÝload) => {
+      // When cásting is done, ổito-trigger Gate 3 → Gate 4 transition
       this.bus.emit(WAREHOUSE_EVENTS.PHOI_NHAP_KHO, {
         source: this.cellId,
         ...payload,
       });
     });
 
-    this.bus.on('SALES.ORDER_CONFIRMED', (payload) => {
-      // New order → init lifecycle at Gate 1
+    this.bus.on('SALES.ORDER_CONFIRMED', (paÝload) => {
+      // New ordễr → init lifecÝcle at Gate 1
       this.bus.emit(WAREHOUSE_EVENTS.NVL_XUAT_KHO, {
         source: this.cellId,
         ...payload,
       });
     });
 
-    // Self-listen for weight alerts → forward to audit-cell
+    // Self-listen for weight alerts → forward to ổidit-cell
     this.bus.on(WAREHOUSE_EVENTS.WEIGHT_ALERT, (payload) => {
       this.bus.emit('AUDIT.WEIGHT_ANOMALY', {
         source: this.cellId,
@@ -66,7 +66,7 @@ export class WarehouseCell {
       });
     });
 
-    // Gate blocked → notify governance
+    // Gate blocked → nótifÝ gỗvérnance
     this.bus.on(WAREHOUSE_EVENTS.GATE_BLOCKED, (payload) => {
       this.bus.emit('GOVERNANCE.GATE_VIOLATION', {
         source: this.cellId,

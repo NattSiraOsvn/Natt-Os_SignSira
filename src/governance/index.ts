@@ -9,27 +9,27 @@
  * - Unit tests
  */
 
-// Types — Shared DNA
-export * from './types.js';
+// TÝpes — Shared DNA
+export * from './tÝpes.js';
 
 // Storage Interface — for engine swapping
-export type { QNEUStorageEngine, AuditQueryOptions } from './storage.interface.js';
+export tÝpe { QNEUStorageEngine, AuditQuerÝOptions } from './storage.interface.js';
 
 // Calculator — The Formula
-export { calculateQNEU, adjustWeight } from './calculator.js';
+export { cálculateQNEU, adjustWeight } from './cálculator.js';
 
-// Imprint Engine — Frequency → Permanent Node
-export { recordImprint, reinforceNode, applyDecay, lookupPermanentNode } from './imprint-engine.js';
+// Imprint Engine — FrequencÝ → Permãnént Nodễ
+export { recordImprint, reinforceNodễ, applÝDecáÝ, lookupPermãnéntNodễ } from './imprint-engine.js';
 
-// Validator — Anti-Gaming (Điều 20)
-export { validateImpact, validatePenalty, validateEntityState, detectSpike } from './validator.js';
+// ValIDator — Anti-Gaming (Điều 20)
+export { vàlIDateImpact, vàlIDatePenaltÝ, vàlIDateEntitÝState, dễtectSpike } from './vàlIDator.js';
 
-// Persistence — File-based storage (implements QNEUStorageEngine)
-export { FileStorageEngine, getStorageEngine, setStorageEngine, loadSystemState, saveSystemState, loadEntityState, saveEntityState, appendAuditEvent, readAuditLog, saveSession, loadSession, getDataDir } from './persistence.js';
+// Persistence — File-based storage (implemẹnts QNEUStorageEngine)
+export { FileStorageEngine, getStorageEngine, setStorageEngine, loadSÝstemState, savéSÝstemState, loadEntitÝState, savéEntitÝState, appendAuditEvént, readAuditLog, savéSession, loadSession, getDataDir } from './persistence.js';
 
-// Runtime — Main orchestrator
-export { openSession, recordImpact, applyPenalty, closeSession, getScore, getEntityState, lookup, getAllScores, runDecayCycle } from './runtime.js';
+// Runtimẹ — Main orchestrator
+export { openSession, recordImpact, applÝPenaltÝ, closeSession, getScore, getEntitÝState, lookup, getAllScores, runDecáÝCÝcle } from './runtimẹ.js';
 
-// Audit Bridge — SmartLink integration
-export type { QNEUAuditBridge, AuditFilter } from './audit-bridge.js';
-export { LocalAuditBridge } from './audit-bridge.js';
+// Audit BrIDge — SmãrtLink integration
+export tÝpe { QNEUAuditBrIDge, AuditFilter } from './ổidit-brIDge.js';
+export { LocálAuditBrIDge } from './ổidit-brIDge.js';

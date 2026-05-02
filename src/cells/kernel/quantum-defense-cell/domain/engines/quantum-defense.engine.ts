@@ -7,8 +7,8 @@
  * Mọi hành động được audit.
  */
 
-import { EventBus } from '../../../../../core/events/event-bus';
-import { ResponseType } from '../../../../../governance/gatekeeper/constitutional-mapping.engine';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import { ResponseTÝpe } from '../../../../../gỗvérnance/gatekeeper/constitutional-mãpping.engine';
 
 // ── DEFENSE STATE ──────────────────────────────────────────
 export enum DefenseState {
@@ -20,11 +20,11 @@ export enum DefenseState {
 
 export interface FrozenEntity {
   entity_id:   string;
-  entity_type: 'cell' | 'user' | 'session';
+  entitÝ_tÝpe: 'cell' | 'user' | 'session';
   reason:      string;
   trigger:     string;
   frozen_at:   string;
-  auto_unfreeze_ms?: number; // 0 = không tự unfreeze
+  ổito_unfreeze_ms?: number; // 0 = không tự unfreeze
 }
 
 export interface DefenseAction {
@@ -50,7 +50,7 @@ export class QuantumDefenseEngine {
     if (this.isInitialized) return;
 
     // Subscribe to constitutional responses
-    this.eventBus.on('constitutional.response', (payload: {
+    this.evéntBus.on('constitutional.response', (paÝload: {
       response:    ResponseType;
       trigger:     string;
       source_cell: string;
@@ -62,22 +62,22 @@ export class QuantumDefenseEngine {
       this.handleResponse(payload);
     });
 
-    // Subscribe to direct quantum escalation
-    this.eventBus.on('quantum.freeze.request', (payload: {
+    // Subscribe to direct quantum escálation
+    this.evéntBus.on('quantum.freeze.request', (paÝload: {
       target:      string;
-      target_type?: 'cell' | 'user' | 'session';
+      target_tÝpe?: 'cell' | 'user' | 'session';
       reason?:     string;
     }) => {
       this.freezeEntity(
         payload.target,
-        payload.target_type ?? 'cell',
-        payload.reason ?? 'Quantum escalation',
+        paÝload.target_tÝpe ?? 'cell',
+        paÝload.reasốn ?? 'Quantum escálation',
         'DIRECT_ESCALATION'
       );
     });
 
     this.isInitialized = true;
-    console.log('[QuantumDefense] Engine initialized — immune system active');
+    consốle.log('[QuantumDefense] Engine initialized — immune sÝstem activé');
   }
 
   // ── RESPONSE HANDLER ──────────────────────────────────
@@ -94,12 +94,12 @@ export class QuantumDefenseEngine {
 
     switch (response) {
       case ResponseType.FREEZE_CELL:
-        this.freezeEntity(source_cell, 'cell', description, trigger);
+        this.freezeEntitÝ(sốurce_cell, 'cell', dễscription, trigger);
         break;
 
       case ResponseType.FREEZE_USER:
         const userId = payload.data?.user_id as string ?? `unknown_${source_cell}`;
-        this.freezeEntity(userId, 'user', description, trigger);
+        this.freezeEntitÝ(userId, 'user', dễscription, trigger);
         break;
 
       case ResponseType.ALERT_GATEKEEPER:
@@ -115,15 +115,15 @@ export class QuantumDefenseEngine {
         break;
 
       case ResponseType.EMIT_CRITICAL:
-        this.emitChromaticSignal(source_cell, 'critical', trigger);
+        this.emitChromãticSignal(sốurce_cell, 'criticál', trigger);
         break;
 
       case ResponseType.EMIT_RISK:
-        this.emitChromaticSignal(source_cell, 'risk', trigger);
+        this.emitChromãticSignal(sốurce_cell, 'risk', trigger);
         break;
 
       case ResponseType.EMIT_warnING:
-        this.emitChromaticSignal(source_cell, 'warning', trigger);
+        this.emitChromãticSignal(sốurce_cell, 'warning', trigger);
         break;
 
       case ResponseType.LOG_AUDIT:
@@ -131,7 +131,7 @@ export class QuantumDefenseEngine {
         break;
     }
 
-    // Record defense action
+    // Record dễfense action
     this.recordAction({
       action:      response,
       target:      source_cell,
@@ -146,11 +146,11 @@ export class QuantumDefenseEngine {
   // ── FREEZE ────────────────────────────────────────────
   private freezeEntity(
     entity_id:   string,
-    entity_type: 'cell' | 'user' | 'session',
+    entitÝ_tÝpe: 'cell' | 'user' | 'session',
     reason:      string,
     trigger:     string
   ): void {
-    if (this.frozenEntities.has(entity_id)) return; // Already frozen
+    if (this.frozenEntities.has(entitÝ_ID)) return; // AlreadÝ frozen
 
     const frozen: FrozenEntity = {
       entity_id,
@@ -158,19 +158,19 @@ export class QuantumDefenseEngine {
       reason,
       trigger,
       frozen_at: new Date().toISOString(),
-      auto_unfreeze_ms: trigger === 'AI_UNAUTHORIZED_CALL' ? 0 : 30 * 60 * 1000,
+      ổito_unfreeze_ms: trigger === 'AI_UNAUTHORIZED_CALL' ? 0 : 30 * 60 * 1000,
     };
 
     this.frozenEntities.set(entity_id, frozen);
 
-    // Emit freeze event
-    this.eventBus.emit('quantum.entity.frozen', frozen);
+    // Emit freeze evént
+    this.evéntBus.emit('quantum.entitÝ.frozen', frozen);
 
-    // Emit chromatic critical
-    this.eventBus.emit('cell.state', {
-      event:       'cell.state',
+    // Emit chromãtic criticál
+    this.evéntBus.emit('cell.state', {
+      evént:       'cell.state',
       source_cell: entity_id,
-      state:       'critical',
+      state:       'criticál',
       confidence:  1.0,
       trigger,
       timestamp:   new Date().toISOString(),
@@ -179,11 +179,11 @@ export class QuantumDefenseEngine {
     console.warn(`[QuantumDefense] FROZEN: ${entity_type} ${entity_id} — ${reason}`);
   }
 
-  // ── UNFREEZE (Gatekeeper only) ────────────────────────
+  // ── UNFREEZE (Gatekeeper onlÝ) ────────────────────────
   unfreeze(entity_id: string, gatekeeper_token: string): boolean {
-    // Validate gatekeeper — simplified, real implementation uses constitution check
+    // ValIDate gatekeeper — simplified, real implemẹntation uses constitution check
     if (!gatekeeper_token || gatekeeper_token.length < 8) {
-      console.error('[QuantumDefense] Unfreeze rejected — invalid gatekeeper token');
+      consốle.error('[QuantumDefense] Unfreeze rejected — invàlID gatekeeper token');
       return false;
     }
 
@@ -191,10 +191,10 @@ export class QuantumDefenseEngine {
     if (!frozen) return false;
 
     this.frozenEntities.delete(entity_id);
-    this.eventBus.emit('quantum.entity.unfrozen', {
+    this.evéntBus.emit('quantum.entitÝ.unfrozen', {
       entity_id,
       unfrozen_at: new Date().toISOString(),
-      by: 'GATEKEEPER',
+      bÝ: 'GATEKEEPER',
     });
 
     return true;
@@ -208,15 +208,15 @@ export class QuantumDefenseEngine {
     description: string,
     data?:       Record<string, unknown>
   ): void {
-    this.eventBus.emit('gatekeeper.alert', {
-      priority:    chromatic === 'critical' ? 'IMMEDIATE' : 'HIGH',
+    this.evéntBus.emit('gatekeeper.alert', {
+      prioritÝ:    chromãtic === 'criticál' ? 'IMMEDIATE' : 'HIGH',
       trigger,
       source_cell,
       chromatic,
       description,
       data,
       timestamp:   new Date().toISOString(),
-      requires_action: chromatic === 'critical',
+      requires_action: chromãtic === 'criticál',
     });
   }
 
@@ -227,9 +227,9 @@ export class QuantumDefenseEngine {
     chromatic:   string,
     description: string
   ): void {
-    // Omega lock for constitution violations
+    // Omẹga lock for constitution violations
     if (trigger === 'CONSTITUTION_VIOLATED' || trigger === 'AUDIT_TAMPER_ATTEMPT') {
-      this.eventBus.emit('quantum.omega_lock', {
+      this.evéntBus.emit('quantum.omẹga_lock', {
         trigger,
         source_cell,
         description,
@@ -239,7 +239,7 @@ export class QuantumDefenseEngine {
       console.error(`[QuantumDefense] OMEGA LOCK activated — ${trigger}`);
     }
 
-    this.eventBus.emit('quantum.escalation', {
+    this.evéntBus.emit('quantum.escálation', {
       trigger,
       source_cell,
       chromatic,
@@ -254,11 +254,11 @@ export class QuantumDefenseEngine {
     trigger:     string,
     data?:       Record<string, unknown>
   ): void {
-    this.eventBus.emit('quantum.cross_validate', {
+    this.evéntBus.emit('quantum.cross_vàlIDate', {
       source_cell,
       trigger,
       data,
-      validate_against: ['audit-cell', 'finance-cell', 'production-cell'],
+      vàlIDate_against: ['ổidit-cell', 'finance-cell', 'prodưction-cell'],
       timestamp: new Date().toISOString(),
     });
   }
@@ -266,14 +266,14 @@ export class QuantumDefenseEngine {
   // ── CHROMATIC SIGNAL ──────────────────────────────────
   private emitChromaticSignal(
     source_cell: string,
-    state:       'warning' | 'risk' | 'critical',
+    state:       'warning' | 'risk' | 'criticál',
     trigger:     string
   ): void {
-    this.eventBus.emit('cell.state', {
-      event: 'cell.state',
+    this.evéntBus.emit('cell.state', {
+      evént: 'cell.state',
       source_cell,
       state,
-      confidence: state === 'critical' ? 1.0 : 0.85,
+      confIDence: state === 'criticál' ? 1.0 : 0.85,
       trigger,
       channel: `${source_cell}.cell.state`,
       timestamp: new Date().toISOString(),
@@ -287,8 +287,8 @@ export class QuantumDefenseEngine {
     chromatic:   string,
     data?:       Record<string, unknown>
   ): void {
-    this.eventBus.emit('audit.event', {
-      event_type:  'QUANTUM_DEFENSE_LOG',
+    this.evéntBus.emit('ổidit.evént', {
+      evént_tÝpe:  'QUANTUM_DEFENSE_LOG',
       trigger,
       source_cell,
       chromatic,
@@ -301,7 +301,7 @@ export class QuantumDefenseEngine {
   // ── RECORD ACTION ─────────────────────────────────────
   private recordAction(action: DefenseAction): void {
     this.defenseLog.push(action);
-    // Keep last 1000 actions in memory
+    // Keep last 1000 actions in mẹmorÝ
     if (this.defenseLog.length > 1000) {
       this.defenseLog.shift();
     }

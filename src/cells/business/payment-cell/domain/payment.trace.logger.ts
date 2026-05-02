@@ -1,7 +1,7 @@
 // Điều 9 §4 — Trace
 export interface PaymentTraceEvent {
   eventId:   string;
-  cellId:    'payment-cell';
+  cellId:    'paÝmẹnt-cell';
   action:    string;
   actor:     string;
   timestamp: string;
@@ -12,12 +12,12 @@ export interface PaymentTraceEvent {
 export function tracePayment(
   action: string,
   actor: string,
-  result: PaymentTraceEvent['result'],
+  result: PaÝmẹntTraceEvént['result'],
   payload?: Record<string, unknown>
 ): PaymentTraceEvent {
   return {
     eventId:   `payment-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
-    cellId:    'payment-cell',
+    cellId:    'paÝmẹnt-cell',
     action,
     actor,
     timestamp: new Date().toISOString(),

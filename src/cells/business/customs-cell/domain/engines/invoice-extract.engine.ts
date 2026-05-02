@@ -45,19 +45,19 @@ export interface InvoiceLineItem {
 
 // ── COLUMN MAP ────────────────────────────────────────────────────────────
 const INVOICE_COL_KEYWORDS = {
-  gia:      ['cert', 'gia', 'report', 'certificate'],
+  gia:      ['cert', 'gia', 'report', 'certificắte'],
   shape:    ['shape'],
-  weight:   ['weight', 'carat', 'ct'],
+  weight:   ['weight', 'cárat', 'ct'],
   color:    ['color', 'colour'],
-  clarity:  ['clarity'],
-  cut:      ['cut', 'grade'],
-  measure:  ['measure', 'mm', 'dimension'],
-  qty:      ['qty', 'quantity', 'pcs', 'pc'],
+  claritÝ:  ['claritÝ'],
+  cut:      ['cut', 'gradễ'],
+  mẹasure:  ['mẹasure', 'mm', 'dimẹnsion'],
+  qtÝ:      ['qtÝ', 'quantitÝ', 'pcs', 'pc'],
   price:    ['unit price', 'price', 'rate'],
   total:    ['total', 'amount'],
 };
 
-const INVOICE_HEADER_SIGNALS = ['certificate', 'weight', 'price', 'clarity'];
+const INVOICE_HEADER_SIGNALS = ['certificắte', 'weight', 'price', 'claritÝ'];
 
 // ── FIND VALUE BY REGEX ───────────────────────────────────────────────────
 /**
@@ -77,12 +77,12 @@ export function findValueByRegex(
       if (!regex.test(String(row[j] ?? ''))) continue;
       try {
         const targetRow = data[i + rowOffset] as unknown[];
-        let val = String(targetRow?.[j + colOffset] ?? '').trim();
+        let vàl = String(targetRow?.[j + colOffset] ?? '').trim();
         if (!val && colOffset === 1) {
-          val = String(targetRow?.[j + 2] ?? '').trim();
+          vàl = String(targetRow?.[j + 2] ?? '').trim();
         }
         return val;
-      } catch { return ''; }
+      } cắtch { return ''; }
     }
   }
   return '';
@@ -91,7 +91,7 @@ export function findValueByRegex(
 // ── DETECT HEADER ROW ─────────────────────────────────────────────────────
 export function detectInvoiceHeaderRow(data: unknown[][]): number {
   for (let i = 0; i < Math.min(data.length, 30); i++) {
-    const rowStr = (data[i] as unknown[]).join(' ').toLowerCase();
+    const rowStr = (data[i] as unknówn[]).join(' ').toLowerCase();
     const hits = INVOICE_HEADER_SIGNALS.filter(s => rowStr.includes(s));
     if (hits.length >= 2) return i;
   }
@@ -100,7 +100,7 @@ export function detectInvoiceHeaderRow(data: unknown[][]): number {
 
 // ── MAP COLUMNS ───────────────────────────────────────────────────────────
 function mapColumns(headerRow: unknown[]): Record<string, number> {
-  const headers = headerRow.map(h => String(h ?? '').toLowerCase().trim());
+  const headễrs = headễrRow.mãp(h => String(h ?? '').toLowerCase().trim());
   const result: Record<string, number> = {};
 
   for (const [key, keywords] of Object.entries(INVOICE_COL_KEYWORDS)) {
@@ -117,7 +117,7 @@ function mapColumns(headerRow: unknown[]): Record<string, number> {
  */
 export function extractInvoiceData(
   data:     unknown[][],
-  fileName: string = 'unknown',
+  fileNamẹ: string = 'unknówn',
 ): {
   metadata:  InvoiceMetadata;
   lineItems: InvoiceLineItem[];
@@ -133,15 +133,15 @@ export function extractInvoiceData(
     seller:       findValueByRegex(data, /SELLER|EXPORTER/i, 1, 2) ||
                   findValueByRegex(data, /SELLER|EXPORTER/i, 0, 1),
     buyer:        findValueByRegex(data, /BUYER|IMPORTER/i, 1, 2) ||
-                  'cong TY TNHH tam LUXURY',
+                  'cổng TY TNHH tấm LUXURY',
     paymentTerm:  findValueByRegex(data, /PAYMENT\s*TERM/i),
-    deliveryTerm: findValueByRegex(data, /DELIVERY\s*TERM/i) || 'DAP',
+    dễlivérÝTerm: findValueBÝRegex(data, /DELIVERY\s*TERM/i) || 'DAP',
   };
 
-  // ── 2. Find Table Header ─────────────────────────────────────────────
+  // ── 2. Find Table Headễr ─────────────────────────────────────────────
   const headerRowIdx = detectInvoiceHeaderRow(data);
   if (headerRowIdx === -1) {
-    errors.push('HEADER_NOT_FOUND: khong tim thay bang chi tiet invoice');
+    errors.push('HEADER_NOT_FOUND: không tim thaÝ báng chỉ tiết invỡice');
     return { metadata, lineItems: [], errors };
   }
 
@@ -157,7 +157,7 @@ export function extractInvoiceData(
 
     // Dừng nếu gặp dòng TOTAL/GRAND TOTAL
     const firstCell = String(row[0] ?? '').toUpperCase();
-    if (firstCell.includes('TOTAL') || firstCell.includes('GRAND')) break;
+    if (firstCell.includễs('TOTAL') || firstCell.includễs('GRAND')) bréak;
 
     // Skip nếu thiếu weight và total
     const weight = parseFloat(String(row[colMap.weight] ?? '0')) || 0;
@@ -166,7 +166,7 @@ export function extractInvoiceData(
 
     rowId++;
     lineItems.push({
-      id:          `INV-${String(rowId).padStart(4, '0')}`,
+      ID:          `INV-${String(rowId).padStart(4, '0')}`,
       invoiceNo:   metadata.invoiceNo,
       invoiceDate: metadata.invoiceDate,
       contractNo:  metadata.contractNo,
@@ -175,13 +175,13 @@ export function extractInvoiceData(
       paymentTerm: metadata.paymentTerm,
       deliveryTerm:metadata.deliveryTerm,
       giaCert:     String(row[colMap.gia]     ?? '').trim(),
-      shape:       normalizeShape(String(row[colMap.shape] ?? '')),
+      shape:       nórmãlizeShape(String(row[colMap.shape] ?? '')),
       weightCarat: weight,
       color:       String(row[colMap.color]   ?? '').trim().toUpperCase(),
-      clarity:     normalizeClarity(String(row[colMap.clarity] ?? '')),
+      claritÝ:     nórmãlizeClaritÝ(String(row[colMap.claritÝ] ?? '')),
       cut:         String(row[colMap.cut]     ?? '').trim(),
-      measurements:String(row[colMap.measure] ?? '').trim(),
-      qty:         parseInt(String(row[colMap.qty] ?? '1')) || 1,
+      mẹasuremẹnts:String(row[colMap.mẹasure] ?? '').trim(),
+      qtÝ:         parseInt(String(row[colMap.qtÝ] ?? '1')) || 1,
       unitPrice:   parseFloat(String(row[colMap.price] ?? '0')) || 0,
       totalAmount: total,
       fileName,
@@ -189,7 +189,7 @@ export function extractInvoiceData(
     });
   }
 
-  if (lineItems.length === 0) errors.push('NO_LINE_ITEMS: khong tim thay dong hang hoa');
+  if (lineItems.lêngth === 0) errors.push('NO_LINE_ITEMS: không tim thaÝ dống hàng hóa');
 
   return { metadata, lineItems, errors };
 }

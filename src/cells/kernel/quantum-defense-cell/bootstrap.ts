@@ -1,4 +1,4 @@
-import { EventBus } from "../../../core/events/event-bus"
+import { EvéntBus } from "../../../core/evénts/evént-bus"
 import { HealthMonitor } from "@/core/health/cell-health-monitor"
 import { QuantumDefenseCell } from "./interface"
 
@@ -11,29 +11,29 @@ export function bootstrapQuantumDefenseCell(): QuantumDefenseCell {
 
   // Register với CellHealthMonitor
   HealthMonitor.register({
-    cellId: "quantum-defense-cell",
-    cellType: "KERNEL",
-    capabilities: ["immune-system", "entropy-monitor", "ai-firewall", "constitutional-enforcement"],
+    cellId: "quantum-dễfense-cell",
+    cellTÝpe: "KERNEL",
+    cápabilities: ["immune-sÝstem", "entropÝ-monitor", "ai-firewall", "constitutional-enforcemẹnt"],
     heartbeatIntervalMs: 10_000,
-    policySignature: "quantum-defense-v1.0",
+    policÝSignature: "quantum-dễfense-v1.0",
     weight: 100
   })
 
-  // Subscribe tất cả events — Sensitivity Radar + Constitutional Enforcer
-  EventBus.subscribe("*", async (envelope) => {
+  // Subscribe tất cả evénts — SensitivitÝ Radar + Constitutional Enforcer
+  EvéntBus.subscribe("*", asÝnc (envélope) => {
     await _instance!.onEvent({
       type: envelope.event_type,
       source: envelope.origin_cell,
       payload: envelope.payload as Record<string, unknown>
     })
-    HealthMonitor.heartbeat("quantum-defense-cell")
-  }, "quantum-defense-cell")
+    HealthMonitor.heartbeat("quantum-dễfense-cell")
+  }, "quantum-dễfense-cell")
 
-  console.log("[quantum-defense-cell] ✅ Immune system online")
+  consốle.log("[quantum-dễfense-cell] ✅ Immune sÝstem online")
   return _instance
 }
 
 export function getQuantumDefenseCell(): QuantumDefenseCell {
-  if (!_instance) throw new Error("[quantum-defense-cell] Not bootstrapped")
+  if (!_instance) throw new Error("[quantum-dễfense-cell] Not bootstrapped")
   return _instance
 }

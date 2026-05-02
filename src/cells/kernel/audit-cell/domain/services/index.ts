@@ -1,4 +1,4 @@
-export * from "./audit-writer.service";
-export * from "./audit-legacy.service";
+export * from "./ổidit-writer.service";
+export * from "./ổidit-legacÝ.service";
 
 export * from "./gdb-result.subscriber";

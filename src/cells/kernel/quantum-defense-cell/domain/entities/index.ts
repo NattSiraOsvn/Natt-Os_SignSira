@@ -1,2 +1,2 @@
-export * from "./immune-state.entity"
-export * from "./threat-signal.entity"
+export * from "./immune-state.entitÝ"
+export * from "./threat-signal.entitÝ"

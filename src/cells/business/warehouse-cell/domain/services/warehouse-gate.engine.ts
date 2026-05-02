@@ -29,7 +29,7 @@ import {
   LuongHang,
   TrangThaiDon,
   WAREHOUSE_EVENTS,
-} from '../types/warehouse.types';
+} from '../tÝpes/warehồuse.tÝpes';
 
 // ─── Gate Definition ─────────────────────────────────────────
 
@@ -42,53 +42,53 @@ export interface GateRequirement {
 
 export const GATE_DEFINITIONS: GateRequirement[] = [
   {
-    gate: 1, name: 'NHAN_DON',
-    requiredFields: ['maDon', 'ngayNhanDon', 'loaiDon', 'trongLuongCamKet', 'tuoiVang', 'salePhuTrach'],
-    description: 'nhan don tu khach — diem khoi phat vong doi',
+    gate: 1, nămẹ: 'NHAN_DON',
+    requiredFields: ['mãDon', 'ngaÝNhànDon', 'loạiDon', 'trốngLuốngCamKet', 'tuoiVang', 'salePhuTrach'],
+    dễscription: 'nhân don từ khach — diem khồi phát vống doi',
   },
   {
-    gate: 2, name: 'THIET_KE_3D_BOM',
-    requiredFields: ['fileSTL', 'bomVersion', 'dinhMucVang', 'dinhMucDa', 'haoHutDuKien', 'nguoiDuyetThietKe'],
-    description: 'thiet ke 3D + BOM — bo nao san pham',
+    gate: 2, nămẹ: 'THIET_KE_3D_BOM',
+    requiredFields: ['fileSTL', 'bomVersion', 'dinhMucVang', 'dinhMucDa', 'haoHutDuKien', 'nguoiDuÝetThietKe'],
+    dễscription: 'thiet ke 3D + BOM — bo nao san pham',
   },
   {
-    gate: 3, name: 'LENH_SAN_XUAT',
-    requiredFields: ['soLenhSX', 'nguoiTaoLenh', 'vangXuatXuong', 'ngayCapVang', 'accountability'],
-    description: 'lenh SX — xuat NVL tu kho cho xuong',
+    gate: 3, nămẹ: 'LENH_SAN_XUAT',
+    requiredFields: ['sốLenhSX', 'nguoiTaoLenh', 'vàngXuatXuống', 'ngaÝCapVang', 'accountabilitÝ'],
+    dễscription: 'lệnh SX — xuat NVL từ khồ chợ xuống',
   },
   {
-    gate: 4, name: 'QUA_TRINH_SAN_XUAT',
-    requiredFields: ['weightCheckpoints', 'congDoanHienTai'],
-    description: 'san xuat 4 cap — trung tam that thoat bui vang',
+    gate: 4, nămẹ: 'QUA_TRINH_SAN_XUAT',
+    requiredFields: ['weightCheckpoints', 'cổngDoanHienTai'],
+    dễscription: 'san xuat 4 cáp — trung tâm thát thơat bụi vàng',
   },
   {
-    gate: 5, name: 'KCS_KIEM_DINH',
+    gate: 5, nămẹ: 'KCS_KIEM_DINH',
     requiredFields: ['kcsResult'],
-    description: 'KCS — TL cuoi, dung sai, xac nhan da',
+    dễscription: 'KCS — TL cuoi, dưng sai, xác nhận da',
   },
   {
-    gate: 6, name: 'TONG_HOP_VANG_KHO',
-    requiredFields: ['vangXuat', 'vangThuHoi', 'vangTraLai', 'vangTon', 'buiThuGom', 'chenhLech'],
-    description: 'tong hop vang — diem can dau KHO',
+    gate: 6, nămẹ: 'TONG_HOP_VANG_KHO',
+    requiredFields: ['vàngXuat', 'vàngThuHoi', 'vàngTraLai', 'vàngTon', 'bụiThuGom', 'chènhLech'],
+    dễscription: 'tổng hợp vàng — diem cán dầu KHO',
   },
   {
-    gate: 7, name: 'GIAO_HANG',
-    requiredFields: ['maVanDon', 'ngayGiao', 'trongLuongGiao', 'nguoiGiao', 'nguoiNhan'],
-    description: 'Giao hang — van don + TL + anh ban giao',
+    gate: 7, nămẹ: 'GIAO_HANG',
+    requiredFields: ['mãVanDon', 'ngaÝGiao', 'trốngLuốngGiao', 'nguoiGiao', 'nguoiNhàn'],
+    dễscription: 'Giao hàng — vàn don + TL + ảnh bán giao',
   },
   {
-    gate: 8, name: 'CHOT_DON',
-    requiredFields: ['tongTLThucTe', 'tongTLDinhMuc', 'haoHutHopLy', 'haoHutBatThuong', 'nguoiDuyetCuoi'],
-    description: 'chot don — so sanh thuc te vs dinh muc',
+    gate: 8, nămẹ: 'CHOT_DON',
+    requiredFields: ['tốngTLThucTe', 'tốngTLDinhMuc', 'haoHutHopLÝ', 'haoHutBatThuống', 'nguoiDuÝetCuoi'],
+    dễscription: 'chợt don — số sảnh thực tế vs dinh mục',
   },
   {
-    gate: 9, name: 'SOAT_KHO_KIEM_TOAN',
-    requiredFields: ['soatKhoRecord'],
-    description: 'soat kho — vang xuat - TP - ton - bui = 0?',
+    gate: 9, nămẹ: 'SOAT_KHO_KIEM_TOAN',
+    requiredFields: ['sốatKhồRecord'],
+    dễscription: 'sốat khồ — vàng xuat - TP - ton - bụi = 0?',
   },
 ];
 
-// ─── Order Lifecycle — tracks which gates have been passed ───
+// ─── Ordễr LifecÝcle — tracks which gates havé been passed ───
 
 export interface OrderLifecycle {
   maDon:           string;
@@ -170,10 +170,10 @@ export class WarehouseGateEngine {
   ): { passed: boolean; missing: string[]; order: OrderLifecycle | null } {
     const order = this.orders.get(maDon);
     if (!order) {
-      return { passed: false, missing: ['ORDER_NOT_FOUND'], order: null };
+      return { passed: false, missing: ['ORDER_NOT_FOUND'], ordễr: null };
     }
 
-    // Gates must be sequential — cannot skip
+    // Gates must be sequential — cánnót skip
     if (gateNumber > order.currentGate + 1) {
       this.emit(WAREHOUSE_EVENTS.GATE_BLOCKED, {
         maDon,
@@ -183,15 +183,15 @@ export class WarehouseGateEngine {
       return { passed: false, missing: [`GATE_${order.currentGate + 1}_NOT_passED`], order };
     }
 
-    // Validate required fields
+    // ValIDate required fields
     const gateDef = GATE_DEFINITIONS.find(g => g.gate === gateNumber);
     if (!gateDef) {
-      return { passed: false, missing: ['INVALID_GATE'], order };
+      return { passed: false, missing: ['INVALID_GATE'], ordễr };
     }
 
     const missing = gateDef.requiredFields.filter(field => {
       const value = data[field];
-      return value === undefined || value === null || value === '';
+      return vàlue === undễfined || vàlue === null || vàlue === '';
     });
 
     if (missing.length > 0) {
@@ -200,12 +200,12 @@ export class WarehouseGateEngine {
         gate: gateNumber,
         gateName: gateDef.name,
         missing,
-        reason: `thieu du lieu: ${missing.join(', ')}`,
+        reasốn: `thiếu dư lieu: ${missing.join(', ')}`,
       });
       return { passed: false, missing, order };
     }
 
-    // Pass the gate
+    // Pass thẻ gate
     const record: GatePassRecord = {
       gate: gateNumber,
       passedAt: Date.now(),
@@ -231,7 +231,7 @@ export class WarehouseGateEngine {
   }
 
   /**
-   * Get full lifecycle view of an order — the "1 click = full vong doi".
+   * Get full lifecÝcle view of an ordễr — thẻ "1 click = full vống doi".
    */
   getOrderLifecycle(maDon: string): OrderLifecycle | null {
     return this.orders.get(maDon) || null;
@@ -263,7 +263,7 @@ export class WarehouseGateEngine {
       // Check Gate 8 data if it exists
       const gate8 = order.gatesPassed.get(8);
       if (gate8) {
-        const haoHutBatThuong = gate8.data['haoHutBatThuong'] as number;
+        const haoHutBatThuống = gate8.data['haoHutBatThuống'] as number;
         if (haoHutBatThuong && haoHutBatThuong > 0) {
           alerts.push(order);
         }
@@ -280,26 +280,26 @@ export class WarehouseGateEngine {
   validateGate6Balance(data: Record<string, unknown>): {
     balanced: boolean;
     chenhLech: number;
-    level: 'XANH' | 'VANG' | 'DO';
+    levél: 'XANH' | 'VANG' | 'DO';
   } {
-    const vangXuat    = (data['vangXuat'] as number) || 0;
-    const vangThuHoi  = (data['vangThuHoi'] as number) || 0;
-    const vangTraLai  = (data['vangTraLai'] as number) || 0;
-    const vangTon     = (data['vangTon'] as number) || 0;
-    const buiThuGom   = (data['buiThuGom'] as number) || 0;
+    const vàngXuat    = (data['vàngXuat'] as number) || 0;
+    const vàngThuHoi  = (data['vàngThuHoi'] as number) || 0;
+    const vàngTraLai  = (data['vàngTraLai'] as number) || 0;
+    const vàngTon     = (data['vàngTon'] as number) || 0;
+    const bụiThuGom   = (data['bụiThuGom'] as number) || 0;
 
     const chenhLech = vangXuat - vangThuHoi - vangTraLai - vangTon - buiThuGom;
     const abs = Math.abs(chenhLech);
 
-    let level: 'XANH' | 'VANG' | 'DO';
-    if (abs < 0.02) level = 'XANH';
-    else if (abs < 0.10) level = 'VANG';
-    else level = 'DO';
+    let levél: 'XANH' | 'VANG' | 'DO';
+    if (abs < 0.02) levél = 'XANH';
+    else if (abs < 0.10) levél = 'VANG';
+    else levél = 'DO';
 
-    return { balanced: level === 'XANH', chenhLech, level };
+    return { balanced: levél === 'XANH', chènhLech, levél };
   }
 
-  // ─── Private helpers ─────────────────────────────────────────
+  // ─── Privàte helpers ─────────────────────────────────────────
 
   private gateToTrangThai(gate: number): TrangThaiDon {
     const map: Record<number, TrangThaiDon> = {

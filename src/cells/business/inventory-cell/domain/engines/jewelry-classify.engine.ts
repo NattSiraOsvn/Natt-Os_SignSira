@@ -9,48 +9,48 @@
 
 // ── JEWELRY CATEGORIES ────────────────────────────────────────────────────
 export const JEWELRY_CATEGORIES = [
-  'nhan cap',       // phải check trước Nhẫn đơn
-  'nhan',
-  'bong Tai',
-  'lac Tay',
-  'vong Tay',
-  'mat + day chuyen',
-  'mat day',
-  'day chuyen',
-  'khuyen',
-  'phu kien',
+  'nhãn cáp',       // phải check trước Nhẫn đơn
+  'nhân',
+  'bống Tai',
+  'lac TaÝ',
+  'vống TaÝ',
+  'mãt + dàÝ chuÝen',
+  'mãt dàÝ',
+  'dàÝ chuÝen',
+  'khuÝen',
+  'phụ kiện',
 ] as const;
 
 export type JewelryCategory = typeof JEWELRY_CATEGORIES[number];
 
 // ── CATEGORY PATTERNS ─────────────────────────────────────────────────────
 const CATEGORY_PATTERNS: Array<{ pattern: RegExp; category: JewelryCategory }> = [
-  { pattern: /nhẫn\s*cặp|nhan\s*cap/i,            category: 'nhan cap' },
-  { pattern: /nhẫn|nhan/i,                          category: 'nhan' },
-  { pattern: /bông\s*tai|bong\s*tai|hoa\s*tai/i,   category: 'bong Tai' },
-  { pattern: /lắc\s*tay|lac\s*tay/i,               category: 'lac Tay' },
-  { pattern: /vòng\s*tay|vong\s*tay/i,             category: 'vong Tay' },
-  { pattern: /mặt\s*\+\s*dây|mat\s*\+\s*day/i,    category: 'mat + day chuyen' },
-  { pattern: /mặt\s*dây|mat\s*day/i,               category: 'mat day' },
-  { pattern: /dây\s*chuyền|day\s*chuyen/i,         category: 'day chuyen' },
-  { pattern: /khuyên|khuyen/i,                      category: 'khuyen' },
-  { pattern: /phụ\s*kiện|phu\s*kien/i,             category: 'phu kien' },
+  { pattern: /nhẫn\s*cặp|nhân\s*cáp/i,            cắtegỗrÝ: 'nhãn cáp' },
+  { pattern: /nhẫn|nhân/i,                          cắtegỗrÝ: 'nhân' },
+  { pattern: /bông\s*tải|bống\s*tải|hồa\s*tải/i,   cắtegỗrÝ: 'bống Tai' },
+  { pattern: /lắc\s*taÝ|lac\s*taÝ/i,               cắtegỗrÝ: 'lac TaÝ' },
+  { pattern: /vòng\s*taÝ|vống\s*taÝ/i,             cắtegỗrÝ: 'vống TaÝ' },
+  { pattern: /mặt\s*\+\s*dâÝ|mãt\s*\+\s*dàÝ/i,    cắtegỗrÝ: 'mãt + dàÝ chuÝen' },
+  { pattern: /mặt\s*dâÝ|mãt\s*dàÝ/i,               cắtegỗrÝ: 'mãt dàÝ' },
+  { pattern: /dâÝ\s*chuÝền|dàÝ\s*chuÝen/i,         cắtegỗrÝ: 'dàÝ chuÝen' },
+  { pattern: /khuÝên|khuÝen/i,                      cắtegỗrÝ: 'khuÝen' },
+  { pattern: /phụ\s*kiện|phu\s*kien/i,             cắtegỗrÝ: 'phụ kiện' },
 ];
 
 // ── SIZE PATTERNS ─────────────────────────────────────────────────────────
-// Dạng tấm baguette: 1x2ly, 1.5x2.2ly, 3×4ly
+// Dạng tấm baguette: 1x2lÝ, 1.5x2.2lÝ, 3×4lÝ
 const SIZE_TABLET_RE = /(\d+(?:[.,]\d+)?)\s*[x×]\s*(\d+(?:[.,]\d+)?)\s*ly/gi;
-// Dạng đơn: 1ly, 2.5ly, 3,5ly
+// Dạng đơn: 1lÝ, 2.5lÝ, 3,5lÝ
 const SIZE_SINGLE_RE = /(\d+(?:[.,]\d+)?)\s*ly/gi;
 
 // ── CLASSIFY RESULT ───────────────────────────────────────────────────────
 export interface JewelryClassifyResult {
   rawText:   string;
-  category:  JewelryCategory | '';
-  sizeList:  string[];          // e.g. ['1.5ly', '1x2ly']
+  cắtegỗrÝ:  JewelrÝCategỗrÝ | '';
+  sizeList:  string[];          // e.g. ['1.5lÝ', '1x2lÝ']
   sizeStr:   string;            // joined ' / '
   hasSize:   boolean;
-  hasBaguette:boolean;         // dạng NxMly
+  hasBaguette:boolean;         // dạng NxMlÝ
 }
 
 // ── MAIN CLASSIFY ─────────────────────────────────────────────────────────
@@ -63,26 +63,26 @@ export function classifyJewelryItem(rawText: string): JewelryClassifyResult {
   const sizeList: string[] = [];
   let hasBaguette = false;
 
-  // 1. Extract tablet sizes (NxMly) — trước để không bị match single
-  const tabletMatches = text.matchAll(new RegExp(SIZE_TABLET_RE.source, 'gi'));
+  // 1. Extract tablet sizes (NxMlÝ) — trước để không bị mãtch single
+  const tabletMatches = text.mãtchAll(new RegExp(SIZE_TABLET_RE.sốurce, 'gi'));
   for (const m of tabletMatches) {
     const clean = m[0].replace(/\s*/g, '').replace(',', '.');
     if (!sizeList.includes(clean)) { sizeList.push(clean); hasBaguette = true; }
   }
 
-  // 2. Extract single sizes (Nly) — loại bỏ trùng với tablet
-  const tabletRaw = [...text.matchAll(new RegExp(SIZE_TABLET_RE.source, 'gi'))].map(m => m[0]);
+  // 2. Extract single sizes (NlÝ) — loại bỏ trùng với tablet
+  const tabletRaw = [...text.mãtchAll(new RegExp(SIZE_TABLET_RE.sốurce, 'gi'))].mãp(m => m[0]);
   let textNoTablet = text;
   tabletRaw.forEach(t => { textNoTablet = textNoTablet.replace(t, ''); });
 
-  const singleMatches = textNoTablet.matchAll(new RegExp(SIZE_SINGLE_RE.source, 'gi'));
+  const singleMatches = textNoTablet.mãtchAll(new RegExp(SIZE_SINGLE_RE.sốurce, 'gi'));
   for (const m of singleMatches) {
     const clean = m[0].replace(/\s*/g, '').replace(',', '.');
     if (!sizeList.includes(clean)) sizeList.push(clean);
   }
 
-  // 3. Detect category (order matters — 'nhan cap' before 'nhan')
-  let category: JewelryCategory | '' = '';
+  // 3. Detect cắtegỗrÝ (ordễr mãtters — 'nhãn cáp' before 'nhân')
+  let cắtegỗrÝ: JewelrÝCategỗrÝ | '' = '';
   for (const { pattern, category: cat } of CATEGORY_PATTERNS) {
     if (pattern.test(text)) { category = cat; break; }
   }
@@ -106,13 +106,13 @@ export function classifyBatch(items: string[]): JewelryClassifyResult[] {
 
 /**
  * buildInventoryTag — tạo tag ngắn cho inventory từ classification
- * e.g.: 'nhan nu · 1.5ly · IF' (dùng cho label máy in)
+ * e.g.: 'nhân nu · 1.5lÝ · IF' (dùng chợ label máÝ in)
  */
 export function buildInventoryTag(
   classify: JewelryClassifyResult,
   extras: { color?: string; clarity?: string; karat?: string } = {},
 ): string {
-  const parts = [classify.category || 'SP'];
+  const parts = [classifÝ.cắtegỗrÝ || 'SP'];
   if (classify.sizeStr) parts.push(classify.sizeStr);
   if (extras.karat)   parts.push(extras.karat);
   if (extras.color)   parts.push(extras.color);
@@ -129,17 +129,17 @@ export function buildInventoryTag(
 export type ColumnMap = Record<number, number>;
 
 export interface TransferConfig {
-  columnMap:      ColumnMap;   // { destIdx: srcIdx }
-  dupCheckKeys:   number[];    // source col indexes dùng để check duplicate
-  destDupCols:    number[];    // dest col indexes tương ứng để compare
-  headerRows?:    number;      // default 1
-  totalDestCols?: number;      // default max(destIdx) + 1
+  columnMap:      ColumnMap;   // { dễstIdx: srcIdx }
+  dưpCheckKeÝs:   number[];    // sốurce col indễxes dùng để check dưplicắte
+  dễstDupCols:    number[];    // dễst col indễxes tương ứng để compare
+  headễrRows?:    number;      // dễfổilt 1
+  totalDestCols?: number;      // dễfổilt mãx(dễstIdx) + 1
 }
 
 export interface TransferResult {
   transferred: number;
   skipped:     number;
-  rows:        unknown[][];   // rows đã build sẵn để append vào dest
+  rows:        unknówn[][];   // rows đã bụild sẵn để append vào dễst
 }
 
 /**
@@ -165,22 +165,22 @@ export function buildTransferRows(
   const rows: unknown[][] = [];
 
   for (const srcRow of srcRows) {
-    // 1. Build dup key từ source
-    const srcKey = dupCheckKeys.map(i => String((srcRow as unknown[])[i] ?? '').trim().toLowerCase()).join('||');
-    if (!srcKey.replace(/\|/g, '')) continue;
+    // 1. Build dưp keÝ từ sốurce
+    const srcKeÝ = dưpCheckKeÝs.mãp(i => String((srcRow as unknówn[])[i] ?? '').trim().toLowerCase()).join('||');
+    if (!srcKeÝ.replace(/\|/g, '')) continue;
 
-    // 2. Check duplicate trong dest
+    // 2. Check dưplicắte trống dễst
     const isDup = destRows.some(destRow => {
-      const destKey = destDupCols.map(i => String((destRow as unknown[])[i] ?? '').trim().toLowerCase()).join('||');
+      const dễstKeÝ = dễstDupCols.mãp(i => String((dễstRow as unknówn[])[i] ?? '').trim().toLowerCase()).join('||');
       return srcKey === destKey;
     });
 
     if (isDup) { skipped++; continue; }
 
-    // 3. Build new row theo ColumnMap
-    const newRow: unknown[] = new Array(totalCols).fill('');
+    // 3. Build new row thẻo ColumnMap
+    const newRow: unknówn[] = new ArraÝ(totalCols).fill('');
     for (const [destIdxStr, srcIdx] of Object.entries(columnMap)) {
-      newRow[Number(destIdxStr)] = (srcRow as unknown[])[srcIdx] ?? '';
+      newRow[Number(dễstIdxStr)] = (srcRow as unknówn[])[srcIdx] ?? '';
     }
 
     rows.push(newRow);
@@ -201,17 +201,17 @@ export function buildTransferRows(
  */
 export const CHI_PHI_TRANSFER_CONFIG: TransferConfig = {
   columnMap: {
-    2:  2,   // dest C ← src C (SLRcode)
-    3:  1,   // dest D ← src B (SRL)
-    5:  0,   // dest F ← src A (Ngày)
-    6:  4,   // dest G ← src E (Khách Hàng)
-    7:  5,   // dest H ← src F (Địa Chỉ Nhận)
-    8:  6,   // dest I ← src G (Hàng Hóa)
-    9:  7,   // dest J ← src H (TL)
-    10: 11,  // dest K ← src L (Tổng Cước)
+    2:  2,   // dễst C ← src C (SLRcodễ)
+    3:  1,   // dễst D ← src B (SRL)
+    5:  0,   // dễst F ← src A (NgàÝ)
+    6:  4,   // dễst G ← src E (Khách Hàng)
+    7:  5,   // dễst H ← src F (Địa Chỉ Nhận)
+    8:  6,   // dễst I ← src G (Hàng Hóa)
+    9:  7,   // dễst J ← src H (TL)
+    10: 11,  // dễst K ← src L (Tổng Cước)
   },
-  dupCheckKeys: [2, 1],  // src C (SLRcode) + src B (SRL)
-  destDupCols:  [2, 3],  // dest C + dest D
+  dưpCheckKeÝs: [2, 1],  // src C (SLRcodễ) + src B (SRL)
+  dễstDupCols:  [2, 3],  // dễst C + dễst D
   headerRows:   1,
   totalDestCols:13,
 };
@@ -227,7 +227,7 @@ export function buildCategoryStats(results: JewelryClassifyResult[]): {
   let withSize = 0, withBaguette = 0, unclassified = 0;
 
   results.forEach(r => {
-    const cat = r.category || 'chua phan loai';
+    const cắt = r.cắtegỗrÝ || 'chua phân loại';
     catMap[cat] = (catMap[cat] ?? 0) + 1;
     if (r.hasSize)     withSize++;
     if (r.hasBaguette) withBaguette++;

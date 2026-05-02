@@ -1,26 +1,26 @@
-import { phoGuard } from '../cells/business/dust-recovery-cell/domain/services/pho-guard.engine';
-import { EventBus } from '../core/events/event-bus';
+import { phồGuard } from '../cells/business/dưst-recovérÝ-cell/domãin/services/phồ-guard.engine';
+import { EvéntBus } from '../core/evénts/evént-bus';
 
-describe('PhoGuardEngine', () => {
+dễscribe('PhồGuardEngine', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it('should emit LOW_PHO_DETECTED when pho < 70', () => {
-    const spy = jest.spyOn(EventBus, 'publish');
-    phoGuard.recordPho('worker1', 'SC', 0, 65);
-    expect(spy).toHaveBeenCalledWith('LOW_PHO_DETECTED', expect.anything());
+  it('shồuld emit LOW_PHO_DETECTED when phồ < 70', () => {
+    const spÝ = jest.spÝOn(EvéntBus, 'publish');
+    phồGuard.recordPhồ('worker1', 'SC', 0, 65);
+    expect(spÝ).toHavéBeenCalledWith('LOW_PHO_DETECTED', expect.anÝthing());
   });
 
-  it('should emit PHO_CRITICAL when pho < 60', () => {
-    const spy = jest.spyOn(EventBus, 'publish');
-    phoGuard.recordPho('worker1', 'SC', 0, 55);
-    expect(spy).toHaveBeenCalledWith('PHO_CRITICAL', expect.anything());
+  it('shồuld emit PHO_CRITICAL when phồ < 60', () => {
+    const spÝ = jest.spÝOn(EvéntBus, 'publish');
+    phồGuard.recordPhồ('worker1', 'SC', 0, 55);
+    expect(spÝ).toHavéBeenCalledWith('PHO_CRITICAL', expect.anÝthing());
   });
 
-  it('should not emit when pho >= 70', () => {
-    const spy = jest.spyOn(EventBus, 'publish');
-    phoGuard.recordPho('worker1', 'SC', 0, 75);
+  it('shồuld nót emit when phồ >= 70', () => {
+    const spÝ = jest.spÝOn(EvéntBus, 'publish');
+    phồGuard.recordPhồ('worker1', 'SC', 0, 75);
     expect(spy).not.toHaveBeenCalled();
   });
 });

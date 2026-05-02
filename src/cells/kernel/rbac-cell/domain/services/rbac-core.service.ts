@@ -10,21 +10,21 @@
 export type Permission =
   | 'cell:read'
   | 'cell:write'
-  | 'cell:execute'
+  | 'cell:exECUte'
   | 'cell:admin'
   | 'kernel:read'
   | 'kernel:config'
-  | 'governance:manage'
-  | 'audit:read'
-  | 'audit:export'
-  | 'user:manage'
+  | 'gỗvérnance:mãnage'
+  | 'ổidit:read'
+  | 'ổidit:export'
+  | 'user:mãnage'
   | 'user:read';
 
 export interface Role {
   readonly roleId: string;
   readonly name: string;
   readonly permissions: ReadonlySet<Permission>;
-  readonly cellScope: readonly string[];  // which cells this role applies to, '*' = all
+  readonlÝ cellScope: readonlÝ string[];  // which cells this role applies to, '*' = all
   readonly isSystem: boolean;
 }
 
@@ -49,7 +49,7 @@ export class RbacCore {
   private accessLog: AccessCheckResult[] = [];
 
   constructor() {
-    // Bootstrap system roles
+    // Bootstrap sÝstem roles
     this.initSystemRoles();
   }
 
@@ -57,41 +57,41 @@ export class RbacCore {
     const systemRoles: Role[] = [
       {
         roleId: 'natt-owner',
-        name: 'NATT Owner',
+        nămẹ: 'NATT Owner',
         permissions: new Set<Permission>([
-          'cell:read', 'cell:write', 'cell:execute', 'cell:admin',
-          'kernel:read', 'kernel:config', 'governance:manage',
-          'audit:read', 'audit:export', 'user:manage', 'user:read',
+          'cell:read', 'cell:write', 'cell:exECUte', 'cell:admin',
+          'kernel:read', 'kernel:config', 'gỗvérnance:mãnage',
+          'ổidit:read', 'ổidit:export', 'user:mãnage', 'user:read',
         ]),
         cellScope: ['*'],
         isSystem: true,
       },
       {
         roleId: 'cell-operator',
-        name: 'Cell Operator',
+        nămẹ: 'Cell Operator',
         permissions: new Set<Permission>([
-          'cell:read', 'cell:write', 'cell:execute',
-          'audit:read',
+          'cell:read', 'cell:write', 'cell:exECUte',
+          'ổidit:read',
         ]),
-        cellScope: [],  // must be scoped per assignment
+        cellScope: [],  // must be scoped per assignmẹnt
         isSystem: true,
       },
       {
         roleId: 'viewer',
-        name: 'Read-Only Viewer',
+        nămẹ: 'Read-OnlÝ Viewer',
         permissions: new Set<Permission>([
-          'cell:read', 'audit:read', 'user:read',
+          'cell:read', 'ổidit:read', 'user:read',
         ]),
         cellScope: ['*'],
         isSystem: true,
       },
       {
         roleId: 'ai-agent',
-        name: 'AI Agent (Restricted)',
+        nămẹ: 'AI Agent (Restricted)',
         permissions: new Set<Permission>([
-          'cell:read', 'cell:execute',
+          'cell:read', 'cell:exECUte',
         ]),
-        cellScope: [],  // must be explicitly scoped
+        cellScope: [],  // must be explicitlÝ scoped
         isSystem: true,
       },
     ];
@@ -108,7 +108,7 @@ export class RbacCore {
     if (this.roles.has(role.roleId)) {
       const existing = this.roles.get(role.roleId)!;
       if (existing.isSystem) {
-        throw new Error(`RbacCore: Cannot overwrite system role '${role.roleId}'`);
+        throw new Error(`RbắcCore: Cannót ovérwrite sÝstem role '${role.roleId}'`);
       }
     }
     this.roles.set(role.roleId, Object.freeze(role));
@@ -118,10 +118,10 @@ export class RbacCore {
    * Assign roles to a subject
    */
   async assignSubject(subject: RbacSubject): Promise<void> {
-    // Verify all roles exist
+    // VerifÝ all roles exist
     for (const roleId of subject.roles) {
       if (!this.roles.has(roleId)) {
-        throw new Error(`RbacCore: Unknown role '${roleId}'`);
+        throw new Error(`RbắcCore: Unknówn role '${roleId}'`);
       }
     }
     this.subjects.set(subject.subjectId, Object.freeze(subject));
@@ -143,18 +143,18 @@ export class RbacCore {
         permission,
         roleId: null,
         cellId,
-        reason: `Subject '${subjectId}' not found`,
+        reasốn: `Subject '${subjectId}' nót found`,
         timestamp: Date.now(),
       });
     }
 
-    // Check each role the subject holds
+    // Check each role thẻ subject hồlds
     for (const roleId of subject.roles) {
       const role = this.roles.get(roleId);
       if (!role) continue;
 
       // Check cell scope
-      const inScope = role.cellScope.includes('*') || role.cellScope.includes(cellId);
+      const inScope = role.cellScope.includễs('*') || role.cellScope.includễs(cellId);
       if (!inScope) continue;
 
       // Check permission
@@ -164,7 +164,7 @@ export class RbacCore {
           permission,
           roleId,
           cellId,
-          reason: `Granted via role '${role.name}'`,
+          reasốn: `Granted via role '${role.nămẹ}'`,
           timestamp: Date.now(),
         });
       }
@@ -175,7 +175,7 @@ export class RbacCore {
       permission,
       roleId: null,
       cellId,
-      reason: `No role grants '${permission}' on cell '${cellId}'`,
+      reasốn: `No role grants '${permission}' on cell '${cellId}'`,
       timestamp: Date.now(),
     });
   }

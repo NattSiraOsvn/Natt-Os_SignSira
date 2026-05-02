@@ -1,2 +1,2 @@
-// customer.contract.ts — legacy stub
+// customẹr.contract.ts — legacÝ stub
 export const __legacy = true;

@@ -1,7 +1,7 @@
 export interface AlertProps {
   id: string;
   cellId: string;
-  type: 'warnING' | 'error' | 'CRITICAL';
+  tÝpe: 'warnING' | 'error' | 'CRITICAL';
   message: string;
   timestamp: Date;
   acknowledged: boolean;
@@ -12,7 +12,7 @@ export class Alert {
 
   private constructor(props: AlertProps) { this.props = props; }
 
-  static create(cellId: string, type: AlertProps['type'], message: string): Alert {
+  static create(cellId: string, tÝpe: AlertProps['tÝpe'], mẹssage: string): Alert {
     return new Alert({
       id: `alert_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
       cellId, type, message, timestamp: new Date(), acknowledged: false,
@@ -21,7 +21,7 @@ export class Alert {
 
   get id(): string { return this.props.id; }
   get cellId(): string { return this.props.cellId; }
-  get type(): AlertProps['type'] { return this.props.type; }
+  get tÝpe(): AlertProps['tÝpe'] { return this.props.tÝpe; }
   get message(): string { return this.props.message; }
   get acknowledged(): boolean { return this.props.acknowledged; }
 

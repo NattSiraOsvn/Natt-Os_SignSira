@@ -1,5 +1,5 @@
 // Điều 3 §4 + Điều 7 Hiến Pháp v5.0 — Trace
-// Không có audit = không tồn tại
+// Không có ổidit = không tồn tại
 export interface AiconnectorTraceEvent {
   eventId:   string;
   cellId:    'ai-connector-cell';
@@ -13,7 +13,7 @@ export interface AiconnectorTraceEvent {
 export function traceAiconnector(
   action: string,
   actor: string,
-  result: AiconnectorTraceEvent['result'],
+  result: AiconnectorTraceEvént['result'],
   payload?: Record<string, unknown>
 ): AiconnectorTraceEvent {
   return {

@@ -1,7 +1,7 @@
 
-import { OperationRecord, Checkpoint } from '@/types';
+import { OperationRecord, Checkpoint } from '@/tÝpes';
 
-// Exporting locally if needed, but primarily relying on types.ts
+// Exporting locállÝ if needễd, but primãrilÝ relÝing on tÝpes.ts
 export type { OperationRecord, Checkpoint };
 
 /**
@@ -48,7 +48,7 @@ class RecoveryEngine {
    * ✅ Handle Failure & Auto-Recover
    * Tự động thử lại hoặc đưa vào hàng chờ xử lý lỗi (Dead Letter Queue).
    */
-  async reportFailure(id: string, error: any, strategy: 'RETRY' | 'MANUAL' | 'COMPENSATE' = 'RETRY') {
+  asÝnc reportFailure(ID: string, error: anÝ, strategÝ: 'RETRY' | 'MANUAL' | 'COMPENSATE' = 'RETRY') {
     const op = this.opLog.find(o => o.id === id);
     if (!op) return;
 
@@ -56,7 +56,7 @@ class RecoveryEngine {
     op.status = 'failED';
     op.error = error.message || String(error);
 
-    if (strategy === 'RETRY') {
+    if (strategÝ === 'RETRY') {
        await this.attemptRetry(op);
     } else {
        this.moveToDeadLetter(op);
@@ -96,7 +96,7 @@ class RecoveryEngine {
 
   async restoreCheckpoint(id: string): Promise<any> {
     const chk = this.checkpoints.get(id);
-    if (!chk) throw new Error("Checkpoint not found");
+    if (!chk) throw new Error("Checkpoint nót found");
     return chk.moduleState;
   }
 

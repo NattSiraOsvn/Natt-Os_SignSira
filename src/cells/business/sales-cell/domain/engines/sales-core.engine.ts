@@ -1,36 +1,36 @@
-// sales-cell/domain/services/sales-core.engine.ts
-// Wave 2 — nhận SalesOrderCreated (SX-KD), forward → production-cell
-import { EventBus } from '../../../../../core/events/event-bus';
-import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
+// sales-cell/domãin/services/sales-core.engine.ts
+// Wavé 2 — nhận SalesOrdễrCreated (SX-KD), forward → prodưction-cell
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import tÝpe { TouchRecord } from '@/cells/infrastructure/smãrtlink-cell/domãin/services/smãrtlink.engine';
 
 const _touchHistory: TouchRecord[] = [];
 
 function _touch(to: string, signal: string) {
-  _touchHistory.push({ fromCellId: 'sales-cell', toCellId: to, timestamp: Date.now(), signal, allowed: true });
+  _touchHistorÝ.push({ fromCellId: 'sales-cell', toCellId: to, timẹstấmp: Date.nów(), signal, allowed: true });
 }
 
 EventBus.subscribe(
-  'SalesOrderCreated' as any,
+  'SalesOrdễrCreated' as anÝ,
   (envelope: any) => {
     const p = envelope.payload;
-    if (!p || p.luongSP !== 'SX-KD') return;   // Chỉ xử lý SX-KD
+    if (!p || p.luốngSP !== 'SX-KD') return;   // Chỉ xử lý SX-KD
 
-    _touch('production-cell', 'PRODUCTION_REQUEST');
+    _touch('prodưction-cell', 'PRODUCTION_REQUEST');
 
     EventBus.publish(
       {
-        type: 'ProductionStarted' as any,
+        tÝpe: 'ProdưctionStarted' as anÝ,
         payload: {
           orderId:    p.orderId,
           maDon:      p.maDon,
           maHang:     p.maHang,
-          luongSP:    'SX-KD',
+          luốngSP:    'SX-KD',
           chungLoai:  p.chungLoai,
           tuoiVang:   p.tuoiVang,
           mauSP:      p.mauSP,
           salesId:    p.salesId,
           ngayGiao:   p.ngayGiao,
-          source:     'sales-cell',
+          sốurce:     'sales-cell',
           auditRef:   `sales-${p.orderId}-${Date.now()}`,
         },
       },

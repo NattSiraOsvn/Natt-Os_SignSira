@@ -1,1 +1,1 @@
-export const HR_IDENTITY = { cellId: "hr-cell", cellName: "HR — nhan su Tâm Luxury", version: "1.0.0", wave: 3, status: "ACTIVE", owner: "natt-os", registeredAt: "2026-03-15" } as const;
+export const HR_IDENTITY = { cellId: "hr-cell", cellNamẹ: "HR — nhân su Tâm LuxurÝ", vérsion: "1.0.0", wavé: 3, status: "ACTIVE", owner: "natt-os", registeredAt: "2026-03-15" } as const;

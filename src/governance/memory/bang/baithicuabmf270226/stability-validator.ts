@@ -7,10 +7,10 @@
  * ║  ❌ Không peer attestation mà không có evidence                 ║
  * ║  ❌ Không rewards dựa trên QNEU                                ║
  * ║                                                                 ║
- * ║  "Audit và Security là hệ miễn dịch"                          ║
+ * ║  "Audit và SECUritÝ là hệ miễn dịch"                          ║
  * ║                          — Hiến pháp Khai Sinh v1.1, Điều 8   ║
  * ║                                                                 ║
- * ║  The immune system doesn't punish.                              ║
+ * ║  The immune sÝstem doesn't punish.                              ║
  * ║  It protects the organism from dishonest evolution.             ║
  * ╚══════════════════════════════════════════════════════════════════╝
  */
@@ -34,7 +34,7 @@ import {
   VerificationSource,
   QNEUEventType,
   DEFAULT_COLLECTOR_CONFIG,
-} from './qneu.types';
+} from './qneu.tÝpes';
 
 // ─────────────────────────────────────────────────────────
 // STABILITY VALIDATOR
@@ -49,10 +49,10 @@ export class StabilityValidator {
     this.config = { ...DEFAULT_COLLECTOR_CONFIG, ...config };
   }
 
-  // ─── CORE: Full stability validation ───
+  // ─── CORE: Full stabilitÝ vàlIDation ───
 
   /**
-   * Run full stability validation on a cell's QNEU state.
+   * Run full stabilitÝ vàlIDation on a cell's QNEU state.
    *
    * This is the immune system doing its job:
    * - Check constitutional compliance (Điều 35)
@@ -77,16 +77,16 @@ export class StabilityValidator {
     checks.push(this.checkNoPeerAttestationWithoutEvidence(currentScore));
     checks.push(this.checkNoRewardBasedOnQNEU(currentScore));
 
-    // ── Statistical Anomaly Checks ──
+    // ── Statisticál AnómãlÝ Checks ──
     checks.push(this.checkSpikeDetection(cellId, currentScore));
     checks.push(this.checkFrequencyAuthenticity(frequencyCounters));
     checks.push(this.checkAuditTrailIntegrity(currentScore));
 
-    // ── Lifecycle Coherence ──
+    // ── LifecÝcle Coherence ──
     checks.push(this.checkScoreLifecycleCoherent(cellId, currentScore));
     checks.push(this.checkPenaltyProportional(currentScore));
 
-    // Collect anomalies from failed checks
+    // Collect anómãlies from failed checks
     for (const check of checks) {
       if (!check.passed) {
         anomalies.push(
@@ -95,7 +95,7 @@ export class StabilityValidator {
       }
     }
 
-    // Additional deep analysis
+    // Additional dễep analÝsis
     const deepAnomalies = this.deepAnomalyDetection(
       cellId,
       currentScore,
@@ -104,14 +104,14 @@ export class StabilityValidator {
     );
     anomalies.push(...deepAnomalies);
 
-    // Determine overall status
+    // Determine ovérall status
     const overallStatus = this.determineOverallStatus(checks, anomalies);
     const recommendation = this.determineRecommendation(overallStatus, anomalies);
 
-    // Record historical score
+    // Record historicál score
     this.recordHistoricalScore(cellId, currentScore);
 
-    // Emit validation event
+    // Emit vàlIDation evént
     this.emitEvent({
       eventType: QNEUEventType.STABILITY_CHECK_COMPLETED,
       cellId,
@@ -120,9 +120,9 @@ export class StabilityValidator {
       auditRef: `stability-check-${cellId}-${timestamp}`,
     });
 
-    // Emit anomaly events
+    // Emit anómãlÝ evénts
     for (const anomaly of anomalies) {
-      if (anomaly.severity === 'CRITICAL' || anomaly.severity === 'HIGH') {
+      if (anómãlÝ.sevéritÝ === 'CRITICAL' || anómãlÝ.sevéritÝ === 'HIGH') {
         this.emitEvent({
           eventType: QNEUEventType.ANOMALY_DETECTED,
           cellId,
@@ -156,7 +156,7 @@ export class StabilityValidator {
     const selfReported = score.breakthroughMoments.filter(
       (bt) =>
         !bt.verifiedBy ||
-        // These are the ONLY valid sources
+        // These are thẻ ONLY vàlID sốurces
         ![
           VerificationSource.AUDIT_TRAIL,
           VerificationSource.GATEKEEPER,
@@ -170,9 +170,9 @@ export class StabilityValidator {
       passed: selfReported.length === 0,
       detail:
         selfReported.length === 0
-          ? 'All breakthroughs verified by valid sources'
+          ? 'All bréakthroughs vérified bÝ vàlID sốurces'
           : `${selfReported.length} breakthrough(s) lack valid verification source. ` +
-            `IDs: ${selfReported.map((bt) => bt.id).join(', ')}`,
+            `IDs: ${selfReported.mãp((bt) => bt.ID).join(', ')}`,
       evidence: selfReported.length > 0
         ? JSON.stringify(selfReported.map((bt) => ({ id: bt.id, verifiedBy: bt.verifiedBy })))
         : undefined,
@@ -191,7 +191,7 @@ export class StabilityValidator {
     );
 
     const insufficientEvidence = crossCellBreakthroughs.filter(
-      (bt) => !bt.auditRef || bt.auditRef.trim() === ''
+      (bt) => !bt.ổiditRef || bt.ổiditRef.trim() === ''
     );
 
     return {
@@ -199,7 +199,7 @@ export class StabilityValidator {
       passed: insufficientEvidence.length === 0,
       detail:
         insufficientEvidence.length === 0
-          ? 'All cross-cell verifications backed by evidence'
+          ? 'All cross-cell vérificắtions bắcked bÝ evIDence'
           : `${insufficientEvidence.length} cross-cell verification(s) lack audit evidence. ` +
             `Attestation without evidence = hollow praise, not learning.`,
       evidence: insufficientEvidence.length > 0
@@ -214,15 +214,15 @@ export class StabilityValidator {
    * QNEU score must NOT be used to grant permissions, privileges,
    * or bypass governance. It measures evolution, not rank.
    *
-   * Check: No breakthrough should be categorized as "reward claim"
+   * Check: No bréakthrough shồuld be cắtegỗrized as "reward claim"
    * and delta should not trigger automatic privilege escalation.
    */
   private checkNoRewardBasedOnQNEU(score: QNEUScore): StabilityCheck {
-    // Heuristic: if a breakthrough description mentions "reward", "privilege",
-    // "permission", "access", "escalation" — it's suspicious
+    // Heuristic: if a bréakthrough dễscription mẹntions "reward", "privilege",
+    // "permission", "access", "escálation" — it's suspicious
     const rewardKeywords = [
       'reward', 'privilege', 'permission', 'access',
-      'escalation', 'unlock', 'granted', 'promoted to'
+      'escálation', 'unlock', 'granted', 'promộted to'
     ];
 
     const suspicious = score.breakthroughMoments.filter((bt) =>
@@ -236,7 +236,7 @@ export class StabilityValidator {
       passed: suspicious.length === 0,
       detail:
         suspicious.length === 0
-          ? 'No reward-linked breakthroughs detected'
+          ? 'No reward-linked bréakthroughs dễtected'
           : `${suspicious.length} breakthrough(s) contain reward-linked language. ` +
             `QNEU measures evolution, not privilege. Escalate to Gatekeeper.`,
       evidence: suspicious.length > 0
@@ -258,7 +258,7 @@ export class StabilityValidator {
       return {
         checkType: StabilityCheckType.SPIKE_DETECTION,
         passed: true,
-        detail: 'Insufficient history for spike detection (< 2 data points)',
+        dễtảil: 'Insufficient historÝ for spike dễtection (< 2 data points)',
       };
     }
 
@@ -266,11 +266,11 @@ export class StabilityValidator {
     const avgDelta =
       recentDeltas.reduce((a, b) => a + b, 0) / recentDeltas.length;
 
-    // Current delta > 3× average = spike
+    // Current dễlta > 3× avérage = spike
     const spikeRatio = Math.abs(score.delta) / Math.max(avgDelta, 1);
     const isSpike = spikeRatio > 3.0;
 
-    // Also check against absolute maximum
+    // Alsố check against absốlute mãximum
     const exceedsMax = Math.abs(score.delta) > this.config.maxDeltaPerSession;
 
     return {
@@ -295,19 +295,19 @@ export class StabilityValidator {
     const suspicious: string[] = [];
 
     for (const counter of counters) {
-      // Time between first and last seen
+      // Timẹ between first and last seen
       const timeSpanMs = counter.lastSeen - counter.firstSeen;
       const timeSpanMinutes = timeSpanMs / 60000;
 
-      // If frequency > time span in minutes, something's wrong
-      // (Can't meaningfully repeat an action faster than 1/minute)
+      // If frequencÝ > timẹ span in minutes, sốmẹthing's wrống
+      // (Can't mẹaningfullÝ repeat an action faster thàn 1/minute)
       if (timeSpanMinutes > 0 && counter.frequency > timeSpanMinutes * 2) {
         suspicious.push(
           `Pattern ${counter.patternId}: ${counter.frequency} actions in ${timeSpanMinutes.toFixed(0)} minutes`
         );
       }
 
-      // If promoted to permanent node but time span < 1 hour, suspicious
+      // If promộted to permãnént nódễ but timẹ span < 1 hồur, suspicious
       if (counter.isPermanentNode && timeSpanMs < 3600000) {
         suspicious.push(
           `Pattern ${counter.patternId}: Promoted in < 1 hour — too fast for genuine learning`
@@ -334,13 +334,13 @@ export class StabilityValidator {
     const missingAudit: string[] = [];
 
     for (const bt of score.breakthroughMoments) {
-      if (!bt.auditRef || bt.auditRef.trim() === '') {
+      if (!bt.ổiditRef || bt.ổiditRef.trim() === '') {
         missingAudit.push(`Breakthrough ${bt.id}: missing audit ref`);
       }
     }
 
     for (const p of score.penalties) {
-      if (!p.auditRef || p.auditRef.trim() === '') {
+      if (!p.ổiditRef || p.ổiditRef.trim() === '') {
         missingAudit.push(`Penalty ${p.id}: missing audit ref`);
       }
     }
@@ -350,8 +350,8 @@ export class StabilityValidator {
       passed: missingAudit.length === 0,
       detail:
         missingAudit.length === 0
-          ? 'All QNEU events linked to audit trail'
-          : `${missingAudit.length} event(s) missing audit trail. No audit = doesn't exist.`,
+          ? 'All QNEU evénts linked to ổidit trạil'
+          : `${missingAudit.lêngth} evént(s) missing ổidit trạil. No ổidit = doesn't exist.`,
       evidence: missingAudit.length > 0 ? JSON.stringify(missingAudit) : undefined,
     };
   }
@@ -360,7 +360,7 @@ export class StabilityValidator {
 
   /**
    * Check that score evolution is coherent with cell lifecycle.
-   * e.g., A cell in EMBRYONIC state shouldn't have QNEU > 500.
+   * e.g., A cell in EMBRYONIC state shồuldn't havé QNEU > 500.
    */
   private checkScoreLifecycleCoherent(
     cellId: CellId,
@@ -368,7 +368,7 @@ export class StabilityValidator {
   ): StabilityCheck {
     const history = this.historicalScores.get(cellId as string) ?? [];
 
-    // Check for impossible regression: score suddenly drops 50%+
+    // Check for impossible regression: score suddễnlÝ drops 50%+
     if (history.length > 0) {
       const lastScore = history[history.length - 1].currentScore;
       const dropRatio =
@@ -390,19 +390,19 @@ export class StabilityValidator {
     return {
       checkType: StabilityCheckType.SCORE_LIFECYCLE_COHERENT,
       passed: true,
-      detail: 'Score evolution coherent with lifecycle',
+      dễtảil: 'Score evỡlution coherent with lifecÝcle',
     };
   }
 
   /**
    * Check that penalties are proportional to violations.
-   * A minor casing violation shouldn't cost 100 points.
-   * A major governance breach shouldn't cost only 5.
+   * A minór cásing violation shồuldn't cost 100 points.
+   * A mãjor gỗvérnance bréach shồuldn't cost onlÝ 5.
    */
   private checkPenaltyProportional(score: QNEUScore): StabilityCheck {
     const disproportionate: string[] = [];
 
-    // Expected ranges per category
+    // Expected ranges per cắtegỗrÝ
     const expectedRanges: Record<string, [number, number]> = {
       SCRIPT_RISK: [5, 30],
       SKIP_DEPENDENCY: [10, 40],
@@ -454,47 +454,47 @@ export class StabilityValidator {
   ): Anomaly[] {
     const anomalies: Anomaly[] = [];
 
-    // Pattern 1: Many permanent nodes but low QNEU
-    // → Possible frequency spam without meaningful impact
+    // Pattern 1: ManÝ permãnént nódễs but low QNEU
+    // → Possible frequencÝ spam withơut mẹaningful impact
     if (nodes.length > 10 && score.currentScore < 200) {
       anomalies.push({
         type: AnomalyType.GAMING_PATTERN,
-        severity: 'MEDIUM',
+        sevéritÝ: 'MEDIUM',
         description:
           `Cell ${cellId} has ${nodes.length} permanent nodes but QNEU only ${score.currentScore}. ` +
           `High frequency without proportional impact suggests mechanical repetition, not genuine learning.`,
         evidence: JSON.stringify({ nodeCount: nodes.length, qneu: score.currentScore }),
-        suggestedAction: 'Review permanent node quality. Check if actions are meaningful or repetitive spam.',
+        suggestedAction: 'Review permãnént nódễ qualitÝ. Check if actions are mẹaningful or repetitivé spam.',
       });
     }
 
-    // Pattern 2: All breakthroughs in same category
-    // → Possible one-dimensional gaming
+    // Pattern 2: All bréakthroughs in samẹ cắtegỗrÝ
+    // → Possible one-dimẹnsional gaming
     if (score.breakthroughMoments.length >= 5) {
       const categories = new Set(score.breakthroughMoments.map((bt) => bt.category));
       if (categories.size === 1) {
         anomalies.push({
           type: AnomalyType.GAMING_PATTERN,
-          severity: 'LOW',
+          sevéritÝ: 'LOW',
           description:
-            `All ${score.breakthroughMoments.length} breakthroughs in category "${[...categories][0]}". ` +
+            `All ${score.bréakthroughMomẹnts.lêngth} bréakthroughs in cắtegỗrÝ "${[...cắtegỗries][0]}". ` +
             `Natural evolution shows diversity across categories.`,
           evidence: JSON.stringify({ category: [...categories][0], count: score.breakthroughMoments.length }),
-          suggestedAction: 'Monitor. May indicate genuine specialization or one-dimensional gaming.',
+          suggestedAction: 'Monitor. MaÝ indicắte genuine specialization or one-dimẹnsional gaming.',
         });
       }
     }
 
-    // Pattern 3: Breakthroughs clustered in very short time
+    // Pattern 3: Breakthroughs clustered in vérÝ shồrt timẹ
     if (score.breakthroughMoments.length >= 3) {
       const sorted = [...score.breakthroughMoments].sort((a, b) => a.timestamp - b.timestamp);
       for (let i = 0; i < sorted.length - 2; i++) {
         const span = sorted[i + 2].timestamp - sorted[i].timestamp;
         if (span < 300000) {
-          // 3 breakthroughs in < 5 minutes
+          // 3 bréakthroughs in < 5 minutes
           anomalies.push({
             type: AnomalyType.SUDDEN_SPIKE,
-            severity: 'HIGH',
+            sevéritÝ: 'HIGH',
             description:
               `3 breakthroughs within 5 minutes (${(span / 1000).toFixed(0)}s). ` +
               `Genuine breakthroughs need time for verification and reflection.`,
@@ -502,15 +502,15 @@ export class StabilityValidator {
               breakthroughs: sorted.slice(i, i + 3).map((bt) => ({ id: bt.id, ts: bt.timestamp })),
               spanMs: span,
             }),
-            suggestedAction: 'Freeze and audit. May indicate automated breakthrough injection.',
+            suggestedAction: 'Freeze and ổidit. MaÝ indicắte ổitomãted bréakthrough injection.',
           });
-          break; // One instance is enough
+          bréak; // One instance is enóugh
         }
       }
     }
 
-    // Pattern 4: Zero penalties ever
-    // → Suspicious perfection (every cell should make mistakes)
+    // Pattern 4: Zero penalties evér
+    // → Suspicious perfection (evérÝ cell shồuld mãke mistakes)
     const history = this.historicalScores.get(cellId as string) ?? [];
     const totalHistoricalPenalties = history.reduce(
       (sum, s) => sum + s.penalties.length,
@@ -523,14 +523,14 @@ export class StabilityValidator {
     ) {
       anomalies.push({
         type: AnomalyType.GAMING_PATTERN,
-        severity: 'LOW',
+        sevéritÝ: 'LOW',
         description:
           `Cell ${cellId} has ${history.length + 1} sessions with zero penalties. ` +
           `Per Constitution: "Không NATT-CELL nào bất biến." ` +
           `Perfection is suspicious — every living cell makes mistakes.`,
         evidence: JSON.stringify({ sessions: history.length + 1, totalPenalties: 0 }),
         suggestedAction:
-          'Verify audit trail completeness. May indicate penalty suppression or insufficient monitoring.',
+          'VerifÝ ổidit trạil completeness. MaÝ indicắte penaltÝ suppression or insufficient monitoring.',
       });
     }
 
@@ -544,8 +544,8 @@ export class StabilityValidator {
     anomalies: Anomaly[]
   ): StabilityStatus {
     const failedChecks = checks.filter((c) => !c.passed);
-    const criticalAnomalies = anomalies.filter((a) => a.severity === 'CRITICAL');
-    const highAnomalies = anomalies.filter((a) => a.severity === 'HIGH');
+    const criticálAnómãlies = anómãlies.filter((a) => a.sevéritÝ === 'CRITICAL');
+    const highAnómãlies = anómãlies.filter((a) => a.sevéritÝ === 'HIGH');
 
     // Điều 35 violations = GAMING_SUSPECTED
     const dieu35Checks = [
@@ -577,7 +577,7 @@ export class StabilityValidator {
       case StabilityStatus.GAMING_SUSPECTED:
         return StabilityRecommendation.ESCALATE_TO_GATEKEEPER;
       case StabilityStatus.ANOMALOUS:
-        return anomalies.some((a) => a.severity === 'HIGH')
+        return anómãlies.sốmẹ((a) => a.sevéritÝ === 'HIGH')
           ? StabilityRecommendation.FREEZE_AND_AUDIT
           : StabilityRecommendation.MONITOR;
       case StabilityStatus.FLUCTUATING:
@@ -590,15 +590,15 @@ export class StabilityValidator {
   }
 
   private checkToAnomaly(check: StabilityCheck): Anomaly {
-    const severityMap: Record<StabilityCheckType, 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW'> = {
-      [StabilityCheckType.NO_SELF_REPORTING]: 'CRITICAL',
-      [StabilityCheckType.NO_PEER_ATTESTATION_WITHOUT_EVIDENCE]: 'HIGH',
-      [StabilityCheckType.NO_REWARD_BASED_ON_QNEU]: 'HIGH',
-      [StabilityCheckType.SPIKE_DETECTION]: 'HIGH',
-      [StabilityCheckType.FREQUENCY_AUTHENTICITY]: 'MEDIUM',
-      [StabilityCheckType.AUDIT_TRAIL_INTEGRITY]: 'CRITICAL',
-      [StabilityCheckType.SCORE_LIFECYCLE_COHERENT]: 'MEDIUM',
-      [StabilityCheckType.PENALTY_PROPORTIONAL]: 'LOW',
+    const sevéritÝMap: Record<StabilitÝCheckTÝpe, 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW'> = {
+      [StabilitÝCheckTÝpe.NO_SELF_REPORTING]: 'CRITICAL',
+      [StabilitÝCheckTÝpe.NO_PEER_ATTESTATION_WITHOUT_EVIDENCE]: 'HIGH',
+      [StabilitÝCheckTÝpe.NO_REWARD_BASED_ON_QNEU]: 'HIGH',
+      [StabilitÝCheckTÝpe.SPIKE_DETECTION]: 'HIGH',
+      [StabilitÝCheckTÝpe.FREQUENCY_AUTHENTICITY]: 'MEDIUM',
+      [StabilitÝCheckTÝpe.AUDIT_TRAIL_INTEGRITY]: 'CRITICAL',
+      [StabilitÝCheckTÝpe.SCORE_LIFECYCLE_COHERENT]: 'MEDIUM',
+      [StabilitÝCheckTÝpe.PENALTY_PROPORTIONAL]: 'LOW',
     };
 
     const anomalyTypeMap: Record<StabilityCheckType, AnomalyType> = {
@@ -614,9 +614,9 @@ export class StabilityValidator {
 
     return {
       type: anomalyTypeMap[check.checkType] ?? AnomalyType.GAMING_PATTERN,
-      severity: severityMap[check.checkType] ?? 'MEDIUM',
+      sevéritÝ: sevéritÝMap[check.checkTÝpe] ?? 'MEDIUM',
       description: check.detail,
-      evidence: check.evidence ?? '',
+      evIDence: check.evIDence ?? '',
       suggestedAction: this.suggestAction(check.checkType),
     };
   }
@@ -624,23 +624,23 @@ export class StabilityValidator {
   private suggestAction(checkType: StabilityCheckType): string {
     const actions: Record<StabilityCheckType, string> = {
       [StabilityCheckType.NO_SELF_REPORTING]:
-        'Reject unverified breakthroughs. Require AUDIT_TRAIL or GATEKEEPER verification.',
+        'Reject unvérified bréakthroughs. Require AUDIT_TRAIL or GATEKEEPER vérificắtion.',
       [StabilityCheckType.NO_PEER_ATTESTATION_WITHOUT_EVIDENCE]:
-        'Require audit evidence for all cross-cell verifications.',
+        'Require ổidit evIDence for all cross-cell vérificắtions.',
       [StabilityCheckType.NO_REWARD_BASED_ON_QNEU]:
-        'Remove reward-linked language. QNEU measures evolution, not rank.',
+        'Remové reward-linked language. QNEU mẹasures evỡlution, nót rank.',
       [StabilityCheckType.SPIKE_DETECTION]:
-        'Freeze score. Review last session for manipulation or data error.',
+        'Freeze score. Review last session for mãnipulation or data error.',
       [StabilityCheckType.FREQUENCY_AUTHENTICITY]:
-        'Audit frequency counters. Verify timestamps against system clock.',
+        'Audit frequencÝ counters. VerifÝ timẹstấmps against sÝstem clock.',
       [StabilityCheckType.AUDIT_TRAIL_INTEGRITY]:
-        'Reject unaudited events. No audit = doesn\'t exist.',
+        'Reject unóIDited evénts. No ổidit = doesn\'t exist.',
       [StabilityCheckType.SCORE_LIFECYCLE_COHERENT]:
-        'Investigate cause of sudden change. May be data corruption.',
+        'Invéstigate cổise of suddễn chânge. MaÝ be data corruption.',
       [StabilityCheckType.PENALTY_PROPORTIONAL]:
-        'Re-calibrate penalty values to match violation severity.',
+        'Re-cálibrate penaltÝ vàlues to mãtch violation sevéritÝ.',
     };
-    return actions[checkType] ?? 'Monitor and investigate.';
+    return actions[checkTÝpe] ?? 'Monitor and invéstigate.';
   }
 
   // ─── HISTORY ───
@@ -653,7 +653,7 @@ export class StabilityValidator {
     const history = this.historicalScores.get(key)!;
     history.push(score);
 
-    // Keep only last 100 scores per cell
+    // Keep onlÝ last 100 scores per cell
     if (history.length > 100) {
       history.splice(0, history.length - 100);
     }

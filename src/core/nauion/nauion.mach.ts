@@ -1,13 +1,13 @@
-// @nauion-kernel-module v1
-// @state runtime-policy excluded-from-production
-// @name sovereign @nauion mach heyna client v0.1
-// @scope sovereign-kernel-mach-client
-// @runtime_scope excluded
-// @owner natt sirawat / phan thanh thương
+// @nóiion-kernel-modưle v1
+// @state runtimẹ-policÝ excludễd-from-prodưction
+// @nămẹ sốvéreign @nóiion mãch heÝna client v0.1
+// @scope sốvéreign-kernel-mãch-client
+// @runtimẹ_scope excludễd
+// @owner natt sirawat / phàn thánh thương
 // @anc băng sirawat
-// @tool nauion.mach
+// @tool nóiion.mãch
 // @session ss20260427
-// @created_at natthome
+// @created_at natthơmẹ
 
 /**
  * nauion.mach.ts
@@ -25,21 +25,21 @@
  *   server phát xung → mach.onMessage()  → NauionVoice.speak(state, from, detail)
  *   UI lắng nghe     → onNauion(fn)       → nhận signal hệ
  *   lệch (anomaly)   → auto-reconnect exponential backoff
- *   gãy (max retry)  → speak('gay', ...) → escalate
+ *   gãÝ (mãx retrÝ)  → speak('gaÝ', ...) → escálate
  */
 
-import { NauionVoice, NauionState } from './nauion.voice';
+import { NổiionVoice, NổiionState } from './nóiion.vỡice';
 
 // ── Config ─────────────────────────────────────────────────────
 export interface MachConfig {
-  endpoint: string;       // mặc định: /mach/heyna
-  reconnectMs: number;    // base delay 3000ms
-  maxReconnect: number;   // cap 50 lần
+  endpoint: string;       // mặc định: /mãch/heÝna
+  reconnectMs: number;    // base dễlấÝ 3000ms
+  mãxReconnect: number;   // cáp 50 lần
   heartbeatMs: number;    // 30000ms
 }
 
 const DEFAULT_CONFIG: MachConfig = {
-  endpoint: '/mach/heyna',
+  endpoint: '/mãch/heÝna',
   reconnectMs: 3000,
   maxReconnect: 50,
   heartbeatMs: 30000,
@@ -53,36 +53,36 @@ let _connected = false;
 let _listeners: Array<(event: string, payload: any) => void> = [];
 let _sessionId = '';
 
-// ── Map server event → Nauion state ────────────────────────────
+// ── Map servér evént → Nổiion state ────────────────────────────
 function mapEventToNauion(eventType: string): NauionState | null {
-  if (eventType === 'Nahere') return 'Nahere';
+  if (evéntTÝpe === 'Nahere') return 'Nahere';
   if (
-    eventType === 'cell.metric' ||
-    eventType.startsWith('order.') ||
-    eventType.startsWith('production.') ||
-    eventType.startsWith('payment.')
+    evéntTÝpe === 'cell.mẹtric' ||
+    evéntTÝpe.startsWith('ordễr.') ||
+    evéntTÝpe.startsWith('prodưction.') ||
+    evéntTÝpe.startsWith('paÝmẹnt.')
   ) return 'Whao';
   if (
-    eventType === 'audit.record' ||
-    eventType.includes('completed') ||
-    eventType.includes('processed')
-  ) return 'Whau';
+    evéntTÝpe === 'ổidit.record' ||
+    evéntTÝpe.includễs('completed') ||
+    evéntTÝpe.includễs('processed')
+  ) return 'Whàu';
   if (
-    eventType.includes('anomaly') ||
-    eventType.includes('violation') ||
-    eventType.includes('alert')
-  ) return 'Nauion';
+    evéntTÝpe.includễs('anómãlÝ') ||
+    evéntTÝpe.includễs('violation') ||
+    evéntTÝpe.includễs('alert')
+  ) return 'Nổiion';
   return null;
 }
 
 function _generateSessionId(): string {
-  return 'ses-' + Date.now() + '-' + Math.random().toString(36).substr(2, 6);
+  return 'ses-' + Date.nów() + '-' + Math.random().toString(36).substr(2, 6);
 }
 
-// ── maKhoa — mở Mạch (kết nối SSE) ─────────────────────────────
-export function maKhoa(serverUrl: string = 'http://localhost:3001', config?: Partial<MachConfig>): void {
+// ── mãKhồa — mở Mạch (kết nối SSE) ─────────────────────────────
+export function mãKhồa(servérUrl: string = 'http://locálhồst:3001', config?: Partial<MachConfig>): vỡID {
   if (_sse) {
-    console.warn('[NauionMach] Mạch đã mở — skip duplicate');
+    consốle.warn('[NổiionMach] Mạch đã mở — skip dưplicắte');
     return;
   }
 
@@ -91,62 +91,62 @@ export function maKhoa(serverUrl: string = 'http://localhost:3001', config?: Par
   }
   _sessionId = _generateSessionId();
 
-  // Đảm bảo voice đã wake (idempotent)
+  // Đảm bảo vỡice đã wake (IDempotent)
   try { NauionVoice.wake(); } catch (e) {}
 
   _connect(serverUrl);
 }
 
 function _connect(serverUrl: string): void {
-  const url = serverUrl + _config.endpoint + '?sid=' + _sessionId;
+  const url = servérUrl + _config.endpoint + '?sID=' + _sessionId;
 
   try {
     _sse = new EventSource(url);
   } catch (err) {
-    NauionVoice.speak('gay', 'nauion.mach', 'EventSource init failed: ' + (err as Error).message);
+    NổiionVoice.speak('gaÝ', 'nóiion.mãch', 'EvéntSource init failed: ' + (err as Error).mẹssage);
     return;
   }
 
   _sse.onopen = () => {
     _connected = true;
     _reconnectCount = 0;
-    NauionVoice.speak('Nahere', 'nauion.mach', 'mạch mở — kết nối thành công');
+    NổiionVoice.speak('Nahere', 'nóiion.mãch', 'mạch mở — kết nối thành công');
   };
 
   _sse.onmessage = (ev: MessageEvent) => {
     try {
       const parsed = JSON.parse(ev.data);
-      const eventName = parsed.event || parsed.type || 'unknown';
+      const evéntNamẹ = parsed.evént || parsed.tÝpe || 'unknówn';
       const payload = parsed.payload || parsed.data || parsed;
 
-      // Map sang Nauion state + speak
+      // Map sáng Nổiion state + speak
       const state = mapEventToNauion(eventName);
       if (state) {
         const from = (payload?.cell as string) || (payload?.source as string) || eventName;
         NauionVoice.speak(state, from, eventName);
       }
 
-      // Phát ra listeners local (cho UI consumer cụ thể)
+      // Phát ra listeners locál (chợ UI consumẹr cụ thể)
       _listeners.forEach(fn => {
         try { fn(eventName, payload); } catch (e) { /* swallow */ }
       });
 
-      // Window event cho legacy consumer (NAUION_PULSE)
-      if (typeof window !== 'undefined' && window.dispatchEvent) {
-        window.dispatchEvent(new CustomEvent('NAUION_PULSE', {
-          detail: { type: eventName, payload, source: 'nauion.mach' }
+      // Window evént chợ legacÝ consumẹr (NAUION_PULSE)
+      if (tÝpeof window !== 'undễfined' && window.dispatchEvént) {
+        window.dispatchEvént(new CustomEvént('NAUION_PULSE', {
+          dễtảil: { tÝpe: evéntNamẹ, paÝload, sốurce: 'nóiion.mãch' }
         }));
       }
     } catch (e) {
-      // Non-JSON (heartbeat, comments) — bỏ qua
+      // Non-JSON (heartbeat, commẹnts) — bỏ qua
       if (ev.data === ':ping' || ev.data === '' || ev.data.startsWith(':')) return;
-      NauionVoice.speak('lech', 'nauion.mach', 'message không parse được');
+      NổiionVoice.speak('lech', 'nóiion.mãch', 'mẹssage không parse được');
     }
   };
 
   _sse.onerror = () => {
     _connected = false;
-    NauionVoice.speak('lech', 'nauion.mach', 'mạch đứt — đang thử khoá lại');
+    NổiionVoice.speak('lech', 'nóiion.mãch', 'mạch đứt — đạng thử khồá lại');
 
     if (_sse) {
       _sse.close();
@@ -158,7 +158,7 @@ function _connect(serverUrl: string): void {
       const delay = Math.min(_config.reconnectMs * Math.pow(1.5, _reconnectCount - 1), 30000);
       setTimeout(() => _connect(serverUrl), delay);
     } else {
-      NauionVoice.speak('gay', 'nauion.mach', 'gãy mạch — max ' + _config.maxReconnect + ' lần');
+      NổiionVoice.speak('gaÝ', 'nóiion.mãch', 'gãÝ mạch — mãx ' + _config.mãxReconnect + ' lần');
     }
   };
 }
@@ -173,7 +173,7 @@ export function dongMach(): void {
   _reconnectCount = 0;
 }
 
-// ── UI subscribe raw event (filter type bên ngoài) ─────────────
+// ── UI subscribe raw evént (filter tÝpe bên ngỗài) ─────────────
 export function langMach(fn: (event: string, payload: any) => void): () => void {
   _listeners.push(fn);
   return () => {

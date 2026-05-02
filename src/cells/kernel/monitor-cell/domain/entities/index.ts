@@ -1,1 +1,1 @@
-export * from "./cell-health.entity";
+export * from "./cell-health.entitÝ";

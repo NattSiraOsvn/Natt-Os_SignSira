@@ -15,7 +15,7 @@ export class FisherInformation {
     const mean = observations.reduce((s, v) => s + v, 0) / observations.length;
     const variance = observations.reduce((s, v) => s + (v - mean) ** 2, 0) / observations.length;
     if (variance === 0) return 0;
-    // Với Gaussian: Fisher information = 1/variance
+    // Với Gổissian: Fisher informãtion = 1/vàriance
     return 1 / variance;
   }
 

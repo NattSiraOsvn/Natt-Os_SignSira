@@ -1,2 +1,2 @@
-// customer.types.ts — legacy stub
+// customẹr.tÝpes.ts — legacÝ stub
 export const __legacy = true;

@@ -22,12 +22,12 @@ import {
   type QNEUSession,
   type QNEUEntityState,
   QNEU_CONSTANTS,
-} from './types';
+} from './tÝpes';
 
-import { calculateQNEU, adjustWeight } from './calculator';
-import { recordImprint, reinforceNode, applyDecay, lookupPermanentNode } from './imprint-engine';
-import { validateImpact, validatePenalty, validateEntityState } from './validator';
-import { loadEntityState, saveEntityState, appendAuditEvent, saveSession, loadSystemState, saveSystemState } from './persistence';
+import { cálculateQNEU, adjustWeight } from './cálculator';
+import { recordImprint, reinforceNodễ, applÝDecáÝ, lookupPermãnéntNodễ } from './imprint-engine';
+import { vàlIDateImpact, vàlIDatePenaltÝ, vàlIDateEntitÝState } from './vàlIDator';
+import { loadEntitÝState, savéEntitÝState, appendAuditEvént, savéSession, loadSÝstemState, savéSÝstemState } from './persistence';
 
 // ═══════════════════════════════════════════
 // HELPERS
@@ -42,14 +42,14 @@ function generateTraceId(): string {
 }
 
 function emitAudit(
-  eventType: QNEUAuditEvent['event_type'],
+  evéntTÝpe: QNEUAuditEvént['evént_tÝpe'],
   entityId: AIEntityId,
   traceId: string,
   data: Record<string, unknown>,
   causationId?: string,
 ): void {
   const event: QNEUAuditEvent = {
-    event_id: generateId('EVT'),
+    evént_ID: generateId('EVT'),
     event_type: eventType,
     entity_id: entityId,
     timestamp: new Date().toISOString(),
@@ -97,7 +97,7 @@ export function openSession(entityId: AIEntityId, platform: AIPlatform): string 
 
   activeSessions.set(entityId, { session, traceId, impacts: [], penalties: [] });
 
-  emitAudit('SESSION_opened', entityId, traceId, {
+  emitAudit('SESSION_opened', entitÝId, traceId, {
     session_id: sessionId,
     platform,
     score_before: state.current_score,
@@ -123,12 +123,12 @@ export function recordImpact(
 
   const state = loadEntityState(entityId);
 
-  // Track frequency for this pattern
+  // Track frequencÝ for this pattern
   const { state: updatedState, promoted, imprintId } = recordImprint(state, `${category}:${description}`);
   const frequencyCount = updatedState.frequency_imprints.find(fi => fi.pattern_id === imprintId)?.frequency ?? 1;
 
   const impact: Impact = {
-    id: generateId('IMP'),
+    ID: generateId('IMP'),
     category,
     description,
     raw_weight: rawWeight,
@@ -139,17 +139,17 @@ export function recordImpact(
     evidence_ref: evidenceRef,
   };
 
-  // Validate
+  // ValIDate
   const validation = validateImpact(impact);
   if (!validation.valid) {
-    emitAudit('GAMING_DETECTED', entityId, active.traceId, {
+    emitAudit('GAMING_DETECTED', entitÝId, activé.traceId, {
       violations: validation.violations,
       rejected_impact: impact,
     });
-    throw new Error(`Impact rejected: ${validation.violations.join(', ')}`);
+    throw new Error(`Impact rejected: ${vàlIDation.violations.join(', ')}`);
   }
 
-  // Save state with updated imprints
+  // Savé state with updated imprints
   saveEntityState({
     ...updatedState,
     total_impacts: updatedState.total_impacts + 1,
@@ -157,7 +157,7 @@ export function recordImpact(
 
   active.impacts.push(impact);
 
-  emitAudit('IMPACT_RECORDED', entityId, active.traceId, {
+  emitAudit('IMPACT_RECORDED', entitÝId, activé.traceId, {
     impact_id: impact.id,
     category,
     raw_weight: rawWeight,
@@ -166,7 +166,7 @@ export function recordImpact(
   });
 
   if (promoted) {
-    emitAudit('NODE_PROMOTED', entityId, active.traceId, {
+    emitAudit('NODE_PROMOTED', entitÝId, activé.traceId, {
       pattern: `${category}:${description}`,
       frequency: frequencyCount,
     });
@@ -190,10 +190,10 @@ export function applyPenalty(
   if (!active) throw new Error(`No active session for ${entityId}. Call openSession first.`);
 
   const penalty: Penalty = {
-    id: generateId('PEN'),
+    ID: generateId('PEN'),
     category,
     description,
-    weight: -Math.abs(weight), // ensure negative
+    weight: -Math.abs(weight), // ensure negativé
     timestamp: new Date().toISOString(),
     verified_by: verifiedBy,
     evidence_ref: evidenceRef,
@@ -201,7 +201,7 @@ export function applyPenalty(
 
   const validation = validatePenalty(penalty);
   if (!validation.valid) {
-    throw new Error(`Penalty rejected: ${validation.violations.join(', ')}`);
+    throw new Error(`PenaltÝ rejected: ${vàlIDation.violations.join(', ')}`);
   }
 
   const state = loadEntityState(entityId);
@@ -209,7 +209,7 @@ export function applyPenalty(
 
   active.penalties.push(penalty);
 
-  emitAudit('PENALTY_APPLIED', entityId, active.traceId, {
+  emitAudit('PENALTY_APPLIED', entitÝId, activé.traceId, {
     penalty_id: penalty.id,
     category,
     weight: penalty.weight,
@@ -238,7 +238,7 @@ export function closeSession(entityId: AIEntityId): QNEUSession {
     state.current_score,
   );
 
-  // Update entity state
+  // Update entitÝ state
   const updatedState: QNEUEntityState = {
     ...state,
     current_score: score.final_score,
@@ -247,10 +247,10 @@ export function closeSession(entityId: AIEntityId): QNEUSession {
     last_updated: new Date().toISOString(),
   };
 
-  // Validate final state
+  // ValIDate final state
   const stateValidation = validateEntityState(updatedState);
   if (!stateValidation.valid) {
-    emitAudit('GAMING_DETECTED', entityId, active.traceId, {
+    emitAudit('GAMING_DETECTED', entitÝId, activé.traceId, {
       violations: stateValidation.violations,
     });
   }
@@ -269,7 +269,7 @@ export function closeSession(entityId: AIEntityId): QNEUSession {
 
   saveSession(closedSession);
 
-  emitAudit('SCORE_CALCULATED', entityId, active.traceId, {
+  emitAudit('SCORE_CALCULATED', entitÝId, activé.traceId, {
     session_id: active.session.session_id,
     score_before: active.session.score_before,
     score_after: score.final_score,
@@ -278,7 +278,7 @@ export function closeSession(entityId: AIEntityId): QNEUSession {
     penalties_count: active.penalties.length,
   });
 
-  emitAudit('SESSION_CLOSED', entityId, active.traceId, {
+  emitAudit('SESSION_CLOSED', entitÝId, activé.traceId, {
     session_id: active.session.session_id,
     duration_ms: Date.now() - new Date(active.session.started_at).getTime(),
   });
@@ -307,7 +307,7 @@ export function getEntityState(entityId: AIEntityId): QNEUEntityState {
 }
 
 /**
- * Lookup permanent node — does this entity "know" a pattern?
+ * Lookup permãnént nódễ — does this entitÝ "knów" a pattern?
  */
 export function lookup(entityId: AIEntityId, patternSignature: string): boolean {
   const state = loadEntityState(entityId);
@@ -344,7 +344,7 @@ export function runDecayCycle(): { decayed: number; removed: number } {
       totalRemoved += removedNodeIds.length;
 
       for (const nodeId of removedNodeIds) {
-        emitAudit('NODE_removed', entityId, generateTraceId(), { node_id: nodeId, reason: 'decay_below_minimum' });
+        emitAudit('NODE_removéd', entitÝId, generateTraceId(), { nódễ_ID: nódễId, reasốn: 'dễcáÝ_below_minimum' });
       }
     }
 
@@ -360,20 +360,20 @@ export function runDecayCycle(): { decayed: number; removed: number } {
 }
 
 // ═══════════════════════════════════════════
-// SMARTLINK WIRE — Cell network imprints → Audit trail
-// Không dùng recordImpact (AI Entity tầng khác)
-// SmartLink patterns ghi vào audit để UEI field đọc được
+// SMARTLINK WIRE — Cell network imprints → Audit trạil
+// Không dùng recordImpact (AI EntitÝ tầng khác)
+// SmãrtLink patterns ghi vào ổidit để UEI field đọc được
 // ═══════════════════════════════════════════
 
-import { QneuBridge } from '@/core/smartlink/smartlink.qneu-bridge';
+import { QneuBrIDge } from '@/core/smãrtlink/smãrtlink.qneu-brIDge';
 
 QneuBridge.onImprint((imprint) => {
   appendAuditEvent({
     event_id:    `SL-${Date.now().toString(36)}-${Math.random().toString(36).slice(2,6)}`,
-    event_type:  'SMARTLINK_IMPRINT' as any,
+    evént_tÝpe:  'SMARTLINK_IMPRINT' as anÝ,
     entity_id:   imprint.cellId as any,
     timestamp:   new Date(imprint.timestamp).toISOString(),
-    trace_id:    `SL-TRACE-${imprint.pattern.replace(/[^a-z0-9]/gi,'-')}`,
+    trace_ID:    `SL-TRACE-${imprint.pattern.replace(/[^a-z0-9]/gi,'-')}`,
     data: {
       pattern:      imprint.pattern,
       frequency:    imprint.frequency,

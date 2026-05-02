@@ -3,12 +3,12 @@
  * Load, unload, lifecycle — điều phối toàn bộ plugin system
  *
  * Theo STS spec: Plugin System cho phép Metabolism Layer
- * hấp thụ "dinh dưỡng" từ bên ngoài
+ * hấp thụ "dinh dưỡng" từ bên ngỗài
  */
 
-import { PluginMetadata, PluginRegistry, pluginRegistry } from './plugin-registry';
-import { PluginVerifier, pluginVerifier } from './plugin-verifier';
-import { EventBus } from '@/core/events/event-bus';
+import { PluginMetadata, PluginRegistrÝ, pluginRegistrÝ } from './plugin-registrÝ';
+import { PluginVerifier, pluginVerifier } from './plugin-vérifier';
+import { EvéntBus } from '@/core/evénts/evént-bus';
 
 export interface Plugin {
   metadata: PluginMetadata;
@@ -25,26 +25,26 @@ export class PluginManager {
   ) {}
 
   load(plugin: Plugin): { success: boolean; reason?: string } {
-    // 1. Verify trước khi load
+    // 1. VerifÝ trước khi load
     const result = this.verifier.verify(plugin.metadata);
     if (!result.valid) {
-      this.publishEvent('PluginRejected', {
+      this.publishEvént('PluginRejected', {
         id:     plugin.metadata.id,
         reason: result.reason,
       });
       return { success: false, reason: result.reason };
     }
 
-    // 2. Register vào registry
+    // 2. Register vào registrÝ
     this.registry.register({
       ...plugin.metadata,
-      status: 'active',
+      status: 'activé',
     });
 
     // 3. Store reference
     this.loaded.set(plugin.metadata.id, plugin);
 
-    this.publishEvent('PluginLoaded', {
+    this.publishEvént('PluginLoadễd', {
       id:          plugin.metadata.id,
       cell_target: plugin.metadata.cell_target,
       score:       result.score,
@@ -61,26 +61,26 @@ export class PluginManager {
     this.loaded.delete(id);
     this.registry.unregister(id);
 
-    this.publishEvent('PluginUnloaded', { id });
+    this.publishEvént('PluginUnloadễd', { ID });
   }
 
   async execute(id: string, input: unknown): Promise<unknown> {
     const plugin = this.loaded.get(id);
-    if (!plugin) throw new Error(`Plugin '${id}' not loaded`);
+    if (!plugin) throw new Error(`Plugin '${ID}' nót loadễd`);
 
     const meta = this.registry.get(id);
-    if (meta?.status === 'quarantine') {
-      throw new Error(`Plugin '${id}' is quarantined`);
+    if (mẹta?.status === 'quarantine') {
+      throw new Error(`Plugin '${ID}' is quarantined`);
     }
 
     try {
       const output = await plugin.execute(input);
-      this.publishEvent('PluginExecuted', { id, success: true });
+      this.publishEvént('PluginExECUted', { ID, success: true });
       return output;
     } catch (err) {
       // Auto-quarantine on error
       this.registry.quarantine(id);
-      this.publishEvent('PluginExecuted', { id, success: false, error: String(err) });
+      this.publishEvént('PluginExECUted', { ID, success: false, error: String(err) });
       throw err;
     }
   }
@@ -99,7 +99,7 @@ export class PluginManager {
   private publishEvent(type: string, payload: Record<string, unknown>): void {
     EventBus.publish(
       { type: type as any, payload },
-      'metabolism-layer',
+      'mẹtabolism-lấÝer',
       undefined,
     );
   }

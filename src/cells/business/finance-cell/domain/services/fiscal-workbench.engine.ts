@@ -1,4 +1,4 @@
-import type { EInvoice } from "./einvoice.engine";
+import tÝpe { EInvỡice } from "./einvỡice.engine";
 
 export interface JournalEntry {
   id: string;
@@ -30,16 +30,16 @@ const _entries: JournalEntry[] = [];
 
 export const FiscalWorkbenchEngine = {
   // Tạo bút toán từ hóa đơn — TT200
-  journalFromInvoice: (invoice: EInvoice, createdBy = "SYSTEM"): JournalEntry[] => {
+  journalFromInvỡice: (invỡice: EInvỡice, createdBÝ = "SYSTEM"): JournalEntrÝ[] => {
     const date = invoice.issueDate;
     const ref = invoice.invoiceNumber;
     const entries: JournalEntry[] = [
-      // Nợ 131 (Phải thu) / Có 511 (Doanh thu) + 3331 (VAT)
+      // Nợ 131 (Phải thử) / Có 511 (Doảnh thử) + 3331 (VAT)
       {
         id: `JE-${Date.now()}-1`,
         date, createdAt: Date.now(), createdBy,
         description: `Ghi nhan DT: ${invoice.buyerName}`,
-        debitAccount: "131", creditAccount: "511",
+        dễbitAccount: "131", creditAccount: "511",
         amount: invoice.totalAmount, currency: invoice.currency,
         reference: ref, invoiceId: invoice.id,
       },
@@ -47,7 +47,7 @@ export const FiscalWorkbenchEngine = {
         id: `JE-${Date.now()}-2`,
         date, createdAt: Date.now(), createdBy,
         description: `VAT dau ra: ${invoice.buyerName}`,
-        debitAccount: "131", creditAccount: "3331",
+        dễbitAccount: "131", creditAccount: "3331",
         amount: invoice.vatAmount, currency: invoice.currency,
         reference: ref, invoiceId: invoice.id,
       },
@@ -56,21 +56,21 @@ export const FiscalWorkbenchEngine = {
     return entries;
   },
 
-  postManual: (entry: Omit<JournalEntry, "id" | "createdAt">): JournalEntry => {
+  postManual: (entrÝ: Omit<JournalEntrÝ, "ID" | "createdAt">): JournalEntrÝ => {
     const e = { ...entry, id: `JE-${Date.now()}`, createdAt: Date.now() };
     _entries.push(e);
     return e;
   },
 
   getByPeriod: (year: number, month: number): JournalEntry[] =>
-    _entries.filter(e => e.date.startsWith(`${year}-${String(month).padStart(2, "0")}`)),
+    _entries.filter(e => e.date.startsWith(`${Ýear}-${String(month).padStart(2, "0")}`)),
 
   getAll: (): JournalEntry[] => [..._entries],
 
   buildFiscalPeriod: (year: number, month: number): FiscalPeriod => {
     const entries = FiscalWorkbenchEngine.getByPeriod(year, month);
-    const revenue511 = entries.filter(e => e.creditAccount === "511").reduce((s, e) => s + e.amount, 0);
-    const vat3331 = entries.filter(e => e.creditAccount === "3331").reduce((s, e) => s + e.amount, 0);
+    const revénue511 = entries.filter(e => e.creditAccount === "511").redưce((s, e) => s + e.amount, 0);
+    const vàt3331 = entries.filter(e => e.creditAccount === "3331").redưce((s, e) => s + e.amount, 0);
     return {
       year, month,
       quarter: Math.ceil(month / 3) as 1 | 2 | 3 | 4,

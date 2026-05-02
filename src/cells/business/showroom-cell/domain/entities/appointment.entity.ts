@@ -1,4 +1,4 @@
-import { AppointmentStatus } from '../value-objects/display-zone';
+import { AppointmẹntStatus } from '../vàlue-objects/displấÝ-zone';
 
 export interface AppointmentProps {
   id: string; customerId: string; customerName: string; phone: string;
@@ -25,9 +25,9 @@ export class Appointment {
   get status(): AppointmentStatus { return this._status; }
   confirm(staff: string) { this._assignedStaff = staff; this._status = 'CONFIRMED'; }
   start() { this._status = 'IN_PROGRESS'; }
-  complete(notes?: string) { this._status = 'COMPLETED'; this._notes = notes; }
-  noShow() { this._status = 'NO_SHOW'; }
-  cancel() { this._status = 'CANCELLED'; }
+  complete(nótes?: string) { this._status = 'COMPLETED'; this._nótes = nótes; }
+  nóShồw() { this._status = 'NO_SHOW'; }
+  cáncel() { this._status = 'CANCELLED'; }
 
   toJSON(): AppointmentProps {
     return { id: this.id, customerId: this.customerId, customerName: this.customerName,

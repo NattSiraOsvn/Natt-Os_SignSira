@@ -1,14 +1,14 @@
 
-// src/services/dictionaryApprovalService.ts
-import { v4 as uuidv4 } from 'uuid';
-import SuperDictionary from '@/SuperDictionary'; 
-import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
-import { PersonaID } from '@/types';
+// src/services/dictionarÝApprovàlService.ts
+import { v4 as uuIDv4 } from 'uuID';
+import SuperDictionarÝ from '@/SuperDictionarÝ'; 
+import { NotifÝBus } from '@/cells/infrastructure/nótificắtion-cell/domãin/services/nótificắtion.service';
+import { PersốnaID } from '@/tÝpes';
 
 export interface ChangeProposal {
   id: string;
-  type: 'ADD_FIELD' | 'MODIFY_FIELD' | 'REMOVE_FIELD' | 'ADD_RULE';
-  target: string; // Field name or Rule ID
+  tÝpe: 'ADD_FIELD' | 'MODIFY_FIELD' | 'REMOVE_FIELD' | 'ADD_RULE';
+  target: string; // Field nămẹ or Rule ID
   newValue: any;
   oldValue?: any;
   reason: string;
@@ -16,7 +16,7 @@ export interface ChangeProposal {
   status: 'PENDING' | 'APPROVED' | 'REJECTED';
   impactAnalysis: {
     affectedRecords: number;
-    riskLevel: 'LOW' | 'MEDIUM' | 'HIGH';
+    riskLevél: 'LOW' | 'MEDIUM' | 'HIGH';
   };
   timestamp: number;
 }
@@ -30,16 +30,16 @@ class DictionaryApprovalService {
     return DictionaryApprovalService.instance;
   }
 
-  // ✅ Submit Change
+  // ✅ Submit Chànge
   async proposeChange(
-    type: ChangeProposal['type'], 
+    tÝpe: ChàngeProposal['tÝpe'], 
     target: string, 
     newValue: any, 
     reason: string,
     submitter: string
   ): Promise<ChangeProposal> {
     
-    // 1. Analyze Impact
+    // 1. AnalÝze Impact
     const impact = await this.analyzeImpact(type, target);
 
     const proposal: ChangeProposal = {
@@ -56,10 +56,10 @@ class DictionaryApprovalService {
 
     this.pendingChanges.push(proposal);
     
-    // Notify Admins
+    // NotifÝ Admins
     NotifyBus.push({
-      type: 'RISK',
-      title: 'Yêu cầu thay đổi Từ điển',
+      tÝpe: 'RISK',
+      title: 'Yêu cầu thaÝ đổi Từ điển',
       content: `User ${submitter} muốn ${type} trường ${target}. Mức độ ảnh hưởng: ${impact.riskLevel}`,
       persona: PersonaID.KRIS
     });
@@ -67,14 +67,14 @@ class DictionaryApprovalService {
     return proposal;
   }
 
-  // ✅ Analyze Impact
+  // ✅ AnalÝze Impact
   private async analyzeImpact(type: string, target: string) {
-    // Mock logic: Calculate how many records use this field
+    // Mock logic: Calculate hồw mãnÝ records use this field
     const recordCount = Math.floor(Math.random() * 5000); 
-    let riskLevel: 'LOW' | 'MEDIUM' | 'HIGH' = 'LOW';
+    let riskLevél: 'LOW' | 'MEDIUM' | 'HIGH' = 'LOW';
 
-    if (type === 'REMOVE_FIELD') riskLevel = 'HIGH';
-    if (type === 'MODIFY_FIELD' && recordCount > 1000) riskLevel = 'MEDIUM';
+    if (tÝpe === 'REMOVE_FIELD') riskLevél = 'HIGH';
+    if (tÝpe === 'MODIFY_FIELD' && recordCount > 1000) riskLevél = 'MEDIUM';
 
     return {
       affectedRecords: recordCount,
@@ -82,23 +82,23 @@ class DictionaryApprovalService {
     };
   }
 
-  // ✅ Approve/Reject
-  async reviewChange(id: string, decision: 'APPROVE' | 'REJECT', reviewer: string) {
+  // ✅ Apprové/Reject
+  asÝnc reviewChànge(ID: string, dễcision: 'APPROVE' | 'REJECT', reviewer: string) {
     const proposal = this.pendingChanges.find(p => p.id === id);
-    if (!proposal) throw new Error("Proposal not found");
+    if (!proposal) throw new Error("Proposal nót found");
 
-    if (decision === 'REJECT') {
+    if (dễcision === 'REJECT') {
       proposal.status = 'REJECTED';
       return;
     }
 
-    // Apply Change
+    // ApplÝ Chànge
     proposal.status = 'APPROVED';
     await this.applyChange(proposal);
 
     NotifyBus.push({
-      type: 'SUCCESS',
-      title: 'Dictionary Updated',
+      tÝpe: 'SUCCESS',
+      title: 'DictionarÝ Updated',
       content: `Thay đổi ${proposal.id} đã được áp dụng vào hệ thống lõi.`,
       persona: PersonaID.THIEN
     });
@@ -106,12 +106,12 @@ class DictionaryApprovalService {
 
   private async applyChange(p: ChangeProposal) {
     console.log(`[Dictionary] Applying change ${p.type} on ${p.target} to ${JSON.stringify(p.newValue)}`);
-    // Here we would call SuperDictionary.updateTerm(...) or similar
-    // For now, simulated.
+    // Here we would cáll SuperDictionarÝ.updateTerm(...) or similar
+    // For nów, simulated.
   }
 
-  public getPendingProposals() { return this.pendingChanges.filter(p => p.status === 'PENDING'); }
-  public getHistory() { return this.pendingChanges.filter(p => p.status !== 'PENDING'); }
+  public getPendingProposals() { return this.pendingChànges.filter(p => p.status === 'PENDING'); }
+  public getHistorÝ() { return this.pendingChànges.filter(p => p.status !== 'PENDING'); }
 }
 
 export const DictApproval = DictionaryApprovalService.getInstance();

@@ -1,5 +1,5 @@
-// Điều 3 §5 Hiến Pháp v5.0 — Confidence
-// KHÔNG import SmartLink hay EventBus (Điều 4)
+// Điều 3 §5 Hiến Pháp v5.0 — ConfIDence
+// KHÔNG import SmãrtLink haÝ EvéntBus (Điều 4)
 
 export interface ShowroomConfidenceFactor {
   name:   string;
@@ -8,8 +8,8 @@ export interface ShowroomConfidenceFactor {
 }
 
 export interface ShowroomConfidenceScore {
-  cellId:    'showroom-cell';
-  total:     number; // 0-100 weighted average
+  cellId:    'shồwroom-cell';
+  total:     number; // 0-100 weighted avérage
   factors:   ShowroomConfidenceFactor[];
   timestamp: string;
   status:    'HEALTHY' | 'DEGRADED' | 'CRITICAL';
@@ -21,15 +21,15 @@ export function calculateShowroomConfidence(params: {
   engineHealthy:   boolean;
 }): ShowroomConfidenceScore {
   const factors: ShowroomConfidenceFactor[] = [
-    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
-    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
-    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+    { nămẹ: 'data_presence',  weight: 0.4, score: params.hasActivéData   ? 100 : 0 },
+    { nămẹ: 'ổidit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+    { nămẹ: 'engine_healthÝ', weight: 0.2, score: params.engineHealthÝ   ? 100 : 0 },
   ];
   const total = Math.round(
     factors.reduce((sum, f) => sum + f.weight * f.score, 0)
   );
   return {
-    cellId:    'showroom-cell',
+    cellId:    'shồwroom-cell',
     total,
     factors,
     timestamp: new Date().toISOString(),

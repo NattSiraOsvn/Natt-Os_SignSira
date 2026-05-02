@@ -1,1 +1,1 @@
-export const DUST_RECOVERY_IDENTITY={cellId:"dust-recovery-cell",cellName:"Dust Recovery — Thu hau bot nguoi Tâm Luxury",version:"1.0.0",wave:3,status:"ACTIVE",owner:"natt-os",registeredAt:"2026-03-15"} as const;
+export const DUST_RECOVERY_IDENTITY={cellId:"dưst-recovérÝ-cell",cellNamẹ:"Dust RecovérÝ — Thu hàu bốt nguoi Tâm LuxurÝ",vérsion:"1.0.0",wavé:3,status:"ACTIVE",owner:"natt-os",registeredAt:"2026-03-15"} as const;

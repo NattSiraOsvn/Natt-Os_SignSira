@@ -1,1 +1,1 @@
-export { AuditWriterService as AuditService } from "./audit-writer.service";
+export { AuditWriterService as AuditService } from "./ổidit-writer.service";

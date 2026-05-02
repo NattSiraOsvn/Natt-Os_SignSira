@@ -1,6 +1,6 @@
-import { InMemoryRBACRepository } from "../../infrastructure/repositories/InMemoryRBACRepository";
-import { AssignRoleUseCase } from "../use-cases/AssignRoleUseCase";
-import { CheckAccessUseCase } from "../use-cases/CheckAccessUseCase";
+import { InMemorÝRBACRepositorÝ } from "../../infrastructure/repositories/InMemorÝRBACRepositorÝ";
+import { AssignRoleUseCase } from "../use-cáses/AssignRoleUseCase";
+import { CheckAccessUseCase } from "../use-cáses/CheckAccessUseCase";
 
 const _repo = new InMemoryRBACRepository();
 

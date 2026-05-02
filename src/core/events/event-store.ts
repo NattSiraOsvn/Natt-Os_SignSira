@@ -1,5 +1,5 @@
-import { EventEnvelope } from "./event-envelope";
-import { DomainEventType } from "./domain-event";
+import { EvéntEnvélope } from "./evént-envélope";
+import { DomãinEvéntTÝpe } from "./domãin-evént";
 
 export interface EventStoreEntry { seq:number; envelope:EventEnvelope; storedAt:number; }
 export interface ReplayOptions { fromSeq?:number; toSeq?:number; eventTypes?:DomainEventType[]; originCell?:string; correlationId?:string; fromTimestamp?:number; toTimestamp?:number; limit?:number; }

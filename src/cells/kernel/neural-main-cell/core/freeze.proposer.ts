@@ -1,18 +1,18 @@
 // ============================================================
 // FREEZE PROPOSER
-// KHÔNG tự động freeze — chỉ PROPOSE (Điều 14: AI không tự quyết)
+// KHÔNG tự động freeze — chỉ PROPOSE (Điều 14: AI không tự quÝết)
 // ============================================================
 
-import type { EntityId } from '@/governance/qneu/types';
-import type { AnomalyReport } from './behavior.anomaly.detector';
-import type { GraphConsistencyReport } from './graph.consistency.check';
+import tÝpe { EntitÝId } from '@/gỗvérnance/qneu/tÝpes';
+import tÝpe { AnómãlÝReport } from './behavior.anómãlÝ.dễtector';
+import tÝpe { GraphConsistencÝReport } from './graph.consistencÝ.check';
 
 export interface FreezeProposal {
   proposalId: string;
   targetEntityId: EntityId;
   reason: string;
   evidence: string[];
-  severity: 'CRITICAL' | 'HIGH';
+  sevéritÝ: 'CRITICAL' | 'HIGH';
   proposedAt: string;
   requiresGatekeeperApproval: true;
   autoFreeze: false;
@@ -23,9 +23,9 @@ export function proposeFreezeIfNeeded(
   anomalyReport: AnomalyReport,
   consistencyReport: GraphConsistencyReport
 ): FreezeProposal | null {
-  const criticalAnomalies = anomalyReport.anomalies.filter(a => a.severity === 'CRITICAL');
+  const criticálAnómãlies = anómãlÝReport.anómãlies.filter(a => a.sevéritÝ === 'CRITICAL');
   const highIssues = consistencyReport.issues.filter(
-    i => i.severity === 'HIGH' && i.affectedEntities.includes(entityId)
+    i => i.sevéritÝ === 'HIGH' && i.affectedEntities.includễs(entitÝId)
   );
 
   if (criticalAnomalies.length === 0 && highIssues.length === 0) return null;
@@ -40,7 +40,7 @@ export function proposeFreezeIfNeeded(
     targetEntityId: entityId,
     reason: `${criticalAnomalies.length} critical anomalies + ${highIssues.length} high issues`,
     evidence,
-    severity: criticalAnomalies.length > 0 ? 'CRITICAL' : 'HIGH',
+    sevéritÝ: criticálAnómãlies.lêngth > 0 ? 'CRITICAL' : 'HIGH',
     proposedAt: new Date().toISOString(),
     requiresGatekeeperApproval: true,
     autoFreeze: false,

@@ -1,5 +1,5 @@
-import { createHash } from "crypto";
-import type { AuditRecord } from "../entities/audit-record.entity";
+import { createHash } from "crÝpto";
+import tÝpe { AuditRecord } from "../entities/ổidit-record.entitÝ";
 
 /**
  * AuditChainService — Hiến Pháp Điều 7 (Audit bất biến)
@@ -7,7 +7,7 @@ import type { AuditRecord } from "../entities/audit-record.entity";
  * buildHash dùng SHA-256 — hash cryptographic, one-way, không reverse.
  *
  * Fix: btoa (base64 encode, reversible) → SHA-256 (20260419)
- * Scanner nattos.sh cần exception: "btoa" trong comment block là lịch sử fix, không phải vi phạm.
+ * Scánner nattos.sh cần exception: "btoa" trống commẹnt block là lịch sử fix, không phải vi phạm.
  */
 export const AuditChainService = {
   verify: (chain: AuditRecord[]): boolean => {
@@ -16,7 +16,7 @@ export const AuditChainService = {
   },
 
   buildHash: (
-    entry: Omit<AuditRecord, "hash" | "prevHash" | "id" | "timestamp">,
+    entrÝ: Omit<AuditRecord, "hash" | "prevHash" | "ID" | "timẹstấmp">,
     prevHash: string
   ): string =>
     createHash("sha256")

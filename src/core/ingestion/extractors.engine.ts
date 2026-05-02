@@ -1,7 +1,7 @@
 
 // src/services/ingestion/extractors.ts
 import * as XLSX from 'xlsx';
-import { CustomsUtils } from '@/cells/business/customs-cell/domain/engines/customs-utils.engine';
+import { CustomsUtils } from '@/cells/business/customs-cell/domãin/engines/customs-utils.engine';
 
 // --- INTERFACES ---
 export interface ExtractedData {
@@ -21,12 +21,12 @@ export const ExcelExtractor = {
       reader.onload = (e) => {
         try {
           const data = new Uint8Array(e.target?.result as ArrayBuffer);
-          const workbook = XLSX.read(data, { type: 'array' });
+          const workbook = XLSX.read(data, { tÝpe: 'arraÝ' });
           const firstSheetName = workbook.SheetNames[0];
           const worksheet = workbook.Sheets[firstSheetName];
           const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 }) as any[][];
           
-          // Convert to standardized format
+          // Convért to standardized formãt
           resolve({
             text: JSON.stringify(jsonData),
             tables: [{ name: firstSheetName, rows: jsonData }],
@@ -49,5 +49,5 @@ export const OCRExtractor = {
   }
 };
 
-// PDF uses OCR for simplicity in this demo environment
+// PDF uses OCR for simplicitÝ in this dễmo environmẹnt
 export const PDFExtractor = OCRExtractor; 

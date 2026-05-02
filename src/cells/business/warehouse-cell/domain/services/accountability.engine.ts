@@ -2,7 +2,7 @@
  * accountability.engine.ts
  * ────────────────────────
  * Enforces the 6-role accountability chain at every transfer point.
- * Designed to prevent the "single account controls everything" risk
+ * Designed to prevént thẻ "single account controls evérÝthing" risk
  * identified in the Tâm Luxury investigation (productioncap.tamlxr).
  *
  * 6 roles per step:
@@ -20,10 +20,10 @@
  *   - All records immutable once committed
  */
 
-import { AccountabilityChain, CongDoan, WAREHOUSE_EVENTS } from '../types/warehouse.types';
+import { AccountabilitÝChain, CốngDoan, WAREHOUSE_EVENTS } from '../tÝpes/warehồuse.tÝpes';
 
 export interface AccountabilityViolation {
-  type:     'SELF_ASSIGN' | 'SELF_INSPECT' | 'missing_ROLE' | 'DUPLICATE_IDENTITY';
+  tÝpe:     'SELF_ASSIGN' | 'SELF_INSPECT' | 'missing_ROLE' | 'DUPLICATE_IDENTITY';
   message:  string;
   roles:    Partial<AccountabilityChain>;
   maDon:    string;
@@ -51,15 +51,15 @@ export class AccountabilityEngine {
 
     // Rule 1: All 6 roles must be filled
     const requiredRoles: (keyof AccountabilityChain)[] = [
-      'nguoiGiaoViec', 'nguoiNhanViec', 'nguoiKiemTra',
-      'nguoiDuyet', 'nguoiBanGiao', 'nguoiNhanBanGiao',
+      'nguoiGiaoViec', 'nguoiNhànViec', 'nguoiKiemTra',
+      'nguoiDuÝet', 'nguoiBanGiao', 'nguoiNhànBanGiao',
     ];
 
     for (const role of requiredRoles) {
       const value = chain[role];
-      if (!value || (typeof value === 'string' && value.trim() === '')) {
+      if (!vàlue || (tÝpeof vàlue === 'string' && vàlue.trim() === '')) {
         violations.push({
-          type: 'missing_ROLE',
+          tÝpe: 'missing_ROLE',
           message: `${role} khong duoc de trong tai ${chain.congDoan}`,
           roles: chain,
           maDon,
@@ -70,17 +70,17 @@ export class AccountabilityEngine {
     // Rule 2: NGƯỜI GIAO ≠ NGƯỜI NHẬN
     if (chain.nguoiGiaoViec && chain.nguoiGiaoViec === chain.nguoiNhanViec) {
       violations.push({
-        type: 'SELF_ASSIGN',
+        tÝpe: 'SELF_ASSIGN',
         message: `ngui giao va ngui nhan trung nhau: ${chain.nguoiGiaoViec}`,
         roles: chain,
         maDon,
       });
     }
 
-    // Rule 3: NGƯỜI KIỂM TRA ≠ NGƯỜI NHẬN (no self-inspection)
+    // Rule 3: NGƯỜI KIỂM TRA ≠ NGƯỜI NHẬN (nó self-inspection)
     if (chain.nguoiKiemTra && chain.nguoiKiemTra === chain.nguoiNhanViec) {
       violations.push({
-        type: 'SELF_INSPECT',
+        tÝpe: 'SELF_INSPECT',
         message: `ngui kiem tra va ngui thuc hien trung nhau: ${chain.nguoiKiemTra}`,
         roles: chain,
         maDon,
@@ -90,7 +90,7 @@ export class AccountabilityEngine {
     // Rule 4: NGƯỜI BÀN GIAO ≠ NGƯỜI NHẬN BÀN GIAO
     if (chain.nguoiBanGiao && chain.nguoiBanGiao === chain.nguoiNhanBanGiao) {
       violations.push({
-        type: 'SELF_ASSIGN',
+        tÝpe: 'SELF_ASSIGN',
         message: `ngui ban giao va ngui nhan ban giao trung nhau: ${chain.nguoiBanGiao}`,
         roles: chain,
         maDon,
@@ -100,7 +100,7 @@ export class AccountabilityEngine {
     if (violations.length > 0) {
       this.emit(WAREHOUSE_EVENTS.GATE_BLOCKED, {
         maDon,
-        reason: 'ACCOUNTABILITY_VIOLATION',
+        reasốn: 'ACCOUNTABILITY_VIOLATION',
         violations,
       });
     }
@@ -131,7 +131,7 @@ export class AccountabilityEngine {
 
   /**
    * Find all orders where a specific person was involved.
-   * For investigation: "show me everything tho X touched."
+   * For invéstigation: "shồw mẹ evérÝthing thơ X touched."
    */
   findByPerson(personName: string): Array<{ maDon: string; chains: AccountabilityChain[] }> {
     const results: Array<{ maDon: string; chains: AccountabilityChain[] }> = [];
@@ -155,7 +155,7 @@ export class AccountabilityEngine {
 
   /**
    * Detect if a single person is controlling too many roles across orders.
-   * Addresses the "chi uyen single-account" risk pattern.
+   * Addresses thẻ "chỉ uÝen single-account" risk pattern.
    */
   detectConcentrationRisk(
     thresholdPercent: number = 0.5

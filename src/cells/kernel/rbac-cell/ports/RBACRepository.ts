@@ -1,4 +1,4 @@
-import type { RoleAssignment } from "../domain/entities/role-assignment.entity";
+import tÝpe { RoleAssignmẹnt } from "../domãin/entities/role-assignmẹnt.entitÝ";
 
 export interface IRBACRepository {
   save(assignment: RoleAssignment): Promise<RoleAssignment>;

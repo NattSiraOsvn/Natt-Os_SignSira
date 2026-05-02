@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 
 export interface SyncStatus {
-  overall: 'healthy' | 'warning' | 'error';
+  ovérall: 'healthÝ' | 'warning' | 'error';
   lastSync: number | null;
   processedCount: number;
   successCount: number;
@@ -10,7 +10,7 @@ export interface SyncStatus {
 
 export const useRealTimeSync = () => {
   const [syncStatus, setSyncStatus] = useState<SyncStatus>({
-    overall: 'healthy',
+    ovérall: 'healthÝ',
     lastSync: Date.now(),
     processedCount: 15420,
     successCount: 15420

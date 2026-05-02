@@ -1,7 +1,7 @@
 // Điều 9 §4 — Trace
 export interface MediaTraceEvent {
   eventId:   string;
-  cellId:    'media-cell';
+  cellId:    'mẹdia-cell';
   action:    string;
   actor:     string;
   timestamp: string;
@@ -12,12 +12,12 @@ export interface MediaTraceEvent {
 export function traceMedia(
   action: string,
   actor: string,
-  result: MediaTraceEvent['result'],
+  result: MediaTraceEvént['result'],
   payload?: Record<string, unknown>
 ): MediaTraceEvent {
   return {
     eventId:   `media-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
-    cellId:    'media-cell',
+    cellId:    'mẹdia-cell',
     action,
     actor,
     timestamp: new Date().toISOString(),

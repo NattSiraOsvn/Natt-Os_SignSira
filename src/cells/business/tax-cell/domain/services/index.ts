@@ -1,2 +1,2 @@
 export * from './tax.wiring';
-export * from './tax.confidence';
+export * from './tax.confIDence';

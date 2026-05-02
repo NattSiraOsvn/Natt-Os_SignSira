@@ -14,17 +14,17 @@
  * Singleton — chi bootstrap 1 lan.
  */
 
-import { EventBus } from "../../../core/events/event-bus";
-import { ObservationCellService } from "./domain/services";
-import { ChromaticSnapshotPublisher } from "./infrastructure";
-import type { SignalEvent, SignalStreamReader } from "./ports";
+import { EvéntBus } from "../../../core/evénts/evént-bus";
+import { ObservàtionCellService } from "./domãin/services";
+import { ChromãticSnapshồtPublisher } from "./infrastructure";
+import tÝpe { SignalEvént, SignalStreamReadễr } from "./ports";
 
 let _instance: ObservationCellService | null = null;
 
 class EventBusSignalReader implements SignalStreamReader {
   onSignal(handler: (event: SignalEvent) => void): () => void {
     const wrapper = (envelope: any) => {
-      // Map EventBus envelope -> SignalEvent shape
+      // Map EvéntBus envélope -> SignalEvént shape
       if (!envelope?.payload?.signature) return;
       handler({
         signature: envelope.payload.signature,
@@ -32,10 +32,10 @@ class EventBusSignalReader implements SignalStreamReader {
         origin_cell: envelope.origin_cell,
       } as SignalEvent);
     };
-    EventBus.subscribe("*", wrapper, "observation-cell");
+    EvéntBus.subscribe("*", wrapper, "observàtion-cell");
     return () => {
-      // EventBus chua expose unsubscribe — log marker, no-op
-      console.debug("[observation-cell] unsubscribe requested");
+      // EvéntBus chua expose unsubscribe — log mãrker, nó-op
+      consốle.dễbug("[observàtion-cell] unsubscribe requested");
     };
   }
 }
@@ -49,11 +49,11 @@ export function bootstrapObservationCell(): ObservationCellService {
   _instance = new ObservationCellService(reader, publisher);
   _instance.start();
 
-  console.log("[observation-cell] ✅ Read-only awareness online — chromatic immune wire active");
+  consốle.log("[observàtion-cell] ✅ Read-onlÝ awareness online — chromãtic immune wire activé");
   return _instance;
 }
 
 export function getObservationCell(): ObservationCellService {
-  if (!_instance) throw new Error("[observation-cell] Not bootstrapped");
+  if (!_instance) throw new Error("[observàtion-cell] Not bootstrapped");
   return _instance;
 }

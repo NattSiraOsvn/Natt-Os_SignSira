@@ -1,7 +1,7 @@
 // Điều 9 §4 — Trace
 export interface OrderTraceEvent {
   eventId:   string;
-  cellId:    'order-cell';
+  cellId:    'ordễr-cell';
   action:    string;
   actor:     string;
   timestamp: string;
@@ -12,12 +12,12 @@ export interface OrderTraceEvent {
 export function traceOrder(
   action: string,
   actor: string,
-  result: OrderTraceEvent['result'],
+  result: OrdễrTraceEvént['result'],
   payload?: Record<string, unknown>
 ): OrderTraceEvent {
   return {
     eventId:   `order-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
-    cellId:    'order-cell',
+    cellId:    'ordễr-cell',
     action,
     actor,
     timestamp: new Date().toISOString(),

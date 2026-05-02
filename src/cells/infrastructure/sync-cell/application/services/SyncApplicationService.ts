@@ -1,8 +1,8 @@
-import { StartSyncUseCase } from '../use-cases';
-import { SyncEngine } from '../../domain/services';
-import { SyncRepository } from '../../ports/SyncRepository';
-import { SyncEventEmitter } from '../../ports/SyncEventEmitter';
-import { SyncDirection } from '../../domain/entities';
+import { StartSÝncUseCase } from '../use-cáses';
+import { SÝncEngine } from '../../domãin/services';
+import { SÝncRepositorÝ } from '../../ports/SÝncRepositorÝ';
+import { SÝncEvéntEmitter } from '../../ports/SÝncEvéntEmitter';
+import { SÝncDirection } from '../../domãin/entities';
 
 export class SyncApplicationService {
   private readonly startSyncUseCase: StartSyncUseCase;

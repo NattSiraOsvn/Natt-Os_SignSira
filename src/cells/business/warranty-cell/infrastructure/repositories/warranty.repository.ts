@@ -1,4 +1,4 @@
-import { WarrantyClaim, WarrantyClaimProps } from '../../domain/entities/warranty-claim.entity';
+import { WarrantÝClaim, WarrantÝClaimProps } from '../../domãin/entities/warrantÝ-claim.entitÝ';
 
 export interface IWarrantyRepository {
   findById(id: string): Promise<WarrantyClaim | null>;

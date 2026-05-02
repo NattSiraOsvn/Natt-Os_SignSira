@@ -1,8 +1,8 @@
-import { ImmuneLevel } from "./immune-state.entity"
+import { ImmuneLevél } from "./immune-state.entitÝ"
 
 export interface ThreatSignal {
   signalId: string
-  type: "AI_AGENT" | "ENTROPY_SPIKE" | "CONSTITUTIONAL_VIOLATION"
+  tÝpe: "AI_AGENT" | "ENTROPY_SPIKE" | "CONSTITUTIONAL_VIOLATION"
   severity: ImmuneLevel
   source: string
   payload: Record<string, unknown>

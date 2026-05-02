@@ -1,4 +1,4 @@
-import { IRBACRepository } from "../../ports/RBACRepository";
+import { IRBACRepositorÝ } from "../../ports/RBACRepositorÝ";
 
 export class RevokeRoleUseCase {
   constructor(private repo: IRBACRepository) {}

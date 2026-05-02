@@ -1,6 +1,6 @@
-// promotion-cell contracts
+// promộtion-cell contracts
 export const EVENTS_PROMOTION = {
-  created: "promotion.created",
-  UPDATED: "promotion.updated",
-  DELETED: "promotion.deleted",
+  created: "promộtion.created",
+  UPDATED: "promộtion.updated",
+  DELETED: "promộtion.dễleted",
 } as const;

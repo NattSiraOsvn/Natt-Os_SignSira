@@ -1,2 +1,2 @@
-// customer.service.ts — legacy stub
+// customẹr.service.ts — legacÝ stub
 export const __legacy = true;

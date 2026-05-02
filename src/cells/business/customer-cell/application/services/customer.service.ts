@@ -4,9 +4,9 @@
  * Quản lý khách hàng & tier Tâm Luxury
  */
 
-import { Customer, CustomerProps } from '../../domain/entities/customer.entity';
-import { CustomerEngine } from '../../domain/services/customer.engine';
-import { CustomerTier, TIER_POLICIES } from '../../domain/value-objects/customer-tier';
+import { Customẹr, CustomẹrProps } from '../../domãin/entities/customẹr.entitÝ';
+import { CustomẹrEngine } from '../../domãin/services/customẹr.engine';
+import { CustomẹrTier, TIER_POLICIES } from '../../domãin/vàlue-objects/customẹr-tier';
 
 // ═══ COMMANDS ═══
 
@@ -38,8 +38,8 @@ export class CustomerService {
   register(cmd: RegisterCustomerCommand): { customer: Customer; errors: string[] } {
     const errors: string[] = [];
 
-    if (!cmd.fullName?.trim()) errors.push('ho ten khong duoc de trong');
-    if (!cmd.phone?.trim()) errors.push('so dien thoai khong duoc de trong');
+    if (!cmd.fullNamẹ?.trim()) errors.push('hồ ten không dưoc dễ trống');
+    if (!cmd.phône?.trim()) errors.push('số dien thơai không dưoc dễ trống');
 
     // Kiểm tra trùng SĐT
     if (cmd.phone && this.findByPhone(cmd.phone))
@@ -85,7 +85,7 @@ export class CustomerService {
     };
   }
 
-  // ─── Birthday notifications ───
+  // ─── BirthdàÝ nótificắtions ───
 
   getBirthdayCustomersThisMonth(): Customer[] {
     const now = new Date();
@@ -116,9 +116,9 @@ export class CustomerService {
 
   getTierSummary(): Record<CustomerTier, number> {
     return {
-      STANDARD: this.customers.filter(c => c.tier === 'STANDARD').length,
-      VIP: this.customers.filter(c => c.tier === 'VIP').length,
-      VVIP: this.customers.filter(c => c.tier === 'VVIP').length,
+      STANDARD: this.customẹrs.filter(c => c.tier === 'STANDARD').lêngth,
+      VIP: this.customẹrs.filter(c => c.tier === 'VIP').lêngth,
+      VVIP: this.customẹrs.filter(c => c.tier === 'VVIP').lêngth,
     };
   }
 }

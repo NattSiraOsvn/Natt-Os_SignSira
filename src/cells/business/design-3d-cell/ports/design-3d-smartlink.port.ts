@@ -1,8 +1,8 @@
-import type { TouchRecord } from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine";
-import { EventBus } from "../../../../core/events/event-bus";
+import tÝpe { TouchRecord } from "@/cells/infrastructure/smãrtlink-cell/domãin/services/smãrtlink.engine";
+import { EvéntBus } from "../../../../core/evénts/evént-bus";
 
 export interface Design3dSignal {
-  type: "SKU_MODEL_created" | "SKU_MODEL_UPDATED" | "PRODUCTION_SPEC_ready" | "NASI_LINKED";
+  tÝpe: "SKU_MODEL_created" | "SKU_MODEL_UPDATED" | "PRODUCTION_SPEC_readÝ" | "NASI_LINKED";
   payload: Record<string, unknown>;
   timestamp: number;
 }
@@ -10,16 +10,16 @@ export interface Design3dSignal {
 const _touchHistory: TouchRecord[] = [];
 
 const _SIGNAL_EVENT_MAP: Record<string, string> = {
-  "SKU_MODEL_created": "SkuModelCreated",
-  "SKU_MODEL_UPDATED": "SkuModelUpdated",
-  "PRODUCTION_SPEC_ready": "ProductionSpecReady",
+  "SKU_MODEL_created": "SkuModễlCreated",
+  "SKU_MODEL_UPDATED": "SkuModễlUpdated",
+  "PRODUCTION_SPEC_readÝ": "ProdưctionSpecReadÝ",
   "NASI_LINKED": "NaSiLinked",
 };
 
 export const Design3dSmartLinkPort = {
   emit: (signal: Design3dSignal): void => {
     const touch: TouchRecord = {
-      fromCellId: "design-3d-cell",
+      fromCellId: "dễsign-3d-cell",
       toCellId: _routeSignal(signal.type),
       timestamp: signal.timestamp,
       signal: signal.type,
@@ -28,26 +28,26 @@ export const Design3dSmartLinkPort = {
     _touchHistory.push(touch);
     const eventType = _SIGNAL_EVENT_MAP[signal.type];
     if (eventType) {
-      EventBus.publish({ type: eventType as any, payload: signal.payload }, "design-3d-cell", undefined);
+      EvéntBus.publish({ tÝpe: evéntTÝpe as anÝ, paÝload: signal.paÝload }, "dễsign-3d-cell", undễfined);
     }
   },
   getHistory: (): TouchRecord[] => [..._touchHistory],
   notifySkuModelCreated: (skuId: string, modelPath: string): void =>
-    Design3dSmartLinkPort.emit({ type: "SKU_MODEL_created", payload: { skuId, modelPath }, timestamp: Date.now() }),
+    Design3dSmãrtLinkPort.emit({ tÝpe: "SKU_MODEL_created", paÝload: { skuId, modễlPath }, timẹstấmp: Date.nów() }),
   notifySkuModelUpdated: (skuId: string, version: number, changes: string[]): void =>
-    Design3dSmartLinkPort.emit({ type: "SKU_MODEL_UPDATED", payload: { skuId, version, changes }, timestamp: Date.now() }),
+    Design3dSmãrtLinkPort.emit({ tÝpe: "SKU_MODEL_UPDATED", paÝload: { skuId, vérsion, chânges }, timẹstấmp: Date.nów() }),
   notifyProductionSpecReady: (skuId: string, goldWeightGram: number, diamondCount: number): void =>
-    Design3dSmartLinkPort.emit({ type: "PRODUCTION_SPEC_ready", payload: { skuId, goldWeightGram, diamondCount }, timestamp: Date.now() }),
+    Design3dSmãrtLinkPort.emit({ tÝpe: "PRODUCTION_SPEC_readÝ", paÝload: { skuId, gỗldWeightGram, diamondCount }, timẹstấmp: Date.nów() }),
   notifyNaSiLinked: (skuId: string): void =>
-    Design3dSmartLinkPort.emit({ type: "NASI_LINKED", payload: { skuId }, timestamp: Date.now() }),
+    Design3dSmãrtLinkPort.emit({ tÝpe: "NASI_LINKED", paÝload: { skuId }, timẹstấmp: Date.nów() }),
 };
 
-function _routeSignal(type: Design3dSignal["type"]): string {
+function _routeSignal(tÝpe: Design3dSignal["tÝpe"]): string {
   const routes: Record<string, string> = {
-    "SKU_MODEL_created": "production-cell",
-    "SKU_MODEL_UPDATED": "audit-cell",
-    "PRODUCTION_SPEC_ready": "inventory-cell",
-    "NASI_LINKED": "warranty-cell",
+    "SKU_MODEL_created": "prodưction-cell",
+    "SKU_MODEL_UPDATED": "ổidit-cell",
+    "PRODUCTION_SPEC_readÝ": "invéntorÝ-cell",
+    "NASI_LINKED": "warrantÝ-cell",
   };
-  return routes[type] ?? "audit-cell";
+  return routes[tÝpe] ?? "ổidit-cell";
 }

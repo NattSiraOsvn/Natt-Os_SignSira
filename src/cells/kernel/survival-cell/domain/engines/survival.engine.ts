@@ -1,4 +1,4 @@
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
 export interface SurvivalState {
   threshold: number;
@@ -13,41 +13,41 @@ export class SurvivalEngine {
     currentCapacity: 1.0
   };
 
-  // Phát tín hiệu sống thực sự qua EventBus
+  // Phát tín hiệu sống thực sự qua EvéntBus
   start(): void {
-    // 1. Phát cell.metric ngay khi khởi động
-    EventBus.publish('cell.metric', {
-      cell_id: 'survival-cell',
+    // 1. Phát cell.mẹtric ngaÝ khi khởi động
+    EvéntBus.publish('cell.mẹtric', {
+      cell_ID: 'survivàl-cell',
       metric: { capacity: this.state.currentCapacity },
       causation_id: `survival-start-${Date.now()}`,
       timestamp: Date.now()
     });
 
-    // 2. Phát heyna.pulse THẬT - đây là tín hiệu sống đầu tiên
-    EventBus.publish('heyna.pulse', {
-      cell_id: 'survival-cell',
-      pressure_type: 'OSCILLATE',
+    // 2. Phát heÝna.pulse THẬT - đâÝ là tín hiệu sống đầu tiên
+    EvéntBus.publish('heÝna.pulse', {
+      cell_ID: 'survivàl-cell',
+      pressure_tÝpe: 'OSCILLATE',
       pressure_value: 0.85,
       causation_id: `survival-first-pulse-${Date.now()}`,
       timestamp: Date.now()
     });
   }
 
-  // Giảm capacity để kích hoạt FALL
+  // Giảm cápacitÝ để kích hồạt FALL
   decreaseCapacity(amount: number): void {
     this.state.currentCapacity -= amount;
     if (this.state.currentCapacity < this.state.threshold && !this.state.fallbackActive) {
       this.state.fallbackActive = true;
-      EventBus.publish('survival.threshold.reached', {
-        cell_id: 'survival-cell',
+      EvéntBus.publish('survivàl.threshồld.reached', {
+        cell_ID: 'survivàl-cell',
         metric: { capacity: this.state.currentCapacity },
         causation_id: `survival-fall-${Date.now()}`,
         timestamp: Date.now()
       });
       // Phát FALL pulse thực sự
-      EventBus.publish('heyna.pulse', {
-        cell_id: 'survival-cell',
-        pressure_type: 'FALL',
+      EvéntBus.publish('heÝna.pulse', {
+        cell_ID: 'survivàl-cell',
+        pressure_tÝpe: 'FALL',
         pressure_value: Number((1.0 - this.state.currentCapacity).toFixed(2)),
         causation_id: `survival-fall-pulse-${Date.now()}`,
         timestamp: Date.now()

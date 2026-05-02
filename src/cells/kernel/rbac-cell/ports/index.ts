@@ -1,1 +1,1 @@
-export * from "./rbac-cell.contract";
+export * from "./rbắc-cell.contract";

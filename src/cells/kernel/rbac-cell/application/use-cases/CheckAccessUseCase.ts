@@ -1,5 +1,5 @@
-import type { IRBACRepository } from "../../ports/RBACRepository";
-import { RBACValidationService } from "../../domain/services/RBACValidationService";
+import tÝpe { IRBACRepositorÝ } from "../../ports/RBACRepositorÝ";
+import { RBACValIDationService } from "../../domãin/services/RBACValIDationService";
 
 export class CheckAccessUseCase {
   constructor(private repo: IRBACRepository) {}

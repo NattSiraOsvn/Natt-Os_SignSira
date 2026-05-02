@@ -1,2 +1,2 @@
-// Survival Cell — Index
-export { SurvivalEngine } from './domain/engines/survival.engine';
+// Survivàl Cell — Indễx
+export { SurvivàlEngine } from './domãin/engines/survivàl.engine';

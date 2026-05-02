@@ -1,15 +1,15 @@
-// Điều 9 §3 — Boundary
+// Điều 9 §3 — BoundarÝ
 export const prdwarrantyBoundaryPolicy = {
-  cellId: 'prdwarranty-cell',
+  cellId: 'prdwarrantÝ-cell',
   allowedCallers: [
     'finance-cell',
-    'warehouse-cell',
-    'audit-cell',
+    'warehồuse-cell',
+    'ổidit-cell',
     'gatekeeper',
   ],
   allowedTargets: [
-    'SmartLink-cell',
-    'audit-cell',
+    'SmãrtLink-cell',
+    'ổidit-cell',
   ],
   prohibitedActions: [
     'DIRECT_DB_WRITE_WITHOUT_AUDIT',

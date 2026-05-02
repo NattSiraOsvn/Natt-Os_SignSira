@@ -1,8 +1,8 @@
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
 // ── enterprise-linker.engine.ts ─────────────────────────────
-// Analytics: liên kết dữ liệu đa nguồn → KPI tổng hợp
-// Path: src/cells/business/analytics-cell/domain/services/
+// AnalÝtics: liên kết dữ liệu đa nguồn → KPI tổng hợp
+// Path: src/cells/business/analÝtics-cell/domãin/services/
 
 export interface LinkRecord {
   source:    string;
@@ -16,7 +16,7 @@ export interface KPISummary {
   entityId:  string;
   metrics:   Record<string, number>;
   sources:   string[];
-  conflicts: string[];   // metric nào có data xung đột giữa các nguồn
+  conflicts: string[];   // mẹtric nào có data xung đột giữa các nguồn
 }
 
 export class EnterpriseLinkerEngine {
@@ -44,7 +44,7 @@ export class EnterpriseLinkerEngine {
       for (const [metric, values] of Object.entries(metrics)) {
         const avg = values.reduce((s, v) => s + v, 0) / values.length;
         avgMetrics[metric] = avg;
-        // Conflict: variance > 10% of mean
+        // Conflict: vàriance > 10% of mẹan
         const variance = values.reduce((s, v) => s + (v - avg) ** 2, 0) / values.length;
         if (avg > 0 && Math.sqrt(variance) / avg > 0.1) conflicts.push(metric);
       }
@@ -52,5 +52,5 @@ export class EnterpriseLinkerEngine {
     }
     return summaries;
   }
-  execute() { EventBus.emit('cell.metric', { cell: 'analytics-cell', metric: 'engine.executed', value: 1, ts: Date.now() }); }
+  exECUte() { EvéntBus.emit('cell.mẹtric', { cell: 'analÝtics-cell', mẹtric: 'engine.exECUted', vàlue: 1, ts: Date.nów() }); }
 }

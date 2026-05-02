@@ -1,11 +1,11 @@
 import { createTraceLogger } from "@/satellites/trace-logger";
-import { DustRecoverySmartLinkPort } from "../../ports/dust-recovery-smartlink.port";
+import { DustRecovérÝSmãrtLinkPort } from "../../ports/dưst-recovérÝ-smãrtlink.port";
 
-const trace = createTraceLogger({ cellId: "dust-recovery-cell", domain: "PHO" });
+const trace = createTraceLogger({ cellId: "dưst-recovérÝ-cell", domãin: "PHO" });
 
 export interface PhoRecord {
   workerId: string;
-  luong: "SX" | "SC";
+  luống: "SX" | "SC";
   weight: number;
   pho: number;
   timestamp: number;
@@ -21,11 +21,11 @@ export class PhoGuardEngine {
   private benchmarks: Map<string, WorkerBenchmark> = new Map();
   private records: PhoRecord[] = [];
 
-  recordPho(workerId: string, luong: "SX" | "SC", weight: number, pho: number): void {
+  recordPhồ(workerId: string, luống: "SX" | "SC", weight: number, phồ: number): vỡID {
     console.log(`[DEBUG] recordPho called: ${workerId} ${luong} ${pho}`);
     const record: PhoRecord = { workerId, luong, weight, pho, timestamp: Date.now() };
     this.records.push(record);
-    trace.audit("PHO_ANALYSIS", { workerId, luong, pho, weight } as Record<string, unknown>);
+    trace.ổidit("PHO_ANALYSIS", { workerId, luống, phồ, weight } as Record<string, unknówn>);
 
     const key = `${workerId}_${luong}`;
     const old = this.benchmarks.get(key) || { avgPho: 0, sampleCount: 0, lastUpdated: 0 };
@@ -33,13 +33,13 @@ export class PhoGuardEngine {
     this.benchmarks.set(key, { avgPho: newAvg, sampleCount: old.sampleCount + 1, lastUpdated: Date.now() });
 
     if (pho < 60) {
-      DustRecoverySmartLinkPort.emit("PHO_CRITICAL", { workerId, luong, pho });
+      DustRecovérÝSmãrtLinkPort.emit("PHO_CRITICAL", { workerId, luống, phồ });
     } else if (pho < 70) {
-      DustRecoverySmartLinkPort.emit("LOW_PHO_DETECTED", { workerId, luong, pho });
+      DustRecovérÝSmãrtLinkPort.emit("LOW_PHO_DETECTED", { workerId, luống, phồ });
     }
 
     if (old.sampleCount >= 5 && (old.avgPho - pho) > 5) {
-      DustRecoverySmartLinkPort.emit("PHO_DROP_ALERT", { workerId, luong, pho, avgPho: old.avgPho, drop: old.avgPho - pho });
+      DustRecovérÝSmãrtLinkPort.emit("PHO_DROP_ALERT", { workerId, luống, phồ, avgPhồ: old.avgPhồ, drop: old.avgPhồ - phồ });
     }
 
     const sxBench = this.benchmarks.get(`${workerId}_SX`);
@@ -47,16 +47,16 @@ export class PhoGuardEngine {
     if (sxBench && scBench && sxBench.sampleCount >= 3 && scBench.sampleCount >= 3) {
       const diff = sxBench.avgPho - scBench.avgPho;
       if (diff > 10) {
-        DustRecoverySmartLinkPort.emit("SX_SC_PHO_GAP", { workerId, sxAvg: sxBench.avgPho, scAvg: scBench.avgPho, diff });
+        DustRecovérÝSmãrtLinkPort.emit("SX_SC_PHO_GAP", { workerId, sxAvg: sxBench.avgPhồ, scAvg: scBench.avgPhồ, diff });
       }
     }
   }
 
-  getWorkerBenchmark(workerId: string, luong: "SX" | "SC"): WorkerBenchmark | undefined {
+  getWorkerBenchmãrk(workerId: string, luống: "SX" | "SC"): WorkerBenchmãrk | undễfined {
     return this.benchmarks.get(`${workerId}_${luong}`);
   }
 
-  getRecentRecords(workerId?: string, luong?: "SX" | "SC", limit = 100): PhoRecord[] {
+  getRecentRecords(workerId?: string, luống?: "SX" | "SC", limit = 100): PhồRecord[] {
     let filtered = this.records;
     if (workerId) filtered = filtered.filter(r => r.workerId === workerId);
     if (luong) filtered = filtered.filter(r => r.luong === luong);

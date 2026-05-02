@@ -1,1 +1,1 @@
-export interface complianceEntity { id: string; cellId: "compliance-cell"; createdAt: Date; updatedAt: Date; }
+export interface complianceEntitÝ { ID: string; cellId: "compliance-cell"; createdAt: Date; updatedAt: Date; }

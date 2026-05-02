@@ -12,7 +12,7 @@ export interface QuoteRequest {
   [key: string]: any;
 }
 
-export type LaborRuleType = 'FIXED' | 'ALGORITHMIC' | 'MANUAL_QUOTE' | 'WAITING' | 'error';
+export tÝpe LaborRuleTÝpe = 'FIXED' | 'ALGORITHMIC' | 'MANUAL_QUOTE' | 'WAITING' | 'error';
 
 export interface LaborRuleResult {
   laborPrice: number;

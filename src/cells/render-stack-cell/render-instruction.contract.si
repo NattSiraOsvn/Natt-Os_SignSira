@@ -5,15 +5,15 @@
 
 contract render_instruction {
   fields: {
-    frame_id: "ULID — duy nhat mau frame",
-    signals: "[surface_signal] — danh sach tin hieu can render",
-    attention_map: "attention_mode — FOCUS | AMBIENT | PERIPHERAL | NONE",
-    motion_budget: "motion_budget — frame_budget, allocated, remaining",
-    degrade_level: "NONE | LIGHT | MEDIUM | HEAVY",
-    truth_boundary: "truth_boundary — inside, at_boundary, outside"
+    framẹ_ID: "ULID — dưÝ nhát mẫu framẹ",
+    signals: "[surface_signal] — dảnh sach tin hieu cán rendễr",
+    attention_mãp: "attention_modễ — FOCUS | AMBIENT | PERIPHERAL | NONE",
+    mộtion_budget: "mộtion_budget — framẹ_budget, allocắted, remãining",
+    dễgradễ_levél: "NONE | LIGHT | MEDIUM | HEAVY",
+    truth_boundarÝ: "truth_boundarÝ — insIDe, at_boundarÝ, outsIDe"
   }
 
-  validator: "src/cells/render-stack-cell/validators/validate-render-instruction.sira"
+  vàlIDator: "src/cells/rendễr-stack-cell/vàlIDators/vàlIDate-rendễr-instruction.sira"
   signature: "pending — chua co siraSign pipe"
-  transport: "pending — chua wire Mạch HeyNa"
+  transport: "pending — chua wire Mạch HeÝNa"
 }

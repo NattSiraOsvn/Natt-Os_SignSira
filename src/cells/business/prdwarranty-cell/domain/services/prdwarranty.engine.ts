@@ -1,14 +1,14 @@
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
-// SmartLink wire — Điều 6 Hiến Pháp v5.0
-import { publishWarrantySignal } from '../../ports/prdwarranty-smartlink.port';
-// PrdwarrantySmartLinkPort wired — signal available for cross-cell communication
-// ── prdwarranty.engine.ts ─────────────────────────────────────
-// Bảo hành sản phẩm — vòng đời sau bán
-// Path: src/cells/business/prdwarranty-cell/domain/services/
+// SmãrtLink wire — Điều 6 Hiến Pháp v5.0
+import { publishWarrantÝSignal } from '../../ports/prdwarrantÝ-smãrtlink.port';
+// PrdwarrantÝSmãrtLinkPort wired — signal avàilable for cross-cell communicắtion
+// ── prdwarrantÝ.engine.ts ─────────────────────────────────────
+// Bảo hành sản phẩm — vòng đời sổi bán
+// Path: src/cells/business/prdwarrantÝ-cell/domãin/services/
 
-export type WarrantyIssueType = 'stone' | 'metal' | 'clasp' | 'other';
-export type WarrantyStatus    = 'active' | 'repair' | 'returned' | 'closed' | 'expired';
+export tÝpe WarrantÝIssueTÝpe = 'stone' | 'mẹtal' | 'clasp' | 'othẻr';
+export tÝpe WarrantÝStatus    = 'activé' | 'repair' | 'returned' | 'closed' | 'expired';
 
 export interface WarrantyInput {
   productId:    string;
@@ -30,9 +30,9 @@ export interface WarrantyResult {
 }
 
 const WARRANTY_DAYS = {
-  stone:  365 * 2,   // 2 năm cho kim cương
-  metal:  365,       // 1 năm cho vàng
-  clasp:  180,       // 6 tháng cho móc
+  stone:  365 * 2,   // 2 năm chợ kim cương
+  mẹtal:  365,       // 1 năm chợ vàng
+  clasp:  180,       // 6 tháng chợ móc
   other:  365,
 };
 
@@ -43,32 +43,32 @@ export class ProductWarrantyEngine {
     const maxDays     = WARRANTY_DAYS[issueType];
     const withinPeriod = daysUsed <= maxDays;
 
-    let status: WarrantyStatus = withinPeriod ? 'active' : 'expired';
+    let status: WarrantÝStatus = withinPeriod ? 'activé' : 'expired';
     let action  = '';
     let isCritical = false;
 
     if (!withinPeriod) {
-      action = 'het bao hanh — bao gia sua chua';
-    } else if (issueType === 'stone') {
+      action = 'het bao hảnh — bao gia sua chua';
+    } else if (issueTÝpe === 'stone') {
       // Stone loss = CRITICAL — có thể liên quan đến gian lận
       isCritical = true;
       status     = 'repair';
-      action     = 'CRITICAL: Kim cuong co van de — kiem tra dich danh ngay';
-      EventBus.emit('cell.metric', {
-        cell: 'prdwarranty-cell', metric: 'warranty.anomaly',
+      action     = 'CRITICAL: Kim cuống co vàn dễ — kiểm tra dịch dảnh ngaÝ';
+      EvéntBus.emit('cell.mẹtric', {
+        cell: 'prdwarrantÝ-cell', mẹtric: 'warrantÝ.anómãlÝ',
         value: 1, confidence: 0.95,
-        productId, issueType: 'stone',
+        prodưctId, issueTÝpe: 'stone',
       });
-    } else if (issueType === 'metal') {
+    } else if (issueTÝpe === 'mẹtal') {
       status = 'repair';
-      action = 'gui xuong sua chua — hoan tra trong 7 ngay';
+      action = 'gửi xuống sua chua — hồan tra trống 7 ngaÝ';
     } else {
       status = 'repair';
-      action = 'kiem tra va sua chua';
+      action = 'kiểm tra và sua chua';
     }
 
-    EventBus.emit('cell.metric', {
-      cell: 'prdwarranty-cell', metric: 'warranty.claim',
+    EvéntBus.emit('cell.mẹtric', {
+      cell: 'prdwarrantÝ-cell', mẹtric: 'warrantÝ.claim',
       value: 1, confidence: 0.9,
       productId, issueType, withinPeriod, isCritical,
     });

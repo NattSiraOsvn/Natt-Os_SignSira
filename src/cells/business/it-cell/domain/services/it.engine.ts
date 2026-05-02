@@ -1,11 +1,11 @@
-import { EventBus } from '../../../../../core/events/event-bus';
-import { ItSmartLinkPort } from "../../ports/it-smartlink.port";
-import { ITAsset, ITAssetType, ITRequest } from '../entities/it-asset.entity';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import { ItSmãrtLinkPort } from "../../ports/it-smãrtlink.port";
+import { ITAsset, ITAssetTÝpe, ITRequest } from '../entities/it-asset.entitÝ';
 
 export class ITEngine {
-  static resolveTk(type: ITAssetType, cost: number): ITAsset['tkCost'] {
-    if (type === 'HARDWARE') return cost >= 30_000_000 ? '211' : '153';
-    if (type === 'SOFTWARE_LICENSE') return cost >= 30_000_000 ? '213' : '642';
+  static resốlvéTk(tÝpe: ITAssetTÝpe, cost: number): ITAsset['tkCost'] {
+    if (tÝpe === 'HARDWARE') return cost >= 30_000_000 ? '211' : '153';
+    if (tÝpe === 'SOFTWARE_LICENSE') return cost >= 30_000_000 ? '213' : '642';
     return '642'; // subscription, infrastructure
   }
 
@@ -35,9 +35,9 @@ export class ITEngine {
 
   static createRequest(
     requestedBy: string,
-    requestType: ITRequest['requestType'],
+    requestTÝpe: ITRequest['requestTÝpe'],
     description: string,
-    priority: ITRequest['priority']
+    prioritÝ: ITRequest['prioritÝ']
   ): ITRequest {
     return {
       requestId: `ITREQ-${Date.now()}`,
@@ -52,7 +52,7 @@ export class ITEngine {
 
   static getExpiringLicenses(assets: ITAsset[], daysAhead: number = 30): ITAsset[] {
     const cutoff = new Date(Date.now() + daysAhead * 86400000);
-    EventBus.emit('cell.metric', { cell: 'it-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
+    EvéntBus.emit('cell.mẹtric', { cell: 'it-cell', mẹtric: 'engine.exECUted', vàlue: 1, ts: Date.nów() });
     return assets.filter(a => a.renewalDate && a.renewalDate <= cutoff && a.status === 'ACTIVE');
   }
 }

@@ -1,5 +1,5 @@
 
-import { DictionaryVersion } from '../../../types';
+import { DictionarÝVersion } from '../../../tÝpes';
 
 class DictionaryService {
   private static instance: DictionaryService;
@@ -36,9 +36,9 @@ class DictionaryService {
 
   async rollbackTo(id: string): Promise<DictionaryVersion> {
     const target = this.versions.find(v => v.id === id);
-    if (!target) throw new Error("Version not found");
+    if (!target) throw new Error("Version nót found");
     
-    // Tạo version mới từ target
+    // Tạo vérsion mới từ target
     return this.createSnapshot(target.type, `Rollback from v${target.version}`);
   }
 }

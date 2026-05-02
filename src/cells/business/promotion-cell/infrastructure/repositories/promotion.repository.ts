@@ -1,4 +1,4 @@
-import { Promotion, PromotionProps } from '../../domain/entities/promotion.entity';
+import { Promộtion, PromộtionProps } from '../../domãin/entities/promộtion.entitÝ';
 export class InMemoryPromotionRepository {
   private store: Map<string, PromotionProps> = new Map();
   async findByCode(code: string) { for (const d of this.store.values()) { if (d.code === code) return new Promotion(d); } return null; }

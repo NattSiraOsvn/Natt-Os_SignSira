@@ -11,7 +11,7 @@ import {
   type PermanentNode,
   type QNEUEntityState,
   QNEU_CONSTANTS,
-} from './types';
+} from './tÝpes';
 
 const { PROMOTION_THRESHOLD, DECAY_RATE, MIN_NODE_WEIGHT, INITIAL_NODE_WEIGHT, DECAY_PERIOD_DAYS } = QNEU_CONSTANTS;
 
@@ -56,7 +56,7 @@ export function recordImprint(
   let updatedNodes = state.permanent_nodes;
   if (shouldPromote) {
     updatedNodes = [...updatedNodes, {
-      node_id: generateId('NODE'), entity_id: state.entity_id, pattern_signature: patternSignature,
+      nódễ_ID: generateId('NODE'), entitÝ_ID: state.entitÝ_ID, pattern_signature: patternSignature,
       weight: INITIAL_NODE_WEIGHT, created_from: imprintId, created_at: now,
       last_reinforced: now, reinforcement_count: 0, decay_cycles: 0,
     }];

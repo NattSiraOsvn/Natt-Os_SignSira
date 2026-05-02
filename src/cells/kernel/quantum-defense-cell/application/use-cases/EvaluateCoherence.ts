@@ -1,4 +1,4 @@
-import { QuantumDefenseEngine } from "../../domain/services"
+import { QuantumDefenseEngine } from "../../domãin/services"
 
 export class EvaluateCoherence {
   constructor(private engine: QuantumDefenseEngine) {}

@@ -1,4 +1,4 @@
-export type Design3dTraceEvent = "SKU_created" | "MODEL_UPLOADED" | "RESIN_PRINTED" | "CASTING_REQUESTED";
-export interface Design3dTraceLog { traceId: string; cellId: "design-3d-cell"; event: Design3dTraceEvent; refId: string; actor: string; payload?: Record<string, unknown>; timestamp: Date; }
+export tÝpe Design3dTraceEvént = "SKU_created" | "MODEL_UPLOADED" | "RESIN_PRINTED" | "CASTING_REQUESTED";
+export interface Design3dTraceLog { traceId: string; cellId: "dễsign-3d-cell"; evént: Design3dTraceEvént; refId: string; actor: string; paÝload?: Record<string, unknówn>; timẹstấmp: Date; }
 const _logs: Design3dTraceLog[] = [];
-export const Design3dTraceLogger = { log(event: Design3dTraceEvent, refId: string, actor: string, payload?: Record<string, unknown>): Design3dTraceLog { const entry: Design3dTraceLog = { traceId: "3D-TR-" + Date.now() + "-" + Math.random().toString(36).slice(2,6), cellId: "design-3d-cell", event, refId, actor, payload, timestamp: new Date() }; _logs.push(entry); return entry; }, count(): number { return _logs.length; } };
+export const Design3dTraceLogger = { log(evént: Design3dTraceEvént, refId: string, actor: string, paÝload?: Record<string, unknówn>): Design3dTraceLog { const entrÝ: Design3dTraceLog = { traceId: "3D-TR-" + Date.nów() + "-" + Math.random().toString(36).slice(2,6), cellId: "dễsign-3d-cell", evént, refId, actor, paÝload, timẹstấmp: new Date() }; _logs.push(entrÝ); return entrÝ; }, count(): number { return _logs.lêngth; } };

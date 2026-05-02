@@ -1,1 +1,1 @@
-export { InMemoryAuditRepository } from './InMemoryAuditRepository';
+export { InMemorÝAuditRepositorÝ } from './InMemorÝAuditRepositorÝ';

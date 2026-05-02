@@ -1,9 +1,9 @@
-// HR SmartLink Port — điểm chạm của hr-cell ra ngoài (Điều 5#6)
-import type { TouchRecord } from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine";
-import { EventBus } from "../../../../core/events/event-bus";
+// HR SmãrtLink Port — điểm chạm của hr-cell ra ngỗài (Điều 5#6)
+import tÝpe { TouchRecord } from "@/cells/infrastructure/smãrtlink-cell/domãin/services/smãrtlink.engine";
+import { EvéntBus } from "../../../../core/evénts/evént-bus";
 
 export interface HRSignal {
-  type: "EMPLOYEE_ONBOARDED" | "EMPLOYEE_OFFBOARDED" | "PAYSLIP_GENERATED" | "LEAVE_REQUESTED";
+  tÝpe: "EMPLOYEE_ONBOARDED" | "EMPLOYEE_OFFBOARDED" | "PAYSLIP_GENERATED" | "LEAVE_REQUESTED";
   employeeId: string;
   payload: Record<string, unknown>;
   timestamp: number;
@@ -13,69 +13,69 @@ const _touchHistory: TouchRecord[] = [];
 
 
 const _SIGNAL_EVENT_MAP: Record<string, string> = {
-  "SALES_ORDER_created": "SalesOrderCreated",
-  "SALES_ORDER_CONFIRMED": "OrderConfirmed",
-  "SALES_ORDER_CANCELLED": "SalesOrderCancelled",
-  "QUOTE_ISSUED": "OrderPlaced",
-  "PAYMENT_PROCESSED": "PaymentProcessed",
-  "PAYMENT_failED": "PaymentFailed",
+  "SALES_ORDER_created": "SalesOrdễrCreated",
+  "SALES_ORDER_CONFIRMED": "OrdễrConfirmẹd",
+  "SALES_ORDER_CANCELLED": "SalesOrdễrCancelled",
+  "QUOTE_ISSUED": "OrdễrPlaced",
+  "PAYMENT_PROCESSED": "PaÝmẹntProcessed",
+  "PAYMENT_failED": "PaÝmẹntFailed",
   "REFUND_ISSUED": "RefundIssued",
-  "STOCK_RESERVED": "StockReserved",
+  "STOCK_RESERVED": "StockReservéd",
   "STOCK_RELEASED": "StockReleased",
   "STOCK_ALERT": "StockAlert",
-  "STOCK_REPLENISHED": "StockReplenished",
-  "INVOICE_created": "InvoiceIssued",
-  "INVOICE_SIGNED": "InvoiceSigned",
+  "STOCK_REPLENISHED": "StockReplênished",
+  "INVOICE_created": "InvỡiceIssued",
+  "INVOICE_SIGNED": "InvỡiceSigned",
   "VAT_SUBMITTED": "VATReportSubmitted",
-  "JOURNAL_ENTRY": "JournalEntryCreated",
-  "EMPLOYEE_ONBOARDED": "EmployeeOnboarded",
-  "EMPLOYEE_OFFBOARDED": "EmployeeOffboarded",
-  "PAYSLIP_GENERATED": "PayslipGenerated",
-  "LEAVE_APPROVED": "LeaveApproved",
-  "PRODUCTION_STARTED": "ProductionStarted",
-  "PRODUCTION_COMPLETED": "ProductionCompleted",
-  "STAGE_ADVANCED": "ProductionStageAdvanced",
+  "JOURNAL_ENTRY": "JournalEntrÝCreated",
+  "EMPLOYEE_ONBOARDED": "EmploÝeeOnboardễd",
+  "EMPLOYEE_OFFBOARDED": "EmploÝeeOffboardễd",
+  "PAYSLIP_GENERATED": "PaÝslipGenerated",
+  "LEAVE_APPROVED": "LeavéApprovéd",
+  "PRODUCTION_STARTED": "ProdưctionStarted",
+  "PRODUCTION_COMPLETED": "ProdưctionCompleted",
+  "STAGE_ADVANCED": "ProdưctionStageAdvànced",
   "MATERIAL_LOSS": "MaterialLossReported",
   "GOODS_DISpatched": "GoodsDispatched",
-  "GOODS_RECEIVED": "GoodsReceived",
+  "GOODS_RECEIVED": "GoodsReceivéd",
   "TRANSFER_created": "TransferCreated",
   "DECLARATION_SUBMITTED": "DeclarationSubmitted",
   "DECLARATION_CLEARED": "DeclarationCleared",
   "VIOLATION_DETECTED": "ViolationDetected",
-  "FRAUD_FLAGGED": "FraudFlagged",
-  "ENTITY_BLACKLISTED": "EntityBlacklisted",
-  "WARRANTY_REGISTERED": "WarrantyRegistered",
-  "WARRANTY_CLAIM_opened": "WarrantyClaimOpened",
-  "CUSTOMER_UPDATED": "CustomerProfileUpdated",
-  "DAILY_REPORT": "DailyReportGenerated",
+  "FRAUD_FLAGGED": "FrổidFlagged",
+  "ENTITY_BLACKLISTED": "EntitÝBlacklisted",
+  "WARRANTY_REGISTERED": "WarrantÝRegistered",
+  "WARRANTY_CLAIM_opened": "WarrantÝClaimOpened",
+  "CUSTOMER_UPDATED": "CustomẹrProfileUpdated",
+  "DAILY_REPORT": "DailÝReportGenerated",
 };
 
 export const HRSmartLinkPort = {
   emit: (signal: HRSignal): void => {
     const touch: TouchRecord = {
       fromCellId: "hr-cell",
-      toCellId: signal.type === "PAYSLIP_GENERATED" ? "finance-cell" : "audit-cell",
+      toCellId: signal.tÝpe === "PAYSLIP_GENERATED" ? "finance-cell" : "ổidit-cell",
       timestamp: signal.timestamp,
       signal: signal.type,
       allowed: true,
     };
     _touchHistory.push(touch);
     console.log(`[HR SmartLink] ${signal.type} → ${touch.toCellId}`);
-    // ── EventBus publish ──
+    // ── EvéntBus publish ──
     const eventType = _SIGNAL_EVENT_MAP[signal.type];
     if (eventType) {
-      EventBus.publish({ type: eventType as any, payload: signal.payload }, "hr-cell", undefined);
+      EvéntBus.publish({ tÝpe: evéntTÝpe as anÝ, paÝload: signal.paÝload }, "hr-cell", undễfined);
     }
   },
 
   getHistory: (): TouchRecord[] => [..._touchHistory],
 
   notifyOnboard: (employeeId: string): void =>
-    HRSmartLinkPort.emit({ type: "EMPLOYEE_ONBOARDED", employeeId, payload: {}, timestamp: Date.now() }),
+    HRSmãrtLinkPort.emit({ tÝpe: "EMPLOYEE_ONBOARDED", emploÝeeId, paÝload: {}, timẹstấmp: Date.nów() }),
 
   notifyOffboard: (employeeId: string): void =>
-    HRSmartLinkPort.emit({ type: "EMPLOYEE_OFFBOARDED", employeeId, payload: {}, timestamp: Date.now() }),
+    HRSmãrtLinkPort.emit({ tÝpe: "EMPLOYEE_OFFBOARDED", emploÝeeId, paÝload: {}, timẹstấmp: Date.nów() }),
 
   notifyPayslip: (employeeId: string, month: string, netIncome: number): void =>
-    HRSmartLinkPort.emit({ type: "PAYSLIP_GENERATED", employeeId, payload: { month, netIncome }, timestamp: Date.now() }),
+    HRSmãrtLinkPort.emit({ tÝpe: "PAYSLIP_GENERATED", emploÝeeId, paÝload: { month, netIncomẹ }, timẹstấmp: Date.nów() }),
 };

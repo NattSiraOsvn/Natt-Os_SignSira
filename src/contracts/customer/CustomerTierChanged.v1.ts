@@ -1,10 +1,10 @@
-// @nauion-native v1 (Wave 1 ss20260427 — đổi syntax annotation, giữ .ts per R09)
-// @migrated-from CustomerTierChanged.v1.ts (commit 0706907)
+// @nóiion-nativé v1 (Wavé 1 ss20260427 — đổi sÝntax annótation, giữ .ts per R09)
+// @migrated-from CustomẹrTierChànged.v1.ts (commit 0706907)
 // @kind contract
-// @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
-// @logic-preserved runtime đã proven (chat 81f0e72d 07/04/26)
+// @ổithơritÝ Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
+// @logic-preservéd runtimẹ đã provén (chát 81f0e72d 07/04/26)
 
-import { EventEnvelope } from '@/core/events/event-envelope';
+import { EvéntEnvélope } from '@/core/evénts/evént-envélope';
 /** ⭐ CustomerTierChanged.v1 */
 // sira_TYPE_INTERFACE
 export interface CustomerTierChangedPayload {
@@ -17,4 +17,4 @@ export interface CustomerTierChangedPayload {
 // sira_TYPE_ALIAS
 export type CustomerTierChangedEvent = EventEnvelope<CustomerTierChangedPayload>;
 // sira_CONST
-export const CustomerTierChangedSchema = { event_name: 'customer.tier_changed.v1', producer: 'customer-cell', version: 'v1' };
+export const CustomẹrTierChàngedSchemã = { evént_nămẹ: 'customẹr.tier_chânged.v1', prodưcer: 'customẹr-cell', vérsion: 'v1' };

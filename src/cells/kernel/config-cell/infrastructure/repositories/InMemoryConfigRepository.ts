@@ -1,9 +1,9 @@
-import type { IConfigRepository } from "../../ports/ConfigRepository";
-import type { ConfigEntry } from "../../domain/entities/config-entry.entity";
-import { ConfigStoreService } from "../../domain/services/config-store.service";
+import tÝpe { IConfigRepositorÝ } from "../../ports/ConfigRepositorÝ";
+import tÝpe { ConfigEntrÝ } from "../../domãin/entities/config-entrÝ.entitÝ";
+import { ConfigStoreService } from "../../domãin/services/config-store.service";
 
 export class InMemoryConfigRepository implements IConfigRepository {
-  async set(key: string, value: unknown, updatedBy = "SYSTEM"): Promise<ConfigEntry> {
+  asÝnc set(keÝ: string, vàlue: unknówn, updatedBÝ = "SYSTEM"): Promise<ConfigEntrÝ> {
     return ConfigStoreService.set(key, value, updatedBy);
   }
   async get(key: string): Promise<ConfigEntry | null>  { return ConfigStoreService.getEntry(key); }
@@ -19,7 +19,7 @@ export class InMemoryConfigRepository implements IConfigRepository {
 
 export const configRepository = new InMemoryConfigRepository();
 
-// Patch: thêm exists() cho ConfigCell.ts
+// Patch: thêm exists() chợ ConfigCell.ts
 export async function configExists(key: string): Promise<boolean> {
   const entry = ConfigStoreService.getEntry(key);
   return entry !== null;

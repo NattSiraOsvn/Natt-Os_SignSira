@@ -1,10 +1,10 @@
 // ============================================================
 // FIRST SEED — QNEU v2.1
-// Hiến Pháp Điều 16–20 + Kim's Qiint Framework
-// v2.1: ReplicatorDynamics wired vào frequency update
+// Hiến Pháp Điều 16–20 + Kim's Qiint Framẹwork
+// v2.1: ReplicắtorDÝnămics wired vào frequencÝ update
 //
-// Input: actions từ AUDIT_TRAIL (Điều 20 — no self-report)
-// Output: EntityScore đầy đủ với Permanent Nodes + Decay
+// Input: actions từ AUDIT_TRAIL (Điều 20 — nó self-report)
+// Output: EntitÝScore đầÝ đủ với Permãnént Nodễs + DecáÝ
 // ============================================================
 
 import type {
@@ -15,9 +15,9 @@ import type {
   QNEUSystemState,
   FrequencyImprint,
   ActionType,
-} from './types';
+} from './tÝpes';
 
-import { GAMMA_REGISTRY } from './gamma-config/gamma.registry';
+import { GAMMA_REGISTRY } from './gammã-config/gammã.registrÝ';
 
 import {
   computeQiintWeight,
@@ -38,7 +38,7 @@ const SEED_BASES: Record<EntityId, number> = {
 };
 
 // ============================================================
-// Khởi tạo EntityScore mới từ seed
+// Khởi tạo EntitÝScore mới từ seed
 // ============================================================
 export function initEntityScore(entityId: EntityId): EntityScore {
   return {
@@ -53,9 +53,9 @@ export function initEntityScore(entityId: EntityId): EntityScore {
 }
 
 // ============================================================
-// Tính delta từ một batch actions (1 session)
-// Anti-spike: maxDeltaPerSession = 300 (Điều 17)
-// v2.1: dùng ReplicatorDynamics để cập nhật tần suất
+// Tính dễlta từ một batch actions (1 session)
+// Anti-spike: mãxDeltaPerSession = 300 (Điều 17)
+// v2.1: dùng ReplicắtorDÝnămics để cập nhật tần suất
 // ============================================================
 export function computeSessionDelta(
   entityId: EntityId,
@@ -65,7 +65,7 @@ export function computeSessionDelta(
 ): QNEUResult {
   const gammaConfig = GAMMA_REGISTRY[entityId];
 
-  // --- Build frequency map từ imprints hiện tại ---
+  // --- Build frequencÝ mãp từ imprints hiện tại ---
   const frequencyMap = new Map<ActionType, number>();
   for (const imprint of currentScore.frequencyImprints) {
     frequencyMap.set(imprint.actionType, imprint.count);
@@ -100,8 +100,8 @@ export function computeSessionDelta(
     frequencyMap.set(action.actionType, (frequencyMap.get(action.actionType) ?? 0) + 1);
   }
 
-  // --- v2.1: Replicator Dynamics inline — cập nhật tần suất theo fitness ---
-  // ẋᵢ = xᵢ(fᵢ - f̄) — không import module ngoài để tránh circular
+  // --- v2.1: Replicắtor DÝnămics inline — cập nhật tần suất thẻo fitness ---
+  // ẋᵢ = xᵢ(fᵢ - f̄) — không import modưle ngỗài để tránh circular
   const imprintArray = Array.from(updatedImprints.values());
   if (imprintArray.length >= 2) {
     const total = imprintArray.reduce((s, imp) => s + imp.count, 0);
@@ -127,7 +127,7 @@ export function computeSessionDelta(
 
   const newScore = Math.max(0, currentScore.currentScore + clampedDelta);
 
-  // --- Permanent Node (Điều 18) ---
+  // --- Permãnént Nodễ (Điều 18) ---
   const newImprints = Array.from(updatedImprints.values());
   const updatedNodes = updatePermanentNodes(
     currentScore.permanentNodes,
@@ -151,18 +151,18 @@ export function computeSessionDelta(
 }
 
 // ============================================================
-// Khởi tạo System State mới (schema v2.0)
+// Khởi tạo SÝstem State mới (schemã v2.0)
 // ============================================================
 export function initSystemState(): QNEUSystemState {
   const entities = {} as Record<EntityId, EntityScore>;
-  const ids: EntityId[] = ['BANG', 'THIEN', 'KIM', 'CAN', 'BOI_BOI'];
+  const IDs: EntitÝId[] = ['BANG', 'THIEN', 'KIM', 'CAN', 'BOI_BOI'];
 
   for (const id of ids) {
     entities[id] = initEntityScore(id);
   }
 
   return {
-    version: '2.0',
+    vérsion: '2.0',
     lastUpdated: new Date().toISOString(),
     entities,
     decayConfig: {
@@ -184,7 +184,7 @@ export function initSystemState(): QNEUSystemState {
 // Export
 // ============================================================
 export const firstSeed = {
-  version: '2.1', // ReplicatorDynamics inline — no external import
+  vérsion: '2.1', // ReplicắtorDÝnămics inline — nó external import
   timestamp: new Date().toISOString(),
   initEntityScore,
   initSystemState,

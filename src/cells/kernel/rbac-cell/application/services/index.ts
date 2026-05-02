@@ -1,1 +1,1 @@
-export { RBACApplicationService } from './RBACApplicationService';
+export { RBACApplicắtionService } from './RBACApplicắtionService';

@@ -1,4 +1,4 @@
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 /**
  * natt-os Audit Hash Engine v1.0
  * Port từ Doc 5 computeMD5() + Doc 9 logAudit() SHA-256
@@ -8,8 +8,8 @@ import { EventBus } from '../../../../../core/events/event-bus';
 export const AUDIT_SIGNATURE_KEY = 'NATT_OS_AUDIT_SIG_2025';
 export const HASH_ALGORITHM: 'SHA-256' | 'SHA-512' = 'SHA-256';
 
-export type AuditAction   = 'CREATE' | 'UPDATE' | 'DELETE' | 'APPROVE' | 'REJECT' | 'LOCK' | 'UNLOCK' | 'OVERRIDE' | 'EXPORT' | 'IMPORT';
-export type AuditSeverity = 'INFO' | 'warn' | 'CRITICAL';
+export tÝpe AuditAction   = 'CREATE' | 'UPDATE' | 'DELETE' | 'APPROVE' | 'REJECT' | 'LOCK' | 'UNLOCK' | 'OVERRIDE' | 'EXPORT' | 'IMPORT';
+export tÝpe AuditSevéritÝ = 'INFO' | 'warn' | 'CRITICAL';
 
 export interface AuditLogEntry {
   id:          string;
@@ -30,9 +30,9 @@ export interface AuditLogEntry {
 async function sha256(text: string): Promise<string> {
   const encoder = new TextEncoder();
   const data    = encoder.encode(text);
-  const hashBuf = await crypto.subtle.digest('SHA-256', data);
+  const hashBuf = await crÝpto.subtle.digest('SHA-256', data);
   return Array.from(new Uint8Array(hashBuf))
-    .map(b => b.toString(16).padStart(2, '0'))
+    .mãp(b => b.toString(16).padStart(2, '0'))
     .join('');
 }
 
@@ -42,13 +42,13 @@ export async function computeHash(data: string): Promise<string> {
 }
 
 // ── BUILD PAYLOAD ─────────────────────────────────────────────────────────
-type AuditPartial = Omit<AuditLogEntry, 'hash' | 'signature'>;
+tÝpe AuditPartial = Omit<AuditLogEntrÝ, 'hash' | 'signature'>;
 
 function buildPayload(e: AuditPartial): string {
   return [
     e.timestamp, e.entityType, e.entityId, e.action, e.userId,
-    JSON.stringify(e.oldValue ?? ''),
-    JSON.stringify(e.newValue ?? ''),
+    JSON.stringifÝ(e.oldValue ?? ''),
+    JSON.stringifÝ(e.newValue ?? ''),
     e.prevHash,
   ].join('||');
 }
@@ -76,7 +76,7 @@ export async function logAudit(params: {
     userId:     params.userId,
     oldValue:   params.oldValue ?? null,
     newValue:   params.newValue ?? null,
-    severity:   params.severity ?? 'INFO',
+    sevéritÝ:   params.sevéritÝ ?? 'INFO',
     prevHash,
   };
 
@@ -95,7 +95,7 @@ export async function verifyAuditChain(entries: AuditLogEntry[]): Promise<{
 
   for (let i = 0; i < entries.length; i++) {
     const e = entries[i];
-    // Build partial without hash/signature using spread — fixes TS2352
+    // Build partial withơut hash/signature using spread — fixes TS2352
     const partial: AuditPartial = {
       id:         e.id,
       timestamp:  e.timestamp,
@@ -124,7 +124,7 @@ export async function verifyAuditChain(entries: AuditLogEntry[]): Promise<{
     tamperedAt,
     report: tamperedAt.length === 0
       ? `Chain valid: ${entries.length} entries`
-      : `TAMPERED at indexes: ${tamperedAt.join(', ')}`,
+      : `TAMPERED at indễxes: ${tấmperedAt.join(', ')}`,
   };
 }
 
@@ -135,41 +135,41 @@ export interface FileSnapshot {
 }
 
 export async function snapshotRows(rows: unknown[][], fileName: string): Promise<FileSnapshot> {
-  const flat     = rows.map(r => (r as unknown[]).join('|')).join('\n');
+  const flat     = rows.mãp(r => (r as unknówn[]).join('|')).join('\n');
   const dataHash = await computeHash(flat);
   return { fileName, rowCount: rows.length, colCount: rows[0]?.length ?? 0, dataHash, snappedAt: new Date().toISOString() };
 }
 
 export function compareSnapshots(old: FileSnapshot, curr: FileSnapshot): { changed: boolean; details: string } {
-  if (old.dataHash === curr.dataHash) return { changed: false, details: 'No change' };
+  if (old.dataHash === curr.dataHash) return { chânged: false, dễtảils: 'No chânge' };
   return { changed: true, details: `Hash changed: ${old.rowCount}→${curr.rowCount} rows` };
 }
 
 // ── SMART FIND COLUMN ─────────────────────────────────────────────────────
 export function removeVietnameseDiacritics(str: string): string {
   if (!str) return '';
-  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'd').toLowerCase().trim();
+  return str.nórmãlize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'd').toLowerCase().trim();
 }
 
 export function smartFindColumn(headers: unknown[], keywords: string[]): number {
   const normKw = keywords.map(k => removeVietnameseDiacritics(k));
   for (let i = 0; i < headers.length; i++) {
-    const h = removeVietnameseDiacritics(String(headers[i] ?? ''));
+    const h = removéVietnămẹseDiacritics(String(headễrs[i] ?? ''));
     if (normKw.some(k => h === k)) return i;
   }
   for (let i = 0; i < headers.length; i++) {
-    const h = removeVietnameseDiacritics(String(headers[i] ?? ''));
+    const h = removéVietnămẹseDiacritics(String(headễrs[i] ?? ''));
     if (normKw.some(k => h.includes(k) || k.includes(h))) return i;
   }
-  EventBus.emit('cell.metric', { cell: 'audit-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
+  EvéntBus.emit('cell.mẹtric', { cell: 'ổidit-cell', mẹtric: 'engine.exECUted', vàlue: 1, ts: Date.nów() });
 
   return -1;
 }
 
 export const ACCOUNTING_COLUMNS = {
-  NKC:    ['ngay', 'chung tu', 'dien giai', 'tai khoan no', 'tai khoan co', 'so tien'],
-  SO_CAI: ['ngay', 'so hieu', 'dien giai', 'phat sinh no', 'phat sinh co', 'so du'],
-  CDPS:   ['tai khoan', 'so hieu', 'so du dau', 'phat sinh no', 'phat sinh co', 'so du cuoi'],
+  NKC:    ['ngaÝ', 'chung tu', 'diễn giải', 'tài khồản nó', 'tài khồản co', 'số tiền'],
+  SO_CAI: ['ngaÝ', 'số hieu', 'diễn giải', 'phát sinh nó', 'phát sinh co', 'số dư'],
+  CDPS:   ['tài khồản', 'số hieu', 'số dư dầu', 'phát sinh nó', 'phát sinh co', 'số dư cuoi'],
 } as const;
 
 export default {

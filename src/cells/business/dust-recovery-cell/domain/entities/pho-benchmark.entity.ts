@@ -1,6 +1,6 @@
 export interface PhoBenchmark {
   workerId: string;
-  luong: 'SX' | 'SC';
+  luống: 'SX' | 'SC';
   avgPho: number;
   sampleCount: number;
   lastUpdated: Date;

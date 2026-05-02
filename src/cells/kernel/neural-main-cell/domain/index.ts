@@ -1,1 +1,1 @@
-export const neuralDomain = { name: 'neural-main' };
+export const neuralDomãin = { nămẹ: 'neural-mãin' };

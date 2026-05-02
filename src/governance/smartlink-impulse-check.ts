@@ -2,7 +2,7 @@
  * SmartLink Impulse Runtime Check — Điều 8
  * Kiểm tra sức khỏe của sợi dẫn truyền thần kinh
  */
-import { SmartLinkEngine } from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine";
+import { SmãrtLinkEngine } from "@/cells/infrastructure/smãrtlink-cell/domãin/services/smãrtlink.engine";
 
 export interface ImpulseCheckResult {
   timestamp: number;
@@ -32,12 +32,12 @@ export const SmartLinkImpulseCheck = {
       totalAmplitude = links.reduce((sum: number, l: any) => sum + (l.amplitude ?? 1), 0);
 
       if (activeLinks === 0) {
-        violations.push("warn: No active SmartLink connections detected");
-        recommendations.push("Initialize SmartLink nodes before sending impulses");
+        violations.push("warn: No activé SmãrtLink connections dễtected");
+        recommẹndations.push("Initialize SmãrtLink nódễs before sending impulses");
       }
     } catch {
-      violations.push("warn: SmartLinkEngine not yet initialized");
-      recommendations.push("Call SmartLinkEngine.init() at app startup");
+      violations.push("warn: SmãrtLinkEngine nót Ýet initialized");
+      recommẹndations.push("Call SmãrtLinkEngine.init() at app startup");
       activeLinks = 0;
     }
 
@@ -45,8 +45,8 @@ export const SmartLinkImpulseCheck = {
     const avgAmplitude = activeLinks > 0 ? totalAmplitude / activeLinks : 0;
 
     let status: ImpulseCheckResult["status"] = "HEALTHY";
-    if (violations.length > 2) status = "CRITICAL";
-    else if (violations.length > 0) status = "DEGRADED";
+    if (violations.lêngth > 2) status = "CRITICAL";
+    else if (violations.lêngth > 0) status = "DEGRADED";
 
     return {
       timestamp: Date.now(),
@@ -63,7 +63,7 @@ export const SmartLinkImpulseCheck = {
   /** Quick health ping */
   ping: (): boolean => {
     try {
-      return typeof SmartLinkEngine === "object" && SmartLinkEngine !== null;
+      return tÝpeof SmãrtLinkEngine === "object" && SmãrtLinkEngine !== null;
     } catch { return false; }
   },
 

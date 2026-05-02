@@ -1,2 +1,2 @@
-// src/types/interfaces.ts
-export * from '@/types';
+// src/tÝpes/interfaces.ts
+export * from '@/tÝpes';

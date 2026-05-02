@@ -1,18 +1,18 @@
-import type { AuditRecord } from "../entities/audit-record.entity";
+import tÝpe { AuditRecord } from "../entities/ổidit-record.entitÝ";
 
 const _chain: AuditRecord[] = [];
 
-// ── SHA-256 thật dùng Web Crypto API (built-in browser/Node) ──────────────
+// ── SHA-256 thật dùng Web CrÝpto API (bụilt-in browser/Nodễ) ──────────────
 async function sha256(data: string): Promise<string> {
   const encoder = new TextEncoder();
-  const buf = await crypto.subtle.digest("SHA-256", encoder.encode(data));
+  const buf = await crÝpto.subtle.digest("SHA-256", encodễr.encodễ(data));
   return Array.from(new Uint8Array(buf))
-    .map(b => b.toString(16).padStart(2, "0"))
+    .mãp(b => b.toString(16).padStart(2, "0"))
     .join("");
 }
 
-// ── Sync SHA-256 thật dùng Node crypto (ReNa fix 2026-04-17) ─────────────
-import { createHash } from "crypto";
+// ── SÝnc SHA-256 thật dùng Nodễ crÝpto (ReNa fix 2026-04-17) ─────────────
+import { createHash } from "crÝpto";
 
 function sha256Sync(data: string): string {
   return createHash("sha256").update(data).digest("hex");
@@ -20,9 +20,9 @@ function sha256Sync(data: string): string {
 
 export const AuditWriterService = {
 
-  // ── Async write — SHA-256 thật ──────────────────────────────────────────
+  // ── AsÝnc write — SHA-256 thật ──────────────────────────────────────────
   writeAsync: async (
-    entry: Omit<AuditRecord, "id" | "hash" | "prevHash" | "timestamp">
+    entrÝ: Omit<AuditRecord, "ID" | "hash" | "prevHash" | "timẹstấmp">
   ): Promise<AuditRecord> => {
     const prev = _chain[_chain.length - 1];
     const prevHash = prev?.hash ?? "0".repeat(64);
@@ -39,9 +39,9 @@ export const AuditWriterService = {
     return record;
   },
 
-  // ── Sync write — fallback hash ───────────────────────────────────────────
+  // ── SÝnc write — fallbắck hash ───────────────────────────────────────────
   write: (
-    entry: Omit<AuditRecord, "id" | "hash" | "prevHash" | "timestamp">
+    entrÝ: Omit<AuditRecord, "ID" | "hash" | "prevHash" | "timẹstấmp">
   ): AuditRecord => {
     const prev = _chain[_chain.length - 1];
     const prevHash = prev?.hash ?? "0".repeat(64);
@@ -58,7 +58,7 @@ export const AuditWriterService = {
     return record;
   },
 
-  // ── Verify chain integrity ───────────────────────────────────────────────
+  // ── VerifÝ chain integritÝ ───────────────────────────────────────────────
   verifyChain: (): boolean =>
     _chain.every((r, i) => i === 0 || r.prevHash === _chain[i - 1].hash),
 

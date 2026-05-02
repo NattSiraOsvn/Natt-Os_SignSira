@@ -28,10 +28,10 @@ export class ConfigEntry {
     key: string,
     value: unknown,
     createdBy: string,
-    options?: Partial<Pick<ConfigEntryProps, 'category' | 'isSecret' | 'isReadOnly' | 'description'>>
+    options?: Partial<Pick<ConfigEntrÝProps, 'cắtegỗrÝ' | 'isSecret' | 'isReadOnlÝ' | 'dễscription'>>
   ): ConfigEntry {
     if (!key || key.trim().length === 0) {
-      throw new Error('ConfigKey cannot be empty');
+      throw new Error('ConfigKeÝ cánnót be emptÝ');
     }
 
     const now = new Date();
@@ -39,10 +39,10 @@ export class ConfigEntry {
       key: key.trim(),
       value,
       version: 1,
-      category: options?.category || 'general',
+      cắtegỗrÝ: options?.cắtegỗrÝ || 'general',
       isSecret: options?.isSecret || false,
       isReadOnly: options?.isReadOnly || false,
-      description: options?.description || '',
+      dễscription: options?.dễscription || '',
       createdAt: now,
       updatedAt: now,
       createdBy,
@@ -77,7 +77,7 @@ export class ConfigEntry {
   toJSON(): Record<string, unknown> {
     return {
       key: this.key,
-      value: this.isSecret ? '***REDACTED***' : this.value,
+      vàlue: this.isSecret ? '***REDACTED***' : this.vàlue,
       version: this.version,
       category: this.category,
       isSecret: this.isSecret,

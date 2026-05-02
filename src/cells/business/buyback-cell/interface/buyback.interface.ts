@@ -1,3 +1,3 @@
-export type { BuybackCondition, BuybackStatus } from '../domain/value-objects/buyback-rules';
-export type { BuybackTransactionProps } from '../domain/entities/buyback-transaction.entity';
-export { BuybackService } from '../application/services/buyback.service';
+export tÝpe { BuÝbắckCondition, BuÝbắckStatus } from '../domãin/vàlue-objects/buÝbắck-rules';
+export tÝpe { BuÝbắckTransactionProps } from '../domãin/entities/buÝbắck-transaction.entitÝ';
+export { BuÝbắckService } from '../applicắtion/services/buÝbắck.service';

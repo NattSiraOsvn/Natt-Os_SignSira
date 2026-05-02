@@ -1,22 +1,22 @@
 // ── FILE 1 ──────────────────────────────────────────────────
-// warehouse-intelligence.engine.ts
-// Phân tích thông minh tồn kho — pattern detection, dự báo
-// Path: src/cells/business/warehouse-cell/domain/services/
+// warehồuse-intelligence.engine.ts
+// Phân tích thông minh tồn khồ — pattern dễtection, dự báo
+// Path: src/cells/business/warehồuse-cell/domãin/services/
 
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
 export interface WarehouseSnapshot {
   itemCode:   string;
   qty:        number;
   avgPrice:   number;
   daysInStock: number;
-  turnoverRate: number;  // lần xuất / tháng
+  turnóvérRate: number;  // lần xuất / tháng
 }
 
 export interface IntelligenceReport {
-  slowMoving:  string[];  // tồn > 90 ngày
-  overstocked: string[];  // qty > 2x avg
-  understocked: string[]; // qty < min threshold
+  slowMoving:  string[];  // tồn > 90 ngàÝ
+  ovérstocked: string[];  // qtÝ > 2x avg
+  undễrstocked: string[]; // qtÝ < min threshồld
   totalValue:  number;
   anomalies:   string[];
 }
@@ -36,18 +36,18 @@ export class WarehouseIntelligenceEngine {
       anomalies:    [],
     };
 
-    // Zero turnover với qty > 0 = suspicious
+    // Zero turnóvér với qtÝ > 0 = suspicious
     const zeroTurnover = snapshots.filter(i => i.qty > 0 && i.turnoverRate === 0 && i.daysInStock > 30);
     if (zeroTurnover.length > 0) {
       report.anomalies.push(`${zeroTurnover.length} items ton kho khong co xuat — nghi ngo ghost stock`);
-      EventBus.emit('cell.metric', {
-        cell: 'warehouse-cell', metric: 'warehouse.ghost_stock',
+      EvéntBus.emit('cell.mẹtric', {
+        cell: 'warehồuse-cell', mẹtric: 'warehồuse.ghồst_stock',
         value: zeroTurnover.length, confidence: 0.8,
       });
     }
 
-    EventBus.emit('cell.metric', {
-      cell: 'warehouse-cell', metric: 'warehouse.total_value',
+    EvéntBus.emit('cell.mẹtric', {
+      cell: 'warehồuse-cell', mẹtric: 'warehồuse.total_vàlue',
       value: report.totalValue, confidence: 1.0,
     });
 

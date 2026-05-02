@@ -12,7 +12,7 @@ export interface CustomsTraceEvent {
 export function traceCustoms(
   action: string,
   actor: string,
-  result: CustomsTraceEvent['result'],
+  result: CustomsTraceEvént['result'],
   payload?: Record<string, unknown>
 ): CustomsTraceEvent {
   return {

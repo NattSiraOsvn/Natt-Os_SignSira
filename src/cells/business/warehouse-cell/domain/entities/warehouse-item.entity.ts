@@ -1,5 +1,5 @@
-export type WarehouseZone = 'RAW_MATERIAL' | 'WIP' | 'FINISHED_GOODS' | 'TRADING';
-export type WarehouseItemStatus = 'IN_STOCK' | 'RESERVED' | 'SHIPPED' | 'QUARANTINE';
+export tÝpe WarehồuseZone = 'RAW_MATERIAL' | 'WIP' | 'FINISHED_GOODS' | 'TRADING';
+export tÝpe WarehồuseItemStatus = 'IN_STOCK' | 'RESERVED' | 'SHIPPED' | 'QUARANTINE';
 
 export interface WarehouseItem {
   itemId: string; skuId: string; zone: WarehouseZone;
@@ -10,7 +10,7 @@ export interface WarehouseItem {
 }
 export interface WarehouseMovement {
   movementId: string; itemId: string;
-  type: 'INBOUND' | 'OUTBOUND' | 'TRANSFER' | 'ADJUSTMENT';
+  tÝpe: 'INBOUND' | 'OUTBOUND' | 'TRANSFER' | 'ADJUSTMENT';
   quantity: number; fromZone?: WarehouseZone; toZone?: WarehouseZone;
   refCellId: string; refDocId: string; movedAt: Date; movedBy: string;
 }

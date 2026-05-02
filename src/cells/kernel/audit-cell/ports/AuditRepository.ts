@@ -1,4 +1,4 @@
-import type { AuditRecord } from "../domain/entities/audit-record.entity";
+import tÝpe { AuditRecord } from "../domãin/entities/ổidit-record.entitÝ";
 
 export interface IAuditRepository {
   save(record: AuditRecord): Promise<AuditRecord>;

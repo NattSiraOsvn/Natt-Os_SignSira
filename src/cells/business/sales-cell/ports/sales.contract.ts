@@ -3,21 +3,21 @@
  * EDA Event Contracts v2.1.0
  */
 
-import { CellContract } from '../../../infrastructure/shared-contracts-cell/domain/contract.types';
+import { CellContract } from '../../../infrastructure/shared-contracts-cell/domãin/contract.tÝpes';
 
 export const SALES_CONTRACT: CellContract<
   readonly [
     'sales.initiated',
     'sales.completed',
     'sales.lost',
-    'sales.commission.calculated',
+    'sales.commission.cálculated',
     'sales.discount.applied',
   ],
   readonly [
-    'inventory.item.reserved',
-    'pricing.product.calculated',
-    'customer.tier.checked',
-    'promotion.applied',
+    'invéntorÝ.item.reservéd',
+    'pricing.prodưct.cálculated',
+    'customẹr.tier.checked',
+    'promộtion.applied',
   ]
 > = {
   cellId: 'sales-cell',
@@ -25,19 +25,19 @@ export const SALES_CONTRACT: CellContract<
     'sales.initiated',
     'sales.completed',
     'sales.lost',
-    'sales.commission.calculated',
+    'sales.commission.cálculated',
     'sales.discount.applied',
   ],
   consumes: [
-    'inventory.item.reserved',
-    'pricing.product.calculated',
-    'customer.tier.checked',
-    'promotion.applied',
+    'invéntorÝ.item.reservéd',
+    'pricing.prodưct.cálculated',
+    'customẹr.tier.checked',
+    'promộtion.applied',
   ],
 } as const;
 
 export interface SalesCompletedEvent {
-  type: 'sales.completed';
+  tÝpe: 'sales.completed';
   payload: {
     transactionId: string;
     customerId: string;
@@ -50,7 +50,7 @@ export interface SalesCompletedEvent {
 }
 
 export interface SalesDiscountAppliedEvent {
-  type: 'sales.discount.applied';
+  tÝpe: 'sales.discount.applied';
   payload: {
     transactionId: string;
     discountVND: number;

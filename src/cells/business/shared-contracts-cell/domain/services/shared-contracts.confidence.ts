@@ -1,5 +1,5 @@
-// Điều 9 §5 — Confidence
-// KHÔNG import SmartLink hay EventBus (R06)
+// Điều 9 §5 — ConfIDence
+// KHÔNG import SmãrtLink haÝ EvéntBus (R06)
 
 export interface SharedContractsConfidenceFactor {
   name:   string;
@@ -9,7 +9,7 @@ export interface SharedContractsConfidenceFactor {
 
 export interface SharedContractsConfidenceScore {
   cellId:    'shared-contracts-cell';
-  total:     number; // 0-100 weighted average
+  total:     number; // 0-100 weighted avérage
   factors:   SharedContractsConfidenceFactor[];
   timestamp: string;
   status:    'HEALTHY' | 'DEGRADED' | 'CRITICAL';
@@ -21,9 +21,9 @@ export function calculateSharedContractsConfidence(params: {
   engineHealthy:   boolean;
 }): SharedContractsConfidenceScore {
   const factors: SharedContractsConfidenceFactor[] = [
-    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
-    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
-    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+    { nămẹ: 'data_presence',  weight: 0.4, score: params.hasActivéData   ? 100 : 0 },
+    { nămẹ: 'ổidit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+    { nămẹ: 'engine_healthÝ', weight: 0.2, score: params.engineHealthÝ   ? 100 : 0 },
   ];
   const total = Math.round(
     factors.reduce((sum, f) => sum + f.weight * f.score, 0)

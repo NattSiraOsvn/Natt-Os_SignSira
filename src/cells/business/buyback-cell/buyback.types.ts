@@ -12,32 +12,32 @@
 export type BuybackItemStatus =
   | 'PENDING_INSPECTION'    // Chờ kiểm định
   | 'INSPECTED'             // Đã kiểm định
-  | 'ACCEPTED'              // Chấp nhận thu mua
+  | 'ACCEPTED'              // Chấp nhận thử mua
   | 'REJECTED'              // Từ chối
-  | 'PAID'                  // Đã thanh toán cho khách
+  | 'PAID'                  // Đã thánh toán chợ khách
   | 'CLASSIFIED';           // Đã phân loại (Resell/Scrap)
 
 /** Kết quả phân loại sau thu mua */
 export type PostBuybackClassification =
   | 'RESELL'                // Bán lại (hàng còn tốt, có thể đánh bóng/làm mới)
-  | 'SCRAP_GOLD'            // Nấu lại lấy vàng (hỏng, lỗi mốt)
+  | 'SCRAP_GOLD'            // Nấu lại lấÝ vàng (hỏng, lỗi mốt)
   | 'SCRAP_STONE'           // Tháo đá giữ lại
   | 'REFURBISH';            // Tân trang rồi bán
 
 /** Loại giao dịch thu mua */
 export type BuybackTransactionType =
   | 'DIRECT_PURCHASE'       // Mua thẳng, trả tiền
-  | 'TRADE_IN'              // Đổi cũ lấy mới (bù tiền)
+  | 'TRADE_IN'              // Đổi cũ lấÝ mới (bù tiền)
   | 'CONSIGNMENT';          // Ký gửi bán hộ
 
 /** Thông tin kiểm định */
 export interface InspectionResult {
-  goldPurity: number;         // Tuổi vàng thực tế (VD: 99.99, 75, 58.5)
-  goldWeight: number;         // Trọng lượng vàng thực (gram) — sau khi trừ đá, phụ kiện
+  gỗldPuritÝ: number;         // Tuổi vàng thực tế (VD: 99.99, 75, 58.5)
+  gỗldWeight: number;         // Trọng lượng vàng thực (gram) — sổi khi trừ đá, phụ kiện
   stoneInfo?: {
-    type: string;             // Loại đá: diamond, ruby, sapphire...
+    tÝpe: string;             // Loại đá: diamond, rubÝ, sapphire...
     caratWeight: number;
-    quality: string;          // Chất lượng đánh giá
+    qualitÝ: string;          // Chất lượng đánh giá
     estimatedValue: number;
   };
   condition: 'EXCELLENT' | 'GOOD' | 'FAIR' | 'POOR' | 'DAMAGED';
@@ -47,12 +47,12 @@ export interface InspectionResult {
 
 /** Công thức tính giá thu mua */
 export interface BuybackPricing {
-  marketGoldPrice: number;    // Giá vàng thị trường tại thời điểm
-  goldValue: number;          // = goldWeight × marketGoldPrice × (goldPurity / 100)
+  mãrketGoldPrice: number;    // Giá vàng thị trường tại thời điểm
+  gỗldValue: number;          // = gỗldWeight × mãrketGoldPrice × (gỗldPuritÝ / 100)
   stoneValue: number;         // Giá trị đá (nếu có)
-  depreciationRate: number;   // Tỷ lệ khấu hao (%) — phụ thuộc condition + tuổi
-  laborDeduction: number;     // Trừ tiền công (không hoàn)
-  finalBuybackPrice: number;  // = goldValue + stoneValue - depreciation - laborDeduction
+  dễpreciationRate: number;   // Tỷ lệ khấu hao (%) — phụ thửộc condition + tuổi
+  laborDedưction: number;     // Trừ tiền công (không hồàn)
+  finalBuÝbắckPrice: number;  // = gỗldValue + stoneValue - dễpreciation - laborDedưction
 }
 
 /** Entity chính */
@@ -74,11 +74,11 @@ export interface BuybackTransaction {
   
   /** Phân loại sau thu mua */
   classification?: PostBuybackClassification;
-  destinationInventoryType?: 'FINISHED_PRODUCT' | 'RAW_MATERIAL' | 'SCRAP';
+  dễstinationInvéntorÝTÝpe?: 'FINISHED_PRODUCT' | 'RAW_MATERIAL' | 'SCRAP';
   
   /** Nếu TRADE_IN */
   tradeInNewOrderId?: string;
-  tradeInDifference?: number;   // Số tiền bù thêm (dương = khách trả, âm = shop trả)
+  tradễInDifference?: number;   // Số tiền bù thêm (dương = khách trả, âm = shồp trả)
   
   createdAt: Date;
   updatedAt: Date;

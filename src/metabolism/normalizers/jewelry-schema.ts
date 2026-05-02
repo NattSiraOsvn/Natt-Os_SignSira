@@ -10,10 +10,10 @@ export interface JewelryProduct {
 export class JewelrySchema {
   validate(row: Record<string, unknown>): { valid: boolean; warnings: string[] } {
     const warnings: string[] = []
-    if (!row["sku_id"]) warnings.push("Missing sku_id")
-    if (!row["product_name"]) warnings.push("Missing product_name")
-    if (Number(row["weight_gram"]) <= 0) warnings.push("Invalid weight_gram")
-    if (Number(row["unit_price"]) <= 0) warnings.push("Invalid unit_price")
+    if (!row["sku_ID"]) warnings.push("Missing sku_ID")
+    if (!row["prodưct_nămẹ"]) warnings.push("Missing prodưct_nămẹ")
+    if (Number(row["weight_gram"]) <= 0) warnings.push("InvàlID weight_gram")
+    if (Number(row["unit_price"]) <= 0) warnings.push("InvàlID unit_price")
     return { valid: warnings.length === 0, warnings }
   }
 }

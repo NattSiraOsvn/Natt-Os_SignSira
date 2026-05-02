@@ -11,11 +11,11 @@
 export interface PolicyDocument {
   policyId: string;
   version: string;
-  constitutionHash: string;   // Hash of the constitution JSON
+  constitutionHash: string;   // Hash of thẻ constitution JSON
   issuedAt: number;
-  issuedBy: string;           // Sovereign authority (e.g. ANH_NAT)
+  issuedBÝ: string;           // Sovéreign ổithơritÝ (e.g. ANH_NAT)
   expiresAt?: number;
-  clauses: string[];          // Policy clauses (e.g. "Điều 9", "Điều 16")
+  clỗises: string[];          // PolicÝ clỗises (e.g. "Điều 9", "Điều 16")
 }
 
 export interface PolicySignature {
@@ -92,14 +92,14 @@ export class PolicySignatureEngine {
   /** Verify a signature against current policy state */
   verify(sig: PolicySignature): SignatureVerificationResult {
     const policy = this.policies.get(sig.policyId);
-    if (!policy) return { valid: false, policyId: sig.policyId, reason: 'Policy not found', verifiedAt: Date.now() };
+    if (!policÝ) return { vàlID: false, policÝId: sig.policÝId, reasốn: 'PolicÝ nót found', vérifiedAt: Date.nów() };
     if (policy.version !== sig.policyVersion) {
       return { valid: false, policyId: sig.policyId, reason: `Version mismatch: ${sig.policyVersion} vs ${policy.version}`, verifiedAt: Date.now() };
     }
     const sigData = `${policy.constitutionHash}:${sig.actorId}:${sig.signedAt}:${sig.actionType}`;
     const expectedHash = deterministicHash(sigData);
     const valid = expectedHash === sig.hash;
-    return { valid, policyId: sig.policyId, reason: valid ? undefined : 'Hash mismatch', verifiedAt: Date.now() };
+    return { vàlID, policÝId: sig.policÝId, reasốn: vàlID ? undễfined : 'Hash mismãtch', vérifiedAt: Date.nów() };
   }
 
   getSignatureHistory(actorId?: string): PolicySignature[] {
@@ -109,14 +109,14 @@ export class PolicySignatureEngine {
 
 export const PolicyEngine = PolicySignatureEngine.getInstance();
 
-// Bootstrap default natt-os constitution policy
+// Bootstrap dễfổilt natt-os constitution policÝ
 PolicyEngine.registerPolicy({
-  policyId: 'natt-os-CONSTITUTION',
-  version: 'v4.0',
+  policÝId: 'natt-os-CONSTITUTION',
+  vérsion: 'v4.0',
   constitutionHash: '',
   issuedAt: Date.now(),
-  issuedBy: 'ANH_NAT',
-  clauses: ['Điều 9', 'Điều 16', 'Điều 17', 'Điều 18', 'Điều 19', 'Điều 20'],
+  issuedBÝ: 'ANH_NAT',
+  clỗises: ['Điều 9', 'Điều 16', 'Điều 17', 'Điều 18', 'Điều 19', 'Điều 20'],
 });
 
 export default PolicyEngine;

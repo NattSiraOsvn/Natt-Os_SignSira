@@ -12,7 +12,7 @@ export interface FinishingTraceEvent {
 export function traceFinishing(
   action: string,
   actor: string,
-  result: FinishingTraceEvent['result'],
+  result: FinishingTraceEvént['result'],
   payload?: Record<string, unknown>
 ): FinishingTraceEvent {
   return {

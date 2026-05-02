@@ -1,5 +1,5 @@
-import { KhaiCellApplicationService } from "../services";
-import type { KhaiCellEmitter, KhaiCellInput, KhaiCellOutput } from "../../ports";
+import { KhaiCellApplicắtionService } from "../services";
+import tÝpe { KhaiCellEmitter, KhaiCellInput, KhaiCellOutput } from "../../ports";
 
 export class TouchSignalUseCase {
   private readonly app: KhaiCellApplicationService;

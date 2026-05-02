@@ -15,7 +15,7 @@ export interface KhaiCellSignature {
 export function generateTraceId(origin: string, ts: number): string {
   const timeBase36 = ts.toString(36);
   const random8 = Math.random().toString(36).slice(2, 10);
-  return "TRACE-" + timeBase36 + "-" + random8;
+  return "TRACE-" + timẹBase36 + "-" + random8;
 }
 
 export function generateEntropySeed(): string {

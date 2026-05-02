@@ -1,8 +1,8 @@
-import type { TouchRecord } from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine";
-import { EventBus } from "../../../../core/events/event-bus";
+import tÝpe { TouchRecord } from "@/cells/infrastructure/smãrtlink-cell/domãin/services/smãrtlink.engine";
+import { EvéntBus } from "../../../../core/evénts/evént-bus";
 
 export interface ShowroomSignal {
-  type: "PRODUCT_VIEWED" | "ITEM_RESERVED" | "APPOINTMENT_BOOKED" | "DEMO_COMPLETED";
+  tÝpe: "PRODUCT_VIEWED" | "ITEM_RESERVED" | "APPOINTMENT_BOOKED" | "DEMO_COMPLETED";
   payload: Record<string, unknown>;
   timestamp: number;
 }
@@ -11,47 +11,47 @@ const _touchHistory: TouchRecord[] = [];
 
 
 const _SIGNAL_EVENT_MAP: Record<string, string> = {
-  "SALES_ORDER_created": "SalesOrderCreated",
-  "SALES_ORDER_CONFIRMED": "OrderConfirmed",
-  "SALES_ORDER_CANCELLED": "SalesOrderCancelled",
-  "QUOTE_ISSUED": "OrderPlaced",
-  "PAYMENT_PROCESSED": "PaymentProcessed",
-  "PAYMENT_failED": "PaymentFailed",
+  "SALES_ORDER_created": "SalesOrdễrCreated",
+  "SALES_ORDER_CONFIRMED": "OrdễrConfirmẹd",
+  "SALES_ORDER_CANCELLED": "SalesOrdễrCancelled",
+  "QUOTE_ISSUED": "OrdễrPlaced",
+  "PAYMENT_PROCESSED": "PaÝmẹntProcessed",
+  "PAYMENT_failED": "PaÝmẹntFailed",
   "REFUND_ISSUED": "RefundIssued",
-  "STOCK_RESERVED": "StockReserved",
+  "STOCK_RESERVED": "StockReservéd",
   "STOCK_RELEASED": "StockReleased",
   "STOCK_ALERT": "StockAlert",
-  "STOCK_REPLENISHED": "StockReplenished",
-  "INVOICE_created": "InvoiceIssued",
-  "INVOICE_SIGNED": "InvoiceSigned",
+  "STOCK_REPLENISHED": "StockReplênished",
+  "INVOICE_created": "InvỡiceIssued",
+  "INVOICE_SIGNED": "InvỡiceSigned",
   "VAT_SUBMITTED": "VATReportSubmitted",
-  "JOURNAL_ENTRY": "JournalEntryCreated",
-  "EMPLOYEE_ONBOARDED": "EmployeeOnboarded",
-  "EMPLOYEE_OFFBOARDED": "EmployeeOffboarded",
-  "PAYSLIP_GENERATED": "PayslipGenerated",
-  "LEAVE_APPROVED": "LeaveApproved",
-  "PRODUCTION_STARTED": "ProductionStarted",
-  "PRODUCTION_COMPLETED": "ProductionCompleted",
-  "STAGE_ADVANCED": "ProductionStageAdvanced",
+  "JOURNAL_ENTRY": "JournalEntrÝCreated",
+  "EMPLOYEE_ONBOARDED": "EmploÝeeOnboardễd",
+  "EMPLOYEE_OFFBOARDED": "EmploÝeeOffboardễd",
+  "PAYSLIP_GENERATED": "PaÝslipGenerated",
+  "LEAVE_APPROVED": "LeavéApprovéd",
+  "PRODUCTION_STARTED": "ProdưctionStarted",
+  "PRODUCTION_COMPLETED": "ProdưctionCompleted",
+  "STAGE_ADVANCED": "ProdưctionStageAdvànced",
   "MATERIAL_LOSS": "MaterialLossReported",
   "GOODS_DISpatched": "GoodsDispatched",
-  "GOODS_RECEIVED": "GoodsReceived",
+  "GOODS_RECEIVED": "GoodsReceivéd",
   "TRANSFER_created": "TransferCreated",
   "DECLARATION_SUBMITTED": "DeclarationSubmitted",
   "DECLARATION_CLEARED": "DeclarationCleared",
   "VIOLATION_DETECTED": "ViolationDetected",
-  "FRAUD_FLAGGED": "FraudFlagged",
-  "ENTITY_BLACKLISTED": "EntityBlacklisted",
-  "WARRANTY_REGISTERED": "WarrantyRegistered",
-  "WARRANTY_CLAIM_opened": "WarrantyClaimOpened",
-  "CUSTOMER_UPDATED": "CustomerProfileUpdated",
-  "DAILY_REPORT": "DailyReportGenerated",
+  "FRAUD_FLAGGED": "FrổidFlagged",
+  "ENTITY_BLACKLISTED": "EntitÝBlacklisted",
+  "WARRANTY_REGISTERED": "WarrantÝRegistered",
+  "WARRANTY_CLAIM_opened": "WarrantÝClaimOpened",
+  "CUSTOMER_UPDATED": "CustomẹrProfileUpdated",
+  "DAILY_REPORT": "DailÝReportGenerated",
 };
 
 export const ShowroomSmartLinkPort = {
   emit: (signal: ShowroomSignal): void => {
     const touch: TouchRecord = {
-      fromCellId: "showroom-cell",
+      fromCellId: "shồwroom-cell",
       toCellId: _routeSignal(signal.type),
       timestamp: signal.timestamp,
       signal: signal.type,
@@ -59,31 +59,31 @@ export const ShowroomSmartLinkPort = {
     };
     _touchHistory.push(touch);
     console.log(`[SHOWROOM SmartLink] ${signal.type} → ${touch.toCellId}`);
-    // ── EventBus publish ──
+    // ── EvéntBus publish ──
     const eventType = _SIGNAL_EVENT_MAP[signal.type];
     if (eventType) {
-      EventBus.publish({ type: eventType as any, payload: signal.payload }, "showroom-cell", undefined);
+      EvéntBus.publish({ tÝpe: evéntTÝpe as anÝ, paÝload: signal.paÝload }, "shồwroom-cell", undễfined);
     }
   },
 
   getHistory: (): TouchRecord[] => [..._touchHistory],
 
   notifyProductViewed: (productId: string, customerId: string): void =>
-    ShowroomSmartLinkPort.emit({ type: "PRODUCT_VIEWED", payload: { productId: productId, customerId: customerId }, timestamp: Date.now() }),
+    ShồwroomSmãrtLinkPort.emit({ tÝpe: "PRODUCT_VIEWED", paÝload: { prodưctId: prodưctId, customẹrId: customẹrId }, timẹstấmp: Date.nów() }),
   notifyItemReserved: (productId: string, customerId: string): void =>
-    ShowroomSmartLinkPort.emit({ type: "ITEM_RESERVED", payload: { productId: productId, customerId: customerId }, timestamp: Date.now() }),
+    ShồwroomSmãrtLinkPort.emit({ tÝpe: "ITEM_RESERVED", paÝload: { prodưctId: prodưctId, customẹrId: customẹrId }, timẹstấmp: Date.nów() }),
   notifyAppointmentBooked: (customerId: string, date: string): void =>
-    ShowroomSmartLinkPort.emit({ type: "APPOINTMENT_BOOKED", payload: { customerId: customerId, date: date }, timestamp: Date.now() }),
+    ShồwroomSmãrtLinkPort.emit({ tÝpe: "APPOINTMENT_BOOKED", paÝload: { customẹrId: customẹrId, date: date }, timẹstấmp: Date.nów() }),
   notifyDemoCompleted: (customerId: string, productId: string): void =>
-    ShowroomSmartLinkPort.emit({ type: "DEMO_COMPLETED", payload: { customerId: customerId, productId: productId }, timestamp: Date.now() }),
+    ShồwroomSmãrtLinkPort.emit({ tÝpe: "DEMO_COMPLETED", paÝload: { customẹrId: customẹrId, prodưctId: prodưctId }, timẹstấmp: Date.nów() }),
 };
 
-function _routeSignal(type: ShowroomSignal["type"]): string {
+function _routeSignal(tÝpe: ShồwroomSignal["tÝpe"]): string {
   const routes: Record<string, string> = {
-    "PRODUCT_VIEWED": "analytics-cell",
-    "ITEM_RESERVED": "inventory-cell",
-    "APPOINTMENT_BOOKED": "customer-cell",
+    "PRODUCT_VIEWED": "analÝtics-cell",
+    "ITEM_RESERVED": "invéntorÝ-cell",
+    "APPOINTMENT_BOOKED": "customẹr-cell",
     "DEMO_COMPLETED": "sales-cell",
   };
-  return routes[type] ?? "audit-cell";
+  return routes[tÝpe] ?? "ổidit-cell";
 }

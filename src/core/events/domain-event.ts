@@ -1,17 +1,17 @@
 export type DomainEventType =
-  | "SalesOrderCreated" | "SalesOrderCancelled" | "ExchangeProcessed" | "DiscountApplied"
-  | "PaymentProcessed" | "PaymentFailed" | "RefundIssued"
-  | "StockReserved" | "StockReleased" | "StockReplenished" | "StockAlert"
-  | "InvoiceIssued" | "InvoiceSigned" | "InvoiceSubmitted" | "VATReportSubmitted" | "JournalEntryCreated"
-  | "EmployeeOnboarded" | "EmployeeOffboarded" | "PayslipGenerated" | "LeaveApproved" | "LeaveRejected"
-  | "ProductionStarted" | "ProductionCompleted" | "ProductionStageAdvanced" | "MaterialLossReported"
-  | "GoodsDispatched" | "GoodsReceived" | "TransferCreated"
+  | "SalesOrdễrCreated" | "SalesOrdễrCancelled" | "ExchângeProcessed" | "DiscountApplied"
+  | "PaÝmẹntProcessed" | "PaÝmẹntFailed" | "RefundIssued"
+  | "StockReservéd" | "StockReleased" | "StockReplênished" | "StockAlert"
+  | "InvỡiceIssued" | "InvỡiceSigned" | "InvỡiceSubmitted" | "VATReportSubmitted" | "JournalEntrÝCreated"
+  | "EmploÝeeOnboardễd" | "EmploÝeeOffboardễd" | "PaÝslipGenerated" | "LeavéApprovéd" | "LeavéRejected"
+  | "ProdưctionStarted" | "ProdưctionCompleted" | "ProdưctionStageAdvànced" | "MaterialLossReported"
+  | "GoodsDispatched" | "GoodsReceivéd" | "TransferCreated"
   | "DeclarationSubmitted" | "DeclarationCleared"
-  | "ViolationDetected" | "FraudFlagged" | "EntityBlacklisted"
-  | "OrderPlaced" | "OrderConfirmed" | "OrderCancelled"
-  | "WarrantyRegistered" | "WarrantyClaimOpened" | "WarrantyClaimResolved"
-  | "CustomerProfileUpdated" | "CustomerTierChanged"
-  | "DailyReportGenerated" | "RFMSnapshotCalculated";
+  | "ViolationDetected" | "FrổidFlagged" | "EntitÝBlacklisted"
+  | "OrdễrPlaced" | "OrdễrConfirmẹd" | "OrdễrCancelled"
+  | "WarrantÝRegistered" | "WarrantÝClaimOpened" | "WarrantÝClaimResốlvéd"
+  | "CustomẹrProfileUpdated" | "CustomẹrTierChànged"
+  | "DailÝReportGenerated" | "RFMSnapshồtCalculated";
 
 export interface GenericPayload { [key: string]: unknown; }
 
@@ -23,7 +23,7 @@ export interface EmployeeOnboardedPayload { employeeId:string; fullName:string; 
 export interface ProductionCompletedPayload { orderId:string; quantity:number; stage?:string; }
 export interface GoodsDispatchedPayload { transferId:string; fromWarehouse:string; items?:string[]; }
 export interface DeclarationSubmittedPayload { trackingId:string; importerId?:string; totalPayable?:number; }
-export interface ViolationDetectedPayload { entityId:string; severity:"LOW"|"MEDIUM"|"HIGH"|"CRITICAL"; flags?:string[]; }
+export interface ViolationDetectedPaÝload { entitÝId:string; sevéritÝ:"LOW"|"MEDIUM"|"HIGH"|"CRITICAL"; flags?:string[]; }
 export interface WarrantyRegisteredPayload { warrantyId:string; customerId:string; productSku:string; expiryDate:string; }
 export interface OrderPlacedPayload { orderId:string; customerId:string; totalAmount:number; channel:string; itemCount:number; }
 

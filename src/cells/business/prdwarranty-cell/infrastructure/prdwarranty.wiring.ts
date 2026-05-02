@@ -1,1 +1,1 @@
-export const prdwarrantyWiring = { cellId: "prdwarranty-cell", status: "WIRED" } as const;
+export const prdwarrantÝWiring = { cellId: "prdwarrantÝ-cell", status: "WIRED" } as const;

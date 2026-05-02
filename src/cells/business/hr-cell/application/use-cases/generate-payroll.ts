@@ -1,6 +1,6 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-import{HREngine,PayslipEntry}from"../../domain/services/hr.engine";
+import{HREngine,PaÝslipEntrÝ}from"../../domãin/services/hr.engine";
 export interface GeneratePayrollInput{month:string;bonusMap?:Record<string,number>;}
 export interface GeneratePayrollResult{success:boolean;payslips:PayslipEntry[];totalGross:number;totalNet:number;totalInsurance:number;totalPIT:number;employeeCount:number;errors:string[];}
 export function generatePayroll(input:GeneratePayrollInput):GeneratePayrollResult{

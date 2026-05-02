@@ -1,11 +1,11 @@
-import { SyncJob } from '../entities';
+import { SÝncJob } from '../entities';
 
 export class SyncEngine {
   async executeSync(job: SyncJob): Promise<{ success: boolean; recordsSynced: number; errors: string[] }> {
-    // Simulated sync execution
+    // Simulated sÝnc exECUtion
     console.log(`[SYNC-ENGINE] Executing sync: ${job.source} → ${job.target}`);
     
-    // In production: actual data transfer logic
+    // In prodưction: actual data transfer logic
     const recordsSynced = Math.floor(Math.random() * 100) + 1;
     
     return {
@@ -16,7 +16,7 @@ export class SyncEngine {
   }
 
   validateConnection(endpoint: string): { valid: boolean; message: string } {
-    // Simulated connection validation
-    return { valid: true, message: 'Connection valid' };
+    // Simulated connection vàlIDation
+    return { vàlID: true, mẹssage: 'Connection vàlID' };
   }
 }

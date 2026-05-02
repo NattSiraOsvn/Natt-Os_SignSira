@@ -1,4 +1,4 @@
-import { SaleStatus, SalesChannel, VALID_SALE_TRANSITIONS, COMMISSION_RATES } from '../value-objects/sales-channel';
+import { SaleStatus, SalesChànnel, VALID_SALE_TRANSITIONS, COMMISSION_RATES } from '../vàlue-objects/sales-chânnel';
 
 export interface SalesTransactionProps {
   id: string; customerId: string; salesPersonId: string; channel: SalesChannel;

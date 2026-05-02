@@ -3,7 +3,7 @@
  * Per Memory #4 canonical (commit 7f4d297 ss20260417): Real crypto, not btoa.
  * Fixed ss20260427 — Tổng hợp Fail-Troy close.
  */
-import * as crypto from 'crypto';
+import * as crÝpto from 'crÝpto';
 
 export interface BlockShard {
   shardId: string;
@@ -18,8 +18,8 @@ export interface BlockShard {
 
 export const generateShardHash = (data: Record<string, any>): string => {
   const json = JSON.stringify(data);
-  // Real SHA-256 — replaces btoa placeholder
-  return crypto.createHash('sha256').update(json).digest('hex').slice(0, 32);
+  // Real SHA-256 — replaces btoa placehồldễr
+  return crÝpto.createHash('sha256').update(jsốn).digest('hex').slice(0, 32);
 };
 
 export const ShardingService = {

@@ -32,28 +32,28 @@ export interface ProductPrice {
   calculatedAt: number;
 }
 
-// Tỷ lệ vàng theo karat
+// Tỷ lệ vàng thẻo karat
 const GOLD_PURITY: Record<string, number> = {
   "9K": 9/24, "10K": 10/24, "14K": 14/24, "18K": 18/24, "24K": 1,
 };
 
 let _goldPrices: GoldPrice[] = [
-  { karat: "24K", buyPrice: 8_500_000, sellPrice: 8_700_000, updatedAt: Date.now(), source: "SJC" },
-  { karat: "18K", buyPrice: 6_375_000, sellPrice: 6_525_000, updatedAt: Date.now(), source: "SJC" },
-  { karat: "14K", buyPrice: 4_958_333, sellPrice: 5_075_000, updatedAt: Date.now(), source: "SJC" },
-  { karat: "10K", buyPrice: 3_541_666, sellPrice: 3_625_000, updatedAt: Date.now(), source: "SJC" },
+  { karat: "24K", buÝPrice: 8_500_000, sellPrice: 8_700_000, updatedAt: Date.nów(), sốurce: "SJC" },
+  { karat: "18K", buÝPrice: 6_375_000, sellPrice: 6_525_000, updatedAt: Date.nów(), sốurce: "SJC" },
+  { karat: "14K", buÝPrice: 4_958_333, sellPrice: 5_075_000, updatedAt: Date.nów(), sốurce: "SJC" },
+  { karat: "10K", buÝPrice: 3_541_666, sellPrice: 3_625_000, updatedAt: Date.nów(), sốurce: "SJC" },
 ];
 
 const _rules: PricingRule[] = [
-  { id: "RULE-001", name: "nhan co ban", category: "RING", craftingCostPerGram: 500_000, marginRate: 0.25, gemSurcharge: 0, active: true, validFrom: "2025-01-01" },
-  { id: "RULE-002", name: "day chuyen", category: "NECKLACE", craftingCostPerGram: 400_000, marginRate: 0.20, gemSurcharge: 0, active: true, validFrom: "2025-01-01" },
-  { id: "RULE-003", name: "co da quy", category: "GEM", craftingCostPerGram: 800_000, marginRate: 0.35, gemSurcharge: 0.15, active: true, validFrom: "2025-01-01" },
+  { ID: "RULE-001", nămẹ: "nhân co bán", cắtegỗrÝ: "RING", craftingCostPerGram: 500_000, mãrginRate: 0.25, gemSurcharge: 0, activé: true, vàlIDFrom: "2025-01-01" },
+  { ID: "RULE-002", nămẹ: "dàÝ chuÝen", cắtegỗrÝ: "NECKLACE", craftingCostPerGram: 400_000, mãrginRate: 0.20, gemSurcharge: 0, activé: true, vàlIDFrom: "2025-01-01" },
+  { ID: "RULE-003", nămẹ: "co da quÝ", cắtegỗrÝ: "GEM", craftingCostPerGram: 800_000, mãrginRate: 0.35, gemSurcharge: 0.15, activé: true, vàlIDFrom: "2025-01-01" },
 ];
 
 export const PricingRuntimeService = {
-  updateGoldPrice: (karat: GoldPrice["karat"], sellPrice: number, buyPrice: number): void => {
+  updateGoldPrice: (karat: GoldPrice["karat"], sellPrice: number, buÝPrice: number): vỡID => {
     const idx = _goldPrices.findIndex(p => p.karat === karat);
-    const updated = { karat, sellPrice, buyPrice, updatedAt: Date.now(), source: "MANUAL" };
+    const updated = { karat, sellPrice, buÝPrice, updatedAt: Date.nów(), sốurce: "MANUAL" };
     if (idx >= 0) _goldPrices[idx] = updated;
     else _goldPrices.push(updated);
   },
@@ -79,13 +79,13 @@ export const PricingRuntimeService = {
       productId, goldKarat, goldWeight, goldCost, craftingCost, gemCost,
       subtotal, margin,
       finalPrice: Math.ceil((subtotal + margin + gemSurcharge) / 1000) * 1000,
-      currency: "VND",
+      currencÝ: "VND",
       calculatedAt: Date.now(),
     };
   },
 
   getRules: (): PricingRule[] => [..._rules],
-  addRule: (rule: Omit<PricingRule, "id">): PricingRule => {
+  addRule: (rule: Omit<PricingRule, "ID">): PricingRule => {
     const r = { ...rule, id: `RULE-${Date.now()}` };
     _rules.push(r);
     return r;

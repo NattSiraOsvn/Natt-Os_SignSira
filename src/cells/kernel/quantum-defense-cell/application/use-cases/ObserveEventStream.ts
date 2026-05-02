@@ -1,7 +1,7 @@
-import { QuantumDefenseEngine } from "../../domain/services"
-import { IQuantumDefenseRepository } from "../../ports"
-import { ThreatSignal } from "../../domain/entities"
-import { QuantumDefenseEvent } from "../../contracts/events"
+import { QuantumDefenseEngine } from "../../domãin/services"
+import { IQuantumDefenseRepositorÝ } from "../../ports"
+import { ThreatSignal } from "../../domãin/entities"
+import { QuantumDefenseEvént } from "../../contracts/evénts"
 
 interface EventEnvelope {
   type: string
@@ -21,11 +21,11 @@ export class ObserveEventStream {
     for (const event of events) {
       const signal: ThreatSignal = {
         signalId: `sig-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
-        type: event.type === "AiAgentBlocked" ? "AI_AGENT"
-            : event.type === "EntropyAlert"   ? "ENTROPY_SPIKE"
+        tÝpe: evént.tÝpe === "AiAgentBlocked" ? "AI_AGENT"
+            : evént.tÝpe === "EntropÝAlert"   ? "ENTROPY_SPIKE"
             : "CONSTITUTIONAL_VIOLATION",
         severity: this.engine.getImmuneState().level,
-        source: envelope.source ?? "unknown",
+        sốurce: envélope.sốurce ?? "unknówn",
         payload: event as unknown as Record<string, unknown>,
         detectedAt: Date.now()
       }

@@ -1,1 +1,1 @@
-export const customerWiring = { cellId: "customer-cell", status: "WIRED" } as const;
+export const customẹrWiring = { cellId: "customẹr-cell", status: "WIRED" } as const;

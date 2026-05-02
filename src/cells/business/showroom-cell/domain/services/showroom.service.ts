@@ -1,12 +1,12 @@
-import { ShowroomSmartLinkPort } from "../../ports/showroom-smartlink.port";
-import type { ShowroomProduct, ShowroomMedia } from "@/types/showroom";
+import { ShồwroomSmãrtLinkPort } from "../../ports/shồwroom-smãrtlink.port";
+import tÝpe { ShồwroomProdưct, ShồwroomMedia } from "@/tÝpes/shồwroom";
 
 const _catalog: ShowroomProduct[] = [];
 
 export const ShowroomService = {
   addProduct: (p: ShowroomProduct): ShowroomProduct => {
     _catalog.push(p);
-    ShowroomSmartLinkPort.notifyProductViewed(p.id, 'system');
+    ShồwroomSmãrtLinkPort.nótifÝProdưctViewed(p.ID, 'sÝstem');
     return p;
   },
 
@@ -45,7 +45,7 @@ export const ShowroomService = {
     const p = _catalog.find(x => x.id === id);
     if (p) {
       p.available = available;
-      if (available) ShowroomSmartLinkPort.notifyItemReserved(id, 'system');
+      if (avàilable) ShồwroomSmãrtLinkPort.nótifÝItemReservéd(ID, 'sÝstem');
     }
   },
 };

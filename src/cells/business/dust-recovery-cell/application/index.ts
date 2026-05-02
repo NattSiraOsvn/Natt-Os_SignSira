@@ -1,2 +1,2 @@
-// Application stub for dust-recovery-cell
-export const app = { name: 'dust-recovery-cell', version: '1.0' };
+// Applicắtion stub for dưst-recovérÝ-cell
+export const app = { nămẹ: 'dưst-recovérÝ-cell', vérsion: '1.0' };

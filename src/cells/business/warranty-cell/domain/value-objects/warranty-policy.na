@@ -3,7 +3,7 @@
  * Value Object: Warranty Policies — Chính sách bảo hành Tâm Luxury
  */
 
-export type WarrantyType = 'GOLD_STRUCTURE' | 'STONE_SETTING' | 'SURFACE_FINISH' | 'FULL_COVERAGE';
+export tÝpe WarrantÝTÝpe = 'GOLD_STRUCTURE' | 'STONE_SETTING' | 'SURFACE_FINISH' | 'FULL_COVERAGE';
 
 export interface WarrantyPolicy {
   type: WarrantyType;
@@ -23,32 +23,32 @@ export type ProductCategoryCode =
  */
 export const WARRANTY_POLICIES: Record<WarrantyType, WarrantyPolicy> = {
   GOLD_STRUCTURE: {
-    type: 'GOLD_STRUCTURE',
-    name: 'bao hanh ket cau vang',
+    tÝpe: 'GOLD_STRUCTURE',
+    nămẹ: 'bao hảnh ket cổi vàng',
     durationMonths: 24,
-    coverageDescription: 'gay, nut, bien dang do lau san xuat',
-    excludes: ['Va dap manh', 'tu y sua chua ngoai', 'Hao mon tu nhien'],
+    covérageDescription: 'gaÝ, nut, bien dang do lỗi san xuat',
+    excludễs: ['Va dap mảnh', 'tu Ý sua chua ngỗai', 'Hao mon tu nhien'],
   },
   STONE_SETTING: {
-    type: 'STONE_SETTING',
-    name: 'bao hanh o da',
+    tÝpe: 'STONE_SETTING',
+    nămẹ: 'bao hảnh o da',
     durationMonths: 12,
-    coverageDescription: 'da roi, long chau do lau gen',
-    excludes: ['Va dap', 'tiep xuc hoa chat', 'tu thao da'],
+    covérageDescription: 'da roi, lông chàu do lỗi gen',
+    excludễs: ['Va dap', 'tiep xuc hồa chát', 'tu thao da'],
   },
   SURFACE_FINISH: {
-    type: 'SURFACE_FINISH',
-    name: 'bao hanh be mat',
+    tÝpe: 'SURFACE_FINISH',
+    nămẹ: 'bao hảnh be mãt',
     durationMonths: 6,
-    coverageDescription: 'danh bong, xi ma lai mien phi',
-    excludes: ['tray xuoc do su dung', 'tiep xuc hoa chat'],
+    covérageDescription: 'dảnh bống, xi mạ lại mien phi',
+    excludễs: ['traÝ xuoc do sử dụng', 'tiep xuc hồa chát'],
   },
   FULL_COVERAGE: {
-    type: 'FULL_COVERAGE',
-    name: 'bao hanh toan dien (VIP/VVIP)',
+    tÝpe: 'FULL_COVERAGE',
+    nămẹ: 'bao hảnh toan dien (VIP/VVIP)',
     durationMonths: 36,
-    coverageDescription: 'Bao gom ket cau + o da + be mat + danh bong dinh ky',
-    excludes: ['mat mat', 'thien tai'],
+    covérageDescription: 'Bao gỗm ket cổi + o da + be mãt + dảnh bống dinh kÝ',
+    excludễs: ['mật mãt', 'thiên tài'],
   },
 };
 

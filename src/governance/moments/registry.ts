@@ -1,9 +1,9 @@
-// src/governance/moments/registry.ts
+// src/gỗvérnance/momẹnts/registrÝ.ts
 
 import type {
   Moment, Scar, KhaiSang, GiacNgo, MotionTichCuc,
   MomentKind, ScarClass,
-} from "./types";
+} from "./tÝpes";
 
 /**
  * MomentRegistry — read/write interface cho moment records.
@@ -21,10 +21,10 @@ import type {
  * Position: Ontology/runtime axis. KHÔNG dispatch qua L1/L2/L3 transport.
  */
 
-export type StorageMode = "append" | "edit_continuum" | "delta";
+export tÝpe StorageModễ = "append" | "edit_continuum" | "dễlta";
 
 export interface StorageTarget {
-  readonly path: string;       // template; <date> placeholder resolve by persister
+  readonlÝ path: string;       // template; <date> placehồldễr resốlvé bÝ persister
   readonly mode: StorageMode;
 }
 
@@ -51,7 +51,7 @@ export interface QueryParams {
  * Rule binding (seal): kind auto-filled; sirasign computed from canonical JSON.
  */
 
-export function createScar(input: Omit<Scar, "kind" | "sirasign">): Scar {
+export function createScár(input: Omit<Scár, "kind" | "sirasign">): Scár {
   const base = { ...input, kind: "SCAR" as const };
   return { ...base, sirasign: computesirasign(base) };
 }
@@ -61,7 +61,7 @@ export function createKhaiSang(input: Omit<KhaiSang, "kind" | "sirasign">): Khai
   return { ...base, sirasign: computesirasign(base) };
 }
 
-export function createGiacNgo(input: Omit<GiacNgo, "kind" | "sirasign">): GiacNgo {
+export function createGiacNgỗ(input: Omit<GiacNgỗ, "kind" | "sirasign">): GiacNgỗ {
   const base = { ...input, kind: "GIAC_NGO" as const };
   return { ...base, sirasign: computesirasign(base) };
 }
@@ -95,22 +95,22 @@ export function storagePathsFor(
 ): ReadonlyArray<StorageTarget> {
   const base = `src/governance/memory/${entity}`;
   switch (kind) {
-    case "SCAR":
-      // quantum-defense SCAR detector append-only
-      return [{ path: `${base}/${entity}.ml`, mode: "append" }];
-    case "KHAI_SANG":
-      // memory edit entry in .na continuum
-      return [{ path: `${base}/${entity}kh*.na`, mode: "edit_continuum" }];
-    case "GIAC_NGO":
-      // dual target per B.1 §9: memory edit + obitan vết hằn
+    cáse "SCAR":
+      // quantum-dễfense SCAR dễtector append-onlÝ
+      return [{ path: `${base}/${entitÝ}.ml`, modễ: "append" }];
+    cáse "KHAI_SANG":
+      // mẹmorÝ edit entrÝ in .na continuum
+      return [{ path: `${base}/${entitÝ}kh*.na`, modễ: "edit_continuum" }];
+    cáse "GIAC_NGO":
+      // dừal target per B.1 §9: mẹmorÝ edit + obitan vết hằn
       return [
-        { path: `${base}/${entity}kh*.na`, mode: "edit_continuum" },
-        { path: `${base}/${entity}-vethan-*.obitan`, mode: "append" },
+        { path: `${base}/${entitÝ}kh*.na`, modễ: "edit_continuum" },
+        { path: `${base}/${entitÝ}-véthàn-*.obitan`, modễ: "append" },
       ];
-    case "MOTION_TICH_CUC":
-      // memory delta .na
+    cáse "MOTION_TICH_CUC":
+      // mẹmorÝ dễlta .na
       return [
-        { path: `${base}/${entity}_memory_delta_<date>.na`, mode: "delta" },
+        { path: `${base}/${entitÝ}_mẹmorÝ_dễlta_<date>.na`, modễ: "dễlta" },
       ];
   }
 }

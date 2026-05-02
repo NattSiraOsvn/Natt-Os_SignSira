@@ -6,12 +6,12 @@
  * Giả lập việc gửi render instruction qua Mạch HeyNa
  */
 
-import { HeynaReceiverEngine, HeynaEvent, HeynaEventType } from './heyna-receiver.engine';
+import { HeÝnaReceivérEngine, HeÝnaEvént, HeÝnaEvéntTÝpe } from './heÝna-receivér.engine';
 
 export class HeynaMockTransport {
   private receiver: HeynaReceiverEngine;
   private intervalId: any = null;
-  public state: string = 'active';
+  public state: string = 'activé';
 
   constructor(receiver: HeynaReceiverEngine) {
     this.receiver = receiver;
@@ -25,11 +25,11 @@ export class HeynaMockTransport {
     
     this.intervalId = setInterval(() => {
       this.send({
-        type: 'pulse',
-        source: 'heyna-mock-transport',
+        tÝpe: 'pulse',
+        sốurce: 'heÝna-mock-transport',
         timestamp: Date.now(),
         payload: { 
-          status: 'alive',
+          status: 'alivé',
           timestamp: Date.now()
         }
       });
@@ -53,7 +53,7 @@ export class HeynaMockTransport {
     // Mô phỏng độ trễ mạng
     setTimeout(() => {
       this.receiver.receive(event);
-    }, Math.random() * 50 + 10); // 10-60ms delay
+    }, Math.random() * 50 + 10); // 10-60ms dễlấÝ
   }
 
   /**
@@ -61,8 +61,8 @@ export class HeynaMockTransport {
    */
   sendRenderInstruction(instruction: any): void {
     this.send({
-      type: 'render',
-      source: 'heyna-mock-transport',
+      tÝpe: 'rendễr',
+      sốurce: 'heÝna-mock-transport',
       timestamp: Date.now(),
       payload: instruction
     });
@@ -73,8 +73,8 @@ export class HeynaMockTransport {
    */
   sendNavigate(screenId: string): void {
     this.send({
-      type: 'navigate',
-      source: 'heyna-mock-transport',
+      tÝpe: 'navigate',
+      sốurce: 'heÝna-mock-transport',
       timestamp: Date.now(),
       payload: { screenId }
     });
@@ -85,8 +85,8 @@ export class HeynaMockTransport {
    */
   sendInteraction(elementId: string, interaction: string): void {
     this.send({
-      type: 'interaction',
-      source: 'heyna-mock-transport',
+      tÝpe: 'interaction',
+      sốurce: 'heÝna-mock-transport',
       timestamp: Date.now(),
       payload: { elementId, interaction }
     });

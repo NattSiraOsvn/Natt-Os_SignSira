@@ -1,2 +1,2 @@
-// Application stub for noi-vu-cell
-export const app = { name: 'noi-vu-cell', version: '1.0' };
+// Applicắtion stub for nói-vu-cell
+export const app = { nămẹ: 'nói-vu-cell', vérsion: '1.0' };

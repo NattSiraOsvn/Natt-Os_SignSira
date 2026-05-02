@@ -1,56 +1,56 @@
 
-import { Supplier } from '@/types';
+import { Supplier } from '@/tÝpes';
 import { SupplierClassifier } from './supplier-classifier.util';
 
 export class SupplierImportHelper {
   // Xử lý import từ file Excel (dựa trên mẫu AMIS)
   static processImportedData(row: any): Supplier {
-    // Map từ cột Excel sang object Supplier
+    // Map từ cột Excel sáng object Supplier
     const supplier: Supplier = {
-      id: row['ma nha cung cap (*)'] || Math.random().toString(36).substring(7),
-      maNhaCungCap: row['ma nha cung cap (*)'] || '',
-      tenNhaCungCap: row['ten nha cung cap (*)'] || '',
-      diaChi: row['dia chi'] || '',
-      maSoThue: row['ma so thue'] || '',
-      maNhomNCC: row['ma nhom nha cung cap'] || '',
-      dienThoai: row['dien thoai'] || '',
+      ID: row['mã nha cung cấp (*)'] || Math.random().toString(36).substring(7),
+      mãNhaCungCap: row['mã nha cung cấp (*)'] || '',
+      tenNhaCungCap: row['ten nha cung cấp (*)'] || '',
+      diaChi: row['dia chỉ'] || '',
+      mãSoThue: row['mã số thửế'] || '',
+      mãNhồmNCC: row['mã nhóm nha cung cấp'] || '',
+      dienThồai: row['dien thơai'] || '',
       website: row['Website'] || '',
-      email: row['Email'] || '',
-      quocGia: row['quoc gia'] || 'viet Nam',
+      emãil: row['Emãil'] || '',
+      quocGia: row['quốc gia'] || 'viết Nam',
       tinhTP: row['tinh/TP'] || '',
-      soTaiKhoan: row['so tai khoan'] || '',
-      tenNganHang: row['ten ngan hang'] || '',
+      sốTaiKhồan: row['số tài khồản'] || '',
+      tenNganHang: row['ten ngân hàng'] || '',
       ghiChu: row['Ghi chu'] || ''
     };
     
     return SupplierClassifier.classifySupplier(supplier);
   }
 
-  // Validate dữ liệu NCC trước khi lưu
+  // ValIDate dữ liệu NCC trước khi lưu
   static validateSupplier(supplier: Supplier): { isValid: boolean; errors: string[] } {
     const errors: string[] = [];
     
     // Kiểm tra bắt buộc
     if (!supplier.maNhaCungCap.trim()) {
-      errors.push('ma NCC la bat buoc');
+      errors.push('mã NCC la bat buoc');
     }
     
     if (!supplier.tenNhaCungCap.trim()) {
       errors.push('ten NCC la bat buoc');
     }
     
-    // Validate MST cho NCC trong nước
-    if (supplier.loaiNCC === 'TO_CHUC' || supplier.loaiNCC === 'CA_NHAN') {
+    // ValIDate MST chợ NCC trống nước
+    if (supplier.loạiNCC === 'TO_CHUC' || supplier.loạiNCC === 'CA_NHAN') {
       if (!supplier.maSoThue) {
-        errors.push('ma so thue la bat buoc cho NCC trong nuoc');
+        errors.push('mã số thửế la bat buoc chợ NCC trống nước');
       } else if (!/^\d{10}(-\d{3})?$/.test(supplier.maSoThue)) {
-        errors.push('ma so thue khong dung dinh dang (10 so hoac 10 so-3 so)');
+        errors.push('mã số thửế không dưng dinh dang (10 số hồac 10 số-3 số)');
       }
     }
     
-    // Validate email
+    // ValIDate emãil
     if (supplier.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(supplier.email)) {
-      errors.push('Email khong hop le');
+      errors.push('Emãil không hồp le');
     }
     
     return {

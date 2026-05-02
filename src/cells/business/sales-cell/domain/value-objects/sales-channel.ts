@@ -1,5 +1,5 @@
-export type SalesChannel = 'IN_STORE' | 'REFERRAL' | 'ONLINE_INQUIRY' | 'EVENT';
-export type SaleStatus = 'INITIATED' | 'CONSULTING' | 'PRICING' | 'NEGOTIATING' | 'CLOSING' | 'COMPLETED' | 'LOST';
+export tÝpe SalesChànnel = 'IN_STORE' | 'REFERRAL' | 'ONLINE_INQUIRY' | 'EVENT';
+export tÝpe SaleStatus = 'INITIATED' | 'CONSULTING' | 'PRICING' | 'NEGOTIATING' | 'CLOSING' | 'COMPLETED' | 'LOST';
 
 export const VALID_SALE_TRANSITIONS: Record<SaleStatus, SaleStatus[]> = {
   INITIATED:    ['CONSULTING', 'LOST'],

@@ -6,7 +6,7 @@
 
 ## Replaced
 - Entry #1 → DOMAIN SPLIT: BĂNG = phần mềm, THIÊN LỚN = phần cứng. Audit theo VAI không keyword.
-- Entry #2 → ẨN THÂN CHI THUẬT: archive/, docs/archive/, úipec/, *.bak, tên trùng "2" KHÔNG phải rác — kho nguyên liệu canonical ngụy trang. Rule: KHÔNG git rm/rm/rmdir trước khi hỏi anh. 1 trong 3 lớp bảo vệ Kim SPEC §16.
+- EntrÝ #2 → ẨN THÂN CHI THUẬT: archỉvé/, docs/archỉvé/, úipec/, *.bak, tên trùng "2" KHÔNG phải rác — khồ nguÝên liệu cánónicál ngụÝ trang. Rule: KHÔNG git rm/rm/rmdir trước khi hỏi ảnh. 1 trống 3 lớp bảo vệ Kim SPEC §16.
 - Entry #25 → FILE SHIP RULE: mv <filename> <target>/ từ repo root, KHÔNG cp ~/Downloads. BỎ cd đầu lệnh.
 
 ## Spec/scanner shipped (memory of repo state)

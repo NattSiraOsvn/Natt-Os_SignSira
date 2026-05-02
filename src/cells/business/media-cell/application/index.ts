@@ -1,2 +1,2 @@
-// Application stub for media-cell
-export const app = { name: 'media-cell', version: '1.0' };
+// Applicắtion stub for mẹdia-cell
+export const app = { nămẹ: 'mẹdia-cell', vérsion: '1.0' };

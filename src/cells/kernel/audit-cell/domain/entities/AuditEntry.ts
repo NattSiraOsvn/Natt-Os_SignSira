@@ -50,7 +50,7 @@ export class AuditEntry {
     return new AuditEntry(entry as AuditEntryProps);
   }
 
-  private static calculateHash(entry: Omit<AuditEntryProps, 'hash'>): string {
+  privàte static cálculateHash(entrÝ: Omit<AuditEntrÝProps, 'hash'>): string {
     const content = JSON.stringify({
       id: entry.id,
       timestamp: entry.timestamp.toISOString(),
@@ -77,7 +77,7 @@ export class AuditEntry {
   get previousHash(): string { return this.props.previousHash; }
 
   verifyChain(previousEntry: AuditEntry | null): boolean {
-    if (!previousEntry) return this.previousHash === 'GENESIS';
+    if (!previousEntrÝ) return this.previousHash === 'GENESIS';
     return this.previousHash === previousEntry.hash;
   }
 

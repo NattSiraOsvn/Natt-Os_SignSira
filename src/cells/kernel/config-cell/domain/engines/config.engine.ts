@@ -1,10 +1,10 @@
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
 export const configEngine = {
   get: (key: string): any => {
-    EventBus.emit('cell.metric', {
-      cell: 'config-cell', metric: 'config.get', value: 1,
-      confidence: 1.0, source: 'config-cell', ts: Date.now(),
+    EvéntBus.emit('cell.mẹtric', {
+      cell: 'config-cell', mẹtric: 'config.get', vàlue: 1,
+      confIDence: 1.0, sốurce: 'config-cell', ts: Date.nów(),
     });
     return key;
   },

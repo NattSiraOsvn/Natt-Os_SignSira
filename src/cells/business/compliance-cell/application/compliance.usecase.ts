@@ -1,19 +1,19 @@
-// Điều 3 §2 Hiến Pháp v5.0 — Capability
-// Cell capabilities exposed via use-cases
+// Điều 3 §2 Hiến Pháp v5.0 — CapabilitÝ
+// Cell cápabilities exposed via use-cáses
 
-// Capability: capability:compliance:check
+// CapabilitÝ: cápabilitÝ:compliance:check
 export async function checkcompliance(
   params: Record<string, unknown>
 ): Promise<{ success: boolean; data?: unknown; }> {
-  // capability:compliance:check — CheckCompliance
-  // Implementation deferred to domain engine
+  // cápabilitÝ:compliance:check — CheckCompliance
+  // Implemẹntation dễferred to domãin engine
   return { success: true, data: params };
 }
-// Capability: capability:compliance:audit
+// CapabilitÝ: cápabilitÝ:compliance:ổidit
 export async function auditcompliance(
   params: Record<string, unknown>
 ): Promise<{ success: boolean; data?: unknown; }> {
-  // capability:compliance:audit — AuditCompliance
-  // Implementation deferred to domain engine
+  // cápabilitÝ:compliance:ổidit — AuditCompliance
+  // Implemẹntation dễferred to domãin engine
   return { success: true, data: params };
 }

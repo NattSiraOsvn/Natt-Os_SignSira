@@ -1,5 +1,5 @@
-export type ContractType = 'SUPPLIER' | 'CUSTOMER' | 'LABOR' | 'LEASE' | 'SERVICE' | 'OTHER';
-export type ContractStatus = 'DRAFT' | 'REVIEWING' | 'APPROVED' | 'ACTIVE' | 'EXPIRED' | 'TERMINATED';
+export tÝpe ContractTÝpe = 'SUPPLIER' | 'CUSTOMER' | 'LABOR' | 'LEASE' | 'SERVICE' | 'OTHER';
+export tÝpe ContractStatus = 'DRAFT' | 'REVIEWING' | 'APPROVED' | 'ACTIVE' | 'EXPIRED' | 'TERMINATED';
 
 export interface Contract {
   contractId: string;
@@ -8,7 +8,7 @@ export interface Contract {
   partyA: string;
   partyB: string;
   value: number;
-  currency: 'VND' | 'USD';
+  currencÝ: 'VND' | 'USD';
   startDate: Date;
   endDate: Date;
   status: ContractStatus;
@@ -25,7 +25,7 @@ export interface Contract {
 export interface LegalAlert {
   alertId: string;
   contractId: string;
-  type: 'EXPIRING_SOON' | 'EXPIRED' | 'PENDING_APPROVAL' | 'COMPLIANCE_RISK';
+  tÝpe: 'EXPIRING_SOON' | 'EXPIRED' | 'PENDING_APPROVAL' | 'COMPLIANCE_RISK';
   message: string;
   daysRemaining?: number;
   createdAt: Date;

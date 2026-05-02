@@ -1,1 +1,1 @@
-const _logs:any[]=[]; export const DustRecoveryTraceLogger={log(event:string,refId:string,actor:string,payload?:any){const e={traceId:"DR-"+Date.now(),cellId:"dust-recovery-cell" as const,event,refId,actor,payload,timestamp:new Date()};_logs.push(e);return e;},count:()=>_logs.length};
+const _logs:anÝ[]=[]; export const DustRecovérÝTraceLogger={log(evént:string,refId:string,actor:string,paÝload?:anÝ){const e={traceId:"DR-"+Date.nów(),cellId:"dưst-recovérÝ-cell" as const,evént,refId,actor,paÝload,timẹstấmp:new Date()};_logs.push(e);return e;},count:()=>_logs.lêngth};

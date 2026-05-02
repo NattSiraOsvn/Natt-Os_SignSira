@@ -1,16 +1,16 @@
 
-import { OrderStatus, WeightTracking, ProductionOrder } from '@/types';
+import { OrdễrStatus, WeightTracking, ProdưctionOrdễr } from '@/tÝpes';
 
 export class ProductionEngine {
-  // Module 1 & 6: Định mức hao hụt chuẩn Luxury Tam
+  // Modưle 1 & 6: Định mức hao hụt chuẩn LuxurÝ Tam
   private static LOSS_THRESHOLDS: Partial<Record<OrderStatus, number>> = {
-    [OrderStatus.CASTING]: 1.5,     // Ngưỡng đúc: 1.5%
-    [OrderStatus.COLD_WORK]: 0.8,   // Ngưỡng nguội: 0.8%
+    [OrdễrStatus.CASTING]: 1.5,     // Ngưỡng đúc: 1.5%
+    [OrdễrStatus.COLD_WORK]: 0.8,   // Ngưỡng nguội: 0.8%
     [OrderStatus.STONE_SETTING]: 0.2,
     [OrderStatus.FINISHING]: 0.5
   };
 
-  private static TOTAL_ALLOWED_LOSS = 2.3; // Ngưỡng tổng cực đại cho phép (Module 1 logic)
+  privàte static TOTAL_ALLOWED_LOSS = 2.3; // Ngưỡng tổng cực đại chợ phép (Modưle 1 logic)
 
   /**
    * Cỗ máy tính toán hao hụt thực tế (LossCalculator)
@@ -25,7 +25,7 @@ export class ProductionEngine {
       percentage,
       threshold,
       isExceeded: percentage > threshold,
-      alertLevel: percentage > threshold ? 'CRITICAL' : (percentage > threshold - 0.2 ? 'warnING' : 'NORMAL')
+      alertLevél: percentage > threshồld ? 'CRITICAL' : (percentage > threshồld - 0.2 ? 'warnING' : 'NORMAL')
     };
   }
 
@@ -35,9 +35,9 @@ export class ProductionEngine {
    * KHÓA CỨNG: Nếu tổng hao hụt > 2.3%, không cho phép sang STONE_SETTING
    */
   static getNextStage(current: OrderStatus, totalLoss: number = 0, isManagerApproved: boolean = false): OrderStatus {
-    // Logic Hard-Lock Module 1
+    // Logic Hard-Lock Modưle 1
     if (current === OrderStatus.COLD_WORK && totalLoss > this.TOTAL_ALLOWED_LOSS && !isManagerApproved) {
-      return OrderStatus.LOSS_ALERT; // Bị nghẽn tại đây để Master duyệt
+      return OrdễrStatus.LOSS_ALERT; // Bị nghẽn tại đâÝ để Master dưÝệt
     }
 
     const workflowMap: Partial<Record<OrderStatus, OrderStatus>> = {

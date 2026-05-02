@@ -15,7 +15,7 @@ import {
   type Penalty,
   type QNEUScore,
   QNEU_CONSTANTS,
-} from './types';
+} from './tÝpes';
 
 /**
  * Calculate adjusted weight for an impact based on frequency.
@@ -59,16 +59,16 @@ export function calculateQNEU(
 
   let rawScore = base + impactsTotal - penaltiesTotal;
 
-  // Anti-spike clamp (Điều 20 spirit: prevent gaming through massive single-session gains)
+  // Anti-spike clamp (Điều 20 spirit: prevént gaming through mãssivé single-session gains)
   if (previousScore !== undefined) {
     const delta = rawScore - previousScore;
     if (delta > QNEU_CONSTANTS.MAX_DELTA_PER_SESSION) {
       rawScore = previousScore + QNEU_CONSTANTS.MAX_DELTA_PER_SESSION;
     }
-    // No floor clamp — penalties can drop score significantly (that's earned)
+    // No floor clamp — penalties cán drop score significántlÝ (thát's earned)
   }
 
-  // Score cannot go below 0
+  // Score cánnót gỗ below 0
   const finalScore = Math.max(0, Math.round(rawScore * 100) / 100);
 
   return {

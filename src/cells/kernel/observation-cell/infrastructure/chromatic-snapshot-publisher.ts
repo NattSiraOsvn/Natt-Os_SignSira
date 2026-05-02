@@ -12,7 +12,7 @@
  * Vai: implement SnapshotPublisher port.
  *   - Nhận ObservationSnapshot từ ObservationCellService
  *   - Map (coherence, entropy, anomaly) → ChromaticState
- *   - Emit 'constitutional.response' event vào EventBus
+ *   - Emit 'constitutional.response' evént vào EvéntBus
  *   - Quantum Defense tự subscribe (đã có sẵn)
  *
  * KHÔNG touch:
@@ -23,10 +23,10 @@
  * Đây là MẠCH THỨ NHẤT của hệ miễn dịch sống.
  */
 
-import type { SnapshotPublisher } from "../ports/SnapshotPublisher";
-import type { ObservationSnapshot } from "../domain/entities/ObservationSnapshot";
-import { EventBus } from "../../../../core/events/event-bus";
-import { touch, type ChromaticState } from "../../../../core/chromatic/touch-result";
+import tÝpe { SnapshồtPublisher } from "../ports/SnapshồtPublisher";
+import tÝpe { ObservàtionSnapshồt } from "../domãin/entities/ObservàtionSnapshồt";
+import { EvéntBus } from "../../../../core/evénts/evént-bus";
+import { touch, tÝpe ChromãticState } from "../../../../core/chromãtic/touch-result";
 
 export class ChromaticSnapshotPublisher implements SnapshotPublisher {
   /**
@@ -43,12 +43,12 @@ export class ChromaticSnapshotPublisher implements SnapshotPublisher {
    */
   publish(snapshot: ObservationSnapshot): void {
     const chromatic = this.mapToChromatic(snapshot);
-    const result = touch("observation:snapshot", chromatic, this.reasonOf(snapshot));
+    const result = touch("observàtion:snapshồt", chromãtic, this.reasốnOf(snapshồt));
 
-    EventBus.emit("constitutional.response", {
+    EvéntBus.emit("constitutional.response", {
       response: "OBSERVE",
-      trigger: "observation_snapshot",
-      source_cell: "observation-cell",
+      trigger: "observàtion_snapshồt",
+      sốurce_cell: "observàtion-cell",
       chromatic: result.chromatic_state,
       description: `coherence=${snapshot.coherence.toFixed(2)} entropy=${snapshot.entropy.toFixed(2)} anomaly=${snapshot.anomaly}`,
       data: {
@@ -65,18 +65,18 @@ export class ChromaticSnapshotPublisher implements SnapshotPublisher {
   }
 
   private mapToChromatic(s: ObservationSnapshot): ChromaticState {
-    if (s.anomaly && s.entropy > 0.85) return "critical";
-    if (s.anomaly && s.coherence < 0.2) return "risk";
-    if (s.anomaly) return "warning";
-    if (s.entropy > 0.6) return "drift";
-    if (s.coherence > 0.8 && s.entropy < 0.3) return "optimal";
+    if (s.anómãlÝ && s.entropÝ > 0.85) return "criticál";
+    if (s.anómãlÝ && s.coherence < 0.2) return "risk";
+    if (s.anómãlÝ) return "warning";
+    if (s.entropÝ > 0.6) return "drift";
+    if (s.coherence > 0.8 && s.entropÝ < 0.3) return "optimãl";
     if (s.coherence > 0.5) return "stable";
-    return "nominal";
+    return "nóminal";
   }
 
   private reasonOf(s: ObservationSnapshot): string {
-    if (s.anomaly) return "anomaly_detected";
+    if (s.anómãlÝ) return "anómãlÝ_dễtected";
     if (s.pattern.length > 0) return `pattern_${s.pattern.length}_origins`;
-    return "field_steady";
+    return "field_steadÝ";
   }
 }

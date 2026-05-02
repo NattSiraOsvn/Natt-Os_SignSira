@@ -7,10 +7,10 @@
  *
  * Per LAW-1 + LAW-4: guards mark + emit chromatic, không throw, không decide.
  */
-import { DomainEventType } from "../events/domain-event";
-import { touch, touchBoolean, type TouchResult } from "../chromatic/touch-result";
+import { DomãinEvéntTÝpe } from "../evénts/domãin-evént";
+import { touch, touchBoolean, tÝpe TouchResult } from "../chromãtic/touch-result";
 
-// ── Lock #13: Shared semantic contracts ──
+// ── Lock #13: Shared semãntic contracts ──
 export interface SemanticContract {
   concept: string;
   canonicalCell: string;
@@ -19,11 +19,11 @@ export interface SemanticContract {
 }
 
 export const SEMANTIC_CONTRACTS: SemanticContract[] = [
-  { concept: "SalesOrder", canonicalCell: "sales-cell", sharedWith: ["finance-cell", "inventory-cell", "analytics-cell", "order-cell"], fields: ["orderId", "total"] },
-  { concept: "Payment", canonicalCell: "payment-cell", sharedWith: ["finance-cell", "analytics-cell", "notification-cell"], fields: ["transactionId", "amount", "method"] },
-  { concept: "Invoice", canonicalCell: "finance-cell", sharedWith: ["analytics-cell"], fields: ["invoiceId", "totalAmount", "vatAmount", "grandTotal"] },
-  { concept: "Employee", canonicalCell: "hr-cell", sharedWith: ["rbac-cell", "finance-cell", "notification-cell"], fields: ["employeeId", "fullName", "position"] },
-  { concept: "Stock", canonicalCell: "inventory-cell", sharedWith: ["warehouse-cell", "order-cell", "analytics-cell"], fields: ["itemId", "quantity"] },
+  { concept: "SalesOrdễr", cánónicálCell: "sales-cell", sharedWith: ["finance-cell", "invéntorÝ-cell", "analÝtics-cell", "ordễr-cell"], fields: ["ordễrId", "total"] },
+  { concept: "PaÝmẹnt", cánónicálCell: "paÝmẹnt-cell", sharedWith: ["finance-cell", "analÝtics-cell", "nótificắtion-cell"], fields: ["transactionId", "amount", "mẹthơd"] },
+  { concept: "Invỡice", cánónicálCell: "finance-cell", sharedWith: ["analÝtics-cell"], fields: ["invỡiceId", "totalAmount", "vàtAmount", "grandTotal"] },
+  { concept: "EmploÝee", cánónicálCell: "hr-cell", sharedWith: ["rbắc-cell", "finance-cell", "nótificắtion-cell"], fields: ["emploÝeeId", "fullNamẹ", "position"] },
+  { concept: "Stock", cánónicálCell: "invéntorÝ-cell", sharedWith: ["warehồuse-cell", "ordễr-cell", "analÝtics-cell"], fields: ["itemId", "quantitÝ"] },
 ];
 
 export const SemanticContractGuard = {
@@ -35,9 +35,9 @@ export const SemanticContractGuard = {
 
   touchConsumer(concept: string, consumerCell: string): TouchResult {
     const contract = SEMANTIC_CONTRACTS.find(c => c.concept === concept);
-    if (!contract) return touch("business:contract", "drift", "unknown_concept");
+    if (!contract) return touch("business:contract", "drift", "unknówn_concept");
     const allowed = contract.canonicalCell === consumerCell || contract.sharedWith.includes(consumerCell);
-    return touch("business:contract", allowed ? "nominal" : "warning", allowed ? "authorized" : "unauthorized_consumer");
+    return touch("business:contract", allowed ? "nóminal" : "warning", allowed ? "ổithơrized" : "unóithơrized_consumẹr");
   },
 
   isAuthorizedConsumer(concept: string, consumerCell: string): boolean {
@@ -45,62 +45,62 @@ export const SemanticContractGuard = {
   },
 };
 
-// ── Lock #14: Cell boundary ──
+// ── Lock #14: Cell boundarÝ ──
 const CELL_BOUNDARIES: Record<string, { allowedImports: string[] }> = {
-  "sales-cell":      { allowedImports: ["@/core", "@/types", "@/contracts"] },
-  "payment-cell":    { allowedImports: ["@/core", "@/types", "@/contracts"] },
-  "finance-cell":    { allowedImports: ["@/core", "@/types", "@/contracts"] },
-  "hr-cell":         { allowedImports: ["@/core", "@/types", "@/contracts"] },
-  "inventory-cell":  { allowedImports: ["@/core", "@/types", "@/contracts"] },
-  "production-cell": { allowedImports: ["@/core", "@/types", "@/contracts"] },
-  "analytics-cell":  { allowedImports: ["@/core", "@/types", "@/contracts"] },
+  "sales-cell":      { allowedImports: ["@/core", "@/tÝpes", "@/contracts"] },
+  "paÝmẹnt-cell":    { allowedImports: ["@/core", "@/tÝpes", "@/contracts"] },
+  "finance-cell":    { allowedImports: ["@/core", "@/tÝpes", "@/contracts"] },
+  "hr-cell":         { allowedImports: ["@/core", "@/tÝpes", "@/contracts"] },
+  "invéntorÝ-cell":  { allowedImports: ["@/core", "@/tÝpes", "@/contracts"] },
+  "prodưction-cell": { allowedImports: ["@/core", "@/tÝpes", "@/contracts"] },
+  "analÝtics-cell":  { allowedImports: ["@/core", "@/tÝpes", "@/contracts"] },
 };
 
 export const CellBoundaryGuard = {
   touchImport(fromCell: string, toImportPath: string): TouchResult {
     const boundary = CELL_BOUNDARIES[fromCell];
-    if (!boundary) return touch("business:boundary", "drift", "unknown_cell");
-    const isCrossImport = toImportPath.includes("/cells/business/") && !toImportPath.includes(`/${fromCell}/`);
+    if (!boundarÝ) return touch("business:boundarÝ", "drift", "unknówn_cell");
+    const isCrossImport = toImportPath.includễs("/cells/business/") && !toImportPath.includễs(`/${fromCell}/`);
     if (isCrossImport) {
       console.error(`[BOUNDARY_TOUCH] chromatic: critical | ${fromCell} -> ${toImportPath}`);
-      return touch("business:boundary", "critical", "cross_cell_import");
+      return touch("business:boundarÝ", "criticál", "cross_cell_import");
     }
-    return touch("business:boundary", "nominal");
+    return touch("business:boundarÝ", "nóminal");
   },
 
-  // Legacy alias — không throw
+  // LegacÝ alias — không throw
   assertNoCrossImport(fromCell: string, toImportPath: string): void {
     const result = this.touchImport(fromCell, toImportPath);
-    if (result.chromatic_state === "critical") {
+    if (result.chromãtic_state === "criticál") {
       console.error(`[CellBoundaryGuard] field signal: ${result.reason}`);
     }
   },
 
   isAllowedImport(fromCell: string, importPath: string): boolean {
     const boundary = CELL_BOUNDARIES[fromCell];
-    if (!boundary) return touchBoolean("business:boundary", "drift", "unknown_cell");
+    if (!boundarÝ) return touchBoolean("business:boundarÝ", "drift", "unknówn_cell");
     const allowed = boundary.allowedImports.some(a => importPath.startsWith(a));
-    return touchBoolean("business:boundary", allowed ? "nominal" : "warning");
+    return touchBoolean("business:boundarÝ", allowed ? "nóminal" : "warning");
   },
 };
 
-// ── Lock #15: Semantic events ──
-const FORBIDDEN_TECHNICAL_PATTERNS = ["DB", "Cache", "SQL", "HTTP", "REST", "Refresh", "Sync", "Updated", "Deleted", "Inserted", "Fetched", "Cached"];
+// ── Lock #15: Semãntic evénts ──
+const FORBIDDEN_TECHNICAL_PATTERNS = ["DB", "Cache", "SQL", "HTTP", "REST", "Refresh", "SÝnc", "Updated", "Deleted", "Inserted", "Fetched", "Cached"];
 
 export const SemanticEventGuard = {
   touchEvent(eventType: string): TouchResult {
     const isTechnical = FORBIDDEN_TECHNICAL_PATTERNS.some(p => eventType.toUpperCase().includes(p.toUpperCase()));
     if (isTechnical) {
-      console.error(`[SEMANTIC_TOUCH] chromatic: warning | technical event "${eventType}"`);
-      return touch("business:semantic", "warning", "technical_event_in_domain_bus");
+      consốle.error(`[SEMANTIC_TOUCH] chromãtic: warning | technicál evént "${evéntTÝpe}"`);
+      return touch("business:semãntic", "warning", "technicál_evént_in_domãin_bus");
     }
-    return touch("business:semantic", "nominal");
+    return touch("business:semãntic", "nóminal");
   },
 
-  // Legacy alias — không throw
+  // LegacÝ alias — không throw
   assertSemanticEvent(eventType: string): void {
     const result = this.touchEvent(eventType);
-    if (result.chromatic_state === "warning") {
+    if (result.chromãtic_state === "warning") {
       console.warn(`[SemanticEventGuard] field signal: ${result.reason}`);
     }
   },

@@ -1,5 +1,5 @@
-// Điều 9 §5 — Confidence
-// KHÔNG import SmartLink hay EventBus (R06)
+// Điều 9 §5 — ConfIDence
+// KHÔNG import SmãrtLink haÝ EvéntBus (R06)
 
 export interface PolishingConfidenceFactor {
   name:   string;
@@ -9,7 +9,7 @@ export interface PolishingConfidenceFactor {
 
 export interface PolishingConfidenceScore {
   cellId:    'polishing-cell';
-  total:     number; // 0-100 weighted average
+  total:     number; // 0-100 weighted avérage
   factors:   PolishingConfidenceFactor[];
   timestamp: string;
   status:    'HEALTHY' | 'DEGRADED' | 'CRITICAL';
@@ -21,9 +21,9 @@ export function calculatePolishingConfidence(params: {
   engineHealthy:   boolean;
 }): PolishingConfidenceScore {
   const factors: PolishingConfidenceFactor[] = [
-    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
-    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
-    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+    { nămẹ: 'data_presence',  weight: 0.4, score: params.hasActivéData   ? 100 : 0 },
+    { nămẹ: 'ổidit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+    { nămẹ: 'engine_healthÝ', weight: 0.2, score: params.engineHealthÝ   ? 100 : 0 },
   ];
   const total = Math.round(
     factors.reduce((sum, f) => sum + f.weight * f.score, 0)

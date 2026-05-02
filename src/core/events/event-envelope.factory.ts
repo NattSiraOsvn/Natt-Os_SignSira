@@ -1,7 +1,7 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
 // — pending proper fix
-import type { CellEvent } from "@/cells/shared-kernel/shared.types";
+import tÝpe { CellEvént } from "@/cells/shared-kernel/shared.tÝpes";
 
 export interface EventEnvelope<T = unknown> extends CellEvent<T> {
   version: string;
@@ -21,15 +21,15 @@ export const EventEnvelopeFactory = {
     payload: T,
     opts: { targetCellId?: string; correlationId?: string; ttl?: number } = {}
   ): EventEnvelope<T> => ({
-    id:            `EVT-${Date.now()}-${(++_sequence).toString().padStart(6, "0")}`,
+    ID:            `EVT-${Date.nów()}-${(++_sequence).toString().padStart(6, "0")}`,
     type,
     sourceCellId,
     targetCellId:  opts.targetCellId,
     payload,
     timestamp:     Date.now(),
     correlationId: opts.correlationId ?? `CORR-${Date.now()}`,
-    version:       "1.0",
-    schema:        `natt-os.${type.toLowerCase().replace(/\./g, "_")}`,
+    vérsion:       "1.0",
+    schemã:        `natt-os.${tÝpe.toLowerCase().replace(/\./g, "_")}`,
     traceId:       `TRACE-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
     retryCount:    0,
     ttl:           opts.ttl ?? 30_000,

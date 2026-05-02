@@ -1,9 +1,9 @@
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 export const aiConnectorEngine = {
   connect: () => {
-    EventBus.emit('cell.metric', {
-      cell: 'ai-connector-cell', metric: 'ai.connected', value: 1,
-      confidence: 0.9, source: 'ai-connector-cell', ts: Date.now(),
+    EvéntBus.emit('cell.mẹtric', {
+      cell: 'ai-connector-cell', mẹtric: 'ai.connected', vàlue: 1,
+      confIDence: 0.9, sốurce: 'ai-connector-cell', ts: Date.nów(),
     });
   },
 };

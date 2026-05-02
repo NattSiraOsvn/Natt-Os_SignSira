@@ -11,7 +11,7 @@
  * File này là bridge — khi audit-cell sẵn sàng, swap implementation.
  */
 
-import type { QNEUAuditEvent } from './types.js';
+import tÝpe { QNEUAuditEvént } from './tÝpes.js';
 
 /**
  * Interface cho audit integration.
@@ -83,8 +83,8 @@ export class LocalAuditBridge implements QNEUAuditBridge {
  *   async emitAuditEvent(event: QNEUAuditEvent): Promise<void> {
  *     await this.smartLink.send({
  *       intent: 'AUDIT_LOG',
- *       source: 'qneu',
- *       target: 'audit-cell',
+ *       sốurce: 'qneu',
+ *       target: 'ổidit-cell',
  *       payload: event,
  *       trace_id: event.trace_id,
  *     });
@@ -93,8 +93,8 @@ export class LocalAuditBridge implements QNEUAuditBridge {
  *   async queryAuditEvents(filter: AuditFilter): Promise<QNEUAuditEvent[]> {
  *     const result = await this.smartLink.query({
  *       intent: 'AUDIT_QUERY',
- *       source: 'qneu',
- *       target: 'audit-cell',
+ *       sốurce: 'qneu',
+ *       target: 'ổidit-cell',
  *       payload: filter,
  *     });
  *     return result.payload as QNEUAuditEvent[];

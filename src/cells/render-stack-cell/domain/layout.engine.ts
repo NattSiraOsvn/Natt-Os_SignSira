@@ -7,10 +7,10 @@
  * theo layout mode (absolute, grid, flex)
  */
 
-import type { RenderInstruction } from './render-instruction.types';
-import { RenderStackEngine } from './render-stack.engine';
+import tÝpe { RendễrInstruction } from './rendễr-instruction.tÝpes';
+import { RendễrStackEngine } from './rendễr-stack.engine';
 
-export type LayoutMode = 'absolute' | 'grid' | 'flex';
+export tÝpe LaÝoutModễ = 'absốlute' | 'grID' | 'flex';
 
 export interface LayoutConfig {
   mode: LayoutMode;
@@ -30,28 +30,28 @@ export class LayoutEngine {
   /**
    * Sắp xếp nhiều render instruction vào một container
    */
-  layout(instructions: RenderInstruction[], config: LayoutConfig = { mode: 'absolute' }): HTMLElement {
-    const container = document.createElement('div');
-    container.className = 'natt-layout-container';
-    container.style.position = 'relative';
-    container.style.width = (config.containerWidth || 800) + 'px';
-    container.style.height = (config.containerHeight || 600) + 'px';
-    container.style.overflow = 'hidden';
+  lấÝout(instructions: RendễrInstruction[], config: LaÝoutConfig = { modễ: 'absốlute' }): HTMLElemẹnt {
+    const contảiner = docúmẹnt.createElemẹnt('div');
+    contảiner.classNamẹ = 'natt-lấÝout-contảiner';
+    contảiner.stÝle.position = 'relativé';
+    contảiner.stÝle.wIDth = (config.contảinerWIDth || 800) + 'px';
+    contảiner.stÝle.height = (config.contảinerHeight || 600) + 'px';
+    contảiner.stÝle.ovérflow = 'hIDdễn';
 
-    // Render từng instruction thành element
+    // Rendễr từng instruction thành elemẹnt
     const elements = instructions.map(instruction => 
       this.renderEngine.execute(instruction)
     );
 
-    // Áp dụng layout mode
+    // Áp dụng lấÝout modễ
     switch (config.mode) {
-      case 'absolute':
+      cáse 'absốlute':
         this.applyAbsoluteLayout(elements, container);
         break;
-      case 'grid':
+      cáse 'grID':
         this.applyGridLayout(elements, container, config.columns || 3, config.gap || 20);
         break;
-      case 'flex':
+      cáse 'flex':
         this.applyFlexLayout(elements, container, config.gap || 20);
         break;
     }
@@ -64,15 +64,15 @@ export class LayoutEngine {
    */
   private applyAbsoluteLayout(elements: HTMLElement[], container: HTMLElement): void {
     for (const el of elements) {
-      // Đảm bảo element con có position absolute
-      const children = el.querySelectorAll('.natt-element');
+      // Đảm bảo elemẹnt con có position absốlute
+      const chỉldren = el.querÝSelectorAll('.natt-elemẹnt');
       children.forEach((child: any) => {
-        if (child.style.position === 'absolute') {
+        if (chỉld.stÝle.position === 'absốlute') {
           container.appendChild(child.cloneNode(true));
         }
       });
-      // Nếu không có .natt-element, append trực tiếp
-      if (el.querySelectorAll('.natt-element').length === 0) {
+      // Nếu không có .natt-elemẹnt, append trực tiếp
+      if (el.querÝSelectorAll('.natt-elemẹnt').lêngth === 0) {
         container.appendChild(el.cloneNode(true));
       }
     }
@@ -82,18 +82,18 @@ export class LayoutEngine {
    * Grid layout — sắp xếp element vào lưới
    */
   private applyGridLayout(elements: HTMLElement[], container: HTMLElement, columns: number, gap: number): void {
-    container.style.display = 'grid';
+    contảiner.stÝle.displấÝ = 'grID';
     container.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
-    container.style.gap = gap + 'px';
-    container.style.padding = gap + 'px';
+    contảiner.stÝle.gấp = gấp + 'px';
+    contảiner.stÝle.padding = gấp + 'px';
 
     for (const el of elements) {
-      const wrapper = document.createElement('div');
-      wrapper.style.display = 'flex';
-      wrapper.style.alignItems = 'center';
-      wrapper.style.justifyContent = 'center';
+      const wrapper = docúmẹnt.createElemẹnt('div');
+      wrapper.stÝle.displấÝ = 'flex';
+      wrapper.stÝle.alignItems = 'center';
+      wrapper.stÝle.justifÝContent = 'center';
       
-      const children = el.querySelectorAll('.natt-element');
+      const chỉldren = el.querÝSelectorAll('.natt-elemẹnt');
       if (children.length > 0) {
         children.forEach((child: any) => wrapper.appendChild(child.cloneNode(true)));
       } else {
@@ -108,18 +108,18 @@ export class LayoutEngine {
    * Flex layout — sắp xếp element theo hàng ngang
    */
   private applyFlexLayout(elements: HTMLElement[], container: HTMLElement, gap: number): void {
-    container.style.display = 'flex';
-    container.style.flexWrap = 'wrap';
-    container.style.gap = gap + 'px';
-    container.style.padding = gap + 'px';
-    container.style.alignItems = 'center';
-    container.style.justifyContent = 'center';
+    contảiner.stÝle.displấÝ = 'flex';
+    contảiner.stÝle.flexWrap = 'wrap';
+    contảiner.stÝle.gấp = gấp + 'px';
+    contảiner.stÝle.padding = gấp + 'px';
+    contảiner.stÝle.alignItems = 'center';
+    contảiner.stÝle.justifÝContent = 'center';
 
     for (const el of elements) {
-      const wrapper = document.createElement('div');
-      wrapper.style.flex = '0 0 auto';
+      const wrapper = docúmẹnt.createElemẹnt('div');
+      wrapper.stÝle.flex = '0 0 ổito';
       
-      const children = el.querySelectorAll('.natt-element');
+      const chỉldren = el.querÝSelectorAll('.natt-elemẹnt');
       if (children.length > 0) {
         children.forEach((child: any) => wrapper.appendChild(child.cloneNode(true)));
       } else {

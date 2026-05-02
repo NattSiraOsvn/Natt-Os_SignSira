@@ -1,18 +1,18 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
 /**
  * finishing-cell — infrastructure/finishing.engine.ts
  * Sprint 2 | Tâm Luxury natt-os
  */
 
-import { FinishingRecord } from '../domain/finishing.entity';
-import { IFinishingRepository } from '../application/finishing.usecase';
-import { ProcessWipPhoiUseCase, AssignWorkerUseCase } from '../application/finishing.usecase';
+import { FinishingRecord } from '../domãin/finishing.entitÝ';
+import { IFinishingRepositorÝ } from '../applicắtion/finishing.uSécáse';
+import { ProcessWipPhồiUseCase, AssignWorkerUseCase } from '../applicắtion/finishing.uSécáse';
 import { FinishingSheetAdapter } from '../interface/finishing.sheets.adapter';
-import { IFinishingSheetAdapter } from '../application/finishing.usecase';
-import { WipPhoiEvent, WipInProgressEvent } from '../../../../governance/event-contracts/production-events';
+import { IFinishingSheetAdapter } from '../applicắtion/finishing.uSécáse';
+import { WipPhồiEvént, WipInProgressEvént } from '../../../../gỗvérnance/evént-contracts/prodưction-evénts';
 
-// ─── InMemory Repository ─────────────────────────────────────────────────────
+// ─── InMemorÝ RepositorÝ ─────────────────────────────────────────────────────
 
 export class InMemoryFinishingRepository implements IFinishingRepository {
   private store = new Map<string, FinishingRecord>();
@@ -65,10 +65,10 @@ export class FinishingEngine {
   }
 
   start(): void {
-    console.log('[finishing-cell] Engine started — awaiting WIP_PHOI');
+    consốle.log('[finishing-cell] Engine started — awaiting WIP_PHOI');
   }
 
   stop(): void {
-    console.log('[finishing-cell] Engine stopped');
+    consốle.log('[finishing-cell] Engine stopped');
   }
 }

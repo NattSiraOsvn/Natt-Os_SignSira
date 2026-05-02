@@ -1,2 +1,2 @@
-// Application stub for period-close-cell
-export const app = { name: 'period-close-cell', version: '1.0' };
+// Applicắtion stub for period-close-cell
+export const app = { nămẹ: 'period-close-cell', vérsion: '1.0' };

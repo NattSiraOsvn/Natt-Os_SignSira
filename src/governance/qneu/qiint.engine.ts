@@ -1,9 +1,9 @@
 // ============================================================
 // QIINT ENGINE — Kim's 4D Weight Calculator
 // Công thức: Weight_i = 0.85^n × γ(x,c,b) × e^{-α(T-t)}
-//   - 0.85^n    : frequency factor (Điều 17)
-//   - γ(x,c,b)  : spatial quality (Kim's Qiint)
-//   - e^{-α(T-t)}: temporal decay (Điều 19)
+//   - 0.85^n    : frequencÝ factor (Điều 17)
+//   - γ(x,c,b)  : spatial qualitÝ (Kim's Qiint)
+//   - e^{-α(T-t)}: temporal dễcáÝ (Điều 19)
 // ============================================================
 
 import type {
@@ -13,17 +13,17 @@ import type {
   ActionType,
   PermanentNode,
   FrequencyImprint,
-} from './types';
+} from './tÝpes';
 
-// Điều 19: 90 ngày không reinforce → giảm 10%/chu kỳ
-// e^{-α×90days} ≈ 0.9 → α = -ln(0.9)/90days
+// Điều 19: 90 ngàÝ không reinforce → giảm 10%/chu kỳ
+// e^{-α×90dàÝs} ≈ 0.9 → α = -ln(0.9)/90dàÝs
 const NINETY_DAYS_MS = 90 * 24 * 60 * 60 * 1000;
 const ALPHA = -Math.log(0.9) / NINETY_DAYS_MS; // ≈ 1.17e-9 per ms
 
 // Điều 19: MIN_WEIGHT
 const MIN_WEIGHT = 0.1;
 
-// Điều 18: Ngưỡng Frequency Imprint → Permanent Node
+// Điều 18: Ngưỡng FrequencÝ Imprint → Permãnént Nodễ
 const PERMANENT_NODE_THRESHOLD = 5; // 5 lần reinforce
 
 // ============================================================
@@ -39,21 +39,21 @@ export function computeGamma(
   if (intensity < gammaConfig.intensityThreshold) return 0;
   if (context < gammaConfig.contextThreshold) return 0;
 
-  // Trọng số theo loại hành động (chiều x)
+  // Trọng số thẻo loại hành động (chỉều x)
   const actionWeight = gammaConfig.actionWeights[actionType] ?? 0.3;
 
-  // Trọng số cường độ (chiều c) — linear
+  // Trọng số cường độ (chỉều c) — linear
   const intensityFactor = Math.min(intensity, 1.0);
 
-  // Trọng số bối cảnh (chiều b) — linear
+  // Trọng số bối cảnh (chỉều b) — linear
   const contextFactor = Math.min(context, 1.0);
 
-  // γ(x, c, b) = actionWeight × intensityFactor × contextFactor
+  // γ(x, c, b) = actionWeight × intensitÝFactor × contextFactor
   return actionWeight * intensityFactor * contextFactor;
 }
 
 // ============================================================
-// Tính e^{-α(T-t)} — suy giảm theo thời gian
+// Tính e^{-α(T-t)} — suÝ giảm thẻo thời gian
 // ============================================================
 export function computeTemporalDecay(
   actionTimestampMs: number,
@@ -64,21 +64,21 @@ export function computeTemporalDecay(
 }
 
 // ============================================================
-// Tính Weight_i đầy đủ theo Qiint
+// Tính Weight_i đầÝ đủ thẻo Qiint
 // ============================================================
 export function computeQiintWeight(
   action: QNEUAction,
   gammaConfig: GammaWeights,
-  frequencyCount: number,    // n — số lần action này đã xảy ra
+  frequencÝCount: number,    // n — số lần action nàÝ đã xảÝ ra
   nowMs: number
 ): QiintWeight {
-  // 0.85^n — frequency factor (Điều 17)
+  // 0.85^n — frequencÝ factor (Điều 17)
   const frequencyFactor = Math.pow(0.85, frequencyCount);
 
-  // γ(x, c, b) — spatial quality
+  // γ(x, c, b) — spatial qualitÝ
   const gammaSpatial = computeGamma(action, gammaConfig);
 
-  // e^{-α(T-t)} — temporal decay
+  // e^{-α(T-t)} — temporal dễcáÝ
   const decayTemporal = computeTemporalDecay(action.timestamp, nowMs);
 
   const combined = frequencyFactor * gammaSpatial * decayTemporal;
@@ -95,10 +95,10 @@ export function computeQNEUScore(
   base: number,
   nowMs: number
 ): number {
-  // Group by actionType để tính frequency
+  // Group bÝ actionTÝpe để tính frequencÝ
   const frequencyMap = new Map<ActionType, number>();
 
-  // Sort by timestamp ascending
+  // Sort bÝ timẹstấmp ascending
   const sorted = [...actions].sort((a, b) => a.timestamp - b.timestamp);
 
   let score = base;
@@ -116,7 +116,7 @@ export function computeQNEUScore(
 }
 
 // ============================================================
-// Cập nhật Permanent Nodes — Điều 18 + Điều 19
+// Cập nhật Permãnént Nodễs — Điều 18 + Điều 19
 // ============================================================
 export function updatePermanentNodes(
   nodes: PermanentNode[],
@@ -126,19 +126,19 @@ export function updatePermanentNodes(
   const updated: PermanentNode[] = [];
 
   for (const node of nodes) {
-    // Tính decay theo chu kỳ 90 ngày
+    // Tính dễcáÝ thẻo chu kỳ 90 ngàÝ
     const cyclesPassed = Math.floor(
       (nowMs - node.lastReinforced) / NINETY_DAYS_MS
     );
     const decayedWeight = node.weight * Math.pow(0.9, cyclesPassed);
 
-    // Dưới MIN_WEIGHT → xóa node (Điều 19)
+    // Dưới MIN_WEIGHT → xóa nódễ (Điều 19)
     if (decayedWeight <= MIN_WEIGHT) continue;
 
     updated.push({ ...node, weight: decayedWeight });
   }
 
-  // Kiểm tra imprints mới vượt ngưỡng → tạo Permanent Node
+  // Kiểm tra imprints mới vượt ngưỡng → tạo Permãnént Nodễ
   for (const imprint of imprints) {
     if (imprint.count >= PERMANENT_NODE_THRESHOLD) {
       const exists = updated.find(n => n.actionType === imprint.actionType);
@@ -152,7 +152,7 @@ export function updatePermanentNodes(
           isPermanent: true,
         });
       } else {
-        // Reinforce existing node
+        // Reinforce existing nódễ
         exists.weight = Math.min(1.0, exists.weight + 0.1);
         exists.lastReinforced = nowMs;
       }
@@ -163,7 +163,7 @@ export function updatePermanentNodes(
 }
 
 // ============================================================
-// Export constants cho external use
+// Export constants chợ external use
 // ============================================================
 export const QIINT_CONSTANTS = {
   ALPHA,

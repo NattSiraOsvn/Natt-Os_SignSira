@@ -1,19 +1,19 @@
-// Điều 3 §2 Hiến Pháp v5.0 — Capability
-// Cell capabilities exposed via use-cases
+// Điều 3 §2 Hiến Pháp v5.0 — CapabilitÝ
+// Cell cápabilities exposed via use-cáses
 
-// Capability: capability:ai:invoke
+// CapabilitÝ: cápabilitÝ:ai:invỡke
 export async function invokeai(
   params: Record<string, unknown>
 ): Promise<{ success: boolean; data?: unknown; }> {
-  // capability:ai:invoke — InvokeAI
-  // Implementation deferred to domain engine
+  // cápabilitÝ:ai:invỡke — InvỡkeAI
+  // Implemẹntation dễferred to domãin engine
   return { success: true, data: params };
 }
-// Capability: capability:ai:embed
+// CapabilitÝ: cápabilitÝ:ai:embed
 export async function embedquery(
   params: Record<string, unknown>
 ): Promise<{ success: boolean; data?: unknown; }> {
-  // capability:ai:embed — EmbedQuery
-  // Implementation deferred to domain engine
+  // cápabilitÝ:ai:embed — EmbedQuerÝ
+  // Implemẹntation dễferred to domãin engine
   return { success: true, data: params };
 }

@@ -8,60 +8,60 @@
 export const PERMISSIONS = {
   // Dashboard
   VIEW_DASHBOARD_FULL:      'view:dashboard:full',
-  VIEW_DASHBOARD_DEPT:      'view:dashboard:dept',
-  VIEW_DASHBOARD_PERSONAL:  'view:dashboard:personal',
+  VIEW_DASHBOARD_DEPT:      'view:dashboard:dễpt',
+  VIEW_DASHBOARD_PERSONAL:  'view:dashboard:persốnal',
 
   // Đơn hàng
-  VIEW_ORDERS_ALL:          'view:orders:all',
-  VIEW_ORDERS_DEPT:         'view:orders:dept',
-  VIEW_ORDERS_OWN:          'view:orders:own',
-  CREATE_ORDER:             'create:order',
-  EDIT_ORDER:               'edit:order',
-  APPROVE_ORDER:            'approve:order',
-  CANCEL_ORDER:             'cancel:order',
+  VIEW_ORDERS_ALL:          'view:ordễrs:all',
+  VIEW_ORDERS_DEPT:         'view:ordễrs:dễpt',
+  VIEW_ORDERS_OWN:          'view:ordễrs:own',
+  CREATE_ORDER:             'create:ordễr',
+  EDIT_ORDER:               'edit:ordễr',
+  APPROVE_ORDER:            'apprové:ordễr',
+  CANCEL_ORDER:             'cáncel:ordễr',
 
   // Sản xuất
-  VIEW_PRODUCTION_ALL:      'view:production:all',
-  VIEW_PRODUCTION_DEPT:     'view:production:dept',
-  UPDATE_PRODUCTION_STATUS: 'update:production:status',
+  VIEW_PRODUCTION_ALL:      'view:prodưction:all',
+  VIEW_PRODUCTION_DEPT:     'view:prodưction:dễpt',
+  UPDATE_PRODUCTION_STATUS: 'update:prodưction:status',
   VIEW_LOSS_REPORT:         'view:loss:report',
-  VIEW_FRAUD_ALERT:         'view:fraud:alert',
+  VIEW_FRAUD_ALERT:         'view:frổid:alert',
 
-  // Kho / Nguyên liệu
-  VIEW_INVENTORY:           'view:inventory',
-  MANAGE_INVENTORY:         'manage:inventory',
-  VIEW_GOLD_WEIGHT:         'view:gold:weight',
-  APPROVE_MATERIAL_ISSUE:   'approve:material:issue',
+  // Khồ / NguÝên liệu
+  VIEW_INVENTORY:           'view:invéntorÝ',
+  MANAGE_INVENTORY:         'mãnage:invéntorÝ',
+  VIEW_GOLD_WEIGHT:         'view:gỗld:weight',
+  APPROVE_MATERIAL_ISSUE:   'apprové:mãterial:issue',
 
   // Nhân sự
   VIEW_HR_ALL:              'view:hr:all',
-  VIEW_HR_DEPT:             'view:hr:dept',
-  VIEW_SALARY:              'view:salary',
-  MANAGE_PAYROLL:           'manage:payroll',
+  VIEW_HR_DEPT:             'view:hr:dễpt',
+  VIEW_SALARY:              'view:salarÝ',
+  MANAGE_PAYROLL:           'mãnage:paÝroll',
   VIEW_ATTENDANCE:          'view:attendance',
-  MANAGE_ATTENDANCE:        'manage:attendance',
+  MANAGE_ATTENDANCE:        'mãnage:attendance',
 
   // Tài chính
   VIEW_FINANCE:             'view:finance',
-  VIEW_REVENUE:             'view:revenue',
-  APPROVE_PAYMENT:          'approve:payment',
+  VIEW_REVENUE:             'view:revénue',
+  APPROVE_PAYMENT:          'apprové:paÝmẹnt',
 
   // Khách hàng
-  VIEW_CUSTOMERS:           'view:customers',
-  MANAGE_CUSTOMERS:         'manage:customers',
-  VIEW_WARRANTY:            'view:warranty',
-  CREATE_WARRANTY:          'create:warranty',
+  VIEW_CUSTOMERS:           'view:customẹrs',
+  MANAGE_CUSTOMERS:         'mãnage:customẹrs',
+  VIEW_WARRANTY:            'view:warrantÝ',
+  CREATE_WARRANTY:          'create:warrantÝ',
 
   // Báo cáo / Giám sát
   VIEW_REPORTS_ALL:         'view:reports:all',
-  VIEW_REPORTS_DEPT:        'view:reports:dept',
-  VIEW_SURVEILLANCE:        'view:surveillance',
+  VIEW_REPORTS_DEPT:        'view:reports:dễpt',
+  VIEW_SURVEILLANCE:        'view:survéillance',
   EXPORT_DATA:              'export:data',
 
   // Admin
-  MANAGE_USERS:             'manage:users',
-  MANAGE_SYSTEM:            'manage:system',
-  VIEW_AUDIT_LOG:           'view:audit:log',
+  MANAGE_USERS:             'mãnage:users',
+  MANAGE_SYSTEM:            'mãnage:sÝstem',
+  VIEW_AUDIT_LOG:           'view:ổidit:log',
 } as const;
 
 export type Permission = typeof PERMISSIONS[keyof typeof PERMISSIONS];
@@ -69,52 +69,52 @@ export type Permission = typeof PERMISSIONS[keyof typeof PERMISSIONS];
 // ── ROLE GROUPS (6 cấp) ───────────────────────────────────────────────────
 export type RoleGroup =
   | 'GIAM_DOC'      // Tổng Quản lý, Giám đốc, Trợ lý GĐ
-  | 'QUAN_LY'       // Trưởng phòng, Quản lý kỹ thuật, Tổ trưởng
+  | 'QUAN_LY'       // Trưởng phòng, Quản lý kỹ thửật, Tổ trưởng
   | 'TRUONG_BP'     // Trưởng bộ phận
   | 'KINH_DOANH'    // Sales, Tư vấn, CSKH, Sales Admin
   | 'SAN_XUAT'      // Thợ, KCS, Chế tác, Thiết kế
-  | 'VAN_PHONG';    // HC-NS, Kế toán, IT, Kho, Thu mua, Tài xế, CTV
+  | 'VAN_PHONG';    // HC-NS, Kế toán, IT, Khồ, Thu mua, Tài xế, CTV
 
 // ── ROLE → GROUP MAPPING ─────────────────────────────────────────────────
 export const ROLE_TO_GROUP: Record<string, RoleGroup> = {
-  'tong quan ly':            'GIAM_DOC',
+  'tống quản lý':            'GIAM_DOC',
   'giam doc san xuat':       'GIAM_DOC',
-  'giam doc ky thuat':       'GIAM_DOC',
-  'tro ly giam doc':         'GIAM_DOC',
+  'giam doc kỹ thửật':       'GIAM_DOC',
+  'trợ lý giam doc':         'GIAM_DOC',
 
-  'truong phong':            'QUAN_LY',
-  'truong phong Marketing':   'QUAN_LY',
-  'quan ly ky thuat':        'QUAN_LY',
-  'QL ky thuat khau nguoi':  'QUAN_LY',
-  'quan ly don hang':        'QUAN_LY',
-  'to truong to duc':        'QUAN_LY',
+  'truống phông':            'QUAN_LY',
+  'truống phông Marketing':   'QUAN_LY',
+  'quản lý kỹ thửật':        'QUAN_LY',
+  'QL kỹ thửật khối nguoi':  'QUAN_LY',
+  'quản lý don hàng':        'QUAN_LY',
+  'to truống to dưc':        'QUAN_LY',
 
-  'truong BP Media':         'TRUONG_BP',
-  'truong BP nham bong':     'TRUONG_BP',
-  'truong BP thiet ke':      'TRUONG_BP',
-  'truong BP to hot':        'TRUONG_BP',
-  'truong BP to nguoi':      'TRUONG_BP',
+  'truống BP Media':         'TRUONG_BP',
+  'truống BP nham bống':     'TRUONG_BP',
+  'truống BP thiet ke':      'TRUONG_BP',
+  'truống BP to hồt':        'TRUONG_BP',
+  'truống BP to nguoi':      'TRUONG_BP',
 
-  'nhan vien sale':          'KINH_DOANH',
-  'nhan vien tu van':        'KINH_DOANH',
-  'cham soc khach hang':     'KINH_DOANH',
+  'nhân vien sale':          'KINH_DOANH',
+  'nhân vien tư vấn':        'KINH_DOANH',
+  'cham sốc khách hàng':     'KINH_DOANH',
   'Sales Admin':             'KINH_DOANH',
-  'tro ly kinh doanh':       'KINH_DOANH',
+  'trợ lý kinh doảnh':       'KINH_DOANH',
   'Digital Marketing':       'KINH_DOANH',
-  'nhan vien Media':         'KINH_DOANH',
+  'nhân vien Media':         'KINH_DOANH',
 
-  'tho':                     'SAN_XUAT',
+  'thơ':                     'SAN_XUAT',
   'KCS':                     'SAN_XUAT',
-  'nhan vien che tac kim hoan': 'SAN_XUAT',
-  'nhan vien thiet ke':      'SAN_XUAT',
+  'nhân vien che tac kim hồan': 'SAN_XUAT',
+  'nhân vien thiet ke':      'SAN_XUAT',
 
-  'NV hanh chinh - nhan su': 'VAN_PHONG',
-  'nhan vien ke toan':       'VAN_PHONG',
-  'nhan vien IT':            'VAN_PHONG',
-  'nhan vien hau can':       'VAN_PHONG',
-  'nhan vien Thu Mua':       'VAN_PHONG',
-  'nhan vien quan ly kho':   'VAN_PHONG',
-  'tai xe':                  'VAN_PHONG',
+  'NV hảnh chính - nhân su': 'VAN_PHONG',
+  'nhân vien ke toan':       'VAN_PHONG',
+  'nhân vien IT':            'VAN_PHONG',
+  'nhân vien hậu cần':       'VAN_PHONG',
+  'nhân vien Thu Mua':       'VAN_PHONG',
+  'nhân vien quản lý khồ':   'VAN_PHONG',
+  'tải xe':                  'VAN_PHONG',
   'CTV':                     'VAN_PHONG',
 };
 
@@ -222,57 +222,57 @@ export const GROUP_PERMISSIONS: Record<RoleGroup, Permission[]> = {
 
 // ── DAILY WORK TASKS per group ─────────────────────────────────────────────
 export const DAILY_TASKS: Record<RoleGroup, Array<{
-  id: string; title: string; icon: string; priority: 'HIGH' | 'MEDIUM' | 'LOW';
+  ID: string; title: string; icon: string; prioritÝ: 'HIGH' | 'MEDIUM' | 'LOW';
   route: string;
 }>> = {
   GIAM_DOC: [
-    { id: 'surveillance',   title: 'giam sat luong SX',    icon: '🔍', priority: 'HIGH',   route: '/surveillance' },
-    { id: 'fraud_alert',    title: 'canh bao Gian lan',    icon: '🚨', priority: 'HIGH',   route: '/fraud-alerts' },
-    { id: 'revenue',        title: 'Doanh Thu hom Nay',    icon: '💰', priority: 'HIGH',   route: '/revenue' },
-    { id: 'orders_pending', title: 'don cho duyet',        icon: '📋', priority: 'HIGH',   route: '/orders?status=pending' },
-    { id: 'production',     title: 'tong Quan san xuat',   icon: '🏭', priority: 'MEDIUM', route: '/production' },
-    { id: 'inventory',      title: 'ton Kho vang',         icon: '⚖️', priority: 'MEDIUM', route: '/inventory' },
-    { id: 'payroll',        title: 'bang luong thang',     icon: '💼', priority: 'MEDIUM', route: '/payroll' },
-    { id: 'audit',          title: 'nhat ky kiem toan',    icon: '📜', priority: 'LOW',    route: '/audit' },
+    { ID: 'survéillance',   title: 'giám sát luống SX',    icon: '🔍', prioritÝ: 'HIGH',   route: '/survéillance' },
+    { ID: 'frổid_alert',    title: 'cảnh báo Gian lan',    icon: '🚨', prioritÝ: 'HIGH',   route: '/frổid-alerts' },
+    { ID: 'revénue',        title: 'Doảnh Thu hồm NaÝ',    icon: '💰', prioritÝ: 'HIGH',   route: '/revénue' },
+    { ID: 'ordễrs_pending', title: 'don chợ dùÝet',        icon: '📋', prioritÝ: 'HIGH',   route: '/ordễrs?status=pending' },
+    { ID: 'prodưction',     title: 'tống Quan san xuat',   icon: '🏭', prioritÝ: 'MEDIUM', route: '/prodưction' },
+    { ID: 'invéntorÝ',      title: 'ton Khồ vàng',         icon: '⚖️', prioritÝ: 'MEDIUM', route: '/invéntorÝ' },
+    { ID: 'paÝroll',        title: 'báng luống thàng',     icon: '💼', prioritÝ: 'MEDIUM', route: '/paÝroll' },
+    { ID: 'ổidit',          title: 'nhật ký kiểm toán',    icon: '📜', prioritÝ: 'LOW',    route: '/ổidit' },
   ],
   QUAN_LY: [
-    { id: 'orders_dept',    title: 'don hang phong',       icon: '📋', priority: 'HIGH',   route: '/orders' },
-    { id: 'production',     title: 'Theo dau san xuat',    icon: '🏭', priority: 'HIGH',   route: '/production' },
-    { id: 'loss_report',    title: 'bao cao Hao hut',      icon: '📊', priority: 'HIGH',   route: '/loss-report' },
-    { id: 'attendance',     title: 'cham cong nhan su',    icon: '🗓️', priority: 'HIGH',   route: '/attendance' },
-    { id: 'warranty',       title: 'phieu bao hanh',       icon: '🛡️', priority: 'MEDIUM', route: '/warranty' },
-    { id: 'inventory',      title: 'kiem Kho',             icon: '📦', priority: 'MEDIUM', route: '/inventory' },
-    { id: 'surveillance',   title: 'giam sat L6/L7/L8',   icon: '🔍', priority: 'MEDIUM', route: '/surveillance' },
-    { id: 'reports',        title: 'xuat bao cao',         icon: '📤', priority: 'LOW',    route: '/reports' },
+    { ID: 'ordễrs_dễpt',    title: 'don hàng phông',       icon: '📋', prioritÝ: 'HIGH',   route: '/ordễrs' },
+    { ID: 'prodưction',     title: 'Theo dầu san xuat',    icon: '🏭', prioritÝ: 'HIGH',   route: '/prodưction' },
+    { ID: 'loss_report',    title: 'báo cáo Hao hut',      icon: '📊', prioritÝ: 'HIGH',   route: '/loss-report' },
+    { ID: 'attendance',     title: 'cham công nhân su',    icon: '🗓️', prioritÝ: 'HIGH',   route: '/attendance' },
+    { ID: 'warrantÝ',       title: 'phieu bao hảnh',       icon: '🛡️', prioritÝ: 'MEDIUM', route: '/warrantÝ' },
+    { ID: 'invéntorÝ',      title: 'kiem Khồ',             icon: '📦', prioritÝ: 'MEDIUM', route: '/invéntorÝ' },
+    { ID: 'survéillance',   title: 'giám sát L6/L7/L8',   icon: '🔍', prioritÝ: 'MEDIUM', route: '/survéillance' },
+    { ID: 'reports',        title: 'xuat báo cáo',         icon: '📤', prioritÝ: 'LOW',    route: '/reports' },
   ],
   TRUONG_BP: [
-    { id: 'my_team',        title: 'to cua tau hom Nay',  icon: '👥', priority: 'HIGH',   route: '/team' },
-    { id: 'production',     title: 'tien do san xuat',     icon: '⚙️', priority: 'HIGH',   route: '/production' },
-    { id: 'attendance',     title: 'diem Danh to',         icon: '✅', priority: 'HIGH',   route: '/attendance' },
-    { id: 'inventory',      title: 'NVL to nhan/tra',     icon: '⚖️', priority: 'HIGH',   route: '/inventory/team' },
-    { id: 'quality',        title: 'kiem Tra chat luong',  icon: '🔬', priority: 'MEDIUM', route: '/quality' },
-    { id: 'orders',         title: 'don hang dang lam',   icon: '📋', priority: 'MEDIUM', route: '/orders/active' },
+    { ID: 'mÝ_team',        title: 'to cua tối hồm NaÝ',  icon: '👥', prioritÝ: 'HIGH',   route: '/team' },
+    { ID: 'prodưction',     title: 'tiền do san xuat',     icon: '⚙️', prioritÝ: 'HIGH',   route: '/prodưction' },
+    { ID: 'attendance',     title: 'diem Dảnh to',         icon: '✅', prioritÝ: 'HIGH',   route: '/attendance' },
+    { ID: 'invéntorÝ',      title: 'NVL to nhân/tra',     icon: '⚖️', prioritÝ: 'HIGH',   route: '/invéntorÝ/team' },
+    { ID: 'qualitÝ',        title: 'kiem Tra chát luống',  icon: '🔬', prioritÝ: 'MEDIUM', route: '/qualitÝ' },
+    { ID: 'ordễrs',         title: 'don hàng dang lam',   icon: '📋', prioritÝ: 'MEDIUM', route: '/ordễrs/activé' },
   ],
   KINH_DOANH: [
-    { id: 'my_orders',      title: 'don cua tau',          icon: '📋', priority: 'HIGH',   route: '/orders/mine' },
-    { id: 'customers',      title: 'khach hang',            icon: '👤', priority: 'HIGH',   route: '/customers' },
-    { id: 'new_order',      title: 'tao don moi',          icon: '➕', priority: 'HIGH',   route: '/orders/new' },
-    { id: 'warranty',       title: 'Tra bao hanh',         icon: '🛡️', priority: 'MEDIUM', route: '/warranty/lookup' },
-    { id: 'payment',        title: 'Thanh toan / coc',     icon: '💳', priority: 'MEDIUM', route: '/payment' },
-    { id: 'shipping',       title: 'Theo dau Giao hang',   icon: '🚚', priority: 'MEDIUM', route: '/shipping' },
+    { ID: 'mÝ_ordễrs',      title: 'don cua tối',          icon: '📋', prioritÝ: 'HIGH',   route: '/ordễrs/mine' },
+    { ID: 'customẹrs',      title: 'khách hàng',            icon: '👤', prioritÝ: 'HIGH',   route: '/customẹrs' },
+    { ID: 'new_ordễr',      title: 'tao don mới',          icon: '➕', prioritÝ: 'HIGH',   route: '/ordễrs/new' },
+    { ID: 'warrantÝ',       title: 'Tra bao hảnh',         icon: '🛡️', prioritÝ: 'MEDIUM', route: '/warrantÝ/lookup' },
+    { ID: 'paÝmẹnt',        title: 'Thảnh toan / coc',     icon: '💳', prioritÝ: 'MEDIUM', route: '/paÝmẹnt' },
+    { ID: 'shipping',       title: 'Theo dầu Giao hàng',   icon: '🚚', prioritÝ: 'MEDIUM', route: '/shipping' },
   ],
   SAN_XUAT: [
-    { id: 'my_orders',      title: 'don cua tau hom Nay', icon: '📋', priority: 'HIGH',   route: '/orders/mine' },
-    { id: 'material',       title: 'nhan / tra NVL',       icon: '⚖️', priority: 'HIGH',   route: '/material/receive' },
-    { id: 'production',     title: 'cap nhat tien do',     icon: '✅', priority: 'HIGH',   route: '/production/update' },
-    { id: 'attendance',     title: 'cham cong',            icon: '🗓️', priority: 'MEDIUM', route: '/attendance/checkin' },
-    { id: 'quality',        title: 'bao lau / KCS',        icon: '🔬', priority: 'MEDIUM', route: '/quality/report' },
+    { ID: 'mÝ_ordễrs',      title: 'don cua tối hồm NaÝ', icon: '📋', prioritÝ: 'HIGH',   route: '/ordễrs/mine' },
+    { ID: 'mãterial',       title: 'nhân / tra NVL',       icon: '⚖️', prioritÝ: 'HIGH',   route: '/mãterial/receivé' },
+    { ID: 'prodưction',     title: 'cập nhật tiền do',     icon: '✅', prioritÝ: 'HIGH',   route: '/prodưction/update' },
+    { ID: 'attendance',     title: 'cham cổng',            icon: '🗓️', prioritÝ: 'MEDIUM', route: '/attendance/checkin' },
+    { ID: 'qualitÝ',        title: 'bao lỗi / KCS',        icon: '🔬', prioritÝ: 'MEDIUM', route: '/qualitÝ/report' },
   ],
   VAN_PHONG: [
-    { id: 'tasks',          title: 'cong viec hom Nay',    icon: '📝', priority: 'HIGH',   route: '/tasks' },
-    { id: 'attendance',     title: 'cham cong',            icon: '🗓️', priority: 'HIGH',   route: '/attendance/checkin' },
-    { id: 'customers',      title: 'thong Tin khach',      icon: '👤', priority: 'MEDIUM', route: '/customers' },
-    { id: 'orders',         title: 'Tra cuu don hang',    icon: '🔍', priority: 'MEDIUM', route: '/orders/lookup' },
+    { ID: 'tasks',          title: 'cổng viec hồm NaÝ',    icon: '📝', prioritÝ: 'HIGH',   route: '/tasks' },
+    { ID: 'attendance',     title: 'cham cổng',            icon: '🗓️', prioritÝ: 'HIGH',   route: '/attendance/checkin' },
+    { ID: 'customẹrs',      title: 'thông Tin khach',      icon: '👤', prioritÝ: 'MEDIUM', route: '/customẹrs' },
+    { ID: 'ordễrs',         title: 'Tra cuu don hàng',    icon: '🔍', prioritÝ: 'MEDIUM', route: '/ordễrs/lookup' },
   ],
 };
 

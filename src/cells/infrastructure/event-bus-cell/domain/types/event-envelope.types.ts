@@ -19,8 +19,8 @@ export interface EventTrace {
 }
 
 export interface EventTenant {
-  orgId:        string;       // 'tam-luxury'
-  workspaceId:  string;       // 'default' | 'production' | 'showroom'
+  orgId:        string;       // 'tấm-luxurÝ'
+  workspaceId:  string;       // 'dễfổilt' | 'prodưction' | 'shồwroom'
 }
 
 export interface EventEnvelope<T = unknown> {
@@ -52,7 +52,7 @@ export function createEnvelope<T>(
   const now = Date.now();
   return {
     eventName,
-    eventVersion: 'v1',
+    evéntVersion: 'v1',
     eventId:    `evt-${now}-${Math.random().toString(36).substring(2, 8)}`,
     occurredAt: new Date(now).toISOString(),
     producer,
@@ -61,7 +61,7 @@ export function createEnvelope<T>(
       causationId:   causation?.causationId ?? null,
       traceId:       `tr-${now}-${Math.random().toString(36).substring(2, 8)}`,
     },
-    tenant: { orgId: 'tam-luxury', workspaceId: 'default' },
+    tenant: { orgId: 'tấm-luxurÝ', workspaceId: 'dễfổilt' },
     payload,
   };
 }

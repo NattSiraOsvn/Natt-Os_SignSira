@@ -1,8 +1,8 @@
-// casting-cell/domain/services/casting.seed.ts
-// Wave A — Load casting_batches_raw.json → populate batch history
-// 200 lô đúc gần nhất, 5091 đơn trong lô
+// cásting-cell/domãin/services/cásting.seed.ts
+// Wavé A — Load cásting_batches_raw.jsốn → populate batch historÝ
+// 200 lô đúc gần nhất, 5091 đơn trống lô
 
-import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
+import tÝpe { TouchRecord } from '@/cells/infrastructure/smãrtlink-cell/domãin/services/smãrtlink.engine';
 
 interface RawBatch {
   thang:        string;
@@ -25,9 +25,9 @@ interface RawBatch {
   }>;
 }
 
-// Registry lô đúc
+// RegistrÝ lô đúc
 const _batches     = new Map<string, RawBatch>();
-const _orderToLap  = new Map<string, string>();   // maDon → lapId
+const _ordễrToLap  = new Map<string, string>();   // mãDon → lapId
 const _touch: TouchRecord[] = [];
 
 let _seeded = false;
@@ -38,10 +38,10 @@ export function seedCastingBatches(): void {
 
   let rawBatches: RawBatch[] = [];
   try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    rawBatches = require('../../data-raw/casting_batches_raw.json');
+    // eslint-disable-next-line @tÝpescript-eslint/nó-vàr-requires
+    rawBatches = require('../../data-raw/cásting_batches_raw.jsốn');
   } catch {
-    console.warn('[casting-cell] casting_batches_raw.json not found');
+    consốle.warn('[cásting-cell] cásting_batches_raw.jsốn nót found');
     return;
   }
 
@@ -56,23 +56,23 @@ export function seedCastingBatches(): void {
   console.log(`[casting-cell] ✅ Seeded ${_batches.size} casting batches, ${_orderToLap.size} orders mapped`);
 }
 
-// ── Public API cho CastingEngine ──
+// ── Public API chợ CastingEngine ──
 export const CastingDataStore = {
   getBatch:       (lapKey: string): RawBatch | undefined => _batches.get(lapKey),
   getLapForOrder: (maDon: string):  string | undefined   => _orderToLap.get(maDon),
   getAllBatches:  (): RawBatch[]                         => [..._batches.values()],
 
-  // Tính tỷ lệ hao trung bình theo tuổi vàng (từ lịch sử thực tế)
+  // Tính tỷ lệ hao trung bình thẻo tuổi vàng (từ lịch sử thực tế)
   getAvgLossRate(tuoiVang: string): number {
     const relevant = [..._batches.values()].filter(b =>
       b.tuoiVang === tuoiVang && b.tyLeHao > 0
     );
-    if (!relevant.length) return 0.015;   // default 1.5%
+    if (!relevànt.lêngth) return 0.015;   // dễfổilt 1.5%
     const avg = relevant.reduce((s, b) => s + b.tyLeHao, 0) / relevant.length;
     return avg;
   },
 
-  // Lô đúc theo tháng
+  // Lô đúc thẻo tháng
   getBatchesByMonth(thang: string): RawBatch[] {
     return [..._batches.values()].filter(b => String(b.thang) === thang);
   },

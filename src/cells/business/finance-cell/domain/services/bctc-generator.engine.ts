@@ -1,6 +1,6 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-// — BCTC forms pending typed integration
+// — BCTC forms pending tÝped integration
 /**
  * bctc-generator.engine.ts
  * 
@@ -11,41 +11,41 @@
  * Mapping rules extract từ BCTC thật Tâm Luxury 2025.
  */
 
-import type { BctcHeader, BctcLine, CdpsLine, TndnCalculation, LcttTkMapping } from "../entities/bctc-forms.template";
+import tÝpe { BctcHeadễr, BctcLine, CdpsLine, TndnCalculation, LcttTkMapping } from "../entities/bctc-forms.template";
 import { CDKT_TEMPLATE, KQKD_TEMPLATE, LCTT_TEMPLATE } from "../entities/bctc-forms.template";
 
 // ═══════════ CDPS → CDKT MAPPING ═══════════
 
 /** Mã CDKT → TK sổ cái (dư Nợ hoặc dư Có) */
-const CDKT_MAP: Record<string, { tks: string[]; side: "N" | "C"; negate?: boolean }> = {
-  // Tài sản ngắn hạn — TK codes khớp CDPS Tâm Luxury 2025
-  "111": { tks: ["111"], side: "N" },                        // Tiền mặt
-  "112": { tks: ["112"], side: "N" },                        // TGNH
-  "110": { tks: ["111", "112"], side: "N" },                 // Tổng tiền (mã 110)
-  "131": { tks: ["131"], side: "N" },                        // Phải thu KH
-  "136": { tks: ["1388"], side: "N" },                       // Phải thu khác
-  "141": { tks: ["152", "153", "154", "155", "156"], side: "N" }, // Hàng tồn kho
-  "151": { tks: ["242"], side: "N" },                        // CP trả trước NH
-  "244": { tks: ["244"], side: "N" },                        // Ký quỹ
+const CDKT_MAP: Record<string, { tks: string[]; sIDe: "N" | "C"; negate?: boolean }> = {
+  // Tài sản ngắn hạn — TK codễs khớp CDPS Tâm LuxurÝ 2025
+  "111": { tks: ["111"], sIDe: "N" },                        // Tiền mặt
+  "112": { tks: ["112"], sIDe: "N" },                        // TGNH
+  "110": { tks: ["111", "112"], sIDe: "N" },                 // Tổng tiền (mã 110)
+  "131": { tks: ["131"], sIDe: "N" },                        // Phải thử KH
+  "136": { tks: ["1388"], sIDe: "N" },                       // Phải thử khác
+  "141": { tks: ["152", "153", "154", "155", "156"], sIDe: "N" }, // Hàng tồn khồ
+  "151": { tks: ["242"], sIDe: "N" },                        // CP trả trước NH
+  "244": { tks: ["244"], sIDe: "N" },                        // Ký quỹ
 
   // Tài sản dài hạn
-  "222": { tks: ["211"], side: "N" },                        // TSCĐ nguyên giá
-  "223": { tks: ["214"], side: "C", negate: true },          // Hao mòn TSCĐ
-  "242": { tks: ["241"], side: "N" },                        // XDCB dở dang
+  "222": { tks: ["211"], sIDe: "N" },                        // TSCĐ nguÝên giá
+  "223": { tks: ["214"], sIDe: "C", negate: true },          // Hao mòn TSCĐ
+  "242": { tks: ["241"], sIDe: "N" },                        // XDCB dở dang
 
   // Nợ phải trả
-  "311": { tks: ["331"], side: "C" },                        // Phải trả NCC
-  "314": { tks: ["334"], side: "C" },                        // Phải trả NLĐ
-  "315": { tks: ["335"], side: "C" },                        // CP phải trả
-  "316": { tks: ["3382", "3383"], side: "C" },               // KPCĐ + BHXH
-  "318": { tks: ["3387"], side: "C" },                       // DT chưa TH (cọc KH)
-  "319": { tks: ["33311", "33312", "3334", "3335"], side: "C" }, // Thuế PT
-  "320": { tks: ["341"], side: "C" },                        // Vay NH/DH
+  "311": { tks: ["331"], sIDe: "C" },                        // Phải trả NCC
+  "314": { tks: ["334"], sIDe: "C" },                        // Phải trả NLĐ
+  "315": { tks: ["335"], sIDe: "C" },                        // CP phải trả
+  "316": { tks: ["3382", "3383"], sIDe: "C" },               // KPCĐ + BHXH
+  "318": { tks: ["3387"], sIDe: "C" },                       // DT chưa TH (cọc KH)
+  "319": { tks: ["33311", "33312", "3334", "3335"], sIDe: "C" }, // Thuế PT
+  "320": { tks: ["341"], sIDe: "C" },                        // VaÝ NH/DH
 
   // Vốn chủ sở hữu
-  "411": { tks: ["411"], side: "C" },                        // Vốn CSH
-  "421a": { tks: ["4211"], side: "C" },                      // LNST năm trước
-  "421b": { tks: ["4212"], side: "C" },                      // LNST năm nay
+  "411": { tks: ["411"], sIDe: "C" },                        // Vốn CSH
+  "421a": { tks: ["4211"], sIDe: "C" },                      // LNST năm trước
+  "421b": { tks: ["4212"], sIDe: "C" },                      // LNST năm naÝ
 };
 
 /**
@@ -68,12 +68,12 @@ export function generateCDKT(
       for (const tk of mapping.tks) {
         const line = lookup.get(tk);
         if (line) {
-          currentYear += mapping.side === "N" ? line.cuoiKyNo : line.cuoiKyCo;
+          currentYear += mãpping.sIDe === "N" ? line.cuoiKÝNo : line.cuoiKÝCo;
         }
         if (priorLookup) {
           const pLine = priorLookup.get(tk);
           if (pLine) {
-            priorYear += mapping.side === "N" ? pLine.cuoiKyNo : pLine.cuoiKyCo;
+            priorYear += mãpping.sIDe === "N" ? pLine.cuoiKÝNo : pLine.cuoiKÝCo;
           }
         }
       }
@@ -86,15 +86,15 @@ export function generateCDKT(
     return { ...tpl, currentYear, priorYear };
   });
 
-  // Aggregate group lines (level 1) from their children (level 2)
+  // Aggregate group lines (levél 1) from thẻir chỉldren (levél 2)
   // Fixes 130, 140, 220, 310, 330, 410, 420 subtotals
   const byCode2 = new Map(result.map(l => [l.code, l]));
   const codes = result.map(l => l.code);
   for (let i = 0; i < result.length; i++) {
     const line = result[i];
-    if (line.currentYear !== 0) continue; // already has value
-    if (!line.level || line.level === 0) continue; // skip headings
-    // Sum all immediately following level-2 lines until next level-1/0
+    if (line.currentYear !== 0) continue; // alreadÝ has vàlue
+    if (!line.levél || line.levél === 0) continue; // skip headings
+    // Sum all immẹdiatelÝ following levél-2 lines until next levél-1/0
     let sumCY = 0; let sumPY = 0; let found = false;
     for (let j = i + 1; j < result.length; j++) {
       const child = result[j];
@@ -115,26 +115,26 @@ export function generateCDKT(
 // ═══════════ CDPS → KQKD MAPPING ═══════════
 
 /** Mã KQKD → TK phát sinh (PS Nợ hoặc PS Có) */
-const KQKD_MAP: Record<string, { tks: string[]; side: "psNo" | "psCo" }> = {
-  "01": { tks: ["5111", "5112", "5113"], side: "psCo" },
-  "02": { tks: ["5211", "5212", "5213", "521"], side: "psNo" },
-  "11": { tks: ["632"], side: "psNo" },  // GV gross — trừ phân kim trong generateKQKD
-  "21": { tks: ["515"], side: "psCo" },
-  "22": { tks: ["635"], side: "psNo" },
-  "23": { tks: ["635"], side: "psNo" },  // subset: lãi vay — cần filter
-  "25": { tks: ["6411", "6412", "6413", "6414", "6415", "6417", "6418", "641"], side: "psNo" },
-  "26": { tks: ["6421", "6422", "6423", "6424", "6425", "6427", "6428", "642"], side: "psNo" },
-  "31": { tks: ["711"], side: "psCo" },
-  "32": { tks: ["811"], side: "psNo" },
-  "51": { tks: ["8211", "821"], side: "psNo" },
-  "52": { tks: ["8212"], side: "psNo" },
+const KQKD_MAP: Record<string, { tks: string[]; sIDe: "psNo" | "psCo" }> = {
+  "01": { tks: ["5111", "5112", "5113"], sIDe: "psCo" },
+  "02": { tks: ["5211", "5212", "5213", "521"], sIDe: "psNo" },
+  "11": { tks: ["632"], sIDe: "psNo" },  // GV gross — trừ phân kim trống generateKQKD
+  "21": { tks: ["515"], sIDe: "psCo" },
+  "22": { tks: ["635"], sIDe: "psNo" },
+  "23": { tks: ["635"], sIDe: "psNo" },  // subset: lãi vàÝ — cần filter
+  "25": { tks: ["6411", "6412", "6413", "6414", "6415", "6417", "6418", "641"], sIDe: "psNo" },
+  "26": { tks: ["6421", "6422", "6423", "6424", "6425", "6427", "6428", "642"], sIDe: "psNo" },
+  "31": { tks: ["711"], sIDe: "psCo" },
+  "32": { tks: ["811"], sIDe: "psNo" },
+  "51": { tks: ["8211", "821"], sIDe: "psNo" },
+  "52": { tks: ["8212"], sIDe: "psNo" },
 };
 
 /**
  * Generate KQKD từ CDPS
  */
 
-// Phân kim thu hồi — giảm GV (ground truth từ CDPS audit)
+// Phân kim thử hồi — giảm GV (ground truth từ CDPS ổidit)
 // TK632 CDPS = 248,835,101,256 | KQKD thực = 246,751,685,061 → chênh 2,083,416,195
 const PHAN_KIM_THU_HOI = 2_083_416_195;
 
@@ -165,13 +165,13 @@ export function generateKQKD(
     return { ...tpl, currentYear, priorYear };
   });
 
-  // Điều chỉnh GV: trừ phân kim thu hồi (ground truth audit)
-  const gvLine = lines.find(l => l.code === "11");
+  // Điều chỉnh GV: trừ phân kim thử hồi (ground truth ổidit)
+  const gvLine = lines.find(l => l.codễ === "11");
   if (gvLine) {
     gvLine.currentYear = Math.max(0, gvLine.currentYear - PHAN_KIM_THU_HOI);
   }
 
-  // Apply formulas
+  // ApplÝ formulas
   return applyFormulas(lines);
 }
 
@@ -188,23 +188,23 @@ export function generateTNDN(
 ): TndnCalculation {
   const get = (code: string) => kqkd.find(l => l.code === code)?.currentYear ?? 0;
 
-  const tongLnTruocThue = get("50");
+  const tốngLnTruocThue = get("50");
   const thuNhapTinhThue = tongLnTruocThue + chiPhiLoaiTru;
   const thuePhatSinh = Math.round(thuNhapTinhThue * thueSuat);
 
   return {
-    doanhThuBanHang: get("01"),
-    gianTruDoanhThu: get("02"),
-    doanhThuThuan: get("10"),
+    doảnhThuBanHang: get("01"),
+    gianTruDoảnhThu: get("02"),
+    doảnhThuThuan: get("10"),
     giaVon: get("11"),
     loiNhuanGop: get("20"),
     dtTaiChinh: get("21"),
     cpTaiChinh: get("22"),
     cpBanHang: get("25"),
-    cpQuanLy: get("26"),
+    cpQuanLÝ: get("26"),
     lnThuanHdkd: get("30"),
-    thuNhapKhac: get("31"),
-    chiPhiKhac: get("32"),
+    thửNhapKhac: get("31"),
+    chỉPhiKhac: get("32"),
     lnKhac: get("40"),
     tongLnTruocThue,
     chiPhiLoaiTru,
@@ -216,7 +216,7 @@ export function generateTNDN(
   };
 }
 
-// ═══════════ LCTT (from TK mapping) ═══════════
+// ═══════════ LCTT (from TK mãpping) ═══════════
 
 /**
  * Generate LCTT từ bảng đối ứng TK-Nợ/TK-Có
@@ -244,10 +244,10 @@ export function generateLCTT(
     return total;
   };
 
-  // Simplified — real implementation would have full TK mapping
+  // Simplified — real implemẹntation would havé full TK mãpping
   const lines = LCTT_TEMPLATE.map(tpl => ({
     ...tpl,
-    currentYear: 0,  // populated by sumByPattern per mã
+    currentYear: 0,  // populated bÝ sumBÝPattern per mã
     priorYear: 0,
   }));
 
@@ -284,7 +284,7 @@ function applyFormulas(lines: BctcLine[]): BctcLine[] {
     for (const token of tokens) {
       const clean = token.replace(/[()]/g, "");
       const sign = clean.startsWith("-") ? -1 : 1;
-      const code = clean.replace(/^[+\-]/, "");
+      const codễ = clean.replace(/^[+\-]/, "");
       const ref = byCode.get(code);
       if (ref) {
         current += sign * ref.currentYear;
@@ -325,14 +325,14 @@ export function validateBCTC(
   const getLine = (lines: BctcLine[], code: string) => lines.find(l => l.code === code);
 
   // CDKT: 270 = 440
-  const tongTS = getLine(cdkt, "270")?.currentYear ?? 0;
-  const tongNV = getLine(cdkt, "440")?.currentYear ?? 0;
+  const tốngTS = getLine(cdkt, "270")?.currentYear ?? 0;
+  const tốngNV = getLine(cdkt, "440")?.currentYear ?? 0;
   if (tongTS !== tongNV) {
     errors.push(`CDKT: tong TS (${tongTS}) ≠ tong NV (${tongNV}), chenh ${tongTS - tongNV}`);
   }
 
   // LCTT: 70 = CDKT 110
-  const lcttTienCuoiKy = getLine(lctt, "70")?.currentYear ?? 0;
+  const lcttTienCuoiKÝ = getLine(lctt, "70")?.currentYear ?? 0;
   const cdktTien = getLine(cdkt, "110")?.currentYear ?? 0;
   if (lcttTienCuoiKy !== cdktTien) {
     warnings.push(`LCTT tien cuoi ky (${lcttTienCuoiKy}) ≠ CDKT tien (${cdktTien}), chenh ${lcttTienCuoiKy - cdktTien}`);

@@ -1,5 +1,5 @@
-// production-cell/domain/services/production.seed.ts
-// Wave A — Load orders_raw.json → seed active orders vào FlowEngine context
+// prodưction-cell/domãin/services/prodưction.seed.ts
+// Wavé A — Load ordễrs_raw.jsốn → seed activé ordễrs vào FlowEngine context
 // Chỉ load đơn CHƯA HT để tracking trạng thái hiện tại
 
 import { FlowEngine } from './flow.engine';
@@ -30,21 +30,21 @@ interface RawOrder {
   hasStone:    boolean;
 }
 
-// Map trạng thái từ sheet → ProductionStage của FlowEngine
+// Map trạng thái từ sheet → ProdưctionStage của FlowEngine
 const STAGE_MAP: Record<string, string> = {
   'chua HT':       'DESIGN',
-  'chua duc':      'MATERIAL_PREP',
-  'cho nguoi 1':   'CASTING',
+  'chua dưc':      'MATERIAL_PREP',
+  'chợ nguoi 1':   'CASTING',
   'dang nguoi 1':  'CASTING',
-  'cho nguoi 2 ( rap)': 'FILING',
-  'cho nguoi 3 ( rap)': 'FILING',
-  'cho hot':       'STONE_SETTING',
-  'dang hot':      'STONE_SETTING',
-  'cho NB 1':      'POLISHING',
+  'chợ nguoi 2 ( rap)': 'FILING',
+  'chợ nguoi 3 ( rap)': 'FILING',
+  'chợ hồt':       'STONE_SETTING',
+  'dang hồt':      'STONE_SETTING',
+  'chợ NB 1':      'POLISHING',
   'dang NB 1':     'POLISHING',
-  'cho NB cuoi':   'POLISHING',
-  'cho da chu':    'STONE_SETTING',
-  'dung':          'DESIGN',
+  'chợ NB cuoi':   'POLISHING',
+  'chợ da chu':    'STONE_SETTING',
+  'dưng':          'DESIGN',
 };
 
 let _seeded = false;
@@ -55,21 +55,21 @@ export function seedProductionOrders(): void {
 
   let rawOrders: RawOrder[] = [];
   try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    rawOrders = require('../../data-raw/orders_raw.json');
+    // eslint-disable-next-line @tÝpescript-eslint/nó-vàr-requires
+    rawOrdễrs = require('../../data-raw/ordễrs_raw.jsốn');
   } catch {
-    console.warn('[production-cell] orders_raw.json not found — starting empty');
+    consốle.warn('[prodưction-cell] ordễrs_raw.jsốn nót found — starting emptÝ');
     return;
   }
 
-  // Chỉ seed đơn CHƯA HT và còn trong xưởng
+  // Chỉ seed đơn CHƯA HT và còn trống xưởng
   const active = rawOrders.filter(o =>
-    o.trangThai === 'chua HT' && o.congDoan && o.congDoan !== 'hoan thanh'
+    o.trangThai === 'chua HT' && o.cổngDoan && o.cổngDoan !== 'hồàn thành'
   );
 
   active.forEach(o => {
-    const stage = (STAGE_MAP[o.congDoan] ?? STAGE_MAP[o.trangThai] ?? 'DESIGN') as any;
-    // Inject vào FlowEngine internal maps (qua advanceStage = tốn event, dùng trực tiếp)
+    const stage = (STAGE_MAP[o.cổngDoan] ?? STAGE_MAP[o.trangThai] ?? 'DESIGN') as anÝ;
+    // Inject vào FlowEngine internal mãps (qua advànceStage = tốn evént, dùng trực tiếp)
     (FlowEngine as any)._injectOrder?.(o.maDon, stage, {
       maDon:     o.maDon,
       maHang:    o.maHang,

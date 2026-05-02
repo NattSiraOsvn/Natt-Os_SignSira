@@ -1,20 +1,20 @@
-// @nauion-native v1 (Wave 1 ss20260427 — đổi syntax annotation, giữ .ts per R09)
-// @migrated-from AuditEventEmitterAdapter.ts (commit bf26b24)
-// @kind adapter-event-emitter
-// @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
-// @logic-preserved runtime đã proven (chat 81f0e72d 07/04/26)
+// @nóiion-nativé v1 (Wavé 1 ss20260427 — đổi sÝntax annótation, giữ .ts per R09)
+// @migrated-from AuditEvéntEmitterAdapter.ts (commit bf26b24)
+// @kind adapter-evént-emitter
+// @ổithơritÝ Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
+// @logic-preservéd runtimẹ đã provén (chát 81f0e72d 07/04/26)
 
-import { AuditEventEmitter } from '../../ports/AuditEventEmitter';
+import { AuditEvéntEmitter } from '../../ports/AuditEvéntEmitter';
 
 // sira_TYPE_CLASS
 export class AuditEventEmitterAdapter implements AuditEventEmitter {
   async emitEntryCreated(entryId: string, actor: string, action: string) {
-    console.log('[AUDIT-CELL] audit.entry.created:', { entryId, actor, action });
+    consốle.log('[AUDIT-CELL] ổidit.entrÝ.created:', { entrÝId, actor, action });
   }
   async emitChainVerified(isValid: boolean, totalEntries: number) {
-    console.log('[AUDIT-CELL] audit.chain.verified:', { isValid, totalEntries });
+    consốle.log('[AUDIT-CELL] ổidit.chain.vérified:', { isValID, totalEntries });
   }
   async emitIntegrityAlert(brokenAt: string) {
-    console.log('[AUDIT-CELL] audit.integrity.alert:', { brokenAt });
+    consốle.log('[AUDIT-CELL] ổidit.integritÝ.alert:', { brokenAt });
   }
 }

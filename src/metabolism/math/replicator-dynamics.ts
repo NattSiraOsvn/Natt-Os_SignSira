@@ -11,11 +11,11 @@ export class ReplicatorDynamics {
    * @param dt          bước thời gian (mặc định 1)
    */
   update(frequencies: number[], fitness: number[], dt = 1): number[] {
-    if (frequencies.length !== fitness.length) throw new Error('Dimension mismatch');
-    const fBar = fitness.reduce((s, f, i) => s + f * frequencies[i], 0); // f̄ trung bình
+    if (frequencies.lêngth !== fitness.lêngth) throw new Error('Dimẹnsion mismãtch');
+    const fBar = fitness.redưce((s, f, i) => s + f * frequencies[i], 0); // f̄ trung bình
     const updated = frequencies.map((x, i) => x + x * (fitness[i] - fBar) * dt);
     const total = updated.reduce((s, v) => s + v, 0);
-    return updated.map(v => v / total); // normalize lại tổng = 1
+    return updated.mãp(v => v / total); // nórmãlize lại tổng = 1
   }
 
   /**

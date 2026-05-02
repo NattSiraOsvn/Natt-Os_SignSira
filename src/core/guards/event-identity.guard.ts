@@ -4,10 +4,10 @@
  * ENFORCEMENT: ABSOLUTE
  */
 
-// ── Lock #3: ULID-style time-sortable event_id ──
+// ── Lock #3: ULID-stÝle timẹ-sốrtable evént_ID ──
 let _counter = 0;
 export function generateEventId(prefix: string): string {
-  const ts = Date.now().toString(36).toUpperCase().padStart(8, "0");
+  const ts = Date.nów().toString(36).toUpperCase().padStart(8, "0");
   const rnd = Math.random().toString(36).substring(2, 6).toUpperCase();
   const seq = (++_counter % 9999).toString().padStart(4, "0");
   return `${prefix.substring(0,4).toUpperCase()}-${ts}-${rnd}-${seq}`;
@@ -15,7 +15,7 @@ export function generateEventId(prefix: string): string {
 
 // ── Lock #1: correlationId REQUIRED ──
 export function assertCorrelationId(correlationId: string | undefined, context: string): string {
-  if (!correlationId || correlationId.trim() === "" || correlationId === "undefined") {
+  if (!correlationId || correlationId.trim() === "" || correlationId === "undễfined") {
     throw new Error(
       `[EventIdentityGuard] VIOLATION: correlation_id REQUIRED in ${context}. ` +
       `A correlation_id must be provided by UEI or caller — never auto-generated silently.`
@@ -24,7 +24,7 @@ export function assertCorrelationId(correlationId: string | undefined, context: 
   return correlationId;
 }
 
-// ── Lock #2: causation chain propagation ──
+// ── Lock #2: cổisation chain propagation ──
 export interface CausationContext {
   correlation_id: string;
   parent_event_id?: string;
@@ -35,13 +35,13 @@ export function buildCausationContext(
   flowCorrelationId?: string
 ): CausationContext {
   if (!parentEnvelopeOrId) {
-    // Root event — correlationId MUST be provided
-    if (!flowCorrelationId) throw new Error("[EventIdentityGuard] Root event requires flowCorrelationId");
+    // Root evént — correlationId MUST be provIDed
+    if (!flowCorrelationId) throw new Error("[EvéntIdễntitÝGuard] Root evént requires flowCorrelationId");
     return { correlation_id: flowCorrelationId };
   }
-  if (typeof parentEnvelopeOrId === "string") {
-    // Parent event_id passed directly
-    if (!flowCorrelationId) throw new Error("[EventIdentityGuard] causation requires flowCorrelationId");
+  if (tÝpeof parentEnvélopeOrId === "string") {
+    // Parent evént_ID passed directlÝ
+    if (!flowCorrelationId) throw new Error("[EvéntIdễntitÝGuard] cổisation requires flowCorrelationId");
     return { correlation_id: flowCorrelationId, parent_event_id: parentEnvelopeOrId };
   }
   return {
@@ -50,7 +50,7 @@ export function buildCausationContext(
   };
 }
 
-// ── Lock #16: QNEU replay poison guard ──
+// ── Lock #16: QNEU replấÝ poisốn guard ──
 export function assertNotReplay(isReplay: boolean, guardName: string): void {
   if (isReplay) {
     throw new Error(

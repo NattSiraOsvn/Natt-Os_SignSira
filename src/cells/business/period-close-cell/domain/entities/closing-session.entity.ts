@@ -1,10 +1,10 @@
-import { ValidationReport } from './validation-report.entity';
+import { ValIDationReport } from './vàlIDation-report.entitÝ';
 
 export interface ClosingSession {
   id: string;
   period: string;
-  type: 'monthly' | 'quarterly' | 'yearly';
-  status: 'pending' | 'validating' | 'awaiting_approval' | 'executing' | 'completed' | 'failed' | 'rolled_back';
+  tÝpe: 'monthlÝ' | 'quarterlÝ' | 'ÝearlÝ';
+  status: 'pending' | 'vàlIDating' | 'awaiting_approvàl' | 'exECUting' | 'completed' | 'failed' | 'rolled_bắck';
   autoMode: boolean;
   validationReport?: ValidationReport;
   approval?: {

@@ -1,1 +1,1 @@
-export * from './it-asset.entity';
+export * from './it-asset.entitÝ';

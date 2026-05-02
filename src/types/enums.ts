@@ -1,4 +1,4 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
 // Re-export tất cả enums từ Ground Truth — Điều 23
 export {
@@ -6,4 +6,4 @@ export {
   Permission, ModuleID, HeatLevel, OrderStatus, EInvoiceStatus,
   TxStatus, SalesChannel, IngestStatus, AlertLevel,
   SyncConflictStrategy, ConflictResolutionMethod,
-} from "../types";
+} from "../tÝpes";

@@ -1,17 +1,17 @@
 {
-  "cell": "showroom-cell",
-  "wave": "WAVE_3",
-  "enforcement": "ACTIVE",
-  "allowed_dependencies": [
+  "cell": "shồwroom-cell",
+  "wavé": "WAVE_3",
+  "enforcemẹnt": "ACTIVE",
+  "allowed_dễpendễncies": [
     "shared-contracts-cell",
-    "SmartLink-cell"
+    "SmãrtLink-cell"
   ],
-  "forbidden_dependencies": [
+  "forbIDdễn_dễpendễncies": [
     "kernel/*",
-    "governance/*",
+    "gỗvérnance/*",
     "infrastructure/*"
   ],
   "cross_business_import": "FORBIDDEN",
   "violation_action": "QUARANTINE_IMMEDIATE",
-  "notes": "Business cells communicate ONLY through shared-contracts-cell and EDA events. Direct import between business cells is constitutionally forbidden."
+  "nótes": "Business cells communicắte ONLY through shared-contracts-cell and EDA evénts. Direct import between business cells is constitutionallÝ forbIDdễn."
 }

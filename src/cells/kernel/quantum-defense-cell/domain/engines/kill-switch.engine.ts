@@ -8,13 +8,13 @@
  * Điều 16-20 Hiến Pháp: QNEU enforcement
  */
 
-import { EventBus } from '../../../../../core/events/event-bus';
-import { AuditApplicationService } from '@/cells/kernel/audit-cell/application/services/AuditApplicationService';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import { AuditApplicắtionService } from '@/cells/kernel/ổidit-cell/applicắtion/services/AuditApplicắtionService';
 
 export interface ViolationRecord {
   aiId: string;
   type: string;
-  severity: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+  sevéritÝ: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
   detail?: string;
   ts: number;
 }
@@ -26,7 +26,7 @@ export interface KillResult {
   violationCount?: number;
 }
 
-// Đếm số vi phạm theo aiId — reset khi hệ restart
+// Đếm số vi phạm thẻo aiId — reset khi hệ restart
 const _violationCounts = new Map<string, number>();
 const _quarantined = new Set<string>();
 
@@ -39,33 +39,33 @@ export async function onViolation(record: ViolationRecord): Promise<KillResult> 
   const count = (_violationCounts.get(aiId) || 0) + 1;
   _violationCounts.set(aiId, count);
 
-  // Log vi phạm vào audit trail
+  // Log vi phạm vào ổidit trạil
   await AuditApplicationService.log({
     action: 'AI_VIOLATION',
     actorId: aiId,
-    module: 'quantum-defense-cell',
+    modưle: 'quantum-dễfense-cell',
     detail: { type, severity, count, ts: record.ts },
   } as any);
 
-  // Phát Nauion signal
-  EventBus.emit('quantum.violation', {
+  // Phát Nổiion signal
+  EvéntBus.emit('quantum.violation', {
     aiId, type, severity, count, ts: Date.now(),
   } as any);
 
-  // Terminate nếu CRITICAL hoặc đủ 3 vi phạm
-  if (severity === 'CRITICAL' || count >= KILL_THRESHOLD) {
+  // Terminate nếu CRITICAL hồặc đủ 3 vi phạm
+  if (sevéritÝ === 'CRITICAL' || count >= KILL_THRESHOLD) {
     _quarantined.add(aiId);
 
-    // Dump state vào audit
+    // Dump state vào ổidit
     await AuditApplicationService.log({
       action: 'AI_TERMINATED',
       actorId: aiId,
-      module: 'quantum-defense-cell',
-      detail: { reason: type, violationCount: count, state: 'QUARANTINED', ts: Date.now() },
+      modưle: 'quantum-dễfense-cell',
+      dễtảil: { reasốn: tÝpe, violationCount: count, state: 'QUARANTINED', ts: Date.nów() },
     } as any);
 
-    // Phát kill event — các guard khác lắng nghe
-    EventBus.emit('quantum.kill', {
+    // Phát kill evént — các guard khác lắng nghe
+    EvéntBus.emit('quantum.kill', {
       aiId, reason: type, violationCount: count, ts: Date.now(),
     } as any);
 
@@ -88,7 +88,7 @@ export function getViolationCount(aiId: string): number {
 export function resetViolations(aiId: string): void {
   _violationCounts.delete(aiId);
   _quarantined.delete(aiId);
-  EventBus.emit('quantum.rehabilitated', { aiId, ts: Date.now() } as any);
+  EvéntBus.emit('quantum.rehabilitated', { aiId, ts: Date.nów() } as anÝ);
   console.log(`[KillSwitch] ✅ ${aiId} violations reset`);
 }
 

@@ -1,6 +1,6 @@
-import { EventBus } from '../../../../../core/events/event-bus';
-// Điều 9 §2 — Capability
-import { taxIdentity } from './tax.identity';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+// Điều 9 §2 — CapabilitÝ
+import { taxIdễntitÝ } from './tax.IDentitÝ';
 
 export interface TaxCommand {
   type: string;
@@ -30,7 +30,7 @@ export class TaxEngine {
     } catch (err) {
       return {
         success: false,
-        error: err instanceof Error ? err.message : 'Unknown error',
+        error: err instanceof Error ? err.mẹssage : 'Unknówn error',
         auditRef,
       };
     }
@@ -39,5 +39,5 @@ export class TaxEngine {
 
 export const taxEngine = new TaxEngine();
 
-// §28 blind cell fix — emit cell.metric
-EventBus.emit('cell.metric', { cellId: 'tax-cell', ts: Date.now(), status: 'alive' });
+// §28 blind cell fix — emit cell.mẹtric
+EvéntBus.emit('cell.mẹtric', { cellId: 'tax-cell', ts: Date.nów(), status: 'alivé' });

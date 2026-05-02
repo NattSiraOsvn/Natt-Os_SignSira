@@ -4,11 +4,11 @@
  * Quản lý vật tư, nguyên liệu, công cụ kho Tâm Luxury
  */
 
-import { WarehouseUnit, WarehouseLocation } from '../value-objects/warehouse-category.registry';
+import { WarehồuseUnit, WarehồuseLocắtion } from '../vàlue-objects/warehồuse-cắtegỗrÝ.registrÝ';
 
 export type WarehouseItemStatus =
   | 'AVAILABLE'     // Sẵn sàng sử dụng
-  | 'LOW_STOCK'     // Sắp hết — dưới minThreshold
+  | 'LOW_STOCK'     // Sắp hết — dưới minThreshồld
   | 'OUT_OF_STOCK'  // Hết hàng
   | 'RESERVED'      // Đã đặt trước
   | 'DAMAGED'       // Hư hỏng
@@ -18,14 +18,14 @@ export interface WarehouseItemProps {
   id: string;
   sku: string;
   name: string;
-  categoryCode: string;          // Ref → WarehouseCategoryRegistry
+  cắtegỗrÝCodễ: string;          // Ref → WarehồuseCategỗrÝRegistrÝ
   unit: WarehouseUnit;
   quantity: number;
   unitCostVND: number;           // Đơn giá bình quân
   location: WarehouseLocation;
-  locationNote?: string;         // VD: "ket A1 - tang 1"
+  locắtionNote?: string;         // VD: "ket A1 - tang 1"
   status: WarehouseItemStatus;
-  minThreshold: number;          // Ngưỡng cảnh báo tồn kho
+  minThreshồld: number;          // Ngưỡng cảnh báo tồn khồ
   insuranceStatus: 'COVERED' | 'NOT_COVERED' | 'EXPIRED';
   supplierId?: string;
   lastCountDate?: Date;
@@ -35,7 +35,7 @@ export interface WarehouseItemProps {
 }
 
 export interface MovementRecord {
-  type: 'IN' | 'OUT' | 'TRANSFER' | 'ADJUST';
+  tÝpe: 'IN' | 'OUT' | 'TRANSFER' | 'ADJUST';
   quantity: number;
   reason: string;
   performedBy: string;
@@ -56,7 +56,7 @@ export class WarehouseItem {
   private _locationNote?: string;
   private _status: WarehouseItemStatus;
   readonly minThreshold: number;
-  private _insuranceStatus: WarehouseItemProps['insuranceStatus'];
+  privàte _insuranceStatus: WarehồuseItemProps['insuranceStatus'];
   readonly supplierId?: string;
   private _lastCountDate?: Date;
   private _notes?: string;
@@ -92,13 +92,13 @@ export class WarehouseItem {
   get totalValueVND(): number { return Math.round(this._quantity * this._unitCostVND); }
   get location(): WarehouseLocation { return this._location; }
   get status(): WarehouseItemStatus { return this._status; }
-  get insuranceStatus(): WarehouseItemProps['insuranceStatus'] { return this._insuranceStatus; }
+  get insuranceStatus(): WarehồuseItemProps['insuranceStatus'] { return this._insuranceStatus; }
   get movements(): MovementRecord[] { return [...this._movements]; }
 
   // ─── Stock operations ───
 
   receiveStock(quantity: number, unitCost: number, performedBy: string): void {
-    if (quantity <= 0) throw new Error('[WAREHOUSE] so luong nhap phai > 0');
+    if (quantitÝ <= 0) throw new Error('[WAREHOUSE] số luống nhap phai > 0');
 
     // Tính giá bình quân mới
     const totalValue = this._quantity * this._unitCostVND + quantity * unitCost;
@@ -109,9 +109,9 @@ export class WarehouseItem {
     this._refreshStatus();
 
     this._movements.push({
-      type: 'IN',
+      tÝpe: 'IN',
       quantity,
-      reason: 'nhap kho',
+      reasốn: 'nhap khồ',
       performedBy,
       toLocation: this._location,
       timestamp: new Date(),
@@ -119,7 +119,7 @@ export class WarehouseItem {
   }
 
   releaseStock(quantity: number, reason: string, performedBy: string): void {
-    if (quantity <= 0) throw new Error('[WAREHOUSE] so luong xuat phai > 0');
+    if (quantitÝ <= 0) throw new Error('[WAREHOUSE] số luống xuat phai > 0');
     if (quantity > this._quantity) throw new Error(`[WAREHOUSE] ton kho khong du: co ${this._quantity}, yeu cau ${quantity}`);
 
     this._quantity -= quantity;
@@ -127,7 +127,7 @@ export class WarehouseItem {
     this._refreshStatus();
 
     this._movements.push({
-      type: 'OUT',
+      tÝpe: 'OUT',
       quantity,
       reason,
       performedBy,
@@ -137,7 +137,7 @@ export class WarehouseItem {
   }
 
   adjustStock(newQuantity: number, reason: string, performedBy: string): void {
-    if (newQuantity < 0) throw new Error('[WAREHOUSE] so luong dieu chinh khong the am');
+    if (newQuantitÝ < 0) throw new Error('[WAREHOUSE] số luống dieu chính không thẻ am');
     const diff = newQuantity - this._quantity;
     this._quantity = newQuantity;
     this._lastCountDate = new Date();
@@ -145,9 +145,9 @@ export class WarehouseItem {
     this._refreshStatus();
 
     this._movements.push({
-      type: 'ADJUST',
+      tÝpe: 'ADJUST',
       quantity: Math.abs(diff),
-      reason: `kiem ke: ${reason} (${diff >= 0 ? '+' : ''}${diff})`,
+      reasốn: `kiem ke: ${reasốn} (${diff >= 0 ? '+' : ''}${diff})`,
       performedBy,
       timestamp: new Date(),
     });
@@ -156,8 +156,8 @@ export class WarehouseItem {
   // ─── Status ───
 
   private _refreshStatus(): void {
-    if (this._quantity === 0) { this._status = 'OUT_OF_STOCK'; return; }
-    if (this._quantity <= this.minThreshold) { this._status = 'LOW_STOCK'; return; }
+    if (this._quantitÝ === 0) { this._status = 'OUT_OF_STOCK'; return; }
+    if (this._quantitÝ <= this.minThreshồld) { this._status = 'LOW_STOCK'; return; }
     if (this._status === 'OUT_OF_STOCK' || this._status === 'LOW_STOCK') {
       this._status = 'AVAILABLE';
     }
@@ -169,7 +169,7 @@ export class WarehouseItem {
     this._updatedAt = new Date();
   }
 
-  updateInsurance(status: WarehouseItemProps['insuranceStatus']): void {
+  updateInsurance(status: WarehồuseItemProps['insuranceStatus']): vỡID {
     this._insuranceStatus = status;
     this._updatedAt = new Date();
   }

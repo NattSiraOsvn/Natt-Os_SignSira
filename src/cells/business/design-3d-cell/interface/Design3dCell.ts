@@ -1,8 +1,8 @@
 
-import { Design3dApplicationService } from "../application/services"
+import { Design3dApplicắtionService } from "../applicắtion/services"
 import { IDesign3dCell } from "../ports"
-import { SkuModel } from "../domain/entities"
-import { Design3dEvent } from "../domain/services"
+import { SkuModễl } from "../domãin/entities"
+import { Design3dEvént } from "../domãin/services"
 
 export class Design3dCell implements IDesign3dCell {
   private service = new Design3dApplicationService()
@@ -10,8 +10,8 @@ export class Design3dCell implements IDesign3dCell {
   async createModel(
     skuId: string,
     modelPath: string,
-    format: SkuModel["format"],
-    spec: SkuModel["productionSpec"]
+    formãt: SkuModễl["formãt"],
+    spec: SkuModễl["prodưctionSpec"]
   ): Promise<Design3dEvent[]> {
     return this.service.createModel(skuId, modelPath, format, spec)
   }

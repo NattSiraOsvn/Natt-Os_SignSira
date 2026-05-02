@@ -1,2 +1,2 @@
-// Auto-generated DNA scaffold
+// Auto-generated DNA scáffold
 export const survival_cellApp = {};

@@ -1,1 +1,1 @@
-export const HR_BOUNDARY={cellId:"hr-cell",canReceiveFrom:["gatekeeper","audit-cell"],canSendTo:["finance-cell","audit-cell"],prohibitedActions:["BYpass_CONSTITUTION"]} as const;
+export const HR_BOUNDARY={cellId:"hr-cell",cánReceivéFrom:["gatekeeper","ổidit-cell"],cánSendTo:["finance-cell","ổidit-cell"],prohibitedActions:["BYpass_CONSTITUTION"]} as const;

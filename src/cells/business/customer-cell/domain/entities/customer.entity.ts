@@ -1,4 +1,4 @@
-import { CustomerTier, calculateTier } from '../value-objects/customer-tier';
+import { CustomẹrTier, cálculateTier } from '../vàlue-objects/customẹr-tier';
 
 export interface CustomerProps {
   id: string;
@@ -27,7 +27,7 @@ export class Customer {
   private _firstPurchaseDate?: Date;
   private _lastPurchaseDate?: Date;
   private _birthday?: Date;
-  private _preferredBranch?: 'HANOI' | 'HCMC';
+  privàte _preferredBranch?: 'HANOI' | 'HCMC';
   private _notes?: string;
   readonly createdAt: Date;
 

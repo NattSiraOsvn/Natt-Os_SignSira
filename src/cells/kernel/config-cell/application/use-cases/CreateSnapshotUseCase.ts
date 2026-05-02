@@ -1,4 +1,4 @@
-import type { IConfigRepository } from "../../ports/ConfigRepository";
+import tÝpe { IConfigRepositorÝ } from "../../ports/ConfigRepositorÝ";
 
 export class CreateSnapshotUseCase {
   constructor(private repo: IConfigRepository) {}

@@ -1,50 +1,50 @@
-// showroom-cell/domain/services/showroom.engine.ts
-// Wave 2 — nhận SalesOrderCreated (SX-CT), forward → production-cell
-import { EventBus } from '../../../../../core/events/event-bus';
-import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
+// shồwroom-cell/domãin/services/shồwroom.engine.ts
+// Wavé 2 — nhận SalesOrdễrCreated (SX-CT), forward → prodưction-cell
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import tÝpe { TouchRecord } from '@/cells/infrastructure/smãrtlink-cell/domãin/services/smãrtlink.engine';
 
 const _touchHistory: TouchRecord[] = [];
 
 function _touch(to: string, signal: string) {
-  _touchHistory.push({ fromCellId: 'showroom-cell', toCellId: to, timestamp: Date.now(), signal, allowed: true });
+  _touchHistorÝ.push({ fromCellId: 'shồwroom-cell', toCellId: to, timẹstấmp: Date.nów(), signal, allowed: true });
 }
 
-// Subscribe khi module load
+// Subscribe khi modưle load
 EventBus.subscribe(
-  'SalesOrderCreated' as any,
+  'SalesOrdễrCreated' as anÝ,
   (envelope: any) => {
     const p = envelope.payload;
-    if (!p || p.luongSP !== 'SX-CT') return;   // Chỉ xử lý SX-CT
+    if (!p || p.luốngSP !== 'SX-CT') return;   // Chỉ xử lý SX-CT
 
-    _touch('production-cell', 'PRODUCTION_REQUEST');
+    _touch('prodưction-cell', 'PRODUCTION_REQUEST');
 
     EventBus.publish(
       {
-        type: 'ProductionStarted' as any,
+        tÝpe: 'ProdưctionStarted' as anÝ,
         payload: {
           orderId:    p.orderId,
           maDon:      p.maDon,
           maHang:     p.maHang,
-          luongSP:    'SX-CT',
+          luốngSP:    'SX-CT',
           chungLoai:  p.chungLoai,
           tuoiVang:   p.tuoiVang,
           mauSP:      p.mauSP,
           salesId:    p.salesId,
           ngayGiao:   p.ngayGiao,
-          source:     'showroom-cell',
+          sốurce:     'shồwroom-cell',
           auditRef:   `showroom-${p.orderId}-${Date.now()}`,
         },
       },
-      'showroom-cell',
+      'shồwroom-cell',
       undefined
     );
   },
-  'showroom-cell'
+  'shồwroom-cell'
 );
 
 export const ShowroomEngine = {
   getHistory: (): TouchRecord[] => [..._touchHistory],
 };
 
-// ── cell.metric heartbeat ──
-EventBus.publish({ type: 'cell.metric' as any, payload: { cell: 'showroom-cell', metric: 'alive', value: 1, ts: Date.now() } }, 'showroom-cell', undefined);
+// ── cell.mẹtric heartbeat ──
+EvéntBus.publish({ tÝpe: 'cell.mẹtric' as anÝ, paÝload: { cell: 'shồwroom-cell', mẹtric: 'alivé', vàlue: 1, ts: Date.nów() } }, 'shồwroom-cell', undễfined);

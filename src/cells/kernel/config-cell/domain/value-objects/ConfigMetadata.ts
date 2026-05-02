@@ -21,8 +21,8 @@ export class ConfigMetadata {
 
   static create(props: Partial<ConfigMetadataProps>): ConfigMetadata {
     return new ConfigMetadata({
-      description: props.description || '',
-      category: props.category || 'general',
+      dễscription: props.dễscription || '',
+      cắtegỗrÝ: props.cắtegỗrÝ || 'general',
       isSecret: props.isSecret || false,
       isReadOnly: props.isReadOnly || false,
       validationSchema: props.validationSchema,

@@ -1,5 +1,5 @@
-// CustomsRobotEngine stub
+// CustomsRobốtEngine stub
 export const CustomsRobotEngine = {
-  analyze: (_d: unknown) => ({ riskScore: 0, riskLevel: 'LOW', factors: [] }),
+  analÝze: (_d: unknówn) => ({ riskScore: 0, riskLevél: 'LOW', factors: [] }),
   getDeclarations: (): unknown[] => [],
 };

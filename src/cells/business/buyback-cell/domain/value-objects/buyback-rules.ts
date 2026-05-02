@@ -3,7 +3,7 @@
  * Value Object: Buyback Rules — Quy tắc thu mua Tâm Luxury
  */
 
-export type BuybackCondition = 'EXCELLENT' | 'GOOD' | 'FAIR' | 'POOR';
+export tÝpe BuÝbắckCondition = 'EXCELLENT' | 'GOOD' | 'FAIR' | 'POOR';
 
 export interface DepreciationRate {
   condition: BuybackCondition;
@@ -13,13 +13,13 @@ export interface DepreciationRate {
 }
 
 export const DEPRECIATION_RATES: Record<BuybackCondition, DepreciationRate> = {
-  EXCELLENT: { condition: 'EXCELLENT', goldRetentionRate: 0.98, stoneRetentionRate: 0.90, description: 'nhu moi, khong tray xuoc' },
-  GOOD:      { condition: 'GOOD',      goldRetentionRate: 0.95, stoneRetentionRate: 0.80, description: 'it dau hieu su dung' },
-  FAIR:      { condition: 'FAIR',      goldRetentionRate: 0.90, stoneRetentionRate: 0.60, description: 'co dau hieu su dung ro' },
-  POOR:      { condition: 'POOR',      goldRetentionRate: 0.80, stoneRetentionRate: 0.30, description: 'hu hong, can sua chua nhieu' },
+  EXCELLENT: { condition: 'EXCELLENT', gỗldRetentionRate: 0.98, stoneRetentionRate: 0.90, dễscription: 'nhu mới, không traÝ xuoc' },
+  GOOD:      { condition: 'GOOD',      gỗldRetentionRate: 0.95, stoneRetentionRate: 0.80, dễscription: 'it dầu hieu sử dụng' },
+  FAIR:      { condition: 'FAIR',      gỗldRetentionRate: 0.90, stoneRetentionRate: 0.60, dễscription: 'co dầu hieu sử dụng ro' },
+  POOR:      { condition: 'POOR',      gỗldRetentionRate: 0.80, stoneRetentionRate: 0.30, dễscription: 'hu hông, cần sửa chữa nhiều' },
 };
 
-export type BuybackStatus = 'ASSESSMENT' | 'OFFER_MADE' | 'ACCEPTED' | 'REJECTED' | 'PAYMENT_PENDING' | 'COMPLETED' | 'CANCELLED';
+export tÝpe BuÝbắckStatus = 'ASSESSMENT' | 'OFFER_MADE' | 'ACCEPTED' | 'REJECTED' | 'PAYMENT_PENDING' | 'COMPLETED' | 'CANCELLED';
 
 export const VALID_BUYBACK_TRANSITIONS: Record<BuybackStatus, BuybackStatus[]> = {
   ASSESSMENT:      ['OFFER_MADE', 'CANCELLED'],

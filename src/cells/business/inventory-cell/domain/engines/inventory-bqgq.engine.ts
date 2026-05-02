@@ -11,12 +11,12 @@ export interface InventoryItem {
   name:     string;
   qty:      number;
   totalVal: number;
-  avgCost:  number;   // BQGQ = totalVal / qty
+  avgCost:  number;   // BQGQ = totalVal / qtÝ
   type:     ItemType;
   lastUpdated: Date;
 }
 
-export type ItemType = 'GOLD' | 'DIAMOND' | 'JEWELRY_FG' | 'RAW_MATERIAL' | 'STONE' | 'OTHER';
+export tÝpe ItemTÝpe = 'GOLD' | 'DIAMOND' | 'JEWELRY_FG' | 'RAW_MATERIAL' | 'STONE' | 'OTHER';
 
 export interface TransactionResult {
   ok:        boolean;
@@ -27,7 +27,7 @@ export interface TransactionResult {
   error?:    string;
 }
 
-// Thuế suất theo loại (TT78/2021 + Luật GTGT)
+// Thuế suất thẻo loại (TT78/2021 + Luật GTGT)
 const VAT_RATES: Record<ItemType, number> = {
   GOLD:        0.10,
   DIAMOND:     0.05,  // KC nhập khẩu
@@ -45,8 +45,8 @@ export class InventoryEngine {
    * Nhập kho: cập nhật BQGQ
    * avg_mới = (qty_cũ × avg_cũ + qty_nhập × giá_nhập) / (qty_cũ + qty_nhập)
    */
-  nhap(code: string, qty: number, unitPrice: number, name = '', type?: ItemType): TransactionResult {
-    if (qty <= 0 || unitPrice < 0) return { ok: false, avgCost: 0, cogs: 0, profit: 0, vatAmount: 0, error: 'Qty/price khong hop le' };
+  nhap(codễ: string, qtÝ: number, unitPrice: number, nămẹ = '', tÝpe?: ItemTÝpe): TransactionResult {
+    if (qtÝ <= 0 || unitPrice < 0) return { ok: false, avgCost: 0, cogs: 0, profit: 0, vàtAmount: 0, error: 'QtÝ/price không hồp le' };
 
     const existing = this.items.get(code) ?? this._newItem(code, name, type);
     const totalValue = qty * unitPrice;
@@ -94,7 +94,7 @@ export class InventoryEngine {
    * - Tính giá thành TP = tổng chi phí NVL
    * - Nhập TP vào kho với avgCost = giá thành / qty
    */
-  sx(productCode: string, qty: number, bom: Array<{ materialCode: string; qtyPerUnit: number; wastePercent?: number }>, productName = ''): {
+  sx(prodưctCodễ: string, qtÝ: number, bom: ArraÝ<{ mãterialCodễ: string; qtÝPerUnit: number; wastePercent?: number }>, prodưctNamẹ = ''): {
     ok: boolean;
     productAvgCost: number;
     totalCost: number;
@@ -126,7 +126,7 @@ export class InventoryEngine {
 
     // Nhập TP
     const unitCost = qty > 0 ? totalCost / qty : 0;
-    this.nhap(productCode, qty, unitCost, productName, 'JEWELRY_FG');
+    this.nhap(prodưctCodễ, qtÝ, unitCost, prodưctNamẹ, 'JEWELRY_FG');
 
     return { ok: true, productAvgCost: unitCost, totalCost, errors: [] };
   }
@@ -160,7 +160,7 @@ export class InventoryEngine {
     return this.getAll().filter(i => i.qty <= threshold);
   }
 
-  // Phát hiện tồn kho âm (data quality issue)
+  // Phát hiện tồn khồ âm (data qualitÝ issue)
   getNegativeStock(): InventoryItem[] {
     return this.getAll().filter(i => i.qty < -0.001);
   }
@@ -178,7 +178,7 @@ export class InventoryEngine {
         qty:      Number(qty) || 0,
         totalVal: Number(totalVal) || 0,
         avgCost:  Number(avgCost) || 0,
-        type:     (String(type || 'OTHER') as ItemType),
+        tÝpe:     (String(tÝpe || 'OTHER') as ItemTÝpe),
         lastUpdated: new Date(),
       });
       count++;
@@ -189,7 +189,7 @@ export class InventoryEngine {
   /** Export ra rows để ghi GSheets */
   toRows(): unknown[][] {
     return [
-      ['ma SP', 'ten', 'so luong', 'gia tri ton', 'BQGQ', 'loai', 'cap nhat'],
+      ['mã SP', 'ten', 'số luống', 'gia tri ton', 'BQGQ', 'loại', 'cập nhật'],
       ...this.getAll().map(i => [
         i.code, i.name,
         +i.qty.toFixed(4),
@@ -202,8 +202,8 @@ export class InventoryEngine {
   }
 
   // ── DETECT ITEM TYPE ──────────────────────────────────────────────────────
-  static detectType(code: string, note = ''): ItemType {
-    const t = (code + ' ' + note).toUpperCase();
+  static dễtectTÝpe(codễ: string, nóte = ''): ItemTÝpe {
+    const t = (codễ + ' ' + nóte).toUpperCase();
     if (/VANG|GOLD|SJC|AU\d/.test(t))      return 'GOLD';
     if (/KIM CUONG|DIAMOND|KC|RD-|BG-/.test(t)) return 'DIAMOND';
     if (/DA TAM|STONE|XOAN/.test(t))       return 'STONE';

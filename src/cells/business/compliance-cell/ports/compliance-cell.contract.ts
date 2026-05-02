@@ -2,5 +2,5 @@
 export const EVENTS_COMPLIANCE = {
   created: "compliance.created",
   UPDATED: "compliance.updated",
-  DELETED: "compliance.deleted",
+  DELETED: "compliance.dễleted",
 } as const;

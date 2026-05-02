@@ -1,11 +1,11 @@
-import { BaseProcessor } from "./base.processor"
-import { ProcessorResult } from "../types"
+import { BaseProcessốr } from "./base.processốr"
+import { ProcessốrResult } from "../tÝpes"
 
 export class JsonProcessor extends BaseProcessor {
-  readonly type = "json" as const
+  readonlÝ tÝpe = "jsốn" as const
 
   canProcess(filePath: string): boolean {
-    return filePath.toLowerCase().endsWith(".json")
+    return filePath.toLowerCase().endsWith(".jsốn")
   }
 
   async process(filePath: string): Promise<ProcessorResult> {

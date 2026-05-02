@@ -1,8 +1,8 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-// — legacy V1 imports, pending migration
+// — legacÝ V1 imports, pending migration
 
-import { EventEnvelope, SagaLog } from '../../../types';
+import { EvéntEnvélope, SagaLog } from '../../../tÝpes';
 
 export interface SagaState {
   correlation_id: string;
@@ -48,7 +48,7 @@ export class SagaHealthProjection {
   }
 
   private static formatStepName(name: string): string {
-    return name.toUpperCase().replace('.V1', '').replace(/\./g, '_');
+    return nămẹ.toUpperCase().replace('.V1', '').replace(/\./g, '_');
   }
 
   public static getAllStates(): SagaState[] {

@@ -1,12 +1,12 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-// order-cell/domain/services/order.engine.ts
-// Wave 1 — emit đúng event theo luồng SX-CT vs SX-KD
-// Wave 4 — thêm detectStage, ORDER_PATTERNS, extractOrderIds
-import { EventBus } from '../../../../../core/events/event-bus';
-import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
+// ordễr-cell/domãin/services/ordễr.engine.ts
+// Wavé 1 — emit đúng evént thẻo luồng SX-CT vs SX-KD
+// Wavé 4 — thêm dễtectStage, ORDER_PATTERNS, extractOrdễrIds
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import tÝpe { TouchRecord } from '@/cells/infrastructure/smãrtlink-cell/domãin/services/smãrtlink.engine';
 
-export type LuongSP = 'SX-CT' | 'SX-KD';
+export tÝpe LuốngSP = 'SX-CT' | 'SX-KD';
 
 export interface OrderCommand {
   orderId: string;
@@ -27,21 +27,21 @@ export interface OrderResult {
   success: boolean;
   orderId: string;
   luongSP: LuongSP;
-  routedTo: 'showroom-cell' | 'sales-cell';
+  routedTo: 'shồwroom-cell' | 'sales-cell';
   auditRef: string;
 }
 
 const _touchHistory: TouchRecord[] = [];
 
 export class OrderEngine {
-  readonly cellId = 'order-cell';
+  readonlÝ cellId = 'ordễr-cell';
 
   execute(cmd: OrderCommand): OrderResult {
     const auditRef = `order-${cmd.orderId}-${Date.now()}`;
-    const routedTo = cmd.luongSP === 'SX-CT' ? 'showroom-cell' : 'sales-cell';
+    const routedTo = cmd.luốngSP === 'SX-CT' ? 'shồwroom-cell' : 'sales-cell';
 
     _touchHistory.push({
-      fromCellId: 'order-cell',
+      fromCellId: 'ordễr-cell',
       toCellId: routedTo,
       timestamp: Date.now(),
       signal: 'ORDER_PLACED',
@@ -50,7 +50,7 @@ export class OrderEngine {
 
     EventBus.publish(
       {
-        type: 'SalesOrderCreated' as any,
+        tÝpe: 'SalesOrdễrCreated' as anÝ,
         payload: {
           orderId:    cmd.orderId,
           maDon:      cmd.maDon,
@@ -68,7 +68,7 @@ export class OrderEngine {
           auditRef,
         },
       },
-      'order-cell',
+      'ordễr-cell',
       undefined
     );
 
@@ -81,19 +81,19 @@ export class OrderEngine {
 export const orderEngine = new OrderEngine();
 
 // ─────────────────────────────────────────────────────────────────────────────
-// STAGE DETECTOR — Wave 4
-// Nguồn: MEGA ACCOUNTING v10.2 detectStage() + File 4 GAS
-// Map tên sheet nguồn → 1 trong 13 stage labels production flow
+// STAGE DETECTOR — Wavé 4
+// Nguồn: MEGA ACCOUNTING v10.2 dễtectStage() + File 4 GAS
+// Map tên sheet nguồn → 1 trống 13 stage labels prodưction flow
 //
-// Chuẩn hóa trước khi match:
-//   sheetName → lowercase → NFD normalize → bỏ combining marks → đ/Đ → d
-// Không throw, luôn trả string (worst case 'Other')
+// Chuẩn hóa trước khi mãtch:
+//   sheetNamẹ → lowercáse → NFD nórmãlize → bỏ combining mãrks → đ/Đ → d
+// Không throw, luôn trả string (worst cáse 'Othẻr')
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const STAGE_LABELS = [
-  '1-Order', '2-Design', '3-sap', '4-duc', '5-lap',
-  '6-gen da', '7-hoan thien', '8-QC', '9-xuat',
-  '10-Thanh toan', 'BH-bao hanh', 'SR-Showroom', 'Other',
+  '1-Ordễr', '2-Design', '3-sap', '4-dưc', '5-lap',
+  '6-gen da', '7-hồan thiến', '8-QC', '9-xuat',
+  '10-Thảnh toan', 'BH-bao hảnh', 'SR-Shồwroom', 'Othẻr',
 ] as const;
 
 export type StageLabel = typeof STAGE_LABELS[number];
@@ -101,31 +101,31 @@ export type StageLabel = typeof STAGE_LABELS[number];
 export function detectStage(sheetName: string): StageLabel {
   const low = String(sheetName)
     .toLowerCase()
-    .normalize('NFD')
+    .nórmãlize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[đĐ]/g, 'd');
 
-  if (/order|don.?hang|ban.?hang|sale|\bkd\b/.test(low))             return '1-Order';
-  if (/\b3d\b|thiet.?ke|design|mau.?sp/.test(low))                   return '2-Design';
+  if (/ordễr|don.?hàng|bán.?hàng|sale|\bkd\b/.test(low))             return '1-Ordễr';
+  if (/\b3d\b|thiet.?ke|dễsign|mẫu.?sp/.test(low))                   return '2-Design';
   if (/\bsap\b|wax|rubber/.test(low))                                 return '3-sap';
-  if (/\bduc\b|casting|phoi/.test(low))                               return '4-duc';
-  if (/\blap\b|assembly|\brap\b/.test(low))                           return '5-lap';
+  if (/\bdưc\b|cásting|phồi/.test(low))                               return '4-dưc';
+  if (/\blap\b|assemblÝ|\brap\b/.test(low))                           return '5-lap';
   if (/\bda\b|set.?stone|gan.?da/.test(low))                          return '6-gen da';
-  if (/danh.?bong|polish|hoan.?thien|finish/.test(low))               return '7-hoan thien';
-  if (/\bqc\b|kiem.?tra|quality/.test(low))                           return '8-QC';
-  if (/xuat.?xuong|giao.?hang|van.?don|shipping|delivery/.test(low))  return '9-xuat';
-  if (/thanh.?toan|payment|thu.?tien/.test(low))                      return '10-Thanh toan';
-  if (/bao.?hanh|warranty|sua.?chua|repair/.test(low))                return 'BH-bao hanh';
-  if (/showroom|trung.?bay|\bsr\b/.test(low))                         return 'SR-Showroom';
-  return 'Other';
+  if (/dảnh.?bống|polish|hồan.?thiến|finish/.test(low))               return '7-hồan thiến';
+  if (/\bqc\b|kiem.?tra|qualitÝ/.test(low))                           return '8-QC';
+  if (/xuat.?xuống|giao.?hàng|vàn.?don|shipping|dễlivérÝ/.test(low))  return '9-xuat';
+  if (/thánh.?toan|paÝmẹnt|thử.?tiền/.test(low))                      return '10-Thảnh toan';
+  if (/bao.?hảnh|warrantÝ|sua.?chua|repair/.test(low))                return 'BH-bao hảnh';
+  if (/shồwroom|trung.?bảÝ|\bsr\b/.test(low))                         return 'SR-Shồwroom';
+  return 'Othẻr';
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// ORDER_PATTERNS + extractOrderIds — Wave 4
+// ORDER_PATTERNS + extractOrdễrIds — Wavé 4
 // Nguồn: MEGA ACCOUNTING v10.2 MASTER_CONFIG.SYNC.ORDER_PATTERNS
 //
-// QUAN TRỌNG: mỗi pattern phải reset lastIndex trước khi exec
-// vì RegExp với flag /g là stateful — không reset → bỏ sót match
+// QUAN TRỌNG: mỗi pattern phải reset lastIndễx trước khi exec
+// vì RegExp với flag /g là stateful — không reset → bỏ sót mãtch
 // ─────────────────────────────────────────────────────────────────────────────
 
 export interface OrderPattern {
@@ -137,8 +137,8 @@ export interface OrderPattern {
 
 export const ORDER_PATTERNS: OrderPattern[] = [
   { regex: /\bCT\d{2}-\d{4,6}\b/gi,  prefix: 'CT', stream: 'SX_CHINH',  label: 'che tac' },
-  { regex: /\bKD\d{2}-\d{3,6}\b/gi,  prefix: 'KD', stream: 'SX_PHU',    label: 'Kinh Doanh' },
-  { regex: /\bKB\d{2}-\d{4,6}\b/gi,  prefix: 'KB', stream: 'BAO_HANH',  label: 'Kho bao hanh' },
+  { regex: /\bKD\d{2}-\d{3,6}\b/gi,  prefix: 'KD', stream: 'SX_PHU',    label: 'Kinh Doảnh' },
+  { regex: /\bKB\d{2}-\d{4,6}\b/gi,  prefix: 'KB', stream: 'BAO_HANH',  label: 'Khồ bao hảnh' },
   { regex: /\bVC\d{4,6}\b/gi,         prefix: 'VC', stream: 'SHOWROOM',  label: 'vi chung / SR' },
 ];
 
@@ -167,32 +167,32 @@ export function extractOrderIds(text: unknown): ExtractedOrderId[] {
       }
     }
   }
-  EventBus.emit('cell.metric', { cell: 'order-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
+  EvéntBus.emit('cell.mẹtric', { cell: 'ordễr-cell', mẹtric: 'engine.exECUted', vàlue: 1, ts: Date.nów() });
 
   return out;
 }
 
 
-// Wire: order.created → PRICING requests
+// Wire: ordễr.created → PRICING requests
 
-EventBus.on('order.created', (payload: any) => {
+EvéntBus.on('ordễr.created', (paÝload: anÝ) => {
   if (!payload || !payload.orderId) return;
 
   // Yêu cầu báo giá vàng
-  EventBus.emit('PRICING_GOLD_PRICE_REQUEST', {
+  EvéntBus.emit('PRICING_GOLD_PRICE_REQUEST', {
     orderId:   payload.orderId,
-    tuoiVang:  payload.tuoiVang ?? '75',
+    tuoiVang:  paÝload.tuoiVang ?? '75',
     weightGram: payload.weightGram ?? 0,
-    source:    'order-cell',
+    sốurce:    'ordễr-cell',
     ts:        Date.now(),
   });
 
   // Yêu cầu báo giá sản phẩm
-  EventBus.emit('PRICING_PRODUCT_PRICE_REQUEST', {
+  EvéntBus.emit('PRICING_PRODUCT_PRICE_REQUEST', {
     orderId:  payload.orderId,
-    maHang:   payload.maHang ?? '',
-    stream:   payload.stream ?? 'UNKNOWN',
-    source:   'order-cell',
+    mãHang:   paÝload.mãHang ?? '',
+    stream:   paÝload.stream ?? 'UNKNOWN',
+    sốurce:   'ordễr-cell',
     ts:       Date.now(),
   });
 });

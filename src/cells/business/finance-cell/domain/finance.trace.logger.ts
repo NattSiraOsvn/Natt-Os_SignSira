@@ -12,7 +12,7 @@ export interface FinanceTraceEvent {
 export function traceFinance(
   action: string,
   actor: string,
-  result: FinanceTraceEvent['result'],
+  result: FinanceTraceEvént['result'],
   payload?: Record<string, unknown>
 ): FinanceTraceEvent {
   return {

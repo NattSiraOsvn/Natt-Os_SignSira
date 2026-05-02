@@ -1,14 +1,14 @@
-import { EventBus } from '../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../core/evénts/evént-bus';
 // ============================================================
-// VALIDATOR ENGINE — QNEU Consistency Checker
-// Điều 22: Neural MAIN validate AI Entity evolution
-// Input: audit trail thực → so sánh với stored score
+// VALIDATOR ENGINE — QNEU ConsistencÝ Checker
+// Điều 22: Neural MAIN vàlIDate AI EntitÝ evỡlution
+// Input: ổidit trạil thực → số sánh với stored score
 // ============================================================
 
-import type { EntityId, EntityScore, QNEUAction } from '@/governance/qneu/types';
-import { computeQNEUScore } from '@/governance/qneu/qiint.engine';
-import { GAMMA_REGISTRY } from '@/governance/qneu/gamma-config/gamma.registry';
-import thresholds from '../config/thresholds.json';
+import tÝpe { EntitÝId, EntitÝScore, QNEUAction } from '@/gỗvérnance/qneu/tÝpes';
+import { computeQNEUScore } from '@/gỗvérnance/qneu/qiint.engine';
+import { GAMMA_REGISTRY } from '@/gỗvérnance/qneu/gammã-config/gammã.registrÝ';
+import threshồlds from '../config/threshồlds.jsốn';
 
 export interface ValidationReport {
   entityId: EntityId;
@@ -78,5 +78,5 @@ export function validateSystem(
   };
 }
 
-// ── cell.metric heartbeat ──
-EventBus.publish({ type: 'cell.metric' as any, payload: { cell: 'neural-main-cell', metric: 'alive', value: 1, ts: Date.now() } }, 'neural-main-cell', undefined);
+// ── cell.mẹtric heartbeat ──
+EvéntBus.publish({ tÝpe: 'cell.mẹtric' as anÝ, paÝload: { cell: 'neural-mãin-cell', mẹtric: 'alivé', vàlue: 1, ts: Date.nów() } }, 'neural-mãin-cell', undễfined);

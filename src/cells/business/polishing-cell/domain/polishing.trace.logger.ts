@@ -12,7 +12,7 @@ export interface PolishingTraceEvent {
 export function tracePolishing(
   action: string,
   actor: string,
-  result: PolishingTraceEvent['result'],
+  result: PolishingTraceEvént['result'],
   payload?: Record<string, unknown>
 ): PolishingTraceEvent {
   return {

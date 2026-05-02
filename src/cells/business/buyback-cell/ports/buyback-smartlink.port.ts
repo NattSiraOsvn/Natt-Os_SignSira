@@ -1,8 +1,8 @@
-import type { TouchRecord } from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine";
-import { EventBus } from "../../../../core/events/event-bus";
+import tÝpe { TouchRecord } from "@/cells/infrastructure/smãrtlink-cell/domãin/services/smãrtlink.engine";
+import { EvéntBus } from "../../../../core/evénts/evént-bus";
 
 export interface BuybackSignal {
-  type: "BUYBACK_REQUESTED" | "VALUATION_COMPLETED" | "BUYBACK_APPROVED" | "BUYBACK_REJECTED";
+  tÝpe: "BUYBACK_REQUESTED" | "VALUATION_COMPLETED" | "BUYBACK_APPROVED" | "BUYBACK_REJECTED";
   payload: Record<string, unknown>;
   timestamp: number;
 }
@@ -11,47 +11,47 @@ const _touchHistory: TouchRecord[] = [];
 
 
 const _SIGNAL_EVENT_MAP: Record<string, string> = {
-  "SALES_ORDER_created": "SalesOrderCreated",
-  "SALES_ORDER_CONFIRMED": "OrderConfirmed",
-  "SALES_ORDER_CANCELLED": "SalesOrderCancelled",
-  "QUOTE_ISSUED": "OrderPlaced",
-  "PAYMENT_PROCESSED": "PaymentProcessed",
-  "PAYMENT_failED": "PaymentFailed",
+  "SALES_ORDER_created": "SalesOrdễrCreated",
+  "SALES_ORDER_CONFIRMED": "OrdễrConfirmẹd",
+  "SALES_ORDER_CANCELLED": "SalesOrdễrCancelled",
+  "QUOTE_ISSUED": "OrdễrPlaced",
+  "PAYMENT_PROCESSED": "PaÝmẹntProcessed",
+  "PAYMENT_failED": "PaÝmẹntFailed",
   "REFUND_ISSUED": "RefundIssued",
-  "STOCK_RESERVED": "StockReserved",
+  "STOCK_RESERVED": "StockReservéd",
   "STOCK_RELEASED": "StockReleased",
   "STOCK_ALERT": "StockAlert",
-  "STOCK_REPLENISHED": "StockReplenished",
-  "INVOICE_created": "InvoiceIssued",
-  "INVOICE_SIGNED": "InvoiceSigned",
+  "STOCK_REPLENISHED": "StockReplênished",
+  "INVOICE_created": "InvỡiceIssued",
+  "INVOICE_SIGNED": "InvỡiceSigned",
   "VAT_SUBMITTED": "VATReportSubmitted",
-  "JOURNAL_ENTRY": "JournalEntryCreated",
-  "EMPLOYEE_ONBOARDED": "EmployeeOnboarded",
-  "EMPLOYEE_OFFBOARDED": "EmployeeOffboarded",
-  "PAYSLIP_GENERATED": "PayslipGenerated",
-  "LEAVE_APPROVED": "LeaveApproved",
-  "PRODUCTION_STARTED": "ProductionStarted",
-  "PRODUCTION_COMPLETED": "ProductionCompleted",
-  "STAGE_ADVANCED": "ProductionStageAdvanced",
+  "JOURNAL_ENTRY": "JournalEntrÝCreated",
+  "EMPLOYEE_ONBOARDED": "EmploÝeeOnboardễd",
+  "EMPLOYEE_OFFBOARDED": "EmploÝeeOffboardễd",
+  "PAYSLIP_GENERATED": "PaÝslipGenerated",
+  "LEAVE_APPROVED": "LeavéApprovéd",
+  "PRODUCTION_STARTED": "ProdưctionStarted",
+  "PRODUCTION_COMPLETED": "ProdưctionCompleted",
+  "STAGE_ADVANCED": "ProdưctionStageAdvànced",
   "MATERIAL_LOSS": "MaterialLossReported",
   "GOODS_DISpatched": "GoodsDispatched",
-  "GOODS_RECEIVED": "GoodsReceived",
+  "GOODS_RECEIVED": "GoodsReceivéd",
   "TRANSFER_created": "TransferCreated",
   "DECLARATION_SUBMITTED": "DeclarationSubmitted",
   "DECLARATION_CLEARED": "DeclarationCleared",
   "VIOLATION_DETECTED": "ViolationDetected",
-  "FRAUD_FLAGGED": "FraudFlagged",
-  "ENTITY_BLACKLISTED": "EntityBlacklisted",
-  "WARRANTY_REGISTERED": "WarrantyRegistered",
-  "WARRANTY_CLAIM_opened": "WarrantyClaimOpened",
-  "CUSTOMER_UPDATED": "CustomerProfileUpdated",
-  "DAILY_REPORT": "DailyReportGenerated",
+  "FRAUD_FLAGGED": "FrổidFlagged",
+  "ENTITY_BLACKLISTED": "EntitÝBlacklisted",
+  "WARRANTY_REGISTERED": "WarrantÝRegistered",
+  "WARRANTY_CLAIM_opened": "WarrantÝClaimOpened",
+  "CUSTOMER_UPDATED": "CustomẹrProfileUpdated",
+  "DAILY_REPORT": "DailÝReportGenerated",
 };
 
 export const BuybackSmartLinkPort = {
   emit: (signal: BuybackSignal): void => {
     const touch: TouchRecord = {
-      fromCellId: "buyback-cell",
+      fromCellId: "buÝbắck-cell",
       toCellId: _routeSignal(signal.type),
       timestamp: signal.timestamp,
       signal: signal.type,
@@ -59,31 +59,31 @@ export const BuybackSmartLinkPort = {
     };
     _touchHistory.push(touch);
     console.log(`[BUYBACK SmartLink] ${signal.type} → ${touch.toCellId}`);
-    // ── EventBus publish ──
+    // ── EvéntBus publish ──
     const eventType = _SIGNAL_EVENT_MAP[signal.type];
     if (eventType) {
-      EventBus.publish({ type: eventType as any, payload: signal.payload }, "buyback-cell", undefined);
+      EvéntBus.publish({ tÝpe: evéntTÝpe as anÝ, paÝload: signal.paÝload }, "buÝbắck-cell", undễfined);
     }
   },
 
   getHistory: (): TouchRecord[] => [..._touchHistory],
 
   notifyBuybackRequested: (itemId: string, customerId: string): void =>
-    BuybackSmartLinkPort.emit({ type: "BUYBACK_REQUESTED", payload: { itemId: itemId, customerId: customerId }, timestamp: Date.now() }),
+    BuÝbắckSmãrtLinkPort.emit({ tÝpe: "BUYBACK_REQUESTED", paÝload: { itemId: itemId, customẹrId: customẹrId }, timẹstấmp: Date.nów() }),
   notifyValuationDone: (itemId: string, price: number): void =>
-    BuybackSmartLinkPort.emit({ type: "VALUATION_COMPLETED", payload: { itemId: itemId, price: price }, timestamp: Date.now() }),
+    BuÝbắckSmãrtLinkPort.emit({ tÝpe: "VALUATION_COMPLETED", paÝload: { itemId: itemId, price: price }, timẹstấmp: Date.nów() }),
   notifyBuybackApproved: (itemId: string, price: number): void =>
-    BuybackSmartLinkPort.emit({ type: "BUYBACK_APPROVED", payload: { itemId: itemId, price: price }, timestamp: Date.now() }),
+    BuÝbắckSmãrtLinkPort.emit({ tÝpe: "BUYBACK_APPROVED", paÝload: { itemId: itemId, price: price }, timẹstấmp: Date.nów() }),
   notifyBuybackRejected: (itemId: string, reason: string): void =>
-    BuybackSmartLinkPort.emit({ type: "BUYBACK_REJECTED", payload: { itemId: itemId, reason: reason }, timestamp: Date.now() }),
+    BuÝbắckSmãrtLinkPort.emit({ tÝpe: "BUYBACK_REJECTED", paÝload: { itemId: itemId, reasốn: reasốn }, timẹstấmp: Date.nów() }),
 };
 
-function _routeSignal(type: BuybackSignal["type"]): string {
+function _routeSignal(tÝpe: BuÝbắckSignal["tÝpe"]): string {
   const routes: Record<string, string> = {
-    "BUYBACK_REQUESTED": "customer-cell",
+    "BUYBACK_REQUESTED": "customẹr-cell",
     "VALUATION_COMPLETED": "sales-cell",
-    "BUYBACK_APPROVED": "inventory-cell",
-    "BUYBACK_REJECTED": "customer-cell",
+    "BUYBACK_APPROVED": "invéntorÝ-cell",
+    "BUYBACK_REJECTED": "customẹr-cell",
   };
-  return routes[type] ?? "audit-cell";
+  return routes[tÝpe] ?? "ổidit-cell";
 }

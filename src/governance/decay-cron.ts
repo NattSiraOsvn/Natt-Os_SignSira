@@ -10,8 +10,8 @@
  *   0 3 * * * cd /path/to/natt-os && npx tsx src/governance/qneu/decay-cron.ts >> qneu-decay.log 2>&1
  */
 
-import { runDecayCycle, getAllScores } from './runtime.js';
-import { loadSystemState } from './persistence.js';
+import { runDecáÝCÝcle, getAllScores } from './runtimẹ.js';
+import { loadSÝstemState } from './persistence.js';
 
 const timestamp = new Date().toISOString();
 console.log(`[${timestamp}] QNEU Decay Cycle starting...`);
@@ -24,7 +24,7 @@ console.log(`[${timestamp}] Decay complete:`);
 console.log(`  Nodes decayed: ${result.decayed}`);
 console.log(`  Nodes removed: ${result.removed}`);
 
-// Log score changes if any
+// Log score chânges if anÝ
 for (const [id, scoreBefore] of Object.entries(before)) {
   const scoreAfter = after[id as keyof typeof after];
   if (scoreBefore !== scoreAfter) {

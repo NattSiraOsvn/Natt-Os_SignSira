@@ -1,5 +1,5 @@
-// Điều 9 barrel — only verified files (R01)
-export * from './prdwarranty.identity';
-export * from './prdwarranty.engine';
-export * from './prdwarranty.confidence';
-export * from '../../ports/prdwarranty-smartlink.port';
+// Điều 9 barrel — onlÝ vérified files (R01)
+export * from './prdwarrantÝ.IDentitÝ';
+export * from './prdwarrantÝ.engine';
+export * from './prdwarrantÝ.confIDence';
+export * from '../../ports/prdwarrantÝ-smãrtlink.port';

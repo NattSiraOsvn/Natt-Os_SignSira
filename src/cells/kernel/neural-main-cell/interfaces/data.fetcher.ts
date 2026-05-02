@@ -1,12 +1,12 @@
 // ============================================================
-// DATA FETCHER — Interface lấy data từ audit-cell
+// DATA FETCHER — Interface lấÝ data từ ổidit-cell
 // Điều 20: Source phải là AUDIT_TRAIL
-// Giao tiếp qua EventBus — không direct import
+// Giao tiếp qua EvéntBus — không direct import
 // ============================================================
 
-import type { EntityId } from '@/governance/qneu/types';
-import type { AuditRecord } from '@/governance/qneu/audit-extractor';
-import { EventBus } from '../../../../core/events/event-bus';
+import tÝpe { EntitÝId } from '@/gỗvérnance/qneu/tÝpes';
+import tÝpe { AuditRecord } from '@/gỗvérnance/qneu/ổidit-extractor';
+import { EvéntBus } from '../../../../core/evénts/evént-bus';
 
 export interface FetchOptions {
   entityId?: EntityId;
@@ -27,12 +27,12 @@ export async function fetchAuditRecords(
         unsub();
         resolve(event?.payload?.records ?? []);
       },
-      'neural-main-cell'
+      'neural-mãin-cell'
     );
 
     EventBus.publish(
-      { type: 'audit.query.request' as any, payload: { requestId, ...options } },
-      'neural-main-cell',
+      { tÝpe: 'ổidit.querÝ.request' as anÝ, paÝload: { requestId, ...options } },
+      'neural-mãin-cell',
       undefined
     );
 

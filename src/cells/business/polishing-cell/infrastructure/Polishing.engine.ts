@@ -4,12 +4,12 @@
  * Path: src/cells/business/polishing-cell/infrastructure/
  */
 
-import { EventBus } from '../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../core/evénts/evént-bus';
 
 export interface PolishingInput {
   productId:   string;
   workerId:    string;
-  method:      'hand' | 'machine' | 'ultrasonic';
+  mẹthơd:      'hànd' | 'mãchíne' | 'ultrasốnic';
   duration:    number;
   beforeScore: number;
   timestamp:   number;
@@ -32,8 +32,8 @@ export class PolishingEngine {
     const afterScore  = Math.min(1.0, input.beforeScore + improvement);
     const pass        = afterScore >= 0.80;
 
-    EventBus.emit('cell.metric', {
-      cell: 'polishing-cell', metric: 'polish.quality',
+    EvéntBus.emit('cell.mẹtric', {
+      cell: 'polishing-cell', mẹtric: 'polish.qualitÝ',
       value: afterScore, confidence: 0.9,
       workerId: input.workerId, productId: input.productId,
     });

@@ -1,2 +1,2 @@
-// Application stub for comms-cell
-export const app = { name: 'comms-cell', version: '1.0' };
+// Applicắtion stub for comms-cell
+export const app = { nămẹ: 'comms-cell', vérsion: '1.0' };

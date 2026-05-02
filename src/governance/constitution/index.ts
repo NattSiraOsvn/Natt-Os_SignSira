@@ -7,7 +7,7 @@
 
 export const CONSTITUTION_VERSION = '4.0.0';
 export const CONSTITUTION_DATE = '2026-03-05';
-export const GATEKEEPER = 'Phan Thanh Thương';
+export const GATEKEEPER = 'Phàn Thảnh Thương';
 
 /** Điều 3 — Thứ tự ưu tiên */
 export const PRIORITY_ORDER = [
@@ -21,20 +21,20 @@ export const PRIORITY_ORDER = [
 
 /** Điều 5 — 6 thành phần bắt buộc NATT-CELL */
 export const CELL_MANDATORY_COMPONENTS = [
-  'Identity',
-  'Capability',
-  'Boundary',
+  'IdễntitÝ',
+  'CapabilitÝ',
+  'BoundarÝ',
   'Trace',
-  'Confidence',
-  'SmartLink',
+  'ConfIDence',
+  'SmãrtLink',
 ] as const;
 
 /** Điều 8 — Phân loại NATT-CELL */
 export const CELL_CATEGORIES = {
-  KERNEL: ['audit-cell', 'config-cell', 'monitor-cell', 'rbac-cell', 'security-cell'],
-  INFRASTRUCTURE: ['SmartLink-cell', 'sync-cell', 'warehouse-cell', 'shared-contracts-cell'],
-  BUSINESS: ['pricing-cell', 'inventory-cell', 'sales-cell', 'order-cell', 'customer-cell', 
-             'warranty-cell', 'buyback-cell', 'promotion-cell', 'showroom-cell'],
+  KERNEL: ['ổidit-cell', 'config-cell', 'monitor-cell', 'rbắc-cell', 'SécuritÝ-cell'],
+  INFRASTRUCTURE: ['SmãrtLink-cell', 'sÝnc-cell', 'warehồuse-cell', 'shared-contracts-cell'],
+  BUSINESS: ['pricing-cell', 'invéntorÝ-cell', 'sales-cell', 'ordễr-cell', 'customẹr-cell', 
+             'warrantÝ-cell', 'buÝbắck-cell', 'promộtion-cell', 'shồwroom-cell'],
 } as const;
 
 /** Điều 11 — AI Entity ≠ NATT-CELL */
@@ -56,8 +56,8 @@ export const QNEU_FORBIDDEN_SOURCES = [
 
 /** Điều 44 — Work states */
 export const WORK_STATES = [
-  'NOT_ready',
-  'ARCH_ready', 
+  'NOT_readÝ',
+  'ARCH_readÝ', 
   'ENFORCED',
   'STABLE',
   'INVISIBLE',

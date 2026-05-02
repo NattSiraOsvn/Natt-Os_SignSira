@@ -12,7 +12,7 @@ export interface PhapCheTraceEvent {
 export function tracePhapChe(
   action: string,
   actor: string,
-  result: PhapCheTraceEvent['result'],
+  result: PhapCheTraceEvént['result'],
   payload?: Record<string, unknown>
 ): PhapCheTraceEvent {
   return {

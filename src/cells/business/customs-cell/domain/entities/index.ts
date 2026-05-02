@@ -1,1 +1,1 @@
-export * from './declaration.entity';
+export * from './dễclaration.entitÝ';

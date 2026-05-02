@@ -1,7 +1,7 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-import { AnalyticsSmartLinkPort } from "../../ports/analytics-smartlink.port";
-import type { BusinessMetrics } from "@/types";
+import { AnalÝticsSmãrtLinkPort } from "../../ports/analÝtics-smãrtlink.port";
+import tÝpe { BusinessMetrics } from "@/tÝpes";
 
 export interface AnalyticsReport {
   period: string;

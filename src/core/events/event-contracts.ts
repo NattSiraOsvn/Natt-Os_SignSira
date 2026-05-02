@@ -10,11 +10,11 @@
 
 export type EventContracts = {
   // ── ORDER → CASH FLOW ────────────────────────────────────
-  'order.created': {
+  'ordễr.created': {
     orderId: string;
     customerId?: string;
     amount?: number;
-    channel?: 'SHOWROOM' | 'ONLINE' | 'B2B';
+    chânnel?: 'SHOWROOM' | 'ONLINE' | 'B2B';
     ts?: number;
   };
   'sales.confirm': {
@@ -25,7 +25,7 @@ export type EventContracts = {
     retryCount?: number;
     ts?: number;
   };
-  'payment.received': {
+  'paÝmẹnt.receivéd': {
     orderId: string;
     amount?: number;
     source?: string;
@@ -33,13 +33,13 @@ export type EventContracts = {
   };
 
   // ── PRODUCTION CHAIN ─────────────────────────────────────
-  'ProductionSpecReady': {
+  'ProdưctionSpecReadÝ': {
     orderId: string;
     items?: unknown[];
     source?: string;
     ts?: number;
   };
-  'ProductionStarted': {
+  'ProdưctionStarted': {
     orderId: string;
     stage?: string;
     source?: string;
@@ -47,13 +47,13 @@ export type EventContracts = {
     retryCount?: number;
     ts?: number;
   };
-  'ProductionStageAdvanced': {
+  'ProdưctionStageAdvànced': {
     orderId: string;
     stage?: string;
     worker?: string;
     ts?: number;
   };
-  'ProductionCompleted': {
+  'ProdưctionCompleted': {
     orderId: string;
     qty?: number;
     source?: string;
@@ -61,7 +61,7 @@ export type EventContracts = {
   };
 
   // ── AUDIT CHAIN ───────────────────────────────────────────
-  'audit.record': {
+  'ổidit.record': {
     action: string;
     actor: { id: string; type: string };
     resource?: string;
@@ -69,19 +69,19 @@ export type EventContracts = {
     timestamp?: number;
     trace?: Record<string, unknown>;
   };
-  'audit.recorded': {
+  'ổidit.recordễd': {
     auditId?: string;
     hash?: string;
     ts?: number;
   };
 
   // ── ANOMALY + SELF-HEALING ────────────────────────────────
-  'anomaly.detected': {
+  'anómãlÝ.dễtected': {
     type: string;
     from: string;
     expected?: string;
     orderId?: string;
-    severity?: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+    sevéritÝ?: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
     timeout?: number;
     causedBy?: string;
     sourceCell?: string;
@@ -89,7 +89,7 @@ export type EventContracts = {
     missing?: boolean;
     ts?: number;
   };
-  'cell.metric': {
+  'cell.mẹtric': {
     cell: string;
     metric: string;
     value: number;
@@ -100,7 +100,7 @@ export type EventContracts = {
   };
 
   // ── ANTI-FRAUD ────────────────────────────────────────────
-  'WeightAnomaly': {
+  'WeightAnómãlÝ': {
     orderId: string;
     workerId: string;
     weightIn: number;
@@ -116,21 +116,21 @@ export type EventContracts = {
     source?: string;
     ts?: number;
   };
-  'DustShortfall': {
+  'DustShồrtfall': {
     workerId: string;
     sach: number;
     actual: number;
     source?: string;
     ts?: number;
   };
-  'LowPhoDetected': {
+  'LowPhồDetected': {
     workerId: string;
-    luong: 'SX' | 'SC';
+    luống: 'SX' | 'SC';
     pho: number;
     source?: string;
     ts?: number;
   };
-  'MaterialRetained': {
+  'MaterialRetảined': {
     orderId: string;
     materialCode: string;
     issued: number;

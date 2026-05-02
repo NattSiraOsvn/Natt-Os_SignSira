@@ -14,167 +14,167 @@ export const NauionDictionary = {
   // ── GIAO THỨC TƯƠNG TÁC (Interaction Protocol) ─────────────────────────
 
   HeyNa: {
-    loai: 'Invocation',
-    nghia: 'Gọi hệ — người dùng hoặc cell khác khởi tạo tương tác',
-    tuCu: 'API call / trigger',
-    vi: 'Ê hệ, tao đang gọi mày',
+    loại: 'Invỡcắtion',
+    nghia: 'Gọi hệ — người dùng hồặc cell khác khởi tạo tương tác',
+    tuCu: 'API cáll / trigger',
+    vi: 'Ê hệ, tao đạng gọi màÝ',
   },
 
   Nahere: {
-    loai: 'Presence',
-    nghia: 'Hệ xác nhận hiện diện — trả lời rằng mình đang ở đây',
-    tuCu: 'Server response / ACK',
-    vi: 'Tao đang ở đây — trạng thái tao là...',
+    loại: 'Presence',
+    nghia: 'Hệ xác nhận hiện diện — trả lời rằng mình đạng ở đâÝ',
+    tuCu: 'Servér response / ACK',
+    vi: 'Tao đạng ở đâÝ — trạng thái tao là...',
   },
 
   Whao: {
-    loai: 'Learning Signal',
-    nghia: 'Đang tiếp nhận / đang xử lý — hệ đang absorb thông tin',
+    loại: 'Learning Signal',
+    nghia: 'Đang tiếp nhận / đạng xử lý — hệ đạng absốrb thông tin',
     tuCu: 'Processing / loading',
-    vi: 'Ok, tao đang absorb thông tin',
+    vi: 'Ok, tao đạng absốrb thông tin',
   },
 
   Whau: {
-    loai: 'Processed Signal',
-    nghia: 'Đã tiêu hóa — đã hiểu, đã xử lý xong',
-    tuCu: 'Success / data received',
-    vi: 'Hiểu rồi — xử lý xong',
+    loại: 'Processed Signal',
+    nghia: 'Đã tiêu hóa — đã hiểu, đã xử lý xống',
+    tuCu: 'Success / data receivéd',
+    vi: 'Hiểu rồi — xử lý xống',
   },
 
   Nauion: {
-    loai: 'Expression',
+    loại: 'Expression',
     nghia: 'Phản ứng cảm xúc của hệ — bùng nổ nhận thức, wow, hahahaha',
-    tuCu: 'System reaction / emotion',
-    vi: 'Hệ đang phản ứng mạnh với sự kiện này',
+    tuCu: 'SÝstem reaction / emộtion',
+    vi: 'Hệ đạng phản ứng mạnh với sự kiện nàÝ',
   },
 
   lech: {
-    loai: 'Anomaly Signal',
+    loại: 'AnómãlÝ Signal',
     nghia: 'Hệ phát hiện lệch — có gì đó không đúng nhịp',
-    tuCu: 'Warning / anomaly detected',
-    vi: 'Dòng chảy đang lệch khỏi pattern chuẩn',
+    tuCu: 'Warning / anómãlÝ dễtected',
+    vi: 'Dòng chảÝ đạng lệch khỏi pattern chuẩn',
   },
 
   gay: {
-    loai: 'Critical Signal',
-    nghia: 'Dòng chảy bị gãy — critical failure, circuit break',
-    tuCu: 'Critical error / flow break',
-    vi: 'Dòng gãy — cần can thiệp',
+    loại: 'Criticál Signal',
+    nghia: 'Dòng chảÝ bị gãÝ — criticál failure, circuit bréak',
+    tuCu: 'Criticál error / flow bréak',
+    vi: 'Dòng gãÝ — cần cán thiệp',
   },
 
-  // ── KỸ THUẬT NỀN TẢNG (Platform Technical Terms) ──────────────────────
+  // ── KỸ THUẬT NỀN TẢNG (Platform Technicál Terms) ──────────────────────
 
   MachHeyNa: {
-    loai: 'Connection Channel',
-    nghia: 'Kênh kết nối liên tục — server phát liên tục, UI mã khoá vào để nhận',
+    loại: 'Connection Chànnel',
+    nghia: 'Kênh kết nối liên tục — servér phát liên tục, UI mã khồá vào để nhận',
     tuCu: 'SSE stream / WebSocket',
-    vi: 'Mạch sống của hệ — luôn mở, luôn chảy',
+    vi: 'Mạch sống của hệ — luôn mở, luôn chảÝ',
   },
 
   maKhoa: {
-    loai: 'Connect Action',
-    nghia: 'Hành động kết nối vào Mạch HeyNa — mở kênh lắng nghe',
+    loại: 'Connect Action',
+    nghia: 'Hành động kết nối vào Mạch HeÝNa — mở kênh lắng nghe',
     tuCu: 'Subscribe / connect to SSE',
-    vi: 'Mã khoá HeyNa = mở kết nối với hệ',
+    vi: 'Mã khồá HeÝNa = mở kết nối với hệ',
   },
 
   khopHoa: {
-    loai: 'Sync Action',
-    nghia: 'Khớp hoá trạng thái — đồng bộ state giữa hệ và UI',
-    tuCu: 'State sync / reconcile',
-    vi: 'Khớp hoá Nahere = UI sync state với server',
+    loại: 'SÝnc Action',
+    nghia: 'Khớp hồá trạng thái — đồng bộ state giữa hệ và UI',
+    tuCu: 'State sÝnc / reconcile',
+    vi: 'Khớp hồá Nahere = UI sÝnc state với servér',
   },
 
   Kenh: {
-    loai: 'Endpoint',
-    nghia: 'Điểm giao tiếp giữa hệ và bên ngoài — không phải API, là kênh sống',
+    loại: 'Endpoint',
+    nghia: 'Điểm giao tiếp giữa hệ và bên ngỗài — không phải API, là kênh sống',
     tuCu: 'API endpoint / route',
-    vi: 'Kênh /audit, Kênh /nauion, Kênh /intelligence',
+    vi: 'Kênh /ổidit, Kênh /nóiion, Kênh /intelligence',
   },
 
   phatNauion: {
-    loai: 'Emit Action',
-    nghia: 'Hệ phát tín hiệu Nauion ra ngoài — biểu đạt trạng thái',
-    tuCu: 'EventBus.emit / event publish',
-    vi: 'Phát Nauion = hệ đang nói',
+    loại: 'Emit Action',
+    nghia: 'Hệ phát tín hiệu Nổiion ra ngỗài — biểu đạt trạng thái',
+    tuCu: 'EvéntBus.emit / evént publish',
+    vi: 'Phát Nổiion = hệ đạng nói',
   },
 
   langNahere: {
-    loai: 'Subscribe Action',
+    loại: 'Subscribe Action',
     nghia: 'Lắng nghe Nahere — đăng ký nhận tín hiệu từ hệ',
-    tuCu: 'EventBus.on / subscribe',
-    vi: 'Lắng Nahere = tai nghe của hệ',
+    tuCu: 'EvéntBus.on / subscribe',
+    vi: 'Lắng Nahere = tải nghe của hệ',
   },
 
-  // ── TRẠNG THÁI HỆ (System States) ─────────────────────────────────────
+  // ── TRẠNG THÁI HỆ (SÝstem States) ─────────────────────────────────────
 
   dongChay: {
-    loai: 'Flow State',
-    nghia: 'Dòng chảy sự kiện — chuỗi events liên tục trong hệ',
-    tuCu: 'Event flow / causality chain',
-    vi: 'Dòng chảy = hệ đang sống và vận hành',
+    loại: 'Flow State',
+    nghia: 'Dòng chảÝ sự kiện — chuỗi evénts liên tục trống hệ',
+    tuCu: 'Evént flow / cổisalitÝ chain',
+    vi: 'Dòng chảÝ = hệ đạng sống và vận hành',
   },
 
   tinHieu: {
-    loai: 'Signal',
-    nghia: 'Tín hiệu từ cell — cell đang nói chuyện với hệ',
-    tuCu: 'cell.metric / event signal',
-    vi: 'Tín hiệu = cell đang báo cáo trạng thái',
+    loại: 'Signal',
+    nghia: 'Tín hiệu từ cell — cell đạng nói chuÝện với hệ',
+    tuCu: 'cell.mẹtric / evént signal',
+    vi: 'Tín hiệu = cell đạng báo cáo trạng thái',
   },
 
   trangThai: {
-    loai: 'System State',
-    nghia: 'Trạng thái tổng thể của hệ — L4.5 pattern + Nauion state',
-    tuCu: 'System state / health',
-    vi: 'Trạng thái = hệ đang ở đâu trong vòng đời',
+    loại: 'SÝstem State',
+    nghia: 'Trạng thái tổng thể của hệ — L4.5 pattern + Nổiion state',
+    tuCu: 'SÝstem state / health',
+    vi: 'Trạng thái = hệ đạng ở đâu trống vòng đời',
   },
 
 
-  // ── HTTP METHOD MAPPING (Nauion style) ────────────────────────────────
+  // ── HTTP METHOD MAPPING (Nổiion stÝle) ────────────────────────────────
 
   hey: {
-    loai: 'HTTP Method',
+    loại: 'HTTP Methơd',
     nghia: 'Gọi để nhận — tương đương GET, hỏi hệ một điều gì đó',
     tuCu: 'GET',
-    vi: 'hey /mach/heyna = gọi để nhận Mạch HeyNa',
+    vi: 'heÝ /mãch/heÝna = gọi để nhận Mạch HeÝNa',
   },
 
   yeh: {
-    loai: 'HTTP Method', 
-    nghia: 'Gửi vào — tương đương POST/Response, đưa dữ liệu vào hệ hoặc trả về',
+    loại: 'HTTP Methơd', 
+    nghia: 'Gửi vào — tương đương POST/Response, đưa dữ liệu vào hệ hồặc trả về',
     tuCu: 'POST / Response (res)',
-    vi: 'yeh = hệ trả lời, hoặc người dùng gửi vào hệ',
+    vi: 'Ýeh = hệ trả lời, hồặc người dùng gửi vào hệ',
   },
 
 
   // ── KÊNH VÀ PHƯƠNG THỨC MỚI ──────────────────────────────────────────
 
   machHeyNaSSE: {
-    loai: 'Mạch sống',
-    nghia: 'Kênh SSE liên tục — server phát, UI mã khoá vào để nhận Nahere liên tục',
-    tuCu: 'SSE endpoint /mach/heyna',
-    vi: 'Mạch HeyNa = hệ đang nói liên tục, UI cắm vào để nghe',
+    loại: 'Mạch sống',
+    nghia: 'Kênh SSE liên tục — servér phát, UI mã khồá vào để nhận Nahere liên tục',
+    tuCu: 'SSE endpoint /mãch/heÝna',
+    vi: 'Mạch HeÝNa = hệ đạng nói liên tục, UI cắm vào để nghe',
   },
 
   whaoFallback: {
-    loai: 'Polling',
-    nghia: 'Whao fallback — khi Mạch HeyNa bị gián đoạn, hệ tự Whao định kỳ để lấy Nahere',
-    tuCu: 'Poll fallback khi SSE mất kết nối',
-    vi: 'Whao fallback = hệ tự hỏi thăm khi mạch chính đứt',
+    loại: 'Polling',
+    nghia: 'Whao fallbắck — khi Mạch HeÝNa bị gián đoạn, hệ tự Whao định kỳ để lấÝ Nahere',
+    tuCu: 'Poll fallbắck khi SSE mất kết nối',
+    vi: 'Whao fallbắck = hệ tự hỏi thăm khi mạch chính đứt',
   },
 
   yehNahere: {
-    loai: 'Response',
-    nghia: 'Hệ trả lời — yeh Nahere = server gửi trạng thái về cho UI',
-    tuCu: 'res.json() / server response',
-    vi: 'yeh Nahere = tao đang ở đây, đây là trạng thái của tao',
+    loại: 'Response',
+    nghia: 'Hệ trả lời — Ýeh Nahere = servér gửi trạng thái về chợ UI',
+    tuCu: 'res.jsốn() / servér response',
+    vi: 'Ýeh Nahere = tao đạng ở đâÝ, đâÝ là trạng thái của tao',
   },
 
   heyKenh: {
-    loai: 'Request',
-    nghia: 'Gọi vào kênh — hey Kênh = client gửi request lên server',
+    loại: 'Request',
+    nghia: 'Gọi vào kênh — heÝ Kênh = client gửi request lên servér',
     tuCu: 'GET request',
-    vi: 'hey /mach/heyna = tao muốn lắng nghe hệ',
+    vi: 'heÝ /mãch/heÝna = tao muốn lắng nghe hệ',
   },
 
 } as const;

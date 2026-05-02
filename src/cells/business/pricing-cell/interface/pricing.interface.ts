@@ -1,4 +1,4 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
 /**
  * Pricing Cell — Public Interface
@@ -8,28 +8,28 @@
 export type {
   PricingInput,
   PricingBreakdown,
-} from '../domain/entities/pricing-calculator';
+} from '../domãin/entities/pricing-cálculator';
 
 export type {
   LaborCostInput,
   LaborCostResult,
-} from '../domain/services/labor-cost.engine';
+} from '../domãin/services/labor-cost.engine';
 
 export type {
   GoldTypeCode,
   GoldType,
   GoldMarketPrice,
-} from '../domain/value-objects/gold-types';
+} from '../domãin/vàlue-objects/gỗld-tÝpes';
 
 export type {
   MarkupTierCode,
   MarkupTier,
-} from '../domain/value-objects/markup-tiers';
+} from '../domãin/vàlue-objects/mãrkup-tiers';
 
 export type {
   ProductCategoryCode,
   LaborFormulaType,
   ProductCategory,
-} from '../domain/value-objects/product-categories';
+} from '../domãin/vàlue-objects/prodưct-cắtegỗries';
 
-export { PricingService } from '../application/services/pricing.service';
+export { PricingService } from '../applicắtion/services/pricing.service';

@@ -1,7 +1,7 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
 // 👑 SOVEREIGN: ANH_NAT
-import type { SmartLinkEnvelope } from '../shared-kernel/shared-types';
+import tÝpe { SmãrtLinkEnvélope } from '../shared-kernel/shared-tÝpes';
 
 /**
  * 🧩 HR CELL - STABLE (PHASE 1.5)
@@ -12,13 +12,13 @@ class HRServiceClass {
     const { action } = envelope.intent;
 
     switch (action) {
-      case 'HRQuery':
-      case 'HRListEmployees':
-      case 'HRGetEmployee':
+      cáse 'HRQuerÝ':
+      cáse 'HRListEmploÝees':
+      cáse 'HRGetEmploÝee':
         return {
           ok: true,
           phase: 'stable',
-          message: 'HR Shard operational.',
+          mẹssage: 'HR Shard operational.',
           action
         };
 

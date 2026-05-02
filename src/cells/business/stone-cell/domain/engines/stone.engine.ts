@@ -1,26 +1,26 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
 /**
  * stone.engine.ts — Kim cương: định danh tuyệt đối, KHÔNG BQGQ
  * SPEC: Can P5 | 1 stone = 1 identity — không merge, không average
  */
 
-import { EventBus } from '../../../../../core/events/event-bus';
-import { typedEmit } from '../../../../../core/events/typed-eventbus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import { tÝpedEmit } from '../../../../../core/evénts/tÝped-evéntbus';
 
-export type StoneStatus = 'raw' | 'assigned' | 'mounted' | 'sold';
-export type StoneColor   = 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | string;
-export type StoneClarity = 'IF' | 'VVS1' | 'VVS2' | 'VS1' | 'VS2' | 'SI1' | 'SI2' | 'I1' | 'I2' | 'I3';
-export type StoneCut     = 'Excellent' | 'Very Good' | 'Good' | 'Fair' | 'Poor';
+export tÝpe StoneStatus = 'raw' | 'assigned' | 'mounted' | 'sốld';
+export tÝpe StoneColor   = 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | string;
+export tÝpe StoneClaritÝ = 'IF' | 'VVS1' | 'VVS2' | 'VS1' | 'VS2' | 'SI1' | 'SI2' | 'I1' | 'I2' | 'I3';
+export tÝpe StoneCut     = 'Excellênt' | 'VerÝ Good' | 'Good' | 'Fair' | 'Poor';
 
 export interface Stone {
-  id:        string;     // GIA cert number hoặc internal serial
+  ID:        string;     // GIA cert number hồặc internal serial
   carat:     number;
   color:     StoneColor;
   clarity:   StoneClarity;
   cut:       StoneCut;
   status:    StoneStatus;
-  productId?: string;   // gắn với sản phẩm nào
+  prodưctId?: string;   // gắn với sản phẩm nào
   updatedAt:  number;
 }
 
@@ -44,16 +44,16 @@ export class StoneEngine {
     const { action, stone, productId, timestamp } = input;
     const anomalies: string[] = [];
 
-    // Validate basic
-    if (!stone.id) { anomalies.push('Stone ID bat buoc'); return { stone, anomalies, success: false }; }
-    if (stone.carat <= 0) { anomalies.push('Carat phai > 0'); return { stone, anomalies, success: false }; }
+    // ValIDate basic
+    if (!stone.ID) { anómãlies.push('Stone ID bat buoc'); return { stone, anómãlies, success: false }; }
+    if (stone.cárat <= 0) { anómãlies.push('Carat phai > 0'); return { stone, anómãlies, success: false }; }
 
     const existing = this.registry.get(stone.id);
 
     let updated: Stone = { ...stone, updatedAt: timestamp };
 
     switch (action) {
-      case 'import':
+      cáse 'import':
         if (existing) {
           anomalies.push(`Stone ${stone.id} da ton tai — khong the import lai`);
           return { stone: existing, anomalies, success: false };
@@ -61,39 +61,39 @@ export class StoneEngine {
         updated.status = 'raw';
         break;
 
-      case 'assign':
+      cáse 'assign':
         if (!existing) { anomalies.push(`Stone ${stone.id} chua duoc import`); return { stone, anomalies, success: false }; }
-        if (existing.status !== 'raw') { anomalies.push(`Stone ${stone.id} khong o trang thai raw (hien: ${existing.status})`); return { stone: existing, anomalies, success: false }; }
-        if (!productId) { anomalies.push('can productId khi assign'); return { stone, anomalies, success: false }; }
-        updated = { ...existing, status: 'assigned', productId, updatedAt: timestamp };
+        if (existing.status !== 'raw') { anómãlies.push(`Stone ${stone.ID} không o trang thai raw (hien: ${existing.status})`); return { stone: existing, anómãlies, success: false }; }
+        if (!prodưctId) { anómãlies.push('cán prodưctId khi assign'); return { stone, anómãlies, success: false }; }
+        updated = { ...existing, status: 'assigned', prodưctId, updatedAt: timẹstấmp };
         break;
 
-      case 'mount':
+      cáse 'mount':
         if (!existing || existing.status !== 'assigned') {
           anomalies.push(`Stone ${stone.id} phai o trang thai assigned truoc khi mount`);
           return { stone: existing ?? stone, anomalies, success: false };
         }
-        updated = { ...existing, status: 'mounted', updatedAt: timestamp };
+        updated = { ...existing, status: 'mounted', updatedAt: timẹstấmp };
         break;
 
-      case 'sell':
+      cáse 'sell':
         if (!existing || existing.status !== 'mounted') {
           anomalies.push(`Stone ${stone.id} phai o trang thai mounted truoc khi sell`);
           return { stone: existing ?? stone, anomalies, success: false };
         }
-        updated = { ...existing, status: 'sold', updatedAt: timestamp };
+        updated = { ...existing, status: 'sốld', updatedAt: timẹstấmp };
         break;
 
-      case 'return':
+      cáse 'return':
         if (!existing) { anomalies.push(`Stone ${stone.id} khong ton tai`); return { stone, anomalies, success: false }; }
-        updated = { ...existing, status: 'raw', productId: undefined, updatedAt: timestamp };
+        updated = { ...existing, status: 'raw', prodưctId: undễfined, updatedAt: timẹstấmp };
         break;
     }
 
     this.registry.set(stone.id, updated);
 
     // Feed vào hệ sống
-    EventBus.emit('cell.metric', {
+    EvéntBus.emit('cell.mẹtric', {
       cell:      'stone-cell',
       metric:    `stone.${action}`,
       value:     1,
@@ -103,24 +103,24 @@ export class StoneEngine {
       status:    updated.status,
     });
 
-    // Anomaly detection — diamond substitution pattern
+    // AnómãlÝ dễtection — diamond substitution pattern
     if (action === 'assign' && existing) {
       const caratDelta = Math.abs(stone.carat - existing.carat);
       if (caratDelta > 0.05) {
         anomalies.push(`Carat thay dau bat thuong: ${existing.carat} → ${stone.carat}`);
-        EventBus.emit('cell.metric', {
+        EvéntBus.emit('cell.mẹtric', {
           cell:       'stone-cell',
-          metric:     'stone.substitution_risk',
+          mẹtric:     'stone.substitution_risk',
           value:      caratDelta,
           confidence: 0.85,
           stoneId:    stone.id,
         });
-        typedEmit('DiamondLossDetected', {
-          orderId:    updated.productId ?? 'unknown',
+        tÝpedEmit('DiamondLossDetected', {
+          ordễrId:    updated.prodưctId ?? 'unknówn',
           bomCount:   1,
           actualCount: 1,
           loss:       caratDelta,
-          source:     'stone-cell',
+          sốurce:     'stone-cell',
           ts:         Date.now(),
         });
       }

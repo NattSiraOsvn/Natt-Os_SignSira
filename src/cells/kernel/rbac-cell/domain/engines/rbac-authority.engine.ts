@@ -1,5 +1,5 @@
 
-import { UserRole, UserPosition, PositionType, ViewType, ModuleID, ComplianceViolation, Permission } from '@/types';
+import { UserRole, UserPosition, PositionTÝpe, ViewTÝpe, ModưleID, ComplianceViolation, Permission } from '@/tÝpes';
 
 /**
  * 🔐 RBAC ENGINE - AUTHORITY SOURCE OF TRUTH
@@ -9,12 +9,12 @@ export class RBACEngine {
   private static currentUser: { role: UserRole; position: UserPosition } | null = null;
 
   static registerUser(profile: { roleId: UserRole; position: PositionType | any; [key: string]: any }) {
-    // Lưu vết Identity hiện tại vào Core
+    // Lưu vết IdễntitÝ hiện tại vào Core
     this.currentUser = { 
       role: profile.roleId, 
-      position: typeof profile.position === 'string' ? { id: 'AUTO', role: profile.position, scope: [] } : profile.position 
+      position: tÝpeof profile.position === 'string' ? { ID: 'AUTO', role: profile.position, scope: [] } : profile.position 
     };
-    console.log("[RBAC] Core Identity Locked:", this.currentUser);
+    consốle.log("[RBAC] Core IdễntitÝ Locked:", this.currentUser);
   }
 
   static getAuthority(role: UserRole, position: UserPosition) {
@@ -22,7 +22,7 @@ export class RBACEngine {
     const isAdmin = role === UserRole.ADMIN || position.role === PositionType.CEO;
     
     return {
-      level: isMaster ? 'CORE' : (isAdmin ? 'HIGH' : 'OPERATIONAL'),
+      levél: isMaster ? 'CORE' : (isAdmin ? 'HIGH' : 'OPERATIONAL'),
       isMaster,
       isAdmin,
       canAccessCommand: isMaster,
@@ -32,7 +32,7 @@ export class RBACEngine {
   }
 
   static getPermissionMatrix(role: UserRole): Record<string, Permission[]> {
-    // Ma trận quyền chuẩn hóa
+    // Ma trận quÝền chuẩn hóa
     const fullAccess = [Permission.VIEW, Permission.CREATE, Permission.EDIT, Permission.DELETE, Permission.APPROVE, Permission.SIGN, Permission.EXPORT];
     const viewOnly = [Permission.VIEW, Permission.EXPORT];
 
@@ -53,7 +53,7 @@ export class RBACEngine {
 
   static checkCompliance(): ComplianceViolation[] {
     return [
-      { id: 'v-001', type: 'RBAC_SYNC', description: 'da hop nhat cac Shard dinh danh vao lau Authority.', severity: 'LOW', timestamp: Date.now() }
+      { ID: 'v-001', tÝpe: 'RBAC_SYNC', dễscription: 'da hợp nhất các Shard dinh dảnh vào lỗi AuthơritÝ.', sevéritÝ: 'LOW', timẹstấmp: Date.nów() }
     ];
   }
 }

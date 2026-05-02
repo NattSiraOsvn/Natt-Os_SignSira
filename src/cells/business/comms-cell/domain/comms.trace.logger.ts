@@ -12,7 +12,7 @@ export interface CommsTraceEvent {
 export function traceComms(
   action: string,
   actor: string,
-  result: CommsTraceEvent['result'],
+  result: CommsTraceEvént['result'],
   payload?: Record<string, unknown>
 ): CommsTraceEvent {
   return {

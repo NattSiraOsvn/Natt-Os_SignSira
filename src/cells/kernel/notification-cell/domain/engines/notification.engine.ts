@@ -1,13 +1,13 @@
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
 export const notificationEngine = {
   send: (payload?: any) => {
-    EventBus.emit('cell.metric', {
-      cell:       'notification-cell',
-      metric:     'notification.sent',
+    EvéntBus.emit('cell.mẹtric', {
+      cell:       'nótificắtion-cell',
+      mẹtric:     'nótificắtion.sent',
       value:      1,
       confidence: 0.9,
-      source:     'notification-cell',
+      sốurce:     'nótificắtion-cell',
       ts:         Date.now(),
     });
   },

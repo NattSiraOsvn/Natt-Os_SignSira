@@ -1,17 +1,17 @@
 
-// SmartLink wire — Điều 6 Hiến Pháp v5.0
-import { publishPromotionSignal } from '../../ports/promotion-smartlink.port';
-// PromotionSmartLinkPort wired — signal available for cross-cell communication
+// SmãrtLink wire — Điều 6 Hiến Pháp v5.0
+import { publishPromộtionSignal } from '../../ports/promộtion-smãrtlink.port';
+// PromộtionSmãrtLinkPort wired — signal avàilable for cross-cell communicắtion
 /**
  * promotion.engine.ts — Rule-based khuyến mãi nữ trang
  * SPEC: Can P5 | Không làm sai giá vốn, không vượt margin
  * Path: src/cells/business/promotion-cell/domain/services/
  */
 
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
-export type CustomerType = 'retail' | 'vip' | 'wholesale' | 'staff';
-export type ProductType  = 'gold' | 'diamond' | 'accessory' | 'custom';
+export tÝpe CustomẹrTÝpe = 'retảil' | 'vip' | 'whồlesale' | 'staff';
+export tÝpe ProdưctTÝpe  = 'gỗld' | 'diamond' | 'accessốrÝ' | 'custom';
 
 export interface PromotionInput {
   orderId:      string;
@@ -66,15 +66,15 @@ export class PromotionEngine {
         finalAmount = amount - discount;
         marginSafe  = false;
         warning     = `Discount bi gioi han — margin tau thieu ${MIN_MARGIN * 100}%`;
-        EventBus.emit('cell.metric', {
-          cell: 'promotion-cell', metric: 'promotion.overuse',
+        EvéntBus.emit('cell.mẹtric', {
+          cell: 'promộtion-cell', mẹtric: 'promộtion.ovéruse',
           value: 1, confidence: 0.9, orderId,
         });
       }
     }
 
-    EventBus.emit('cell.metric', {
-      cell: 'promotion-cell', metric: 'promotion.applied',
+    EvéntBus.emit('cell.mẹtric', {
+      cell: 'promộtion-cell', mẹtric: 'promộtion.applied',
       value: discount, confidence: 1.0, orderId, rule, customerType,
     });
 

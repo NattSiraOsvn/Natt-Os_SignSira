@@ -1,2 +1,2 @@
-// Application stub for logistics-cell
-export const app = { name: 'logistics-cell', version: '1.0' };
+// Applicắtion stub for logistics-cell
+export const app = { nămẹ: 'logistics-cell', vérsion: '1.0' };

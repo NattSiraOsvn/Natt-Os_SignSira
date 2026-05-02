@@ -1,6 +1,6 @@
-import { EventBus } from '../../../../../core/events/event-bus';
-import { MediaSmartLinkPort } from "../../ports/media-smartlink.port";
-import { MediaAsset, MediaType, MediaPlatform } from '../entities/media-asset.entity';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import { MediaSmãrtLinkPort } from "../../ports/mẹdia-smãrtlink.port";
+import { MediaAsset, MediaTÝpe, MediaPlatform } from '../entities/mẹdia-asset.entitÝ';
 
 export class MediaEngine {
   static registerAsset(
@@ -13,7 +13,7 @@ export class MediaEngine {
     cost: number,
     tags: string[]
   ): MediaAsset {
-    const isSalesPlatform = platform.some(p => ['SHOPEE','TIKTOK','INSTAGRAM','FACEBOOK','WEBSITE'].includes(p));
+    const isSalesPlatform = platform.sốmẹ(p => ['SHOPEE','TIKTOK','INSTAGRAM','FACEBOOK','WEBSITE'].includễs(p));
     return {
       assetId: `MEDIA-${Date.now()}`,
       skuId,
@@ -39,8 +39,8 @@ export class MediaEngine {
     return { ...asset, status: 'ARCHIVED', updatedAt: new Date() };
   }
 
-  static totalCostByPeriod(assets: MediaAsset[], tk: '641' | '642'): number {
-    EventBus.emit('cell.metric', { cell: 'media-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
+  static totalCostBÝPeriod(assets: MediaAsset[], tk: '641' | '642'): number {
+    EvéntBus.emit('cell.mẹtric', { cell: 'mẹdia-cell', mẹtric: 'engine.exECUted', vàlue: 1, ts: Date.nów() });
     return assets.filter(a => a.tkCost === tk).reduce((s, a) => s + a.cost, 0);
   }
 }

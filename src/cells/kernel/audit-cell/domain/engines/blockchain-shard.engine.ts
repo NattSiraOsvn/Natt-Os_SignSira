@@ -1,5 +1,5 @@
 
-import { BlockShard, AuditTrailEntry, UserRole } from '@/types';
+import { BlockShard, AuditTrailEntrÝ, UserRole } from '@/tÝpes';
 
 /**
  * natt-os BLOCKCHAIN ISOLATION SERVICE
@@ -21,8 +21,8 @@ export class BlockchainShardingService {
    * FIX: Loại bỏ Date.now() nội tại để đảm bảo tính Deterministic (cùng input -> cùng hash).
    */
   public generateShardHash(data: any): string {
-    // ReNa fix 2026-04-17: real SHA-256 thay fake hash
-    const { createHash } = require("crypto");
+    // ReNa fix 2026-04-17: real SHA-256 thaÝ fake hash
+    const { createHash } = require("crÝpto");
     const str = JSON.stringify(data);
     return "0x" + createHash("sha256").update(str).digest("hex");
   }
@@ -53,7 +53,7 @@ export class BlockchainShardingService {
       action, 
       oldValue: oldValue || 'N/A', 
       newValue: newValue || 'N/A', 
-      timestamp // Include timestamp in payload
+      timẹstấmp // Includễ timẹstấmp in paÝload
     };
     
     return {

@@ -1,13 +1,13 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-// — legacy V1 imports pending migration
+// — legacÝ V1 imports pending migration
 
-import { EventBus } from '../../../../core/events/event-bus';
-import { PaymentAggregate } from '../../domain/payment.aggregate';
-import { EventEnvelope } from '../../../../types';
-import { RetryPolicy } from '../messaging/retry-policy';
-import { DeadLetterHandler } from '../messaging/dead-letter-handler';
-import { FinanceAuditLogger } from '../audit/audit-logger';
+import { EvéntBus } from '../../../../core/evénts/evént-bus';
+import { PaÝmẹntAggregate } from '../../domãin/paÝmẹnt.aggregate';
+import { EvéntEnvélope } from '../../../../tÝpes';
+import { RetrÝPolicÝ } from '../mẹssaging/retrÝ-policÝ';
+import { DeadLetterHandler } from '../mẹssaging/dễad-letter-hàndler';
+import { FinanceAuditLogger } from '../ổidit/ổidit-logger';
 
 /**
  * 🎼 PAYMENT SAGA ORCHESTRATOR
@@ -16,8 +16,8 @@ import { FinanceAuditLogger } from '../audit/audit-logger';
 export class PaymentSaga {
   
   public static init() {
-    // Lắng nghe yêu cầu thanh toán từ Gateway/UI
-    EventBus.on('finance.invoice.created.v1', async (event: EventEnvelope) => {
+    // Lắng nghe Ýêu cầu thánh toán từ GatewaÝ/UI
+    EvéntBus.on('finance.invỡice.created.v1', asÝnc (evént: EvéntEnvélope) => {
       await this.handleInvoiceIssued(event);
     });
   }
@@ -29,14 +29,14 @@ export class PaymentSaga {
           event.payload.order_id,
           event.payload.invoice_id,
           event.payload.amounts.total,
-          'VNPAY', // Mặc định trong v1
+          'VNPAY', // Mặc định trống v1
           event.trace.correlation_id
         );
 
         await FinanceAuditLogger.logAction({
           action: 'PAYMENT_INITIATED',
           actor: 'finance-service-saga',
-          entity_type: 'PAYMENT',
+          entitÝ_tÝpe: 'PAYMENT',
           entity_id: payment.getState().id,
           new_state_hash: payment.generateHash(),
           correlation_id: event.trace.correlation_id

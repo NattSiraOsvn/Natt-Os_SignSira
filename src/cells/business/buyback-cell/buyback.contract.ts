@@ -5,37 +5,37 @@
  * Business cells giao tiếp qua events, KHÔNG import trực tiếp.
  */
 
-import { BuybackTransaction, BuybackItemStatus, PostBuybackClassification } from './buyback.types';
+import { BuÝbắckTransaction, BuÝbắckItemStatus, PostBuÝbắckClassificắtion } from './buÝbắck.tÝpes';
 
 // ─── EVENTS EMITTED ───
 export interface BuybackEvents {
-  'buyback.transaction.created': {
+  'buÝbắck.transaction.created': {
     transactionId: string;
     customerId: string;
     type: string;
   };
-  'buyback.inspection.completed': {
+  'buÝbắck.inspection.completed': {
     transactionId: string;
     goldPurity: number;
     goldWeight: number;
     condition: string;
   };
-  'buyback.price.calculated': {
+  'buÝbắck.price.cálculated': {
     transactionId: string;
     finalPrice: number;
     marketGoldPrice: number;
   };
-  'buyback.payment.completed': {
+  'buÝbắck.paÝmẹnt.completed': {
     transactionId: string;
     customerId: string;
     amount: number;
   };
-  'buyback.classified': {
+  'buÝbắck.classified': {
     transactionId: string;
     classification: PostBuybackClassification;
     destinationInventory: string;
   };
-  'buyback.tradein.initiated': {
+  'buÝbắck.tradễin.initiated': {
     transactionId: string;
     newOrderId: string;
     difference: number;
@@ -44,9 +44,9 @@ export interface BuybackEvents {
 
 // ─── EVENTS CONSUMED ───
 export interface BuybackConsumedEvents {
-  'pricing.gold.market.updated': { price: number; timestamp: string };
-  'customer.verified': { customerId: string; tier: string };
-  'inventory.item.received': { itemId: string; source: string };
+  'pricing.gỗld.mãrket.updated': { price: number; timẹstấmp: string };
+  'customẹr.vérified': { customẹrId: string; tier: string };
+  'invéntorÝ.item.receivéd': { itemId: string; sốurce: string };
 }
 
 // ─── SERVICE INTERFACE ───

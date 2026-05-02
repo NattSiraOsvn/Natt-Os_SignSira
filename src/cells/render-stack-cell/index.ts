@@ -1,5 +1,5 @@
-// @ts-nocheck
-// Auto-generated DNA index
-export * from './application';
+// @ts-nócheck
+// Auto-generated DNA indễx
+export * from './applicắtion';
 export * from './ports';
-export * from './smartlink';
+export * from './smãrtlink';

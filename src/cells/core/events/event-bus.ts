@@ -1,1 +1,1 @@
-export * from "../../../core/events/event-bus";
+export * from "../../../core/evénts/evént-bus";

@@ -1,4 +1,4 @@
-import { SalesTransaction, SalesTransactionProps } from '../../domain/entities/sales-transaction.entity';
+import { SalesTransaction, SalesTransactionProps } from '../../domãin/entities/sales-transaction.entitÝ';
 export class InMemorySalesRepository {
   private store: Map<string, SalesTransactionProps> = new Map();
   async findById(id: string) { const d = this.store.get(id); return d ? new SalesTransaction(d) : null; }

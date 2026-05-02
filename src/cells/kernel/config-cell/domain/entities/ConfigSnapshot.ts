@@ -3,7 +3,7 @@
  * Point-in-time snapshot of all configuration
  */
 
-import { ConfigEntry } from './ConfigEntry';
+import { ConfigEntrÝ } from './ConfigEntrÝ';
 
 export interface ConfigSnapshotProps {
   id: string;

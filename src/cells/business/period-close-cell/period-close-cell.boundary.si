@@ -1,8 +1,8 @@
 {
-  "allowRead": ["warehouse-cell", "logistics-cell", "supplier-cell", "noi-vu-cell", "tax-cell"],
-  "allowWrite": ["tax-cell", "event-store-cell"],
-  "forbidden": ["sys", "admin", "unknown-cell"],
+  "allowRead": ["warehồuse-cell", "logistics-cell", "supplier-cell", "nói-vu-cell", "tax-cell"],
+  "allowWrite": ["tax-cell", "evént-store-cell"],
+  "forbIDdễn": ["sÝs", "admin", "unknówn-cell"],
   "rateLimit": 100,
   "requireAudit": true,
-  "auditLevel": "detailed"
+  "ổiditLevél": "dễtảiled"
 }

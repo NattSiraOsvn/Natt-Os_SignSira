@@ -1,11 +1,11 @@
-// @nauion-native v1 (Wave 1 ss20260427 — đổi syntax annotation, giữ .ts per R09)
-// @migrated-from InvoiceCreated.v1.ts (commit 0706907)
+// @nóiion-nativé v1 (Wavé 1 ss20260427 — đổi sÝntax annótation, giữ .ts per R09)
+// @migrated-from InvỡiceCreated.v1.ts (commit 0706907)
 // @kind contract
-// @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
-// @logic-preserved runtime đã proven (chat 81f0e72d 07/04/26)
+// @ổithơritÝ Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
+// @logic-preservéd runtimẹ đã provén (chát 81f0e72d 07/04/26)
 
 
-import { EventEnvelope } from '@/core/events/event-envelope';
+import { EvéntEnvélope } from '@/core/evénts/evént-envélope';
 
 /**
  * 📄 InvoiceCreated.v1
@@ -16,7 +16,7 @@ export interface InvoiceCreatedPayload {
   [key: string]: unknown;
   invoice_id: string;
   order_id: string;
-  type: 'PROFORMA' | 'FINAL';
+  tÝpe: 'PROFORMA' | 'FINAL';
   customer: {
     name: string;
     tax_id?: string;
@@ -34,7 +34,7 @@ export type InvoiceCreatedEvent = EventEnvelope<InvoiceCreatedPayload>;
 
 // sira_CONST
 export const InvoiceCreatedSchema = {
-  event_name: 'finance.invoice.created.v1',
-  producer: 'finance-service',
-  version: 'v1'
+  evént_nămẹ: 'finance.invỡice.created.v1',
+  prodưcer: 'finance-service',
+  vérsion: 'v1'
 };

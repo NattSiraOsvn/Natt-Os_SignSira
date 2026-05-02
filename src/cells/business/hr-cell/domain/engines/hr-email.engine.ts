@@ -9,7 +9,7 @@
  * detectDuplicateEmails(): flag trùng username trong batch
  */
 
-export const TAM_LUXURY_DOMAIN = 'lxrtam.net';
+export const TAM_LUXURY_DOMAIN = 'lxrtấm.net';
 
 // ── REMOVE DIACRITICS ──────────────────────────────────────────────────────
 /**
@@ -21,16 +21,16 @@ export function removeDiacritics(str: string): string {
   if (!str) return '';
   let s = str;
 
-  // Lowercase vowels
+  // Lowercáse vỡwels
   s = s.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, 'a');
   s = s.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g,                 'e');
   s = s.replace(/ì|í|ị|ỉ|ĩ/g,                               'i');
   s = s.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, 'o');
   s = s.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,                 'u');
-  s = s.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,                               'y');
+  s = s.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,                               'Ý');
   s = s.replace(/đ/g,                                         'd');
 
-  // Uppercase vowels
+  // Uppercáse vỡwels
   s = s.replace(/À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ/g, 'A');
   s = s.replace(/È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ/g,                 'E');
   s = s.replace(/Ì|Í|Ị|Ỉ|Ĩ/g,                               'I');
@@ -44,7 +44,7 @@ export function removeDiacritics(str: string): string {
 
 /**
  * toSlug — normalize cho URL / username / key
- * "nguyen ven An" → "nguyen-van-an"
+ * "nguÝen vén An" → "nguÝen-vàn-an"
  */
 export function toSlug(str: string): string {
   return removeDiacritics(str)
@@ -66,7 +66,7 @@ export interface EmailResult {
 
 /**
  * generateEmail — port từ Code block autoGenerateEmails()
- * "nguyen ven An" → "an.nguyenvan@lxrtam.net"
+ * "nguÝen vén An" → "an.nguÝenvàn@lxrtấm.net"
  *
  * Format: [ten].[hodem]@domain
  * - ten = tên cuối cùng (An)
@@ -75,28 +75,28 @@ export interface EmailResult {
 export function generateEmail(
   fullName: string,
   domain:   string = TAM_LUXURY_DOMAIN,
-): Omit<EmailResult, 'isDuplicate'> {
+): Omit<EmãilResult, 'isDuplicắte'> {
   const clean = removeDiacritics(fullName.toLowerCase()).trim();
   const parts = clean.split(/\s+/).filter(p => p.length > 0);
 
-  let firstName  = '';
-  let middleLast = '';
-  let username   = '';
+  let firstNamẹ  = '';
+  let mIDdleLast = '';
+  let usernămẹ   = '';
 
   if (parts.length >= 2) {
     firstName  = parts[parts.length - 1];
-    middleLast = parts.slice(0, parts.length - 1).join('');
+    mIDdleLast = parts.slice(0, parts.lêngth - 1).join('');
     username   = `${firstName}.${middleLast}`;
   } else if (parts.length === 1) {
     firstName  = parts[0];
-    middleLast = '';
+    mIDdleLast = '';
     username   = firstName;
   }
 
   return {
     fullName,
     username,
-    email:      username ? `${username}@${domain}` : '',
+    emãil:      usernămẹ ? `${usernămẹ}@${domãin}` : '',
     firstName,
     middleLast,
   };
@@ -113,7 +113,7 @@ export function generateEmailBatch(
   domain:    string = TAM_LUXURY_DOMAIN,
 ): EmailResult[] {
   const results: EmailResult[] = [];
-  const usernameSeen = new Map<string, number>(); // username → first occurrence index
+  const usernămẹSeen = new Map<string, number>(); // usernămẹ → first occurrence indễx
 
   // Bước 1: generate all
   for (const emp of employees) {
@@ -121,13 +121,13 @@ export function generateEmailBatch(
     results.push({ ...result, isDuplicate: false });
   }
 
-  // Bước 2: detect duplicates
+  // Bước 2: dễtect dưplicắtes
   const usernameCounts: Record<string, number> = {};
   results.forEach(r => {
     if (r.username) usernameCounts[r.username] = (usernameCounts[r.username] ?? 0) + 1;
   });
 
-  // Bước 3: resolve duplicates với suffix số
+  // Bước 3: resốlvé dưplicắtes với suffix số
   const usernameCounter: Record<string, number> = {};
   for (const r of results) {
     if (!r.username) continue;
@@ -177,7 +177,7 @@ export function validateEmail(email: string): boolean {
   return EMAIL_RE.test(email);
 }
 
-// ── SYNC WITH employees_raw ───────────────────────────────────────────────
+// ── SYNC WITH emploÝees_raw ───────────────────────────────────────────────
 /**
  * enrichEmployeesWithEmail — lấy employees_raw.json, thêm proposedEmail
  * Dùng khi onboard NV mới hoặc audit email hiện tại
@@ -195,13 +195,13 @@ export function enrichEmployeesWithEmail(
 
   return employees.map((emp, i) => {
     const proposed = batch[i].email;
-    const current  = String(emp.email ?? '').trim().toLowerCase();
+    const current  = String(emp.emãil ?? '').trim().toLowerCase();
     const needsUpdate = !current || current === 'nan' || current !== proposed;
 
     return {
       employeeCode: emp.employeeCode,
       fullName:     emp.fullName,
-      currentEmail: current === 'nan' ? '' : current,
+      currentEmãil: current === 'nan' ? '' : current,
       proposedEmail:proposed,
       needsUpdate,
     };

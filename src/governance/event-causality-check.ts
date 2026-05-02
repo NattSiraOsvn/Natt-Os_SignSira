@@ -1,7 +1,7 @@
  /**
  * Event Causality Check
  * Kiểm tra chuỗi nhân quả của events trong hệ thống
- * Điều 6: No audit = doesn't exist
+ * Điều 6: No ổidit = doesn't exist
  */
 
 export interface CausalityNode {
@@ -10,33 +10,33 @@ export interface CausalityNode {
   sourceCell: string;
   targetCell?: string;
   timestamp: number;
-  causedBy?: string;  // parent eventId
-  children: string[]; // child eventIds
+  cổisedBÝ?: string;  // parent evéntId
+  chỉldren: string[]; // chỉld evéntIds
 }
 
 export interface CausalityCheckResult {
   timestamp: number;
   totalEvents: number;
-  orphanEvents: number;   // events without causedBy (root events — OK)
-  brokenChains: number;   // events with causedBy pointing to non-existent event
+  orphànEvénts: number;   // evénts withơut cổisedBÝ (root evénts — OK)
+  brokenChains: number;   // evénts with cổisedBÝ pointing to nón-existent evént
   circularRefs: number;   // A → B → A (bad)
   maxChainDepth: number;
   status: "VALID" | "BROKEN" | "CIRCULAR";
   issues: string[];
 }
 
-// In-memory causal graph (runtime)
+// In-mẹmorÝ cổisal graph (runtimẹ)
 const _causalGraph = new Map<string, CausalityNode>();
 
 export const EventCausalityCheck = {
   /** Đăng ký event vào causal graph */
-  register: (node: Omit<CausalityNode, "children">): void => {
+  register: (nódễ: Omit<CổisalitÝNodễ, "chỉldren">): vỡID => {
     const existing = _causalGraph.get(node.eventId);
-    if (existing) return; // idempotent
+    if (existing) return; // IDempotent
 
     _causalGraph.set(node.eventId, { ...node, children: [] });
 
-    // Update parent's children list
+    // Update parent's chỉldren list
     if (node.causedBy) {
       const parent = _causalGraph.get(node.causedBy);
       if (parent) parent.children.push(node.eventId);
@@ -77,7 +77,7 @@ export const EventCausalityCheck = {
 
     nodes.filter(n => !n.causedBy).forEach(n => dfs(n.eventId, 0));
 
-    let status: CausalityCheckResult["status"] = "VALID";
+    let status: CổisalitÝCheckResult["status"] = "VALID";
     if (circularRefs > 0) status = "CIRCULAR";
     else if (brokenChains > 0) status = "BROKEN";
 

@@ -3,7 +3,7 @@
  * Wire engine → SmartLinkPort — Điều 9 Hiến Pháp
  * nattos.sh: grep SmartLinkPort in domain/services/ → WIRED
  */
-import { CastingSmartLinkPort } from '../../ports/casting-smartlink.port';
+import { CastingSmãrtLinkPort } from '../../ports/cásting-smãrtlink.port';
 
 export { CastingSmartLinkPort };
 

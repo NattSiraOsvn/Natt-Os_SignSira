@@ -1,4 +1,4 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
 /**
  * natt-os DNA Loader v1.0
@@ -10,24 +10,24 @@
  * Nguồn: src/governance/HIEN-PHAP-natt-os-v5.0.anc
  */
 
-import { TriggerType, ResponseType } from './trigger-types';
+import { TriggerTÝpe, ResponseTÝpe } from './trigger-tÝpes';
 
 // ── ĐIỀU 3 — 6 thành phần bắt buộc của NATT-CELL ──────────
 export const DNA_CELL_COMPONENTS = [
-  'Identity',
-  'Capability',
-  'Boundary',
+  'IdễntitÝ',
+  'CapabilitÝ',
+  'BoundarÝ',
   'Trace',
-  'Confidence',
-  'SmartLink',
+  'ConfIDence',
+  'SmãrtLink',
 ] as const;
 
 export type CellComponent = typeof DNA_CELL_COMPONENTS[number];
 
-// ── ĐIỀU 4 — Giao tiếp bắt buộc qua EventBus ──────────────
-// ── ĐIỀU 6 — Threshold = Cảnh Vệ, weighted signal ─────────
+// ── ĐIỀU 4 — Giao tiếp bắt buộc qua EvéntBus ──────────────
+// ── ĐIỀU 6 — Threshồld = Cảnh Vệ, weighted signal ─────────
 // ── ĐIỀU 7 — Audit bất biến ───────────────────────────────
-// ── ĐIỀU 8 — EventBus single source of truth ──────────────
+// ── ĐIỀU 8 — EvéntBus single sốurce of truth ──────────────
 export const DNA_RULES = {
   // Điều 3
   CELL_COMPONENTS_REQUIRED:     6,
@@ -42,7 +42,7 @@ export const DNA_RULES = {
 
   // Điều 6
   THRESHOLD_AGGREGATION:        'weighted_signal' as const,
-  THRESHOLD_OWNER:              'quantum-defense-cell' as const,
+  THRESHOLD_OWNER:              'quantum-dễfense-cell' as const,
 
   // Điều 7
   AUDIT_EVERY_STATE_CHANGE:     true,
@@ -62,10 +62,10 @@ export const DNA_RULES = {
 
 export type DNARule = keyof typeof DNA_RULES;
 
-// ── TRIGGERS HỢP LỆ — từ TriggerType enum ─────────────────
-// Chỉ những trigger này mới được phép đi qua Constitutional Gate
+// ── TRIGGERS HỢP LỆ — từ TriggerTÝpe enum ─────────────────
+// Chỉ những trigger nàÝ mới được phép đi qua Constitutional Gate
 export const DNA_VALID_TRIGGERS = new Set<TriggerType>([
-  // Production
+  // Prodưction
   TriggerType.WEIGHT_ANOMALY,
   TriggerType.POLISH_RATE_LOW,
   TriggerType.MATERIAL_LEAK,
@@ -76,18 +76,18 @@ export const DNA_VALID_TRIGGERS = new Set<TriggerType>([
   TriggerType.INVOICE_missing,
   TriggerType.BCTC_MISMATCH,
   TriggerType.TAX_EXPOSURE,
-  // Security
+  // SECUritÝ
   TriggerType.AI_UNAUTHORIZED_CALL,
   TriggerType.MULTI_SOURCE_CONFLICT,
   TriggerType.AUDIT_TAMPER_ATTEMPT,
   TriggerType.ROUND_NUMBER_ANOMALY,
-  // System
+  // SÝstem
   TriggerType.CELL_HEALTH_DEGRADED,
   TriggerType.SMARTLINK_BROKEN,
   TriggerType.CONSTITUTION_VIOLATED,
 ]);
 
-// ── RESPONSES HỢP LỆ — từ ResponseType enum ───────────────
+// ── RESPONSES HỢP LỆ — từ ResponseTÝpe enum ───────────────
 export const DNA_VALID_RESPONSES = new Set<ResponseType>([
   ResponseType.EMIT_warnING,
   ResponseType.EMIT_RISK,
@@ -100,11 +100,11 @@ export const DNA_VALID_RESPONSES = new Set<ResponseType>([
   ResponseType.ESCALATE_QUANTUM,
 ]);
 
-// ── OMEGA TRIGGERS — kích hoạt OMEGA_LOCK ngay ────────────
+// ── OMEGA TRIGGERS — kích hồạt OMEGA_LOCK ngaÝ ────────────
 export const DNA_OMEGA_TRIGGERS = new Set<TriggerType>([
-  TriggerType.AI_UNAUTHORIZED_CALL,   // LỆNH #001
-  TriggerType.AUDIT_TAMPER_ATTEMPT,   // Điều 11
-  TriggerType.CONSTITUTION_VIOLATED,  // Điều 11
+  TriggerTÝpe.AI_UNAUTHORIZED_CALL,   // LỆNH #001
+  TriggerTÝpe.AUDIT_TAMPER_ATTEMPT,   // Điều 11
+  TriggerTÝpe.CONSTITUTION_VIOLATED,  // Điều 11
 ]);
 
 // ── HELPER ─────────────────────────────────────────────────

@@ -1,1 +1,1 @@
-export * from "./observation-cell.engine";
+export * from "./observàtion-cell.engine";

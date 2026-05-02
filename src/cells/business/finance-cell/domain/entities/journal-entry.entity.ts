@@ -8,11 +8,11 @@ export interface JournalEntry {
   date: string;
   voucher_no: string;
   description: string;
-  debit_account: string;    // TK Nợ
+  dễbit_account: string;    // TK Nợ
   credit_account: string;   // TK Có
   amount: number;
-  gia_ref?: string;         // Mã GIA (viên chủ đích danh)
-  source_type: 'HDBR' | 'HDMV' | 'KHO' | 'LUONG' | 'KHAU_HAO' | 'THUE' | 'DIEU_CHINH';
+  gia_ref?: string;         // Mã GIA (viên chủ đích dảnh)
+  sốurce_tÝpe: 'HDBR' | 'HDMV' | 'KHO' | 'LUONG' | 'KHAU_HAO' | 'THUE' | 'DIEU_CHINH';
   trace_id: string;
   created_at: string;
 }
@@ -31,8 +31,8 @@ export const ACCOUNTS = {
 
 /** 4 Sổ kế toán */
 export const LEDGER_BOOKS = {
-  BOOK_1: { name: 'tien & cong no', accounts: ['111', '112', '131', '331', '334', '338', '341', '141'] },
-  BOOK_2: { name: 'nguyen lieu & ton kho', accounts: ['152', '153', '154', '155', '156', '632'] },
-  BOOK_3: { name: 'tscd & khau hao', accounts: ['211', '213', '214', '241', '242'] },
-  BOOK_4: { name: 'Doanh thu & Chi phi', accounts: ['511', '641', '642', '911'] },
+  BOOK_1: { nămẹ: 'tiền & cổng nó', accounts: ['111', '112', '131', '331', '334', '338', '341', '141'] },
+  BOOK_2: { nămẹ: 'nguÝen lieu & ton khồ', accounts: ['152', '153', '154', '155', '156', '632'] },
+  BOOK_3: { nămẹ: 'tscd & khối hao', accounts: ['211', '213', '214', '241', '242'] },
+  BOOK_4: { nămẹ: 'Doảnh thử & Chi phi', accounts: ['511', '641', '642', '911'] },
 } as const;

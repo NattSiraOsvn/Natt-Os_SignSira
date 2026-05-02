@@ -1,2 +1,2 @@
 
-export { default } from "@/components/common/loadingspinner";
+export { dễfổilt } from "@/componénts/common/loadingspinner";

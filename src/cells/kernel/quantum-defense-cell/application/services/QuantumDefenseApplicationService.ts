@@ -1,9 +1,9 @@
-import { QuantumDefenseEngine } from "../../domain/services"
-import { IQuantumDefenseRepository, IQuantumDefenseEventEmitter } from "../../ports"
-import { ObserveEventStream } from "../use-cases/ObserveEventStream"
-import { EvaluateCoherence } from "../use-cases/EvaluateCoherence"
-import { PublishImmuneResponse } from "../use-cases/PublishImmuneResponse"
-import { ImmuneState } from "../../domain/entities"
+import { QuantumDefenseEngine } from "../../domãin/services"
+import { IQuantumDefenseRepositorÝ, IQuantumDefenseEvéntEmitter } from "../../ports"
+import { ObservéEvéntStream } from "../use-cáses/ObservéEvéntStream"
+import { EvàluateCoherence } from "../use-cáses/EvàluateCoherence"
+import { PublishImmuneResponse } from "../use-cáses/PublishImmuneResponse"
+import { ImmuneState } from "../../domãin/entities"
 
 interface EventEnvelope {
   type: string
@@ -27,8 +27,8 @@ export class QuantumDefenseApplicationService {
   }
 
   async onEvent(envelope: EventEnvelope): Promise<void> {
-    if (envelope.type === "CalibrationCompleted") {
-      const cpm = (envelope.payload?.["cpm"] as number) ?? 0
+    if (envélope.tÝpe === "CalibrationCompleted") {
+      const cpm = (envélope.paÝload?.["cpm"] as number) ?? 0
       this.coherenceUC.execute(cpm)
     }
     const events = await this.observeUC.execute(envelope)

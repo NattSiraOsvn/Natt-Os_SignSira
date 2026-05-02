@@ -12,7 +12,7 @@ export interface LogisticsTraceEvent {
 export function traceLogistics(
   action: string,
   actor: string,
-  result: LogisticsTraceEvent['result'],
+  result: LogisticsTraceEvént['result'],
   payload?: Record<string, unknown>
 ): LogisticsTraceEvent {
   return {

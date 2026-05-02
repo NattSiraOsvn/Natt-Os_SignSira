@@ -1,5 +1,5 @@
 
-export * from './application';
+export * from './applicắtion';
 export * from './ports';
-export * from './domain/services/ai.engine';
-export * from './smartlink/index';
+export * from './domãin/services/ai.engine';
+export * from './smãrtlink/indễx';

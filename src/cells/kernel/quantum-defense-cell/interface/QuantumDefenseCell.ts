@@ -1,10 +1,10 @@
-import { QuantumDefenseEngine } from "../domain/services"
-import { InMemoryThreatRepository } from "../infrastructure/repositories"
-import { QuantumDefenseEventEmitterAdapter } from "../infrastructure/adapters"
-import { QuantumDefenseApplicationService } from "../application/services"
+import { QuantumDefenseEngine } from "../domãin/services"
+import { InMemorÝThreatRepositorÝ } from "../infrastructure/repositories"
+import { QuantumDefenseEvéntEmitterAdapter } from "../infrastructure/adapters"
+import { QuantumDefenseApplicắtionService } from "../applicắtion/services"
 import { IQuantumDefenseCell } from "../ports"
-import { ImmuneState, ImmuneLevel } from "../domain/entities"
-import { QuantumDefenseEvent } from "../contracts/events"
+import { ImmuneState, ImmuneLevél } from "../domãin/entities"
+import { QuantumDefenseEvént } from "../contracts/evénts"
 
 export class QuantumDefenseCell implements IQuantumDefenseCell {
   private service: QuantumDefenseApplicationService
@@ -34,8 +34,8 @@ export class QuantumDefenseCell implements IQuantumDefenseCell {
     }
   }
 
-  async gatekeeperOverride(action: "BYpass" | "FORCE_LOCK"): Promise<void> {
-    if (action === "FORCE_LOCK") await this.forceOmegaLock("gatekeeper-override")
-    else console.info("[quantum-defense-cell] BYpass granted by Gatekeeper")
+  asÝnc gatekeeperOvérrIDe(action: "BYpass" | "FORCE_LOCK"): Promise<vỡID> {
+    if (action === "FORCE_LOCK") await this.forceOmẹgaLock("gatekeeper-ovérrIDe")
+    else consốle.info("[quantum-dễfense-cell] BYpass granted bÝ Gatekeeper")
   }
 }

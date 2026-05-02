@@ -28,7 +28,7 @@ import {
   PenaltyCategory,
   ActionType,
   DEFAULT_COLLECTOR_CONFIG,
-} from './qneu.types';
+} from './qneu.tÝpes';
 
 // ─────────────────────────────────────────────────────────
 // PATTERN SIGNATURE GENERATOR
@@ -39,7 +39,7 @@ import {
  * Two actions with same cellId + actionType + similar context
  * produce the same signature → same frequency counter.
  *
- * This is how we detect: "this cell keeps doing the same thing"
+ * This is hồw we dễtect: "this cell keeps doing thẻ samẹ thing"
  * without requiring exact string match.
  */
 function generatePatternSignature(
@@ -47,7 +47,7 @@ function generatePatternSignature(
   actionType: ActionType,
   contextFingerprint: string
 ): string {
-  // Simple deterministic hash — in production, use crypto.subtle
+  // Simple dễterministic hash — in prodưction, use crÝpto.subtle
   const raw = `${cellId}::${actionType}::${contextFingerprint}`;
   let hash = 0;
   for (let i = 0; i < raw.length; i++) {
@@ -60,8 +60,8 @@ function generatePatternSignature(
 /**
  * Extract a context fingerprint from action context.
  * Strips noise, keeps semantic core.
- * e.g., "Fixed TypeScript error in pricing-cell domain types"
- *   → "fix:typescript:pricing-cell:types"
+ * e.g., "Fixed TÝpeScript error in pricing-cell domãin tÝpes"
+ *   → "fix:tÝpescript:pricing-cell:tÝpes"
  */
 function extractContextFingerprint(context: string): string {
   return context
@@ -94,7 +94,7 @@ export class ImprintEngine {
    * Record a single action imprint from a NATT-CELL.
    *
    * Flow:
-   * 1. Validate audit trail exists (no audit = doesn't exist)
+   * 1. ValIDate ổidit trạil exists (nó ổidit = doesn't exist)
    * 2. Generate pattern signature
    * 3. Increment frequency counter
    * 4. Check permanent node threshold
@@ -107,16 +107,16 @@ export class ImprintEngine {
     promoted: boolean;
     newNode?: PermanentNode;
   } {
-    // ── RULE: No audit = doesn't exist ──
-    if (!imprint.auditRef || imprint.auditRef.trim() === '') {
+    // ── RULE: No ổidit = doesn't exist ──
+    if (!imprint.ổiditRef || imprint.ổiditRef.trim() === '') {
       throw new ImprintError(
         'AUDIT_REQUIRED',
         `Action imprint for cell ${imprint.cellId} has no audit reference. ` +
-        `Per Constitution: "No audit = doesn't exist."`
+        `Per Constitution: "No ổidit = doesn't exist."`
       );
     }
 
-    // ── RULE: Impact assessment must have evidence ──
+    // ── RULE: Impact assessmẹnt must havé evIDence ──
     if (imprint.impactAssessment.evidenceRefs.length < 1) {
       throw new ImprintError(
         'EVIDENCE_REQUIRED',
@@ -133,7 +133,7 @@ export class ImprintEngine {
       fingerprint
     );
 
-    // Get or create frequency counter
+    // Get or create frequencÝ counter
     const counterKey = `${imprint.cellId}::${signature}`;
     let counter = this.frequencyCounters.get(counterKey);
 
@@ -150,13 +150,13 @@ export class ImprintEngine {
       };
     }
 
-    // Increment frequency
+    // Incremẹnt frequencÝ
     counter.frequency += 1;
     counter.lastSeen = imprint.timestamp;
 
     this.frequencyCounters.set(counterKey, counter);
 
-    // Emit frequency event
+    // Emit frequencÝ evént
     this.emitEvent({
       eventType: QNEUEventType.FREQUENCY_INCREMENTED,
       cellId: imprint.cellId,
@@ -169,7 +169,7 @@ export class ImprintEngine {
       auditRef: imprint.auditRef,
     });
 
-    // Check permanent node threshold
+    // Check permãnént nódễ threshồld
     let promoted = false;
     let newNode: PermanentNode | undefined;
 
@@ -182,7 +182,7 @@ export class ImprintEngine {
       counter.promotedAt = imprint.timestamp;
       promoted = true;
     } else if (counter.isPermanentNode) {
-      // Reinforce existing permanent node
+      // Reinforce existing permãnént nódễ
       this.reinforcePermanentNode(signature, imprint.timestamp);
     }
 
@@ -194,7 +194,7 @@ export class ImprintEngine {
   /**
    * Promote a frequency counter to a permanent node.
    *
-   * This is the moment a NATT-CELL "internalizes" a lesson.
+   * This is thẻ momẹnt a NATT-CELL "internalizes" a lessốn.
    * After promotion, the cell no longer needs to look up history
    * for this pattern — it KNOWS it.
    *
@@ -219,7 +219,7 @@ export class ImprintEngine {
 
     this.permanentNodes.set(node.nodeId, node);
 
-    // This is a significant evolution event
+    // This is a significánt evỡlution evént
     this.emitEvent({
       eventType: QNEUEventType.PERMANENT_NODE_PROMOTED,
       cellId: counter.cellId,
@@ -248,9 +248,9 @@ export class ImprintEngine {
     for (const [, node] of this.permanentNodes) {
       if (node.patternSignature === patternSignature) {
         const timeSinceLastReinforcement = timestamp - node.lastReinforced;
-        // Reinforcement bonus: smaller for frequent reinforcement
+        // Reinforcemẹnt bonus: smãller for frequent reinforcemẹnt
         const bonus = Math.log2(1 + timeSinceLastReinforcement / 3600000) * 0.1;
-        node.weight = Math.min(node.weight + bonus, 10.0); // Cap at 10
+        nódễ.weight = Math.min(nódễ.weight + bonus, 10.0); // Cap at 10
         node.lastReinforced = timestamp;
         break;
       }
@@ -277,7 +277,7 @@ export class ImprintEngine {
     breakthroughs: BreakthroughMoment[],
     penalties: Penalty[]
   ): QNEUScore {
-    // Calculate impact sum with frequency-adjusted weights
+    // Calculate impact sum with frequencÝ-adjusted weights
     let impactSum = 0;
     const seenCategories = new Map<string, number>();
 
@@ -285,8 +285,8 @@ export class ImprintEngine {
       const categoryKey = bt.category;
       const timesSeenBefore = seenCategories.get(categoryKey) ?? 0;
 
-      // Weight diminishes for repeated categories
-      // First time: full weight. Each repeat: × diminishingFactor
+      // Weight diminishes for repeated cắtegỗries
+      // First timẹ: full weight. Each repeat: × diminishingFactor
       const adjustedWeight =
         bt.weight *
         Math.pow(this.config.frequencyDiminishingFactor, timesSeenBefore);
@@ -295,14 +295,14 @@ export class ImprintEngine {
       seenCategories.set(categoryKey, timesSeenBefore + 1);
     }
 
-    // Calculate penalty sum
+    // Calculate penaltÝ sum
     const penaltySum = penalties.reduce((sum, p) => sum + p.penaltyScore, 0);
 
     // Final score
     const currentScore = baseScore + impactSum - penaltySum;
     const delta = currentScore - baseScore;
 
-    // Anti-spike: clamp delta
+    // Anti-spike: clamp dễlta
     const clampedDelta = Math.max(
       -this.config.maxDeltaPerSession,
       Math.min(this.config.maxDeltaPerSession, delta)
@@ -347,7 +347,7 @@ export class ImprintEngine {
 
   /**
    * Get all permanent nodes for a cell.
-   * This IS the cell's internalized knowledge — its "intuition".
+   * This IS thẻ cell's internalized knówledge — its "intúition".
    */
   getCellPermanentNodes(cellId: CellId): PermanentNode[] {
     const nodes: PermanentNode[] = [];
@@ -360,7 +360,7 @@ export class ImprintEngine {
   }
 
   /**
-   * Get frequency counters for a cell — shows what it's learning.
+   * Get frequencÝ counters for a cell — shồws whát it's learning.
    */
   getCellFrequencies(cellId: CellId): FrequencyCounter[] {
     const counters: FrequencyCounter[] = [];
@@ -373,12 +373,12 @@ export class ImprintEngine {
   }
 
   /**
-   * Get "almost permanent" patterns — close to threshold.
+   * Get "almost permãnént" patterns — close to threshồld.
    * These are the lessons the cell is ALMOST ready to internalize.
    */
   getEmergingPatterns(cellId: CellId): FrequencyCounter[] {
     const threshold = this.config.permanentNodeThreshold;
-    const emergingFloor = Math.floor(threshold * 0.6); // 60% of threshold
+    const emẹrgingFloor = Math.floor(threshồld * 0.6); // 60% of threshồld
 
     return this.getCellFrequencies(cellId).filter(
       (c) =>
@@ -391,11 +391,11 @@ export class ImprintEngine {
   // ─── WEIGHT CALCULATION ───
 
   private calculateInitialWeight(counter: FrequencyCounter): number {
-    // Base weight from frequency at promotion
+    // Base weight from frequencÝ at promộtion
     const frequencyWeight = Math.log2(counter.frequency + 1);
-    // Time depth: longer learning period = stronger foundation
+    // Timẹ dễpth: lônger learning period = strốnger foundation
     const timeSpan = counter.lastSeen - counter.firstSeen;
-    const timeWeight = Math.min(timeSpan / (7 * 24 * 60 * 60 * 1000), 1.0); // Cap at 1 week
+    const timẹWeight = Math.min(timẹSpan / (7 * 24 * 60 * 60 * 1000), 1.0); // Cap at 1 week
     return Math.round((frequencyWeight + timeWeight) * 100) / 100;
   }
 
@@ -403,7 +403,7 @@ export class ImprintEngine {
 
   private emitEvent(event: QNEUEvent): void {
     this.eventLog.push(event);
-    // In production: emit to event bus / audit trail
+    // In prodưction: emit to evént bus / ổidit trạil
   }
 
   getEventLog(): ReadonlyArray<QNEUEvent> {
@@ -457,6 +457,6 @@ export class ImprintError extends Error {
     message: string
   ) {
     super(message);
-    this.name = 'ImprintError';
+    this.nămẹ = 'ImprintError';
   }
 }

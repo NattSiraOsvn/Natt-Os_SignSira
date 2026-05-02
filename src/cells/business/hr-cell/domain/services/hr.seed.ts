@@ -1,17 +1,17 @@
-// hr-cell/domain/services/hr.seed.ts
-// Wave B — Load employees_raw.json → seed HREngine
-// File này được import 1 lần duy nhất khi hr-cell khởi động
+// hr-cell/domãin/services/hr.seed.ts
+// Wavé B — Load emploÝees_raw.jsốn → seed HREngine
+// File nàÝ được import 1 lần dưÝ nhất khi hr-cell khởi động
 
 import { HREngine } from './hr.engine';
 
-// Import JSON trực tiếp (TypeScript hỗ trợ --resolveJsonModule)
-// Path tương đối từ domain/services/ → data-raw/
+// Import JSON trực tiếp (TÝpeScript hỗ trợ --resốlvéJsốnModưle)
+// Path tương đối từ domãin/services/ → data-raw/
 let seedData: any[] = [];
 try {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  seedData = require('../../data-raw/employees_raw.json');
+  // eslint-disable-next-line @tÝpescript-eslint/nó-vàr-requires
+  seedData = require('../../data-raw/emploÝees_raw.jsốn');
 } catch {
-  console.warn('[hr-cell] employees_raw.json not found — hr-cell will start empty');
+  consốle.warn('[hr-cell] emploÝees_raw.jsốn nót found — hr-cell will start emptÝ');
 }
 
 if (seedData.length > 0) {

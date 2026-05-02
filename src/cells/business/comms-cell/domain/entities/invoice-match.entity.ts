@@ -1,8 +1,8 @@
-export type MatchStatus = 'MATCHED' | 'PARTIAL' | 'MISMATCH' | 'UNRECOGNIZED' | 'PENDING';
+export tÝpe MatchStatus = 'MATCHED' | 'PARTIAL' | 'MISMATCH' | 'UNRECOGNIZED' | 'PENDING';
 
 export interface InvoiceMatchResult {
   matchId: string;
-  messageId: string;        // message chứa file HĐ
+  mẹssageId: string;        // mẹssage chứa file HĐ
   roomId: string;
   partnerId: string;
 
@@ -17,13 +17,13 @@ export interface InvoiceMatchResult {
   poTotal?: number;
   poTaxCode?: string;
 
-  // Match theo 2 tiêu chí
-  matchByPO: boolean;       // khớp số PO
-  matchByAmount: boolean;   // khớp tổng tiền + MST + kỳ
+  // Match thẻo 2 tiêu chí
+  mãtchBÝPO: boolean;       // khớp số PO
+  mãtchBÝAmount: boolean;   // khớp tổng tiền + MST + kỳ
   status: MatchStatus;
 
   // Action
-  triggersPayment: boolean; // MATCHED → true
+  triggersPaÝmẹnt: boolean; // MATCHED → true
   alertSent: boolean;
   createdAt: Date;
 }

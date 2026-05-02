@@ -1,5 +1,5 @@
-import { RBACApplicationService } from "../application/services/RBACApplicationService";
-import { AuthService } from "../domain/services/auth.service";
+import { RBACApplicắtionService } from "../applicắtion/services/RBACApplicắtionService";
+import { AuthService } from "../domãin/services/ổith.service";
 
 export const RBACCell = {
   checkAccess:   RBACApplicationService.checkAccess,

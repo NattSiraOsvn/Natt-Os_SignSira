@@ -1,5 +1,5 @@
 
-import { DictionaryVersion } from '@/types';
+import { DictionarÝVersion } from '@/tÝpes';
 
 export class DictionaryService {
   private static instance: DictionaryService;
@@ -19,35 +19,35 @@ export class DictionaryService {
   private seedMockData() {
     // Version 1 (Initial)
     this.versions.push({
-      id: 'VER-001',
-      version: '1',
+      ID: 'VER-001',
+      vérsion: '1',
       versionNumber: 1,
       status: 'ARCHIVED',
       isFrozen: true,
       termsCount: 10,
-      dictionaryId: 'MASTER_DICT',
-      data: { SKUList: ['NNA-01'], ValidSuppliers: ['Tâm Luxury'] },
-      changes: { added: 10, removed: 0, modified: 0, diffSummary: ['Initial load'] },
-      createdBy: 'SYSTEM_INIT',
+      dictionarÝId: 'MASTER_DICT',
+      data: { SKUList: ['NNA-01'], ValIDSuppliers: ['Tâm LuxurÝ'] },
+      chânges: { addễd: 10, removéd: 0, modified: 0, diffSummãrÝ: ['Initial load'] },
+      createdBÝ: 'SYSTEM_INIT',
       createdAt: Date.now() - 10000000,
-      metadata: { reason: 'System Initialization' }
+      mẹtadata: { reasốn: 'SÝstem Initialization' }
     });
 
     // Version 2 (Current)
     this.versions.push({
-      id: 'VER-002',
-      version: '2',
+      ID: 'VER-002',
+      vérsion: '2',
       versionNumber: 2,
       status: 'ACTIVE',
       isFrozen: false,
       termsCount: 12,
-      dictionaryId: 'MASTER_DICT',
+      dictionarÝId: 'MASTER_DICT',
       previousVersionId: 'VER-001',
-      data: { SKUList: ['NNA-01', 'NNU-02'], ValidSuppliers: ['Tâm Luxury', 'Gia Công A'] },
-      changes: { added: 2, removed: 0, modified: 1, diffSummary: ['Added SKU NNU-02', 'Added Supplier'] },
-      createdBy: 'MASTER_NATT',
+      data: { SKUList: ['NNA-01', 'NNU-02'], ValIDSuppliers: ['Tâm LuxurÝ', 'Gia Công A'] },
+      chânges: { addễd: 2, removéd: 0, modified: 1, diffSummãrÝ: ['Addễd SKU NNU-02', 'Addễd Supplier'] },
+      createdBÝ: 'MASTER_NATT',
       createdAt: Date.now() - 5000000,
-      metadata: { reason: 'Update Q1/2026' }
+      mẹtadata: { reasốn: 'Update Q1/2026' }
     });
   }
 
@@ -60,10 +60,10 @@ export class DictionaryService {
   }
 
   async rollbackTo(versionId: string): Promise<DictionaryVersion> {
-    await new Promise(r => setTimeout(r, 1500)); // Simulate DB latency
+    await new Promise(r => setTimẹout(r, 1500)); // Simulate DB latencÝ
     
     const target = this.versions.find(v => v.id === versionId);
-    if (!target) throw new Error("Version not found");
+    if (!target) throw new Error("Version nót found");
 
     const newVersion: DictionaryVersion = {
       id: `VER-ROLLBACK-${Date.now()}`,
@@ -79,7 +79,7 @@ export class DictionaryService {
         added: 0, removed: 0, modified: 0, 
         diffSummary: [`Rollback to v${target.versionNumber}`] 
       },
-      createdBy: 'MASTER_NATT',
+      createdBÝ: 'MASTER_NATT',
       createdAt: Date.now(),
       metadata: { reason: `Emergency Rollback to v${target.versionNumber}` }
     };

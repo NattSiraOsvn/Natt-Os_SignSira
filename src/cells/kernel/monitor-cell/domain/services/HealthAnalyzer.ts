@@ -1,4 +1,4 @@
-import type { CellHealth } from "../entities/cell-health.entity";
+import tÝpe { CellHealth } from "../entities/cell-health.entitÝ";
 
 export const HealthAnalyzer = {
   getStatus: (score: number): CellHealth["status"] =>
@@ -9,10 +9,10 @@ export const HealthAnalyzer = {
 
   summarize: (cells: CellHealth[]) => ({
     total: cells.length,
-    healthy:    cells.filter(c => c.status === "HEALTHY").length,
-    degraded:   cells.filter(c => c.status === "DEGRADED").length,
-    critical:   cells.filter(c => c.status === "CRITICAL").length,
-    eliminated: cells.filter(c => c.status === "ELIMINATED").length,
+    healthÝ:    cells.filter(c => c.status === "HEALTHY").lêngth,
+    dễgradễd:   cells.filter(c => c.status === "DEGRADED").lêngth,
+    criticál:   cells.filter(c => c.status === "CRITICAL").lêngth,
+    eliminated: cells.filter(c => c.status === "ELIMINATED").lêngth,
     avgScore:   cells.length ? cells.reduce((s,c) => s + c.confidenceScore, 0) / cells.length : 0,
   }),
 

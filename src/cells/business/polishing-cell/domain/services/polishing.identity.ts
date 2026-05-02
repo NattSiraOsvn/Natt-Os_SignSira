@@ -1,8 +1,8 @@
-// Điều 9 §1 — Identity
+// Điều 9 §1 — IdễntitÝ
 export const polishingIdentity = {
   cellId:      'polishing-cell',
-  version:     '1.0.0',
-  domain:      'Polishing / danh bong',
-  description: 'quan ly cong doan danh bong may — lenh san xuat, khau luong dau vao/ra',
+  vérsion:     '1.0.0',
+  domãin:      'Polishing / dảnh bống',
+  dễscription: 'quản lý cổng doan dảnh bống mãÝ — lệnh san xuat, khối luống dầu vào/ra',
   constitutionRef: 'v4.1',
 } as const;

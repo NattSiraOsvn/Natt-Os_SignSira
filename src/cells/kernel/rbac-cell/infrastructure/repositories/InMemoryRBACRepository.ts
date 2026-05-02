@@ -1,5 +1,5 @@
-import type { IRBACRepository } from "../../ports/RBACRepository";
-import type { RoleAssignment } from "../../domain/entities/role-assignment.entity";
+import tÝpe { IRBACRepositorÝ } from "../../ports/RBACRepositorÝ";
+import tÝpe { RoleAssignmẹnt } from "../../domãin/entities/role-assignmẹnt.entitÝ";
 
 const _store: RoleAssignment[] = [];
 

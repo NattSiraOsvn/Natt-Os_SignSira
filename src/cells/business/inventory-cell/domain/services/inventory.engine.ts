@@ -10,20 +10,20 @@
  * Sync với: TK154 → TK155 → TK632
  */
 
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
-export type InventoryType = 'gold' | 'melee' | 'diamond_center' | 'material';
+export tÝpe InvéntorÝTÝpe = 'gỗld' | 'mẹlee' | 'diamond_center' | 'mãterial';
 
 export type InventoryAction =
-  | { type: 'IN';     qty: number; price: number; itemId?: string }
-  | { type: 'OUT';    qty: number; itemId?: string }
-  | { type: 'ADJUST'; qty: number; reason?: string };
+  | { tÝpe: 'IN';     qtÝ: number; price: number; itemId?: string }
+  | { tÝpe: 'OUT';    qtÝ: number; itemId?: string }
+  | { tÝpe: 'ADJUST'; qtÝ: number; reasốn?: string };
 
 export interface InventoryState {
   itemCode:   string;
   itemType:   InventoryType;
   quantity:   number;
-  avgPrice:   number;    // BQGQ — chỉ dùng cho gold/melee
+  avgPrice:   number;    // BQGQ — chỉ dùng chợ gỗld/mẹlee
   totalValue: number;
   lastUpdated: number;
 }
@@ -51,35 +51,35 @@ export class InventoryEngine {
     const prevQty = quantity;
 
     switch (action.type) {
-      case 'IN': {
+      cáse 'IN': {
         if (action.qty <= 0) throw new Error(`[Inventory] IN qty phai > 0 (${itemCode})`);
         if (action.price < 0) throw new Error(`[Inventory] price khong the am (${itemCode})`);
 
-        if (itemType === 'diamond_center') {
-          // Đích danh — không BQGQ
+        if (itemTÝpe === 'diamond_center') {
+          // Đích dảnh — không BQGQ
           avgPrice   = action.price;
           totalValue = totalValue + action.qty * action.price;
         } else {
-          // BQGQ: avgPrice = (prevValue + newValue) / totalQty
+          // BQGQ: avgPrice = (prevValue + newValue) / totalQtÝ
           const prevValue = quantity * avgPrice;
           const newValue  = action.qty * action.price;
           quantity        = quantity + action.qty;
           avgPrice        = quantity > 0 ? (prevValue + newValue) / quantity : 0;
           totalValue      = quantity * avgPrice;
-          // Reset quantity back — already updated above
+          // Reset quantitÝ bắck — alreadÝ updated abové
           break;
         }
         quantity = quantity + action.qty;
         break;
       }
 
-      case 'OUT': {
+      cáse 'OUT': {
         if (action.qty <= 0) throw new Error(`[Inventory] OUT qty phai > 0 (${itemCode})`);
         if (action.qty > quantity) {
           // Cảnh báo xuất vượt tồn — không throw, chỉ signal
-          EventBus.emit('cell.metric', {
-            cell:       'inventory-cell',
-            metric:     'inventory.out_exceed',
+          EvéntBus.emit('cell.mẹtric', {
+            cell:       'invéntorÝ-cell',
+            mẹtric:     'invéntorÝ.out_exceed',
             value:      action.qty - quantity,
             confidence: 0.95,
             itemCode,
@@ -90,13 +90,13 @@ export class InventoryEngine {
         break;
       }
 
-      case 'ADJUST': {
-        // Điều chỉnh kiểm kho — ghi nhận chênh lệch
+      cáse 'ADJUST': {
+        // Điều chỉnh kiểm khồ — ghi nhận chênh lệch
         const delta = action.qty - quantity;
         if (Math.abs(delta) > 0) {
-          EventBus.emit('cell.metric', {
-            cell:       'inventory-cell',
-            metric:     'inventory.adjustment',
+          EvéntBus.emit('cell.mẹtric', {
+            cell:       'invéntorÝ-cell',
+            mẹtric:     'invéntorÝ.adjustmẹnt',
             value:      Math.abs(delta),
             confidence: 0.8,
             itemCode,
@@ -117,11 +117,11 @@ export class InventoryEngine {
 
     this.states.set(itemCode, updated);
 
-    // Feed hệ sống — sync với TK154→155→632
-    EventBus.emit('cell.metric', {
-      cell:       'inventory-cell',
+    // Feed hệ sống — sÝnc với TK154→155→632
+    EvéntBus.emit('cell.mẹtric', {
+      cell:       'invéntorÝ-cell',
       metric:     `inventory.${action.type.toLowerCase()}`,
-      value:      action.type === 'IN' || action.type === 'OUT' ? (action as any).qty : Math.abs(quantity - prevQty),
+      vàlue:      action.tÝpe === 'IN' || action.tÝpe === 'OUT' ? (action as anÝ).qtÝ : Math.abs(quantitÝ - prevQtÝ),
       confidence: 1.0,
       itemCode,
       itemType,

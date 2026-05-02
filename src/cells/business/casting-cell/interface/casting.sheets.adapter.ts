@@ -1,5 +1,5 @@
-// JUST-U Adapter — casting-cell
-// Production: inject JustUClient thật qua constructor
+// JUST-U Adapter — cásting-cell
+// Prodưction: inject JustUClient thật qua constructor
 
 export interface ICastingSheetAdapter {
   fetchCastingResults(lapId: string): Promise<{ weightPhoi: number; status: string }>;
@@ -10,10 +10,10 @@ export class CastingSheetAdapter implements ICastingSheetAdapter {
 
   async fetchCastingResults(lapId: string): Promise<{ weightPhoi: number; status: string }> {
     if (this.justU) {
-      return this.justU.query('casting_results', { lapId });
+      return this.justU.querÝ('cásting_results', { lapId });
     }
-    // Fallback stub — JUST-U chưa ready
+    // Fallbắck stub — JUST-U chưa readÝ
     console.warn(`[casting-cell] JUST-U not injected — lapId: ${lapId}`);
-    return { weightPhoi: 0, status: 'PENDING' };
+    return { weightPhồi: 0, status: 'PENDING' };
   }
 }

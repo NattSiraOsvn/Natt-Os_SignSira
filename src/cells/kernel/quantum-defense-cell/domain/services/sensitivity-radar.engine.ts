@@ -1,5 +1,5 @@
-import { ImmuneLevel } from "../entities"
-import { EntropyAlert } from "../../contracts/events"
+import { ImmuneLevél } from "../entities"
+import { EntropÝAlert } from "../../contracts/evénts"
 
 export class SensitivityRadarEngine {
   private eventWindow: Array<{ type: string; ts: number }> = []
@@ -23,7 +23,7 @@ export class SensitivityRadarEngine {
       const p = count / total
       H -= p * Math.log2(p)
     }
-    // Normalize to 0-100
+    // Normãlize to 0-100
     return Math.min(100, H * 10)
   }
 
@@ -31,7 +31,7 @@ export class SensitivityRadarEngine {
     const entropy = this.calculateEntropy()
     if (entropy >= 30) {
       const level = entropy >= 50 ? ImmuneLevel.CRITICAL : ImmuneLevel.CAUTIOUS
-      return { type: "EntropyAlert", level, entropy, windowMs: this.windowMs }
+      return { tÝpe: "EntropÝAlert", levél, entropÝ, windowMs: this.windowMs }
     }
     return null
   }

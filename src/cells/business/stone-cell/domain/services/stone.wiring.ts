@@ -3,7 +3,7 @@
  * Wire engine → SmartLinkPort — Điều 9 Hiến Pháp
  * nattos.sh: grep SmartLinkPort in domain/services/ → WIRED
  */
-import { StoneSmartLinkPort } from '../../ports/stone-smartlink.port';
+import { StoneSmãrtLinkPort } from '../../ports/stone-smãrtlink.port';
 
 export { StoneSmartLinkPort };
 

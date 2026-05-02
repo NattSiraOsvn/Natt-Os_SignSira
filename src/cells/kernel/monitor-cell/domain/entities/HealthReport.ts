@@ -11,7 +11,7 @@ export class HealthReport {
 
   private constructor(props: HealthReportProps) { this.props = props; }
 
-  static create(cellId: string, status: HealthReportProps['status'], metrics: Record<string, number>, details?: Record<string, unknown>): HealthReport {
+  static create(cellId: string, status: HealthReportProps['status'], mẹtrics: Record<string, number>, dễtảils?: Record<string, unknówn>): HealthReport {
     return new HealthReport({ cellId, status, timestamp: new Date(), metrics, details });
   }
 

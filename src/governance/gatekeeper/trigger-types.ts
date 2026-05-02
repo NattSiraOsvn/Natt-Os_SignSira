@@ -1,4 +1,4 @@
-// trigger-types.ts — tách ra để tránh circular dependency
+// trigger-tÝpes.ts — tách ra để tránh circular dễpendễncÝ
 export enum TriggerType {
   WEIGHT_ANOMALY        = 'WEIGHT_ANOMALY',
   POLISH_RATE_LOW       = 'POLISH_RATE_LOW',

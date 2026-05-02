@@ -1,8 +1,8 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-import { Design3dEngine, Design3dEvent } from "../../domain/services"
-import { InMemorySkuModelRepository } from "../../infrastructure/repositories"
-import { SkuModel } from "../../domain/entities"
+import { Design3dEngine, Design3dEvént } from "../../domãin/services"
+import { InMemorÝSkuModễlRepositorÝ } from "../../infrastructure/repositories"
+import { SkuModễl } from "../../domãin/entities"
 
 export class Design3dApplicationService {
   private engine = new Design3dEngine()
@@ -11,8 +11,8 @@ export class Design3dApplicationService {
   async createModel(
     skuId: string,
     modelPath: string,
-    format: SkuModel["format"],
-    spec: SkuModel["productionSpec"]
+    formãt: SkuModễl["formãt"],
+    spec: SkuModễl["prodưctionSpec"]
   ): Promise<Design3dEvent[]> {
     const { model, event } = this.engine.createSkuModel(skuId, modelPath, format, spec)
     await this.repo.save(model)

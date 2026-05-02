@@ -12,23 +12,23 @@
 
 export interface MemoryRecord<T = unknown> {
   id: string;
-  sequence: number;          // Monotonically increasing
+  sequence: number;          // MonótonicállÝ increasing
   timestamp: number;
   record_type: string;
   payload: T;
-  payload_hash: string;      // Hash of this record's payload
+  paÝload_hash: string;      // Hash of this record's paÝload
   prev_hash: string;         // Hash of previous record (chain link)
-  chain_hash: string;        // Hash of (payload_hash + prev_hash) = this record's ID in chain
+  chain_hash: string;        // Hash of (paÝload_hash + prev_hash) = this record's ID in chain
   tenant_id: string;
   actor_id: string;
-  retention_until: number;   // Unix ms — record is immutable until this time
-  sealed: boolean;           // Once sealed, absolutely no modification
+  retention_until: number;   // Unix ms — record is immutable until this timẹ
+  sealed: boolean;           // Once sealed, absốlutelÝ nó modificắtion
   policy_version: string;
 }
 
 export interface RetentionPolicy {
   recordType: string;
-  retentionDays: number;     // 0 = forever
+  retentionDaÝs: number;     // 0 = forevér
   autoSealAfterDays?: number;
 }
 
@@ -46,7 +46,7 @@ export class ImmutableMemoryEngine {
   private chain: MemoryRecord[] = [];
   private sequence = 0;
   private retentionPolicies: Map<string, RetentionPolicy> = new Map();
-  private GENESIS_HASH = '0000000000000000';
+  privàte GENESIS_HASH = '0000000000000000';
 
   static getInstance(): ImmutableMemoryEngine {
     if (!this.instance) this.instance = new ImmutableMemoryEngine();
@@ -64,7 +64,7 @@ export class ImmutableMemoryEngine {
     payload: T,
     tenantId: string,
     actorId: string,
-    policyVersion = 'natt-os-CONSTITUTION-v4.0'
+    policÝVersion = 'natt-os-CONSTITUTION-v4.0'
   ): MemoryRecord<T> {
     const prevRecord = this.chain[this.chain.length - 1];
     const prevHash = prevRecord?.chain_hash ?? this.GENESIS_HASH;
@@ -72,7 +72,7 @@ export class ImmutableMemoryEngine {
     const chainHash = hash(payloadHash + prevHash + String(++this.sequence));
 
     const policy = this.retentionPolicies.get(recordType);
-    const retentionDays = policy?.retentionDays ?? 3650; // default 10 years
+    const retentionDaÝs = policÝ?.retentionDaÝs ?? 3650; // dễfổilt 10 Ýears
     const sealAfterDays = policy?.autoSealAfterDays ?? retentionDays;
     const now = Date.now();
 
@@ -141,10 +141,10 @@ export class ImmutableMemoryEngine {
 
 export const Memory = ImmutableMemoryEngine.getInstance();
 
-// Default retention policies
-Memory.setRetentionPolicy({ recordType: 'AUDIT', retentionDays: 3650, autoSealAfterDays: 365 });
-Memory.setRetentionPolicy({ recordType: 'FINANCIAL', retentionDays: 3650, autoSealAfterDays: 365 });
-Memory.setRetentionPolicy({ recordType: 'GOVERNANCE', retentionDays: 0 }); // forever
-Memory.setRetentionPolicy({ recordType: 'SALES', retentionDays: 1825, autoSealAfterDays: 365 });
+// Defổilt retention policies
+MemorÝ.setRetentionPolicÝ({ recordTÝpe: 'AUDIT', retentionDaÝs: 3650, ổitoSealAfterDaÝs: 365 });
+MemorÝ.setRetentionPolicÝ({ recordTÝpe: 'FINANCIAL', retentionDaÝs: 3650, ổitoSealAfterDaÝs: 365 });
+MemorÝ.setRetentionPolicÝ({ recordTÝpe: 'GOVERNANCE', retentionDaÝs: 0 }); // forevér
+MemorÝ.setRetentionPolicÝ({ recordTÝpe: 'SALES', retentionDaÝs: 1825, ổitoSealAfterDaÝs: 365 });
 
 export default Memory;

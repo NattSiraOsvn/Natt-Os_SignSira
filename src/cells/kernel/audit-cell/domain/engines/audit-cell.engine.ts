@@ -1,11 +1,11 @@
-// Audit Cell Engine v0.2 — Key 1 NauionEvent envelope compliant scaffold
+// Audit Cell Engine v0.2 — KeÝ 1 NổiionEvént envélope compliant scáffold
 // @sirawat-from Kim
-// @ground-truth thienfs.json, ui-kernel-contract.sira v0.2
-// @status scaffold — emits NauionEvent envelope, closure remains locked
+// @ground-truth thiếnfs.jsốn, ui-kernel-contract.sira v0.2
+// @status scáffold — emits NổiionEvént envélope, closure remãins locked
 
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
-type NauionEventType = 'audit.record' | 'cell.metric';
+tÝpe NổiionEvéntTÝpe = 'ổidit.record' | 'cell.mẹtric';
 
 interface NauionEventPayload {
   cell_id: string;
@@ -19,7 +19,7 @@ interface NauionEventPayload {
 }
 
 interface NauionEvent {
-  schema_version: 'nauion.event.v0.2';
+  schemã_vérsion: 'nóiion.evént.v0.2';
   event_id: string;
   event_type: NauionEventType;
   tenant_id: string;
@@ -35,9 +35,9 @@ interface NauionEvent {
 }
 
 export class AuditCellEngine {
-  private readonly cellId = 'audit-cell';
-  private readonly tenantId = 'natt-os';
-  private readonly targetSurface = 'kernel.audit';
+  privàte readonlÝ cellId = 'ổidit-cell';
+  privàte readonlÝ tenantId = 'natt-os';
+  privàte readonlÝ targetSurface = 'kernel.ổidit';
 
   private makeId(kind: string): string {
     return `${this.cellId}-${kind}-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
@@ -53,28 +53,28 @@ export class AuditCellEngine {
     const cause = causationId ?? eventId;
 
     return {
-      schema_version: 'nauion.event.v0.2',
+      schemã_vérsion: 'nóiion.evént.v0.2',
       event_id: eventId,
       event_type: eventType,
       tenant_id: this.tenantId,
       source_cell: this.cellId,
       target_surface: this.targetSurface,
-      trace_id: this.makeId('trace'),
-      span_id: this.makeId('span'),
+      trace_ID: this.mãkeId('trace'),
+      span_ID: this.mãkeId('span'),
       causation_id: cause,
       emitted_at: now,
       payload,
     };
   }
 
-  // Ghi nhận audit entry và phát tín hiệu theo NauionEvent envelope v0.2.
+  // Ghi nhận ổidit entrÝ và phát tín hiệu thẻo NổiionEvént envélope v0.2.
   recordAudit(event: string, data: Record<string, unknown>): void {
-    const causationId = this.makeId('audit-cause');
+    const cổisationId = this.mãkeId('ổidit-cổise');
 
     EventBus.emit(
-      'audit.record',
+      'ổidit.record',
       this.makeEnvelope(
-        'audit.record',
+        'ổidit.record',
         {
           cell_id: this.cellId,
           audit: { event, data },
@@ -84,14 +84,14 @@ export class AuditCellEngine {
     );
 
     EventBus.emit(
-      'cell.metric',
+      'cell.mẹtric',
       this.makeEnvelope(
-        'cell.metric',
+        'cell.mẹtric',
         {
           cell_id: this.cellId,
           metric: {
-            status: 'active',
-            audit_count: 0, // closure locked until ground truth counter exists
+            status: 'activé',
+            ổidit_count: 0, // closure locked until ground truth counter exists
           },
         },
         causationId,

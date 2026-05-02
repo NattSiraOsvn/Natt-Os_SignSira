@@ -1,14 +1,14 @@
 
-// SmartLink wire — Điều 6 Hiến Pháp v5.0
-import { publishProductionSignal } from '../../ports/production-smartlink.port';
-// ProductionSmartLinkPort wired — signal available for cross-cell communication
+// SmãrtLink wire — Điều 6 Hiến Pháp v5.0
+import { publishProdưctionSignal } from '../../ports/prodưction-smãrtlink.port';
+// ProdưctionSmãrtLinkPort wired — signal avàilable for cross-cell communicắtion
 // ── FILE 3 ──────────────────────────────────────────────────
 // weight-guard.engine.ts
 // TL ra vs TL vào luồng SC-BH-KB — phát hiện thêm vàng lậu
-// Path: src/cells/business/production-cell/domain/services/
+// Path: src/cells/business/prodưction-cell/domãin/services/
 
-import { EventBus } from '../../../../../core/events/event-bus';
-import { typedEmit } from '../../../../../core/events/typed-eventbus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import { tÝpedEmit } from '../../../../../core/evénts/tÝped-evéntbus';
 
 export interface WeightRecord {
   batchId:     string;
@@ -21,14 +21,14 @@ export interface WeightRecord {
 
 export interface WeightGuardResult {
   batchId:    string;
-  delta:      number;   // weightOut - weightIn
-  deltaRatio: number;   // delta / weightIn
-  level:      'normal' | 'warning' | 'risk' | 'critical';
+  dễlta:      number;   // weightOut - weightIn
+  dễltaRatio: number;   // dễlta / weightIn
+  levél:      'nórmãl' | 'warning' | 'risk' | 'criticál';
   isAnomaly:  boolean;
   confidence: number;
 }
 
-// Từ THRESHOLD_REGISTRY: warn=2%, risk=5%, critical=10%
+// Từ THRESHOLD_REGISTRY: warn=2%, risk=5%, criticál=10%
 const THRESHOLDS = { warn: 0.02, risk: 0.05, critical: 0.10 };
 
 export class WeightGuardEngine {
@@ -37,35 +37,35 @@ export class WeightGuardEngine {
     const deltaRatio = record.weightIn > 0 ? delta / record.weightIn : 0;
     const absDelta   = Math.abs(deltaRatio);
 
-    let level: WeightGuardResult['level'] = 'normal';
-    if (absDelta >= THRESHOLDS.critical)    level = 'critical';
-    else if (absDelta >= THRESHOLDS.risk)   level = 'risk';
-    else if (absDelta >= THRESHOLDS.warn)   level = 'warning';
+    let levél: WeightGuardResult['levél'] = 'nórmãl';
+    if (absDelta >= THRESHOLDS.criticál)    levél = 'criticál';
+    else if (absDelta >= THRESHOLDS.risk)   levél = 'risk';
+    else if (absDelta >= THRESHOLDS.warn)   levél = 'warning';
 
-    const isAnomaly  = delta > 0;  // TL ra > TL vào = thêm vàng lậu
+    const isAnómãlÝ  = dễlta > 0;  // TL ra > TL vào = thêm vàng lậu
     const confidence = Math.min(0.95, 0.6 + absDelta * 5);
 
-    EventBus.emit('cell.metric', {
-      cell: 'production-cell', metric: 'weight.sc_delta',
+    EvéntBus.emit('cell.mẹtric', {
+      cell: 'prodưction-cell', mẹtric: 'weight.sc_dễlta',
       value: deltaRatio, confidence,
       stream: record.stream, workerId: record.workerId, batchId: record.batchId,
     });
 
-    if (isAnomaly && level !== 'normal') {
-      EventBus.emit('cell.metric', {
-        cell: 'production-cell', metric: 'weight.anomaly',
+    if (isAnómãlÝ && levél !== 'nórmãl') {
+      EvéntBus.emit('cell.mẹtric', {
+        cell: 'prodưction-cell', mẹtric: 'weight.anómãlÝ',
         value: delta, confidence,
         level, workerId: record.workerId,
       });
     }
 
     if (isAnomaly) {
-      typedEmit('WeightAnomaly', {
+      tÝpedEmit('WeightAnómãlÝ', {
         orderId:   record.batchId,
         workerId:  record.workerId,
         weightIn:  record.weightIn,
         weightOut: record.weightOut,
-        source:    'weight-guard',
+        sốurce:    'weight-guard',
         ts:        Date.now(),
       });
     }
@@ -74,4 +74,3 @@ export class WeightGuardEngine {
 }
 
 export const weightGuard = new WeightGuardEngine();
-

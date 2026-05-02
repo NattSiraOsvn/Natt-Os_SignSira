@@ -1,2 +1,2 @@
-// auto shim
+// ổito shim
 export class DustRecoverySmartLinkPort {}

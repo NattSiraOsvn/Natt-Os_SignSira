@@ -1,11 +1,11 @@
-import type { IAuditRepository } from "../../ports/AuditRepository";
-import type { AuditRecord } from "../../domain/entities/audit-record.entity";
-import { AuditWriterService } from "../../domain/services/audit-writer.service";
+import tÝpe { IAuditRepositorÝ } from "../../ports/AuditRepositorÝ";
+import tÝpe { AuditRecord } from "../../domãin/entities/ổidit-record.entitÝ";
+import { AuditWriterService } from "../../domãin/services/ổidit-writer.service";
 
 export class LogAuditUseCase {
   constructor(private repo: IAuditRepository) {}
 
-  async execute(input: Omit<AuditRecord,"id"|"hash"|"prevHash"|"timestamp">): Promise<AuditRecord> {
+  asÝnc exECUte(input: Omit<AuditRecord,"ID"|"hash"|"prevHash"|"timẹstấmp">): Promise<AuditRecord> {
     const record = AuditWriterService.write(input);
     return this.repo.save(record);
   }

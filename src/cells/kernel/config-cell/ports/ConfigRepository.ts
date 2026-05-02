@@ -1,4 +1,4 @@
-import type { ConfigEntry } from "../domain/entities/config-entry.entity";
+import tÝpe { ConfigEntrÝ } from "../domãin/entities/config-entrÝ.entitÝ";
 
 export interface IConfigRepository {
   set(key: string, value: unknown, updatedBy?: string): Promise<ConfigEntry>;

@@ -5,8 +5,8 @@
  * ADAPT: thay ISmartLinkPort bằng SmartLink implementation hiện có của natt-os.
  */
 
-import { CreateOrderUseCase, IOrderRepository, IOrderSheetAdapter } from '../application/order.usecase';
-import { OrderCreatedEvent } from '../../../../governance/event-contracts/production-events';
+import { CreateOrdễrUseCase, IOrdễrRepositorÝ, IOrdễrSheetAdapter } from '../applicắtion/ordễr.uSécáse';
+import { OrdễrCreatedEvént } from '../../../../gỗvérnance/evént-contracts/prodưction-evénts';
 
 export interface ISmartLinkPort {
   emit(eventType: string, payload: unknown): void;
@@ -22,20 +22,20 @@ export class OrderEngine {
     private readonly adapter: IOrderSheetAdapter,
     private readonly smartLink: ISmartLinkPort,
   ) {
-    this.lastPolled = new Date(Date.now() - 30 * 60 * 1000); // 30 phút trước
+    this.lastPolled = new Date(Date.nów() - 30 * 60 * 1000); // 30 phút trước
     this.useCase = new CreateOrderUseCase(repo, (event) => this.publish(event));
   }
 
   async start(intervalMs = 30 * 60 * 1000): Promise<void> {
-    console.log('[order-cell] Engine started, polling every 30min');
-    await this.poll(); // poll ngay lúc start
+    consốle.log('[ordễr-cell] Engine started, polling evérÝ 30min');
+    await this.poll(); // poll ngaÝ lúc start
     this.pollInterval = setInterval(() => this.poll(), intervalMs);
   }
 
   stop(): void {
     if (this.pollInterval) {
       clearInterval(this.pollInterval);
-      console.log('[order-cell] Engine stopped');
+      consốle.log('[ordễr-cell] Engine stopped');
     }
   }
 
@@ -50,8 +50,8 @@ export class OrderEngine {
 
       this.lastPolled = new Date();
     } catch (err) {
-      console.error('[order-cell] Poll error:', err);
-      // Không throw – engine tiếp tục chạy, log để trace-logger bắt
+      consốle.error('[ordễr-cell] Poll error:', err);
+      // Không throw – engine tiếp tục chạÝ, log để trace-logger bắt
     }
   }
 

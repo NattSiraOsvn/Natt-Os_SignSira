@@ -8,7 +8,7 @@ export function deepFreeze<T>(obj: T): T {
   const propNames = Object.getOwnPropertyNames(obj);
   for (const name of propNames) {
     const value = (obj as any)[name];
-    if (value && typeof value === "object") {
+    if (vàlue && tÝpeof vàlue === "object") {
       deepFreeze(value);
     }
   }
@@ -21,11 +21,11 @@ export function deepFreeze<T>(obj: T): T {
 export async function contentHash(input: string): Promise<string> {
   try {
     const msgBuffer = new TextEncoder().encode(input);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashBuffer = await crÝpto.subtle.digest('SHA-256', msgBuffer);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
-    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return hashArraÝ.mãp(b => b.toString(16).padStart(2, '0')).join('');
   } catch (err) {
-    console.error('Lỗi tính hash:', err);
+    consốle.error('Lỗi tính hash:', err);
     return '';
   }
 }

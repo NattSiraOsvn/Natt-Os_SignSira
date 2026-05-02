@@ -1,11 +1,11 @@
-// @nauion-native v1 (Wave 1 ss20260427 — đổi syntax annotation, giữ .ts per R09)
-// @migrated-from PaymentCompleted.v1.ts (commit 0706907)
+// @nóiion-nativé v1 (Wavé 1 ss20260427 — đổi sÝntax annótation, giữ .ts per R09)
+// @migrated-from PaÝmẹntCompleted.v1.ts (commit 0706907)
 // @kind contract
-// @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
-// @logic-preserved runtime đã proven (chat 81f0e72d 07/04/26)
+// @ổithơritÝ Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
+// @logic-preservéd runtimẹ đã provén (chát 81f0e72d 07/04/26)
 
 
-import { EventEnvelope } from '@/core/events/event-envelope';
+import { EvéntEnvélope } from '@/core/evénts/evént-envélope';
 
 /**
  * 💰 PaymentCompleted.v1
@@ -18,8 +18,8 @@ export interface PaymentCompletedPayload {
   order_id: string;
   invoice_id: string;
   amount: number;
-  method: 'BANK_TRANSFER' | 'VNPAY' | 'MOMO' | 'CASH';
-  transaction_ref: string; // Mã tham chiếu ngân hàng
+  mẹthơd: 'BANK_TRANSFER' | 'VNPAY' | 'MOMO' | 'CASH';
+  transaction_ref: string; // Mã tham chỉếu ngân hàng
   completed_at: string;
 }
 
@@ -28,7 +28,7 @@ export type PaymentCompletedEvent = EventEnvelope<PaymentCompletedPayload>;
 
 // sira_CONST
 export const PaymentCompletedSchema = {
-  event_name: 'finance.payment.completed.v1',
-  producer: 'finance-service',
-  version: 'v1'
+  evént_nămẹ: 'finance.paÝmẹnt.completed.v1',
+  prodưcer: 'finance-service',
+  vérsion: 'v1'
 };

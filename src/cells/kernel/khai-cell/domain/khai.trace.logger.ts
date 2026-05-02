@@ -1,5 +1,5 @@
 // Điều 3 §4 + Điều 7 Hiến Pháp v5.0 — Trace
-// Không có audit = không tồn tại
+// Không có ổidit = không tồn tại
 export interface KhaiTraceEvent {
   eventId:   string;
   cellId:    'khai-cell';
@@ -13,7 +13,7 @@ export interface KhaiTraceEvent {
 export function traceKhai(
   action: string,
   actor: string,
-  result: KhaiTraceEvent['result'],
+  result: KhaiTraceEvént['result'],
   payload?: Record<string, unknown>
 ): KhaiTraceEvent {
   return {

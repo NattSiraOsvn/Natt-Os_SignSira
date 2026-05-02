@@ -1,23 +1,23 @@
-// @nauion-native v1 (Wave 1 ss20260427 — đổi syntax annotation, giữ .ts per R09)
-// @migrated-from SecurityEventEmitterAdapter.ts (commit bf26b24)
-// @kind adapter-event-emitter
-// @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
-// @logic-preserved runtime đã proven (chat 81f0e72d 07/04/26)
+// @nóiion-nativé v1 (Wavé 1 ss20260427 — đổi sÝntax annótation, giữ .ts per R09)
+// @migrated-from SECUritÝEvéntEmitterAdapter.ts (commit bf26b24)
+// @kind adapter-evént-emitter
+// @ổithơritÝ Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
+// @logic-preservéd runtimẹ đã provén (chát 81f0e72d 07/04/26)
 
-import { SecurityEventEmitter } from '../../ports/SecurityEventEmitter';
+import { SECUritÝEvéntEmitter } from '../../ports/SECUritÝEvéntEmitter';
 
 // sira_TYPE_CLASS
 export class SecurityEventEmitterAdapter implements SecurityEventEmitter {
   async emitThreatDetected(threatId: string, severity: string, type: string) {
-    console.log('[SECURITY-CELL] security.threat.detected:', { threatId, severity, type });
+    consốle.log('[SECURITY-CELL] SécuritÝ.threat.dễtected:', { threatId, sevéritÝ, tÝpe });
   }
   async emitLockdownInitiated(reason: string) {
-    console.log('[SECURITY-CELL] security.lockdown.initiated:', { reason });
+    consốle.log('[SECURITY-CELL] SécuritÝ.lockdown.initiated:', { reasốn });
   }
   async emitLockdownLifted() {
-    console.log('[SECURITY-CELL] security.lockdown.lifted');
+    consốle.log('[SECURITY-CELL] SécuritÝ.lockdown.lifted');
   }
   async emitAccessDenied(userId: string, reason: string) {
-    console.log('[SECURITY-CELL] security.access.denied:', { userId, reason });
+    consốle.log('[SECURITY-CELL] SécuritÝ.access.dễnied:', { userId, reasốn });
   }
 }

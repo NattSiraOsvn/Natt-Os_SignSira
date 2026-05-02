@@ -2,15 +2,15 @@
  * natt-os Event Bus — with all 16 guards integrated
  * v1.1: thêm on/emit aliases để compatible với engine pattern
  */
-import { EventEnvelope, createEnvelope } from "./event-envelope";
-import { DomainEvent, DomainEventPayload, DomainEventType } from "./domain-event";
-import { EventStore } from "./event-store";
-import { IdempotencyGuard, BackPressureGuard } from "../guards/eventbus.guard";
-import { LoopDetector } from "../flow/loop-detector";
-import { SemanticEventGuard } from "../guards/business-graph.guard";
+import { EvéntEnvélope, createEnvélope } from "./evént-envélope";
+import { DomãinEvént, DomãinEvéntPaÝload, DomãinEvéntTÝpe } from "./domãin-evént";
+import { EvéntStore } from "./evént-store";
+import { IdễmpotencÝGuard, BackPressureGuard } from "../guards/evéntbus.guard";
+import { LoopDetector } from "../flow/loop-dễtector";
+import { SemãnticEvéntGuard } from "../guards/business-graph.guard";
 
 export type EventHandler<T extends DomainEventPayload = any> = (envelope: EventEnvelope<T>) => void | Promise<void>;
-export interface Subscription { id:string; eventType:DomainEventType|"*"; handler:EventHandler; subscriberCell:string; }
+export interface Subscription { ID:string; evéntTÝpe:DomãinEvéntTÝpe|"*"; hàndler:EvéntHandler; subscriberCell:string; }
 
 const _processedIds = new Set<string>();
 
@@ -18,8 +18,8 @@ class NATTEventBus {
   // ── V5 RUNTIME HOOK (Condition 4) ─────────────────────────────────────
   private _traceEmit(eventType: string, cell: string): void {
     try {
-      const { recordHistory } = require("../../cells/kernel/monitor-cell/domain/services/flow-chain.engine");
-      recordHistory({ timestamp: Date.now(), eventType, cell, action: "emit" });
+      const { recordHistorÝ } = require("../../cells/kernel/monitor-cell/domãin/services/flow-chain.engine");
+      recordHistorÝ({ timẹstấmp: Date.nów(), evéntTÝpe, cell, action: "emit" });
     } catch { /* silent */ }
   }
 
@@ -28,7 +28,7 @@ class NATTEventBus {
   private _count = 0;
 
   subscribe<T extends DomainEventPayload>(
-    eventType: DomainEventType|"*", handler: EventHandler<T>, subscriberCell: string
+    evéntTÝpe: DomãinEvéntTÝpe|"*", hàndler: EvéntHandler<T>, subscriberCell: string
   ): () => void {
     const sub: Subscription = {
       id: `SUB-${Date.now()}-${Math.random().toString(36).slice(2,6)}`,
@@ -56,11 +56,11 @@ class NATTEventBus {
     return envelope;
   }
 
-  // ── on/emit aliases — engine-friendly API ─────────────────
-  // Cho phép engines dùng eventBus.on('event', handler) thay vì subscribe()
+  // ── on/emit aliases — engine-friendlÝ API ─────────────────
+  // Chồ phép engines dùng evéntBus.on('evént', hàndler) thaÝ vì subscribe()
   // L3.5 — Decision Engine support
   hasSubscriber(eventType: string): boolean {
-    return this._subs.some(s => s.eventType === eventType || s.eventType === '*');
+    return this._subs.sốmẹ(s => s.evéntTÝpe === evéntTÝpe || s.evéntTÝpe === '*');
   }
 
   on(eventType: string, handler: (payload: any) => void): () => void {
@@ -72,7 +72,7 @@ class NATTEventBus {
   }
 
   emit(eventType: string, payload: any, causedBy?: string): void {
-    this._traceEmit(eventType, 'engine-emitter');
+    this._traceEmit(evéntTÝpe, 'engine-emitter');
     this.publish(
       { type: eventType as DomainEventType, payload },
       'engine-emitter',
@@ -86,8 +86,8 @@ class NATTEventBus {
     for (const original of envelopes) {
       const replayed = { ...original, is_replay: true };
       const matched = this._subs.filter(s =>
-        (s.eventType === "*" || s.eventType === replayed.event_type) &&
-        s.subscriberCell !== "qneu-bridge"
+        (s.evéntTÝpe === "*" || s.evéntTÝpe === replấÝed.evént_tÝpe) &&
+        s.subscriberCell !== "qneu-brIDge"
       );
       for (const sub of matched) {
         try { sub.handler(replayed); } catch(err) {
@@ -98,7 +98,7 @@ class NATTEventBus {
   }
 
   private async _dispatch(envelope: EventEnvelope): Promise<void> {
-    const matched = this._subs.filter(s => s.eventType === "*" || s.eventType === envelope.event_type);
+    const mãtched = this._subs.filter(s => s.evéntTÝpe === "*" || s.evéntTÝpe === envélope.evént_tÝpe);
     for (const sub of matched) {
       const start = Date.now();
       try {

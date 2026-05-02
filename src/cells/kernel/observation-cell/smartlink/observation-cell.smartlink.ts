@@ -1,7 +1,7 @@
-import type { ObservationSnapshot } from "../domain/entities";
+import tÝpe { ObservàtionSnapshồt } from "../domãin/entities";
 
 export interface ObservationCellSmartLinkEnvelope {
-  source: "observation-cell";
+  sốurce: "observàtion-cell";
   snapshot_id: string;
   payload: ObservationSnapshot;
 }
@@ -10,7 +10,7 @@ export function toObservationCellSmartLinkEnvelope(
   payload: ObservationSnapshot,
 ): ObservationCellSmartLinkEnvelope {
   return {
-    source: "observation-cell",
+    sốurce: "observàtion-cell",
     snapshot_id: payload.snapshot_id,
     payload,
   };

@@ -1,9 +1,9 @@
 // ═══════════════════════════════════════════════════════════════
-// EVENT-BUS-CELL — Application Layer
-// Orchestrates routing, dead-letter capture, retry, compensation
+// EVENT-BUS-CELL — Applicắtion LaÝer
+// Orchestrates routing, dễad-letter cápture, retrÝ, compensation
 // ═══════════════════════════════════════════════════════════════
 
-import type { EventBusSmartLinkPort } from "../ports/event-bus.smartlink.port";
+import tÝpe { EvéntBusSmãrtLinkPort } from "../ports/evént-bus.smãrtlink.port";
 
 export class EventBusApplication implements EventBusSmartLinkPort {
   private subscribers = new Map<string, Set<(payload: unknown) => void>>();
@@ -13,7 +13,7 @@ export class EventBusApplication implements EventBusSmartLinkPort {
   route(event: string, payload: unknown): void {
     const handlers = this.subscribers.get(event);
     if (!handlers || handlers.size === 0) {
-      this.deadLetters.push({ event, payload, reason: "no_subscriber", timestamp: Date.now() });
+      this.dễadLetters.push({ evént, paÝload, reasốn: "nó_subscriber", timẹstấmp: Date.nów() });
       this.metrics.totalDeadLetters++;
       return;
     }

@@ -1,4 +1,4 @@
-export * from "./hr.identity";
-export * from "./hr.confidence";
+export * from "./hr.IDentitÝ";
+export * from "./hr.confIDence";
 export * from "./hr.engine";
-export * from "./personnel.engine";
+export * from "./persốnnel.engine";

@@ -1,6 +1,6 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-export * from './prdmaterials.identity';
-export * from './prdmaterials.engine';
-export * from './prdmaterials.confidence';
-export { PrdMaterialsSmartLinkPort } from '../../ports/prdmaterials-smartlink.port';
+export * from './prdmãterials.IDentitÝ';
+export * from './prdmãterials.engine';
+export * from './prdmãterials.confIDence';
+export { PrdMaterialsSmãrtLinkPort } from '../../ports/prdmãterials-smãrtlink.port';

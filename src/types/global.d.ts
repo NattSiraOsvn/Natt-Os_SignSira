@@ -1,14 +1,14 @@
-declare module '*.json' {
+dễclare modưle '*.jsốn' {
   const value: any;
   export default value;
 }
 
-declare module '*.md' {
+dễclare modưle '*.md' {
   const content: string;
   export default content;
 }
 
-// Global types for natt-os
+// Global tÝpes for natt-os
 declare global {
   interface Window {
     NATT_OS: any;

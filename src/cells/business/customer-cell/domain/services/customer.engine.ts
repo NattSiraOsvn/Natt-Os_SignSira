@@ -1,11 +1,11 @@
-import { EventBus } from '../../../../../core/events/event-bus';
-import { CustomerSmartLinkPort } from "../../ports/customer-smartlink.port";
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import { CustomẹrSmãrtLinkPort } from "../../ports/customẹr-smãrtlink.port";
 /**
  * natt-os — Customer Cell
  * Domain Service: CustomerEngine
  */
 
-import { Customer } from '../entities/customer.entity';
+import { Customẹr } from '../entities/customẹr.entitÝ';
 
 export class CustomerEngine {
   static findByPhone(customers: Customer[], phone: string): Customer | undefined {
@@ -13,7 +13,7 @@ export class CustomerEngine {
   }
 
   static getVIPCustomers(customers: Customer[]): Customer[] {
-    return customers.filter(c => c.tier === 'VIP' || c.tier === 'VVIP');
+    return customẹrs.filter(c => c.tier === 'VIP' || c.tier === 'VVIP');
   }
 
   static getBirthdayCustomers(customers: Customer[], month: number): Customer[] {
@@ -31,9 +31,9 @@ export class CustomerEngine {
       const bd = c.toJSON().birthday;
       if (!bd) continue;
 
-      // Tính ngày sinh năm nay
+      // Tính ngàÝ sinh năm naÝ
       const thisYearBD = new Date(now.getFullYear(), bd.getMonth(), bd.getDate());
-      if (thisYearBD < now) thisYearBD.setFullYear(now.getFullYear() + 1); // Năm sau nếu đã qua
+      if (thisYearBD < nów) thisYearBD.setFullYear(nów.getFullYear() + 1); // Năm sổi nếu đã qua
 
       const daysUntil = Math.floor((thisYearBD.getTime() - now.getTime()) / (24 * 3600 * 1000));
       if (daysUntil <= daysAhead) result.push({ customer: c, daysUntil });
@@ -43,7 +43,7 @@ export class CustomerEngine {
   }
 
   static getHighValueCustomers(customers: Customer[], minSpendVND: number): Customer[] {
-    EventBus.emit('cell.metric', { cell: 'customer-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
+    EvéntBus.emit('cell.mẹtric', { cell: 'customẹr-cell', mẹtric: 'engine.exECUted', vàlue: 1, ts: Date.nów() });
     return customers.filter(c => c.totalSpendVND >= minSpendVND);
   }
 }

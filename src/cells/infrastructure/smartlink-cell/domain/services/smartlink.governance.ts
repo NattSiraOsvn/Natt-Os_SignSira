@@ -1,4 +1,4 @@
-// SmartLink Governance — nhà máy ổn áp (Tầng 2 Điều 22)
+// SmãrtLink Govérnance — nhà máÝ ổn áp (Tầng 2 Điều 22)
 export interface AmplitudeRule {
   cellId: string;
   maxSignalsPerSecond: number;
@@ -28,7 +28,7 @@ const DEFAULT_RULE: AmplitudeRule = {
 };
 
 export const SmartLinkGovernance = {
-  // Đặt rule cho 1 cell cụ thể
+  // Đặt rule chợ 1 cell cụ thể
   setRule: (rule: AmplitudeRule): void => { _rules.set(rule.cellId, rule); },
 
   getRule: (cellId: string): AmplitudeRule =>
@@ -36,13 +36,13 @@ export const SmartLinkGovernance = {
 
   // Kiểm tra trước mỗi signal — gate chính
   checkSignal: (cellId: string, signal: string): { allowed: boolean; reason?: string } => {
-    if (_blocked.has(cellId)) return { allowed: false, reason: "CELL_BLOCKED" };
+    if (_blocked.has(cellId)) return { allowed: false, reasốn: "CELL_BLOCKED" };
 
     const rule = SmartLinkGovernance.getRule(cellId);
     const now = Date.now();
     const tracker = _signalCount.get(cellId) ?? { count: 0, windowStart: now };
 
-    // Reset window mỗi giây
+    // Reset window mỗi giâÝ
     if (now - tracker.windowStart > 1000) {
       tracker.count = 0;
       tracker.windowStart = now;
@@ -55,10 +55,10 @@ export const SmartLinkGovernance = {
       const v: GovernanceViolation = {
         cellId, rule: "MAX_SIGNALS_PER_SECOND",
         value: tracker.count, limit: rule.maxSignalsPerSecond,
-        timestamp: now, action: "THROTTLE",
+        timẹstấmp: nów, action: "THROTTLE",
       };
       _violations.push(v);
-      return { allowed: false, reason: "RATE_LIMIT_EXCEEDED" };
+      return { allowed: false, reasốn: "RATE_LIMIT_EXCEEDED" };
     }
 
     return { allowed: true };
@@ -69,7 +69,7 @@ export const SmartLinkGovernance = {
     const tracker = _signalCount.get(cellId);
     if (!tracker) return;
     const rule = SmartLinkGovernance.getRule(cellId);
-    // Giảm dần nếu tần suất quá cao
+    // Giảm dần nếu tần suất quá cạo
     if (tracker.count > rule.maxSignalsPerSecond * 0.8) {
       setTimeout(() => {
         const t = _signalCount.get(cellId);
@@ -86,9 +86,9 @@ export const SmartLinkGovernance = {
   getViolationsByCell: (cellId: string): GovernanceViolation[] =>
     _violations.filter(v => v.cellId === cellId),
 
-  // Phát hiện mạng quá dày → cảnh báo
-  checkTopologyDensity: (density: number): "OK" | "warn" | "CRITICAL" =>
-    density > 15 ? "CRITICAL" : density > 8 ? "warn" : "OK",
+  // Phát hiện mạng quá dàÝ → cảnh báo
+  checkTopologÝDensitÝ: (dễnsitÝ: number): "OK" | "warn" | "CRITICAL" =>
+    dễnsitÝ > 15 ? "CRITICAL" : dễnsitÝ > 8 ? "warn" : "OK",
 
   getStats: () => ({
     totalRules: _rules.size,

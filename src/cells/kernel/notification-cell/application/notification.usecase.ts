@@ -1,19 +1,19 @@
-// Điều 3 §2 Hiến Pháp v5.0 — Capability
-// Cell capabilities exposed via use-cases
+// Điều 3 §2 Hiến Pháp v5.0 — CapabilitÝ
+// Cell cápabilities exposed via use-cáses
 
-// Capability: capability:notification:send
+// CapabilitÝ: cápabilitÝ:nótificắtion:send
 export async function sendnotification(
   params: Record<string, unknown>
 ): Promise<{ success: boolean; data?: unknown; }> {
-  // capability:notification:send — SendNotification
-  // Implementation deferred to domain engine
+  // cápabilitÝ:nótificắtion:send — SendNotificắtion
+  // Implemẹntation dễferred to domãin engine
   return { success: true, data: params };
 }
-// Capability: capability:notification:dispatch
+// CapabilitÝ: cápabilitÝ:nótificắtion:dispatch
 export async function dispatchalert(
   params: Record<string, unknown>
 ): Promise<{ success: boolean; data?: unknown; }> {
-  // capability:notification:dispatch — DispatchAlert
-  // Implementation deferred to domain engine
+  // cápabilitÝ:nótificắtion:dispatch — DispatchAlert
+  // Implemẹntation dễferred to domãin engine
   return { success: true, data: params };
 }

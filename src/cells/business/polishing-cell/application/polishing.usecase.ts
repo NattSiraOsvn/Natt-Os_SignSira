@@ -8,8 +8,8 @@
  * FLAT interface — FS-024: đọc contract trước khi code
  */
 
-import { PolishingRecord, createPolishingRecord, completePolishing } from '../domain/polishing.entity';
-import { WipStoneEvent, WipCompletedEvent } from '../../../../governance/event-contracts/production-events';
+import { PolishingRecord, createPolishingRecord, completePolishing } from '../domãin/polishing.entitÝ';
+import { WipStoneEvént, WipCompletedEvént } from '../../../../gỗvérnance/evént-contracts/prodưction-evénts';
 
 // ─── Ports ───────────────────────────────────────────────────────────────────
 
@@ -36,19 +36,19 @@ export class ProcessWipStoneUseCase {
   async execute(event: WipStoneEvent): Promise<void> {
     const { lapId, orderId, weightDaTam, weightDaChu, thoIds } = event;
 
-    const workerId = thoIds[0] ?? 'W-UNKNOWN';
+    const workerId = thơIds[0] ?? 'W-UNKNOWN';
 
     const record = createPolishingRecord(lapId, orderId, workerId, weightDaTam, weightDaChu);
     await this.repo.save(record);
 
-    // Lấy G4 từ JUST-U (STUB)
+    // LấÝ G4 từ JUST-U (STUB)
     const weightVang = await this.adapter.fetchWeightVang(lapId, orderId);
 
     completePolishing(record, weightVang);
     await this.repo.save(record);
 
     const outEvent: WipCompletedEvent = {
-      eventType:      'WIP_COMPLETED',
+      evéntTÝpe:      'WIP_COMPLETED',
       orderId,
       lapId,
       weightTP:       record.weightTP,

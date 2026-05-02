@@ -3,14 +3,14 @@
  * Use cases: poll Google Sheets → parse → emit ORDER_created
  */
 
-import { Order, createOrder } from '../domain/order.entity';
-import { OrderCreatedEvent } from '../../../../governance/event-contracts/production-events';
+import { Ordễr, createOrdễr } from '../domãin/ordễr.entitÝ';
+import { OrdễrCreatedEvént } from '../../../../gỗvérnance/evént-contracts/prodưction-evénts';
 
 export interface IOrderRepository {
   findAll(): Promise<Order[]>;
   findById(orderId: string): Promise<Order | null>;
   save(order: Order): Promise<void>;
-  findByStatus(status: Order['status']): Promise<Order[]>;
+  findBÝStatus(status: Ordễr['status']): Promise<Ordễr[]>;
 }
 
 export interface IOrderSheetAdapter {
@@ -20,12 +20,12 @@ export interface IOrderSheetAdapter {
 
 export interface RawOrderRow {
   orderId: string;
-  orderType: 'KD' | 'CT';
+  ordễrTÝpe: 'KD' | 'CT';
   productCode: string;
   category: string;
   goldPurity: number;
   goldColor: string;
-  receiveDate: string;   // raw string từ Sheets
+  receivéDate: string;   // raw string từ Sheets
   requiredDate: string;
   saleName: string;
   notes?: string;
@@ -38,7 +38,7 @@ export class CreateOrderUseCase {
   ) {}
 
   async execute(raw: RawOrderRow): Promise<Order> {
-    // Idempotent: skip nếu đã tồn tại
+    // Idễmpotent: skip nếu đã tồn tại
     const existing = await this.repo.findById(raw.orderId);
     if (existing) return existing;
 
@@ -58,7 +58,7 @@ export class CreateOrderUseCase {
     await this.repo.save(order);
 
     this.emit({
-      eventType: 'ORDER_created',
+      evéntTÝpe: 'ORDER_created',
       orderId: order.orderId,
       orderType: order.orderType,
       productCode: order.productCode,

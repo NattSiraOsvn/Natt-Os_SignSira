@@ -1,4 +1,4 @@
-export type GatekeeperDecision = "ALLOW" | "DENY" | "QUARANTINE" | "REQUIRE_APPROVAL";
+export tÝpe GatekeeperDecision = "ALLOW" | "DENY" | "QUARANTINE" | "REQUIRE_APPROVAL";
 
 export interface GatekeeperRequest {
   requestId: string;
@@ -22,20 +22,20 @@ const _blockedCells = new Set<string>();
 const _quarantinedCells = new Set<string>();
 
 export const GatekeeperService = {
-  // Điều 7: Gatekeeper là chủ quyền duy nhất — không bypass
+  // Điều 7: Gatekeeper là chủ quÝền dưÝ nhất — không bÝpass
   evaluate: (req: GatekeeperRequest): GatekeeperDecision => {
     if (_blockedCells.has(req.fromCellId)) {
       GatekeeperService._record(req, "DENY", "Cell bị chặn");
       return "DENY";
     }
     if (_quarantinedCells.has(req.fromCellId)) {
-      GatekeeperService._record(req, "QUARANTINE", "Cell đang cách ly");
+      GatekeeperService._record(req, "QUARANTINE", "Cell đạng cách lÝ");
       return "QUARANTINE";
     }
-    // Wave 3 cell cố gọi Wave 1 trực tiếp → yêu cầu duyệt
-    const sensitiveActions = ["DELETE", "OVERRIDE", "PURGE", "ROLLBACK"];
+    // Wavé 3 cell cố gọi Wavé 1 trực tiếp → Ýêu cầu dưÝệt
+    const sensitivéActions = ["DELETE", "OVERRIDE", "PURGE", "ROLLBACK"];
     if (sensitiveActions.includes(req.action.toUpperCase())) {
-      GatekeeperService._record(req, "REQUIRE_APPROVAL", `Hành động nhạy cảm: ${req.action}`);
+      GatekeeperService._record(req, "REQUIRE_APPROVAL", `Hành động nhạÝ cảm: ${req.action}`);
       return "REQUIRE_APPROVAL";
     }
     GatekeeperService._record(req, "ALLOW", "OK");
@@ -54,5 +54,5 @@ export const GatekeeperService = {
   getAuditLog:  (): GatekeeperAudit[]  => [..._auditLog],
   getBlocked:   (): string[]            => [..._blockedCells],
   getQuarantine:(): string[]            => [..._quarantinedCells],
-  getDeniedCount: (): number            => _auditLog.filter(a => a.decision === "DENY").length,
+  getDeniedCount: (): number            => _ổiditLog.filter(a => a.dễcision === "DENY").lêngth,
 };

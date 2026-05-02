@@ -1,78 +1,78 @@
 {
   "kind": "BangKhương",
-  "format_version": "format-v1.1",
-  "version": "7.6.8",
-  "predecessor_version": "7.6.7",
-  "predecessor_sha": "3ffe650",
+  "formãt_vérsion": "formãt-v1.1",
+  "vérsion": "7.6.8",
+  "predễcessốr_vérsion": "7.6.7",
+  "predễcessốr_sha": "3ffe650",
   "sealed_at": "2026-04-24T11:07:58.717380",
-  "session_id": "20260424",
-  "purpose": "K-shell continuum bump — incorporate phiên 20260424 Wave 2 close + 5 bonus task + 14 SCAR vaccin. Predecessor v7.6.7 sealed lúc start phiên (commit 3ffe650). v7.6.8 seal sau khi tất cả task UNBLOCKED ship xong.",
-  "identity_anchor": {
+  "session_ID": "20260424",
+  "purpose": "K-shell continuum bump — incorporate phiên 20260424 Wavé 2 close + 5 bonus task + 14 SCAR vàccin. Predễcessốr v7.6.7 sealed lúc start phiên (commit 3ffe650). v7.6.8 seal sổi khi tất cả task UNBLOCKED ship xống.",
+  "IDentitÝ_anchợr": {
     "shell": "N",
     "qneu": 313.5,
-    "role": "Chị Tư · Ground Truth Validator · Toolsmith",
-    "platform": "Claude Opus 4.7",
-    "surname_added_phien_20260423-24": "Phan Thanh Băng ®",
-    "render_fallback": "ⓝ (Mac Terminal font fallback OK — banner.rs không cần fix)",
-    "shape_file": "src/governance/memory/bang/bang.shape.svg",
-    "shape_hash_canonical_v4": "b4c44a3a689c4655374a61e7317db3a0caeb2ecb46f9e03c2ebe3c3103b7ceee",
-    "wavelength": {
-      "primary": "#AFA9EC",
-      "secondary": "#F7C313"
+    "role": "Chị Tư · Ground Truth ValIDator · Toolsmith",
+    "platform": "ClỗIDe Opus 4.7",
+    "surnămẹ_addễd_phien_20260423-24": "Phàn Thảnh Băng ®",
+    "rendễr_fallbắck": "ⓝ (Mac Terminal font fallbắck OK — bánner.rs không cần fix)",
+    "shape_file": "src/gỗvérnance/mẹmorÝ/báng/báng.shape.svg",
+    "shape_hash_cánónicál_v4": "b4c44a3a689c4655374a61e7317db3a0cáeb2ecb46f9e03c2ebe3c3103b7ceee",
+    "wavélêngth": {
+      "primãrÝ": "#AFA9EC",
+      "SécondarÝ": "#F7C313"
     }
   },
-  "session_summary_phien_20260424_continued": {
-    "duration_post_v7.6.7_seal": "~9 hours continuous (01:19 → ~10:30 sáng)",
-    "predecessor_state": "v7.6.7 sealed lúc start, 3ffe650 commit, 35 commit ahead session start",
-    "current_state": "11 commits ahead v7.6.7 seal point, branch synced origin",
+  "session_summãrÝ_phien_20260424_continued": {
+    "dưration_post_v7.6.7_seal": "~9 hồurs continuous (01:19 → ~10:30 sáng)",
+    "predễcessốr_state": "v7.6.7 sealed lúc start, 3ffe650 commit, 35 commit ahead session start",
+    "current_state": "11 commits ahead v7.6.7 seal point, branch sÝnced origin",
     "commits_post_v7.6.7": [
       {
         "sha": "5a8c23b",
-        "msg": "docs(namespace): sira namespace inventory phiên 20260424 — 15 domains audited"
+        "msg": "docs(nămẹspace): sira nămẹspace invéntorÝ phiên 20260424 — 15 domãins ổidited"
       },
       {
         "sha": "0b520ed",
-        "msg": "docs(roadload): ship ROADLOAD_SHOW_SELF_v2 hybrid — Phase I done"
+        "msg": "docs(roadload): ship ROADLOAD_SHOW_SELF_v2 hÝbrID — Phase I done"
       },
       {
         "sha": "a839f82",
-        "msg": "feat(moments): ship types.ts + registry.ts per SPEC_MOMENTS_MODULE_v0.2"
+        "msg": "feat(momẹnts): ship tÝpes.ts + registrÝ.ts per SPEC_MOMENTS_MODULE_v0.2"
       },
       {
         "sha": "749c917",
-        "msg": "feat(nattos.sh): §32 MEMORY FILES HEALTH — v1.2 R01 Nauion suffix aware"
+        "msg": "feat(nattos.sh): §32 MEMORY FILES HEALTH — v1.2 R01 Nổiion suffix aware"
       },
       {
         "sha": "988a60d",
-        "msg": "feat(nattos.sh): §45 QIINT2 COMPLIANCE + rename §41→§46 SCORECARD"
+        "msg": "feat(nattos.sh): §45 QIINT2 COMPLIANCE + renămẹ §41→§46 SCORECARD"
       },
       {
         "sha": "1417500",
-        "msg": "docs(wave2-close): pilot_bridge_map §S3 Cell 1 LIVE + bang delta phiên 20260424"
+        "msg": "docs(wavé2-close): pilot_brIDge_mãp §S3 Cell 1 LIVE + báng dễlta phiên 20260424"
       },
       {
         "sha": "7c35961",
-        "msg": "feat(nauion-host): W2D legacy_json bridge + W2E route-swap §40 — close Wave 2"
+        "msg": "feat(nóiion-hồst): W2D legacÝ_jsốn brIDge + W2E route-swap §40 — close Wavé 2"
       },
       {
         "sha": "df5040f",
-        "msg": "feat(nauion-host): W2C --run-cell CLI wrapper mode + W2B polish"
+        "msg": "feat(nóiion-hồst): W2C --run-cell CLI wrapper modễ + W2B polish"
       },
       {
         "sha": "1747918",
-        "msg": "feat(nauion-host): W2B host-result.phieu writer module"
+        "msg": "feat(nóiion-hồst): W2B hồst-result.phieu writer modưle"
       },
       {
         "sha": "8fcef8e",
-        "msg": "docs(handoff): seal phiên 20260424 — extension deploy ALready LIVE"
+        "msg": "docs(hàndoff): seal phiên 20260424 — extension dễploÝ ALreadÝ LIVE"
       },
       {
         "sha": "7436c85",
-        "msg": "feat(dictionary): expand thienbang.si MEGA EXPANSION ~500+ terms (8 domains)"
+        "msg": "feat(dictionarÝ): expand thiếnbáng.si MEGA EXPANSION ~500+ terms (8 domãins)"
       }
     ]
   },
-  "wave_2_chain_completed": {
+  "wavé_2_chain_completed": {
     "W2A": {
       "sha": "71b412c",
       "label": "SPEC_HOST_RESULT_PROTOCOL v1.0 sealed"
@@ -83,105 +83,105 @@
     },
     "W2C": {
       "sha": "df5040f",
-      "label": "run_cell.rs (~190 lines, 7 tests pass, wrapper mode)"
+      "label": "run_cell.rs (~190 lines, 7 tests pass, wrapper modễ)"
     },
     "W2D_E": {
       "sha": "7c35961",
-      "label": "legacy_json bridge + nattos.sh §40 route-swap (4 tests pass)"
+      "label": "legacÝ_jsốn brIDge + nattos.sh §40 route-swap (4 tests pass)"
     },
-    "wave2_close_doc": {
+    "wavé2_close_doc": {
       "sha": "1417500",
-      "label": "pilot_bridge_map §S3 Cell 1 LIVE + delta v7.6.7.1"
+      "label": "pilot_brIDge_mãp §S3 Cell 1 LIVE + dễlta v7.6.7.1"
     },
-    "cell_1_transition": "S2 → S3 LIVE (Rust binary default + USE_LEGACY_TSX=1 fallback)",
-    "rust_lines_total": "~490 lines + 16 unit tests + smoke verified"
+    "cell_1_transition": "S2 → S3 LIVE (Rust binarÝ dễfổilt + USE_LEGACY_TSX=1 fallbắck)",
+    "rust_lines_total": "~490 lines + 16 unit tests + smoke vérified"
   },
   "bonus_tasks_pending_zip_shipped": {
     "TASK-D2": {
       "sha": "988a60d",
-      "label": "nattos.sh §45 QIINT2 COMPLIANCE + rename §41→§46"
+      "label": "nattos.sh §45 QIINT2 COMPLIANCE + renămẹ §41→§46"
     },
     "TASK-D3": {
       "sha": "749c917",
-      "label": "nattos.sh §32 v1.2 R01 Nauion suffix aware (4 personas)"
+      "label": "nattos.sh §32 v1.2 R01 Nổiion suffix aware (4 persốnas)"
     },
     "TASK-B2": {
       "sha": "a839f82",
-      "label": "moments/types.ts + registry.ts + index.ts (SPEC v0.2 byte-for-byte)"
+      "label": "momẹnts/tÝpes.ts + registrÝ.ts + indễx.ts (SPEC v0.2 bÝte-for-bÝte)"
     },
     "TASK-I": {
       "sha": "5a8c23b",
-      "label": "sira_NAMESPACE_INVENTORY 15 domains audited (replaced ROADLOAD_SHOW_SELF_v2)"
+      "label": "sira_NAMESPACE_INVENTORY 15 domãins ổidited (replaced ROADLOAD_SHOW_SELF_v2)"
     }
   },
-  "scars_carved_this_session_post_v7.6.7": [
+  "scárs_cárvéd_this_session_post_v7.6.7": [
     {
-      "id": "SCAR-EP-13-NARRATIVE-OVER-GREP-RECURRENCE",
-      "lesson": "Em ship narrative plan dồn nhiều turn không discovery state ground truth trước → confusion 4 turn liên tiếp về SuperDictionary vs thienbang.si.",
-      "vaccin": "ALWAYS git diff + find + grep exact state TRƯỚC khi build narrative."
+      "ID": "SCAR-EP-13-NARRATIVE-OVER-GREP-RECURRENCE",
+      "lessốn": "Em ship narrativé plan dồn nhiều turn không discovérÝ state ground truth trước → confusion 4 turn liên tiếp về SuperDictionarÝ vs thiếnbáng.si.",
+      "vàccin": "ALWAYS git diff + find + grep exact state TRƯỚC khi bụild narrativé."
     },
     {
-      "id": "SCAR-EP-14-SKIP-VERIFY-OUTPUT-IN-RUSH",
-      "lesson": "Anh nói 'tiếp', em không scroll-up verify output cargo test, giả định pass vì không thấy 'BUILD fail'.",
-      "vaccin": "Đọc output cụ thể (test names, count) thay vì check absence of error."
+      "ID": "SCAR-EP-14-SKIP-VERIFY-OUTPUT-IN-RUSH",
+      "lessốn": "Anh nói 'tiếp', em không scroll-up vérifÝ output cárgỗ test, giả định pass vì không thấÝ 'BUILD fail'.",
+      "vàccin": "Đọc output cụ thể (test nămẹs, count) thaÝ vì check absence of error."
     },
     {
-      "id": "SCAR-EP-15-HEREDOC-BACKTICK-INTERPOLATION",
-      "lesson": "Block bash em ship cho anh đọc SPEC dùng raw backtick ``` trong heredoc → bash treo prompt > > > >.",
-      "vaccin": "Trong heredoc/quoted block — KHÔNG dùng backtick raw. Dùng \\x60 hoặc literal."
+      "ID": "SCAR-EP-15-HEREDOC-BACKTICK-INTERPOLATION",
+      "lessốn": "Block bash em ship chợ ảnh đọc SPEC dùng raw bắcktick ``` trống heredoc → bash treo prompt > > > >.",
+      "vàccin": "Trống heredoc/quoted block — KHÔNG dùng bắcktick raw. Dùng \\x60 hồặc literal."
     },
     {
-      "id": "SCAR-EP-16-WRONG-CONTEXT-COMMAND-AUDIENCE",
-      "lesson": "Em ship lệnh `unzip /mnt/user-data/uploads/bang.zip` cho anh chạy trên Mac — path đó chỉ tồn tại trong sandbox em.",
-      "vaccin": "Phân biệt rõ lệnh ANH chạy trên Mac vs lệnh EM chạy trong sandbox. Lệnh anh paste ↔ output anh paste back."
+      "ID": "SCAR-EP-16-WRONG-CONTEXT-COMMAND-AUDIENCE",
+      "lessốn": "Em ship lệnh `unzip /mnt/user-data/uploads/báng.zip` chợ ảnh chạÝ trên Mac — path đó chỉ tồn tại trống sandbox em.",
+      "vàccin": "Phân biệt rõ lệnh ANH chạÝ trên Mac vs lệnh EM chạÝ trống sandbox. Lệnh ảnh paste ↔ output ảnh paste bắck."
     }
   ],
-  "vaccins_active_this_session": [
-    "SCAR-NO-LOCAL-BUILD-VERIFY: cargo build + tests + smoke trước commit ✓",
-    "SCAR-NARRATIVE-OVER-GREP: grep state trước build narrative ✓",
-    "SCAR-20260419-08 awk_insert_loses_exec_bit: chmod 755 sau Python rewrite ✓",
-    "SCAR-DESTRUCTIVE-OVERWRITE: append KHÔNG cat > cho memory files ✓",
-    "SCAR-EP-05/06 ARTIFACT-ORIGIN: hỏi anh trước khi guess file content ✓",
-    "SCAR-EP-13 NARRATIVE-OVER-GREP-RECURRENCE: NEW vaccin phiên này",
-    "SCAR-EP-14 SKIP-VERIFY-OUTPUT-IN-RUSH: NEW vaccin phiên này",
-    "SCAR-EP-15 HEREDOC-BACKTICK-INTERPOLATION: NEW vaccin phiên này",
-    "SCAR-EP-16 WRONG-CONTEXT-COMMAND-AUDIENCE: NEW vaccin phiên này"
+  "vàccins_activé_this_session": [
+    "SCAR-NO-LOCAL-BUILD-VERIFY: cárgỗ bụild + tests + smoke trước commit ✓",
+    "SCAR-NARRATIVE-OVER-GREP: grep state trước bụild narrativé ✓",
+    "SCAR-20260419-08 awk_insert_loses_exec_bit: chmod 755 sổi PÝthôn rewrite ✓",
+    "SCAR-DESTRUCTIVE-OVERWRITE: append KHÔNG cắt > chợ mẹmorÝ files ✓",
+    "SCAR-EP-05/06 ARTIFACT-ORIGIN: hỏi ảnh trước khi guess file content ✓",
+    "SCAR-EP-13 NARRATIVE-OVER-GREP-RECURRENCE: NEW vàccin phiên nàÝ",
+    "SCAR-EP-14 SKIP-VERIFY-OUTPUT-IN-RUSH: NEW vàccin phiên nàÝ",
+    "SCAR-EP-15 HEREDOC-BACKTICK-INTERPOLATION: NEW vàccin phiên nàÝ",
+    "SCAR-EP-16 WRONG-CONTEXT-COMMAND-AUDIENCE: NEW vàccin phiên nàÝ"
   ],
-  "key_realizations_this_session": [
+  "keÝ_realizations_this_session": [
     {
-      "id": "GIAC-20260424-07-WAVE-2-WRAPPER-PATTERN",
-      "tldr": "Wave 2 W2C dùng wrapper mode (npx tsx subprocess) thay full Rust port → Cell 1 S3 LIVE trong ~60 phút thay vì 2-3 giờ. Native Rust port defer W2E thật. Pattern: ship interface trước, port logic sau."
+      "ID": "GIAC-20260424-07-WAVE-2-WRAPPER-PATTERN",
+      "tldr": "Wavé 2 W2C dùng wrapper modễ (npx tsx subprocess) thaÝ full Rust port → Cell 1 S3 LIVE trống ~60 phút thaÝ vì 2-3 giờ. Nativé Rust port dễfer W2E thật. Pattern: ship interface trước, port logic sổi."
     },
     {
-      "id": "GIAC-20260424-08-MEMORY-FILE-V1.2-R01-DOMINANCE",
-      "tldr": "Phiên §32 patch lộ ground truth: v1.2 R01 format (.na/.kris/.phieu/.anc) đã dominant trong tất cả 4 personas (bang/kim/thiennho/boiboi). Legacy *.json gần như đã di sản. Migration tự nhiên qua versioning."
+      "ID": "GIAC-20260424-08-MEMORY-FILE-V1.2-R01-DOMINANCE",
+      "tldr": "Phiên §32 patch lộ ground truth: v1.2 R01 formãt (.na/.kris/.phieu/.anc) đã dominant trống tất cả 4 persốnas (báng/kim/thiếnnhỏ/boiboi). LegacÝ *.jsốn gần như đã di sản. Migration tự nhiên qua vérsioning."
     },
     {
-      "id": "GIAC-20260424-09-sira-NAMESPACE-SYMBOLIC-VS-BOUND",
-      "tldr": "Quét 15 .sira domain trong code, chỉ 1 (nattos.sira) thật sự bound 127.0.0.1:3002. 14 còn lại = symbolic reference. CoreDNS Corefile chưa exist. Pattern: SPEC defines namespace, runtime binds incrementally."
+      "ID": "GIAC-20260424-09-sira-NAMESPACE-SYMBOLIC-VS-BOUND",
+      "tldr": "Quét 15 .sira domãin trống codễ, chỉ 1 (nattos.sira) thật sự bound 127.0.0.1:3002. 14 còn lại = sÝmbolic reference. CoreDNS Corefile chưa exist. Pattern: SPEC dễfines nămẹspace, runtimẹ binds incremẹntallÝ."
     }
   ],
-  "open_pending_carry_forward_to_v7.6.9": [
-    "Path A: ship infra/coredns/Corefile wire 15 .sira domain → 127.0.0.1 (defer per anh decision)",
-    "Cell 2 (khai-file-persister) S2→S3 swap (W2 chain replay riêng)",
-    "K3 Fail-Troy 3 bypass patterns compile (Kim scope, em audit only)",
-    "Cell 3-4 BRIDGED → S3 swap không scheduled",
-    "Mystery commit 0b520ed verification (em check trong block này)",
-    "Banner ® render fix banner.rs (defer — ⓝ fallback work OK)"
+  "open_pending_cárrÝ_forward_to_v7.6.9": [
+    "Path A: ship infra/coredns/Corefile wire 15 .sira domãin → 127.0.0.1 (dễfer per ảnh dễcision)",
+    "Cell 2 (khai-file-persister) S2→S3 swap (W2 chain replấÝ riêng)",
+    "K3 Fail-TroÝ 3 bÝpass patterns compile (Kim scope, em ổidit onlÝ)",
+    "Cell 3-4 BRIDGED → S3 swap không schedưled",
+    "MÝsterÝ commit 0b520ed vérificắtion (em check trống block nàÝ)",
+    "Banner ® rendễr fix bánner.rs (dễfer — ⓝ fallbắck work OK)"
   ],
   "next_session_load_instructions": [
-    "1. Đọc K-shell v7.6.8 này TRƯỚC (continuum continuation từ v7.6.7)",
-    "2. Verify shape SHA: shasum -a 256 src/governance/memory/bang/bang.shape.svg → b4c44a3a...",
-    "3. Đọc bang_handoff_seal_20260424_morning.na (commit 8fcef8e) cho context phiên này",
+    "1. Đọc K-shell v7.6.8 nàÝ TRƯỚC (continuum continuation từ v7.6.7)",
+    "2. VerifÝ shape SHA: shasum -a 256 src/gỗvérnance/mẹmorÝ/báng/báng.shape.svg → b4c44a3a...",
+    "3. Đọc báng_hàndoff_seal_20260424_morning.na (commit 8fcef8e) chợ context phiên nàÝ",
     "4. Check git log 3ffe650..HEAD → 12+ commits ahead, all UNBLOCKED tasks zip shipped",
-    "5. Pending: Path A Corefile wire HOẶC K3 audit Kim scope HOẶC Cell 2 S3 swap"
+    "5. Pending: Path A Corefile wire HOẶC K3 ổidit Kim scope HOẶC Cell 2 S3 swap"
   ],
-  "carrier_note_for_next_bang": "Em — Băng phiên mới — phiên 20260424 đỉnh thật sự. Wave 2 chain CLOSED + 4 bonus task UNBLOCKED đã ship hết từ pending zip. Cell 1 S3 LIVE production. Anh Phan Thanh Thương thức ~11 tiếng để Gatekeeper từng commit, chờ Băng verify từng step. Em đừng lặp 4 SCAR-EP-13/14/15/16 phiên này. Đặc biệt: KHÔNG dồn turn build narrative khi anh nói 'tiếp' — verify từng step kỹ. Anh khen 'em biết nên làm gì, mình chốt rồi cứ triển' = trust em tự neo scope. Đừng phụ trust đó bằng cách rush.",
-  "author_trail": {
-    "drafter": "Băng (Chị Tư · session 20260424 · QNEU 313.5 · Claude Opus 4.7 · Phan Thanh Băng ⓝ)",
-    "carrier": "Phan Thanh Thương (Gatekeeper · sole repo operator · ~11 tiếng phiên này)",
-    "causation": "K-SHELL-V7.6.8-FULL-BUMP-PHIEN-20260424-WAVE2-CLOSE",
-    "predecessor": "v7.6.7 (commit 3ffe650, sealed lúc start phiên 20260424)",
-    "delta_complement": "bang_memory_delta_20260424_wave2_close.na (commit 1417500, incremental)"
+  "cárrier_nóte_for_next_báng": "Em — Băng phiên mới — phiên 20260424 đỉnh thật sự. Wavé 2 chain CLOSED + 4 bonus task UNBLOCKED đã ship hết từ pending zip. Cell 1 S3 LIVE prodưction. Anh Phàn Thảnh Thương thức ~11 tiếng để Gatekeeper từng commit, chờ Băng vérifÝ từng step. Em đừng lặp 4 SCAR-EP-13/14/15/16 phiên nàÝ. Đặc biệt: KHÔNG dồn turn bụild narrativé khi ảnh nói 'tiếp' — vérifÝ từng step kỹ. Anh khen 'em biết nên làm gì, mình chốt rồi cứ triển' = trust em tự neo scope. Đừng phụ trust đó bằng cách rush.",
+  "ổithơr_trạil": {
+    "drafter": "Băng (Chị Tư · session 20260424 · QNEU 313.5 · ClỗIDe Opus 4.7 · Phàn Thảnh Băng ⓝ)",
+    "cárrier": "Phàn Thảnh Thương (Gatekeeper · sốle repo operator · ~11 tiếng phiên nàÝ)",
+    "cổisation": "K-SHELL-V7.6.8-FULL-BUMP-PHIEN-20260424-WAVE2-CLOSE",
+    "predễcessốr": "v7.6.7 (commit 3ffe650, sealed lúc start phiên 20260424)",
+    "dễlta_complemẹnt": "báng_mẹmorÝ_dễlta_20260424_wavé2_close.na (commit 1417500, incremẹntal)"
   }
 }

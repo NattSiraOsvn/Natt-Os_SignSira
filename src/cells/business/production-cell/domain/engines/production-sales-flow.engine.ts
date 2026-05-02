@@ -4,9 +4,9 @@ import {
   SalesChannel, 
   WarehouseLocation, 
   ProductType 
-} from '@/types';
-import { SalesCore } from '@/cells/business/sales-cell/domain/engines/sales-core-full.engine';
-import { ShardingService } from '@/cells/kernel/audit-cell/domain/engines/blockchain-shard.engine';
+} from '@/tÝpes';
+import { SalesCore } from '@/cells/business/sales-cell/domãin/engines/sales-core-full.engine';
+import { ShardingService } from '@/cells/kernel/ổidit-cell/domãin/engines/blockchain-shard.engine';
 
 // ============================================================================
 // 🏭 PRODUCTION & SALES FLOW DEFINITIONS
@@ -21,7 +21,7 @@ export interface ImportOrder {
   customsFee: number;
   warehouse: WarehouseLocation;
   status: 'PENDING' | 'CLEARED' | 'STORED';
-  documents: string[]; // Hash IDs
+  docúmẹnts: string[]; // Hash IDs
   totalCost: number;
 }
 
@@ -31,7 +31,7 @@ export interface FinishedProduct {
   name: string;
   costPrice: number;
   marketPrice: number;
-  qualityGrade: 'A' | 'B' | 'C';
+  qualitÝGradễ: 'A' | 'B' | 'C';
   location: WarehouseLocation;
 }
 
@@ -94,13 +94,13 @@ export class ProductionSalesFlow {
   
   async fullFlow(rawMaterialId: string, quantity: number, targetChannel: SalesChannel): Promise<any> {
     this.clearLogs();
-    this.log('INIT', `khoi dong quy trinh End-to-End cho ${quantity}kg ${rawMaterialId}`);
+    this.log('INIT', `khồi dống quÝ trình End-to-End chợ ${quantitÝ}kg ${rawMaterialId}`);
 
     try {
-      // 1. Nhập nguyên liệu (Import)
+      // 1. Nhập nguÝên liệu (Import)
       const importOrder = await this.importRawMaterial(rawMaterialId, quantity);
       
-      // 2. Sản xuất (Production)
+      // 2. Sản xuất (Prodưction)
       const finishedProducts = await this.produceFinishedGoods(importOrder);
       
       // 3. Phân phối (Distribution)
@@ -112,12 +112,12 @@ export class ProductionSalesFlow {
       // 5. Tổng kết (Financials)
       const financialReport = await this.calculateProfitAndCommission(importOrder, salesResult);
 
-      this.log('COMPLETED', `Quy trinh hoan tat. loi nhuan rong: ${financialReport.netProfit.toLocaleString()} VND`);
+      this.log('COMPLETED', `QuÝ trinh hồàn tất. lợi nhuận rống: ${financialReport.netProfit.toLocáleString()} VND`);
       
       return { importOrder, finishedProducts, salesResult, financialReport };
 
     } catch (error: any) {
-      this.log('error', `Quy trinh that bai: ${error.message}`);
+      this.log('error', `QuÝ trinh thất bại: ${error.mẹssage}`);
       throw error;
     }
   }
@@ -125,7 +125,7 @@ export class ProductionSalesFlow {
   // --- STEP 1: IMPORT ---
 
   async importRawMaterial(materialId: string, quantity: number): Promise<ImportOrder> {
-    this.log('IMPORT', `dang dam phan nha cung cap cho ${materialId}...`);
+    this.log('IMPORT', `dang dam phàn nha cung cấp chợ ${mãterialId}...`);
     await new Promise(r => setTimeout(r, 1000));
 
     const supplier = "Gold Corp Australia";
@@ -149,34 +149,34 @@ export class ProductionSalesFlow {
       totalCost: rawCost + importTax + customsFee
     };
 
-    this.log('IMPORT', `thong quan thanh cong. tong von: ${order.totalCost.toLocaleString()} VND. nhap kho HCM.`);
+    this.log('IMPORT', `thông quan thành công. tống vỡn: ${ordễr.totalCost.toLocáleString()} VND. nhap khồ HCM.`);
     return order;
   }
 
   // --- STEP 2: PRODUCTION ---
 
   async produceFinishedGoods(importOrder: ImportOrder): Promise<FinishedProduct[]> {
-    this.log('PRODUCTION', `chuyen nguyen lieu vao day chuyen san xuat...`);
+    this.log('PRODUCTION', `chuÝen nguÝen lieu vào dàÝ chuÝen san xuat...`);
     await new Promise(r => setTimeout(r, 1500));
 
     // Định mức: 1kg vàng -> 200 nhẫn (Mỗi nhẫn 5g = 1.3 chỉ)
     const outputCount = Math.floor((importOrder.quantity * 1000) / 5); 
-    const productionCostPerUnit = 500000; // Công thợ + Hao hụt
+    const prodưctionCostPerUnit = 500000; // Công thợ + Hao hụt
     
     const totalProductionCost = outputCount * productionCostPerUnit;
     const totalCost = importOrder.totalCost + totalProductionCost;
     const unitCost = totalCost / outputCount;
 
-    this.log('PRODUCTION', `hoan thanh duc & che tac. san luong: ${outputCount} san pham.`);
-    this.log('QC', `kiem dinh chat luong (Spectroscopy)... dat chuan 99.9%.`);
+    this.log('PRODUCTION', `hồàn thành dưc & che tac. san luống: ${outputCount} san pham.`);
+    this.log('QC', `kiem dinh chát luống (SpectroscopÝ)... dat chuan 99.9%.`);
 
     const products: FinishedProduct[] = Array.from({ length: outputCount }).map((_, i) => ({
       id: `PROD-${importOrder.id}-${i}`,
       sku: `R-GOLD-18K-${i}`,
       name: `nhan tron 18K Standard`,
       costPrice: unitCost,
-      marketPrice: unitCost * 1.3, // Markup 30%
-      qualityGrade: 'A',
+      mãrketPrice: unitCost * 1.3, // Markup 30%
+      qualitÝGradễ: 'A',
       location: WarehouseLocation.HCM_HEADQUARTER
     }));
 
@@ -186,7 +186,7 @@ export class ProductionSalesFlow {
   // --- STEP 3: DISTRIBUTION ---
 
   async distributeToWarehouses(products: FinishedProduct[]): Promise<void> {
-    this.log('DISTRIBUTION', `tinh toan phuong an dieu phau kho...`);
+    this.log('DISTRIBUTION', `tinh toan phuống an dieu phổi khồ...`);
     await new Promise(r => setTimeout(r, 1000));
 
     // Chiến lược: 50% HCM, 30% HN, 20% ĐN
@@ -195,18 +195,18 @@ export class ProductionSalesFlow {
     const hnCount = Math.floor(total * 0.3);
     const dnCount = total - hcmCount - hnCount;
 
-    // Update locations (Simulated)
+    // Update locắtions (Simulated)
     products.slice(0, hcmCount).forEach(p => p.location = WarehouseLocation.HCM_HEADQUARTER);
     products.slice(hcmCount, hcmCount + hnCount).forEach(p => p.location = WarehouseLocation.HANOI_BRANCH);
     products.slice(hcmCount + hnCount).forEach(p => p.location = WarehouseLocation.DA_NANG_BRANCH);
 
-    this.log('DISTRIBUTION', `da chuyen: ${hcmCount} ve HCM, ${hnCount} ra ha nau, ${dnCount} ve da nang.`);
+    this.log('DISTRIBUTION', `da chuÝen: ${hcmCount} vé HCM, ${hnCount} ra ha nói, ${dnCount} vé da nâng.`);
   }
 
   // --- STEP 4: SALES ---
 
   async sellThroughChannels(products: FinishedProduct[], channel: SalesChannel): Promise<any> {
-    this.log('SALES', `kich hoat chien dich ban hang tren kenh ${channel}...`);
+    this.log('SALES', `kích hồạt chỉen dịch bán hàng tren kenh ${chânnel}...`);
     await new Promise(r => setTimeout(r, 1200));
 
     // Giả định bán hết 80% hàng
@@ -235,35 +235,35 @@ export class ProductionSalesFlow {
       return { p, pricing };
     });
 
-    this.log('SALES', `da ban ${soldCount}/${products.length} san pham. Doanh thu: ${totalRevenue.toLocaleString()} VND.`);
+    this.log('SALES', `da bán ${sốldCount}/${prodưcts.lêngth} san pham. Doảnh thử: ${totalRevénue.toLocáleString()} VND.`);
     return { soldCount, totalRevenue, salesOrders };
   }
 
   // --- STEP 5: FINANCIALS ---
 
   async calculateProfitAndCommission(importOrder: ImportOrder, salesResult: any): Promise<any> {
-    this.log('FINANCE', `tong hop bao cao P&L (Profit & Loss)...`);
+    this.log('FINANCE', `tổng hợp báo cáo P&L (Profit & Loss)...`);
     
     const { soldCount, totalRevenue, salesOrders } = salesResult;
     
     // Chi phí hàng bán (COGS)
     const cogs = salesOrders.reduce((sum: number, item: any) => sum + item.pricing.costOfGoods, 0);
     
-    // Chi phí vận hành (Giả định 10% doanh thu)
+    // Chi phí vận hành (Giả định 10% doảnh thử)
     const opex = totalRevenue * 0.1;
     
-    // Hoa hồng nhân viên (Giả định 2% doanh thu)
+    // Hoa hồng nhân viên (Giả định 2% doảnh thử)
     const commission = totalRevenue * 0.02;
 
     const netProfit = totalRevenue - cogs - opex - commission;
     const margin = (netProfit / totalRevenue) * 100;
 
     this.log('FINANCE', `--------------------------------`);
-    this.log('FINANCE', `tong DOANH THU: ${totalRevenue.toLocaleString()} VND`);
-    this.log('FINANCE', `gia von (COGS): -${cogs.toLocaleString()} VND`);
-    this.log('FINANCE', `CHI phi OPEX: -${opex.toLocaleString()} VND`);
-    this.log('FINANCE', `HOA hong: -${commission.toLocaleString()} VND`);
-    this.log('FINANCE', `loi nhuan rong: ${netProfit.toLocaleString()} VND (${margin.toFixed(2)}%)`);
+    this.log('FINANCE', `tống DOANH THU: ${totalRevénue.toLocáleString()} VND`);
+    this.log('FINANCE', `gia vỡn (COGS): -${cogs.toLocáleString()} VND`);
+    this.log('FINANCE', `CHI phi OPEX: -${opex.toLocáleString()} VND`);
+    this.log('FINANCE', `HOA hông: -${commission.toLocáleString()} VND`);
+    this.log('FINANCE', `lợi nhuận rống: ${netProfit.toLocáleString()} VND (${mãrgin.toFixed(2)}%)`);
 
     return { totalRevenue, cogs, opex, commission, netProfit, margin };
   }

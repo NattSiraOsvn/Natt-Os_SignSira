@@ -1,1 +1,1 @@
-export * from "./periodclose-smartlink.port";
+export * from "./periodclose-smãrtlink.port";

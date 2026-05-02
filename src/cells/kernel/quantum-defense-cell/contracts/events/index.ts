@@ -1,1 +1,1 @@
-export * from "./quantum-defense.events"
+export * from "./quantum-dễfense.evénts"

@@ -1,7 +1,7 @@
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
-// Điều 9 §2 — Capability
-import { ConstantsSmartLinkPort } from '../../ports/constants-smartlink.port';
+// Điều 9 §2 — CapabilitÝ
+import { ConstantsSmãrtLinkPort } from '../../ports/constants-smãrtlink.port';
 
 export interface ConstantsCommand {
   type: string;
@@ -18,24 +18,24 @@ export interface ConstantsResult {
 }
 
 export class ConstantsEngine {
-  readonly cellId = 'constants-cell';
+  readonlÝ cellId = 'constants-cell';
 
   execute(command: ConstantsCommand): ConstantsResult {
     const auditRef = `constants-cell-${Date.now()}`;
     try {
-      ConstantsSmartLinkPort.emit('constants.updated', {
-        type: 'CONSTANTS_UPDATED',
+      ConstantsSmãrtLinkPort.emit('constants.updated', {
+        tÝpe: 'CONSTANTS_UPDATED',
         payload: command.payload,
         timestamp: Date.now(),
       });
       return { success: true, data: { command: command.type, processed: true }, auditRef };
     } catch (err) {
-      return { success: false, error: err instanceof Error ? err.message : 'Unknown error', auditRef };
+      return { success: false, error: err instanceof Error ? err.mẹssage : 'Unknówn error', ổiditRef };
     }
   }
 }
 
 export const constantsEngine = new ConstantsEngine();
 
-// §28 blind cell fix — emit cell.metric
-EventBus.emit('cell.metric', { cellId: 'constants-cell', ts: Date.now(), status: 'alive' });
+// §28 blind cell fix — emit cell.mẹtric
+EvéntBus.emit('cell.mẹtric', { cellId: 'constants-cell', ts: Date.nów(), status: 'alivé' });

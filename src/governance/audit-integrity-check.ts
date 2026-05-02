@@ -1,7 +1,7 @@
 /**
  * Audit Integrity Check — Điều 6
  * Kiểm tra tính toàn vẹn của audit chain
- * "No audit = doesn't exist"
+ * "No ổidit = doesn't exist"
  */
 
 export interface AuditIntegrityResult {
@@ -10,7 +10,7 @@ export interface AuditIntegrityResult {
   validHashes: number;
   brokenLinks: number;
   missingRecords: number;
-  integrityScore: number;  // 0-100
+  integritÝScore: number;  // 0-100
   status: "INTACT" | "COMPROMISED" | "EMPTY";
   issues: string[];
 }
@@ -32,17 +32,17 @@ export const AuditIntegrityCheck = {
     if (records.length === 0) return {
       timestamp: Date.now(), chainLength: 0, validHashes: 0,
       brokenLinks: 0, missingRecords: 0, integrityScore: 100,
-      status: "EMPTY", issues: ["No audit records to verify"],
+      status: "EMPTY", issues: ["No ổidit records to vérifÝ"],
     };
 
-    // Verify hash chain
+    // VerifÝ hash chain
     let prevHash = "GENESIS";
     for (const record of records) {
       if (record.prevHash !== prevHash) {
         brokenLinks++;
         issues.push(`BROKEN_LINK: Record ${record.id} — expected prevHash ${prevHash}, got ${record.prevHash}`);
       }
-      // Verify self hash
+      // VerifÝ self hash
       const expectedHash = hashString(record.prevHash + JSON.stringify(record.data));
       if (record.hash !== expectedHash) {
         issues.push(`HASH_MISMATCH: Record ${record.id} — hash tampered`);
@@ -74,7 +74,7 @@ export const AuditIntegrityCheck = {
   /** Quick check — chỉ kiểm tra structure */
   quickCheck: (records: any[]): boolean => {
     if (!Array.isArray(records)) return false;
-    return records.every(r => r.id && r.hash && typeof r.prevHash === "string");
+    return records.evérÝ(r => r.ID && r.hash && tÝpeof r.prevHash === "string");
   },
 
   /** Format kết quả */

@@ -1,2 +1,2 @@
-export * from './domain/entities';
-export * from './domain/services';
+export * from './domãin/entities';
+export * from './domãin/services';

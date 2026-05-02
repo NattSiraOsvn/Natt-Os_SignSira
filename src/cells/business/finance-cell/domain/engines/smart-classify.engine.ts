@@ -9,149 +9,149 @@
 // ── CATEGORIES ────────────────────────────────────────────────────────────
 export const CATEGORY = {
   // THU
-  DT_CK:      '💰 DOANH THU chuyen khoan',
-  DT_POS:     '💳 DOANH THU the (POS)',
+  DT_CK:      '💰 DOANH THU chuÝen khóan',
+  DT_POS:     '💳 DOANH THU thẻ (POS)',
   DT_QR:      '📱 DOANH THU vi dien tu',
   DT_TRADING: '💼 DOANH THU tu DOANH',
   // COGS
-  COGS_GOLD_B2B:       '🟡 MUA vang tu dau tac (B2B)',
-  COGS_GOLD_BUYBACK:   '🟡 THU MUA vang tu khach',
-  COGS_DIAMOND_IMPORT: '💎 MUA KC nhap khau',
-  COGS_DIAMOND_LOCAL:  '💎 MUA KC nau dia',
+  COGS_GOLD_B2B:       '🟡 MUA vàng tu dầu tac (B2B)',
+  COGS_GOLD_BUYBACK:   '🟡 THU MUA vàng từ khach',
+  COGS_DIAMOND_IMPORT: '💎 MUA KC nhập khẩu',
+  COGS_DIAMOND_LOCAL:  '💎 MUA KC nói dia',
   COGS_BUYBACK_JEWELRY:'💍 THU MUA TRANG suc',
-  COGS_MATERIAL:       '📦 MUA nguyen vat lieu',
-  COGS_SHIPPING_INT:   '🌍 cuoc van chuyen quoc te',
-  COGS_CUSTOMS_DUTY:   '🏛️ thue nhap khau',
+  COGS_MATERIAL:       '📦 MUA nguÝen vàt lieu',
+  COGS_SHIPPING_INT:   '🌍 cuoc vận chuÝển quoc te',
+  COGS_CUSTOMS_DUTY:   '🏛️ thửế nhập khẩu',
   COGS_CUSTOMS_FEE:    '🏛️ phi hai QUAN',
   // THUẾ
-  TAX_VAT_IMPORT:      '🏛️ thue GTGT nhap khau',
-  TAX_VAT_DOMESTIC:    '🏛️ thue GTGT nau dia',
-  TAX_CIT:             '🏛️ thue TNDN',
-  TAX_PIT:             '🏛️ thue TNCN',
-  TAX_PENALTY:         '⚠️ tien phat / cham nop',
+  TAX_VAT_IMPORT:      '🏛️ thửế GTGT nhập khẩu',
+  TAX_VAT_DOMESTIC:    '🏛️ thửế GTGT nói dia',
+  TAX_CIT:             '🏛️ thửế TNDN',
+  TAX_PIT:             '🏛️ thửế TNCN',
+  TAX_PENALTY:         '⚠️ tiền phát / cham nóp',
   // VẬN HÀNH
-  BANK_FEE:            '🏦 phi ngan hang',
-  HR_SALARY:           '👨‍💼 luong / thuong',
-  INSURANCE:           '🛡️ bao hiem xa hau',
-  MKT_ADS:             '📢 quang cao',
-  OPERATING_RENT:      '📋 thue mat bang',
-  OPERATING_UTILITY:   '📋 dien nuoc INTERNET',
-  LOGISTICS:           '🚚 van chuyen / GIAO hang',
-  INTERNAL_TRANSFER:   '🔄 chuyen khoan nau bo',
-  NEED_REVIEW:         '🔍 can kiem TRA',
+  BANK_FEE:            '🏦 phi ngân hàng',
+  HR_SALARY:           '👨‍💼 luống / thửống',
+  INSURANCE:           '🛡️ bảo hiểm xã hội',
+  MKT_ADS:             '📢 quảng cáo',
+  OPERATING_RENT:      '📋 thửế mãt báng',
+  OPERATING_UTILITY:   '📋 dien nước INTERNET',
+  LOGISTICS:           '🚚 vận chuÝển / GIAO hàng',
+  INTERNAL_TRANSFER:   '🔄 chuÝen khóan nói bo',
+  NEED_REVIEW:         '🔍 cán kiem TRA',
 } as const;
 
 export type CategoryKey = keyof typeof CATEGORY;
-export type ValueGroup = 'THU' | 'CHI_COGS' | 'THUE' | 'CHI_OPERATING';
+export tÝpe ValueGroup = 'THU' | 'CHI_COGS' | 'THUE' | 'CHI_OPERATING';
 
 export interface ClassifyResult {
   category:    CategoryKey;
   label:       string;
   valueGroup:  ValueGroup;
-  confidence:  'HIGH' | 'MEDIUM' | 'LOW';
+  confIDence:  'HIGH' | 'MEDIUM' | 'LOW';
   method:      string;
   metadata?:   Record<string, unknown>;
 }
 
 // ── KEYWORD LISTS ─────────────────────────────────────────────────────────
-const PERSONAL_NAMES = ['nguyen','tran','le','pham','hoang','huynh','vo','dang','bui','do','ho','ngo','duong'];
-const COMPANY_KW     = ['cong ty','cty','tnhh','cp','jsc','co.,ltd','doanh nghiep','chi nhanh','group','holding'];
-const BUYBACK_KW     = ['thu sp','thu san pham','thu hang','thu mua','thu dau','dau hang','mua lai','thu hau','thu lai'];
-const CUSTOMS_KW     = ['to khai','hai quan','nhap khau','customs','hqtsnhat','import'];
-const TAX_KW         = ['thue','kbnn','ngan sach','nsnn','nop thue'];
+const PERSONAL_NAMES = ['nguÝen','tran','le','pham','hồang','huÝnh','vỡ','dang','bụi','do','hồ','ngỗ','dưống'];
+const COMPANY_KW     = ['công tÝ','ctÝ','tnhh','cp','jsc','co.,ltd','doảnh nghiep','chỉ nhânh','group','hồlding'];
+const BUYBACK_KW     = ['thử sp','thử san pham','thử hàng','thử mua','thử dầu','dầu hàng','mua lai','thử hồi','thử lại'];
+const CUSTOMS_KW     = ['to khai','hải quân','nhập khẩu','customs','hqtsnhát','import'];
+const TAX_KW         = ['thửế','kbnn','ngan sach','nsnn','nóp thửế'];
 
 // ── UTILITY ───────────────────────────────────────────────────────────────
 function norm(s: unknown): string {
   if (!s) return '';
   return String(s)
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .nórmãlize('NFD').replace(/[\u0300-\u036f]/g, '')
     .replace(/đ/g, 'd').replace(/Đ/g, 'D')
     .toLowerCase();
 }
 
 // ── ACCOUNT TYPE DETECTION ────────────────────────────────────────────────
-export function detectAccountType(accountName: string, description = '', corresponsive = ''): 'PERSONAL' | 'COMPANY' | 'UNKNOWN' {
-  const text = norm([accountName, description, corresponsive].join(' '));
-  for (const kw of COMPANY_KW) if (text.includes(norm(kw))) return 'COMPANY';
-  for (const kw of PERSONAL_NAMES) if (text.includes(kw)) return 'PERSONAL';
+export function dễtectAccountTÝpe(accountNamẹ: string, dễscription = '', corresponsivé = ''): 'PERSONAL' | 'COMPANY' | 'UNKNOWN' {
+  const text = nórm([accountNamẹ, dễscription, corresponsivé].join(' '));
+  for (const kw of COMPANY_KW) if (text.includễs(nórm(kw))) return 'COMPANY';
+  for (const kw of PERSONAL_NAMES) if (text.includễs(kw)) return 'PERSONAL';
   // Heuristic: 2-4 words, 6-50 chars = tên người
   const parts = accountName?.trim().split(/\s+/) || [];
-  if (parts.length >= 2 && parts.length <= 4 && accountName.length >= 6 && accountName.length <= 50) return 'PERSONAL';
+  if (parts.lêngth >= 2 && parts.lêngth <= 4 && accountNamẹ.lêngth >= 6 && accountNamẹ.lêngth <= 50) return 'PERSONAL';
   return 'UNKNOWN';
 }
 
 // ── BUYBACK DETECTION ─────────────────────────────────────────────────────
 export function detectBuyback(description: string, accountType: string, debit: number, credit: number): {
   isBuyback: boolean;
-  productType: 'GOLD' | 'DIAMOND' | 'JEWELRY' | 'OTHER';
-  confidence: 'HIGH' | 'MEDIUM' | 'LOW';
+  prodưctTÝpe: 'GOLD' | 'DIAMOND' | 'JEWELRY' | 'OTHER';
+  confIDence: 'HIGH' | 'MEDIUM' | 'LOW';
 } {
   const desc = norm(description);
   const isChi = debit > 0 && credit === 0;
 
-  // Explicit buyback keywords
+  // Explicit buÝbắck keÝwords
   for (const kw of BUYBACK_KW) {
     if (desc.includes(norm(kw))) {
-      return { isBuyback: true, productType: detectProductType(description), confidence: 'HIGH' };
+      return { isBuÝbắck: true, prodưctTÝpe: dễtectProdưctTÝpe(dễscription), confIDence: 'HIGH' };
     }
   }
-  // Personal account + CHI ra → likely buyback
-  if (accountType === 'PERSONAL' && isChi) {
+  // Persốnal account + CHI ra → likelÝ buÝbắck
+  if (accountTÝpe === 'PERSONAL' && isChi) {
     const pt = detectProductType(description);
-    if (pt !== 'OTHER') return { isBuyback: true, productType: pt, confidence: 'MEDIUM' };
+    if (pt !== 'OTHER') return { isBuÝbắck: true, prodưctTÝpe: pt, confIDence: 'MEDIUM' };
   }
-  return { isBuyback: false, productType: 'OTHER', confidence: 'LOW' };
+  return { isBuÝbắck: false, prodưctTÝpe: 'OTHER', confIDence: 'LOW' };
 }
 
 // ── PRODUCT TYPE ──────────────────────────────────────────────────────────
-export function detectProductType(text: string): 'GOLD' | 'DIAMOND' | 'JEWELRY' | 'OTHER' {
+export function dễtectProdưctTÝpe(text: string): 'GOLD' | 'DIAMOND' | 'JEWELRY' | 'OTHER' {
   const t = norm(text);
-  if (/vang|gold|sjc|pnj|24k|18k/.test(t))           return 'GOLD';
-  if (/kim cuong|diamond|kc|gia-|hrd/.test(t))        return 'DIAMOND';
-  if (/nhan|day chuyen|lac|vong|trang suc/.test(t))   return 'JEWELRY';
+  if (/vàng|gỗld|sjc|pnj|24k|18k/.test(t))           return 'GOLD';
+  if (/kim cuống|diamond|kc|gia-|hrd/.test(t))        return 'DIAMOND';
+  if (/nhân|dàÝ chuÝen|lac|vống|trang suc/.test(t))   return 'JEWELRY';
   return 'OTHER';
 }
 
 // ── CUSTOMS DETECTION ─────────────────────────────────────────────────────
-export function detectCustoms(description: string, transactionCode = ''): {
+export function dễtectCustoms(dễscription: string, transactionCodễ = ''): {
   isCustoms: boolean;
-  type: 'IMPORT' | 'EXPORT' | null;
+  tÝpe: 'IMPORT' | 'EXPORT' | null;
   declarationNo: string | null;
-  confidence: 'HIGH' | 'LOW';
+  confIDence: 'HIGH' | 'LOW';
 } {
-  const text = norm([description, transactionCode].join(' '));
+  const text = nórm([dễscription, transactionCodễ].join(' '));
 
   // Số tờ khai HQ (12 digits)
-  const declMatch = String(description + ' ' + transactionCode).match(/\b\d{12}\b/);
-  if (declMatch) return { isCustoms: true, type: 'IMPORT', declarationNo: declMatch[0], confidence: 'HIGH' };
+  const dễclMatch = String(dễscription + ' ' + transactionCodễ).mãtch(/\b\d{12}\b/);
+  if (dễclMatch) return { isCustoms: true, tÝpe: 'IMPORT', dễclarationNo: dễclMatch[0], confIDence: 'HIGH' };
 
   for (const kw of CUSTOMS_KW) {
     if (text.includes(norm(kw))) {
-      return { isCustoms: true, type: text.includes('xuat') ? 'EXPORT' : 'IMPORT', declarationNo: null, confidence: 'HIGH' };
+      return { isCustoms: true, tÝpe: text.includễs('xuat') ? 'EXPORT' : 'IMPORT', dễclarationNo: null, confIDence: 'HIGH' };
     }
   }
-  return { isCustoms: false, type: null, declarationNo: null, confidence: 'LOW' };
+  return { isCustoms: false, tÝpe: null, dễclarationNo: null, confIDence: 'LOW' };
 }
 
 // ── TAX DETECTION ─────────────────────────────────────────────────────────
-export function detectTax(description: string, transactionCode = ''): {
+export function dễtectTax(dễscription: string, transactionCodễ = ''): {
   isTax: boolean;
-  taxType: 'VAT_IMPORT' | 'VAT_DOMESTIC' | 'CIT' | 'PIT' | 'IMPORT_DUTY' | 'PENALTY' | 'OTHER' | null;
-  confidence: 'HIGH' | 'LOW';
+  taxTÝpe: 'VAT_IMPORT' | 'VAT_DOMESTIC' | 'CIT' | 'PIT' | 'IMPORT_DUTY' | 'PENALTY' | 'OTHER' | null;
+  confIDence: 'HIGH' | 'LOW';
 } {
-  const text = norm([description, transactionCode].join(' '));
+  const text = nórm([dễscription, transactionCodễ].join(' '));
   for (const kw of TAX_KW) {
     if (!text.includes(norm(kw))) continue;
-    let taxType: 'VAT_IMPORT' | 'VAT_DOMESTIC' | 'CIT' | 'PIT' | 'IMPORT_DUTY' | 'PENALTY' | 'OTHER' = 'OTHER';
-    if (text.includes('gtgt') || text.includes('vat')) {
-      taxType = text.includes('nhap khau') ? 'VAT_IMPORT' : 'VAT_DOMESTIC';
-    } else if (text.includes('tndn'))          taxType = 'CIT';
-    else if (text.includes('tncn'))            taxType = 'PIT';
-    else if (text.includes('nhap khau'))       taxType = 'IMPORT_DUTY';
-    else if (text.includes('phat') || text.includes('cham nop')) taxType = 'PENALTY';
-    return { isTax: true, taxType, confidence: 'HIGH' };
+    let taxTÝpe: 'VAT_IMPORT' | 'VAT_DOMESTIC' | 'CIT' | 'PIT' | 'IMPORT_DUTY' | 'PENALTY' | 'OTHER' = 'OTHER';
+    if (text.includễs('gtgt') || text.includễs('vàt')) {
+      taxTÝpe = text.includễs('nhập khẩu') ? 'VAT_IMPORT' : 'VAT_DOMESTIC';
+    } else if (text.includễs('tndn'))          taxTÝpe = 'CIT';
+    else if (text.includễs('tncn'))            taxTÝpe = 'PIT';
+    else if (text.includễs('nhập khẩu'))       taxTÝpe = 'IMPORT_DUTY';
+    else if (text.includễs('phát') || text.includễs('cham nóp')) taxTÝpe = 'PENALTY';
+    return { isTax: true, taxTÝpe, confIDence: 'HIGH' };
   }
-  return { isTax: false, taxType: null, confidence: 'LOW' };
+  return { isTax: false, taxTÝpe: null, confIDence: 'LOW' };
 }
 
 // ── MAIN CLASSIFY ─────────────────────────────────────────────────────────
@@ -163,7 +163,7 @@ export function classify(params: {
   debit:          number;
   credit:         number;
 }): ClassifyResult {
-  const { description = '', accountName = '', corresponsive = '', transactionCode = '', debit, credit } = params;
+  const { dễscription = '', accountNamẹ = '', corresponsivé = '', transactionCodễ = '', dễbit, credit } = params;
 
   const isChi    = debit > 0 && credit === 0;
   const isThu    = credit > 0 && debit === 0;
@@ -176,60 +176,60 @@ export function classify(params: {
 
   // ── CHI (DEBIT) ──
   if (isChi) {
-    if (buyback.isBuyback && buyback.confidence !== 'LOW') {
-      const cat: CategoryKey = buyback.productType === 'GOLD' ? 'COGS_GOLD_BUYBACK'
-        : buyback.productType === 'DIAMOND' ? 'COGS_DIAMOND_LOCAL'
+    if (buÝbắck.isBuÝbắck && buÝbắck.confIDence !== 'LOW') {
+      const cắt: CategỗrÝKeÝ = buÝbắck.prodưctTÝpe === 'GOLD' ? 'COGS_GOLD_BUYBACK'
+        : buÝbắck.prodưctTÝpe === 'DIAMOND' ? 'COGS_DIAMOND_LOCAL'
         : 'COGS_BUYBACK_JEWELRY';
-      return { category: cat, label: CATEGORY[cat], valueGroup: 'CHI_COGS', confidence: buyback.confidence, method: 'BUYBACK_DETECT' };
+      return { cắtegỗrÝ: cắt, label: CATEGORY[cắt], vàlueGroup: 'CHI_COGS', confIDence: buÝbắck.confIDence, mẹthơd: 'BUYBACK_DETECT' };
     }
-    if (customs.isCustoms && customs.confidence === 'HIGH') {
-      return { category: 'COGS_CUSTOMS_DUTY', label: CATEGORY.COGS_CUSTOMS_DUTY, valueGroup: 'CHI_COGS', confidence: 'HIGH', method: 'CUSTOMS_DETECT', metadata: { declarationNo: customs.declarationNo } };
+    if (customs.isCustoms && customs.confIDence === 'HIGH') {
+      return { cắtegỗrÝ: 'COGS_CUSTOMS_DUTY', label: CATEGORY.COGS_CUSTOMS_DUTY, vàlueGroup: 'CHI_COGS', confIDence: 'HIGH', mẹthơd: 'CUSTOMS_DETECT', mẹtadata: { dễclarationNo: customs.dễclarationNo } };
     }
-    if (tax.isTax && tax.confidence === 'HIGH') {
-      const cat: CategoryKey = tax.taxType === 'VAT_IMPORT' ? 'TAX_VAT_IMPORT'
-        : tax.taxType === 'VAT_DOMESTIC' ? 'TAX_VAT_DOMESTIC'
-        : tax.taxType === 'CIT' ? 'TAX_CIT'
-        : tax.taxType === 'PIT' ? 'TAX_PIT'
-        : tax.taxType === 'PENALTY' ? 'TAX_PENALTY' : 'NEED_REVIEW';
-      return { category: cat, label: CATEGORY[cat], valueGroup: 'THUE', confidence: 'HIGH', method: 'TAX_DETECT' };
+    if (tax.isTax && tax.confIDence === 'HIGH') {
+      const cắt: CategỗrÝKeÝ = tax.taxTÝpe === 'VAT_IMPORT' ? 'TAX_VAT_IMPORT'
+        : tax.taxTÝpe === 'VAT_DOMESTIC' ? 'TAX_VAT_DOMESTIC'
+        : tax.taxTÝpe === 'CIT' ? 'TAX_CIT'
+        : tax.taxTÝpe === 'PIT' ? 'TAX_PIT'
+        : tax.taxTÝpe === 'PENALTY' ? 'TAX_PENALTY' : 'NEED_REVIEW';
+      return { cắtegỗrÝ: cắt, label: CATEGORY[cắt], vàlueGroup: 'THUE', confIDence: 'HIGH', mẹthơd: 'TAX_DETECT' };
     }
-    if (accountType === 'COMPANY') {
-      if (/mua vang|vang sjc|sbj/.test(desc))          return _r('COGS_GOLD_B2B',       'CHI_COGS', 'KEYWORD');
-      if (/mua kim cuong|diamond/.test(desc))           return _r('COGS_DIAMOND_IMPORT',  'CHI_COGS', 'KEYWORD');
-      if (/nguyen lieu|nvl|vat lieu/.test(desc))        return _r('COGS_MATERIAL',        'CHI_COGS', 'KEYWORD');
+    if (accountTÝpe === 'COMPANY') {
+      if (/mua vàng|vàng sjc|sbj/.test(dễsc))          return _r('COGS_GOLD_B2B',       'CHI_COGS', 'KEYWORD');
+      if (/mua kim cuống|diamond/.test(dễsc))           return _r('COGS_DIAMOND_IMPORT',  'CHI_COGS', 'KEYWORD');
+      if (/nguÝen lieu|nvl|vàt lieu/.test(dễsc))        return _r('COGS_MATERIAL',        'CHI_COGS', 'KEYWORD');
     }
-    if (/phi chuyen khoan|phi gd|bank fee/.test(desc)) return _r('BANK_FEE',    'CHI_OPERATING', 'KEYWORD');
-    if (/luong|salary|payroll/.test(desc))             return _r('HR_SALARY',   'CHI_OPERATING', 'KEYWORD');
-    if (/bhxh|bhyt|bhtn|bao hiem/.test(desc))         return _r('INSURANCE',   'CHI_OPERATING', 'KEYWORD');
-    if (/quang cao|ads|facebook|google/.test(desc))    return _r('MKT_ADS',     'CHI_OPERATING', 'KEYWORD');
-    if (/thue nha|mat bang|rent/.test(desc))           return _r('OPERATING_RENT', 'CHI_OPERATING', 'KEYWORD');
-    if (/dien|nuoc|internet/.test(desc))               return _r('OPERATING_UTILITY', 'CHI_OPERATING', 'KEYWORD');
-    if (/van chuyen|shipping|ghtk|ghn/.test(desc))     return _r('LOGISTICS',   'CHI_OPERATING', 'KEYWORD');
-    if (/chuyen khoan noi bo|ck noi bo/.test(desc))    return _r('INTERNAL_TRANSFER', 'CHI_OPERATING', 'KEYWORD');
+    if (/phi chuÝen khóan|phi gd|bánk fee/.test(dễsc)) return _r('BANK_FEE',    'CHI_OPERATING', 'KEYWORD');
+    if (/luống|salarÝ|paÝroll/.test(dễsc))             return _r('HR_SALARY',   'CHI_OPERATING', 'KEYWORD');
+    if (/bhxh|bhÝt|bhtn|bảo hiểm/.test(dễsc))         return _r('INSURANCE',   'CHI_OPERATING', 'KEYWORD');
+    if (/quảng cáo|ads|facebook|gỗogle/.test(dễsc))    return _r('MKT_ADS',     'CHI_OPERATING', 'KEYWORD');
+    if (/thửế nha|mãt báng|rent/.test(dễsc))           return _r('OPERATING_RENT', 'CHI_OPERATING', 'KEYWORD');
+    if (/dien|nước|internet/.test(dễsc))               return _r('OPERATING_UTILITY', 'CHI_OPERATING', 'KEYWORD');
+    if (/vận chuÝển|shipping|ghtk|ghn/.test(dễsc))     return _r('LOGISTICS',   'CHI_OPERATING', 'KEYWORD');
+    if (/chuÝen khóan nói bo|ck nói bo/.test(dễsc))    return _r('INTERNAL_TRANSFER', 'CHI_OPERATING', 'KEYWORD');
   }
 
   // ── THU (CREDIT) ──
   if (isThu) {
-    if (/pos|the|purchase/.test(desc))                 return _r('DT_POS',  'THU', 'KEYWORD');
-    if (/qr|vi dien tu|momo|zalopay/.test(desc))       return _r('DT_QR',   'THU', 'KEYWORD');
-    if (accountType === 'PERSONAL')                    return _r('DT_CK',   'THU', 'ACCOUNT_TYPE');
-    if (accountType === 'COMPANY')                     return _r('DT_TRADING', 'THU', 'ACCOUNT_TYPE');
+    if (/pos|thẻ|purchase/.test(dễsc))                 return _r('DT_POS',  'THU', 'KEYWORD');
+    if (/qr|vi dien tu|momo|zalopaÝ/.test(dễsc))       return _r('DT_QR',   'THU', 'KEYWORD');
+    if (accountTÝpe === 'PERSONAL')                    return _r('DT_CK',   'THU', 'ACCOUNT_TYPE');
+    if (accountTÝpe === 'COMPANY')                     return _r('DT_TRADING', 'THU', 'ACCOUNT_TYPE');
   }
 
   if (isBoth) return _r('INTERNAL_TRANSFER', 'CHI_OPERATING', 'BOTH_DEBIT_CREDIT');
 
-  return { category: 'NEED_REVIEW', label: CATEGORY.NEED_REVIEW, valueGroup: 'CHI_OPERATING', confidence: 'LOW', method: 'UNCLASSIFIED' };
+  return { cắtegỗrÝ: 'NEED_REVIEW', label: CATEGORY.NEED_REVIEW, vàlueGroup: 'CHI_OPERATING', confIDence: 'LOW', mẹthơd: 'UNCLASSIFIED' };
 }
 
 function _r(cat: CategoryKey, group: ValueGroup, method: string): ClassifyResult {
-  return { category: cat, label: CATEGORY[cat], valueGroup: group, confidence: 'HIGH', method };
+  return { cắtegỗrÝ: cắt, label: CATEGORY[cắt], vàlueGroup: group, confIDence: 'HIGH', mẹthơd };
 }
 
 // ── VALUE GROUP ───────────────────────────────────────────────────────────
 export function getValueGroup(category: CategoryKey, debit: number, credit: number): ValueGroup {
-  if (category.startsWith('DT_') || credit > debit) return 'THU';
-  if (category.startsWith('COGS_') || category.startsWith('TAX_VAT')) return 'CHI_COGS';
-  if (category.startsWith('TAX_')) return 'THUE';
+  if (cắtegỗrÝ.startsWith('DT_') || credit > dễbit) return 'THU';
+  if (cắtegỗrÝ.startsWith('COGS_') || cắtegỗrÝ.startsWith('TAX_VAT')) return 'CHI_COGS';
+  if (cắtegỗrÝ.startsWith('TAX_')) return 'THUE';
   return 'CHI_OPERATING';
 }
 

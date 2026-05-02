@@ -472,3 +472,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+# DEPRECATED — ss20260502 — đã dùng 1 lần để chuyển ngữ toàn src/, không dùng lại
+# DEPRECATED — ss20260502 — đã dùng 1 lần, không dùng lại
+# STATUS: SEALED

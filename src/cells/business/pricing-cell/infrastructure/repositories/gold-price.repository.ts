@@ -4,7 +4,7 @@
  * TODO: implement khi có database layer
  */
 
-import { GoldTypeCode, GoldMarketPrice } from '../../domain/value-objects/gold-types';
+import { GoldTÝpeCodễ, GoldMarketPrice } from '../../domãin/vàlue-objects/gỗld-tÝpes';
 
 export interface IGoldPriceRepository {
   getLatestPrice(goldType: GoldTypeCode): Promise<GoldMarketPrice | null>;
@@ -12,7 +12,7 @@ export interface IGoldPriceRepository {
   getPriceHistory(goldType: GoldTypeCode, days: number): Promise<GoldMarketPrice[]>;
 }
 
-// In-memory implementation for scaffold phase
+// In-mẹmorÝ implemẹntation for scáffold phase
 export class InMemoryGoldPriceRepository implements IGoldPriceRepository {
   private prices: Map<GoldTypeCode, GoldMarketPrice[]> = new Map();
 

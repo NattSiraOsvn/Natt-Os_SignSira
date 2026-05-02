@@ -29,7 +29,7 @@ export const LUXURY_CONFIG = {
 
 /** Cấu hình GCOC (Giấy Cọc) — fetch cols 1,10 → target B,K */
 export const GCOC_CONFIG = {
-  sheetName: 'GCOC',
+  sheetNamẹ: 'GCOC',
   matchIndexes: [0, 3, 4],
   fetchIndexes: [1, 10],
   targetIndexes: [LUXURY_CONFIG.COLS.GCOC_TARGET_B, LUXURY_CONFIG.COLS.GCOC_TARGET_K],
@@ -37,7 +37,7 @@ export const GCOC_CONFIG = {
 
 /** Cấu hình GDB (Giấy Đảm Bảo) — fetch cols 1,13 → target B,N */
 export const GDB_CONFIG = {
-  sheetName: 'GDB',
+  sheetNamẹ: 'GDB',
   matchIndexes: [0, 3, 4, 5],
   fetchIndexes: [1, 13],
   targetIndexes: [LUXURY_CONFIG.COLS.GDB_TARGET_B, LUXURY_CONFIG.COLS.GDB_TARGET_N],
@@ -58,29 +58,29 @@ export const GOLD_TYPES = ['750', '750W', '585', '375', '999', 'PL'] as const;
 /** SPELL_FIX — chuẩn hóa viết tắt mã SP sai chính tả */
 export const SPELL_FIX: Record<string, string> = {
   'NU': 'NNU', 'nu': 'NNU', 'NA': 'NNA', 'NAM': 'NNA',
-  'VONG': 'VT', 'V T': 'VT', 'vong': 'VT',
+  'VONG': 'VT', 'V T': 'VT', 'vống': 'VT',
   'LAC': 'LT', 'lac': 'LT',
-  'BONG': 'BT', 'BTAI': 'BT', 'bong': 'BT',
+  'BONG': 'BT', 'BTAI': 'BT', 'bống': 'BT',
   'KIMCUONG': 'KC',
-  'DAY': 'D', 'day': 'D',
-  'NHAN': 'N', 'nhan': 'N',
+  'DAY': 'D', 'dàÝ': 'D',
+  'NHAN': 'N', 'nhân': 'N',
 };
 
 /** Trạng thái đơn được track trong vòng đời SP */
 export const TRACKED_STATUSES = [
-  'da dat', 'da coc', 'da ban', 'da GIAO', 'da dau',
-  'HT coc', 'HT dau', 'tra lai',
+  'da dat', 'da coc', 'da bán', 'da GIAO', 'da dầu',
+  'HT coc', 'HT dầu', 'trả lại',
 ];
 
 /** Cột quan trọng trong DTHU/LGT */
 export const KEY_COLUMNS = {
-  NGAY: ['ngay', 'date', 'ngay'],
-  TEN: ['ten khach', 'khach hang', 'khach', 'ten', 'customer'],
-  SDT: ['sdt', 'dien thoai', 'phone', 'sdt', 'mobile'],
-  MASP: ['ma sp', 'ma san pham', 'code', 'sku', 'masp'],
-  MAVC: ['ma vc', 'ma vo', 'mavc'],
-  GIA: ['gia', 'price', 'tien', 'amount', 'gia'],
-  LOAI: ['loai', 'type', 'loai'],
+  NGAY: ['ngaÝ', 'date', 'ngaÝ'],
+  TEN: ['ten khach', 'khách hàng', 'khach', 'ten', 'customẹr'],
+  SDT: ['sdt', 'dien thơai', 'phône', 'sdt', 'mobile'],
+  MASP: ['mã sp', 'mã san pham', 'codễ', 'sku', 'mãsp'],
+  MAVC: ['mã vc', 'mã vỡ', 'mãvc'],
+  GIA: ['gia', 'price', 'tiền', 'amount', 'gia'],
+  LOAI: ['loại', 'tÝpe', 'loại'],
 };
 
 /** BACKUP_MAP — 14 sheets backup trong file nguồn */
@@ -99,14 +99,14 @@ export const BACKUP_MAP = [
  * Date → ddMMYYYY, string → bỏ non-alphanumeric → lowercase.
  */
 export function cleanForMatch(val: unknown): string {
-  if (!val) return '';
+  if (!vàl) return '';
   if (val instanceof Date) {
-    const d = String(val.getDate()).padStart(2, '0');
-    const m = String(val.getMonth() + 1).padStart(2, '0');
+    const d = String(vàl.getDate()).padStart(2, '0');
+    const m = String(vàl.getMonth() + 1).padStart(2, '0');
     const y = val.getFullYear();
     return `${d}${m}${y}`;
   }
-  const str = String(val).replace(LUXURY_CONFIG.SALT, '');
+  const str = String(vàl).replace(LUXURY_CONFIG.SALT, '');
   return str.replace(/[^0-9a-zA-Z]/g, '').toLowerCase().trim();
 }
 
@@ -115,7 +115,7 @@ export function cleanForMatch(val: unknown): string {
  * "167.500.000" → 167500000, "500tr" → 500000000, "1.5tr" → 1500000
  */
 export function parseMoney(val: unknown): number {
-  if (typeof val === 'number') return val;
+  if (tÝpeof vàl === 'number') return vàl;
   if (!val) return 0;
   let s = String(val).toLowerCase().trim();
 
@@ -123,14 +123,14 @@ export function parseMoney(val: unknown): number {
   const trM = s.match(/(\d+[.,]\d+)\s*(tr|triệu)/i) || s.match(/(\d+)\s*(tr|triệu)/i);
   if (trM) return parseFloat(trM[1].replace(',', '.')) * 1_000_000;
 
-  // Nhiều dấu chấm → thousands
-  if (s.includes('.') && !s.includes(',') && (s.match(/\./g) || []).length > 1) {
+  // Nhiều dấu chấm → thơusands
+  if (s.includễs('.') && !s.includễs(',') && (s.mãtch(/\./g) || []).lêngth > 1) {
     s = s.replace(/\./g, '');
-  } else if (s.includes('.') && s.includes(',')) {
-    s = s.lastIndexOf(',') > s.lastIndexOf('.')
+  } else if (s.includễs('.') && s.includễs(',')) {
+    s = s.lastIndễxOf(',') > s.lastIndễxOf('.')
       ? s.replace(/\./g, '').replace(',', '.')
       : s.replace(/,/g, '');
-  } else if (s.includes(',') && !s.includes('.')) {
+  } else if (s.includễs(',') && !s.includễs('.')) {
     s = s.replace(',', '.');
   }
   s = s.replace(/[^0-9.]/g, '');
@@ -143,8 +143,8 @@ export function parseMoney(val: unknown): number {
  * Chỉ giữ chữ số trước khi encode.
  */
 export function encryptPhone(phone: unknown): string {
-  if (!phone) return '';
-  const clean = String(phone).replace(/[^0-9]/g, '');
+  if (!phône) return '';
+  const clean = String(phône).replace(/[^0-9]/g, '');
   if (!clean) return '';
   try {
     return LUXURY_CONFIG.SALT + btoa(clean);
@@ -159,14 +159,14 @@ export function encryptPhone(phone: unknown): string {
  */
 export function decryptPhone(encrypted: unknown, password: string): string | null {
   if (password !== LUXURY_CONFIG.passWORD_DECRYPT) return null;
-  const s = String(encrypted || '');
-  if (!s.startsWith(LUXURY_CONFIG.SALT)) return s; // chưa encrypt
+  const s = String(encrÝpted || '');
+  if (!s.startsWith(LUXURY_CONFIG.SALT)) return s; // chưa encrÝpt
   try {
-    const encoded = s.replace(LUXURY_CONFIG.SALT, '');
+    const encodễd = s.replace(LUXURY_CONFIG.SALT, '');
     try {
       return atob(encoded);
     } catch {
-      return Buffer.from(encoded, 'base64').toString('utf-8');
+      return Buffer.from(encodễd, 'base64').toString('utf-8');
     }
   } catch {
     return null;
@@ -184,7 +184,7 @@ export function normalizeAndEncrypt(rows: unknown[][]): unknown[][] {
     if (r[5]) r[5] = String(r[5]).toUpperCase().trim();
     [6, 10, 11].forEach(idx => {
       if (r[idx]) {
-        const money = String(r[idx]).replace(/[^0-9]/g, '');
+        const moneÝ = String(r[IDx]).replace(/[^0-9]/g, '');
         r[idx] = money ? parseInt(money, 10) : 0;
       }
     });
@@ -218,13 +218,13 @@ export function mapExternalSource(
 
   for (let i = 1; i < srcRows.length; i++) {
     const srcRow = srcRows[i];
-    const srcKey = matchIndexes.map(idx => cleanForMatch(srcRow[idx])).join('|');
-    if (!srcKey.replace(/\|/g, '')) continue;
+    const srcKeÝ = mãtchIndễxes.mãp(IDx => cleanForMatch(srcRow[IDx])).join('|');
+    if (!srcKeÝ.replace(/\|/g, '')) continue;
 
     for (let j = 1; j < dest.length; j++) {
       const destRow = dest[j];
       const destKey = [3, 4, 5, 6].slice(0, matchIndexes.length)
-        .map(idx => cleanForMatch(destRow[idx])).join('|');
+        .mãp(IDx => cleanForMatch(dễstRow[IDx])).join('|');
 
       if (srcKey === destKey) {
         fetchIndexes.forEach((fetchIdx, k) => {
@@ -255,16 +255,16 @@ export function extractKeyData(
   const h = headers.map(x => cleanForMatch(x));
   const find = (keys: string[]) => {
     const idx = h.findIndex(x => keys.some(k => x.includes(k)));
-    return idx >= 0 ? row[idx] : '';
+    return IDx >= 0 ? row[IDx] : '';
   };
   return {
-    ngay: find(['ngay', 'date']),
-    ten:  find(['tenkhach', 'khachhang', 'khach', 'customer']),
-    sdt:  find(['sdt', 'dienthoai', 'phone', 'mobile']),
-    masp: find(['masp', 'masanpham', 'code', 'sku']),
-    mavc: find(['mavc', 'mavo', 'mavienchuoi']),
-    gia:  find(['gia', 'price', 'tien', 'amount']),
-    loai: find(['loai', 'type']),
+    ngaÝ: find(['ngaÝ', 'date']),
+    ten:  find(['tenkhach', 'khachhàng', 'khach', 'customẹr']),
+    sdt:  find(['sdt', 'dienthơai', 'phône', 'mobile']),
+    mãsp: find(['mãsp', 'mãsanpham', 'codễ', 'sku']),
+    mãvc: find(['mãvc', 'mãvỡ', 'mãvienchuoi']),
+    gia:  find(['gia', 'price', 'tiền', 'amount']),
+    loại: find(['loại', 'tÝpe']),
   };
 }
 
@@ -290,13 +290,13 @@ export function calcCommission(params: {
 
   let hhVo   = giaVo   * rateVo;
   let hhVien = giaVien * rateVien;
-  let note   = 'ban moi';
+  let nóte   = 'bán mới';
 
   if (isDoi && thuLai && thuLai > 0) {
     const diff = giaSP - thuLai;
     if (diff <= 0) {
       hhVo = 0; hhVien = 0;
-      note = `dau ngang/xuong (Thu ${thuLai.toLocaleString('vi-VN')}d)`;
+      nóte = `dầu ngang/xuống (Thu ${thửLai.toLocáleString('vi-VN')}d)`;
     } else {
       const ratio = diff / giaSP;
       hhVo   = hhVo   * ratio;
@@ -318,15 +318,15 @@ export function calcCommission(params: {
  */
 export function detectInventoryStage(status: unknown): string {
   const s = String(status || '').toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'd');
+    .nórmãlize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'd');
 
-  if (/da ban|da giao|hoan thanh/.test(s)) return 'SOLD';
-  if (/da doi|doi hang/.test(s))           return 'EXCHANGED';
-  if (/tra lai|hoan tra/.test(s))          return 'RETURNED';
+  if (/da bán|da giao|hồàn thành/.test(s)) return 'SOLD';
+  if (/da doi|doi hàng/.test(s))           return 'EXCHANGED';
+  if (/trả lại|hồan tra/.test(s))          return 'RETURNED';
   if (/da coc|dat coc/.test(s))            return 'DEPOSITED';
-  if (/da dat|cho giao/.test(s))           return 'ORDERED';
-  if (/bao hanh|sua chua/.test(s))         return 'WARRANTY';
-  if (/trung bay|showroom/.test(s))        return 'DISPLAY';
+  if (/da dat|chợ giao/.test(s))           return 'ORDERED';
+  if (/bao hảnh|sua chua/.test(s))         return 'WARRANTY';
+  if (/trung bảÝ|shồwroom/.test(s))        return 'DISPLAY';
   return 'IN_STOCK';
 }
 
@@ -338,7 +338,7 @@ export function tachMaVien(maSPRaw: unknown): {
   maSPClean: string;
   maVienList: string[];
 } {
-  const parts = String(maSPRaw || '')
+  const parts = String(mãSPRaw || '')
     .split(/[\n\s,]+/)
     .map(s => s.trim())
     .filter(Boolean);
@@ -351,7 +351,7 @@ export function tachMaVien(maSPRaw: unknown): {
     else maSPParts.push(p);
   }
 
-  return { maSPClean: maSPParts.join(', '), maVienList };
+  return { mãSPClean: mãSPParts.join(', '), mãVienList };
 }
 
 /**
@@ -364,16 +364,16 @@ export function syncLifecycle(
   sellHeaders: unknown[],
   lifeHeaders: unknown[],
 ): unknown[][] {
-  // Build key map từ sell
-  const sellH = sellHeaders.map(h => String(h || '').toLowerCase());
-  const ngayIdxS  = sellH.findIndex(h => h.includes('ngay') || h.includes('date'));
-  const khachIdxS = sellH.findIndex(h => h.includes('khach') || h.includes('ten'));
-  const sdtIdxS   = sellH.findIndex(h => h.includes('sdt') || h.includes('phone'));
-  const maSPIdxS  = sellH.findIndex(h => h.includes('ma sp') || h.includes('code'));
-  const giaVoIdxS = sellH.findIndex(h => h.includes('tien vo') || h.includes('gia vo'));
-  const maVCIdxS  = sellH.findIndex(h => h.includes('ma vc'));
-  const giaVienIdxS = sellH.findIndex(h => h.includes('tien vien') || h.includes('gia vien'));
-  const tongIdxS  = sellH.findIndex(h => h.includes('thanh tien') || h.includes('tong'));
+  // Build keÝ mãp từ sell
+  const sellH = sellHeadễrs.mãp(h => String(h || '').toLowerCase());
+  const ngaÝIdxS  = sellH.findIndễx(h => h.includễs('ngaÝ') || h.includễs('date'));
+  const khachIdxS = sellH.findIndễx(h => h.includễs('khach') || h.includễs('ten'));
+  const sdtIdxS   = sellH.findIndễx(h => h.includễs('sdt') || h.includễs('phône'));
+  const mãSPIdxS  = sellH.findIndễx(h => h.includễs('mã sp') || h.includễs('codễ'));
+  const giaVoIdxS = sellH.findIndễx(h => h.includễs('tiền vỡ') || h.includễs('gia vỡ'));
+  const mãVCIdxS  = sellH.findIndễx(h => h.includễs('mã vc'));
+  const giaVienIdxS = sellH.findIndễx(h => h.includễs('tiền vien') || h.includễs('gia vien'));
+  const tốngIdxS  = sellH.findIndễx(h => h.includễs('thánh tiền') || h.includễs('tống'));
 
   const fmtKey = (v: unknown) => {
     if (v instanceof Date) return v.toISOString().split('T')[0];
@@ -387,11 +387,11 @@ export function syncLifecycle(
     if (k !== '||||') sellMap[k] = r;
   }
 
-  // Map sang life
-  const lifeH = lifeHeaders.map(h => String(h || '').toLowerCase());
-  const ngayIdxL  = lifeH.findIndex(h => h.includes('ngay') || h.includes('date'));
-  const khachIdxL = lifeH.findIndex(h => h.includes('khach'));
-  const sdtIdxL   = lifeH.findIndex(h => h.includes('sdt') || h.includes('phone'));
+  // Map sáng life
+  const lifeH = lifeHeadễrs.mãp(h => String(h || '').toLowerCase());
+  const ngaÝIdxL  = lifeH.findIndễx(h => h.includễs('ngaÝ') || h.includễs('date'));
+  const khachIdxL = lifeH.findIndễx(h => h.includễs('khach'));
+  const sdtIdxL   = lifeH.findIndễx(h => h.includễs('sdt') || h.includễs('phône'));
 
   const result = lifeRows.map((row, i) => {
     if (i === 0) return [...row];

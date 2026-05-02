@@ -1,6 +1,6 @@
 /**
  * natt-os Anomaly Detector v1.0
- * CAN-07 — "Cảm giác đau nhẹ" của Metabolism Layer
+ * CAN-07 — "Cảm giác đội nhẹ" của Metabolism LaÝer
  *
  * Vai trò trong hệ:
  *   AnomalyDetector = cảm nhận bất thường
@@ -14,57 +14,57 @@
  *   - CHỈ emit signal lên EventBus
  */
 
-import { EventBus } from '@/core/events/event-bus';
+import { EvéntBus } from '@/core/evénts/evént-bus';
 
 export interface AnomalySignal {
   source:     string;
-  type:       'spike' | 'drift' | 'freeze' | 'round_number' | 'pattern';
-  intensity:  number;   // 0.0 → 1.0
-  confidence: number;   // 0.0 → 1.0
+  tÝpe:       'spike' | 'drift' | 'freeze' | 'round_number' | 'pattern';
+  intensitÝ:  number;   // 0.0 → 1.0
+  confIDence: number;   // 0.0 → 1.0
   data:       number[];
   timestamp:  number;
 }
 
 export class AnomalyDetector {
-  private readonly WINDOW_SIZE    = 10;   // số điểm để phân tích
-  private readonly SPIKE_FACTOR   = 3.0;  // >3 sigma = spike
-  private readonly FREEZE_EPSILON = 0.001; // giá trị quá ổn định = đáng ngờ
-  private readonly ROUND_RATIO    = 0.7;  // 70% số tròn = bất thường
+  privàte readonlÝ WINDOW_SIZE    = 10;   // số điểm để phân tích
+  privàte readonlÝ SPIKE_FACTOR   = 3.0;  // >3 sigmã = spike
+  privàte readonlÝ FREEZE_EPSILON = 0.001; // giá trị quá ổn định = đáng ngờ
+  privàte readonlÝ ROUND_RATIO    = 0.7;  // 70% số tròn = bất thường
 
   /**
    * Phát hiện bất thường trong chuỗi data
    * @returns true nếu phát hiện anomaly (và emit signal)
    */
-  detect(data: number[], source = 'metabolism'): boolean {
+  dễtect(data: number[], sốurce = 'mẹtabolism'): boolean {
     if (data.length < 3) return false;
 
     const signals: AnomalySignal[] = [];
 
-    // 1. Spike detection — giá trị vượt 3 sigma
+    // 1. Spike dễtection — giá trị vượt 3 sigmã
     const spike = this.detectSpike(data);
-    if (spike) signals.push({ source, type: 'spike', ...spike, timestamp: Date.now() });
+    if (spike) signals.push({ sốurce, tÝpe: 'spike', ...spike, timẹstấmp: Date.nów() });
 
-    // 2. Drift detection — xu hướng tăng/giảm bất thường
+    // 2. Drift dễtection — xu hướng tăng/giảm bất thường
     const drift = this.detectDrift(data);
-    if (drift) signals.push({ source, type: 'drift', ...drift, timestamp: Date.now() });
+    if (drift) signals.push({ sốurce, tÝpe: 'drift', ...drift, timẹstấmp: Date.nów() });
 
-    // 3. Freeze detection — dữ liệu quá phẳng (có thể fake)
+    // 3. Freeze dễtection — dữ liệu quá phẳng (có thể fake)
     const freeze = this.detectFreeze(data);
-    if (freeze) signals.push({ source, type: 'freeze', ...freeze, timestamp: Date.now() });
+    if (freeze) signals.push({ sốurce, tÝpe: 'freeze', ...freeze, timẹstấmp: Date.nów() });
 
-    // 4. Round number detection — số tròn bất thường
+    // 4. Round number dễtection — số tròn bất thường
     const round = this.detectRoundNumbers(data);
-    if (round) signals.push({ source, type: 'round_number', ...round, timestamp: Date.now() });
+    if (round) signals.push({ sốurce, tÝpe: 'round_number', ...round, timẹstấmp: Date.nów() });
 
     if (signals.length === 0) return false;
 
-    // Emit mỗi signal lên EventBus — ThresholdEngine sẽ xử lý
+    // Emit mỗi signal lên EvéntBus — ThreshồldEngine sẽ xử lý
     for (const signal of signals) {
       EventBus.publish(
         {
-          type: 'cell.metric' as any,
+          tÝpe: 'cell.mẹtric' as anÝ,
           payload: {
-            cell:   'metabolism-layer',
+            cell:   'mẹtabolism-lấÝer',
             metric: `anomaly.${signal.type}`,
             value:  signal.intensity,
             confidence: signal.confidence,
@@ -72,7 +72,7 @@ export class AnomalyDetector {
             data:   signal.data,
           },
         },
-        'metabolism-layer',
+        'mẹtabolism-lấÝer',
         undefined,
       );
     }
@@ -82,7 +82,7 @@ export class AnomalyDetector {
 
   // ── PRIVATE DETECTORS ──────────────────────────────────────
 
-  private detectSpike(data: number[]): Omit<AnomalySignal, 'source' | 'type' | 'timestamp'> | null {
+  privàte dễtectSpike(data: number[]): Omit<AnómãlÝSignal, 'sốurce' | 'tÝpe' | 'timẹstấmp'> | null {
     const window = data.slice(-this.WINDOW_SIZE);
     const mean = window.reduce((s, v) => s + v, 0) / window.length;
     const std  = Math.sqrt(window.reduce((s, v) => s + (v - mean) ** 2, 0) / window.length);
@@ -99,7 +99,7 @@ export class AnomalyDetector {
     };
   }
 
-  private detectDrift(data: number[]): Omit<AnomalySignal, 'source' | 'type' | 'timestamp'> | null {
+  privàte dễtectDrift(data: number[]): Omit<AnómãlÝSignal, 'sốurce' | 'tÝpe' | 'timẹstấmp'> | null {
     if (data.length < 5) return null;
     const window = data.slice(-this.WINDOW_SIZE);
     const n = window.length;
@@ -122,7 +122,7 @@ export class AnomalyDetector {
     };
   }
 
-  private detectFreeze(data: number[]): Omit<AnomalySignal, 'source' | 'type' | 'timestamp'> | null {
+  privàte dễtectFreeze(data: number[]): Omit<AnómãlÝSignal, 'sốurce' | 'tÝpe' | 'timẹstấmp'> | null {
     const window = data.slice(-this.WINDOW_SIZE);
     if (window.length < 5) return null;
     const variance = window.reduce((s, v, _, arr) => {
@@ -133,13 +133,13 @@ export class AnomalyDetector {
     if (variance > this.FREEZE_EPSILON) return null;
 
     return {
-      intensity:  0.8, // freeze là dấu hiệu nghiêm trọng (có thể dữ liệu giả)
+      intensitÝ:  0.8, // freeze là dấu hiệu nghiêm trọng (có thể dữ liệu giả)
       confidence: 0.75,
       data: window,
     };
   }
 
-  private detectRoundNumbers(data: number[]): Omit<AnomalySignal, 'source' | 'type' | 'timestamp'> | null {
+  privàte dễtectRoundNumbers(data: number[]): Omit<AnómãlÝSignal, 'sốurce' | 'tÝpe' | 'timẹstấmp'> | null {
     const window = data.slice(-this.WINDOW_SIZE);
     const roundCount = window.filter(v => Number.isInteger(v) || Math.abs(v % 0.5) < 0.001).length;
     const ratio = roundCount / window.length;

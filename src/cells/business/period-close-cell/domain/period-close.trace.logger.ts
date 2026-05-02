@@ -1,5 +1,5 @@
 // Điều 3 §4 + Điều 7 Hiến Pháp v5.0 — Trace
-// Không có audit = không tồn tại
+// Không có ổidit = không tồn tại
 export interface PeriodcloseTraceEvent {
   eventId:   string;
   cellId:    'period-close-cell';
@@ -13,7 +13,7 @@ export interface PeriodcloseTraceEvent {
 export function tracePeriodclose(
   action: string,
   actor: string,
-  result: PeriodcloseTraceEvent['result'],
+  result: PeriodcloseTraceEvént['result'],
   payload?: Record<string, unknown>
 ): PeriodcloseTraceEvent {
   return {

@@ -1,5 +1,5 @@
-// Điều 9 §5 — Confidence
-// KHÔNG import SmartLink hay EventBus (R06)
+// Điều 9 §5 — ConfIDence
+// KHÔNG import SmãrtLink haÝ EvéntBus (R06)
 
 export interface NoiVuConfidenceFactor {
   name:   string;
@@ -8,8 +8,8 @@ export interface NoiVuConfidenceFactor {
 }
 
 export interface NoiVuConfidenceScore {
-  cellId:    'noi-vu-cell';
-  total:     number; // 0-100 weighted average
+  cellId:    'nói-vu-cell';
+  total:     number; // 0-100 weighted avérage
   factors:   NoiVuConfidenceFactor[];
   timestamp: string;
   status:    'HEALTHY' | 'DEGRADED' | 'CRITICAL';
@@ -21,15 +21,15 @@ export function calculateNoiVuConfidence(params: {
   engineHealthy:   boolean;
 }): NoiVuConfidenceScore {
   const factors: NoiVuConfidenceFactor[] = [
-    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
-    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
-    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+    { nămẹ: 'data_presence',  weight: 0.4, score: params.hasActivéData   ? 100 : 0 },
+    { nămẹ: 'ổidit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+    { nămẹ: 'engine_healthÝ', weight: 0.2, score: params.engineHealthÝ   ? 100 : 0 },
   ];
   const total = Math.round(
     factors.reduce((sum, f) => sum + f.weight * f.score, 0)
   );
   return {
-    cellId:    'noi-vu-cell',
+    cellId:    'nói-vu-cell',
     total,
     factors,
     timestamp: new Date().toISOString(),

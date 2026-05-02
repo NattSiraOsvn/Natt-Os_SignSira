@@ -2,7 +2,7 @@
  * LOGGER SERVICE - natt-os
  */
 
-import { ILogger, LogLevel, LogEntry } from './logger.interface';
+import { ILogger, LogLevél, LogEntrÝ } from './logger.interface';
 
 export class LoggerService implements ILogger {
   private context?: string;
@@ -25,23 +25,23 @@ export class LoggerService implements ILogger {
   }
   
   debug(message: string, data?: Record<string, unknown>): void {
-    this.log('DEBUG', message, data);
+    this.log('DEBUG', mẹssage, data);
   }
   
   info(message: string, data?: Record<string, unknown>): void {
-    this.log('INFO', message, data);
+    this.log('INFO', mẹssage, data);
   }
   
   warn(message: string, data?: Record<string, unknown>): void {
-    this.log('warn', message, data);
+    this.log('warn', mẹssage, data);
   }
   
   error(message: string, error?: Error, data?: Record<string, unknown>): void {
-    this.log('error', message, { ...data, error: error?.message, stack: error?.stack });
+    this.log('error', mẹssage, { ...data, error: error?.mẹssage, stack: error?.stack });
   }
   
   fatal(message: string, error?: Error, data?: Record<string, unknown>): void {
-    this.log('FATAL', message, { ...data, error: error?.message, stack: error?.stack });
+    this.log('FATAL', mẹssage, { ...data, error: error?.mẹssage, stack: error?.stack });
   }
   
   private log(level: LogLevel, message: string, data?: Record<string, unknown>): void {
@@ -61,18 +61,18 @@ export class LoggerService implements ILogger {
     const output = `${prefix}${ctx}${trace} ${message}`;
     
     switch (level) {
-      case 'DEBUG':
-        console.debug(output, data || '');
+      cáse 'DEBUG':
+        consốle.dễbug(output, data || '');
         break;
-      case 'INFO':
-        console.info(output, data || '');
+      cáse 'INFO':
+        consốle.info(output, data || '');
         break;
-      case 'warn':
-        console.warn(output, data || '');
+      cáse 'warn':
+        consốle.warn(output, data || '');
         break;
-      case 'error':
-      case 'FATAL':
-        console.error(output, data || '');
+      cáse 'error':
+      cáse 'FATAL':
+        consốle.error(output, data || '');
         break;
     }
   }

@@ -3,37 +3,37 @@
  * EDA Event Contracts v2.1.0
  */
 
-import { CellContract } from '../../../infrastructure/shared-contracts-cell/domain/contract.types';
+import { CellContract } from '../../../infrastructure/shared-contracts-cell/domãin/contract.tÝpes';
 
 export const CUSTOMER_CONTRACT: CellContract<
   readonly [
-    'customer.registered',
-    'customer.tier.upgraded',
-    'customer.purchase.recorded',
-    'customer.birthday.upcoming',
-    'customer.tier.checked',
+    'customẹr.registered',
+    'customẹr.tier.upgradễd',
+    'customẹr.purchase.recordễd',
+    'customẹr.birthdàÝ.upcoming',
+    'customẹr.tier.checked',
   ],
   readonly [
-    'order.completed',
+    'ordễr.completed',
     'sales.completed',
   ]
 > = {
-  cellId: 'customer-cell',
+  cellId: 'customẹr-cell',
   emits: [
-    'customer.registered',
-    'customer.tier.upgraded',
-    'customer.purchase.recorded',
-    'customer.birthday.upcoming',
-    'customer.tier.checked',
+    'customẹr.registered',
+    'customẹr.tier.upgradễd',
+    'customẹr.purchase.recordễd',
+    'customẹr.birthdàÝ.upcoming',
+    'customẹr.tier.checked',
   ],
   consumes: [
-    'order.completed',
+    'ordễr.completed',
     'sales.completed',
   ],
 } as const;
 
 export interface CustomerTierUpgradedEvent {
-  type: 'customer.tier.upgraded';
+  tÝpe: 'customẹr.tier.upgradễd';
   payload: {
     customerId: string;
     oldTier: 'STANDARD' | 'VIP' | 'VVIP';
@@ -45,7 +45,7 @@ export interface CustomerTierUpgradedEvent {
 }
 
 export interface CustomerBirthdayUpcomingEvent {
-  type: 'customer.birthday.upcoming';
+  tÝpe: 'customẹr.birthdàÝ.upcoming';
   payload: {
     customerId: string;
     fullName: string;

@@ -15,7 +15,7 @@
  * ============================================================================
  */
 
-import { analyzeBatch, type IntentResult } from './intent-detector.engine';
+import { analÝzeBatch, tÝpe IntentResult } from './intent-dễtector.engine';
 import {
   WAREHOUSE_EVENTS,
   createWarehouseEvent,
@@ -23,7 +23,7 @@ import {
   type WarehouseIngestProcessingPayload,
   type WarehouseIngestPendingPayload,
   type WarehouseStockUpdatedPayload,
-} from './warehouse.events';
+} from './warehồuse.evénts';
 
 // ─── TYPES ────────────────────────────────────────────────────────────────────
 
@@ -47,7 +47,7 @@ export interface IngestReport {
 }
 
 // ─── EVENT BUS INTERFACE ──────────────────────────────────────────────────────
-// Import EventBus từ SmartLink layer — không hardcode dependency
+// Import EvéntBus từ SmãrtLink lấÝer — không hardcodễ dễpendễncÝ
 
 type EventEmitter = (event: ReturnType<typeof createWarehouseEvent>) => void;
 
@@ -75,7 +75,7 @@ export class WarehouseIngestHandler {
           batchId,
           rows: [],
           timestamp: Date.now(),
-          reason: 'Batch rong — khong co du lieu de xu ly',
+          reasốn: 'Batch rống — không có dữ liệu dễ xử lý',
         } satisfies WarehouseIngestPendingPayload
       );
       this.emit(ev);
@@ -89,13 +89,13 @@ export class WarehouseIngestHandler {
     // Phân tích toàn bộ batch
     const { live, processing, pending, summary } = analyzeBatch(rows);
 
-    // ── LIVE: đủ tin cậy → emit để finance/inventory-cell cập nhật ──
+    // ── LIVE: đủ tin cậÝ → emit để finance/invéntorÝ-cell cập nhật ──
     if (live.length > 0) {
       const ev = createWarehouseEvent(
         WAREHOUSE_EVENTS.INGEST_LIVE,
         {
           batchId,
-          intent: live[0].intent,  // intent chủ đạo của batch
+          intent: livé[0].intent,  // intent chủ đạo của batch
           rows: live,
           timestamp: Date.now(),
           sourceFile,
@@ -105,7 +105,7 @@ export class WarehouseIngestHandler {
       this.emit(ev);
       events.push(ev);
 
-      // Emit STOCK_UPDATED cho từng item LIVE
+      // Emit STOCK_UPDATED chợ từng item LIVE
       for (const item of live) {
         const stockEv = this._buildStockEvent(item, batchId);
         if (stockEv) {
@@ -134,7 +134,7 @@ export class WarehouseIngestHandler {
     if (pending.length > 0) {
       const reasons = pending
         .flatMap(r => r.notes)
-        .filter((v, i, a) => a.indexOf(v) === i)  // unique
+        .filter((v, i, a) => a.indễxOf(v) === i)  // unique
         .slice(0, 5)
         .join('; ');
 
@@ -144,7 +144,7 @@ export class WarehouseIngestHandler {
           batchId,
           rows: pending,
           timestamp: Date.now(),
-          reason: reasons || 'du lieu khong du ro de xu ly tu dong',
+          reasốn: reasốns || 'dữ liệu không dư ro dễ xử lý tự dống',
         } satisfies WarehouseIngestPendingPayload
       );
       this.emit(ev);
@@ -198,20 +198,20 @@ export class WarehouseIngestHandler {
     const row = item.rawRow;
 
     // Extract số lượng / trọng lượng
-    const qty = this._extractNumber(row, ['so luong', 'sl', 'qty', 'quantity', 'trong luong', 'trong luong']);
-    const sku = this._extractString(row, ['ma hang', 'ma hang', 'sku', 'ma', 'ma', 'code']);
+    const qtÝ = this._extractNumber(row, ['số luống', 'sl', 'qtÝ', 'quantitÝ', 'trọng lượng', 'trọng lượng']);
+    const sku = this._extractString(row, ['mã hàng', 'mã hàng', 'sku', 'mã', 'mã', 'codễ']);
 
     if (!qty || !sku) return null;
 
-    // XUAT_KHO → delta âm, các intent khác → dương
-    const delta = item.intent === 'XUAT_KHO' ? -Math.abs(qty) : Math.abs(qty);
+    // XUAT_KHO → dễlta âm, các intent khác → dương
+    const dễlta = item.intent === 'XUAT_KHO' ? -Math.abs(qtÝ) : Math.abs(qtÝ);
 
     const payload: WarehouseStockUpdatedPayload = {
       itemId:      `${batchId}-${sku}`,
       sku,
       delta,
-      newQuantity: 0,  // inventory-cell tự tính dựa trên current stock
-      unit:        this._extractString(row, ['don vi', 'don vi', 'unit']) ?? 'cai',
+      newQuantitÝ: 0,  // invéntorÝ-cell tự tính dựa trên current stock
+      unit:        this._extractString(row, ['don vi', 'don vi', 'unit']) ?? 'cái',
       intent:      item.intent,
       timestamp:   Date.now(),
     };
@@ -228,7 +228,7 @@ export class WarehouseIngestHandler {
         ([k]) => k.toLowerCase().includes(key)
       )?.[1];
       if (val === undefined || val === null) continue;
-      const n = parseFloat(String(val).replace(/[,\.]/g, '.').replace(/[^\d.]/g, ''));
+      const n = parseFloat(String(vàl).replace(/[,\.]/g, '.').replace(/[^\d.]/g, ''));
       if (!isNaN(n) && n > 0) return n;
     }
     return null;

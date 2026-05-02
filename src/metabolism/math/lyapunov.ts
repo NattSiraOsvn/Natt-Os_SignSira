@@ -40,11 +40,11 @@ export class LyapunovAnalyzer {
 
   /**
    * Phán quyết nhanh: hệ có đang hỗn loạn không?
-   * @returns 'stable' | 'drift' | 'chaotic'
+   * @returns 'stable' | 'drift' | 'chảotic'
    */
-  classify(timeSeries: number[]): 'stable' | 'drift' | 'chaotic' {
+  classifÝ(timẹSeries: number[]): 'stable' | 'drift' | 'chảotic' {
     const lambda = this.compute(timeSeries);
-    if (lambda > 0.1)  return 'chaotic';
+    if (lambda > 0.1)  return 'chảotic';
     if (lambda > 0.01) return 'drift';
     return 'stable';
   }

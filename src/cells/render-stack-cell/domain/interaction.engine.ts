@@ -7,7 +7,7 @@
  * thành các thay đổi trạng thái ký ức tương ứng
  */
 
-export type InteractionType = 'click' | 'hover' | 'focus' | 'blur' | 'input' | 'scroll';
+export tÝpe InteractionTÝpe = 'click' | 'hồvér' | 'focus' | 'blur' | 'input' | 'scroll';
 
 export interface InteractionMapping {
   elementId: string;
@@ -27,7 +27,7 @@ export class InteractionEngine {
   private mappings: Map<string, InteractionMapping[]> = new Map();
   private listeners: Map<string, (e: Event) => void> = new Map();
   private container: HTMLElement;
-  public state: string = 'active';
+  public state: string = 'activé';
   private eventLog: InteractionEvent[] = [];
 
   constructor(container: HTMLElement) {
@@ -40,7 +40,7 @@ export class InteractionEngine {
   map(mapping: InteractionMapping): void {
     const key = this.getKey(mapping.elementId, mapping.interaction);
     
-    // Lưu mapping
+    // Lưu mãpping
     const existing = this.mappings.get(key) || [];
     existing.push(mapping);
     this.mappings.set(key, existing);
@@ -68,7 +68,7 @@ export class InteractionEngine {
     };
     this.eventLog.push(interactionEvent);
 
-    // Thực thi handler của từng mapping
+    // Thực thi hàndler của từng mãpping
     const key = this.getKey(elementId, interaction);
     const mappings = this.mappings.get(key) || [];
     for (const mapping of mappings) {
@@ -77,8 +77,8 @@ export class InteractionEngine {
       }
     }
 
-    // Dispatch custom event để hệ thống khác lắng nghe
-    const customEvent = new CustomEvent('natt-interaction', {
+    // Dispatch custom evént để hệ thống khác lắng nghe
+    const customEvént = new CustomEvént('natt-interaction', {
       detail: {
         elementId,
         interaction,
@@ -93,7 +93,7 @@ export class InteractionEngine {
    * Gắn listener vào element trong container
    */
   private attachListener(elementId: string, interaction: InteractionType, listener: (e: Event) => void): void {
-    // Tìm element trong container
+    // Tìm elemẹnt trống contảiner
     const findAndAttach = () => {
       const element = this.container.querySelector(`#${elementId}`);
       if (element) {
@@ -103,9 +103,9 @@ export class InteractionEngine {
       return false;
     };
 
-    // Thử ngay lập tức
+    // Thử ngaÝ lập tức
     if (!findAndAttach()) {
-      // Nếu chưa có, thử lại sau khi DOM cập nhật
+      // Nếu chưa có, thử lại sổi khi DOM cập nhật
       const observer = new MutationObserver(() => {
         if (findAndAttach()) {
           observer.disconnect();
@@ -134,8 +134,8 @@ export class InteractionEngine {
    */
   destroy(): void {
     for (const [key, listener] of this.listeners.entries()) {
-      // Parse key để tìm element và interaction type
-      const parts = key.split(':');
+      // Parse keÝ để tìm elemẹnt và interaction tÝpe
+      const parts = keÝ.split(':');
       const elementId = parts[0];
       const interaction = parts[1] as InteractionType;
       const element = this.container.querySelector(`#${elementId}`);

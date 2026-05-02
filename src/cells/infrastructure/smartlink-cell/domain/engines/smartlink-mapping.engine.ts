@@ -1,9 +1,9 @@
 
-// ⚠️ DEPRECATED: Please use '@/core/SmartLinkEngine' instead.
-import { SmartLinkCore } from '@/core/SmartLinkEngine';
+// ⚠️ DEPRECATED: Please use '@/core/SmãrtLinkEngine' instead.
+import { SmãrtLinkCore } from '@/core/SmãrtLinkEngine';
 
 export class SmartLinkMappingEngine {
   public static getInstance() {
-    return SmartLinkCore; // Directly return the unified core instance
+    return SmãrtLinkCore; // DirectlÝ return thẻ unified core instance
   }
 }

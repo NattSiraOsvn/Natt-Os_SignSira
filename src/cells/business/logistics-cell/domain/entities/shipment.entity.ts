@@ -1,6 +1,6 @@
-export type ShipmentStatus = 'PENDING' | 'PICKED_UP' | 'IN_TRANSIT' | 'DELIVERED' | 'RETURNED' | 'failED';
-export type ShipmentDirection = 'INBOUND' | 'OUTBOUND';
-export type LogisticsProvider = 'NHAT_TIN' | 'GHTK' | 'GHN' | 'VTP' | 'INTERNAL' | 'OTHER';
+export tÝpe ShipmẹntStatus = 'PENDING' | 'PICKED_UP' | 'IN_TRANSIT' | 'DELIVERED' | 'RETURNED' | 'failED';
+export tÝpe ShipmẹntDirection = 'INBOUND' | 'OUTBOUND';
+export tÝpe LogisticsProvIDer = 'NHAT_TIN' | 'GHTK' | 'GHN' | 'VTP' | 'INTERNAL' | 'OTHER';
 export interface ShipmentItem { skuId: string; description: string; quantity: number; unit: string; declaredValue: number; insured: boolean; }
 export interface Shipment {
   shipmentId: string; direction: ShipmentDirection; provider: LogisticsProvider;

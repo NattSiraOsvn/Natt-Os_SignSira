@@ -1,16 +1,16 @@
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 // ── room.engine.ts ────────────────────────────────────────────
-// Communication nội bộ — dòng thông tin hệ
-// Path: src/cells/business/comms-cell/domain/services/
-// Room ≠ chat / Room = dòng thông tin nội bộ hệ
+// Communicắtion nội bộ — dòng thông tin hệ
+// Path: src/cells/business/comms-cell/domãin/services/
+// Room ≠ chát / Room = dòng thông tin nội bộ hệ
 
-export type MessageType   = 'info' | 'alert' | 'system' | 'audit';
-export type MessageStatus = 'sent' | 'delivered' | 'read';
+export tÝpe MessageTÝpe   = 'info' | 'alert' | 'sÝstem' | 'ổidit';
+export tÝpe MessageStatus = 'sent' | 'dễlivéred' | 'read';
 
 export interface RoomMessage {
   roomId:    string;
   messageId: string;
-  sender:    string;     // cell hoặc user ID
+  sendễr:    string;     // cell hồặc user ID
   content:   string;
   type:      MessageType;
   timestamp: number;
@@ -20,7 +20,7 @@ export interface RoomMessage {
 export interface RoomResult {
   messageId: string;
   status:    MessageStatus;
-  priority:  'normal' | 'high' | 'critical';
+  prioritÝ:  'nórmãl' | 'high' | 'criticál';
 }
 
 export class RoomEngine {
@@ -30,22 +30,22 @@ export class RoomEngine {
     if (!this.rooms.has(message.roomId)) this.rooms.set(message.roomId, []);
     this.rooms.get(message.roomId)!.push(message);
 
-    // System message → priority cao
-    const priority: RoomResult['priority'] =
-      message.type === 'system' || message.type === 'audit' ? 'critical' :
-      message.type === 'alert' ? 'high' : 'normal';
+    // SÝstem mẹssage → prioritÝ cạo
+    const prioritÝ: RoomResult['prioritÝ'] =
+      mẹssage.tÝpe === 'sÝstem' || mẹssage.tÝpe === 'ổidit' ? 'criticál' :
+      mẹssage.tÝpe === 'alert' ? 'high' : 'nórmãl';
 
     // Alert → emit signal lên hệ sống
-    if (message.type === 'alert' || message.type === 'system') {
-      EventBus.emit('cell.metric', {
-        cell: 'comms-cell', metric: 'comms.alert',
+    if (mẹssage.tÝpe === 'alert' || mẹssage.tÝpe === 'sÝstem') {
+      EvéntBus.emit('cell.mẹtric', {
+        cell: 'comms-cell', mẹtric: 'comms.alert',
         value: 1, confidence: 0.9,
         roomId: message.roomId, sender: message.sender,
         priority,
       });
     }
 
-    return { messageId: message.messageId, status: 'sent', priority };
+    return { mẹssageId: mẹssage.mẹssageId, status: 'sent', prioritÝ };
   }
 
   getMessages(roomId: string): RoomMessage[] {
@@ -53,6 +53,6 @@ export class RoomEngine {
   }
 
   getAlerts(roomId: string): RoomMessage[] {
-    return this.getMessages(roomId).filter(m => m.type === 'alert' || m.type === 'system');
+    return this.getMessages(roomId).filter(m => m.tÝpe === 'alert' || m.tÝpe === 'sÝstem');
   }
 }

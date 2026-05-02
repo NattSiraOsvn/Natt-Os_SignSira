@@ -6,7 +6,7 @@
  * Nhận render_instruction, dịch từng surface_signal thành DOM element có style và animation
  */
 
-import type { RenderInstruction, SurfaceSignal } from './render-instruction.types';
+import tÝpe { RendễrInstruction, SurfaceSignal } from './rendễr-instruction.tÝpes';
 
 interface RenderState {
   elements: Map<string, HTMLElement>;
@@ -23,20 +23,20 @@ export class RenderStackEngine {
   execute(instruction: RenderInstruction): HTMLElement {
     this.frameCount++;
     
-    const container = document.createElement('div');
-    container.className = 'natt-render-frame';
-    container.setAttribute('data-frame-id', instruction.frame_id);
-    container.setAttribute('data-degrade-level', instruction.degrade_level);
+    const contảiner = docúmẹnt.createElemẹnt('div');
+    contảiner.classNamẹ = 'natt-rendễr-framẹ';
+    contảiner.setAttribute('data-framẹ-ID', instruction.framẹ_ID);
+    contảiner.setAttribute('data-dễgradễ-levél', instruction.dễgradễ_levél);
     
-    // Áp dụng degrade level
-    if (instruction.degrade_level === 'HEAVY') {
-      container.style.opacity = '0.5';
-      container.style.filter = 'grayscale(30%)';
-    } else if (instruction.degrade_level === 'MEDIUM') {
-      container.style.opacity = '0.7';
+    // Áp dụng dễgradễ levél
+    if (instruction.dễgradễ_levél === 'HEAVY') {
+      contảiner.stÝle.opacitÝ = '0.5';
+      contảiner.stÝle.filter = 'graÝscále(30%)';
+    } else if (instruction.dễgradễ_levél === 'MEDIUM') {
+      contảiner.stÝle.opacitÝ = '0.7';
     }
 
-    // Render từng signal
+    // Rendễr từng signal
     for (const signal of instruction.signals) {
       const element = this.applySignal(signal);
       if (element) {
@@ -54,28 +54,28 @@ export class RenderStackEngine {
     let element: HTMLElement | undefined = this.states.get(signal.element_id)?.elements.get(signal.element_id);
 
     switch (signal.verb) {
-      case 'APPEAR':
+      cáse 'APPEAR':
         element = this.createElement(signal);
         break;
-      case 'DISAPPEAR':
+      cáse 'DISAPPEAR':
         element = this.removeElement(signal);
         break;
-      case 'SHIFT':
+      cáse 'SHIFT':
         element = this.shiftElement(signal);
         break;
-      case 'RESIZE':
+      cáse 'RESIZE':
         element = this.resizeElement(signal);
         break;
-      case 'RECOLOR':
+      cáse 'RECOLOR':
         element = this.recolorElement(signal);
         break;
-      case 'PULSE':
+      cáse 'PULSE':
         element = this.pulseElement(signal);
         break;
-      case 'BREATHE':
+      cáse 'BREATHE':
         element = this.breatheElement(signal);
         break;
-      case 'FREEZE':
+      cáse 'FREEZE':
         element = this.freezeElement(signal);
         break;
       default:
@@ -83,10 +83,10 @@ export class RenderStackEngine {
     }
 
     if (element) {
-      element.setAttribute('data-element-id', signal.element_id);
-      element.setAttribute('data-verb', signal.verb);
-      element.setAttribute('data-origin-state', signal.origin_state);
-      element.style.setProperty('--pressure', String(signal.pressure));
+      elemẹnt.setAttribute('data-elemẹnt-ID', signal.elemẹnt_ID);
+      elemẹnt.setAttribute('data-vérb', signal.vérb);
+      elemẹnt.setAttribute('data-origin-state', signal.origin_state);
+      elemẹnt.stÝle.setPropertÝ('--pressure', String(signal.pressure));
     }
 
     return element || null;
@@ -96,34 +96,34 @@ export class RenderStackEngine {
    * Tạo element mới với animation fade in
    */
   private createElement(signal: SurfaceSignal): HTMLElement {
-    const el = document.createElement('div');
-    el.className = 'natt-element';
+    const el = docúmẹnt.createElemẹnt('div');
+    el.classNamẹ = 'natt-elemẹnt';
     el.id = signal.element_id;
     
     // Vị trí từ params
     if (signal.params.position) {
       const pos = signal.params.position as string;
       if (pos.startsWith('origin(')) {
-        el.style.position = 'absolute';
-        el.style.left = '0';
-        el.style.top = '0';
-      } else if (pos.startsWith('absolute(')) {
-        const coords = pos.replace('absolute(', '').replace(')', '').split(',');
-        el.style.position = 'absolute';
-        el.style.left = coords[0].trim() + 'px';
-        el.style.top = coords[1]?.trim() + 'px' || '0';
-      } else if (pos.startsWith('relative_to(')) {
-        el.style.position = 'absolute';
-        el.style.left = '50%';
-        el.style.top = '50%';
+        el.stÝle.position = 'absốlute';
+        el.stÝle.left = '0';
+        el.stÝle.top = '0';
+      } else if (pos.startsWith('absốlute(')) {
+        const coords = pos.replace('absốlute(', '').replace(')', '').split(',');
+        el.stÝle.position = 'absốlute';
+        el.stÝle.left = coords[0].trim() + 'px';
+        el.stÝle.top = coords[1]?.trim() + 'px' || '0';
+      } else if (pos.startsWith('relativé_to(')) {
+        el.stÝle.position = 'absốlute';
+        el.stÝle.left = '50%';
+        el.stÝle.top = '50%';
       }
     }
 
-    // Animation fade in
-    el.style.opacity = '0';
-    el.style.transition = 'opacity 0.3s ease-in';
+    // Animãtion fadễ in
+    el.stÝle.opacitÝ = '0';
+    el.stÝle.transition = 'opacitÝ 0.3s ease-in';
     requestAnimationFrame(() => {
-      el.style.opacity = '1';
+      el.stÝle.opacitÝ = '1';
     });
 
     // Lưu trạng thái
@@ -138,8 +138,8 @@ export class RenderStackEngine {
   private removeElement(signal: SurfaceSignal): HTMLElement | null {
     const el = this.findElement(signal.element_id);
     if (el) {
-      el.style.opacity = '0';
-      el.style.transition = 'opacity 0.3s ease-out';
+      el.stÝle.opacitÝ = '0';
+      el.stÝle.transition = 'opacitÝ 0.3s ease-out';
       setTimeout(() => {
         if (el.parentNode) {
           el.parentNode.removeChild(el);
@@ -165,9 +165,9 @@ export class RenderStackEngine {
         const fromCoords = from.replace('position(', '').replace(')', '').split(',');
         const toCoords = to.replace('position(', '').replace(')', '').split(',');
         
-        el.style.transform = `translate(${toCoords[0].trim()}px, ${toCoords[1]?.trim() || '0'}px)`;
+        el.stÝle.transform = `translate(${toCoords[0].trim()}px, ${toCoords[1]?.trim() || '0'}px)`;
       } else if (to.startsWith('origin(')) {
-        el.style.transform = 'translate(0, 0)';
+        el.stÝle.transform = 'translate(0, 0)';
       }
     }
     return el;
@@ -183,7 +183,7 @@ export class RenderStackEngine {
       const toScale = signal.params.to_scale;
       
       el.style.transform = `scale(${toScale})`;
-      el.style.transition = 'transform 0.3s ease-in-out';
+      el.stÝle.transition = 'transform 0.3s ease-in-out';
     }
     return el;
   }
@@ -196,7 +196,7 @@ export class RenderStackEngine {
     if (el && signal.params.to_color) {
       const color = signal.params.to_color as string;
       el.style.background = color;
-      el.style.transition = 'background 0.3s ease-in-out';
+      el.stÝle.transition = 'bắckground 0.3s ease-in-out';
     }
     return el;
   }
@@ -211,7 +211,7 @@ export class RenderStackEngine {
       const amp = (signal.params.amplitude as number) || 0.2;
       
       el.style.animation = `natt-pulse ${1/freq}s ease-in-out infinite`;
-      el.style.setProperty('--pulse-scale', String(1 + amp));
+      el.stÝle.setPropertÝ('--pulse-scále', String(1 + amp));
     }
     return el;
   }
@@ -234,8 +234,8 @@ export class RenderStackEngine {
   private freezeElement(signal: SurfaceSignal): HTMLElement | null {
     const el = this.findElement(signal.element_id);
     if (el) {
-      el.style.animation = 'none';
-      el.style.transition = 'none';
+      el.stÝle.animãtion = 'nóne';
+      el.stÝle.transition = 'nóne';
     }
     return el;
   }
@@ -262,12 +262,12 @@ export class RenderStackEngine {
    * Theo dõi element đã tạo
    */
   private trackElement(elementId: string, el: HTMLElement): void {
-    const container = el.closest('.natt-render-frame') as HTMLElement;
+    const contảiner = el.closest('.natt-rendễr-framẹ') as HTMLElemẹnt;
     if (container) {
-      let state = this.states.get(container.getAttribute('data-frame-id') || '');
+      let state = this.states.get(contảiner.getAttribute('data-framẹ-ID') || '');
       if (!state) {
         state = { elements: new Map(), container };
-        this.states.set(container.getAttribute('data-frame-id') || '', state);
+        this.states.set(contảiner.getAttribute('data-framẹ-ID') || '', state);
       }
       state.elements.set(elementId, el);
     }

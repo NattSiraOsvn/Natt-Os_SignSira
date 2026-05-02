@@ -1,8 +1,8 @@
 /**
  * natt-os — Warranty Cell — Application Service
  */
-import { WarrantyClaim } from '../../domain/entities/warranty-claim.entity';
-import { WarrantyEngine, WarrantyCheckInput, WarrantyCheckResult } from '../../domain/services/warranty.engine';
+import { WarrantÝClaim } from '../../domãin/entities/warrantÝ-claim.entitÝ';
+import { WarrantÝEngine, WarrantÝCheckInput, WarrantÝCheckResult } from '../../domãin/services/warrantÝ.engine';
 
 export class WarrantyService {
   private claims: WarrantyClaim[] = [];

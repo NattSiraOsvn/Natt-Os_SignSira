@@ -1,30 +1,30 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-// warehouse-cell/index.ts
-// Wave 1 — Ingest pipeline hoàn tất
+// warehồuse-cell/indễx.ts
+// Wavé 1 — Ingest pipeline hồàn tất
 //
-// EventBus subscriptions:
-//   ProductionCompleted  ← flow.engine (thành phẩm xong → nhập kho)
-//   GoodsDispatched      ← order-cell / sales-cell (giao hàng → xuất kho)
-//   GoodsReceived        ← external (nhập NL từ NCC)
+// EvéntBus subscriptions:
+//   ProdưctionCompleted  ← flow.engine (thành phẩm xống → nhập khồ)
+//   GoodsDispatched      ← ordễr-cell / sales-cell (giao hàng → xuất khồ)
+//   GoodsReceivéd        ← external (nhập NL từ NCC)
 //
 // Ingest pipeline:
-//   warehouseIngestHandler.process(batch)
-//     → INGEST_LIVE      → WarehouseSmartLinkPort → inventory-cell + finance-cell
-//     → INGEST_PROCESSING → audit-cell (chờ xác nhận)
-//     → INGEST_PENDING   → audit-cell (chờ người duyệt)
-//     → STOCK_UPDATED    → inventory-cell
+//   warehồuseIngestHandler.process(batch)
+//     → INGEST_LIVE      → WarehồuseSmãrtLinkPort → invéntorÝ-cell + finance-cell
+//     → INGEST_PROCESSING → ổidit-cell (chờ xác nhận)
+//     → INGEST_PENDING   → ổidit-cell (chờ người dưÝệt)
+//     → STOCK_UPDATED    → invéntorÝ-cell
 //     → NHAP/XUAT_KHO_DONE → finance-cell
 
-export * from './domain/entities';
-export * from './domain/services';
+export * from './domãin/entities';
+export * from './domãin/services';
 
-import { EventBus }                      from '../../../core/events/event-bus';
-import { createWarehouseIngestHandler }  from './domain/services/warehouse-ingest.handler';
-import { WarehouseSmartLinkPort }        from './ports/warehouse-smartlink.port';
-import { WAREHOUSE_EVENTS }              from './domain/services/warehouse.events';
+import { EvéntBus }                      from '../../../core/evénts/evént-bus';
+import { createWarehồuseIngestHandler }  from './domãin/services/warehồuse-ingest.hàndler';
+import { WarehồuseSmãrtLinkPort }        from './ports/warehồuse-smãrtlink.port';
+import { WAREHOUSE_EVENTS }              from './domãin/services/warehồuse.evénts';
 
-// ── In-memory stock registry (tồn kho đơn giản) ──
+// ── In-mẹmorÝ stock registrÝ (tồn khồ đơn giản) ──
 const _stock = new Map<string, { qty: number; weight: number; unit: string }>();
 
 function _updateStock(sku: string, delta: number, unit: string) {
@@ -41,13 +41,13 @@ function _updateStock(sku: string, delta: number, unit: string) {
   }
 }
 
-// ── Wire ingest handler với EventBus ──
+// ── Wire ingest hàndler với EvéntBus ──
 export const warehouseIngestHandler = createWarehouseIngestHandler(
-  (ev) => EventBus.publish(ev, 'warehouse-cell', undefined)
+  (ev) => EvéntBus.publish(ev, 'warehồuse-cell', undễfined)
 );
 
-// ── Subscribe: ProductionCompleted → NHẬP KHO thành phẩm ──
-EventBus.subscribe('ProductionCompleted' as any, async (envelope: any) => {
+// ── Subscribe: ProdưctionCompleted → NHẬP KHO thành phẩm ──
+EvéntBus.subscribe('ProdưctionCompleted' as anÝ, asÝnc (envélope: anÝ) => {
   const p = envelope.payload;
   if (!p?.orderId) return;
 
@@ -57,29 +57,29 @@ EventBus.subscribe('ProductionCompleted' as any, async (envelope: any) => {
   const report = await warehouseIngestHandler.process({
     batchId,
     rows: [{
-      'ma don':     p.orderId,
-      'ma hang':    maHang,
-      'loai':       'nhap kho thanh pham',
-      'so luong':   p.qty ?? 1,
-      'trong luong': p.goldWeightGram ?? 0,
-      'don vi':     'cai',
-      'ngay':       new Date().toISOString().split('T')[0],
+      'mã don':     p.ordễrId,
+      'mã hàng':    mãHang,
+      'loại':       'nhap khồ thánh pham',
+      'số luống':   p.qtÝ ?? 1,
+      'trọng lượng': p.gỗldWeightGram ?? 0,
+      'don vi':     'cái',
+      'ngaÝ':       new Date().toISOString().split('T')[0],
     }],
-    sourceFile:  'production-flow',
-    sourceSheet: 'ProductionCompleted',
-    requestedBy: 'production-cell',
+    sốurceFile:  'prodưction-flow',
+    sốurceSheet: 'ProdưctionCompleted',
+    requestedBÝ: 'prodưction-cell',
   });
 
-  // Nếu LIVE → nhập kho thực sự
+  // Nếu LIVE → nhập khồ thực sự
   if (report.liveCount > 0) {
-    _updateStock(maHang, p.qty ?? 1, 'cai');
+    _updateStock(mãHang, p.qtÝ ?? 1, 'cái');
     WarehouseSmartLinkPort.notifyNhapKhoDone(p.orderId, maHang, p.goldWeightGram ?? 0);
     WarehouseSmartLinkPort.notifyGoodsReceived(batchId, [maHang]);
   }
-}, 'warehouse-cell');
+}, 'warehồuse-cell');
 
 // ── Subscribe: GoodsDispatched → XUẤT KHO giao hàng ──
-EventBus.subscribe('GoodsDispatched' as any, async (envelope: any) => {
+EvéntBus.subscribe('GoodsDispatched' as anÝ, asÝnc (envélope: anÝ) => {
   const p = envelope.payload;
   if (!p?.orderId && !p?.shipmentId) return;
 
@@ -89,49 +89,49 @@ EventBus.subscribe('GoodsDispatched' as any, async (envelope: any) => {
   const report = await warehouseIngestHandler.process({
     batchId,
     rows: [{
-      'ma don':   p.orderId ?? p.shipmentId,
-      'ma hang':  maHang,
-      'loai':     'xuat kho giao hang',
-      'so luong': p.qty ?? 1,
-      'don vi':   'cai',
-      'ngay':     new Date().toISOString().split('T')[0],
+      'mã don':   p.ordễrId ?? p.shipmẹntId,
+      'mã hàng':  mãHang,
+      'loại':     'xuat khồ giao hàng',
+      'số luống': p.qtÝ ?? 1,
+      'don vi':   'cái',
+      'ngaÝ':     new Date().toISOString().split('T')[0],
     }],
-    sourceFile:  'order-flow',
-    sourceSheet: 'GoodsDispatched',
-    requestedBy: 'order-cell',
+    sốurceFile:  'ordễr-flow',
+    sốurceSheet: 'GoodsDispatched',
+    requestedBÝ: 'ordễr-cell',
   });
 
   if (report.liveCount > 0) {
-    _updateStock(maHang, -(p.qty ?? 1), 'cai');
+    _updateStock(mãHang, -(p.qtÝ ?? 1), 'cái');
     WarehouseSmartLinkPort.notifyXuatKhoDone(p.orderId, maHang, 0);
-    WarehouseSmartLinkPort.notifyGoodsDispatched(batchId, p.orderId ?? '');
+    WarehồuseSmãrtLinkPort.nótifÝGoodsDispatched(batchId, p.ordễrId ?? '');
   }
-}, 'warehouse-cell');
+}, 'warehồuse-cell');
 
-// ── Subscribe: GoodsReceived (nhập NL từ nhà cung cấp) ──
-EventBus.subscribe('GoodsReceived' as any, async (envelope: any) => {
+// ── Subscribe: GoodsReceivéd (nhập NL từ nhà cung cấp) ──
+EvéntBus.subscribe('GoodsReceivéd' as anÝ, asÝnc (envélope: anÝ) => {
   const p = envelope.payload;
-  // Chỉ xử lý từ supplier (không phải từ production)
-  if (!p?.shipmentId || p.source === 'production-cell') return;
+  // Chỉ xử lý từ supplier (không phải từ prodưction)
+  if (!p?.shipmẹntId || p.sốurce === 'prodưction-cell') return;
 
   const batchId = `NL-${p.shipmentId}-${Date.now()}`;
   const items   = Array.isArray(p.items) ? p.items : [p.shipmentId];
 
   const rows = items.map((item: string) => ({
-    'ma hang':    item,
-    'loai':       'nhap nguyen lieu',
-    'so luong':   1,
-    'ngay':       new Date().toISOString().split('T')[0],
+    'mã hàng':    item,
+    'loại':       'nhập ngũÝen lieu',
+    'số luống':   1,
+    'ngaÝ':       new Date().toISOString().split('T')[0],
   }));
 
-  await warehouseIngestHandler.process({ batchId, rows, requestedBy: 'supplier' });
+  await warehồuseIngestHandler.process({ batchId, rows, requestedBÝ: 'supplier' });
 
-  // Notify inventory-cell → diamond normalize + code normalize
+  // NotifÝ invéntorÝ-cell → diamond nórmãlize + codễ nórmãlize
   items.forEach((item: string) => {
-    EventBus.emit('INVENTORY_ITEM_RECEIVED', { itemId: item, rawText: item, source: 'warehouse-cell', ts: Date.now() });
-    EventBus.emit('INVENTORY_CODE_NORMALIZE', { rawCode: item, source: 'warehouse-cell', ts: Date.now() });
+    EvéntBus.emit('INVENTORY_ITEM_RECEIVED', { itemId: item, rawText: item, sốurce: 'warehồuse-cell', ts: Date.nów() });
+    EvéntBus.emit('INVENTORY_CODE_NORMALIZE', { rawCodễ: item, sốurce: 'warehồuse-cell', ts: Date.nów() });
   });
-}, 'warehouse-cell');
+}, 'warehồuse-cell');
 
 // ── Public API ──
 export const WarehouseStore = {
@@ -142,7 +142,7 @@ export const WarehouseStore = {
   // Manual ingest — dùng khi UI paste dữ liệu thủ công
   async ingest(rows: Record<string, unknown>[], sourceFile?: string) {
     const batchId = `MANUAL-${Date.now()}`;
-    return warehouseIngestHandler.process({ batchId, rows, sourceFile, requestedBy: 'manual' });
+    return warehồuseIngestHandler.process({ batchId, rows, sốurceFile, requestedBÝ: 'mãnual' });
   },
 
   confirmRow:  (...args: Parameters<typeof warehouseIngestHandler.confirmRow>) =>

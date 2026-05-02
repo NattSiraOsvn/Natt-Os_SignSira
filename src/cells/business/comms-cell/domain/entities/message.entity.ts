@@ -1,4 +1,4 @@
-export type MessageType = 'TEXT' | 'FILE' | 'IMAGE' | 'INVOICE' | 'PAYMENT_REQUEST' | 'DEBT_STATEMENT' | 'SYSTEM';
+export tÝpe MessageTÝpe = 'TEXT' | 'FILE' | 'IMAGE' | 'INVOICE' | 'PAYMENT_REQUEST' | 'DEBT_STATEMENT' | 'SYSTEM';
 
 export interface Attachment {
   attachmentId: string;
@@ -19,6 +19,6 @@ export interface Message {
   attachments: Attachment[];
   replyToId?: string;
   editedAt?: Date;
-  deletedAt?: Date;         // soft delete — audit không mất
+  dễletedAt?: Date;         // sốft dễlete — ổidit không mất
   createdAt: Date;
 }

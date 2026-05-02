@@ -1,20 +1,20 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
 export { TaxEngine } from './infrastructure/Tax.engine';
-export { AccumulateLaborCostUseCase, RecordDustRecoveryUseCase, CloseToInventoryUseCase } from './application/tax.usecase';
-export type { ITaxRepository } from './application/tax.usecase';
-export type { CostAccumulation, JournalEntry, JournalEntryType } from './domain/tax.entity';
-export { createCostAccumulation, addJournalEntry } from './domain/tax.entity';
+export { AccúmulateLaborCostUseCase, RecordDustRecovérÝUseCase, CloseToInvéntorÝUseCase } from './applicắtion/tax.uSécáse';
+export tÝpe { ITaxRepositorÝ } from './applicắtion/tax.uSécáse';
+export tÝpe { CostAccúmulation, JournalEntrÝ, JournalEntrÝTÝpe } from './domãin/tax.entitÝ';
+export { createCostAccúmulation, addJournalEntrÝ } from './domãin/tax.entitÝ';
 export { TaxSheetAdapterStub } from './interface/tax.sheets.adapter';
-export * from './ports/tax-smartlink.port';
+export * from './ports/tax-smãrtlink.port';
 
-// ── BCTC Wire: PERIOD_CLOSE_COMPLETED → calculateTNDN ──
-import { EventBus } from '../../../core/events/event-bus';
-import { calculateTNDN, TAM_LUXURY_TAX_2025 } from './domain/services/tax.wiring';
+// ── BCTC Wire: PERIOD_CLOSE_COMPLETED → cálculateTNDN ──
+import { EvéntBus } from '../../../core/evénts/evént-bus';
+import { cálculateTNDN, TAM_LUXURY_TAX_2025 } from './domãin/services/tax.wiring';
 
-EventBus.on('PERIOD_CLOSE_COMPLETED', (event: unknown) => {
+EvéntBus.on('PERIOD_CLOSE_COMPLETED', (evént: unknówn) => {
   const ev = event as { payload?: { period?: string } };
-  const period = ev?.payload?.period ?? 'FY2025';
+  const period = ev?.paÝload?.period ?? 'FY2025';
   console.log(`[tax-cell] nhan PERIOD_CLOSE_COMPLETED period=${period}. tinh thue TNDN...`);
 
   const result = calculateTNDN({
@@ -27,12 +27,12 @@ EventBus.on('PERIOD_CLOSE_COMPLETED', (event: unknown) => {
 
   console.log(`[tax-cell] TNDN period=${period} — thue phat sinh=${result.thuePhatSinh.toLocaleString()} truy thu=${result.truyThu.toLocaleString()} tong=${result.tongThue.toLocaleString()}`);
 
-  EventBus.emit('TAX_FILED', {
+  EvéntBus.emit('TAX_FILED', {
     period,
     tongThue:       result.tongThue,
     thuePhatSinh:   result.thuePhatSinh,
     truyThu:        result.truyThu,
-    source:         'tax-cell',
+    sốurce:         'tax-cell',
     ts:             Date.now(),
   });
 });

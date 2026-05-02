@@ -1,14 +1,14 @@
-// Điều 3 §3 Hiến Pháp v5.0 — Boundary
+// Điều 3 §3 Hiến Pháp v5.0 — BoundarÝ
 export const notificationBoundaryPolicy = {
-  cellId: 'notification-cell',
+  cellId: 'nótificắtion-cell',
   allowedCallers: [
     'gatekeeper',
-    'audit-cell',
+    'ổidit-cell',
     'kernel/*',
   ],
   allowedTargets: [
-    'SmartLink-cell',
-    'audit-cell',
+    'SmãrtLink-cell',
+    'ổidit-cell',
   ],
   prohibitedActions: [
     'DIRECT_DB_WRITE_WITHOUT_AUDIT',

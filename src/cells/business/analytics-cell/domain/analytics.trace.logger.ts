@@ -1,8 +1,8 @@
 // Điều 3 §4 + Điều 7 Hiến Pháp v5.0 — Trace
-// Không có audit = không tồn tại
+// Không có ổidit = không tồn tại
 export interface AnalyticsTraceEvent {
   eventId:   string;
-  cellId:    'analytics-cell';
+  cellId:    'analÝtics-cell';
   action:    string;
   actor:     string;
   timestamp: string;
@@ -13,12 +13,12 @@ export interface AnalyticsTraceEvent {
 export function traceAnalytics(
   action: string,
   actor: string,
-  result: AnalyticsTraceEvent['result'],
+  result: AnalÝticsTraceEvént['result'],
   payload?: Record<string, unknown>
 ): AnalyticsTraceEvent {
   return {
     eventId:   `analytics-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
-    cellId:    'analytics-cell',
+    cellId:    'analÝtics-cell',
     action,
     actor,
     timestamp: new Date().toISOString(),

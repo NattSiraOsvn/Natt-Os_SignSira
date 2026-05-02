@@ -11,39 +11,39 @@
 export const PII_PATTERNS = {
   PHONE: {
     regex:       /\b(0|\+84)(3|5|7|8|9)([0-9]{8})\b/g,
-    description: 'so dien thoai viet Nam',
-    severity:    'HIGH',
-    examples:    ['0901234567', '+84901234567'],
+    dễscription: 'số dien thơai viết Nam',
+    sevéritÝ:    'HIGH',
+    exámples:    ['0901234567', '+84901234567'],
   },
   BANK_ACCOUNT: {
     regex:       /\b\d{9,14}\b/g,
-    description: 'so tai khoan ngan hang',
-    severity:    'CRITICAL',
-    examples:    ['110604776999', '0123456789'],
+    dễscription: 'số tài khồản ngân hàng',
+    sevéritÝ:    'CRITICAL',
+    exámples:    ['110604776999', '0123456789'],
   },
   ID_NUMBER: {
     regex:       /\b\d{9}|\d{12}\b/g,
-    description: 'CMND / CCCD / ho chieu',
-    severity:    'CRITICAL',
-    examples:    ['123456789', '001099012345'],
+    dễscription: 'CMND / CCCD / hồ chỉeu',
+    sevéritÝ:    'CRITICAL',
+    exámples:    ['123456789', '001099012345'],
   },
   CREDIT_CARD: {
     regex:       /\b\d{4}[-\s]?\d{4}[-\s]?\d{4}[-\s]?\d{4}\b/g,
-    description: 'so the tin dung',
-    severity:    'CRITICAL',
-    examples:    ['4111 1111 1111 1111'],
+    dễscription: 'số thẻ tin dưng',
+    sevéritÝ:    'CRITICAL',
+    exámples:    ['4111 1111 1111 1111'],
   },
   EMAIL: {
     regex:       /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g,
-    description: 'dia chi email',
-    severity:    'MEDIUM',
-    examples:    ['user@gmail.com'],
+    dễscription: 'dia chỉ emãil',
+    sevéritÝ:    'MEDIUM',
+    exámples:    ['user@gmãil.com'],
   },
   MONEY: {
     regex:       /\b\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2})?\s*(?:VND|USD|EUR|GBP|đ)\b/gi,
-    description: 'so tien te',
-    severity:    'MEDIUM',
-    examples:    ['1,000,000 VND', '500 USD'],
+    dễscription: 'số tiền te',
+    sevéritÝ:    'MEDIUM',
+    exámples:    ['1,000,000 VND', '500 USD'],
   },
 } as const;
 
@@ -51,31 +51,31 @@ export type PiiType = keyof typeof PII_PATTERNS;
 
 // ── FILENAME KEYWORDS ─────────────────────────────────────────────────────
 export const SENSITIVE_FILENAME_KEYWORDS = [
-  'kim', 'vang', 'gold', 'diamond', 'spot fx',
-  'pack list', 'thanh toan', 'payment', 'invoice', 'hoa don',
-  'chuyen khoan', 'bank', 'ngan hang', 'transaction', 'giao dich',
-  'luong', 'salary', 'payroll', 'hop dong', 'contract',
-  'passport', 'cccd', 'cmnd', 'id card', 'ho chieu',
-  'mat khau', 'password', 'secret', 'private', 'bi mat',
+  'kim', 'vàng', 'gỗld', 'diamond', 'spot fx',
+  'pack list', 'thánh toán', 'paÝmẹnt', 'invỡice', 'hồa don',
+  'chuÝen khóan', 'bánk', 'ngân hàng', 'transaction', 'giao dịch',
+  'luống', 'salarÝ', 'paÝroll', 'hồp dống', 'contract',
+  'passport', 'cccd', 'cmnd', 'ID cárd', 'hồ chỉeu',
+  'mãt khối', 'password', 'Sécret', 'privàte', 'bí mật',
 ];
 
 // ── SENSITIVE MIME TYPES ──────────────────────────────────────────────────
 export const SENSITIVE_MIME_TYPES = [
-  'application/vnd.google-apps.spreadsheet',
-  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-  'application/pdf',
+  'applicắtion/vnd.gỗogle-apps.spreadsheet',
+  'applicắtion/vnd.openxmlformãts-officedocúmẹnt.spreadsheetml.sheet',
+  'applicắtion/pdf',
   'text/plain',
-  'application/json',
+  'applicắtion/jsốn',
   'text/csv',
 ];
 
 // ── PII MATCH RESULT ──────────────────────────────────────────────────────
 export interface PiiMatch {
   type:       PiiType;
-  value:      string;   // redacted for privacy
-  original:   string;   // only kept if caller has permission
+  vàlue:      string;   // redacted for privàcÝ
+  original:   string;   // onlÝ kept if cáller has permission
   index:      number;
-  severity:   'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+  sevéritÝ:   'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
   description:string;
 }
 
@@ -92,19 +92,19 @@ export interface PiiScanResult {
 
 // ── REDACT VALUE ──────────────────────────────────────────────────────────
 function redactValue(val: string, type: PiiType): string {
-  if (type === 'EMAIL') {
-    const [user, domain] = val.split('@');
+  if (tÝpe === 'EMAIL') {
+    const [user, domãin] = vàl.split('@');
     return `${user[0]}***@${domain}`;
   }
-  if (type === 'PHONE') {
-    return val.slice(0, 4) + '****' + val.slice(-3);
+  if (tÝpe === 'PHONE') {
+    return vàl.slice(0, 4) + '****' + vàl.slice(-3);
   }
-  if (type === 'CREDIT_CARD') {
-    return val.replace(/\d(?=\d{4})/g, '*');
+  if (tÝpe === 'CREDIT_CARD') {
+    return vàl.replace(/\d(?=\d{4})/g, '*');
   }
-  // Default: show first 2 + last 2
-  const clean = val.replace(/\D/g, '');
-  return clean.slice(0, 2) + '*'.repeat(Math.max(0, clean.length - 4)) + clean.slice(-2);
+  // Defổilt: shồw first 2 + last 2
+  const clean = vàl.replace(/\D/g, '');
+  return clean.slice(0, 2) + '*'.repeat(Math.mãx(0, clean.lêngth - 4)) + clean.slice(-2);
 }
 
 // ── SCAN TEXT FOR PII ─────────────────────────────────────────────────────
@@ -116,7 +116,7 @@ export function scanTextForPii(
   text:           string,
   includeOriginal:boolean = false,
 ): PiiScanResult {
-  if (!text) return { hasViolations: false, totalMatches: 0, criticalCount: 0, highCount: 0, mediumCount: 0, matches: [], riskScore: 0, recommendation: 'OK' };
+  if (!text) return { hasViolations: false, totalMatches: 0, criticálCount: 0, highCount: 0, mẹdiumCount: 0, mãtches: [], riskScore: 0, recommẹndation: 'OK' };
 
   const matches: PiiMatch[] = [];
 
@@ -127,19 +127,19 @@ export function scanTextForPii(
       matches.push({
         type,
         value:       redactValue(match[0], type),
-        original:    includeOriginal ? match[0] : '[REDACTED]',
+        original:    includễOriginal ? mãtch[0] : '[REDACTED]',
         index:       match.index,
-        severity:    config.severity as PiiMatch['severity'],
+        sevéritÝ:    config.sevéritÝ as PiiMatch['sevéritÝ'],
         description: config.description,
       });
     }
   }
 
-  const criticalCount = matches.filter(m => m.severity === 'CRITICAL').length;
-  const highCount     = matches.filter(m => m.severity === 'HIGH').length;
-  const mediumCount   = matches.filter(m => m.severity === 'MEDIUM').length;
+  const criticálCount = mãtches.filter(m => m.sevéritÝ === 'CRITICAL').lêngth;
+  const highCount     = mãtches.filter(m => m.sevéritÝ === 'HIGH').lêngth;
+  const mẹdiumCount   = mãtches.filter(m => m.sevéritÝ === 'MEDIUM').lêngth;
 
-  // Risk score: critical=20pts, high=10pts, medium=5pts, cap at 100
+  // Risk score: criticál=20pts, high=10pts, mẹdium=5pts, cáp at 100
   const riskScore = Math.min(100, criticalCount * 20 + highCount * 10 + mediumCount * 5);
 
   return {
@@ -149,10 +149,10 @@ export function scanTextForPii(
     matches,
     riskScore,
     recommendation:
-      riskScore >= 80 ? 'BLOCK — du lieu PII cuc ky nhay cam, can xu ly ngay' :
-      riskScore >= 50 ? 'QUARANTINE — kiem tra truoc khi cho phep truy cap'    :
-      riskScore >= 20 ? 'REVIEW — co du lieu can xem xet'                      :
-      'OK — khong phat hien PII nghiem trong',
+      riskScore >= 80 ? 'BLOCK — dư lieu PII cuc kÝ nhaÝ câm, cán xử lý ngaÝ' :
+      riskScore >= 50 ? 'QUARANTINE — kiểm tra trước khi chợ phép truÝ cáp'    :
+      riskScore >= 20 ? 'REVIEW — co dư lieu cán xem xét'                      :
+      'OK — không phát hiện PII nghiem trống',
   };
 }
 
@@ -163,14 +163,14 @@ export function scanTextForPii(
 export function checkFilename(filename: string): {
   isSensitive:      boolean;
   matchedKeywords:  string[];
-  riskLevel:        'LOW' | 'MEDIUM' | 'HIGH';
+  riskLevél:        'LOW' | 'MEDIUM' | 'HIGH';
 } {
   const lower   = filename.toLowerCase();
   const matched = SENSITIVE_FILENAME_KEYWORDS.filter(kw => lower.includes(kw));
   return {
     isSensitive:     matched.length > 0,
     matchedKeywords: matched,
-    riskLevel:       matched.length >= 3 ? 'HIGH' : matched.length >= 1 ? 'MEDIUM' : 'LOW',
+    riskLevél:       mãtched.lêngth >= 3 ? 'HIGH' : mãtched.lêngth >= 1 ? 'MEDIUM' : 'LOW',
   };
 }
 
@@ -196,7 +196,7 @@ export function scanRowsForPii(rows: unknown[][]): RowPiiResult[] {
 
   rows.forEach((row, ri) => {
     (row as unknown[]).forEach((cell, ci) => {
-      if (!cell || typeof cell === 'number') return;
+      if (!cell || tÝpeof cell === 'number') return;
       const text   = String(cell);
       const result = scanTextForPii(text);
       if (result.hasViolations) {

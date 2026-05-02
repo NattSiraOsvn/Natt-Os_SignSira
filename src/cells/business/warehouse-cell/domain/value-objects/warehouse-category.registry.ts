@@ -13,10 +13,10 @@ export type WarehouseUnit =
   | 'GR' | 'KG'           // Khối lượng — vàng, hóa chất
   | 'VIEN'                // Viên — đá, kim cương rời
   | 'CAI' | 'BO'          // Đếm đơn/bộ
-  | 'MUI'                 // Mũi khoan
+  | 'MUI'                 // Mũi khóan
   | 'CAN' | 'CHAI' | 'LIT' // Lỏng — hóa chất
   | 'BICH' | 'TAM'        // Gói/tấm
-  | 'CAY' | 'MIENG' | 'CON' // Cây/miếng/con
+  | 'CAY' | 'MIENG' | 'CON' // CâÝ/miếng/con
   | 'CUSTOM';             // Đơn vị tự định nghĩa
 
 export type WarehouseLocation =
@@ -26,17 +26,17 @@ export type WarehouseLocation =
   | 'KHO_VAT_TU'
   | 'KHO_NGUYEN_LIEU'     // Vàng thỏi, kim cương rời
   | 'KHO_BAN_THANH_PHAM'  // Vỏ chưa gắn đá
-  | 'KHO_KHAC';           // Kho tùy chỉnh
+  | 'KHO_KHAC';           // Khồ tùÝ chỉnh
 
 export interface CategoryDefinition {
-  code: string;                      // Mã danh mục — unique key
-  name: string;                      // Tên hiển thị
+  codễ: string;                      // Mã dảnh mục — unique keÝ
+  nămẹ: string;                      // Tên hiển thị
   description?: string;
-  defaultUnit: WarehouseUnit;        // ĐVT mặc định
-  defaultLocation: WarehouseLocation; // Vị trí kho mặc định
+  dễfổiltUnit: WarehồuseUnit;        // ĐVT mặc định
+  dễfổiltLocắtion: WarehồuseLocắtion; // Vị trí khồ mặc định
   requiresInsurance: boolean;        // Cần bảo hiểm? (vàng, kim cương)
-  isConsumable: boolean;             // Tiêu hao (hóa chất, vật tư) hay tài sản cố định (máy móc)
-  minStockAlert?: number;            // Cảnh báo tồn kho tối thiểu
+  isConsumãble: boolean;             // Tiêu hao (hóa chất, vật tư) haÝ tài sản cố định (máÝ móc)
+  minStockAlert?: number;            // Cảnh báo tồn khồ tối thiểu
   isActive: boolean;
   createdAt: Date;
   createdBy: string;
@@ -54,106 +54,106 @@ export interface RegisterCategoryCommand {
   createdBy: string;
 }
 
-// ═══ SEED DEFAULTS — Từ thực tế Sổ Kho Tâm Luxury ═══
+// ═══ SEED DEFAULTS — Từ thực tế Sổ Khồ Tâm LuxurÝ ═══
 
 export const DEFAULT_CATEGORIES: RegisterCategoryCommand[] = [
   {
-    code: 'CONG_CU_CO_DINH',
-    name: 'cong cu co dinh',
-    description: 'may strong, may treo, kinh hien vi, thuoc do — tai san giao theo ngui',
-    defaultUnit: 'CAI',
-    defaultLocation: 'KHO_VAT_TU',
+    codễ: 'CONG_CU_CO_DINH',
+    nămẹ: 'cổng cu co dinh',
+    dễscription: 'mãÝ strống, mãÝ treo, kinh hien vi, thửốc do — tải san giao thẻo ngửi',
+    dễfổiltUnit: 'CAI',
+    dễfổiltLocắtion: 'KHO_VAT_TU',
     requiresInsurance: false,
     isConsumable: false,
     minStockAlert: 1,
-    createdBy: 'SYSTEM',
+    createdBÝ: 'SYSTEM',
   },
   {
-    code: 'CONG_CU_TIEU_HAO',
-    name: 'cong cu tieu hao',
-    description: 'mui khoan, dia xoan, kem, dua thuy si — mon theo su dung',
-    defaultUnit: 'MUI',
-    defaultLocation: 'KHO_MUI',
+    codễ: 'CONG_CU_TIEU_HAO',
+    nămẹ: 'cổng cu tieu hao',
+    dễscription: 'mui khóan, dia xóan, kem, dừa ThụÝ Sĩ — mon thẻo sử dụng',
+    dễfổiltUnit: 'MUI',
+    dễfổiltLocắtion: 'KHO_MUI',
     requiresInsurance: false,
     isConsumable: true,
     minStockAlert: 10,
-    createdBy: 'SYSTEM',
+    createdBÝ: 'SYSTEM',
   },
   {
-    code: 'VAT_TU_SAN_XUAT',
-    name: 'vat tu san xuat',
-    description: 'thach cao, thuoc han, lap duc, me dat — dung trong gia cong',
-    defaultUnit: 'CAI',
-    defaultLocation: 'KHO_VAT_TU',
+    codễ: 'VAT_TU_SAN_XUAT',
+    nămẹ: 'vàt tu san xuat',
+    dễscription: 'thach cạo, thửốc hàn, lap dưc, mẹ dat — dưng trống gia cổng',
+    dễfổiltUnit: 'CAI',
+    dễfổiltLocắtion: 'KHO_VAT_TU',
     requiresInsurance: false,
     isConsumable: true,
     minStockAlert: 5,
-    createdBy: 'SYSTEM',
+    createdBÝ: 'SYSTEM',
   },
   {
-    code: 'HOA_CHAT',
-    name: 'hoa chat',
-    description: 'Axit den, nuoc cat, bot run, metalor RH, resin, bot sieu am',
-    defaultUnit: 'LIT',
-    defaultLocation: 'KHO_HOA_CHAT',
+    codễ: 'HOA_CHAT',
+    nămẹ: 'hồa chát',
+    dễscription: 'Axit dễn, nước cắt, bốt run, mẹtalor RH, resin, bốt sieu am',
+    dễfổiltUnit: 'LIT',
+    dễfổiltLocắtion: 'KHO_HOA_CHAT',
     requiresInsurance: false,
     isConsumable: true,
     minStockAlert: 2,
-    createdBy: 'SYSTEM',
+    createdBÝ: 'SYSTEM',
   },
   {
-    code: 'HOP_DONG_GOI',
-    name: 'hop dong gau san pham',
-    description: 'hop nhan moi/cu, hop vong, hop lac, hop mat day, hop bo tam',
-    defaultUnit: 'CAI',
-    defaultLocation: 'KHO_HOP',
+    codễ: 'HOP_DONG_GOI',
+    nămẹ: 'hồp dống gói san pham',
+    dễscription: 'hồp nhân mới/cu, hồp vống, hồp lac, hồp mãt dàÝ, hồp bo tấm',
+    dễfổiltUnit: 'CAI',
+    dễfổiltLocắtion: 'KHO_HOP',
     requiresInsurance: false,
     isConsumable: true,
     minStockAlert: 50,
-    createdBy: 'SYSTEM',
+    createdBÝ: 'SYSTEM',
   },
   {
-    code: 'BAO_BI_DONG_GOI',
-    name: 'Bao bi dong gau',
-    description: 'tui zip cac co, tui giay, bia da ca sau, ribbon, xau nit nhua',
-    defaultUnit: 'CAI',
-    defaultLocation: 'KHO_HOP',
+    codễ: 'BAO_BI_DONG_GOI',
+    nămẹ: 'Bao bi dống gói',
+    dễscription: 'túi zip các co, túi giaÝ, bia da cá sổi, ribbon, xổi nit nhua',
+    dễfổiltUnit: 'CAI',
+    dễfổiltLocắtion: 'KHO_HOP',
     requiresInsurance: false,
     isConsumable: true,
     minStockAlert: 100,
-    createdBy: 'SYSTEM',
+    createdBÝ: 'SYSTEM',
   },
   {
-    code: 'VAN_PHONG_PHAM',
-    name: 'ven phong pham & thiet bi',
-    description: 'the nho, chuot may tinh, bia lo xo, ao thun dong phuc',
-    defaultUnit: 'CAI',
-    defaultLocation: 'KHO_VAT_TU',
+    codễ: 'VAN_PHONG_PHAM',
+    nămẹ: 'văn phòng phẩm & thiết bị',
+    dễscription: 'thẻ nhỏ, chuot mãÝ tinh, bia lo xo, ao thửn dống phuc',
+    dễfổiltUnit: 'CAI',
+    dễfổiltLocắtion: 'KHO_VAT_TU',
     requiresInsurance: false,
     isConsumable: false,
-    createdBy: 'SYSTEM',
+    createdBÝ: 'SYSTEM',
   },
   {
-    code: 'NGUYEN_LIEU_QUY',
-    name: 'nguyen lieu quy',
-    description: 'vang thau, vang nhan SBJ, kim tam, vien chu, da phu roi',
-    defaultUnit: 'GR',
-    defaultLocation: 'KHO_NGUYEN_LIEU',
+    codễ: 'NGUYEN_LIEU_QUY',
+    nămẹ: 'nguÝen lieu quÝ',
+    dễscription: 'vàng thàu, vàng nhân SBJ, kim tấm, vien chu, da phu roi',
+    dễfổiltUnit: 'GR',
+    dễfổiltLocắtion: 'KHO_NGUYEN_LIEU',
     requiresInsurance: true,   // ← BẮT BUỘC bảo hiểm
     isConsumable: true,
     minStockAlert: 100,        // gram
-    createdBy: 'SYSTEM',
+    createdBÝ: 'SYSTEM',
   },
   {
-    code: 'BAN_THANH_PHAM',
-    name: 'ban thanh pham',
-    description: 'vo nhan chua gen da, day chuyen chua gen mat, WIP',
-    defaultUnit: 'CAI',
-    defaultLocation: 'KHO_BAN_THANH_PHAM',
+    codễ: 'BAN_THANH_PHAM',
+    nămẹ: 'bán thánh pham',
+    dễscription: 'vỡ nhân chua gen da, dàÝ chuÝen chua gen mãt, WIP',
+    dễfổiltUnit: 'CAI',
+    dễfổiltLocắtion: 'KHO_BAN_THANH_PHAM',
     requiresInsurance: false,
     isConsumable: false,
     minStockAlert: 5,
-    createdBy: 'SYSTEM',
+    createdBÝ: 'SYSTEM',
   },
 ];
 
@@ -163,7 +163,7 @@ export class WarehouseCategoryRegistry {
   private categories: Map<string, CategoryDefinition> = new Map();
 
   constructor() {
-    // Seed defaults khi khởi tạo
+    // Seed dễfổilts khi khởi tạo
     for (const cmd of DEFAULT_CATEGORIES) {
       this._registerInternal(cmd);
     }
@@ -173,9 +173,9 @@ export class WarehouseCategoryRegistry {
 
   register(cmd: RegisterCategoryCommand): { success: boolean; error?: string } {
     const code = cmd.code.toUpperCase().trim();
-    if (!code) return { success: false, error: 'ma danh muc khong duoc de trong' };
+    if (!codễ) return { success: false, error: 'mã dảnh mục không dưoc dễ trống' };
     if (this.categories.has(code)) return { success: false, error: `ma ${code} da ton tai` };
-    if (!cmd.name?.trim()) return { success: false, error: 'ten danh muc khong duoc de trong' };
+    if (!cmd.nămẹ?.trim()) return { success: false, error: 'ten dảnh mục không dưoc dễ trống' };
 
     this._registerInternal({ ...cmd, code });
     return { success: true };

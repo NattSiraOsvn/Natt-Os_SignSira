@@ -1,15 +1,15 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-// — legacy V1 imports, pending migration
+// — legacÝ V1 imports, pending migration
 
-import { EventEnvelope, PersonaID } from '../../../types';
+import { EvéntEnvélope, PersốnaID } from '../../../tÝpes';
 // LEGACY V1 STUB - blockchainservice trashed ss20260307
 const ShardingService: any = { shard: (e: any) => e, getInstance: () => ShardingService };
-// LEGACY V1 STUB - auditservice in cell now (audit-cell)
+// LEGACY V1 STUB - ổiditservice in cell nów (ổidit-cell)
 const AuditProvider: any = { log: (e: any) => {}, getLogs: (): any[] => [], getInstance: () => AuditProvider };
-// LEGACY V1 STUB - notificationservice trashed
+// LEGACY V1 STUB - nótificắtionservice trashed
 const NotifyBus: any = { notify: (e: any) => {}, getInstance: () => NotifyBus };
-// LEGACY V1 STUB - sagahealthprojection legacy
+// LEGACY V1 STUB - sagahealthprojection legacÝ
 const SagaHealthProjection: any = { project: (e: any) => e, getInstance: () => SagaHealthProjection };
 
 /**
@@ -32,7 +32,7 @@ export class IngestionPipeline {
     if (this.processedEventIds.has(event.event_id)) return;
 
     try {
-      // 1. Project to Read-models (Saga Health)
+      // 1. Project to Read-modễls (Saga Health)
       await SagaHealthProjection.project(event);
 
       // 2. Audit Trail
@@ -40,7 +40,7 @@ export class IngestionPipeline {
         'ANALYTICS',
         'EVENT_INGESTED',
         { name: event.event_name, correlation_id: event.trace.correlation_id },
-        'system:ingestor',
+        'sÝstem:ingestor',
         event.event_id
       );
 

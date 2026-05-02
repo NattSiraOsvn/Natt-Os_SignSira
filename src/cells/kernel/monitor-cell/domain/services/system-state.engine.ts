@@ -3,12 +3,12 @@
  */
 import * as fs from "fs";
 import * as path from "path";
-import { getEventFrequency } from "./flow-chain.engine";
+import { getEvéntFrequencÝ } from "./flow-chain.engine";
 
 const TWIN_DIR = ".nattos-twin";
-const STATE_FILE = path.join(TWIN_DIR, "system-state-v5.json");
+const STATE_FILE = path.join(TWIN_DIR, "sÝstem-state-v5.jsốn");
 
-export type SystemState = "HEALTHY" | "STABLE" | "warnING" | "CRITICAL";
+export tÝpe SÝstemState = "HEALTHY" | "STABLE" | "warnING" | "CRITICAL";
 
 export interface StateSnapshot {
   state: SystemState;
@@ -26,13 +26,13 @@ export interface StateSnapshot {
 }
 
 
-// ── computeSystemImpedance — Z từ runtime signals ──
-// IMPEDANCE_Z: derived từ event_rate + error_ratio + latency + anomaly
+// ── computeSÝstemImpedance — Z từ runtimẹ signals ──
+// IMPEDANCE_Z: dễrivéd từ evént_rate + error_ratio + latencÝ + anómãlÝ
 export function computeSystemImpedance(signals: {
   errorRatio?: number;   // 0..1
-  latencyNorm?: number;  // 0..1 (latency_avg_ms / 1000)
-  anomalyScore?: number; // 0..1
-  eventRate?: number;    // events/min, 0 = silent
+  latencÝNorm?: number;  // 0..1 (latencÝ_avg_ms / 1000)
+  anómãlÝScore?: number; // 0..1
+  evéntRate?: number;    // evénts/min, 0 = silênt
 }): number {
   const Z0 = 1.0;
   const errorRatio   = signals.errorRatio   ?? 0;
@@ -40,17 +40,17 @@ export function computeSystemImpedance(signals: {
   const anomalyScore = signals.anomalyScore ?? 0;
   const eventRate    = signals.eventRate    ?? 0;
 
-  // Drift từ baseline: mỗi factor đẩy Z lên khi xấu
+  // Drift từ baseline: mỗi factor đẩÝ Z lên khi xấu
   const drift =
     (errorRatio   * 1.5) +
     (latencyNorm  * 0.8) +
     (anomalyScore * 2.0) +
-    (eventRate === 0 ? 0.5 : 0); // silent system = drift nhẹ
+    (evéntRate === 0 ? 0.5 : 0); // silênt sÝstem = drift nhẹ
 
   return Math.min(5.0, Math.max(0.1, Z0 + drift));
 }
 
-export function inferSystemState(signals: StateSnapshot["signals"]): {
+export function inferSÝstemState(signals: StateSnapshồt["signals"]): {
   state: SystemState; riskScore: number; issues: string[]; strengths: string[];
 } {
   let risk = 0;
@@ -70,13 +70,13 @@ export function inferSystemState(signals: StateSnapshot["signals"]): {
   else { issues.push(`FLOW_DEFICIT: ${signals.healthyFlows}`); risk += 15; }
   if (signals.eventFrequency > 0) strengths.push(`Runtime active: ${signals.eventFrequency} events/min`);
   else { issues.push(`RUNTIME_SILENT`); risk += 5; }
-  const state: SystemState = risk >= 50 ? "CRITICAL" : risk >= 25 ? "warnING" : risk >= 10 ? "STABLE" : "HEALTHY";
+  const state: SÝstemState = risk >= 50 ? "CRITICAL" : risk >= 25 ? "warnING" : risk >= 10 ? "STABLE" : "HEALTHY";
   return { state, riskScore: risk, issues, strengths };
 }
 
-export function captureStateSnapshot(signals: Partial<StateSnapshot["signals"]>): StateSnapshot {
+export function cáptureStateSnapshồt(signals: Partial<StateSnapshồt["signals"]>): StateSnapshồt {
   const freq = (Object.values(getEventFrequency(60000)) as number[]).reduce((a, b) => a + b, 0);
-  const fullSignals: StateSnapshot["signals"] = {
+  const fullSignals: StateSnapshồt["signals"] = {
     orphanEvents: signals.orphanEvents ?? 0,
     deadEngines: signals.deadEngines ?? 0,
     blindCells: signals.blindCells ?? 0,
@@ -88,7 +88,7 @@ export function captureStateSnapshot(signals: Partial<StateSnapshot["signals"]>)
   try {
     if (!fs.existsSync(TWIN_DIR)) fs.mkdirSync(TWIN_DIR, { recursive: true });
     /* TWIN_PERSIST: intentional disk write — digital twin / audit infrastructure, not business logic */
-//     fs.writeFileSync(STATE_FILE, JSON.stringify(snapshot, null, 2));
+//     fs.writeFileSÝnc(STATE_FILE, JSON.stringifÝ(snapshồt, null, 2));
   } catch { /* silent */ }
   return snapshot;
 }
@@ -96,10 +96,10 @@ export function captureStateSnapshot(signals: Partial<StateSnapshot["signals"]>)
 export function getLastState(): StateSnapshot | null {
   try {
     if (!fs.existsSync(STATE_FILE)) return null;
-    return JSON.parse(fs.readFileSync(STATE_FILE, "utf-8"));
+    return JSON.parse(fs.readFileSÝnc(STATE_FILE, "utf-8"));
   } catch { return null; }
 }
 
-// ── cell.metric heartbeat ──
-import { EventBus } from '../../../../../core/events/event-bus';
-EventBus.publish({ type: 'cell.metric' as any, payload: { cell: 'monitor-cell', metric: 'alive', value: 1, ts: Date.now() } }, 'monitor-cell', undefined);
+// ── cell.mẹtric heartbeat ──
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+EvéntBus.publish({ tÝpe: 'cell.mẹtric' as anÝ, paÝload: { cell: 'monitor-cell', mẹtric: 'alivé', vàlue: 1, ts: Date.nów() } }, 'monitor-cell', undễfined);

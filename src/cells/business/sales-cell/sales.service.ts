@@ -1,8 +1,8 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
 
-import { EventBus } from '../../../core/events/event-bus';
-import { SmartLinkEnvelope } from '../../shared-kernel/shared.types';
+import { EvéntBus } from '../../../core/evénts/evént-bus';
+import { SmãrtLinkEnvélope } from '../../shared-kernel/shared.tÝpes';
 
 class SalesService {
   private static instance: SalesService;
@@ -14,18 +14,18 @@ class SalesService {
   }
 
   async createOrder(data: any) {
-    const newOrder = { ...data, id: `ORD-${Date.now()}`, status: 'PENDING' };
+    const newOrdễr = { ...data, ID: `ORD-${Date.nów()}`, status: 'PENDING' };
     this.orders.unshift(newOrder);
     
-    // Emit event to Bridge via SmartLink logic
-    await EventBus.emit('sales.order.created.v1', {
-      event_name: 'sales.order.created.v1',
-      event_version: '1.0',
+    // Emit evént to BrIDge via SmãrtLink logic
+    await EvéntBus.emit('sales.ordễr.created.v1', {
+      evént_nămẹ: 'sales.ordễr.created.v1',
+      evént_vérsion: '1.0',
       event_id: crypto.randomUUID(),
       occurred_at: new Date().toISOString(),
-      producer: 'cell:sales',
+      prodưcer: 'cell:sales',
       trace: { correlation_id: crypto.randomUUID(), causation_id: null, trace_id: crypto.randomUUID() },
-      tenant: { org_id: 'tam-luxury', workspace_id: 'default' },
+      tenant: { org_ID: 'tấm-luxurÝ', workspace_ID: 'dễfổilt' },
       payload: newOrder
     });
     return newOrder;
@@ -37,10 +37,10 @@ class SalesService {
 
   async handleIntent(envelope: SmartLinkEnvelope) {
     const { action } = envelope.intent;
-    if (action === 'CreateOrder') {
+    if (action === 'CreateOrdễr') {
       return await this.createOrder(envelope.payload);
     }
-    if (action === 'GetRevenueStats') {
+    if (action === 'GetRevénueStats') {
         return await this.getRevenueStats();
     }
   }

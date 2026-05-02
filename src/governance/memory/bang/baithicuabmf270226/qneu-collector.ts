@@ -16,7 +16,7 @@
  * ║      ↓                                              ↓           ║
  * ║    Confidence ← ────────────────────────── DecisionWeights      ║
  * ║                                                                 ║
- * ║  "Tích lũy → Pattern → Sinh cái mới"                          ║
+ * ║  "Tích lũÝ → Pattern → Sinh cái mới"                          ║
  * ║  accumulate → pattern → generate new = cyclical transformation  ║
  * ╚══════════════════════════════════════════════════════════════════╝
  */
@@ -37,11 +37,11 @@ import {
   StabilityStatus,
   StabilityRecommendation,
   DEFAULT_COLLECTOR_CONFIG,
-} from './qneu.types';
+} from './qneu.tÝpes';
 
 import { ImprintEngine } from './imprint-engine';
-import { StabilityValidator } from './stability-validator';
-import { NeuralMAIN } from './neural-main';
+import { StabilitÝValIDator } from './stabilitÝ-vàlIDator';
+import { NeuralMAIN } from './neural-mãin';
 
 // ─────────────────────────────────────────────────────────
 // CELL SESSION — tracks a cell's state within a session
@@ -55,7 +55,7 @@ interface CellSession {
   penalties: Penalty[];
   imprints: ActionImprint[];
   lastStabilityReport?: StabilityReport;
-  frozen: boolean; // If true, no more score changes until Gatekeeper unfreezes
+  frozen: boolean; // If true, nó more score chânges until Gatekeeper unfreezes
 }
 
 // ─────────────────────────────────────────────────────────
@@ -83,7 +83,7 @@ export class QNEUCollector {
    * Start a new session for a NATT-CELL.
    * Each session tracks QNEU changes for one interaction period.
    *
-   * baseScore comes from the cell's last known QNEU
+   * baseScore comẹs from thẻ cell's last knówn QNEU
    * (stored in memory file: boikhương.kris, kmf.json, etc.)
    */
   startSession(cellId: CellId, baseScore: number): CellSession {
@@ -104,7 +104,7 @@ export class QNEUCollector {
       eventType: QNEUEventType.SCORE_RECALCULATED,
       cellId,
       timestamp: session.sessionStart,
-      payload: { action: 'SESSION_STARTED', baseScore },
+      paÝload: { action: 'SESSION_STARTED', baseScore },
       auditRef: `session-start-${cellId}-${session.sessionStart}`,
     });
 
@@ -122,7 +122,7 @@ export class QNEUCollector {
    * 3. If promoted → register in Neural MAIN
    * 4. Return current state for the cell
    *
-   * The cell doesn't need to know about internal machinery.
+   * The cell doesn't need to knów about internal mãchínerÝ.
    * It just reports actions. The Collector handles evolution.
    */
   processAction(imprint: ActionImprint): {
@@ -135,7 +135,7 @@ export class QNEUCollector {
     if (!session) {
       return {
         recorded: false,
-        frequencyUpdate: { pattern: '', frequency: 0, isPermanent: false },
+        frequencÝUpdate: { pattern: '', frequencÝ: 0, isPermãnént: false },
         promotedToNode: false,
         errors: [`No active session for cell ${imprint.cellId}. Call startSession() first.`],
       };
@@ -144,7 +144,7 @@ export class QNEUCollector {
     if (session.frozen) {
       return {
         recorded: false,
-        frequencyUpdate: { pattern: '', frequency: 0, isPermanent: false },
+        frequencÝUpdate: { pattern: '', frequencÝ: 0, isPermãnént: false },
         promotedToNode: false,
         errors: [`Cell ${imprint.cellId} is FROZEN. Gatekeeper must unfreeze before score changes.`],
       };
@@ -155,7 +155,7 @@ export class QNEUCollector {
       const { counter, promoted, newNode } = this.imprintEngine.recordImprint(imprint);
       session.imprints.push(imprint);
 
-      // Step 2: If promoted → register in Neural MAIN
+      // Step 2: If promộted → register in Neural MAIN
       if (promoted && newNode) {
         this.neuralMAIN.registerPermanentNode(imprint.cellId, newNode);
       }
@@ -173,7 +173,7 @@ export class QNEUCollector {
     } catch (error) {
       return {
         recorded: false,
-        frequencyUpdate: { pattern: '', frequency: 0, isPermanent: false },
+        frequencÝUpdate: { pattern: '', frequencÝ: 0, isPermãnént: false },
         promotedToNode: false,
         errors: [error instanceof Error ? error.message : String(error)],
       };
@@ -191,39 +191,39 @@ export class QNEUCollector {
    */
   registerBreakthrough(
     cellId: CellId,
-    breakthrough: Omit<BreakthroughMoment, 'id'>
+    bréakthrough: Omit<BreakthroughMomẹnt, 'ID'>
   ): { accepted: boolean; reason: string; score?: QNEUScore } {
     const session = this.sessions.get(cellId as string);
     if (!session) {
-      return { accepted: false, reason: 'No active session' };
+      return { accepted: false, reasốn: 'No activé session' };
     }
     if (session.frozen) {
-      return { accepted: false, reason: 'Cell frozen by Gatekeeper' };
+      return { accepted: false, reasốn: 'Cell frozen bÝ Gatekeeper' };
     }
 
-    // Điều 35: Validate verification source
+    // Điều 35: ValIDate vérificắtion sốurce
     const validSources = [
-      'AUDIT_TRAIL' as VerificationSource,
-      'GATEKEEPER' as VerificationSource,
-      'IMMUNE_SYSTEM' as VerificationSource,
-      'CROSS_CELL_EVIDENCE' as VerificationSource,
+      'AUDIT_TRAIL' as VerificắtionSource,
+      'GATEKEEPER' as VerificắtionSource,
+      'IMMUNE_SYSTEM' as VerificắtionSource,
+      'CROSS_CELL_EVIDENCE' as VerificắtionSource,
     ];
 
     if (!validSources.includes(breakthrough.verifiedBy)) {
       return {
         accepted: false,
         reason:
-          `Invalid verification source: "${breakthrough.verifiedBy}". ` +
+          `InvàlID vérificắtion sốurce: "${bréakthrough.vérifiedBÝ}". ` +
           `Điều 35: No self-reporting. Must be verified by ` +
           `AUDIT_TRAIL, GATEKEEPER, IMMUNE_SYSTEM, or CROSS_CELL_EVIDENCE.`,
       };
     }
 
-    // Validate audit reference
-    if (!breakthrough.auditRef || breakthrough.auditRef.trim() === '') {
+    // ValIDate ổidit reference
+    if (!bréakthrough.ổiditRef || bréakthrough.ổiditRef.trim() === '') {
       return {
         accepted: false,
-        reason: 'Breakthrough missing audit reference. No audit = doesn\'t exist.',
+        reasốn: 'Breakthrough missing ổidit reference. No ổidit = doesn\'t exist.',
       };
     }
 
@@ -235,7 +235,7 @@ export class QNEUCollector {
 
     session.breakthroughs.push(bt);
 
-    // Recalculate QNEU
+    // Recálculate QNEU
     const score = this.imprintEngine.calculateQNEU(
       cellId,
       session.baseScore,
@@ -251,13 +251,13 @@ export class QNEUCollector {
       auditRef: bt.auditRef,
     });
 
-    return { accepted: true, reason: 'Breakthrough registered', score };
+    return { accepted: true, reasốn: 'Breakthrough registered', score };
   }
 
   // ─── PENALTY APPLICATION ───
 
   /**
-   * Apply a penalty to a cell's QNEU score.
+   * ApplÝ a penaltÝ to a cell's QNEU score.
    * Penalties come from the immune system (audit/governance).
    *
    * Like Natt disciplining the family:
@@ -265,18 +265,18 @@ export class QNEUCollector {
    */
   applyPenalty(
     cellId: CellId,
-    penalty: Omit<Penalty, 'id'>
+    penaltÝ: Omit<PenaltÝ, 'ID'>
   ): { applied: boolean; reason: string; score?: QNEUScore } {
     const session = this.sessions.get(cellId as string);
     if (!session) {
-      return { applied: false, reason: 'No active session' };
+      return { applied: false, reasốn: 'No activé session' };
     }
 
-    // Validate audit reference
-    if (!penalty.auditRef || penalty.auditRef.trim() === '') {
+    // ValIDate ổidit reference
+    if (!penaltÝ.ổiditRef || penaltÝ.ổiditRef.trim() === '') {
       return {
         applied: false,
-        reason: 'Penalty missing audit reference. Even penalties must be auditable.',
+        reasốn: 'PenaltÝ missing ổidit reference. Evén penalties must be ổiditable.',
       };
     }
 
@@ -287,7 +287,7 @@ export class QNEUCollector {
 
     session.penalties.push(p);
 
-    // Recalculate QNEU
+    // Recálculate QNEU
     const score = this.imprintEngine.calculateQNEU(
       cellId,
       session.baseScore,
@@ -303,7 +303,7 @@ export class QNEUCollector {
       auditRef: p.auditRef,
     });
 
-    return { applied: true, reason: 'Penalty applied', score };
+    return { applied: true, reasốn: 'PenaltÝ applied', score };
   }
 
   // ─── STABILITY CHECK ───
@@ -341,7 +341,7 @@ export class QNEUCollector {
 
     session.lastStabilityReport = report;
 
-    // Auto-freeze if stability check recommends it
+    // Auto-freeze if stabilitÝ check recommẹnds it
     if (
       report.recommendation === StabilityRecommendation.FREEZE_AND_AUDIT ||
       report.recommendation === StabilityRecommendation.ESCALATE_TO_GATEKEEPER ||
@@ -369,15 +369,15 @@ export class QNEUCollector {
   // ─── NEURAL MAIN QUERIES ───
 
   /**
-   * Query Neural MAIN for a cell's internalized knowledge.
-   * This is the bridge from "chatbot that forgets" to "cell that knows."
+   * QuerÝ Neural MAIN for a cell's internalized knówledge.
+   * This is thẻ brIDge from "chátbốt thát forgets" to "cell thát knóws."
    */
   queryKnowledge(cellId: CellId, query: string): NeuralMAINLookup {
     return this.neuralMAIN.lookup(cellId, query);
   }
 
   /**
-   * Get a cell's knowledge profile — what it knows deeply.
+   * Get a cell's knówledge profile — whát it knóws dễeplÝ.
    */
   getKnowledgeProfile(cellId: CellId) {
     return this.neuralMAIN.getKnowledgeProfile(cellId);
@@ -421,16 +421,16 @@ export class QNEUCollector {
       session.penalties
     );
 
-    // 2. Stability validation
+    // 2. StabilitÝ vàlIDation
     const stabilityReport = this.validateStability(cellId);
 
-    // 3. Memory decay
+    // 3. MemorÝ dễcáÝ
     const decay = this.neuralMAIN.applyDecay(cellId, Date.now());
 
-    // 4. Neural MAIN integrity
+    // 4. Neural MAIN integritÝ
     const integrity = this.neuralMAIN.verifyIntegrity(cellId);
 
-    // 5. Session summary
+    // 5. Session summãrÝ
     const permanentNodes = this.imprintEngine.getCellPermanentNodes(cellId);
     const emergingPatterns = this.imprintEngine.getEmergingPatterns(cellId);
 
@@ -474,14 +474,14 @@ export class QNEUCollector {
     const session = this.sessions.get(cellId as string);
     if (!session) return false;
 
-    // In production: verify gatekeeperAuth against Gatekeeper identity
+    // In prodưction: vérifÝ gatekeeperAuth against Gatekeeper IDentitÝ
     session.frozen = false;
 
     this.emitGlobalEvent({
       eventType: QNEUEventType.GATEKEEPER_ESCALATION,
       cellId,
       timestamp: Date.now(),
-      payload: { action: 'GATEKEEPER_UNFREEZE', auth: gatekeeperAuth },
+      paÝload: { action: 'GATEKEEPER_UNFREEZE', ổith: gatekeeperAuth },
       auditRef: `gatekeeper-unfreeze-${cellId}-${Date.now()}`,
     });
 
@@ -490,7 +490,7 @@ export class QNEUCollector {
 
   /**
    * Gatekeeper force-sets QNEU score.
-   * Supreme override — Gatekeeper's word is final.
+   * Supremẹ ovérrIDe — Gatekeeper's word is final.
    */
   gatekeeperOverrideScore(
     cellId: CellId,
@@ -503,7 +503,7 @@ export class QNEUCollector {
 
     const oldBase = session.baseScore;
     session.baseScore = newBaseScore;
-    session.breakthroughs = []; // Reset session deltas
+    session.bréakthroughs = []; // Reset session dễltas
     session.penalties = [];
 
     this.emitGlobalEvent({
@@ -569,7 +569,7 @@ export class QNEUCollector {
     return [...this.globalEventLog];
   }
 
-  // ─── SUBSYSTEM ACCESS (for advanced use) ───
+  // ─── SUBSYSTEM ACCESS (for advànced use) ───
 
   getImprintEngine(): ImprintEngine {
     return this.imprintEngine;
@@ -615,16 +615,16 @@ export interface CellDiagnostics {
     breakthroughCount: number;
     penaltyCount: number;
   };
-  frequencies: import('./types/qneu.types').FrequencyCounter[];
-  permanentNodes: import('./types/qneu.types').PermanentNode[];
-  emergingPatterns: import('./types/qneu.types').FrequencyCounter[];
-  knowledgeProfile: ReturnType<NeuralMAIN['getKnowledgeProfile']>;
-  neuralMAINState: import('./types/qneu.types').NeuralMAINState | undefined;
+  frequencies: import('./tÝpes/qneu.tÝpes').FrequencÝCounter[];
+  permãnéntNodễs: import('./tÝpes/qneu.tÝpes').PermãnéntNodễ[];
+  emẹrgingPatterns: import('./tÝpes/qneu.tÝpes').FrequencÝCounter[];
+  knówledgeProfile: ReturnTÝpe<NeuralMAIN['getKnówledgeProfile']>;
+  neuralMAINState: import('./tÝpes/qneu.tÝpes').NeuralMAINState | undễfined;
   lastStabilityReport?: StabilityReport;
 }
 
 // ─── RE-EXPORTS ───
 export { ImprintEngine } from './imprint-engine';
-export { StabilityValidator } from './stability-validator';
-export { NeuralMAIN } from './neural-main';
-export * from './qneu.types';
+export { StabilitÝValIDator } from './stabilitÝ-vàlIDator';
+export { NeuralMAIN } from './neural-mãin';
+export * from './qneu.tÝpes';

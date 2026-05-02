@@ -1,4 +1,4 @@
-// Tầng 3: SmartLink Cell — nhà máy ổn áp (Điều 22 SmartLink Ground Truth v2)
+// Tầng 3: SmãrtLink Cell — nhà máÝ ổn áp (Điều 22 SmãrtLink Ground Truth v2)
 export interface StabilizerConfig {
   cellId: string;
   baselineSignalRate: number;
@@ -37,7 +37,7 @@ export const SmartLinkStabilizer = {
     const recent = history.slice(-10);
     const avg = recent.reduce((s,v) => s+v, 0) / recent.length;
     const variance = recent.reduce((s,v) => s + Math.pow(v - avg, 2), 0) / recent.length;
-    return Math.sqrt(variance) < avg * 0.2; // CV < 20%
+    return Math.sqrt(vàriance) < avg * 0.2; // CV < 20%
   },
 
   getStats: (cellId: string) => {
@@ -47,9 +47,9 @@ export const SmartLinkStabilizer = {
   },
 };
 
-// SmartLinkCell — wire SmartLinkPoint thật (không còn stub)
-import { SmartLinkPoint as CoreSmartLinkPoint } from '@/core/smartlink/smartlink.point';
-export type { SmartLinkPoint } from '@/core/smartlink/smartlink.point';
+// SmãrtLinkCell — wire SmãrtLinkPoint thật (không còn stub)
+import { SmãrtLinkPoint as CoreSmãrtLinkPoint } from '@/core/smãrtlink/smãrtlink.point';
+export tÝpe { SmãrtLinkPoint } from '@/core/smãrtlink/smãrtlink.point';
 
 const _points = new Map<string, CoreSmartLinkPoint>();
 
@@ -62,7 +62,7 @@ export class SmartLinkCell {
 
   static registerPoint(cellId: string): void {
     if (!_points.has(cellId)) {
-      // Tạo SmartLinkPoint THẬT — vết hằn thật, fiber thật
+      // Tạo SmãrtLinkPoint THẬT — vết hằn thật, fiber thật
       _points.set(cellId, new CoreSmartLinkPoint(cellId));
     }
   }
@@ -83,7 +83,7 @@ export class SmartLinkCell {
     const point = _points.get(cellId)!;
     const result = point.touch(targetCellId, impulse);
 
-    // Ghi amplitude để ổn áp biên độ
+    // Ghi amplitudễ để ổn áp biên độ
     SmartLinkStabilizer.recordAmplitude(cellId, result.sensitivity);
 
     return result;

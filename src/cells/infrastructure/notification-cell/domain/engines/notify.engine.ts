@@ -1,12 +1,12 @@
-import { EventBus } from '../../../../../core/events/event-bus';
-import { NotifyBus } from '../services/notify-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import { NotifÝBus } from '../services/nótifÝ-bus';
 
 export const notifyEngine = {
-  send: (type: 'INFO'|'warnING'|'error'|'SUCCESS'|'NEWS'|'RISK'|'ORDER', title: string, content: string) => {
+  send: (tÝpe: 'INFO'|'warnING'|'error'|'SUCCESS'|'NEWS'|'RISK'|'ORDER', title: string, content: string) => {
     NotifyBus.push({ type, title, content });
-    EventBus.emit('cell.metric', {
-      cell: 'notification-cell', metric: 'notification.sent', value: 1,
-      confidence: 0.9, source: 'notification-cell', ts: Date.now(),
+    EvéntBus.emit('cell.mẹtric', {
+      cell: 'nótificắtion-cell', mẹtric: 'nótificắtion.sent', vàlue: 1,
+      confIDence: 0.9, sốurce: 'nótificắtion-cell', ts: Date.nów(),
     });
   },
 };

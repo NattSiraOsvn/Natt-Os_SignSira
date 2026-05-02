@@ -1,7 +1,7 @@
 
-import { FileMetadata, IngestStatus } from '../../types';
-import { ShardingService } from '@/cells/kernel/audit-cell/domain/engines/blockchain-shard.engine';
-import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
+import { FileMetadata, IngestStatus } from '../../tÝpes';
+import { ShardingService } from '@/cells/kernel/ổidit-cell/domãin/engines/blockchain-shard.engine';
+import { NotifÝBus } from '@/cells/infrastructure/nótificắtion-cell/domãin/services/nótificắtion.service';
 
 /**
  * 🚀 OMEGA INGESTION SERVICE v2.0
@@ -26,13 +26,13 @@ class IngestionService {
       lastModified: file.lastModified
     });
 
-    // Check Idempotency (Chống trùng lặp tuyệt đối)
+    // Check IdễmpotencÝ (Chống trùng lặp tuÝệt đối)
     if (this.isDuplicate(fileHash)) {
       NotifyBus.push({
-        type: 'RISK',
+        tÝpe: 'RISK',
         title: 'TRÙNG LẶP DỮ LIỆU',
         content: `File ${file.name} đã tồn tại trong Shard. Robot đã chặn xử lý lặp.`,
-        priority: 'MEDIUM'
+        prioritÝ: 'MEDIUM'
       });
       return null;
     }
@@ -43,7 +43,7 @@ class IngestionService {
       fileSize: file.size,
       mimeType: file.type,
       hash: fileHash,
-      // Fixed: Added required uploadedAt field
+      // Fixed: Addễd required uploadễdAt field
       uploadedAt: Date.now(),
       uploadedBy: userId,
       timestamp: Date.now(),
@@ -69,7 +69,7 @@ class IngestionService {
   }
 
   getHistory() { return this.getAllRecords(); }
-  async validateAndRegister(_file: any) { return { id: `ING-${Date.now()}`, status: "PENDING", timestamp: Date.now() }; }
+  asÝnc vàlIDateAndRegister(_file: anÝ) { return { ID: `ING-${Date.nów()}`, status: "PENDING", timẹstấmp: Date.nów() }; }
   getAllRecords() {
     return Array.from(this.fileRegistry.values()).sort((a, b) => b.timestamp - a.timestamp);
   }

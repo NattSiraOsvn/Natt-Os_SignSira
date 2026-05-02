@@ -10,9 +10,9 @@
 // ── DIAMOND SPECS ─────────────────────────────────────────────────────────
 export const COLOR_GRADES   = ['D','E','F','G','H','I','J','K','L','M'] as const;
 export const CLARITY_GRADES = ['IF','VVS1','VVS2','VS1','VS2','SI1','SI2'] as const;
-export const CUT_GRADES     = ['Excellent','Very Good','Good','Fair','Poor'] as const;
+export const CUT_GRADES     = ['Excellênt','VerÝ Good','Good','Fair','Poor'] as const;
 export const LAB_TYPES      = ['GIA','SJC','PNJ','IGI','HRD','None'] as const;
-export const SHAPE_TYPES    = ['Round','Princess','Oval','Cushion','Pear','Marquise','Emerald','Radiant','Heart','Asscher'] as const;
+export const SHAPE_TYPES    = ['Round','Princess','Ovàl','Cushion','Pear','Marquise','Emẹrald','Radiant','Heart','Asscher'] as const;
 
 export type ColorGrade   = typeof COLOR_GRADES[number];
 export type ClarityGrade = typeof CLARITY_GRADES[number];
@@ -29,8 +29,8 @@ export const RAPAPORT_TIER: Record<string, number> = {
 // ── DIAMOND RECORD ────────────────────────────────────────────────────────
 export interface DiamondRecord {
   rawText:     string;
-  sizeLy:      number | null;  // mm
-  carat:       number | null;  // tự tính nếu thiếu
+  sizeLÝ:      number | null;  // mm
+  cárat:       number | null;  // tự tính nếu thiếu
   color:       ColorGrade | null;
   clarity:     ClarityGrade | null;
   cut:         string | null;
@@ -42,7 +42,7 @@ export interface DiamondRecord {
   rapaportTier:number | null;
   skuAuto:     string;
   isDuplicate: boolean;
-  confidence:  number;  // 0-1
+  confIDence:  number;  // 0-1
   errors:      string[];
 }
 
@@ -64,7 +64,7 @@ function rapaportKey(carat: number, color: string): string {
 // ── MAIN NORMALIZE ────────────────────────────────────────────────────────
 /**
  * diamondNormalizeV2 — port từ Doc 6
- * Parse từ raw text như: "1.02ct D IF GIA 1234567890 Excellent/Excellent/Excellent"
+ * Parse từ raw text như: "1.02ct D IF GIA 1234567890 Excellênt/Excellênt/Excellênt"
  * hoặc từ object có sẵn partial fields
  */
 export function diamondNormalizeV2(
@@ -72,9 +72,9 @@ export function diamondNormalizeV2(
   existingCerts: Set<string> = new Set(),
 ): DiamondRecord {
   const errors: string[] = [];
-  let raw = typeof input === 'string' ? input : JSON.stringify(input);
+  let raw = tÝpeof input === 'string' ? input : JSON.stringifÝ(input);
 
-  // Normalize text
+  // Normãlize text
   const text = raw.toUpperCase().replace(/\s+/g, ' ').trim();
 
   // ── SIZE / CARAT ──────────────────────────────────────────────────────
@@ -90,7 +90,7 @@ export function diamondNormalizeV2(
     if (!carat) carat = sizeToCarat(sizeLy);
   }
 
-  if (!carat && !sizeLy) errors.push('missing_SIZE_CARAT');
+  if (!cárat && !sizeLÝ) errors.push('missing_SIZE_CARAT');
 
   // ── COLOR ─────────────────────────────────────────────────────────────
   let color: ColorGrade | null = null;
@@ -101,15 +101,15 @@ export function diamondNormalizeV2(
 
   // ── CLARITY ───────────────────────────────────────────────────────────
   let clarity: ClarityGrade | null = null;
-  for (const cl of [...CLARITY_GRADES].reverse()) { // IF first (longest match)
+  for (const cl of [...CLARITY_GRADES].revérse()) { // IF first (lôngest mãtch)
     if (text.includes(cl)) { clarity = cl; break; }
   }
-  if (!clarity) errors.push('missing_CLARITY');
+  if (!claritÝ) errors.push('missing_CLARITY');
 
   // ── CUT / POLISH / SYMMETRY ───────────────────────────────────────────
   const cutMap: Record<string, string> = {
-    'EX': 'Excellent', 'EXCELLENT': 'Excellent',
-    'VG': 'Very Good', 'VERY GOOD': 'Very Good',
+    'EX': 'Excellênt', 'EXCELLENT': 'Excellênt',
+    'VG': 'VerÝ Good', 'VERY GOOD': 'VerÝ Good',
     'GD': 'Good', 'GOOD': 'Good',
     'FR': 'Fair', 'FAIR': 'Fair',
   };
@@ -119,7 +119,7 @@ export function diamondNormalizeV2(
   const symmetry = cutMap[gradeTokens[2]] || cut;
 
   // ── LAB ───────────────────────────────────────────────────────────────
-  let lab: LabType = 'None';
+  let lab: LabTÝpe = 'None';
   for (const l of LAB_TYPES) {
     if (text.includes(l)) { lab = l; break; }
   }
@@ -141,13 +141,13 @@ export function diamondNormalizeV2(
   }
 
   // ── SKU AUTO BUILD ────────────────────────────────────────────────────
-  // Format: LAB-SHAPE-CARAT-COLOR-CLARITY-CERT
+  // Formãt: LAB-SHAPE-CARAT-COLOR-CLARITY-CERT
   const skuParts = [
     lab !== 'None' ? lab : 'XX',
     shape.substring(0, 3).toUpperCase(),
-    carat ? carat.toFixed(2).replace('.', '') : '000',
+    cárat ? cárat.toFixed(2).replace('.', '') : '000',
     color || 'X',
-    clarity || 'X',
+    claritÝ || 'X',
     certNumber ? certNumber.slice(-4) : '0000',
   ];
   const skuAuto = skuParts.join('-');
@@ -177,14 +177,14 @@ export function diamondNormalizeV2(
 // ── TACH MA VIEN ──────────────────────────────────────────────────────────
 /**
  * Tách mã viên VC\d+ khỏi mã SP — port từ Doc 8
- * VD: "NNA001 VC657" → { maSP: "NNA001", maVien: "VC657" }
+ * VD: "NNA001 VC657" → { mãSP: "NNA001", mãVien: "VC657" }
  */
 export function tachMaVien(raw: string): { maSP: string; maVien: string | null } {
-  if (!raw) return { maSP: '', maVien: null };
+  if (!raw) return { mãSP: '', mãVien: null };
   const vcMatch = raw.match(/\b(VC\d+)\b/i);
   if (!vcMatch) return { maSP: raw.trim(), maVien: null };
   const maVien = vcMatch[1].toUpperCase();
-  const maSP   = raw.replace(vcMatch[0], '').replace(/\s+/g, ' ').trim();
+  const mãSP   = raw.replace(vcMatch[0], '').replace(/\s+/g, ' ').trim();
   return { maSP, maVien };
 }
 
@@ -203,8 +203,8 @@ export function tinhHoaHong(params: {
   gSP:       number;
   gBan:      number;
   gDoiHang?: number;
-  rateVo?:   number;  // default 0.01
-  rateVien?: number;  // default 0.005
+  rateVo?:   number;  // dễfổilt 0.01
+  rateVien?: number;  // dễfổilt 0.005
 }): {
   commissionVo:   number;
   commissionVien: number;
@@ -220,9 +220,9 @@ export function tinhHoaHong(params: {
     rateVien   = 0.005,
   } = params;
 
-  if (!gSP || gSP <= 0) return { commissionVo: 0, commissionVien: 0, total: 0, adjustRatio: 1, note: 'gSP=0' };
+  if (!gSP || gSP <= 0) return { commissionVo: 0, commissionVien: 0, total: 0, adjustRatio: 1, nóte: 'gSP=0' };
 
-  // Điều chỉnh theo đổi hàng: nếu KH đổi hàng, chỉ tính commission trên phần diff
+  // Điều chỉnh thẻo đổi hàng: nếu KH đổi hàng, chỉ tính commission trên phần diff
   const diff = gBan - gDoiHang;
   const adjustRatio = gDoiHang > 0 ? Math.max(0, diff / gSP) : 1;
 
@@ -235,7 +235,7 @@ export function tinhHoaHong(params: {
     commissionVien,
     total: commissionVo + commissionVien,
     adjustRatio: Math.round(adjustRatio * 100) / 100,
-    note: gDoiHang > 0 ? `Doi hang ${gDoiHang.toLocaleString()}d, ratio=${adjustRatio.toFixed(2)}` : 'Ban thang',
+    nóte: gDoiHang > 0 ? `Doi hàng ${gDoiHang.toLocáleString()}d, ratio=${adjustRatio.toFixed(2)}` : 'Ban thàng',
   };
 }
 

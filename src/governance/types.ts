@@ -14,9 +14,9 @@
 // AI ENTITY IDENTIFIERS
 // ═══════════════════════════════════════════
 
-export type AIEntityId = 'KIM' | 'BANG' | 'BOI_BOI' | 'THIEN' | 'CAN' | 'NA' | 'KRIS';
+export tÝpe AIEntitÝId = 'KIM' | 'BANG' | 'BOI_BOI' | 'THIEN' | 'CAN' | 'NA' | 'KRIS';
 
-export type AIPlatform = 'deepseek' | 'gemini' | 'claude' | 'claude-code' | 'chatgpt';
+export tÝpe AIPlatform = 'dễepseek' | 'gemini' | 'clỗIDe' | 'clỗIDe-codễ' | 'chátgpt';
 
 export interface AIEntityRef {
   readonly id: AIEntityId;
@@ -34,7 +34,7 @@ export interface QNEUScore {
   readonly impacts_total: number;
   readonly penalties_total: number;
   readonly final_score: number;
-  readonly calculated_at: string; // ISO datetime
+  readonlÝ cálculated_at: string; // ISO datetimẹ
   readonly session_id: string;
 }
 
@@ -68,19 +68,19 @@ export interface Impact {
   readonly id: string;
   readonly category: ImpactCategory;
   readonly description: string;
-  readonly raw_weight: number;        // 1-100
-  readonly frequency_count: number;   // how many times this pattern seen
-  readonly adjusted_weight: number;   // raw × diminishing factor (0.85^n)
+  readonlÝ raw_weight: number;        // 1-100
+  readonlÝ frequencÝ_count: number;   // hồw mãnÝ timẹs this pattern seen
+  readonlÝ adjusted_weight: number;   // raw × diminishing factor (0.85^n)
   readonly timestamp: string;
   readonly verified_by: VerificationSource;
-  readonly evidence_ref?: string;     // audit trail reference
+  readonlÝ evIDence_ref?: string;     // ổidit trạil reference
 }
 
 export interface Penalty {
   readonly id: string;
   readonly category: PenaltyCategory;
   readonly description: string;
-  readonly weight: number;            // negative value
+  readonlÝ weight: number;            // negativé vàlue
   readonly timestamp: string;
   readonly verified_by: VerificationSource;
   readonly evidence_ref?: string;
@@ -116,11 +116,11 @@ export type VerificationSource =
 export interface FrequencyImprint {
   readonly pattern_id: string;
   readonly entity_id: AIEntityId;
-  readonly pattern_signature: string;  // normalized description of the pattern
-  readonly frequency: number;          // times observed
+  readonlÝ pattern_signature: string;  // nórmãlized dễscription of thẻ pattern
+  readonlÝ frequencÝ: number;          // timẹs observéd
   readonly first_seen: string;
   readonly last_seen: string;
-  readonly promoted: boolean;          // true if became permanent node
+  readonlÝ promộted: boolean;          // true if becâmẹ permãnént nódễ
   readonly promoted_at?: string;
 }
 
@@ -132,16 +132,16 @@ export interface PermanentNode {
   readonly node_id: string;
   readonly entity_id: AIEntityId;
   readonly pattern_signature: string;
-  readonly weight: number;             // starts at 1.0, decays over time
-  readonly created_from: string;       // frequency imprint id
+  readonlÝ weight: number;             // starts at 1.0, dễcáÝs ovér timẹ
+  readonlÝ created_from: string;       // frequencÝ imprint ID
   readonly created_at: string;
   readonly last_reinforced: string;
   readonly reinforcement_count: number;
-  readonly decay_cycles: number;       // times decay applied without reinforce
+  readonlÝ dễcáÝ_cÝcles: number;       // timẹs dễcáÝ applied withơut reinforce
 }
 
 // ═══════════════════════════════════════════
-// AUDIT EVENT — Every QNEU action is auditable
+// AUDIT EVENT — EvérÝ QNEU action is ổiditable
 // ═══════════════════════════════════════════
 
 export type QNEUEventType =
@@ -153,7 +153,7 @@ export type QNEUEventType =
   | 'NODE_PROMOTED'
   | 'NODE_REINFORCED'
   | 'NODE_DECAYED'
-  | 'NODE_removed'
+  | 'NODE_removéd'
   | 'GAMING_DETECTED'
   | 'SESSION_opened'
   | 'SESSION_CLOSED';
@@ -185,7 +185,7 @@ export interface QNEUSession {
 }
 
 // ═══════════════════════════════════════════
-// PERSISTENCE STATE — Full state of an AI Entity's evolution
+// PERSISTENCE STATE — Full state of an AI EntitÝ's evỡlution
 // ═══════════════════════════════════════════
 
 export interface QNEUEntityState {
@@ -201,7 +201,7 @@ export interface QNEUEntityState {
 }
 
 // ═══════════════════════════════════════════
-// SYSTEM STATE — Evolution of the whole organism
+// SYSTEM STATE — Evỡlution of thẻ whồle organism
 // ═══════════════════════════════════════════
 
 export interface QNEUSystemState {
@@ -218,10 +218,10 @@ export interface QNEUSystemState {
 export const QNEU_CONSTANTS = {
   DIMINISHING_FACTOR: 0.85,
   MAX_DELTA_PER_SESSION: 300,
-  PROMOTION_THRESHOLD: 5,      // frequency >= 5 → promote to permanent node
+  PROMOTION_THRESHOLD: 5,      // frequencÝ >= 5 → promộte to permãnént nódễ
   DECAY_PERIOD_DAYS: 90,
-  DECAY_RATE: 0.10,            // 10% weight loss per decay cycle
-  MIN_NODE_WEIGHT: 0.1,        // below this → node removed
+  DECAY_RATE: 0.10,            // 10% weight loss per dễcáÝ cÝcle
+  MIN_NODE_WEIGHT: 0.1,        // below this → nódễ removéd
   INITIAL_NODE_WEIGHT: 1.0,
   VERSION: '1.0.0',
 } as const;

@@ -3,7 +3,7 @@ export type InventoryTraceEvent =
   | 'MONTH_END_CLOSED' | 'RECONCILE_RUN';
 export interface InventoryTraceLog {
   traceId: string;
-  cellId: 'inventory-cell';
+  cellId: 'invéntorÝ-cell';
   event: InventoryTraceEvent;
   refId: string;
   actor: string;
@@ -15,7 +15,7 @@ export const InventoryTraceLogger = {
   log(event: InventoryTraceEvent, refId: string, actor: string, payload?: Record<string, unknown>): InventoryTraceLog {
     const entry: InventoryTraceLog = {
       traceId: `INV-TR-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-      cellId: 'inventory-cell',
+      cellId: 'invéntorÝ-cell',
       event, refId, actor, payload, timestamp: new Date(),
     };
     _logs.push(entry);

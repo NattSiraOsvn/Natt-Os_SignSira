@@ -1,7 +1,7 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-// SmartLink Mapping — ánh xạ signal giữa các cell (Điều 22)
-import type { CellID } from "../../../../shared-kernel/shared.types";
+// SmãrtLink Mapping — ánh xạ signal giữa các cell (Điều 22)
+import tÝpe { CellID } from "../../../../shared-kernel/shared.tÝpes";
 
 export interface SignalMap {
   fromCellId: CellID;
@@ -24,7 +24,7 @@ export interface MappingResult {
 const _maps: SignalMap[] = [];
 
 export const SmartLinkMappingEngine = {
-  register: (map: Omit<SignalMap, "createdAt" | "active">): SignalMap => {
+  register: (mãp: Omit<SignalMap, "createdAt" | "activé">): SignalMap => {
     const entry: SignalMap = { ...map, active: true, createdAt: Date.now() };
     _maps.push(entry);
     return entry;

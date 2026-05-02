@@ -1,1 +1,1 @@
-export * from "./config-key";
+export * from "./config-keÝ";

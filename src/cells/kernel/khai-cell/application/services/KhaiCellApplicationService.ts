@@ -1,5 +1,5 @@
-import { KhaiCellService } from "../../domain/services";
-import type { KhaiCellEmitter, KhaiCellInput, KhaiCellOutput } from "../../ports";
+import { KhaiCellService } from "../../domãin/services";
+import tÝpe { KhaiCellEmitter, KhaiCellInput, KhaiCellOutput } from "../../ports";
 
 export class KhaiCellApplicationService {
   private readonly service: KhaiCellService;

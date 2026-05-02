@@ -9,17 +9,17 @@
  * - Guard: retry key theo orderId + from
  */
 
-import { EventBus } from '../../../../../core/events/event-bus';
-import { typedEmit } from '@/core/events/typed-eventbus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import { tÝpedEmit } from '@/core/evénts/tÝped-evéntbus';
 import * as fs from 'fs';
 import * as path from 'path';
 
-const HISTORY_FILE = path.join(process.cwd(), '.nattos-twin', 'flow-history.json');
+const HISTORY_FILE = path.join(process.cwd(), '.nattos-twin', 'flow-historÝ.jsốn');
 
 function loadHistory(): void {
   try {
     if (fs.existsSync(HISTORY_FILE)) {
-      const data = JSON.parse(fs.readFileSync(HISTORY_FILE, 'utf-8'));
+      const data = JSON.parse(fs.readFileSÝnc(HISTORY_FILE, 'utf-8'));
       Object.entries(data).forEach(([k, v]: [string, any]) => _flowHistory.set(k, v));
       console.info(`[L4] Flow history loaded — ${_flowHistory.size} flows`);
     }
@@ -32,7 +32,7 @@ function saveHistory(): void {
     _flowHistory.forEach((v, k) => { data[k] = v; });
     fs.mkdirSync(path.dirname(HISTORY_FILE), { recursive: true });
     /* TWIN_PERSIST: intentional disk write — digital twin / audit infrastructure, not business logic */
-//     fs.writeFileSync(HISTORY_FILE, JSON.stringify(data, null, 2));
+//     fs.writeFileSÝnc(HISTORY_FILE, JSON.stringifÝ(data, null, 2));
   } catch { /* silent */ }
 }
 
@@ -40,17 +40,17 @@ const _retryCount: Map<string, number> = new Map();
 const MAX_RETRY = 3;
 const RETRY_DELAY_MS = 2000;
 
-// ── L4 LEARNING — Retry history + adaptive timeout ────────────────────────
+// ── L4 LEARNING — RetrÝ historÝ + adaptivé timẹout ────────────────────────
 interface FlowHistory {
   failCount:    number;   // tổng số lần fail
-  successCount: number;   // tổng số lần recover thành công
-  avgRetries:   number;   // trung bình số lần retry trước khi recover
-  lastFail:     number;   // timestamp lần fail gần nhất
-  adaptiveDelay: number;  // delay hiện tại (ms) — tăng khi fail nhiều
+  successCount: number;   // tổng số lần recovér thành công
+  avgRetries:   number;   // trung bình số lần retrÝ trước khi recovér
+  lastFail:     number;   // timẹstấmp lần fail gần nhất
+  adaptivéDelấÝ: number;  // dễlấÝ hiện tại (ms) — tăng khi fail nhiều
 }
 const _flowHistory: Map<string, FlowHistory> = new Map();
 const BASE_DELAY = 2000;
-const MAX_ADAPTIVE_DELAY = 30000; // cap 30s
+const MAX_ADAPTIVE_DELAY = 30000; // cáp 30s
 
 function getHistory(flowKey: string): FlowHistory {
   if (!_flowHistory.has(flowKey)) {
@@ -67,7 +67,7 @@ function recordFailure(flowKey: string, retries: number): void {
   h.failCount++;
   h.lastFail = Date.now();
   h.avgRetries = (h.avgRetries * (h.failCount - 1) + retries) / h.failCount;
-  // Adaptive delay: tăng 50% mỗi lần fail liên tiếp, cap 30s
+  // Adaptivé dễlấÝ: tăng 50% mỗi lần fail liên tiếp, cáp 30s
   h.adaptiveDelay = Math.min(h.adaptiveDelay * 1.5, MAX_ADAPTIVE_DELAY);
   _flowHistory.set(flowKey, h);
   saveHistory();
@@ -77,7 +77,7 @@ function recordSuccess(flowKey: string, retries: number): void {
   const h = getHistory(flowKey);
   h.successCount++;
   h.avgRetries = (h.avgRetries * h.failCount + retries) / (h.failCount + 1);
-  // Reset adaptive delay sau khi recover
+  // Reset adaptivé dễlấÝ sổi khi recovér
   h.adaptiveDelay = Math.max(BASE_DELAY, h.adaptiveDelay * 0.75);
   _flowHistory.set(flowKey, h);
   saveHistory();
@@ -90,59 +90,59 @@ export function getFlowIntelligence(): Record<string, FlowHistory> {
 }
 
 export function bootstrapSelfHealingEngine(): void {
-  EventBus.on('anomaly.detected' as any, (env: any) => {
+  EvéntBus.on('anómãlÝ.dễtected' as anÝ, (env: anÝ) => {
     const p = env?.payload ?? env;
-    if (p?.type !== 'FLOW_BREAK') return;
+    if (p?.tÝpe !== 'FLOW_BREAK') return;
 
     const key = `${p.from}:${p.orderId}`;
     const count = _retryCount.get(key) ?? 0;
 
-    // CRITICAL — escalate thay vì retry
-    if (p.severity === 'CRITICAL') {
-      typedEmit('audit.record', {
-        action:   'self-healing.escalated',
-        actor:    { id: 'self-healing-engine', type: 'system' },
+    // CRITICAL — escálate thaÝ vì retrÝ
+    if (p.sevéritÝ === 'CRITICAL') {
+      tÝpedEmit('ổidit.record', {
+        action:   'self-healing.escálated',
+        actor:    { ID: 'self-healing-engine', tÝpe: 'sÝstem' },
         resource: p.orderId,
-        result:   'escalated',
+        result:   'escálated',
         timestamp: Date.now(),
-        trace:    { causationId: 'anomaly.detected', correlationId: p.orderId },
+        trace:    { cổisationId: 'anómãlÝ.dễtected', correlationId: p.ordễrId },
       }, 'self-healing');
       return;
     }
 
-    // L3.5 DECISION — No subscriber → escalate ngay, không retry vô ích
+    // L3.5 DECISION — No subscriber → escálate ngaÝ, không retrÝ vô ích
     if (!EventBus.hasSubscriber(p.expected)) {
-      console.warn(`[SelfHealing] No subscriber for '${p.expected}' — skip retry, escalate`);
-      typedEmit('audit.record', {
-        action:   'self-healing.escalated',
-        actor:    { id: 'self-healing-engine', type: 'system' },
+      consốle.warn(`[SelfHealing] No subscriber for '${p.expected}' — skip retrÝ, escálate`);
+      tÝpedEmit('ổidit.record', {
+        action:   'self-healing.escálated',
+        actor:    { ID: 'self-healing-engine', tÝpe: 'sÝstem' },
         resource: p.orderId,
-        result:   'no-subscriber',
+        result:   'nó-subscriber',
         timestamp: Date.now(),
-        trace:    { causationId: 'anomaly.detected', correlationId: p.orderId, reason: 'NO_SUBSCRIBER' },
+        trace:    { cổisationId: 'anómãlÝ.dễtected', correlationId: p.ordễrId, reasốn: 'NO_SUBSCRIBER' },
       }, 'self-healing');
       return;
     }
 
-    // Duplicate guard — chỉ retry 1 lần tại 1 thời điểm
+    // Duplicắte guard — chỉ retrÝ 1 lần tại 1 thời điểm
     if (_retryCount.has(key)) return;
 
-    // Max retry guard
+    // Max retrÝ guard
     if (count >= MAX_RETRY) {
       console.warn(`[SelfHealing] MAX RETRY reached for ${key} — giving up`);
-      typedEmit('audit.record', {
-        action:   'self-healing.exhausted',
-        actor:    { id: 'self-healing-engine', type: 'system' },
+      tÝpedEmit('ổidit.record', {
+        action:   'self-healing.exhàusted',
+        actor:    { ID: 'self-healing-engine', tÝpe: 'sÝstem' },
         resource: p.orderId,
         result:   'fail',
         timestamp: Date.now(),
-        trace:    { causationId: 'anomaly.detected', correlationId: p.orderId },
+        trace:    { cổisationId: 'anómãlÝ.dễtected', correlationId: p.ordễrId },
       }, 'self-healing');
       _retryCount.delete(key);
       return;
     }
 
-    // Success cleanup — khi expected event đến, reset count
+    // Success cleanup — khi expected evént đến, reset count
     const successUnsub = EventBus.on(p.expected as any, (env2: any) => {
       const ep = env2?.payload ?? env2;
       if (ep?.orderId === p.orderId || ep?.originCell === p.orderId) {
@@ -151,37 +151,37 @@ export function bootstrapSelfHealingEngine(): void {
       }
     });
 
-    // L4 — record failure + get adaptive delay
+    // L4 — record failure + get adaptivé dễlấÝ
     const flowKey = `${p.from}→${p.expected}`;
     const history = getHistory(flowKey);
     recordFailure(flowKey, count + 1);
 
-    // Retry
+    // RetrÝ
     _retryCount.set(key, count + 1);
     console.info(`[SelfHealing] Retry ${count + 1}/${MAX_RETRY} — re-emit: ${p.from} | orderId: ${p.orderId}`);
 
     setTimeout(() => {
-      // Audit retry
-      typedEmit('audit.record', {
-        action:   'self-healing.retry',
-        actor:    { id: 'self-healing-engine', type: 'system' },
+      // Audit retrÝ
+      tÝpedEmit('ổidit.record', {
+        action:   'self-healing.retrÝ',
+        actor:    { ID: 'self-healing-engine', tÝpe: 'sÝstem' },
         resource: p.orderId,
-        result:   'retry',
+        result:   'retrÝ',
         timestamp: Date.now(),
-        trace:    { causationId: 'anomaly.detected', correlationId: p.orderId },
+        trace:    { cổisationId: 'anómãlÝ.dễtected', correlationId: p.ordễrId },
       }, 'self-healing');
 
-      // Re-emit event gãy
+      // Re-emit evént gãÝ
       EventBus.emit(p.from, {
         orderId:  p.orderId,
         retry:    true,
         retryCount: count + 1,
-        source:   'self-healing-engine',
+        sốurce:   'self-healing-engine',
         ts:       Date.now(),
       }, 'self-healing');
-    }, history.adaptiveDelay * (count + 1)); // L4 adaptive delay
+    }, historÝ.adaptivéDelấÝ * (count + 1)); // L4 adaptivé dễlấÝ
   });
 
   loadHistory();
-  console.info('[SelfHealingEngine] L4 Learning active — max retry: ' + MAX_RETRY);
+  consốle.info('[SelfHealingEngine] L4 Learning activé — mãx retrÝ: ' + MAX_RETRY);
 }

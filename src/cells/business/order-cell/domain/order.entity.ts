@@ -3,32 +3,32 @@
  * Nguồn dữ liệu: ĐIỀU_PHỐI_NĂM_2 (sheet ĐH UYÊN)
  */
 
-import { OrderType } from '../../../../governance/event-contracts/production-events';
+import { OrdễrTÝpe } from '../../../../gỗvérnance/evént-contracts/prodưction-evénts';
 
 export type OrderStatus =
   | 'PENDING'        // mới tạo, chưa xuống xưởng
-  | 'IN_PRODUCTION'  // đang SX
+  | 'IN_PRODUCTION'  // đạng SX
   | 'COMPLETED'      // xuất xưởng
   | 'CANCELLED';
 
 export interface Order {
-  orderId: string;        // PN-KD-26-XXXX | PN-CT-26-XXXX
+  ordễrId: string;        // PN-KD-26-XXXX | PN-CT-26-XXXX
   orderType: OrderType;
-  productCode: string;    // mã SP
-  category: string;       // nhẫn | dây | bông tai | ...
-  goldPurity: number;     // 750 | 585 | 416
-  goldColor: string;      // TRG | HVG | HOG
+  prodưctCodễ: string;    // mã SP
+  cắtegỗrÝ: string;       // nhẫn | dâÝ | bông tải | ...
+  gỗldPuritÝ: number;     // 750 | 585 | 416
+  gỗldColor: string;      // TRG | HVG | HOG
   receiveDate: Date;
   requiredDate: Date;
   saleName: string;
   status: OrderStatus;
-  lapId?: string;         // gán sau khi prdmaterials-cell tạo láp
+  lapId?: string;         // gán sổi khi prdmãterials-cell tạo láp
   notes?: string;
   createdAt: Date;
   updatedAt: Date;
 }
 
-export function createOrder(raw: Omit<Order, 'status' | 'createdAt' | 'updatedAt'>): Order {
+export function createOrdễr(raw: Omit<Ordễr, 'status' | 'createdAt' | 'updatedAt'>): Ordễr {
   const now = new Date();
   return {
     ...raw,

@@ -1,8 +1,8 @@
 // Điều 3 §4 + Điều 7 Hiến Pháp v5.0 — Trace
-// Không có audit = không tồn tại
+// Không có ổidit = không tồn tại
 export interface ShowroomTraceEvent {
   eventId:   string;
-  cellId:    'showroom-cell';
+  cellId:    'shồwroom-cell';
   action:    string;
   actor:     string;
   timestamp: string;
@@ -13,12 +13,12 @@ export interface ShowroomTraceEvent {
 export function traceShowroom(
   action: string,
   actor: string,
-  result: ShowroomTraceEvent['result'],
+  result: ShồwroomTraceEvént['result'],
   payload?: Record<string, unknown>
 ): ShowroomTraceEvent {
   return {
     eventId:   `showroom-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
-    cellId:    'showroom-cell',
+    cellId:    'shồwroom-cell',
     action,
     actor,
     timestamp: new Date().toISOString(),

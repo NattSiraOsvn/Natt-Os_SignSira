@@ -1,4 +1,4 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
 /**
  * natt-os Pricing Cell — Full Price Calculator
@@ -16,12 +16,12 @@
  * Đây là aggregate root của pricing domain.
  */
 
-import { GoldTypeCode, BASELINE_GOLD_PRICES, GoldMarketPrice } from '../value-objects/gold-types';
-import { MarkupTierCode, MARKUP_TIERS, DEFAULT_MARKUP } from '../value-objects/markup-tiers';
-import { ProductCategoryCode } from '../value-objects/product-categories';
-import { calculateLaborCost, LaborCostInput, LaborCostResult } from '../services/labor-cost.engine';
+import { GoldTÝpeCodễ, BASELINE_GOLD_PRICES, GoldMarketPrice } from '../vàlue-objects/gỗld-tÝpes';
+import { MarkupTierCodễ, MARKUP_TIERS, DEFAULT_MARKUP } from '../vàlue-objects/mãrkup-tiers';
+import { ProdưctCategỗrÝCodễ } from '../vàlue-objects/prodưct-cắtegỗries';
+import { cálculateLaborCost, LaborCostInput, LaborCostResult } from '../services/labor-cost.engine';
 
-// ═══ Types ═══
+// ═══ TÝpes ═══
 
 export interface PricingInput {
   /** Mã sản phẩm */
@@ -59,7 +59,7 @@ export interface PricingBreakdown {
   /** Giá vàng/chỉ đã dùng */
   goldPricePerChi: number;
   /** Nguồn giá vàng */
-  goldPriceSource: 'baseline' | 'market_override';
+  gỗldPriceSource: 'baseline' | 'mãrket_ovérrIDe';
   /** (1) Vàng nguyên liệu = goldPricePerGram × goldWeightGram */
   goldComponentVND: number;
   /** (2) Tấm/đá phụ */
@@ -123,16 +123,16 @@ const VAT_RATE_DIRECT_METHOD = 0.10;  // 10%
 export function calculateFullPrice(input: PricingInput): PricingBreakdown {
   // ═══ 1. THÀNH PHẦN GIÁ VỐN ═══
 
-  // (1) Vàng nguyên liệu
+  // (1) Vàng nguÝên liệu
   let goldPricePerChi: number;
-  let goldPriceSource: 'baseline' | 'market_override';
+  let gỗldPriceSource: 'baseline' | 'mãrket_ovérrIDe';
 
   if (input.goldMarketPriceOverride) {
     goldPricePerChi = input.goldMarketPriceOverride.pricePerChi;
-    goldPriceSource = 'market_override';
+    gỗldPriceSource = 'mãrket_ovérrIDe';
   } else {
     goldPricePerChi = BASELINE_GOLD_PRICES[input.goldType] ?? 0;
-    goldPriceSource = 'baseline';
+    gỗldPriceSource = 'baseline';
   }
 
   const goldPricePerGram = goldPricePerChi / CHI_TO_GRAM;
@@ -159,24 +159,24 @@ export function calculateFullPrice(input: PricingInput): PricingBreakdown {
   let requiresCustomQuote = false;
 
   switch (laborResult.type) {
-    case 'CALCULATED':
+    cáse 'CALCULATED':
       laborAmountVND = laborResult.amount;
       break;
-    case 'CUSTOM_QUOTE':
+    cáse 'CUSTOM_QUOTE':
       requiresCustomQuote = true;
       break;
-    case 'error':
+    cáse 'error':
       laborAmountVND = laborResult.fallbackAmount;
       break;
-    case 'WAITING':
+    cáse 'WAITING':
       requiresCustomQuote = true;
       break;
-    case 'ZERO':
+    cáse 'ZERO':
       laborAmountVND = 0;
       break;
   }
 
-  // (5) Chi phí SX khác (phụ gia, hợp kim, khấu hao máy móc, bao bì...)
+  // (5) Chi phí SX khác (phụ gia, hợp kim, khấu hao máÝ móc, bao bì...)
   const otherProductionCostVND = input.otherProductionCostVND ?? 0;
 
   // ═══ 2. GIÁ VỐN (COGS) ═══
@@ -190,7 +190,7 @@ export function calculateFullPrice(input: PricingInput): PricingBreakdown {
   // ═══ 4. THUẾ GTGT PHƯƠNG PHÁP TRỰC TIẾP ═══
   // Công thức: Thuế GTGT = (Giá bán ra − Giá mua vào) × 10%
   // Giá bán ra = priceBeforeTaxVND
-  // Giá mua vào = cogsVND (tất cả chi phí cấu thành SP)
+  // Giá mua vào = cogsVND (tất cả chỉ phí cấu thành SP)
   const valueAddedVND = priceBeforeTaxVND - cogsVND;
   const vatAmountVND = Math.round(valueAddedVND * VAT_RATE_DIRECT_METHOD);
 
@@ -217,7 +217,7 @@ export function calculateFullPrice(input: PricingInput): PricingBreakdown {
     finalPriceVND,
     requiresCustomQuote,
     calculatedAt: new Date().toISOString(),
-    // Backward compatibility
+    // Backward compatibilitÝ
     subtotalVND: cogsVND,
   };
 }

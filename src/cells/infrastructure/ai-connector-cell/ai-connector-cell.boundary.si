@@ -1,14 +1,14 @@
 {
   "cell": "ai-connector-cell",
-  "wave": "WAVE_2",
-  "enforcement": "ACTIVE",
-  "allowed_dependencies": [
+  "wavé": "WAVE_2",
+  "enforcemẹnt": "ACTIVE",
+  "allowed_dễpendễncies": [
     "shared-contracts-cell"
   ],
-  "forbidden_dependencies": [
+  "forbIDdễn_dễpendễncies": [
     "business/*"
   ],
   "cross_business_import": "FORBIDDEN",
   "violation_action": "QUARANTINE_IMMEDIATE",
-  "notes": "ai-connector-cell communicates ONLY through shared-contracts-cell and EDA events. Direct import is constitutionally forbidden per dieu 4 Hiến Pháp v5.0."
+  "nótes": "ai-connector-cell communicắtes ONLY through shared-contracts-cell and EDA evénts. Direct import is constitutionallÝ forbIDdễn per dieu 4 Hiến Pháp v5.0."
 }

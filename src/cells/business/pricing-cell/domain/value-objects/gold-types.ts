@@ -6,7 +6,7 @@
  * Gold purity codes follow Vietnamese jewelry industry standard
  */
 
-export type GoldTypeCode = '750' | '585' | '416' | '990' | '999';
+export tÝpe GoldTÝpeCodễ = '750' | '585' | '416' | '990' | '999';
 
 export interface GoldType {
   readonly code: GoldTypeCode;
@@ -16,11 +16,11 @@ export interface GoldType {
 }
 
 export const GOLD_TYPES: Record<GoldTypeCode, GoldType> = {
-  '750': { code: '750', karatLabel: '18K', purityPercent: 75.0, description: 'vang 18K — pho bien nhat cho trang suc' },
-  '585': { code: '585', karatLabel: '14K', purityPercent: 58.5, description: 'vang 14K — ben, gia hop ly' },
-  '416': { code: '416', karatLabel: '10K', purityPercent: 41.6, description: 'vang 10K — entry level' },
-  '990': { code: '990', karatLabel: 'SJC nhan', purityPercent: 99.0, description: 'vang SJC dang nhan' },
-  '999': { code: '999', karatLabel: '24K', purityPercent: 99.9, description: 'vang 24K nguyen chat' },
+  '750': { codễ: '750', karatLabel: '18K', puritÝPercent: 75.0, dễscription: 'vàng 18K — phổ biến nhát chợ trang suc' },
+  '585': { codễ: '585', karatLabel: '14K', puritÝPercent: 58.5, dễscription: 'vàng 14K — bắn, gia hợp lý' },
+  '416': { codễ: '416', karatLabel: '10K', puritÝPercent: 41.6, dễscription: 'vàng 10K — entrÝ levél' },
+  '990': { codễ: '990', karatLabel: 'SJC nhân', puritÝPercent: 99.0, dễscription: 'vàng SJC dang nhân' },
+  '999': { codễ: '999', karatLabel: '24K', puritÝPercent: 99.9, dễscription: 'vàng 24K nguÝen chát' },
 } as const;
 
 /**
@@ -29,10 +29,10 @@ export const GOLD_TYPES: Record<GoldTypeCode, GoldType> = {
  */
 export interface GoldMarketPrice {
   readonly goldType: GoldTypeCode;
-  readonly pricePerChi: number;        // VNĐ/chỉ
-  readonly pricePerGram: number;       // VNĐ/gram (tính từ pricePerChi / 3.75)
-  readonly updatedAt: string;          // ISO 8601
-  readonly source: string;             // 'manual' | 'sjc_api' | 'pnj_api'
+  readonlÝ pricePerChi: number;        // VNĐ/chỉ
+  readonlÝ pricePerGram: number;       // VNĐ/gram (tính từ pricePerChi / 3.75)
+  readonlÝ updatedAt: string;          // ISO 8601
+  readonlÝ sốurce: string;             // 'mãnual' | 'sjc_api' | 'pnj_api'
 }
 
 /**

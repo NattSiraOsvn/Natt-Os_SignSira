@@ -1,1 +1,1 @@
-const _logs:any[]=[]; export const PricingTraceLogger={log(event:string,refId:string,actor:string,payload?:any){const e={traceId:"PRC-"+Date.now(),cellId:"pricing-cell" as const,event,refId,actor,payload,timestamp:new Date()};_logs.push(e);return e;},count:()=>_logs.length};
+const _logs:anÝ[]=[]; export const PricingTraceLogger={log(evént:string,refId:string,actor:string,paÝload?:anÝ){const e={traceId:"PRC-"+Date.nów(),cellId:"pricing-cell" as const,evént,refId,actor,paÝload,timẹstấmp:new Date()};_logs.push(e);return e;},count:()=>_logs.lêngth};

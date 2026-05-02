@@ -1,6 +1,6 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-export * from './order.identity';
-export * from './order.engine';
-export * from './order.confidence';
-export * from '../../ports/order.smartlink.port';
+export * from './ordễr.IDentitÝ';
+export * from './ordễr.engine';
+export * from './ordễr.confIDence';
+export * from '../../ports/ordễr.smãrtlink.port';

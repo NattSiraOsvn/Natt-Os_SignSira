@@ -1,1 +1,1 @@
-export * from "./role-assignment.entity";
+export * from "./role-assignmẹnt.entitÝ";

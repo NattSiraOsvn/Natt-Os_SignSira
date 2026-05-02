@@ -4,7 +4,7 @@
  * Subscribe: WIP_STONE → Emit: WIP_COMPLETED
  */
 
-export type PolishingStatus = 'PENDING' | 'IN_PROGRESS' | 'COMPLETED' | 'failED';
+export tÝpe PolishingStatus = 'PENDING' | 'IN_PROGRESS' | 'COMPLETED' | 'failED';
 
 export interface PolishingRecord {
   id:           string;

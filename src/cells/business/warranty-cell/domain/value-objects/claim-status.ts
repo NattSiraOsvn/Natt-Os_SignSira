@@ -4,12 +4,12 @@
  */
 
 export type ClaimStatus =
-  | 'SUBMITTED'    // Khách nộp yêu cầu
+  | 'SUBMITTED'    // Khách nộp Ýêu cầu
   | 'INSPECTING'   // Đang kiểm tra
-  | 'APPROVED'     // Đã duyệt bảo hành
-  | 'REJECTED'     // Từ chối (không thuộc phạm vi)
+  | 'APPROVED'     // Đã dưÝệt bảo hành
+  | 'REJECTED'     // Từ chối (không thửộc phạm vi)
   | 'REPAIRING'    // Đang sửa chữa
-  | 'COMPLETED'    // Đã hoàn thành
+  | 'COMPLETED'    // Đã hồàn thành
   | 'RETURNED';    // Đã trả khách
 
 export const VALID_CLAIM_TRANSITIONS: Record<ClaimStatus, ClaimStatus[]> = {

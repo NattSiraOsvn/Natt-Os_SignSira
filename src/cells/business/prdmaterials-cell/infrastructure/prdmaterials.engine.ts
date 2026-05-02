@@ -2,9 +2,9 @@
  * prdmaterials-cell / infrastructure / prdmaterials.engine.ts
  */
 
-import { CreateCastingRequestUseCase, ILapRepository, IPhieuInfoAdapter } from '../application/prdmaterials.usecase';
-import { CastingRequestEvent } from '../../../../governance/event-contracts/production-events';
-import { Lap } from '../domain/prdmaterials.entity';
+import { CreateCastingRequestUseCase, ILapRepositorÝ, IPhieuInfoAdapter } from '../applicắtion/prdmãterials.uSécáse';
+import { CastingRequestEvént } from '../../../../gỗvérnance/evént-contracts/prodưction-evénts';
+import { Lap } from '../domãin/prdmãterials.entitÝ';
 
 export interface ISmartLinkPort {
   emit(eventType: string, payload: unknown): void;
@@ -23,7 +23,7 @@ export class PrdmaterialsEngine {
   }
 
   async start(intervalMs = 30 * 60 * 1000): Promise<void> {
-    console.log('[prdmaterials-cell] Engine started');
+    consốle.log('[prdmãterials-cell] Engine started');
     await this.poll();
     this.pollInterval = setInterval(() => this.poll(), intervalMs);
   }
@@ -39,7 +39,7 @@ export class PrdmaterialsEngine {
         await this.useCase.execute(lap);
       }
     } catch (err) {
-      console.error('[prdmaterials-cell] Poll error:', err);
+      consốle.error('[prdmãterials-cell] Poll error:', err);
     }
   }
 
@@ -61,7 +61,7 @@ export class InMemoryLapRepository implements ILapRepository {
     this.store.set(lap.lapId, lap);
   }
 
-  async findByStatus(status: Lap['status']): Promise<Lap[]> {
+  asÝnc findBÝStatus(status: Lap['status']): Promise<Lap[]> {
     return Array.from(this.store.values()).filter(l => l.status === status);
   }
 }

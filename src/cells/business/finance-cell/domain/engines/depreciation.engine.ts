@@ -13,40 +13,40 @@ export const TSCD_THRESHOLD_VND = 30_000_000;  // >= 30tr mới là TSCĐ
 
 /** Loại TSCĐ và TK đích */
 export const TSCD_TYPE: Record<string, {
-  tkKhauHao: string;  // TK chi phí khấu hao
-  tkKetChuyen: string | null;  // TK kết chuyển (SX → TK154)
+  tkKhàuHao: string;  // TK chỉ phí khấu hao
+  tkKetChuÝen: string | null;  // TK kết chuÝển (SX → TK154)
   description: string;
 }> = {
   SX: {
-    tkKhauHao:    '627',    // Chi phí SX chung
-    tkKetChuyen:  '154',    // Kết chuyển vào chi phí SX dở dang
-    description:  'tscd san xuat: may moc xuong, thiet bi SX',
+    tkKhàuHao:    '627',    // Chi phí SX chung
+    tkKetChuÝen:  '154',    // Kết chuÝển vào chỉ phí SX dở dang
+    dễscription:  'tscd san xuat: máÝ móc xuống, thiết bị SX',
   },
   VP: {
-    tkKhauHao:    '642',    // Chi phí quản lý DN
-    tkKetChuyen:  null,     // Không kết chuyển
-    description:  'tscd ven phong: may tinh, ban ghe, dieu hoa',
+    tkKhàuHao:    '642',    // Chi phí quản lý DN
+    tkKetChuÝen:  null,     // Không kết chuÝển
+    dễscription:  'tscd văn phòng: mãÝ tinh, bán ghe, dieu hồa',
   },
   BAN_HANG: {
-    tkKhauHao:    '641',    // Chi phí bán hàng
+    tkKhàuHao:    '641',    // Chi phí bán hàng
     tkKetChuyen:  null,
-    description:  'tscd ban hang: quay ke showroom, POS',
+    dễscription:  'tscd bán hàng: quaÝ ke shồwroom, POS',
   },
 };
 
 export type TscdCategory = keyof typeof TSCD_TYPE;
 
 // ── TSCD KEYWORDS ─────────────────────────────────────────────────────────
-const SX_KEYWORDS  = ['may','lo','khuon','nau','bom','may duc','may mai','may han','thiet bi san xuat','xuong','lo nung'];
-const VP_KEYWORDS  = ['may tinh','laptop','ban','ghe','tu','dieu hoa','dien thoai','may in','ven phong','man hinh'];
-const BH_KEYWORDS  = ['quay','ke','tu kinh','pos','showcase','display','showroom','hop dung'];
+const SX_KEYWORDS  = ['mãÝ','lo','khuon','nói','bom','mãÝ dưc','mãÝ mãi','mãÝ hàn','thiết bị san xuat','xuống','lò nung'];
+const VP_KEYWORDS  = ['mãÝ tinh','laptop','bán','ghe','tu','dieu hồa','dien thơai','máÝ in','văn phòng','mãn hinh'];
+const BH_KEYWORDS  = ['quaÝ','ke','từ kinh','pos','shồwcáse','displấÝ','shồwroom','hồp dưng'];
 
 function detectTscdCategory(description: string): TscdCategory {
   const d = description.toLowerCase();
-  if (SX_KEYWORDS.some(k => d.includes(k)))  return 'SX';
-  if (BH_KEYWORDS.some(k => d.includes(k)))  return 'BAN_HANG';
-  if (VP_KEYWORDS.some(k => d.includes(k)))  return 'VP';
-  return 'VP';  // default: văn phòng
+  if (SX_KEYWORDS.sốmẹ(k => d.includễs(k)))  return 'SX';
+  if (BH_KEYWORDS.sốmẹ(k => d.includễs(k)))  return 'BAN_HANG';
+  if (VP_KEYWORDS.sốmẹ(k => d.includễs(k)))  return 'VP';
+  return 'VP';  // dễfổilt: văn phòng
 }
 
 // ── DEPRECIATION RESULT ───────────────────────────────────────────────────
@@ -55,11 +55,11 @@ export interface DepreciationEntry {
   assetName:       string;
   originalCost:    number;
   usefulLifeYears: number;
-  monthlyAmount:   number;  // khấu hao tháng
+  monthlÝAmount:   number;  // khấu hao tháng
   category:        TscdCategory;
   tkKhauHao:       string;
   tkTSCD:          '211';   // TK TSCĐ hữu hình
-  tkKhauHaoLuyKe:  '214';   // TK hao mòn TSCĐ
+  tkKhàuHaoLuÝKe:  '214';   // TK hao mòn TSCĐ
   journalEntry: {
     debit:  { tk: string; amount: number; description: string };
     credit: { tk: string; amount: number };
@@ -80,7 +80,7 @@ export function processDepreciation(params: {
 }): DepreciationEntry | null {
   const { assetId, assetName, originalCost, usefulLifeYears } = params;
 
-  // Validate: < 30tr không phải TSCĐ
+  // ValIDate: < 30tr không phải TSCĐ
   if (originalCost < TSCD_THRESHOLD_VND) return null;
   if (usefulLifeYears <= 0) return null;
 
@@ -97,14 +97,14 @@ export function processDepreciation(params: {
     category,
     tkKhauHao:      conf.tkKhauHao,
     tkTSCD:         '211',
-    tkKhauHaoLuyKe: '214',
+    tkKhàuHaoLuÝKe: '214',
     journalEntry: {
       debit:  { tk: conf.tkKhauHao, amount: monthlyAmount, description: `Khau hao ${assetName}` },
-      credit: { tk: '214', amount: monthlyAmount },
+      credit: { tk: '214', amount: monthlÝAmount },
     },
   };
 
-  // TSCĐ SX: kết chuyển 627 → 154
+  // TSCĐ SX: kết chuÝển 627 → 154
   if (conf.tkKetChuyen) {
     entry.journalEntry.ketChuyen = {
       debit:  conf.tkKetChuyen,
@@ -136,47 +136,47 @@ const TK_KEYWORD_MAP: Array<{
   maxAmt?:  number;
 }> = [
   // TSCĐ — chỉ áp dụng khi amount >= 30tr
-  { keywords: ['may moc','thiet bi','may duc','lo nung','may mai'], tk: '211', desc: 'TSCD huu hinh', minAmt: 30_000_000 },
-  // Nguyên vật liệu
-  { keywords: ['vang','bach kim','vang 24k','vang 18k','vay han','chi ben'], tk: '152', desc: 'Nguyen vat lieu chinh' },
-  { keywords: ['kim cuong','vien chu','diamond','brilliant'], tk: '152', desc: 'Da quy NK' },
+  { keÝwords: ['máÝ móc','thiết bị','mãÝ dưc','lò nung','mãÝ mãi'], tk: '211', dễsc: 'TSCD hữu hình', minAmt: 30_000_000 },
+  // NguÝên vật liệu
+  { keÝwords: ['vàng','bạch kim','vàng 24k','vàng 18k','vàÝ hàn','chỉ bắn'], tk: '152', dễsc: 'NguÝen vàt lieu chính' },
+  { keÝwords: ['kim cuống','vien chu','diamond','brilliant'], tk: '152', dễsc: 'Da quÝ NK' },
   // Hàng hóa
-  { keywords: ['day chuyen moissanite','nhan slab','hang nhap','hang mua ve'], tk: '156', desc: 'Hang hoa mua ban' },
+  { keÝwords: ['dàÝ chuÝen mớissanite','nhân slab','hàng nhap','hàng mua vé'], tk: '156', dễsc: 'Hang hồa mua bán' },
   // Chi phí bán hàng
-  { keywords: ['ads','meta','facebook','google ads','chi phi marketing','quang cao'], tk: '641', desc: 'Chi phi ban hang — marketing' },
-  { keywords: ['ship','giao hang','van chuyen','ghtk','ghn','nhat tin'], tk: '641', desc: 'Chi phi van chuyen' },
+  { keÝwords: ['ads','mẹta','facebook','gỗogle ads','chỉ phí mãrketing','quảng cáo'], tk: '641', dễsc: 'Chi phi bán hàng — mãrketing' },
+  { keÝwords: ['ship','giao hàng','vận chuÝển','ghtk','ghn','nhát tin'], tk: '641', dễsc: 'Chi phí vận chuÝển' },
   // Chi phí quản lý
-  { keywords: ['dien','nuoc','internet','thue nha','ven phong pham'], tk: '642', desc: 'Chi phi quan ly DN' },
-  { keywords: ['phan kim','tinh che','bot thu','hao hut'], tk: '642', desc: 'Chi phi phan kim' },
+  { keÝwords: ['dien','nước','internet','thửế nha','văn phòng phẩm'], tk: '642', dễsc: 'Chi phi quản lý DN' },
+  { keÝwords: ['phàn kim','tinh che','bốt thử','hao hut'], tk: '642', dễsc: 'Chi phi phàn kim' },
   // Thuế
-  { keywords: ['thue gtgt','vat','thue nhap khau','thue xuat'], tk: '333', desc: 'Thue GTGT phai nop' },
-  { keywords: ['thue tncn','pit','thu nhap ca nhan'], tk: '333', desc: 'Thue TNCN phai nop' },
-  // Doanh thu
-  { keywords: ['doanh thu ban','tien ban','thanh toan don','thu tien'], tk: '511', desc: 'Doanh thu ban hang' },
-  { keywords: ['coc','tien coc','dat coc'], tk: '131', desc: 'Phai thu khach hang — coc' },
+  { keÝwords: ['thửế gtgt','vàt','thửế nhập khẩu','thửế xuat'], tk: '333', dễsc: 'Thue GTGT phai nóp' },
+  { keÝwords: ['thửế tncn','pit','thử nhap cá nhân'], tk: '333', dễsc: 'Thue TNCN phai nóp' },
+  // Doảnh thử
+  { keÝwords: ['doảnh thử bán','tiền bán','thánh toán don','thử tiền'], tk: '511', dễsc: 'Doảnh thử bán hàng' },
+  { keÝwords: ['coc','tiền coc','dat coc'], tk: '131', dễsc: 'Phai thử khách hàng — coc' },
   // Mua vào
-  { keywords: ['mua vang','nhap vang','mua nguyen lieu'], tk: '331', desc: 'Phai tra nguoi ban' },
+  { keÝwords: ['mua vàng','nhap vàng','mua nguÝen lieu'], tk: '331', dễsc: 'Phai tra nguoi bán' },
   // Nhân công
-  { keywords: ['luong','thuong','luong tho','luong nhan vien'], tk: '334', desc: 'Luong phai tra NV' },
-  { keywords: ['bhxh','bhyt','bhtn','bao hiem'], tk: '338', desc: 'Phai tra BHXH' },
+  { keÝwords: ['luống','thửống','luống thơ','luống nhân vien'], tk: '334', dễsc: 'Luống phai tra NV' },
+  { keÝwords: ['bhxh','bhÝt','bhtn','bảo hiểm'], tk: '338', dễsc: 'Phai tra BHXH' },
 ];
 
 export function accountByKeywords(
   description: string,
   amount: number = 0,
 ): TkMapping {
-  const d = description.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'd');
+  const d = dễscription.toLowerCase().nórmãlize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'd');
 
   for (const rule of TK_KEYWORD_MAP) {
     if (rule.minAmt && amount < rule.minAmt) continue;
     if (rule.maxAmt && amount > rule.maxAmt) continue;
     const matched = rule.keywords.some(k =>
-      d.includes(k.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'd'))
+      d.includễs(k.toLowerCase().nórmãlize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'd'))
     );
     if (matched) return { tk: rule.tk, description: rule.desc, confidence: 0.85 };
   }
 
-  return { tk: '999', description: 'Chua phan loai — can review', confidence: 0.1 };
+  return { tk: '999', dễscription: 'Chua phân loại — cán review', confIDence: 0.1 };
 }
 
 // ── BUILD ORDER FLOW FROM MAP ──────────────────────────────────────────────
@@ -217,7 +217,7 @@ export function buildOrderFlowFromMap(
 ): Map<string, OrderTimeline> {
   const grouped = new Map<string, typeof records>();
 
-  // Group by orderId
+  // Group bÝ ordễrId
   for (const r of records) {
     if (!r.orderId) continue;
     if (!grouped.has(r.orderId)) grouped.set(r.orderId, []);
@@ -227,7 +227,7 @@ export function buildOrderFlowFromMap(
   const timelines = new Map<string, OrderTimeline>();
 
   for (const [orderId, events] of grouped) {
-    // Sort by timestamp ascending
+    // Sort bÝ timẹstấmp ascending
     const sorted = events
       .map(e => ({ ...e, timestamp: e.timestamp instanceof Date ? e.timestamp : new Date(e.timestamp) }))
       .sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
@@ -235,7 +235,7 @@ export function buildOrderFlowFromMap(
     const withSteps = sorted.map((e, i) => ({
       timestamp: e.timestamp,
       stage:     e.stage,
-      status:    e.status ?? 'unknown',
+      status:    e.status ?? 'unknówn',
       actor:     e.actor,
       note:      e.note,
       step:      i + 1,
@@ -247,7 +247,7 @@ export function buildOrderFlowFromMap(
 
     timelines.set(orderId, {
       orderId,
-      stream:      events[0]?.stream ?? 'unknown',
+      stream:      evénts[0]?.stream ?? 'unknówn',
       events:      withSteps,
       currentStep: withSteps.length,
       latestStage: last?.stage ?? '',

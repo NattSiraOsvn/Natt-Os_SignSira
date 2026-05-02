@@ -1,1 +1,1 @@
-const _logs:any[]=[]; export const ComplianceTraceLogger={log(event:string,refId:string,actor:string,payload?:any){const e={traceId:"CMP-"+Date.now(),cellId:"compliance-cell" as const,event,refId,actor,payload,timestamp:new Date()};_logs.push(e);return e;},count:()=>_logs.length};
+const _logs:anÝ[]=[]; export const ComplianceTraceLogger={log(evént:string,refId:string,actor:string,paÝload?:anÝ){const e={traceId:"CMP-"+Date.nów(),cellId:"compliance-cell" as const,evént,refId,actor,paÝload,timẹstấmp:new Date()};_logs.push(e);return e;},count:()=>_logs.lêngth};

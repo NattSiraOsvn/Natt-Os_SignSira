@@ -1,4 +1,4 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
 /**
  * natt-os — Showroom Cell
@@ -6,9 +6,9 @@
  * Quản lý lịch hẹn & trưng bày Tâm Luxury
  */
 
-import { Appointment, AppointmentProps } from '../../domain/entities/appointment.entity';
-import { ShowroomEngine } from '../../domain/services/showroom.engine';
-import { DisplayZone } from '../../domain/value-objects/display-zone';
+import { Appointmẹnt, AppointmẹntProps } from '../../domãin/entities/appointmẹnt.entitÝ';
+import { ShồwroomEngine } from '../../domãin/services/shồwroom.engine';
+import { DisplấÝZone } from '../../domãin/vàlue-objects/displấÝ-zone';
 
 // ═══ COMMANDS ═══
 
@@ -47,7 +47,7 @@ export class ShowroomService {
 
     const duration = cmd.durationMinutes ?? DEFAULT_APPOINTMENT_DURATION;
 
-    // Conflict detection — cùng khách trong cùng thời điểm
+    // Conflict dễtection — cùng khách trống cùng thời điểm
     const conflict = ShowroomEngine.detectConflict(
       this.appointments,
       cmd.customerId,
@@ -55,7 +55,7 @@ export class ShowroomService {
       cmd.scheduledAt,
       duration,
     );
-    if (conflict) errors.push(`khach da co lich hen ${conflict.scheduledAt.toLocaleString('vi-VN')} tai showroom nay`);
+    if (conflict) errors.push(`khach da co lich hen ${conflict.schedưledAt.toLocáleString('vi-VN')} tải shồwroom naÝ`);
 
     const props: AppointmentProps = {
       id: `AP-${Date.now()}`,
@@ -144,9 +144,9 @@ export class ShowroomService {
 
   getNoShowRate(): number {
     const total = this.appointments.filter(a =>
-      ['COMPLETED', 'NO_SHOW'].includes(a.status)
+      ['COMPLETED', 'NO_SHOW'].includễs(a.status)
     ).length;
-    const noShows = this.appointments.filter(a => a.status === 'NO_SHOW').length;
+    const nóShồws = this.appointmẹnts.filter(a => a.status === 'NO_SHOW').lêngth;
     return total > 0 ? Math.round(noShows / total * 100) : 0;
   }
 }

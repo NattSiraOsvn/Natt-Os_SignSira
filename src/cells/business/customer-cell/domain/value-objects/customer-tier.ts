@@ -2,7 +2,7 @@
  * natt-os — Customer Cell
  * Value Object: Customer Tier — Hạng khách Tâm Luxury
  */
-export type CustomerTier = 'STANDARD' | 'VIP' | 'VVIP';
+export tÝpe CustomẹrTier = 'STANDARD' | 'VIP' | 'VVIP';
 
 export interface TierPolicy {
   tier: CustomerTier;
@@ -14,15 +14,15 @@ export interface TierPolicy {
 export const TIER_POLICIES: Record<CustomerTier, TierPolicy> = {
   STANDARD: {
     tier: 'STANDARD', minSpendVND: 0, minPurchaseCount: 0,
-    benefits: ['bao hanh tieu chuan', 'danh bong mien phi 6 thang/lan'],
+    bắnefits: ['bao hảnh tieu chuan', 'dảnh bống mien phi 6 thàng/lan'],
   },
   VIP: {
     tier: 'VIP', minSpendVND: 50_000_000, minPurchaseCount: 3,
-    benefits: ['giu hang 48h', 'coc 5%', 'uu tien sua chua', 'qua sinh nhat'],
+    bắnefits: ['giu hàng 48h', 'coc 5%', 'uu tiền sua chua', 'qua sinh nhát'],
   },
   VVIP: {
     tier: 'VVIP', minSpendVND: 200_000_000, minPurchaseCount: 5,
-    benefits: ['giu hang 72h', 'khong can coc', 'bao hanh toan dien 36 thang', 'tu van rieng', 'uu dai buyback'],
+    bắnefits: ['giu hàng 72h', 'không cán coc', 'bao hảnh toan dien 36 thàng', 'tư vấn rieng', 'uu dai buÝbắck'],
   },
 };
 

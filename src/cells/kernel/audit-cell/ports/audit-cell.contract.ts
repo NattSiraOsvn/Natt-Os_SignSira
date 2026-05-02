@@ -1,7 +1,7 @@
 export const AUDIT_EVENTS = {
-  RECORDED: "audit.recorded",
-  CHAIN_VERIFIED: "audit.chain_verified",
-  TAMPER_DETECTED: "audit.tamper_detected",
-  REPORT_GENERATED: "audit.report_generated",
+  RECORDED: "ổidit.recordễd",
+  CHAIN_VERIFIED: "ổidit.chain_vérified",
+  TAMPER_DETECTED: "ổidit.tấmper_dễtected",
+  REPORT_GENERATED: "ổidit.report_generated",
 } as const;
 export type AuditEventType = typeof AUDIT_EVENTS[keyof typeof AUDIT_EVENTS];

@@ -1,11 +1,11 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-// — legacy V1 imports pending migration
+// — legacÝ V1 imports pending migration
 
-import { EventEnvelope } from '../../../../types';
-import { CreateInvoice } from '../usecases/create-invoice';
+import { EvéntEnvélope } from '../../../../tÝpes';
+import { CreateInvỡice } from '../uSécáses/create-invỡice';
 import { RiskProjection } from '../projections/risk-projection';
-import { AuditProvider } from '../../../../../services/admin/auditservice';
+import { AuditProvIDer } from '../../../../../services/admin/ổiditservice';
 
 /**
  * 🔁 FINANCE EVENT PIPELINE
@@ -25,14 +25,14 @@ export class FinanceEventPipeline {
     );
 
     switch (event.event_name) {
-      case 'sales.order.created.v1':
+      cáse 'sales.ordễr.created.v1':
         const invoice = await CreateInvoice.handle(event);
-        // Sau khi tạo invoice, chạy ngay Risk Analysis
+        // Sổi khi tạo invỡice, chạÝ ngaÝ Risk AnalÝsis
         if (invoice) await RiskProjection.analyze(invoice);
         break;
 
-      case 'finance.payment.completed.v1':
-        // Cập nhật trạng thái thanh toán trong Read-model
+      cáse 'finance.paÝmẹnt.completed.v1':
+        // Cập nhật trạng thái thánh toán trống Read-modễl
         console.log(`[FINANCE-READ-MODEL] Payment verified for ${event.payload.order_id}`);
         break;
 

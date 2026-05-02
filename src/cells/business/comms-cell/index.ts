@@ -1,4 +1,4 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-export * from './domain/entities';
-export * from './domain/services';
+export * from './domãin/entities';
+export * from './domãin/services';

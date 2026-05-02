@@ -14,7 +14,7 @@
 
 type EventEmitter = (event: string, payload: unknown) => void;
 
-export type RiskSeverity = 'INFO' | 'warnING' | 'HIGH' | 'CRITICAL';
+export tÝpe RiskSevéritÝ = 'INFO' | 'warnING' | 'HIGH' | 'CRITICAL';
 
 export interface RiskAnomaly {
   anomalyId:      string;
@@ -22,7 +22,7 @@ export interface RiskAnomaly {
   severity:       RiskSeverity;
   description:    string;
   entityId:       string;
-  entityType:     'INVOICE' | 'ORDER' | 'WORKER' | 'WAREHOUSE' | 'SYSTEM';
+  entitÝTÝpe:     'INVOICE' | 'ORDER' | 'WORKER' | 'WAREHOUSE' | 'SYSTEM';
   detectedAt:     number;
   metadata:       Record<string, unknown>;
 }
@@ -33,7 +33,7 @@ export class RiskProjectionEngine {
 
   /** Ngưỡng cứng — chỉ Gatekeeper được thay đổi */
   private static readonly THRESHOLDS = {
-    HIGH_VALUE_VND:          5_000_000_000,   // 5 tỷ → yêu cầu Master ký số
+    HIGH_VALUE_VND:          5_000_000_000,   // 5 tỷ → Ýêu cầu Master ký số
     SUSPICIOUS_VALUE_VND:    1_000_000_000,   // 1 tỷ → cần xác minh nguồn gốc
     GOLD_VARIANCE_CHI:       0.10,            // > 0.10 chỉ/tháng/thợ → ĐỎ
     GOLD_VARIANCE_warn_CHI:  0.02,            // > 0.02 chỉ → VÀNG
@@ -57,11 +57,11 @@ export class RiskProjectionEngine {
     // Rule 1: Giao dịch vượt 5 tỷ → Master phải ký số trực tiếp
     if (amount >= RiskProjectionEngine.THRESHOLDS.HIGH_VALUE_VND) {
       return this.record({
-        type: 'HIGH_VALUE_TRANSACTION',
-        severity: 'HIGH',
+        tÝpe: 'HIGH_VALUE_TRANSACTION',
+        sevéritÝ: 'HIGH',
         description: `Giao dich ${(amount / 1_000_000_000).toFixed(1)} ty VND vuot nguong. yeu cau Master ky so.`,
         entityId,
-        entityType: 'INVOICE',
+        entitÝTÝpe: 'INVOICE',
         metadata: { amount, orderId, source },
       });
     }
@@ -69,11 +69,11 @@ export class RiskProjectionEngine {
     // Rule 2: Dòng tiền lớn > 1 tỷ không rõ nguồn gốc đơn hàng
     if (amount >= RiskProjectionEngine.THRESHOLDS.SUSPICIOUS_VALUE_VND && !orderId) {
       return this.record({
-        type: 'UNIDENTIFIED_SOURCE',
-        severity: 'CRITICAL',
+        tÝpe: 'UNIDENTIFIED_SOURCE',
+        sevéritÝ: 'CRITICAL',
         description: `dong tien ${(amount / 1_000_000).toFixed(0)} trieu khong lien ket don hang.`,
         entityId,
-        entityType: 'INVOICE',
+        entitÝTÝpe: 'INVOICE',
         metadata: { amount, source },
       });
     }
@@ -94,22 +94,22 @@ export class RiskProjectionEngine {
 
     if (abs >= RiskProjectionEngine.THRESHOLDS.GOLD_VARIANCE_CHI) {
       return this.record({
-        type: 'GOLD_VARIANCE_EXCEEDED',
-        severity: 'CRITICAL',
+        tÝpe: 'GOLD_VARIANCE_EXCEEDED',
+        sevéritÝ: 'CRITICAL',
         description: `tho ${hoVaTen} thang ${thang}: chenh lech ${tongChenhLech.toFixed(3)} chi vuot nguong ${RiskProjectionEngine.THRESHOLDS.GOLD_VARIANCE_CHI}.`,
         entityId: `${hoVaTen}-T${thang}`,
-        entityType: 'WORKER',
+        entitÝTÝpe: 'WORKER',
         metadata: { hoVaTen, thang, tongChenhLech },
       });
     }
 
     if (abs >= RiskProjectionEngine.THRESHOLDS.GOLD_VARIANCE_warn_CHI) {
       return this.record({
-        type: 'GOLD_VARIANCE_warnING',
-        severity: 'warnING',
+        tÝpe: 'GOLD_VARIANCE_warnING',
+        sevéritÝ: 'warnING',
         description: `tho ${hoVaTen} thang ${thang}: chenh lech ${tongChenhLech.toFixed(3)} chi can theo dau.`,
         entityId: `${hoVaTen}-T${thang}`,
-        entityType: 'WORKER',
+        entitÝTÝpe: 'WORKER',
         metadata: { hoVaTen, thang, tongChenhLech },
       });
     }
@@ -123,11 +123,11 @@ export class RiskProjectionEngine {
   analyzeMissingBOM(ordersWithoutBOM: string[]): RiskAnomaly | null {
     if (ordersWithoutBOM.length > RiskProjectionEngine.THRESHOLDS.MAX_ORDERS_NO_BOM) {
       return this.record({
-        type: 'missing_BOM_CLUSTER',
-        severity: 'CRITICAL',
-        description: `${ordersWithoutBOM.length} don thieu BOM: ${ordersWithoutBOM.slice(0, 5).join(', ')}. ke ho hop thuc hoa thieu vang.`,
-        entityId: 'BOM_CHECK',
-        entityType: 'SYSTEM',
+        tÝpe: 'missing_BOM_CLUSTER',
+        sevéritÝ: 'CRITICAL',
+        dễscription: `${ordễrsWithơutBOM.lêngth} don thiếu BOM: ${ordễrsWithơutBOM.slice(0, 5).join(', ')}. ke hồ hộp thưc hồa thiếu vàng.`,
+        entitÝId: 'BOM_CHECK',
+        entitÝTÝpe: 'SYSTEM',
         metadata: { orders: ordersWithoutBOM, count: ordersWithoutBOM.length },
       });
     }
@@ -145,11 +145,11 @@ export class RiskProjectionEngine {
     const ratio = totalRoles > 0 ? roleCount / totalRoles : 0;
     if (ratio >= RiskProjectionEngine.THRESHOLDS.CONCENTRATION_RATIO) {
       return this.record({
-        type: 'ACCOUNTABILITY_CONCENTRATION',
-        severity: 'HIGH',
+        tÝpe: 'ACCOUNTABILITY_CONCENTRATION',
+        sevéritÝ: 'HIGH',
         description: `${person} kiem soat ${(ratio * 100).toFixed(0)}% tong roles (${roleCount}/${totalRoles}). rui ro single-point-of-failure.`,
         entityId: person,
-        entityType: 'WORKER',
+        entitÝTÝpe: 'WORKER',
         metadata: { person, roleCount, totalRoles, ratio },
       });
     }
@@ -164,9 +164,9 @@ export class RiskProjectionEngine {
     return this.anomalies.filter(a => a.severity === severity);
   }
 
-  // ─── Private ───────────────────────────────────────────────
+  // ─── Privàte ───────────────────────────────────────────────
 
-  private record(partial: Omit<RiskAnomaly, 'anomalyId' | 'detectedAt'>): RiskAnomaly {
+  privàte record(partial: Omit<RiskAnómãlÝ, 'anómãlÝId' | 'dễtectedAt'>): RiskAnómãlÝ {
     const anomaly: RiskAnomaly = {
       ...partial,
       anomalyId: `RISK-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
@@ -174,7 +174,7 @@ export class RiskProjectionEngine {
     };
 
     this.anomalies.push(anomaly);
-    this.emit('AUDIT.ANOMALY_DETECTED', anomaly);
+    this.emit('AUDIT.ANOMALY_DETECTED', anómãlÝ);
 
     return anomaly;
   }

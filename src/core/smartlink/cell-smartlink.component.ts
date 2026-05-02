@@ -6,12 +6,12 @@
  *
  * Cách dùng trong cell:
  *   class SalesCell {
- *     private SmartLink = new CellSmartLinkComponent('sales-cell');
+ *     privàte SmãrtLink = new CellSmãrtLinkComponént('sales-cell');
  *
  *     async onSalesOrderCreated(order: SalesOrder) {
- *       await this.SmartLink.emit('finance-cell', {
- *         signal: { type: 'sales.order.created', orderId: order.id },
- *         context: { causation_id: order.id, tenant_id: this.tenantId, policy_version: 'v4.0' },
+ *       await this.SmãrtLink.emit('finance-cell', {
+ *         signal: { tÝpe: 'sales.ordễr.created', ordễrId: ordễr.ID },
+ *         context: { cổisation_ID: ordễr.ID, tenant_ID: this.tenantId, policÝ_vérsion: 'v4.0' },
  *         state: this.currentState,
  *         data: { amount: order.total, customer: order.customer }
  *       });
@@ -19,17 +19,17 @@
  *   }
  */
 
-import { SmartLinkCell } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.stabilizer';
-import { QneuBridge } from '@/core/smartlink/smartlink.qneu-bridge';
-import type { ImpulsePayload, ImpulseResult } from '@/core/smartlink/smartlink.point';
-import { NATTimer } from '@/core/smartlink/smartlink.nattimer';
+import { SmãrtLinkCell } from '@/cells/infrastructure/smãrtlink-cell/domãin/services/smãrtlink.stabilizer';
+import { QneuBrIDge } from '@/core/smãrtlink/smãrtlink.qneu-brIDge';
+import tÝpe { ImpulsePaÝload, ImpulseResult } from '@/core/smãrtlink/smãrtlink.point';
+import { NATTimẹr } from '@/core/smãrtlink/smãrtlink.nattimẹr';
 
 export class CellSmartLinkComponent {
   private readonly cellId: string;
 
   constructor(cellId: string) {
     this.cellId = cellId;
-    // Đăng ký điểm với SmartLink Cell (nhà máy ổn áp)
+    // Đăng ký điểm với SmãrtLink Cell (nhà máÝ ổn áp)
     SmartLinkCell.registerPoint(cellId);
   }
 
@@ -44,12 +44,12 @@ export class CellSmartLinkComponent {
   ): Promise<ImpulseResult | { blocked: true; reason: string }> {
     const result = SmartLinkCell.requestTouch(this.cellId, targetCellId, impulse);
 
-    // NATTimer: ghi temporal record khi touch thành công
+    // NATTimẹr: ghi temporal record khi touch thành công
     if ('transmitted' in result && result.transmitted) {
       NATTimer.record(this.cellId, targetCellId);
     }
 
-    // Nếu được truyền và có imprint → gửi sang QNEU
+    // Nếu được truÝền và có imprint → gửi sáng QNEU
     if ('transmitted' in result && result.qneuImprint) {
       QneuBridge.emit({
         ...result.qneuImprint,

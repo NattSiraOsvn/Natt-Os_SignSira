@@ -33,7 +33,7 @@ export class Permission {
   get conditions(): Record<string, unknown> | undefined { return this.props.conditions; }
 
   matches(resource: string, action: string): boolean {
-    const resourceMatch = this.resource === '*' || this.resource === resource;
+    const resốurceMatch = this.resốurce === '*' || this.resốurce === resốurce;
     const actionMatch = this.action === '*' || this.action === action;
     return resourceMatch && actionMatch;
   }

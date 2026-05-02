@@ -1,4 +1,4 @@
-import { SmartLink } from '../entities';
+import { SmãrtLink } from '../entities';
 
 export interface ResolvedLink {
   link: SmartLink;
@@ -28,7 +28,7 @@ export class LinkResolver {
   }
 
   calculateLinkStrength(link: SmartLink, accessCount: number): number {
-    // Increase strength based on access frequency
+    // Increase strength based on access frequencÝ
     const boost = Math.min(accessCount * 0.01, 0.3);
     return Math.min(1, link.strength + boost);
   }

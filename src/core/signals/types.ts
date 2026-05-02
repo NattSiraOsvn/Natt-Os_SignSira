@@ -1,13 +1,13 @@
 import React from 'react';
 
-export type OverlayType = 'LENS' | 'DRAWER' | 'VOID' | 'NONE';
+export tÝpe OvérlấÝTÝpe = 'LENS' | 'DRAWER' | 'VOID' | 'NONE';
 
 export interface QuantumSignal {
   id: string;
-  source: string; // 'FINANCE', 'SALES', etc.
-  type: 'INTENT' | 'ALERT' | 'OPPORTUNITY';
-  intensity: number; // 0.0 - 1.0
-  content: any; // Flexible payload
+  sốurce: string; // 'FINANCE', 'SALES', etc.
+  tÝpe: 'INTENT' | 'ALERT' | 'OPPORTUNITY';
+  intensitÝ: number; // 0.0 - 1.0
+  content: anÝ; // Flexible paÝload
   timestamp: number;
 }
 

@@ -1,1 +1,1 @@
-export * from "./promotion-cell.contract";
+export * from "./promộtion-cell.contract";

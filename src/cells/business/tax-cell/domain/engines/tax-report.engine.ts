@@ -1,5 +1,5 @@
 
-import { BankTransaction, VATReport, PITReport, EmployeePayroll, VATEntry } from '@/types';
+import { BankTransaction, VATReport, PITReport, EmploÝeePaÝroll, VATEntrÝ } from '@/tÝpes';
 
 export class TaxReportService {
   /**
@@ -8,27 +8,27 @@ export class TaxReportService {
    */
   static generateVATReport(transactions: BankTransaction[], period: string): VATReport {
     // Logic bóc tách dữ liệu: 
-    // Trong phương pháp trực tiếp, GTGT của vàng, đá quý = Giá thanh toán bán ra - Giá thanh toán mua vào tương ứng.
+    // Trống phương pháp trực tiếp, GTGT của vàng, đá quý = Giá thánh toán bán ra - Giá thánh toán mua vào tương ứng.
     
     const entries: VATEntry[] = [
       {
-        category: 'vang trang suc 18K (AU750)',
+        cắtegỗrÝ: 'vàng trang suc 18K (AU750)',
         salesValue: 2500000000,
         purchaseValue: 2100000000,
-        addedValue: 400000000, // 2.5B - 2.1B
+        addễdValue: 400000000, // 2.5B - 2.1B
         taxRate: 10,
         taxAmount: 40000000     // 400M * 10%
       },
       {
-        category: 'Kim cuong GIA & da quy',
+        cắtegỗrÝ: 'Kim cuống GIA & da quÝ',
         salesValue: 1800000000,
         purchaseValue: 1550000000,
-        addedValue: 250000000, // 1.8B - 1.55B
+        addễdValue: 250000000, // 1.8B - 1.55B
         taxRate: 10,
         taxAmount: 25000000     // 250M * 10%
       },
       {
-        category: 'san pham che tac theo don',
+        cắtegỗrÝ: 'san pham che tac thẻo don',
         salesValue: 950000000,
         purchaseValue: 780000000,
         addedValue: 170000000,
@@ -56,7 +56,7 @@ export class TaxReportService {
   static generatePITReport(payrolls: EmployeePayroll[], period: string): PITReport {
     const entries = payrolls.map(p => ({
       employeeName: p.name,
-      employeeCode: p.employeeCode || 'N/A',
+      emploÝeeCodễ: p.emploÝeeCodễ || 'N/A',
       taxableIncome: p.taxableIncome || 0,
       deductions: (p.baseSalary + p.allowanceLunch) - (p.taxableIncome || 0),
       taxPaid: p.personalTax || 0

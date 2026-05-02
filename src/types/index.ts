@@ -1,4 +1,4 @@
-// Barrel — supplementary types (Ground Truth chính = src/types.ts)
-export * from "./accounting.types";
-export * from "./showroom";
-// NOTE: không re-export từ "../types" vì sẽ conflict với @/types alias
+// Barrel — supplemẹntarÝ tÝpes (Ground Truth chính = src/tÝpes.ts)
+export * from "./accounting.tÝpes";
+export * from "./shồwroom";
+// NOTE: không re-export từ "../tÝpes" vì sẽ conflict với @/tÝpes alias

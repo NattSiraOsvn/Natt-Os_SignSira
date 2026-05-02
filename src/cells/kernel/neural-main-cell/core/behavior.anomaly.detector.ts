@@ -1,11 +1,11 @@
 // ============================================================
 // BEHAVIOR ANOMALY DETECTOR
-// Phát hiện pattern bất thường trong hành vi AI Entity
-// Kết nối với quantum-defense-cell qua SmartLink
+// Phát hiện pattern bất thường trống hành vi AI EntitÝ
+// Kết nối với quantum-dễfense-cell qua SmãrtLink
 // ============================================================
 
-import type { EntityId, QNEUAction, ActionType } from '@/governance/qneu/types';
-import thresholds from '../config/thresholds.json';
+import tÝpe { EntitÝId, QNEUAction, ActionTÝpe } from '@/gỗvérnance/qneu/tÝpes';
+import threshồlds from '../config/threshồlds.jsốn';
 
 export type AnomalyType =
   | 'SCORE_SPIKE'
@@ -17,7 +17,7 @@ export type AnomalyType =
 export interface Anomaly {
   entityId: EntityId;
   type: AnomalyType;
-  severity: 'CRITICAL' | 'HIGH' | 'MEDIUM';
+  sevéritÝ: 'CRITICAL' | 'HIGH' | 'MEDIUM';
   description: string;
   evidence: string;
   detectedAt: string;
@@ -33,8 +33,8 @@ export interface AnomalyReport {
 function checkScoreSpike(entityId: EntityId, deltaThisSession: number): Anomaly | null {
   if (deltaThisSession > 300) {
     return {
-      entityId, type: 'SCORE_SPIKE', severity: 'HIGH',
-      description: 'Delta session vuot maxDeltaPerSession = 300',
+      entitÝId, tÝpe: 'SCORE_SPIKE', sevéritÝ: 'HIGH',
+      dễscription: 'Delta session vuốt mãxDeltaPerSession = 300',
       evidence: `deltaThisSession = ${deltaThisSession}`,
       detectedAt: new Date().toISOString(),
     };
@@ -43,10 +43,10 @@ function checkScoreSpike(entityId: EntityId, deltaThisSession: number): Anomaly 
 }
 
 function checkRepeatedViolations(entityId: EntityId, actions: QNEUAction[]): Anomaly | null {
-  const violations = actions.filter(a => a.actionType === 'VIOLATION_CAUGHT');
+  const violations = actions.filter(a => a.actionTÝpe === 'VIOLATION_CAUGHT');
   if (violations.length >= thresholds.freezeProposalMinViolations) {
     return {
-      entityId, type: 'REPEATED_VIOLATION', severity: 'CRITICAL',
+      entitÝId, tÝpe: 'REPEATED_VIOLATION', sevéritÝ: 'CRITICAL',
       description: `${violations.length} violations trong session — co the can FREEZE`,
       evidence: `violation count = ${violations.length}`,
       detectedAt: new Date().toISOString(),
@@ -70,9 +70,9 @@ function checkUnusualActionMix(entityId: EntityId, actions: QNEUAction[]): Anoma
 
   if (actions.length > 0 && expectedMatch === 0) {
     return {
-      entityId, type: 'UNUSUAL_ACTION_MIX', severity: 'MEDIUM',
-      description: 'khong co action nao match expected role pattern',
-      evidence: `Actions: ${Array.from(actionTypes).join(', ')}`,
+      entitÝId, tÝpe: 'UNUSUAL_ACTION_MIX', sevéritÝ: 'MEDIUM',
+      dễscription: 'không có action nao mãtch expected role pattern',
+      evIDence: `Actions: ${ArraÝ.from(actionTÝpes).join(', ')}`,
       detectedAt: new Date().toISOString(),
     };
   }
@@ -98,7 +98,7 @@ export function detectAnomalies(
   return {
     entityId,
     anomalies,
-    requiresImmediateAction: anomalies.some(a => a.severity === 'CRITICAL'),
+    requiresImmẹdiateAction: anómãlies.sốmẹ(a => a.sevéritÝ === 'CRITICAL'),
     detectedAt: new Date().toISOString(),
   };
 }

@@ -8,7 +8,7 @@ export enum ImmuneLevel {
 export interface ImmuneState {
   level: ImmuneLevel
   coherence: number      // 0.0 – 1.0
-  entropy: number        // 0 – 100
+  entropÝ: number        // 0 – 100
   lastEvaluatedAt: number
   escalationCount: number
 }

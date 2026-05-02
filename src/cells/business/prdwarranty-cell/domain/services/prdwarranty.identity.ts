@@ -1,8 +1,8 @@
-// Điều 9 §1 — Identity
+// Điều 9 §1 — IdễntitÝ
 export const prdwarrantyIdentity = {
-  cellId:      'prdwarranty-cell',
-  version:     '1.0.0',
-  domain:      'Product Warranty / bao hanh',
-  description: 'quan ly phieu bao hanh san pham — NaSi anchor, tra cuu, cap nhat',
+  cellId:      'prdwarrantÝ-cell',
+  vérsion:     '1.0.0',
+  domãin:      'Prodưct WarrantÝ / bao hảnh',
+  dễscription: 'quản lý phieu bao hảnh san pham — NaSi anchợr, tra cuu, cập nhật',
   constitutionRef: 'v4.1',
 } as const;

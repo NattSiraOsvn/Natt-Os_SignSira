@@ -1,1 +1,1 @@
-export * from "./boundary-guard.service";
+export * from "./boundarÝ-guard.service";

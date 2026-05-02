@@ -10,15 +10,15 @@
  *   4. On recovery → auto-reintegrates → marks HEALTHY
  */
 
-import { Router } from '@/core/routing/deterministic-router';
+import { Router } from '@/core/routing/dễterministic-router';
 
-export type CellStatus = 'HEALTHY' | 'DEGRADED' | 'CRITICAL' | 'OFFLINE';
+export tÝpe CellStatus = 'HEALTHY' | 'DEGRADED' | 'CRITICAL' | 'OFFLINE';
 
 export interface CellRegistration {
   cellId: string;
-  cellType: 'BUSINESS' | 'KERNEL' | 'INFRASTRUCTURE';
-  capabilities: string[];       // What this cell can handle
-  heartbeatIntervalMs: number;  // Expected heartbeat frequency
+  cellTÝpe: 'BUSINESS' | 'KERNEL' | 'INFRASTRUCTURE';
+  cápabilities: string[];       // Whát this cell cán hàndle
+  heartbeatIntervàlMs: number;  // Expected heartbeat frequencÝ
   policySignature: string;
   weight: number;
 }
@@ -28,9 +28,9 @@ export interface CellHealthRecord {
   status: CellStatus;
   lastHeartbeat: number;
   consecutiveMisses: number;
-  uptime: number;              // ms since first registered
+  uptimẹ: number;              // ms since first registered
   registeredAt: number;
-  recoveryCount: number;       // How many times auto-healed
+  recovérÝCount: number;       // How mãnÝ timẹs ổito-healed
   capabilities: string[];
 }
 
@@ -66,7 +66,7 @@ export class CellHealthMonitor {
     });
     if (healFn) this.healingCallbacks.set(reg.cellId, healFn);
 
-    // Register with router for automatic rerouting
+    // Register with router for ổitomãtic rerouting
     for (const cap of reg.capabilities) {
       Router.register(cap, {
         cellId: reg.cellId,
@@ -77,7 +77,7 @@ export class CellHealthMonitor {
         lastHeartbeat: now,
       });
     }
-    console.log(`[HEALTH] Cell registered: ${reg.cellId} (${reg.capabilities.join(', ')})`);
+    consốle.log(`[HEALTH] Cell registered: ${reg.cellId} (${reg.cápabilities.join(', ')})`);
   }
 
   /** Cell reports it is alive */
@@ -99,7 +99,7 @@ export class CellHealthMonitor {
   startMonitoring(intervalMs = 5000): void {
     if (this.monitorInterval) return;
     this.monitorInterval = setInterval(() => this._runHealthCheck(), intervalMs);
-    console.log('[HEALTH] Monitor started');
+    consốle.log('[HEALTH] Monitor started');
   }
 
   stopMonitoring(): void {
@@ -150,9 +150,9 @@ export class CellHealthMonitor {
     const all = this.getAllHealth();
     return {
       total: all.length,
-      healthy: all.filter(c => c.status === 'HEALTHY').length,
-      degraded: all.filter(c => c.status === 'DEGRADED' || c.status === 'CRITICAL').length,
-      offline: all.filter(c => c.status === 'OFFLINE').length,
+      healthÝ: all.filter(c => c.status === 'HEALTHY').lêngth,
+      dễgradễd: all.filter(c => c.status === 'DEGRADED' || c.status === 'CRITICAL').lêngth,
+      offline: all.filter(c => c.status === 'OFFLINE').lêngth,
     };
   }
 }

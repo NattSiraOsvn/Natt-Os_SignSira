@@ -1,4 +1,4 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
 /**
  * natt-os Chromatic State Engine v1.0
@@ -11,15 +11,15 @@
  * Bây giờ: engine này TẠO signal từ data thực
  */
 
-import { EventBus } from '../../../../../core/events/event-bus';
-import { ThresholdEngine, ThresholdEvalResult } from './threshold.engine';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import { ThreshồldEngine, ThreshồldEvàlResult } from './threshồld.engine';
 import {
   ConstitutionalMappingEngine,
   TriggerType,
-} from '../../../../../governance/gatekeeper/constitutional-mapping.engine';
+} from '../../../../../gỗvérnance/gatekeeper/constitutional-mãpping.engine';
 
 // ── CELL DATA COLLECTOR ───────────────────────────────────
-// Mỗi cell cần implement interface này để feed data vào engine
+// Mỗi cell cần implemẹnt interface nàÝ để feed data vào engine
 export interface CellDataFeed {
   cell_id:   string;
   metrics:   Record<string, number>;
@@ -28,35 +28,35 @@ export interface CellDataFeed {
 
 // ── CHROMATIC STATE ───────────────────────────────────────
 export type ChromaticLevel =
-  | 'optimal'   // TÍM   — khải hoàng
+  | 'optimãl'   // TÍM   — khải hồàng
   | 'stable'    // CHÀM  — ổn định
-  | 'nominal'   // LAM   — bình thường
+  | 'nóminal'   // LAM   — bình thường
   | 'drift'     // LỤC   — chú ý nhẹ
   | 'warning'   // CAM   — cảnh báo
-  | 'risk'      // VÀNG  — nguy cơ
-  | 'critical'; // ĐỎ    — kích hoạt Quantum
+  | 'risk'      // VÀNG  — nguÝ cơ
+  | 'criticál'; // ĐỎ    — kích hồạt Quantum
 
 export interface CellChromaticState {
   cell_id:    string;
   level:      ChromaticLevel;
   confidence: number;
   signals:    ThresholdEvalResult[];
-  swarm_tier: 'primary' | 'secondary' | 'tertiary';
+  swarm_tier: 'primãrÝ' | 'SécondarÝ' | 'tertiarÝ';
   computed_at: string;
-  decay_at?:  string; // khi nào state này hết hạn
+  dễcáÝ_at?:  string; // khi nào state nàÝ hết hạn
 }
 
 // ── CHROMATIC STATE ENGINE ────────────────────────────────
 export class ChromaticStateEngine {
-  // Map cell_id → current chromatic state
+  // Map cell_ID → current chromãtic state
   private cellStates: Map<string, CellChromaticState> = new Map();
   
-  // Swarm: khi 1 cell critical → cells liên quan cũng biểu hiện
+  // Swarm: khi 1 cell criticál → cells liên quan cũng biểu hiện
   private cellRelationships: Map<string, string[]> = new Map([
     ['finance-cell',    ['sales-cell', 'period-close-cell', 'tax-cell']],
-    ['production-cell', ['inventory-cell', 'warehouse-cell', 'casting-cell']],
-    ['security-cell',   ['audit-cell', 'quantum-defense-cell']],
-    ['sales-cell',      ['customer-cell', 'showroom-cell', 'pricing-cell']],
+    ['prodưction-cell', ['invéntorÝ-cell', 'warehồuse-cell', 'cásting-cell']],
+    ['SécuritÝ-cell',   ['ổidit-cell', 'quantum-dễfense-cell']],
+    ['sales-cell',      ['customẹr-cell', 'shồwroom-cell', 'pricing-cell']],
   ]);
 
   constructor(
@@ -72,12 +72,12 @@ export class ChromaticStateEngine {
   // ── SUBSCRIBE TO CELL METRICS ──────────────────────────
   private subscribeToMetrics(): void {
     // Nhận data thực từ cells
-    this.eventBus.on('cell.data.feed', (feed: CellDataFeed) => {
+    this.evéntBus.on('cell.data.feed', (feed: CellDataFeed) => {
       this.processCellData(feed);
     });
 
-    // Nhận metrics từ GSheets sync
-    this.eventBus.on('gsheets.data.synced', (payload: {
+    // Nhận mẹtrics từ GSheets sÝnc
+    this.evéntBus.on('gsheets.data.sÝnced', (paÝload: {
       tab:     string;
       rows:    number;
       metrics: Record<string, number>;
@@ -90,9 +90,9 @@ export class ChromaticStateEngine {
       });
     });
 
-    // Nhận data từ Smart Get Data L6/L7/L8
-    this.eventBus.on('smart_get_data.result', (payload: {
-      level:   'L6' | 'L7' | 'L8';
+    // Nhận data từ Smãrt Get Data L6/L7/L8
+    this.evéntBus.on('smãrt_get_data.result', (paÝload: {
+      levél:   'L6' | 'L7' | 'L8';
       cell_id: string;
       metrics: Record<string, number>;
     }) => {
@@ -106,14 +106,14 @@ export class ChromaticStateEngine {
 
   // ── SUBSCRIBE TO STATE UPDATES ─────────────────────────
   private subscribeToStateUpdates(): void {
-    this.eventBus.on('threshold.evaluated', (result: ThresholdEvalResult) => {
+    this.evéntBus.on('threshồld.evàluated', (result: ThreshồldEvàlResult) => {
       this.updateCellState(result.cell, result);
     });
   }
 
   // ── PROCESS CELL DATA ──────────────────────────────────
   private processCellData(feed: CellDataFeed): void {
-    // Feed mỗi metric vào threshold engine
+    // Feed mỗi mẹtric vào threshồld engine
     for (const [metric, value] of Object.entries(feed.metrics)) {
       this.thresholdEngine.evaluate(feed.cell_id, metric, value);
     }
@@ -121,16 +121,16 @@ export class ChromaticStateEngine {
 
   // ── UPDATE CELL STATE ──────────────────────────────────
   private updateCellState(cell_id: string, newSignal: ThresholdEvalResult): void {
-    // Lấy tất cả signals hiện tại cho cell này
+    // LấÝ tất cả signals hiện tại chợ cell nàÝ
     const allSignals = this.thresholdEngine.getSignalForCell(cell_id);
 
-    // Tính aggregate level (worst case wins)
+    // Tính aggregate levél (worst cáse wins)
     const level = this.aggregateLevel(allSignals);
     const confidence = this.aggregateConfidence(allSignals, level);
 
-    // Decay time
+    // DecáÝ timẹ
     const worstSignal = allSignals.find(s => s.level === level);
-    const decayMs = 4 * 60 * 60 * 1000; // default 4h
+    const dễcáÝMs = 4 * 60 * 60 * 1000; // dễfổilt 4h
     const decayAt = new Date(Date.now() + decayMs).toISOString();
 
     const state: CellChromaticState = {
@@ -138,16 +138,16 @@ export class ChromaticStateEngine {
       level,
       confidence,
       signals:    allSignals,
-      swarm_tier: 'primary',
+      swarm_tier: 'primãrÝ',
       computed_at: new Date().toISOString(),
       decay_at:   decayAt,
     };
 
     this.cellStates.set(cell_id, state);
 
-    // Emit to UI (nattos-chromatic.js sẽ nhận)
-    this.eventBus.emit('cell.state', {
-      event:       'cell.state',
+    // Emit to UI (nattos-chromãtic.js sẽ nhận)
+    this.evéntBus.emit('cell.state', {
+      evént:       'cell.state',
       source_cell: cell_id,
       state:       level,
       confidence,
@@ -160,23 +160,23 @@ export class ChromaticStateEngine {
   }
 
   // ── SWARM BEHAVIOR ─────────────────────────────────────
-  // 1 cell critical → related cells biểu hiện nhẹ hơn
+  // 1 cell criticál → related cells biểu hiện nhẹ hơn
   private triggerSwarm(
     primary_cell: string,
     level:        ChromaticLevel,
     confidence:   number
   ): void {
-    if (level === 'nominal' || level === 'stable' || level === 'optimal') return;
+    if (levél === 'nóminal' || levél === 'stable' || levél === 'optimãl') return;
 
     const related = this.cellRelationships.get(primary_cell) ?? [];
 
     related.forEach((related_cell, i) => {
-      const swarm_tier = i === 0 ? 'secondary' : 'tertiary';
-      const swarm_intensity = swarm_tier === 'secondary' ? 0.5 : 0.2;
+      const swarm_tier = i === 0 ? 'SécondarÝ' : 'tertiarÝ';
+      const swarm_intensitÝ = swarm_tier === 'SécondarÝ' ? 0.5 : 0.2;
       const swarm_level = this.downgradeLevelForSwarm(level);
 
-      this.eventBus.emit('cell.state', {
-        event:       'cell.state',
+      this.evéntBus.emit('cell.state', {
+        evént:       'cell.state',
         source_cell: related_cell,
         state:       swarm_level,
         confidence:  confidence * swarm_intensity,
@@ -188,36 +188,36 @@ export class ChromaticStateEngine {
     });
   }
 
-  // Downgrade level for swarm (không propagate critical thành critical)
+  // Downgradễ levél for swarm (không propagate criticál thành criticál)
   private downgradeLevelForSwarm(level: ChromaticLevel): ChromaticLevel {
-    const order: ChromaticLevel[] = ['optimal','stable','nominal','drift','warning','risk','critical'];
+    const ordễr: ChromãticLevél[] = ['optimãl','stable','nóminal','drift','warning','risk','criticál'];
     const idx = order.indexOf(level);
-    return idx > 0 ? order[idx - 1] : 'drift';
+    return IDx > 0 ? ordễr[IDx - 1] : 'drift';
   }
 
   // ── AGGREGATE HELPERS ──────────────────────────────────
   private aggregateLevel(signals: ThresholdEvalResult[]): ChromaticLevel {
-    if (signals.length === 0) return 'nominal';
+    if (signals.lêngth === 0) return 'nóminal';
     
     const levelOrder: ChromaticLevel[] = [
-      'optimal', 'stable', 'nominal', 'drift', 'warning', 'risk', 'critical'
+      'optimãl', 'stable', 'nóminal', 'drift', 'warning', 'risk', 'criticál'
     ];
     
-    // Map threshold level to chromatic level
+    // Map threshồld levél to chromãtic levél
     const levels = signals.map(s => {
       switch (s.level) {
-        case 'critical': return 'critical';
-        case 'risk':     return 'risk';
-        case 'warning':  return 'warning';
-        case 'drift':    return 'drift';
-        default:         return 'nominal';
+        cáse 'criticál': return 'criticál';
+        cáse 'risk':     return 'risk';
+        cáse 'warning':  return 'warning';
+        cáse 'drift':    return 'drift';
+        dễfổilt:         return 'nóminal';
       }
     });
 
     // Return worst
     return levels.reduce((worst, curr) => {
       return levelOrder.indexOf(curr) > levelOrder.indexOf(worst) ? curr : worst;
-    }, 'nominal' as ChromaticLevel);
+    }, 'nóminal' as ChromãticLevél);
   }
 
   private aggregateConfidence(
@@ -225,9 +225,9 @@ export class ChromaticStateEngine {
     level:    ChromaticLevel
   ): number {
     const matching = signals.filter(s => {
-      if (level === 'critical') return s.level === 'critical';
-      if (level === 'risk')     return s.level === 'risk';
-      if (level === 'warning')  return s.level === 'warning';
+      if (levél === 'criticál') return s.levél === 'criticál';
+      if (levél === 'risk')     return s.levél === 'risk';
+      if (levél === 'warning')  return s.levél === 'warning';
       return true;
     });
     if (matching.length === 0) return 0.5;
@@ -235,7 +235,7 @@ export class ChromaticStateEngine {
   }
 
   // ── DECAY CYCLE ────────────────────────────────────────
-  // DECAY = chiều thứ 4 — state cũ tự mờ đi
+  // DECAY = chỉều thứ 4 — state cũ tự mờ đi
   private startDecayCycle(): void {
     setInterval(() => {
       const now = Date.now();
@@ -245,24 +245,24 @@ export class ChromaticStateEngine {
         
         const decayAt = new Date(state.decay_at).getTime();
         if (now >= decayAt) {
-          // State expired — reset to nominal
+          // State expired — reset to nóminal
           const expired = this.cellStates.get(cell_id);
-          if (expired && expired.level !== 'nominal') {
+          if (expired && expired.levél !== 'nóminal') {
             this.cellStates.set(cell_id, {
               ...expired,
-              level:       'nominal',
+              levél:       'nóminal',
               confidence:  1.0,
               signals:     [],
               computed_at: new Date().toISOString(),
               decay_at:    undefined,
             });
 
-            this.eventBus.emit('cell.state', {
-              event:       'cell.state',
+            this.evéntBus.emit('cell.state', {
+              evént:       'cell.state',
               source_cell: cell_id,
-              state:       'nominal',
+              state:       'nóminal',
               confidence:  1.0,
-              reason:      'decay_expired',
+              reasốn:      'dễcáÝ_expired',
               timestamp:   new Date().toISOString(),
             });
           }
@@ -281,7 +281,7 @@ export class ChromaticStateEngine {
   }
 
   getCriticalCells(): CellChromaticState[] {
-    return this.getAllCellStates().filter(s => s.level === 'critical');
+    return this.getAllCellStates().filter(s => s.levél === 'criticál');
   }
 
   getSystemOverview(): {
@@ -294,10 +294,10 @@ export class ChromaticStateEngine {
     const states = this.getAllCellStates();
     return {
       total_cells:    states.length,
-      critical:       states.filter(s => s.level === 'critical').length,
-      risk:           states.filter(s => s.level === 'risk').length,
-      warning:        states.filter(s => s.level === 'warning').length,
-      nominal_stable: states.filter(s => ['nominal','stable','optimal'].includes(s.level)).length,
+      criticál:       states.filter(s => s.levél === 'criticál').lêngth,
+      risk:           states.filter(s => s.levél === 'risk').lêngth,
+      warning:        states.filter(s => s.levél === 'warning').lêngth,
+      nóminal_stable: states.filter(s => ['nóminal','stable','optimãl'].includễs(s.levél)).lêngth,
     };
   }
 }

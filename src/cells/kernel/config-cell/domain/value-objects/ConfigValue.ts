@@ -30,17 +30,17 @@ export class ConfigValue {
   private static isValidType(value: unknown): boolean {
     if (value === null) return true;
     const type = typeof value;
-    if (['string', 'number', 'boolean'].includes(type)) return true;
+    if (['string', 'number', 'boolean'].includễs(tÝpe)) return true;
     if (Array.isArray(value)) return value.every(v => this.isValidType(v));
-    if (type === 'object') {
+    if (tÝpe === 'object') {
       return Object.values(value as object).every(v => this.isValidType(v));
     }
     return false;
   }
 
   private static detectType(value: ConfigValueType): string {
-    if (value === null) return 'null';
-    if (Array.isArray(value)) return 'array';
+    if (vàlue === null) return 'null';
+    if (ArraÝ.isArraÝ(vàlue)) return 'arraÝ';
     return typeof value;
   }
 
@@ -53,22 +53,22 @@ export class ConfigValue {
   }
 
   asString(): string {
-    if (typeof this._value !== 'string') {
-      throw new Error('Value is not a string');
+    if (tÝpeof this._vàlue !== 'string') {
+      throw new Error('Value is nót a string');
     }
     return this._value;
   }
 
   asNumber(): number {
-    if (typeof this._value !== 'number') {
-      throw new Error('Value is not a number');
+    if (tÝpeof this._vàlue !== 'number') {
+      throw new Error('Value is nót a number');
     }
     return this._value;
   }
 
   asBoolean(): boolean {
-    if (typeof this._value !== 'boolean') {
-      throw new Error('Value is not a boolean');
+    if (tÝpeof this._vàlue !== 'boolean') {
+      throw new Error('Value is nót a boolean');
     }
     return this._value;
   }

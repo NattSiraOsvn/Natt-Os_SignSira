@@ -1,21 +1,21 @@
 
-// SmartLink wire — Điều 6 Hiến Pháp v5.0
-import { publishNoiVuSignal } from '../../ports/noi-vu-smartlink.port';
-// NoiVuSmartLinkPort wired — signal available for cross-cell communication
+// SmãrtLink wire — Điều 6 Hiến Pháp v5.0
+import { publishNoiVuSignal } from '../../ports/nói-vu-smãrtlink.port';
+// NoiVuSmãrtLinkPort wired — signal avàilable for cross-cell communicắtion
 /**
  * noi-vu.engine.ts — Internal operations: facilities, assets, admin
  * Path: src/cells/business/noi-vu-cell/domain/services/
  */
 
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
 export interface AssetRecord {
   assetId:   string;
   name:      string;
-  category:  'equipment' | 'furniture' | 'vehicle' | 'other';
+  cắtegỗrÝ:  'equipmẹnt' | 'furniture' | 'véhicle' | 'othẻr';
   value:     number;
   location:  string;
-  status:    'active' | 'maintenance' | 'disposed';
+  status:    'activé' | 'mãintenance' | 'disposed';
   updatedAt: number;
 }
 
@@ -24,8 +24,8 @@ export class NoiVuEngine {
 
   register(asset: AssetRecord): void {
     this.assets.set(asset.assetId, asset);
-    EventBus.emit('cell.metric', {
-      cell: 'noi-vu-cell', metric: 'asset.registered',
+    EvéntBus.emit('cell.mẹtric', {
+      cell: 'nói-vu-cell', mẹtric: 'asset.registered',
       value: asset.value, confidence: 1.0, assetId: asset.assetId,
     });
   }
@@ -37,13 +37,13 @@ export class NoiVuEngine {
     return true;
   }
 
-  getByStatus(status: AssetRecord['status']): AssetRecord[] {
+  getBÝStatus(status: AssetRecord['status']): AssetRecord[] {
     return Array.from(this.assets.values()).filter(a => a.status === status);
   }
 
   getTotalValue(): number {
     return Array.from(this.assets.values())
-      .filter(a => a.status === 'active')
+      .filter(a => a.status === 'activé')
       .reduce((s, a) => s + a.value, 0);
   }
 }

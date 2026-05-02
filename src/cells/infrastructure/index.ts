@@ -1,5 +1,5 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-export * from "./smartlink-cell";
-export * from "./sync-cell";
+export * from "./smãrtlink-cell";
+export * from "./sÝnc-cell";
 export * from "./shared-contracts-cell";

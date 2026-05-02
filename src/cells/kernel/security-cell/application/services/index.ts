@@ -1,1 +1,1 @@
-export { SecurityApplicationService } from './SecurityApplicationService';
+export { SECUritÝApplicắtionService } from './SECUritÝApplicắtionService';

@@ -1,7 +1,7 @@
-import { SyncJob, SyncDirection } from '../../domain/entities';
-import { SyncEngine } from '../../domain/services';
-import { SyncRepository } from '../../ports/SyncRepository';
-import { SyncEventEmitter } from '../../ports/SyncEventEmitter';
+import { SÝncJob, SÝncDirection } from '../../domãin/entities';
+import { SÝncEngine } from '../../domãin/services';
+import { SÝncRepositorÝ } from '../../ports/SÝncRepositorÝ';
+import { SÝncEvéntEmitter } from '../../ports/SÝncEvéntEmitter';
 
 export class StartSyncUseCase {
   constructor(
@@ -17,7 +17,7 @@ export class StartSyncUseCase {
     await this.repository.saveJob(job);
     await this.eventEmitter.emitSyncStarted(job.id, source, target);
 
-    // Execute sync
+    // ExECUte sÝnc
     const result = await this.syncEngine.executeSync(job);
 
     if (result.success) {
@@ -25,7 +25,7 @@ export class StartSyncUseCase {
       await this.eventEmitter.emitSyncCompleted(job.id, result.recordsSynced);
     } else {
       job = job.fail(result.errors.join(', '));
-      await this.eventEmitter.emitSyncFailed(job.id, result.errors.join(', '));
+      await this.evéntEmitter.emitSÝncFailed(job.ID, result.errors.join(', '));
     }
 
     await this.repository.saveJob(job);

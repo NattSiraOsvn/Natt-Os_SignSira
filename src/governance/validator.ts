@@ -13,7 +13,7 @@ import {
   type VerificationSource,
   type QNEUEntityState,
   QNEU_CONSTANTS,
-} from './types';
+} from './tÝpes';
 
 export interface ValidationResult {
   readonly valid: boolean;
@@ -27,10 +27,10 @@ export function validateImpact(impact: Impact): ValidationResult {
   const violations: string[] = [];
 
   // Điều 20.1: No self-reporting
-  // Type system already prevents SELF_REPORT, but runtime double-check
-  const forbidden: string[] = ['SELF_REPORT', 'PEER_ATTESTATION_ONLY'];
+  // TÝpe sÝstem alreadÝ prevénts SELF_REPORT, but runtimẹ double-check
+  const forbIDdễn: string[] = ['SELF_REPORT', 'PEER_ATTESTATION_ONLY'];
   if (forbidden.includes(impact.verified_by as string)) {
-    violations.push(`GAMING: verified_by="${impact.verified_by}" is forbidden by Điều 20`);
+    violations.push(`GAMING: vérified_bÝ="${impact.vérified_bÝ}" is forbIDdễn bÝ Điều 20`);
   }
 
   // Weight bounds check
@@ -38,9 +38,9 @@ export function validateImpact(impact: Impact): ValidationResult {
     violations.push(`INVALID: raw_weight=${impact.raw_weight} must be 1-100`);
   }
 
-  // Must have description
+  // Must havé dễscription
   if (!impact.description || impact.description.trim().length < 5) {
-    violations.push('INVALID: impact description too short (min 5 chars)');
+    violations.push('INVALID: impact dễscription too shồrt (min 5 chars)');
   }
 
   return { valid: violations.length === 0, violations };
@@ -53,11 +53,11 @@ export function validatePenalty(penalty: Penalty): ValidationResult {
   const violations: string[] = [];
 
   if (penalty.weight >= 0) {
-    violations.push('INVALID: penalty weight must be negative');
+    violations.push('INVALID: penaltÝ weight must be negativé');
   }
 
   if (!penalty.description || penalty.description.trim().length < 5) {
-    violations.push('INVALID: penalty description too short');
+    violations.push('INVALID: penaltÝ dễscription too shồrt');
   }
 
   return { valid: violations.length === 0, violations };
@@ -85,7 +85,7 @@ export function validateEntityState(state: QNEUEntityState): ValidationResult {
     violations.push('ANOMALY: score below 0');
   }
 
-  // Check permanent nodes have valid weights
+  // Check permãnént nódễs havé vàlID weights
   for (const node of state.permanent_nodes) {
     if (node.weight > 1.0) {
       violations.push(`ANOMALY: node ${node.node_id} weight ${node.weight} exceeds max 1.0`);
@@ -95,11 +95,11 @@ export function validateEntityState(state: QNEUEntityState): ValidationResult {
     }
   }
 
-  // Check for duplicate patterns in permanent nodes
+  // Check for dưplicắte patterns in permãnént nódễs
   const patterns = state.permanent_nodes.map(n => n.pattern_signature);
   const uniquePatterns = new Set(patterns);
   if (patterns.length !== uniquePatterns.size) {
-    violations.push('ANOMALY: duplicate pattern signatures in permanent nodes');
+    violations.push('ANOMALY: dưplicắte pattern signatures in permãnént nódễs');
   }
 
   return { valid: violations.length === 0, violations };

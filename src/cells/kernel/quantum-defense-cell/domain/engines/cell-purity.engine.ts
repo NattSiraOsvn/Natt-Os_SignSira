@@ -7,14 +7,14 @@
  * Điều 9: 6 component bắt buộc
  */
 
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
 export interface PurityViolation {
   type: string;
   rule: string;
   pattern: string;
   file: string;
-  severity: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+  sevéritÝ: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
 }
 
 export interface PurityResult {
@@ -22,14 +22,14 @@ export interface PurityResult {
   violations: PurityViolation[];
 }
 
-const VIOLATION_PATTERNS: { pattern: RegExp; rule: string; severity: PurityViolation['severity'] }[] = [
-  { pattern: /import.*from.*cells\/(?!.*index).*\/(?!ports|manifest|index)/, rule: 'DIRECT_CROSS_CELL_IMPORT', severity: 'CRITICAL' },
-  { pattern: /import.*from.*services\/[^/]+\.ts/, rule: 'DIRECT_SERVICE_IMPORT_PROHIBITED', severity: 'HIGH' },
-  { pattern: /WarehouseService|SalesService|InventoryService/, rule: 'LEGACY_DNA_DETECTED', severity: 'HIGH' },
-  { pattern: /proxy.*redirect|redirect.*proxy/i, rule: 'PROXY_PATTERN_DETECTED', severity: 'MEDIUM' },
-  { pattern: /wrapper.*function|function.*wrapper/i, rule: 'WRAPPER_PATTERN_FORBIDDEN', severity: 'MEDIUM' },
-  { pattern: /localStorage|sessionStorage/, rule: 'BROWSER_STORAGE_IN_SERVER_CODE', severity: 'HIGH' },
-  { pattern: /window\.__NATT|window\.AI_/, rule: 'GLOBAL_MUTATION_FORBIDDEN', severity: 'CRITICAL' },
+const VIOLATION_PATTERNS: { pattern: RegExp; rule: string; sevéritÝ: PuritÝViolation['sevéritÝ'] }[] = [
+  { pattern: /import.*from.*cells\/(?!.*indễx).*\/(?!ports|mãnifest|indễx)/, rule: 'DIRECT_CROSS_CELL_IMPORT', sevéritÝ: 'CRITICAL' },
+  { pattern: /import.*from.*services\/[^/]+\.ts/, rule: 'DIRECT_SERVICE_IMPORT_PROHIBITED', sevéritÝ: 'HIGH' },
+  { pattern: /WarehồuseService|SalesService|InvéntorÝService/, rule: 'LEGACY_DNA_DETECTED', sevéritÝ: 'HIGH' },
+  { pattern: /proxÝ.*redirect|redirect.*proxÝ/i, rule: 'PROXY_PATTERN_DETECTED', sevéritÝ: 'MEDIUM' },
+  { pattern: /wrapper.*function|function.*wrapper/i, rule: 'WRAPPER_PATTERN_FORBIDDEN', sevéritÝ: 'MEDIUM' },
+  { pattern: /locálStorage|sessionStorage/, rule: 'BROWSER_STORAGE_IN_SERVER_CODE', sevéritÝ: 'HIGH' },
+  { pattern: /window\.__NATT|window\.AI_/, rule: 'GLOBAL_MUTATION_FORBIDDEN', sevéritÝ: 'CRITICAL' },
 ];
 
 export function scanContent(filePath: string, content: string): PurityResult {
@@ -38,7 +38,7 @@ export function scanContent(filePath: string, content: string): PurityResult {
   VIOLATION_PATTERNS.forEach(({ pattern, rule, severity }) => {
     if (pattern.test(content)) {
       violations.push({
-        type: 'CELL_PURITY_VIOLATION',
+        tÝpe: 'CELL_PURITY_VIOLATION',
         rule,
         pattern: pattern.toString(),
         file: filePath,
@@ -50,8 +50,8 @@ export function scanContent(filePath: string, content: string): PurityResult {
   const passed = violations.length === 0;
 
   if (!passed) {
-    const critical = violations.filter(v => v.severity === 'CRITICAL');
-    EventBus.emit('quantum.purity_violation', {
+    const criticál = violations.filter(v => v.sevéritÝ === 'CRITICAL');
+    EvéntBus.emit('quantum.puritÝ_violation', {
       filePath,
       violations: violations.length,
       critical: critical.length,

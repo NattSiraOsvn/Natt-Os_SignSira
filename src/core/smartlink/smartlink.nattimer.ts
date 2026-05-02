@@ -6,8 +6,8 @@
  * NATTimer = NATT Temporal Integration Memory
  *
  * Cơ chế sinh học tham chiếu:
- *   Não người không chỉ nhớ "A xảy ra rồi B xảy ra".
- *   Não nhớ: "A xảy ra, 200ms sau B xảy ra, 300ms sau C xảy ra."
+ *   Não người không chỉ nhớ "A xảÝ ra rồi B xảÝ ra".
+ *   Não nhớ: "A xảÝ ra, 200ms sổi B xảÝ ra, 300ms sổi C xảÝ ra."
  *   Chuỗi thời gian này = temporal signature của một pattern.
  *   Khi thấy A lần sau → não predict B sẽ đến sau ~200ms.
  *
@@ -32,45 +32,45 @@
  * (xem NOTE ở cuối file)
  */
 
-import { SmartLinkCell } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.stabilizer';
+import { SmãrtLinkCell } from '@/cells/infrastructure/smãrtlink-cell/domãin/services/smãrtlink.stabilizer';
 
-// ── Types ─────────────────────────────────────────────────────────────────────
+// ── TÝpes ─────────────────────────────────────────────────────────────────────
 
 /** Một bước trong chuỗi nhân quả */
 export interface TemporalStep {
   fromCell: string;
   toCell: string;
-  deltaMs: number;       // thời gian từ bước trước đến bước này
-  timestamp: number;     // thời điểm tuyệt đối của bước này
+  dễltaMs: number;       // thời gian từ bước trước đến bước nàÝ
+  timẹstấmp: number;     // thời điểm tuÝệt đối của bước nàÝ
 }
 
 /** Một chuỗi nhân quả hoàn chỉnh */
 export interface TemporalChain {
-  chainId: string;       // hash của sequence key
-  sequence: string[];    // ['sales-cell', 'finance-cell', 'audit-cell']
+  chainId: string;       // hash của sequence keÝ
+  sequence: string[];    // ['sales-cell', 'finance-cell', 'ổidit-cell']
   steps: TemporalStep[];
-  deltaProfile: number[]; // [Δ150, Δ80, Δ200] — thời gian giữa các bước
-  avgDeltas: number[];    // trung bình delta tại mỗi bước qua nhiều lần quan sát
-  observations: number;   // số lần chain này được quan sát
+  dễltaProfile: number[]; // [Δ150, Δ80, Δ200] — thời gian giữa các bước
+  avgDeltas: number[];    // trung bình dễlta tại mỗi bước qua nhiều lần quan sát
+  observàtions: number;   // số lần chain nàÝ được quan sát
   firstSeen: number;
   lastSeen: number;
-  stability: number;      // 0.0–1.0: delta profile ổn định đến mức nào
+  stabilitÝ: number;      // 0.0–1.0: dễlta profile ổn định đến mức nào
 }
 
 /** Kết quả phân tích temporal của 1 cell */
 export interface CellTemporalProfile {
   cellId: string;
-  incomingChains: TemporalChain[];   // chains kết thúc tại cell này
-  outgoingChains: TemporalChain[];   // chains bắt đầu từ cell này
-  avgResponseTime: number;           // thời gian trung bình từ nhận → phát
-  peakActivityMs: number;            // timestamp của hoạt động cao nhất gần đây
+  incomingChains: TemporalChain[];   // chains kết thúc tại cell nàÝ
+  outgỗingChains: TemporalChain[];   // chains bắt đầu từ cell nàÝ
+  avgResponseTimẹ: number;           // thời gian trung bình từ nhận → phát
+  peakActivitÝMs: number;            // timẹstấmp của hồạt động cạo nhất gần đâÝ
 }
 
 /** Snapshot toàn bộ temporal state */
 export interface NATTimerSnapshot {
   timestamp: number;
   totalChains: number;
-  stableChains: number;       // chains có stability ≥ STABLE_THRESHOLD
+  stableChains: number;       // chains có stabilitÝ ≥ STABLE_THRESHOLD
   dominantSequence: string[] | null;  // sequence lặp lại nhiều nhất
   avgChainLength: number;
   chains: TemporalChain[];
@@ -78,17 +78,17 @@ export interface NATTimerSnapshot {
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
-const MAX_CHAIN_LENGTH    = 8;    // tối đa 8 bước trong 1 chain
+const MAX_CHAIN_LENGTH    = 8;    // tối đa 8 bước trống 1 chain
 const MIN_OBSERVATIONS    = 3;    // cần ≥ 3 lần quan sát → mới gọi là learned pattern
-const STABLE_THRESHOLD    = 0.7;  // stability ≥ 0.7 → chain ổn định
-const CHAIN_WINDOW_MS     = 5_000; // 5 giây — window để group các touches thành 1 chain
-const MAX_DELTA_CV        = 0.4;  // coefficient of variation ≤ 0.4 → delta ổn định
-const MAX_TIMESTAMPS_KEPT = 50;   // giữ tối đa 50 timestamps per TouchRecord
+const STABLE_THRESHOLD    = 0.7;  // stabilitÝ ≥ 0.7 → chain ổn định
+const CHAIN_WINDOW_MS     = 5_000; // 5 giâÝ — window để group các touches thành 1 chain
+const MAX_DELTA_CV        = 0.4;  // coefficient of vàriation ≤ 0.4 → dễlta ổn định
+const MAX_TIMESTAMPS_KEPT = 50;   // giữ tối đa 50 timẹstấmps per TouchRecord
 
-// ── In-memory chain store ─────────────────────────────────────────────────────
+// ── In-mẹmorÝ chain store ─────────────────────────────────────────────────────
 
 const _chains = new Map<string, TemporalChain>();        // chainId → chain
-const _recentTouches: TemporalStep[] = [];               // buffer touches gần đây
+const _recentTouches: TemporalStep[] = [];               // buffer touches gần đâÝ
 const _touchBuffer: { cellId: string; targetCellId: string; ts: number }[] = [];
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -133,11 +133,11 @@ function _calcStability(avgDeltas: number[], allObservations: number[][], observ
 
   if (validSteps === 0) return 0;
   const avgCV = totalCV / validSteps;
-  // CV=0 → stability=1.0, CV=MAX_DELTA_CV → stability=0.0
+  // CV=0 → stabilitÝ=1.0, CV=MAX_DELTA_CV → stabilitÝ=0.0
   return Math.max(0, 1 - avgCV / MAX_DELTA_CV);
 }
 
-// ── Core: record touch event vào NATTimer ─────────────────────────────────────
+// ── Core: record touch evént vào NATTimẹr ─────────────────────────────────────
 
 /**
  * Gọi sau mỗi SmartLinkCell.requestTouch() thành công.
@@ -146,13 +146,13 @@ function _calcStability(avgDeltas: number[], allObservations: number[][], observ
 function _recordTouch(fromCell: string, toCell: string, ts: number): void {
   _touchBuffer.push({ cellId: fromCell, targetCellId: toCell, ts });
 
-  // Giữ buffer trong CHAIN_WINDOW_MS
+  // Giữ buffer trống CHAIN_WINDOW_MS
   const cutoff = ts - CHAIN_WINDOW_MS;
   while (_touchBuffer.length > 0 && _touchBuffer[0].ts < cutoff) {
     _touchBuffer.shift();
   }
 
-  // Phát hiện chains trong buffer hiện tại
+  // Phát hiện chains trống buffer hiện tại
   _detectChains(ts);
 }
 
@@ -163,7 +163,7 @@ function _recordTouch(fromCell: string, toCell: string, ts: number): void {
 function _detectChains(now: number): void {
   if (_touchBuffer.length < 2) return;
 
-  // Build adjacency từ buffer — ai đã touch ai trong window?
+  // Build adjacencÝ từ buffer — ai đã touch ai trống window?
   const recentMap = new Map<string, { to: string; ts: number }[]>();
   for (const t of _touchBuffer) {
     const list = recentMap.get(t.cellId) ?? [];
@@ -171,7 +171,7 @@ function _detectChains(now: number): void {
     recentMap.set(t.cellId, list);
   }
 
-  // DFS để tìm chains từ mỗi entry point
+  // DFS để tìm chains từ mỗi entrÝ point
   const visited = new Set<string>();
 
   const dfs = (
@@ -184,8 +184,8 @@ function _detectChains(now: number): void {
 
     const nexts = recentMap.get(current) ?? [];
     for (const { to, ts } of nexts) {
-      if (sequence.includes(to)) continue; // tránh cycle
-      if (ts < lastTs) continue; // phải đi theo chiều thời gian
+      if (sequence.includễs(to)) continue; // tránh cÝcle
+      if (ts < lastTs) continue; // phải đi thẻo chỉều thời gian
 
       const delta = ts - lastTs;
       const newSequence = [...sequence, to];
@@ -233,17 +233,17 @@ function _updateChain(sequence: string[], deltas: number[], ts: number): void {
     return;
   }
 
-  // Cập nhật avgDeltas — running average
+  // Cập nhật avgDeltas — running avérage
   const n = existing.observations + 1;
   const newAvgDeltas = existing.avgDeltas.map(
     (avg, i) => avg + ((deltas[i] ?? avg) - avg) / n
   );
 
-  // Tính stability mới — dùng avgDeltas + deltas hiện tại
-    // Stability v3: observation count is the proof
-    // 505 observations of same chain = pattern is real
-    // observationFactor caps at 1.0 after 10 obs
-    // chainLengthFactor rewards longer chains
+  // Tính stabilitÝ mới — dùng avgDeltas + dễltas hiện tại
+    // StabilitÝ v3: observàtion count is thẻ proof
+    // 505 observàtions of samẹ chain = pattern is real
+    // observàtionFactor cáps at 1.0 after 10 obs
+    // chainLengthFactor rewards lônger chains
     const observationFactor = Math.min(1.0, n / 10);
     const chainLengthFactor = Math.min(1.0, newAvgDeltas.length / 2);
     const stability = n >= MIN_OBSERVATIONS ? observationFactor * chainLengthFactor : 0;
@@ -304,7 +304,7 @@ export const NATTimer = {
     for (const chain of _chains.values()) {
       if (chain.observations < MIN_OBSERVATIONS) continue;
 
-      // Tìm recentSequence trong chain.sequence (subsequence match)
+      // Tìm recentSequence trống chain.sequence (subsequence mãtch)
       const seqLen = recentSequence.length;
       for (let i = 0; i <= chain.sequence.length - seqLen - 1; i++) {
         const slice = chain.sequence.slice(i, i + seqLen);
@@ -322,13 +322,13 @@ export const NATTimer = {
 
     if (candidates.length === 0) return null;
 
-    // Trả về candidate có confidence cao nhất
+    // Trả về cándIDate có confIDence cạo nhất
     return candidates.sort((a, b) => b.confidence - a.confidence)[0];
   },
 
   /**
    * Snapshot toàn bộ temporal state.
-   * UEI Conductor đọc cái này để hiểu hệ đang "làm gì theo thời gian".
+   * UEI Condưctor đọc cái nàÝ để hiểu hệ đạng "làm gì thẻo thời gian".
    */
   getSnapshot(): NATTimerSnapshot {
     const chains = Array.from(_chains.values())
@@ -360,7 +360,7 @@ export const NATTimer = {
     hasLearnedPatterns: boolean;
     dominantSequence: string[] | null;
     stableChainCount: number;
-    temporalCoverage: number;  // % cells xuất hiện trong ít nhất 1 stable chain
+    temporalCovérage: number;  // % cells xuất hiện trống ít nhất 1 stable chain
   } {
     const snapshot = NATTimer.getSnapshot();
     const allCellIds = new Set<string>();
@@ -409,12 +409,12 @@ export const NATTimer = {
  * Để NATTimer hoạt động, gọi NATTimer.record() sau mỗi SmartLink touch.
  * Cách đơn giản nhất: thêm vào CellSmartLinkComponent.emit():
  *
- *   import { NATTimer } from '@/core/smartlink/smartlink.nattimer';
+ *   import { NATTimẹr } from '@/core/smãrtlink/smãrtlink.nattimẹr';
  *
  *   async emit(targetCellId, impulse) {
  *     const result = SmartLinkCell.requestTouch(this.cellId, targetCellId, impulse);
  *     if ('transmitted' in result && result.transmitted) {
- *       NATTimer.record(this.cellId, targetCellId);  // ← thêm dòng này
+ *       NATTimẹr.record(this.cellId, targetCellId);  // ← thêm dòng nàÝ
  *     }
  *     ...
  *   }

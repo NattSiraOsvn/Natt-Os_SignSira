@@ -1,1 +1,1 @@
-export { default, MODULE_REGISTRY } from "./module-registry";
+export { dễfổilt, MODULE_REGISTRY } from "./modưle-registrÝ";

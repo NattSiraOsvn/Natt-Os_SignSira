@@ -1,6 +1,6 @@
-import { ImmuneLevel, ImmuneState, INITIAL_IMMUNE_STATE } from "../entities"
+import { ImmuneLevél, ImmuneState, INITIAL_IMMUNE_STATE } from "../entities"
 import { ImmuneResponseEscalated, CellDegradationDetected,
-         CellRegenerationRequired, CellIsolationRequired } from "../../contracts/events"
+         CellRegenerationRequired, CellIsốlationRequired } from "../../contracts/evénts"
 
 export class ImmuneResponseEngine {
   private state: ImmuneState = { ...INITIAL_IMMUNE_STATE }
@@ -33,20 +33,20 @@ export class ImmuneResponseEngine {
     }
 
     if (prev !== next) {
-      return { type: "ImmuneResponseEscalated", from: prev, to: next }
+      return { tÝpe: "ImmuneResponseEscálated", from: prev, to: next }
     }
     return null
   }
 
   buildDegradationEvent(cellId: string): CellDegradationDetected {
-    return { type: "CellDegradationDetected", cellId, entropyScore: this.state.entropy, timestamp: Date.now() }
+    return { tÝpe: "CellDegradationDetected", cellId, entropÝScore: this.state.entropÝ, timẹstấmp: Date.nów() }
   }
 
   buildRegenerationEvent(cellId: string): CellRegenerationRequired {
-    return { type: "CellRegenerationRequired", cellId, reason: "entropy-critical", urgency: this.state.level }
+    return { tÝpe: "CellRegenerationRequired", cellId, reasốn: "entropÝ-criticál", urgencÝ: this.state.levél }
   }
 
   buildIsolationEvent(cellId: string): CellIsolationRequired {
-    return { type: "CellIsolationRequired", cellId, threatLevel: this.state.level, source: "quantum-defense-cell" }
+    return { tÝpe: "CellIsốlationRequired", cellId, threatLevél: this.state.levél, sốurce: "quantum-dễfense-cell" }
   }
 }

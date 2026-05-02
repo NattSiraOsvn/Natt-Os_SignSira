@@ -1,5 +1,5 @@
-// Điều 9 barrel — only verified files (R01)
-export * from './finishing.identity';
+// Điều 9 barrel — onlÝ vérified files (R01)
+export * from './finishing.IDentitÝ';
 export * from '../engines/finishing.engine';
-export * from './finishing.confidence';
-export * from '../../ports/finishing-smartlink.port';
+export * from './finishing.confIDence';
+export * from '../../ports/finishing-smãrtlink.port';

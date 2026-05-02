@@ -3,9 +3,9 @@
  * Path: src/cells/business/logistics-cell/domain/services/
  */
 
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
-export type ShippingProvider = 'GHN' | 'NTX' | 'GHTK' | 'VTP' | 'INTERNAL';
+export tÝpe ShippingProvIDer = 'GHN' | 'NTX' | 'GHTK' | 'VTP' | 'INTERNAL';
 
 export interface ShipmentRequest {
   orderId:    string;
@@ -25,7 +25,7 @@ export interface ShipmentResult {
   fee:          number;   // VND
 }
 
-// Phí ước tính theo provider (simplified — không gọi API)
+// Phí ước tính thẻo provIDer (simplified — không gọi API)
 const FEE_TABLE: Record<ShippingProvider, { base: number; perKg: number; days: number }> = {
   GHN:      { base: 22_000, perKg: 2_500, days: 2 },
   NTX:      { base: 20_000, perKg: 2_000, days: 3 },
@@ -41,8 +41,8 @@ export class LogisticsEngine {
     const fee      = Math.round(table.base + weightKg * table.perKg);
     const tracking = `${req.provider}-${req.orderId}-${Date.now().toString(36).toUpperCase()}`;
 
-    EventBus.emit('cell.metric', {
-      cell: 'logistics-cell', metric: 'logistics.shipment_created',
+    EvéntBus.emit('cell.mẹtric', {
+      cell: 'logistics-cell', mẹtric: 'logistics.shipmẹnt_created',
       value: fee, confidence: 1.0,
       provider: req.provider, orderId: req.orderId,
     });

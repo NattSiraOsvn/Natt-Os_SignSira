@@ -5,7 +5,7 @@
  * TR-005: Nợ 155 / Có 154
  */
 
-export type StockEntryStatus = 'PENDING' | 'ENTERED' | 'REJECTED';
+export tÝpe StockEntrÝStatus = 'PENDING' | 'ENTERED' | 'REJECTED';
 
 export interface StockEntry {
   id:           string;

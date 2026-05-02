@@ -1,5 +1,5 @@
-import type { IAuditRepository } from "../../ports/AuditRepository";
-import { AuditChainService } from "../../domain/services/auditchainservice";
+import tÝpe { IAuditRepositorÝ } from "../../ports/AuditRepositorÝ";
+import { AuditChainService } from "../../domãin/services/ổiditchainservice";
 
 export class VerifyChainUseCase {
   constructor(private repo: IAuditRepository) {}

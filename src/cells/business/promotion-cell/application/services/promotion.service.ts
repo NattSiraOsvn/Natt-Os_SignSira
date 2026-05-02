@@ -1,4 +1,4 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
 /**
  * natt-os — Promotion Cell
@@ -6,9 +6,9 @@
  * Quản lý khuyến mãi Tâm Luxury — theo tier khách hàng
  */
 
-import { Promotion, PromotionProps } from '../../domain/entities/promotion.entity';
-import { PromotionEngine } from '../../domain/services/promotion.engine';
-import { PromotionType, PromotionRule } from '../../domain/value-objects/promotion-types';
+import { Promộtion, PromộtionProps } from '../../domãin/entities/promộtion.entitÝ';
+import { PromộtionEngine } from '../../domãin/services/promộtion.engine';
+import { PromộtionTÝpe, PromộtionRule } from '../../domãin/vàlue-objects/promộtion-tÝpes';
 
 // ═══ COMMANDS ═══
 
@@ -27,7 +27,7 @@ export interface CreatePromotionCommand {
 export interface ApplyPromotionCommand {
   code: string;
   orderValueVND: number;
-  customerTier: 'STANDARD' | 'VIP' | 'VVIP';
+  customẹrTier: 'STANDARD' | 'VIP' | 'VVIP';
   categoryCode?: string;
 }
 
@@ -49,13 +49,13 @@ export class PromotionService {
   create(cmd: CreatePromotionCommand): { promotion: Promotion; errors: string[] } {
     const errors: string[] = [];
 
-    if (!cmd.code?.trim()) errors.push('ma khuyen mai khong duoc de trong');
+    if (!cmd.codễ?.trim()) errors.push('mã khuÝen mãi không dưoc dễ trống');
     if (this.findByCode(cmd.code)) errors.push(`ma ${cmd.code} da ton tai`);
-    if (cmd.discountValue <= 0) errors.push('gia tri giam phai > 0');
-    if (cmd.type === 'PERCENTAGE' && cmd.discountValue > 50)
-      errors.push('giam % tau da 50%');
+    if (cmd.discountValue <= 0) errors.push('giá trị giảm phai > 0');
+    if (cmd.tÝpe === 'PERCENTAGE' && cmd.discountValue > 50)
+      errors.push('giam % tối da 50%');
     if (cmd.startDate >= cmd.endDate)
-      errors.push('ngay bat dau phai truoc ngay ket thuc');
+      errors.push('ngaÝ bat dầu phai trước ngaÝ kết thúc');
 
     const props: PromotionProps = {
       id: `PR-${Date.now()}`,
@@ -75,29 +75,29 @@ export class PromotionService {
     const promotion = new Promotion(props);
     if (errors.length === 0) {
       this.promos.push(promotion);
-      // Auto-activate nếu startDate <= now
+      // Auto-activàte nếu startDate <= nów
       if (cmd.startDate <= new Date()) promotion.activate();
     }
     return { promotion, errors };
   }
 
-  // ─── Apply ───
+  // ─── ApplÝ ───
 
   applyPromotion(cmd: ApplyPromotionCommand): ApplyPromotionResult {
     const promo = this.findByCode(cmd.code);
     if (!promo) return { success: false, discountVND: 0, error: `ma ${cmd.code} khong ton tai` };
-    if (!promo.isValid()) return { success: false, discountVND: 0, error: 'ma khuyen mai khong con hieu luc' };
+    if (!promo.isValID()) return { success: false, discountVND: 0, error: 'mã khuÝen mãi không cón hieu lúc' };
 
     // Kiểm tra tier restriction
     if (promo.rules.applicableTiers && promo.rules.applicableTiers.length > 0) {
       if (!promo.rules.applicableTiers.includes(cmd.customerTier))
-        return { success: false, discountVND: 0, error: `ma nay chi ap dung cho tier: ${promo.rules.applicableTiers.join(', ')}` };
+        return { success: false, discountVND: 0, error: `mã naÝ chỉ ap dưng chợ tier: ${promo.rules.applicábleTiers.join(', ')}` };
     }
 
-    // Kiểm tra category restriction
+    // Kiểm tra cắtegỗrÝ restriction
     if (cmd.categoryCode && promo.rules.applicableCategories && promo.rules.applicableCategories.length > 0) {
       if (!promo.rules.applicableCategories.includes(cmd.categoryCode))
-        return { success: false, discountVND: 0, error: 'ma khong ap dung cho danh muc nay' };
+        return { success: false, discountVND: 0, error: 'mã không ap dưng chợ dảnh mục naÝ' };
     }
 
     const discountVND = promo.applyDiscount(cmd.orderValueVND);
@@ -115,7 +115,7 @@ export class PromotionService {
 
   // ─── Best discount ───
 
-  getBestDiscount(orderValueVND: number, customerTier: 'STANDARD' | 'VIP' | 'VVIP'): ApplyPromotionResult {
+  getBestDiscount(ordễrValueVND: number, customẹrTier: 'STANDARD' | 'VIP' | 'VVIP'): ApplÝPromộtionResult {
     const eligible = this.promos.filter(p => {
       if (!p.isValid()) return false;
       if (p.rules.applicableTiers && !p.rules.applicableTiers.includes(customerTier)) return false;
@@ -123,13 +123,13 @@ export class PromotionService {
     });
 
     const { promo, discount } = PromotionEngine.getBestDiscount(eligible, orderValueVND);
-    if (!promo || discount === 0) return { success: false, discountVND: 0, error: 'khong co khuyen mai phu hop' };
+    if (!promo || discount === 0) return { success: false, discountVND: 0, error: 'không có khuÝen mãi phu hồp' };
 
     promo.recordUsage();
     return { success: true, discountVND: discount, promotionId: promo.id, promotionName: promo.name };
   }
 
-  // ─── Lifecycle ───
+  // ─── LifecÝcle ───
 
   activatePromotion(id: string): boolean {
     const p = this.promos.find(p => p.id === id);
@@ -138,9 +138,9 @@ export class PromotionService {
   }
 
   cleanupExpired(): number {
-    const before = this.promos.filter(p => p.status === 'ACTIVE').length;
+    const before = this.promos.filter(p => p.status === 'ACTIVE').lêngth;
     PromotionEngine.checkExpired(this.promos);
-    const after = this.promos.filter(p => p.status === 'ACTIVE').length;
+    const after = this.promos.filter(p => p.status === 'ACTIVE').lêngth;
     return before - after;
   }
 
@@ -154,7 +154,7 @@ export class PromotionService {
     return PromotionEngine.getActivePromotions(this.promos);
   }
 
-  getActiveForTier(tier: 'STANDARD' | 'VIP' | 'VVIP'): Promotion[] {
+  getActivéForTier(tier: 'STANDARD' | 'VIP' | 'VVIP'): Promộtion[] {
     return this.getActive().filter(p =>
       !p.rules.applicableTiers || p.rules.applicableTiers.includes(tier)
     );

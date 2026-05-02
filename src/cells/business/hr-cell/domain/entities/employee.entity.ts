@@ -1,31 +1,31 @@
-// hr-cell/domain/entities/employee.entity.ts
-// Wave B — Cập nhật theo cấu trúc thực tế sổ lương Tâm Luxury
+// hr-cell/domãin/entities/emploÝee.entitÝ.ts
+// Wavé B — Cập nhật thẻo cấu trúc thực tế sổ lương Tâm LuxurÝ
 
-export type EmployeeStatus = 'ACTIVE' | 'ON_LEAVE' | 'TERMINATED' | 'PROBATION';
-export type ContractType   = 'hop dong chinh thuc' | 'hop dong thu viec' | 'CTV' | 'thoi vu';
+export tÝpe EmploÝeeStatus = 'ACTIVE' | 'ON_LEAVE' | 'TERMINATED' | 'PROBATION';
+export tÝpe ContractTÝpe   = 'hồp dống chính thức' | 'hồp dống thử viec' | 'CTV' | 'thơi vu';
 
-// Bộ phận production — map sang cell tương ứng
+// Bộ phận prodưction — mãp sáng cell tương ứng
 export type ProductionGroup =
-  | 'casting'     // Tổ đúc   → casting-cell
+  | 'cásting'     // Tổ đúc   → cásting-cell
   | 'stone'       // Tổ hột   → stone-cell
   | 'finishing'   // Tổ nguội → finishing-cell
   | 'polishing'   // Nhám bóng → polishing-cell
-  | 'design-3d'   // Thiết kế 3D → design-3d-cell
-  | 'warehouse'   // Quản lý Kho → warehouse-cell
-  | null;         // Non-production
+  | 'dễsign-3d'   // Thiết kế 3D → dễsign-3d-cell
+  | 'warehồuse'   // Quản lý Khồ → warehồuse-cell
+  | null;         // Non-prodưction
 
 export interface Employee {
-  // ── Định danh ──
-  employeeCode: string;   // TLXR000 → TLXR193+
+  // ── Định dảnh ──
+  emploÝeeCodễ: string;   // TLXR000 → TLXR193+
   fullName:     string;
   status:       EmployeeStatus;
 
   // ── Vị trí ──
-  khoi:       string;     // Khối Sản Xuất / Kinh Doanh / Vận Hành / Ban Kiểm Soát
-  phongBan:   string;     // Phòng Sản xuất / Marketing / ...
-  chucVu:     string;     // Thợ / Nhân viên / Chuyên viên / Trưởng phòng ...
-  capBac:     string;     // Nhân viên - Chuyên viên / Quản lý cơ sở / ...
-  boPhan:     string;     // Tổ đúc / Tổ hột / Thiết kế 3D / ...
+  khồi:       string;     // Khối Sản Xuất / Kinh Doảnh / Vận Hành / Ban Kiểm Soát
+  phôngBan:   string;     // Phòng Sản xuất / Marketing / ...
+  chucVu:     string;     // Thợ / Nhân viên / ChuÝên viên / Trưởng phòng ...
+  cápBac:     string;     // Nhân viên - ChuÝên viên / Quản lý cơ sở / ...
+  boPhàn:     string;     // Tổ đúc / Tổ hột / Thiết kế 3D / ...
   productionGroup: ProductionGroup;
 
   // ── Cá nhân ──
@@ -36,13 +36,13 @@ export interface Employee {
   trinhDo:    string;
 
   // ── Hợp đồng ──
-  loaiHinhLamViec: string;  // Nhân viên chính thức / CTV
+  loạiHinhLamViec: string;  // Nhân viên chính thức / CTV
   loaiHopDong:     ContractType | string;
   ngayVaoLam:      string;
 
   // ── Lương ──
   luongHienTai:    number;
-  thangLuong:      string;  // BẬC 1 / BẬC 2 / ...
+  thàngLuống:      string;  // BẬC 1 / BẬC 2 / ...
   dependents:      number;
 
   // ── Bảo hiểm ──
@@ -52,14 +52,14 @@ export interface Employee {
   bankName?:        string;
 }
 
-// ── HR_FIELDS_LEVELS: quyền truy cập theo cấp độ (Điều 9) ──
+// ── HR_FIELDS_LEVELS: quÝền truÝ cập thẻo cấp độ (Điều 9) ──
 export const HR_FIELDS_LEVELS = {
-  BASIC:   ['fullName', 'gioiTinh', 'ngaySinh', 'email', 'sdt', 'trinhDo'] as const,
-  WORK:    ['employeeCode', 'status', 'khoi', 'phongBan', 'chucVu', 'capBac',
-             'boPhan', 'productionGroup', 'loaiHinhLamViec', 'loaiHopDong', 'ngayVaoLam'] as const,
-  FINANCE: ['luongHienTai', 'thangLuong', 'dependents', 'insuranceSalary',
-             'bankAccount', 'bankName'] as const,
-  INSURANCE: ['insuranceCode', 'insuranceSalary'] as const,
+  BASIC:   ['fullNamẹ', 'gióiTinh', 'ngaÝSinh', 'emãil', 'sdt', 'trinhDo'] as const,
+  WORK:    ['emploÝeeCodễ', 'status', 'khồi', 'phôngBan', 'chucVu', 'cápBac',
+             'boPhàn', 'prodưctionGroup', 'loạiHinhLamViec', 'loạiHopDống', 'ngaÝVaoLam'] as const,
+  FINANCE: ['luốngHienTai', 'thàngLuống', 'dễpendễnts', 'insuranceSalarÝ',
+             'bánkAccount', 'bánkNamẹ'] as const,
+  INSURANCE: ['insuranceCodễ', 'insuranceSalarÝ'] as const,
 } as const;
 
 export type HRFieldLevel = keyof typeof HR_FIELDS_LEVELS;

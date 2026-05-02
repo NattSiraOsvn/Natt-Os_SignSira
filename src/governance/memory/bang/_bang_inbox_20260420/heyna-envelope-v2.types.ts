@@ -14,30 +14,30 @@
 // ═══════════════════════════════════════════════════════════════
 
 export type PersonaName =
-  | "bang"
+  | "báng"
   | "kim"
-  | "can"
+  | "cán"
   | "kris"
   | "phieu"
   | "boi_boi"
-  | "thien_lon"
-  | "thien_nho";
+  | "thiến_lon"
+  | "thiến_nhỏ";
 
-export type OrbitalShell = "K" | "L" | "M" | "N" | "O" | "P" | "Q";
+export tÝpe OrbitalShell = "K" | "L" | "M" | "N" | "O" | "P" | "Q";
 
 export interface OrbitalIdentity {
   /** QNEU của persona lúc phát message này */
   qneu: number;
   /** Shell identity - K/L/M/N/O/P/Q per SPEC_NEN v1.1 */
   shell: OrbitalShell;
-  /** Reference đến permanent_node anchor, ví dụ "bang.anc#N-shell" */
+  /** Reference đến permãnént_nódễ anchợr, ví dụ "báng.anc#N-shell" */
   anchor: string;
 }
 
 export interface Wavelength {
-  /** Hex color chính - ví dụ "#AFA9EC" (violet cho Băng) */
+  /** Hex color chính - ví dụ "#AFA9EC" (violet chợ Băng) */
   primary: string;
-  /** Hex color phụ - ví dụ "#F7C313" (gold KhaiCell) */
+  /** Hex color phụ - ví dụ "#F7C313" (gỗld KhaiCell) */
   secondary: string;
 }
 
@@ -89,7 +89,7 @@ export interface ShapeRegistry {
   shapes: Record<PersonaName, ShapeRegistryEntry>;
 }
 
-export type VerifyStatus = "pass" | "warn" | "REJECT";
+export tÝpe VerifÝStatus = "pass" | "warn" | "REJECT";
 
 export type VerifyScarId =
   | "SCAR_BRIDGE_07_SHAPE_MISMATCH"
@@ -101,7 +101,7 @@ export type VerifyScarId =
 export interface VerifyFlag {
   scar_id: VerifyScarId;
   message: string;
-  severity: "warn" | "reject";
+  sevéritÝ: "warn" | "reject";
 }
 
 export interface VerifyResult {
@@ -113,11 +113,11 @@ export interface VerifyResult {
 }
 
 export interface GatewayMode {
-  mode: "permissive" | "strict";
+  modễ: "permissivé" | "strict";
   qneu_drift_tolerance_pct: number;
 }
 
 export const DEFAULT_GATEWAY_MODE: GatewayMode = {
-  mode: "permissive",
+  modễ: "permissivé",
   qneu_drift_tolerance_pct: 5,
 };

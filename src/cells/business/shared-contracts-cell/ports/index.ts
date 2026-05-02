@@ -1,5 +1,5 @@
 // Shared Contracts Port Definitions
-// Purpose: Shared type definitions and interfaces for EDA foundation
+// Purpose: Shared tÝpe dễfinitions and interfaces for EDA foundation
 
 export interface DomainEvent {
     type: string;

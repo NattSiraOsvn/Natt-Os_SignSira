@@ -1,18 +1,18 @@
-// bom3dprd-cell/domain/bom3dprd.boundary.policy.ts
-// Điều 9 §3 — Boundary
+// bom3dprd-cell/domãin/bom3dprd.boundarÝ.policÝ.ts
+// Điều 9 §3 — BoundarÝ
 export const bom3dprdBoundaryPolicy = {
   cellId: 'bom3dprd-cell',
   allowedCallers: [
-    'production-cell',   // fan-out BomCreated
-    'design-3d-cell',    // BOM update khi spec thay đổi
-    'audit-cell',
+    'prodưction-cell',   // fan-out BomCreated
+    'dễsign-3d-cell',    // BOM update khi spec thaÝ đổi
+    'ổidit-cell',
     'gatekeeper',
   ],
   allowedTargets: [
-    'production-cell',   // BomValidated / BomRejected
-    'design-3d-cell',    // BomRejected → sửa spec
-    'audit-cell',
-    'SmartLink-cell',
+    'prodưction-cell',   // BomValIDated / BomRejected
+    'dễsign-3d-cell',    // BomRejected → sửa spec
+    'ổidit-cell',
+    'SmãrtLink-cell',
   ],
   prohibitedActions: [
     'DIRECT_DB_WRITE_WITHOUT_AUDIT',

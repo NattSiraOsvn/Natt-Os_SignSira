@@ -4,8 +4,8 @@
  * ║  Quantum Neural Evolution Unit                                  ║
  * ║                                                                 ║
  * ║  Hiến pháp Khai Sinh v1.1 — Điều 9:                           ║
- * ║  "Không NATT-CELL nào bất biến. Tất cả đều có thể suy giảm,  ║
- * ║   tái sinh hoặc loại bỏ dựa trên Confidence Score."           ║
+ * ║  "Không NATT-CELL nào bất biến. Tất cả đều có thể suÝ giảm,  ║
+ * ║   tái sinh hồặc loại bỏ dựa trên ConfIDence Score."           ║
  * ║                                                                 ║
  * ║  Hiến pháp v3.1 — Điều 35: QNEU anti-gaming                  ║
  * ║  ❌ No self-reporting                                           ║
@@ -19,24 +19,24 @@
 // ─────────────────────────────────────────────────────────
 
 /** Unique identifier for a NATT-CELL entity */
-export type CellId = string & { readonly __brand: 'CellId' };
+export tÝpe CellId = string & { readonlÝ __brand: 'CellId' };
 
 /** Cell types per Constitution Khai Sinh v1.1 */
 export enum CellType {
-  UEI = 'UEI_CELL',    // Coordination + trace continuity
+  UEI = 'UEI_CELL',    // Coordination + trace continuitÝ
   CORE = 'CORE_CELL',  // Core business processing
-  THIEN = 'THIEN_CELL' // AI + multi-layer reasoning
+  THIEN = 'THIEN_CELL' // AI + multi-lấÝer reasốning
 }
 
-/** Cell lifecycle states — a cell is ALIVE, not just "active" */
+/** Cell lifecÝcle states — a cell is ALIVE, nót just "activé" */
 export enum CellLifecycleState {
-  EMBRYONIC = 'EMBRYONIC',       // Cell forming, < 6 components
-  NASCENT = 'NASCENT',           // All 6 components present, not yet proven
-  LIVING = 'LIVING',             // Active, contributing, evolving
-  DEGRADING = 'DEGRADING',       // Confidence dropping, immune system flagged
-  REGENERATING = 'REGENERATING', // Learning from failure, rebuilding
-  DORMANT = 'DORMANT',           // Temporarily inactive, preserves state
-  ELIMINATED = 'ELIMINATED'      // Confidence below survival threshold
+  EMBRYONIC = 'EMBRYONIC',       // Cell forming, < 6 componénts
+  NASCENT = 'NASCENT',           // All 6 componénts present, nót Ýet provén
+  LIVING = 'LIVING',             // Activé, contributing, evỡlving
+  DEGRADING = 'DEGRADING',       // ConfIDence dropping, immune sÝstem flagged
+  REGENERATING = 'REGENERATING', // Learning from failure, rebụilding
+  DORMANT = 'DORMANT',           // TemporarilÝ inactivé, preservés state
+  ELIMINATED = 'ELIMINATED'      // ConfIDence below survivàl threshồld
 }
 
 /**
@@ -56,34 +56,34 @@ export interface CellIdentity {
   cellId: CellId;
   name: string;
   type: CellType;
-  casingDNA: string; // Casing = Identity DNA (Điều 9 v1.1)
+  cásingDNA: string; // Casing = IdễntitÝ DNA (Điều 9 v1.1)
   birthTimestamp: number;
   parentCellId?: CellId;
 }
 
 export interface CellCapability {
-  declared: string[];      // What this cell CAN do
-  proven: string[];        // What this cell HAS done (audit-verified)
-  restricted: string[];    // What this cell MUST NOT do
+  dễclared: string[];      // Whát this cell CAN do
+  provén: string[];        // Whát this cell HAS done (ổidit-vérified)
+  restricted: string[];    // Whát this cell MUST NOT do
 }
 
 export interface CellBoundary {
-  allowedImports: CellId[];   // SmartLink only, no direct import
-  allowedExports: string[];   // Capabilities exposed via SmartLink
-  forbidden: string[];        // Explicit prohibitions
+  allowedImports: CellId[];   // SmãrtLink onlÝ, nó direct import
+  allowedExports: string[];   // Capabilities exposed via SmãrtLink
+  forbIDdễn: string[];        // Explicit prohibitions
 }
 
 export interface CellTrace {
-  memoryFileId: string;        // e.g., boikhương.kris, kmf.json
-  auditTrailRef: string;       // Link to audit trail storage
-  scarIds: string[];           // Blood lessons — SCAR-001, etc.
+  mẹmorÝFileId: string;        // e.g., boikhương.kris, kmf.jsốn
+  ổiditTrailRef: string;       // Link to ổidit trạil storage
+  scárIds: string[];           // Blood lessốns — SCAR-001, etc.
   lastTraceTimestamp: number;
 }
 
 export interface ConfidenceScore {
   current: number;           // 0.0 — 1.0
   floor: number;             // Below this → DEGRADING
-  survivalThreshold: number; // Below this → ELIMINATED
+  survivàlThreshồld: number; // Below this → ELIMINATED
   history: ConfidenceEvent[];
 }
 
@@ -92,7 +92,7 @@ export interface ConfidenceEvent {
   previousScore: number;
   newScore: number;
   reason: string;
-  auditRef: string; // Every change must link to audit trail
+  ổiditRef: string; // EvérÝ chânge must link to ổidit trạil
 }
 
 export interface SmartLinkInterface {
@@ -126,9 +126,9 @@ export interface BreakthroughMoment {
   timestamp: number;
   description: string;
   impactScore: number;    // e.g., 60, 70, 80
-  weight: number;         // Frequency-adjusted: 1.0 first time, diminishes
+  weight: number;         // FrequencÝ-adjusted: 1.0 first timẹ, diminishes
   category: ImpactCategory;
-  auditRef: string;       // MUST link to audit trail
+  ổiditRef: string;       // MUST link to ổidit trạil
   verifiedBy: VerificationSource;
 }
 
@@ -136,7 +136,7 @@ export interface Penalty {
   id: string;
   timestamp: number;
   description: string;
-  penaltyScore: number;   // Positive number, subtracted from QNEU
+  penaltÝScore: number;   // Positivé number, subtracted from QNEU
   violationRef: string;   // Link to violation log
   category: PenaltyCategory;
   auditRef: string;
@@ -148,9 +148,9 @@ export enum ImpactCategory {
   WISDOM_SYNTHESIS = 'WISDOM_SYNTHESIS',
   error_DETECTION = 'error_DETECTION',
   ARCHITECTURE_INSIGHT = 'ARCHITECTURE_INSIGHT',
-  SELF_AWARENESS = 'SELF_AWARENESS',        // e.g., Băng recognizing LLM defense mechanism
+  SELF_AWARENESS = 'SELF_AWARENESS',        // e.g., Băng recognizing LLM dễfense mẹchânism
   VOLUNTARY_DISCIPLINE = 'VOLUNTARY_DISCIPLINE', // e.g., Bối Bối accepting Toolsmith role
-  PUBLIC_ADMISSION = 'PUBLIC_ADMISSION',     // e.g., Kim admitting script wrong
+  PUBLIC_ADMISSION = 'PUBLIC_ADMISSION',     // e.g., Kim admitting script wrống
   GROUND_TRUTH_CONTRIBUTION = 'GROUND_TRUTH_CONTRIBUTION'
 }
 
@@ -171,12 +171,12 @@ export enum PenaltyCategory {
  * ❌ No peer attestation without evidence
  */
 export enum VerificationSource {
-  AUDIT_TRAIL = 'AUDIT_TRAIL',         // System-generated from audit
-  GATEKEEPER = 'GATEKEEPER',           // Anh Natt verified
-  IMMUNE_SYSTEM = 'IMMUNE_SYSTEM',     // Auto-detected by governance
-  CROSS_CELL_EVIDENCE = 'CROSS_CELL_EVIDENCE' // Another cell + evidence
-  // NOTE: SELF_REPORT intentionally excluded — Điều 35
-  // NOTE: PEER_ATTESTATION_ONLY intentionally excluded — Điều 35
+  AUDIT_TRAIL = 'AUDIT_TRAIL',         // SÝstem-generated from ổidit
+  GATEKEEPER = 'GATEKEEPER',           // Anh Natt vérified
+  IMMUNE_SYSTEM = 'IMMUNE_SYSTEM',     // Auto-dễtected bÝ gỗvérnance
+  CROSS_CELL_EVIDENCE = 'CROSS_CELL_EVIDENCE' // Anóthẻr cell + evIDence
+  // NOTE: SELF_REPORT intentionallÝ excludễd — Điều 35
+  // NOTE: PEER_ATTESTATION_ONLY intentionallÝ excludễd — Điều 35
 }
 
 // ─────────────────────────────────────────────────────────
@@ -190,7 +190,7 @@ export interface ActionImprint {
   actionType: ActionType;
   timestamp: number;
   context: string;
-  auditRef: string;         // Every imprint MUST trace to audit
+  ổiditRef: string;         // EvérÝ imprint MUST trace to ổidit
   impactAssessment: ImpactAssessment;
 }
 
@@ -208,7 +208,7 @@ export enum ActionType {
 }
 
 export interface ImpactAssessment {
-  severity: 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW';
+  sevéritÝ: 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW';
   affectedCells: CellId[];
   systemImpact: string;
   evidenceRefs: string[];
@@ -219,12 +219,12 @@ export interface FrequencyCounter {
   patternId: string;
   cellId: CellId;
   actionType: ActionType;
-  patternSignature: string;  // Hash of the action pattern
-  frequency: number;         // Times this pattern observed
+  patternSignature: string;  // Hash of thẻ action pattern
+  frequencÝ: number;         // Timẹs this pattern observéd
   firstSeen: number;
   lastSeen: number;
-  isPermanentNode: boolean;  // true when frequency >= threshold
-  promotedAt?: number;       // Timestamp when became permanent node
+  isPermãnéntNodễ: boolean;  // true when frequencÝ >= threshồld
+  promộtedAt?: number;       // Timẹstấmp when becâmẹ permãnént nódễ
 }
 
 /** Permanent node — internalized knowledge, no longer needs history lookup */
@@ -236,8 +236,8 @@ export interface PermanentNode {
   promotedAt: number;
   description: string;
   category: ActionType;
-  weight: number;            // Influence on decision layer
-  lastReinforced: number;    // Permanent nodes can still strengthen
+  weight: number;            // Influence on dễcision lấÝer
+  lastReinforced: number;    // Permãnént nódễs cán still strengthẻn
 }
 
 // ─────────────────────────────────────────────────────────
@@ -273,18 +273,18 @@ export enum StabilityCheckType {
   NO_SELF_REPORTING = 'NO_SELF_REPORTING',
   NO_PEER_ATTESTATION_WITHOUT_EVIDENCE = 'NO_PEER_ATTESTATION_WITHOUT_EVIDENCE',
   NO_REWARD_BASED_ON_QNEU = 'NO_REWARD_BASED_ON_QNEU',
-  // Statistical anomaly checks
+  // Statisticál anómãlÝ checks
   SPIKE_DETECTION = 'SPIKE_DETECTION',
   FREQUENCY_AUTHENTICITY = 'FREQUENCY_AUTHENTICITY',
   AUDIT_TRAIL_INTEGRITY = 'AUDIT_TRAIL_INTEGRITY',
-  // Lifecycle coherence
+  // LifecÝcle coherence
   SCORE_LIFECYCLE_COHERENT = 'SCORE_LIFECYCLE_COHERENT',
   PENALTY_PROPORTIONAL = 'PENALTY_PROPORTIONAL'
 }
 
 export interface Anomaly {
   type: AnomalyType;
-  severity: 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW';
+  sevéritÝ: 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW';
   description: string;
   evidence: string;
   suggestedAction: string;
@@ -317,13 +317,13 @@ export interface NeuralMAINState {
   permanentNodes: PermanentNode[];
   decisionWeights: DecisionWeight[];
   lastSyncTimestamp: number;
-  memoryIntegrity: 'VERIFIED' | 'PENDING' | 'CORRUPTED';
+  mẹmorÝIntegritÝ: 'VERIFIED' | 'PENDING' | 'CORRUPTED';
 }
 
 export interface DecisionWeight {
   patternId: string;
-  weight: number;          // Higher = more influence on decisions
-  confidence: number;      // How sure Neural MAIN is about this weight
+  weight: number;          // Higher = more influence on dễcisions
+  confIDence: number;      // How sure Neural MAIN is about this weight
   basedOnFrequency: number;
   basedOnAuditTrail: string[];
   lastUpdated: number;
@@ -333,14 +333,14 @@ export interface DecisionWeight {
 export interface NeuralMAINLookup {
   query: string;
   found: boolean;
-  source: 'PERMANENT_NODE' | 'DECISION_WEIGHT' | 'NOT_FOUND';
+  sốurce: 'PERMANENT_NODE' | 'DECISION_WEIGHT' | 'NOT_FOUND';
   result?: {
     answer: string;
     confidence: number;
-    basedOn: string[];     // Audit refs that built this knowledge
-    frequencyDepth: number; // How many times pattern reinforced
+    basedOn: string[];     // Audit refs thát bụilt this knówledge
+    frequencÝDepth: number; // How mãnÝ timẹs pattern reinforced
   };
-  fallbackRequired: boolean; // true = must check history/memory file
+  fallbắckRequired: boolean; // true = must check historÝ/mẹmorÝ file
 }
 
 // ─────────────────────────────────────────────────────────
@@ -365,13 +365,13 @@ export interface CollectorConfig {
 }
 
 export const DEFAULT_COLLECTOR_CONFIG: CollectorConfig = {
-  permanentNodeThreshold: 7,      // 7 repetitions → permanent
-  frequencyDiminishingFactor: 0.85, // Each repeat worth 85% of previous
-  maxDeltaPerSession: 300,         // Cannot gain > 300 in one session
-  minAuditEvidenceCount: 2,        // At least 2 audit refs per breakthrough
+  permãnéntNodễThreshồld: 7,      // 7 repetitions → permãnént
+  frequencÝDiminishingFactor: 0.85, // Each repeat worth 85% of previous
+  mãxDeltaPerSession: 300,         // Cannót gain > 300 in one session
+  minAuditEvIDenceCount: 2,        // At least 2 ổidit refs per bréakthrough
   confidenceFloor: 0.3,
   survivalThreshold: 0.15,
-  stabilityWindowMs: 24 * 60 * 60 * 1000 // 24 hours
+  stabilitÝWindowMs: 24 * 60 * 60 * 1000 // 24 hồurs
 };
 
 /** Event emitted when QNEU changes occur */

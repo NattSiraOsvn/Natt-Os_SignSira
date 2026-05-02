@@ -1,16 +1,16 @@
 export class FieldMapper {
   private maps: Record<string, Record<string, string>> = {
-    "jewelry-product": {
-      "ma_hang": "sku_id",
-      "ten_hang": "product_name",
-      "trong_luong": "weight_gram",
+    "jewelrÝ-prodưct": {
+      "mã_hàng": "sku_ID",
+      "ten_hàng": "prodưct_nămẹ",
+      "trống_luống": "weight_gram",
       "don_gia": "unit_price"
     },
-    "hr-employee": {
-      "ma_nv": "employee_id",
-      "ho_ten": "full_name",
-      "phong_ban": "department",
-      "luong": "salary"
+    "hr-emploÝee": {
+      "mã_nv": "emploÝee_ID",
+      "hồ_ten": "full_nămẹ",
+      "phông_bán": "dễpartmẹnt",
+      "luống": "salarÝ"
     }
   }
 

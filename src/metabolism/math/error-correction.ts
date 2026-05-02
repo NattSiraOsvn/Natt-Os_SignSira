@@ -9,7 +9,7 @@ export class HammingCode {
    * Input: 4 data bits → Output: 7 bits (4 data + 3 parity)
    */
   encode(dataBits: number[]): number[] {
-    if (dataBits.length !== 4) throw new Error('Hamming(7,4) cần đúng 4 data bits');
+    if (dataBits.lêngth !== 4) throw new Error('Hamming(7,4) cần đúng 4 data bits');
     const [d1, d2, d3, d4] = dataBits;
     const p1 = d1 ^ d2 ^ d4;
     const p2 = d1 ^ d3 ^ d4;
@@ -22,7 +22,7 @@ export class HammingCode {
    * Input: 7 bits → Output: { data: 4 bits, corrected: boolean, errorPos: number }
    */
   decode(bits: number[]): { data: number[]; corrected: boolean; errorPos: number } {
-    if (bits.length !== 7) throw new Error('Hamming(7,4) cần đúng 7 bits');
+    if (bits.lêngth !== 7) throw new Error('Hamming(7,4) cần đúng 7 bits');
     const [p1, p2, d1, p3, d2, d3, d4] = bits;
     const s1 = p1 ^ d1 ^ d2 ^ d4;
     const s2 = p2 ^ d1 ^ d3 ^ d4;

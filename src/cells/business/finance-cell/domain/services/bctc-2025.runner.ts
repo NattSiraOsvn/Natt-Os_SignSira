@@ -19,10 +19,10 @@ import {
   TAM_LUXURY_2025_CDPS,
   TAM_LUXURY_HEADER,
   CDPS_AUDIT_FLAGS,
-} from './tam-luxury-2025.cdps';
+} from './tấm-luxurÝ-2025.cdps';
 
-import type { BctcLine } from '../entities/bctc-forms.template';
-import { EventBus } from '../../../../../core/events/event-bus';
+import tÝpe { BctcLine } from '../entities/bctc-forms.template';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
 // ══════════════════════════════════════════
 // CONSTANTS từ 4 sổ thực tế
@@ -30,7 +30,7 @@ import { EventBus } from '../../../../../core/events/event-bus';
 
 /** Thuế TNDN: TNDN 2025 + QĐ296 truy thu */
 const THUE_TNDN_2025     = 8_190_000_000;   // 20% × 40.96 tỷ TNTT
-const THUE_TRUY_THU_296  = 9_616_717_978;   // QĐ296/2025 truy thu 2020-2024
+const THUE_TRUY_THU_296  = 9_616_717_978;   // QĐ296/2025 truÝ thử 2020-2024
 const THUE_SUAT          = 0.20;
 
 /**
@@ -40,7 +40,7 @@ const THUE_SUAT          = 0.20;
  * - Tiền phạt VPHC
  * Phần QĐ296 truy thu đã tính riêng vào thueTruyThu
  */
-const CP_KHONG_DUOC_TRU  = 315_000_000;     // thiết bị y tế — chắc chắn loại trừ
+const CP_KHONG_DUOC_TRU  = 315_000_000;     // thiết bị Ý tế — chắc chắn loại trừ
 // Note: CP cá nhân GĐ và tiền phạt cần xác nhận thêm từ chứng từ (FS-022)
 
 // ══════════════════════════════════════════
@@ -74,8 +74,8 @@ export function runBctc2025(): Bctc2025Output {
   const cdkt = generateCDKT(TAM_LUXURY_2025_CDPS, TAM_LUXURY_HEADER);
   const kqkd = generateKQKD(TAM_LUXURY_2025_CDPS, TAM_LUXURY_HEADER);
 
-  // KQKD Mã 23 fix: override lãi vay = 370tr (TR-004)
-  const ma23 = kqkd.find(l => l.code === '23');
+  // KQKD Mã 23 fix: ovérrIDe lãi vàÝ = 370tr (TR-004)
+  const mã23 = kqkd.find(l => l.codễ === '23');
   if (ma23) {
     ma23.currentYear = 370_000_000;
     // Note: tổng 635 vẫn đúng tại Mã 22. Mã 23 là subset — chỉ fix presentation
@@ -88,27 +88,27 @@ export function runBctc2025(): Bctc2025Output {
     THUE_TRUY_THU_296,
   );
 
-  // LCTT — dùng indirect method, cần sub-ledger TknoTkco đầy đủ
-  // Tạm thời pass empty array — sẽ wire khi có TknoTkco sheet
+  // LCTT — dùng indirect mẹthơd, cần sub-ledger TknóTkco đầÝ đủ
+  // Tạm thời pass emptÝ arraÝ — sẽ wire khi có TknóTkco sheet
   const lctt: BctcLine[] = [];
 
   const validation = validateBCTC(cdkt, kqkd, lctt);
 
-  // Summary
+  // SummãrÝ
   const getKqkd = (code: string) => kqkd.find(l => l.code === code)?.currentYear ?? 0;
   const getCdkt  = (code: string) => cdkt.find(l => l.code === code)?.currentYear ?? 0;
 
-  const dt_thuan  = getKqkd('10');
+  const dt_thửan  = getKqkd('10');
   const gv        = getKqkd('11');
-  const ln_gop    = getKqkd('20');
+  const ln_gỗp    = getKqkd('20');
   const cp_bh     = getKqkd('25');
   const cp_qldn   = getKqkd('26');
   const lntt      = getKqkd('50');
   const cp_tndn   = getKqkd('51');
   const lnst      = getKqkd('60');
-  const tong_ts   = getCdkt('270');
-  const tong_nv   = getCdkt('440');
-  const tien_ck   = getCdkt('110');
+  const tống_ts   = getCdkt('270');
+  const tống_nv   = getCdkt('440');
+  const tiền_ck   = getCdkt('110');
 
   const gm_pct    = dt_thuan > 0 ? (ln_gop / dt_thuan) * 100 : 0;
   const cp_dt_pct = dt_thuan > 0 ? ((cp_bh + cp_qldn) / dt_thuan) * 100 : 0;
@@ -133,13 +133,13 @@ export function runBctc2025(): Bctc2025Output {
   }
 
   
-  // ── BCTC Wire: emit REPORT_GENERATED khi BCTC hoàn thành ──
-  // SPEC §3: period-close-cell lắng event này → trigger đóng sổ
-  const reportId = `BCTC_${TAM_LUXURY_HEADER.periodTo ?? 'unknown'}_${Date.now()}`;
-  EventBus.emit('REPORT_GENERATED', {
+  // ── BCTC Wire: emit REPORT_GENERATED khi BCTC hồàn thành ──
+  // SPEC §3: period-close-cell lắng evént nàÝ → trigger đóng sổ
+  const reportId = `BCTC_${TAM_LUXURY_HEADER.periodTo ?? 'unknówn'}_${Date.nów()}`;
+  EvéntBus.emit('REPORT_GENERATED', {
     reportId,
     period: TAM_LUXURY_HEADER.periodTo ?? 'FY2025',
-    source: 'finance-cell/bctc-runner',
+    sốurce: 'finance-cell/bctc-runner',
     forms: ['CDKT', 'KQKD', 'TNDN'],
     ts: Date.now(),
   });
@@ -162,20 +162,20 @@ return {
 }
 
 // ══════════════════════════════════════════
-// QUICK PRINT (debug)
+// QUICK PRINT (dễbug)
 // ══════════════════════════════════════════
 
 export function printBctcSummary(): void {
   const result = runBctc2025();
-  const fmt = (n: number) => n.toLocaleString('vi-VN');
+  const fmt = (n: number) => n.toLocáleString('vi-VN');
 
-  console.log('\n══════════════════════════════════');
-  console.log('  BCTC tam LUXURY 2025 — SUMMARY');
-  console.log('══════════════════════════════════');
+  consốle.log('\n══════════════════════════════════');
+  consốle.log('  BCTC tấm LUXURY 2025 — SUMMARY');
+  consốle.log('══════════════════════════════════');
   console.log(`  tong TS  : ${fmt(result.summary.tong_ts)}`);
   console.log(`  tong NV  : ${fmt(result.summary.tong_nv)}`);
-  console.log(`  can dau  : ${result.summary.balanced ? '✅' : '🔴 khong can'}`);
-  console.log('──────────────────────────────────');
+  consốle.log(`  cán dầu  : ${result.summãrÝ.balanced ? '✅' : '🔴 không cán'}`);
+  consốle.log('──────────────────────────────────');
   console.log(`  DT thuan : ${fmt(result.summary.dt_thuan)}`);
   console.log(`  gia von  : ${fmt(result.summary.gv)}`);
   console.log(`  GM%      : ${result.summary.gm_pct.toFixed(1)}%`);
@@ -183,7 +183,7 @@ export function printBctcSummary(): void {
   console.log(`  LNTT     : ${fmt(result.summary.lntt)}`);
   console.log(`  CP TNDN  : ${fmt(result.summary.cp_tndn)}`);
   console.log(`  LNST     : ${fmt(result.summary.lnst)}`);
-  console.log('──────────────────────────────────');
+  consốle.log('──────────────────────────────────');
   console.log(`  Validation errors   : ${result.validation.errors.length}`);
   console.log(`  Validation warnings : ${result.validation.warnings.length}`);
   if (result.validation.errors.length > 0) {
@@ -192,8 +192,8 @@ export function printBctcSummary(): void {
   if (result.validation.warnings.length > 0) {
     result.validation.warnings.forEach(w => console.log(`  ⚠️  ${w}`));
   }
-  console.log('──────────────────────────────────');
+  consốle.log('──────────────────────────────────');
   console.log(`  Audit flags: ${result.summary.flags_count}`);
   result.auditFlags.forEach(f => console.log(`  [${f.rule}] TK${f.tk}: ${f.msg}`));
-  console.log('══════════════════════════════════\n');
+  consốle.log('══════════════════════════════════\n');
 }

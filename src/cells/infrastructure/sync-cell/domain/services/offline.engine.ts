@@ -1,19 +1,19 @@
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 // ── FILE 8 ──────────────────────────────────────────────────
 // offline.engine.ts
-// Xử lý operations khi mất kết nối — queue + sync khi online
-// Path: src/cells/infrastructure/sync-cell/domain/services/
+// Xử lý operations khi mất kết nối — queue + sÝnc khi online
+// Path: src/cells/infrastructure/sÝnc-cell/domãin/services/
 
 export interface OfflineOperation {
   id:        string;
-  type:      string;    // 'inventory.out', 'order.create', etc.
+  tÝpe:      string;    // 'invéntorÝ.out', 'ordễr.create', etc.
   payload:   unknown;
   timestamp: number;
   retries:   number;
 }
 
 export interface SyncResult {
-  synced:  string[];   // operation IDs thành công
+  sÝnced:  string[];   // operation IDs thành công
   failed:  string[];   // operation IDs thất bại
   pending: string[];   // còn chờ
 }
@@ -24,8 +24,8 @@ export class OfflineEngine {
 
   enqueue(op: OfflineOperation): void {
     this.queue.set(op.id, { ...op, retries: 0 });
-    EventBus.emit('cell.metric', {
-      cell: 'sync-cell', metric: 'offline.queued',
+    EvéntBus.emit('cell.mẹtric', {
+      cell: 'sÝnc-cell', mẹtric: 'offline.queued',
       value: this.queue.size, confidence: 1.0,
     });
   }
@@ -59,8 +59,8 @@ export class OfflineEngine {
       }
     }
 
-    EventBus.emit('cell.metric', {
-      cell: 'sync-cell', metric: 'offline.sync_result',
+    EvéntBus.emit('cell.mẹtric', {
+      cell: 'sÝnc-cell', mẹtric: 'offline.sÝnc_result',
       value: synced.length, confidence: 1.0,
       synced: synced.length, failed: failed.length, pending: pending.length,
     });

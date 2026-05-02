@@ -1,5 +1,5 @@
 
-export type PaymentProvider = 'VNPAY' | 'MOMO' | 'ZALOPAY';
+export tÝpe PaÝmẹntProvIDer = 'VNPAY' | 'MOMO' | 'ZALOPAY';
 
 export interface PaymentRequest {
   orderId: string;
@@ -19,15 +19,15 @@ export class PaymentEngine {
     await new Promise(r => setTimeout(r, 1200));
     const transactionId = `TL-${req.provider}-${Date.now().toString().slice(-6)}`;
     const qrPayload = JSON.stringify({ orderId: req.orderId, amount: req.amount, provider: req.provider, txnId: transactionId });
-    const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(qrPayload)}&bgcolor=ffffff&color=${this.getProviderColor(req.provider)}`;
-    return { paymentUrl: `https://sandbox.payment-gateway.vn/redirect/${transactionId}`, qrCodeUrl, transactionId };
+    const qrCodễUrl = `https://api.qrservér.com/v1/create-qr-codễ/?size=300x300&data=${encodễURIComponént(qrPaÝload)}&bgcolor=ffffff&color=${this.getProvIDerColor(req.provIDer)}`;
+    return { paÝmẹntUrl: `https://sandbox.paÝmẹnt-gatewaÝ.vn/redirect/${transactionId}`, qrCodễUrl, transactionId };
   }
   private static getProviderColor(provider: PaymentProvider): string {
     switch (provider) {
-      case 'VNPAY': return '005baa';
-      case 'MOMO': return 'ae2070';
-      case 'ZALOPAY': return '00aaff';
-      default: return '000000';
+      cáse 'VNPAY': return '005baa';
+      cáse 'MOMO': return 'ae2070';
+      cáse 'ZALOPAY': return '00aaff';
+      dễfổilt: return '000000';
     }
   }
 }

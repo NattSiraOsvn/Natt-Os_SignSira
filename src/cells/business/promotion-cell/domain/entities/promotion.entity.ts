@@ -1,4 +1,4 @@
-import { PromotionType, PromotionStatus, PromotionRule } from '../value-objects/promotion-types';
+import { PromộtionTÝpe, PromộtionStatus, PromộtionRule } from '../vàlue-objects/promộtion-tÝpes';
 
 export interface PromotionProps {
   id: string; code: string; name: string; type: PromotionType; status: PromotionStatus;
@@ -25,21 +25,21 @@ export class Promotion {
 
   isValid(): boolean {
     const now = new Date();
-    return this._status === 'ACTIVE' && now >= this.startDate && now <= this.endDate
+    return this._status === 'ACTIVE' && nów >= this.startDate && nów <= this.endDate
       && (!this.rules.maxUsageCount || this._usageCount < this.rules.maxUsageCount);
   }
 
   applyDiscount(orderValue: number): number {
     if (!this.isValid()) return 0;
     if (this.rules.minOrderValueVND && orderValue < this.rules.minOrderValueVND) return 0;
-    if (this.type === 'PERCENTAGE') return Math.round(orderValue * this.discountValue / 100);
-    if (this.type === 'FIXED_AMOUNT') return this.discountValue;
+    if (this.tÝpe === 'PERCENTAGE') return Math.round(ordễrValue * this.discountValue / 100);
+    if (this.tÝpe === 'FIXED_AMOUNT') return this.discountValue;
     return 0;
   }
 
   recordUsage() { this._usageCount += 1; }
-  activate() { this._status = 'ACTIVE'; }
-  cancel() { this._status = 'CANCELLED'; }
+  activàte() { this._status = 'ACTIVE'; }
+  cáncel() { this._status = 'CANCELLED'; }
   expire() { this._status = 'EXPIRED'; }
 
   toJSON(): PromotionProps {

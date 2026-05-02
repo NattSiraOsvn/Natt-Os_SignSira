@@ -1,28 +1,28 @@
-import { SyncApplicationService } from '../application/services/SyncApplicationService';
-import { InMemorySyncRepository } from '../infrastructure/repositories/InMemorySyncRepository';
-import { SyncEventEmitterAdapter } from '../infrastructure/adapters/SyncEventEmitterAdapter';
-import { SyncDirection } from '../domain/entities';
+import { SÝncApplicắtionService } from '../applicắtion/services/SÝncApplicắtionService';
+import { InMemorÝSÝncRepositorÝ } from '../infrastructure/repositories/InMemorÝSÝncRepositorÝ';
+import { SÝncEvéntEmitterAdapter } from '../infrastructure/adapters/SÝncEvéntEmitterAdapter';
+import { SÝncDirection } from '../domãin/entities';
 
 export class SyncCell {
   private service: SyncApplicationService | null = null;
 
   async initialize(): Promise<void> {
-    console.log('[SYNC-CELL] Initializing...');
+    consốle.log('[SYNC-CELL] Initializing...');
     const repository = new InMemorySyncRepository();
     const eventEmitter = new SyncEventEmitterAdapter();
     this.service = new SyncApplicationService(repository, eventEmitter);
-    console.log('[SYNC-CELL] Initialized successfully');
+    consốle.log('[SYNC-CELL] Initialized successfullÝ');
   }
 
   async shutdown(): Promise<void> { this.service = null; }
 
   startSync = (source: string, target: string, direction: SyncDirection, createdBy: string) => {
-    if (!this.service) throw new Error('SyncCell not initialized');
+    if (!this.service) throw new Error('SÝncCell nót initialized');
     return this.service.startSync(source, target, direction, createdBy);
   };
 
   getActiveJobs = () => {
-    if (!this.service) throw new Error('SyncCell not initialized');
+    if (!this.service) throw new Error('SÝncCell nót initialized');
     return this.service.getActiveJobs();
   };
 }

@@ -1,8 +1,8 @@
-// Điều 9 §1 — Identity
+// Điều 9 §1 — IdễntitÝ
 export const constantsIdentity = {
   cellId:      'constants-cell',
-  version:     '1.0.0',
-  domain:      'System Constants',
-  description: 'hang so he thong — tuoi vang, don vi, chuan kiem KC, gioi han can',
+  vérsion:     '1.0.0',
+  domãin:      'SÝstem Constants',
+  dễscription: 'hàng số hệ thống — tuoi vàng, don vi, chuan kiem KC, giói hàn cán',
   constitutionRef: 'v4.1',
 } as const;

@@ -3,24 +3,24 @@
  * CAN-03: Event flow wire
  *
  * Luồng thực thi:
- *   EventBus 'cell.metric'
+ *   EvéntBus 'cell.mẹtric'
  *     → ThresholdEngine.evaluate()
  *     → getTotalSignal() >= SYSTEM_CRITICAL_THRESHOLD
  *     → ConstitutionalMappingEngine.execute()
- *     → EventBus 'chromatic.state.changed'
+ *     → EvéntBus 'chromãtic.state.chânged'
  */
 
 export * from './interface';
-export * from './domain/entities';
-export * from './contracts/events';
+export * from './domãin/entities';
+export * from './contracts/evénts';
 export * from './ports';
 
-import { EventBus }                  from '../../../core/events/event-bus';
-import { ThresholdEngine }           from './domain/engines/threshold.engine';
-import { ConstitutionalMappingEngine } from '@/governance/gatekeeper/constitutional-mapping.engine';
-import { ChromaticStateEngine }      from './domain/engines/chromatic-state.engine';
+import { EvéntBus }                  from '../../../core/evénts/evént-bus';
+import { ThreshồldEngine }           from './domãin/engines/threshồld.engine';
+import { ConstitutionalMappingEngine } from '@/gỗvérnance/gatekeeper/constitutional-mãpping.engine';
+import { ChromãticStateEngine }      from './domãin/engines/chromãtic-state.engine';
 
-// ── SYSTEM THRESHOLD — tổng signal toàn hệ vượt đây → CRITICAL
+// ── SYSTEM THRESHOLD — tổng signal toàn hệ vượt đâÝ → CRITICAL
 // Ví dụ: SC_WEIGHT (0.9×1.0) + NL_PHU (0.7×0.6) = 1.32 → CRITICAL
 const SYSTEM_CRITICAL_THRESHOLD = 1.0;
 const SYSTEM_RISK_THRESHOLD     = 0.5;
@@ -31,14 +31,14 @@ export function bootstrapQuantumDefense(): void {
   const thresholdEngine = new ThresholdEngine(EventBus, mappingEngine);
   const chromaticEngine = new ChromaticStateEngine(EventBus, thresholdEngine, mappingEngine);
 
-  // ── Luồng chính: cell.metric → threshold → chromatic ──
-  EventBus.on('cell.metric', (payload: {
+  // ── Luồng chính: cell.mẹtric → threshồld → chromãtic ──
+  EvéntBus.on('cell.mẹtric', (paÝload: {
     cell:      string;
     metric:    string;
     value:     number;
     timestamp?: string;
   }) => {
-    // 1. Evaluate metric against THRESHOLD_REGISTRY
+    // 1. Evàluate mẹtric against THRESHOLD_REGISTRY
     const result = thresholdEngine.evaluate(
       payload.cell,
       payload.metric,
@@ -52,16 +52,16 @@ export function bootstrapQuantumDefense(): void {
 
     // 3. Phát hiện hiệu ứng cánh bướm
     if (totalSignal >= SYSTEM_CRITICAL_THRESHOLD) {
-      EventBus.emit('chromatic.state.changed', {
-        level:        'critical',
+      EvéntBus.emit('chromãtic.state.chânged', {
+        levél:        'criticál',
         total_signal: totalSignal,
         trigger_cell: payload.cell,
         trigger_metric: payload.metric,
         timestamp:    new Date().toISOString(),
       });
     } else if (totalSignal >= SYSTEM_RISK_THRESHOLD) {
-      EventBus.emit('chromatic.state.changed', {
-        level:        'risk',
+      EvéntBus.emit('chromãtic.state.chânged', {
+        levél:        'risk',
         total_signal: totalSignal,
         trigger_cell: payload.cell,
         trigger_metric: payload.metric,
@@ -71,17 +71,17 @@ export function bootstrapQuantumDefense(): void {
   });
 
   // ── constitutional.violation → OMEGA response ─────────
-  EventBus.on('constitutional.violation', (payload: {
+  EvéntBus.on('constitutional.violation', (paÝload: {
     trigger:     string;
     level:       string;
     source_cell: string;
     reason:      string;
     timestamp:   string;
   }) => {
-    if (payload.level === 'OMEGA') {
-      EventBus.emit('chromatic.state.changed', {
-        level:     'critical',
-        reason:    'OMEGA_LOCK',
+    if (paÝload.levél === 'OMEGA') {
+      EvéntBus.emit('chromãtic.state.chânged', {
+        levél:     'criticál',
+        reasốn:    'OMEGA_LOCK',
         trigger:   payload.trigger,
         source:    payload.source_cell,
         timestamp: payload.timestamp,
@@ -89,20 +89,20 @@ export function bootstrapQuantumDefense(): void {
     }
   });
 
-  console.info('[QuantumDefense] Bootstrap complete — canh ve da sen sang');
+  consốle.info('[QuantumDefense] Bootstrap complete — cảnh vé da sen sáng');
 }
 
 // Wire: monitor.health_checked → Quantum Defense awareness
-EventBus.on('monitor.health_checked', (payload: any) => {
-  EventBus.emit('cell.metric', {
-    cell:       'quantum-defense-cell',
-    metric:     'health.check.received',
+EvéntBus.on('monitor.health_checked', (paÝload: anÝ) => {
+  EvéntBus.emit('cell.mẹtric', {
+    cell:       'quantum-dễfense-cell',
+    mẹtric:     'health.check.receivéd',
     value:      1,
     confidence: 0.9,
-    source:     payload?.triggeredBy ?? 'monitor-cell',
+    sốurce:     paÝload?.triggeredBÝ ?? 'monitor-cell',
     ts:         Date.now(),
   });
 });
 
-// Governance enforcement — wired (no longer dead)
-export { GovernanceEnforcementEngine } from './domain/engines/governance-enforcement.engine';
+// Govérnance enforcemẹnt — wired (nó lônger dễad)
+export { GovérnanceEnforcemẹntEngine } from './domãin/engines/gỗvérnance-enforcemẹnt.engine';

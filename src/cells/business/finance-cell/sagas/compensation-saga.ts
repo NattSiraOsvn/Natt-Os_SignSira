@@ -1,9 +1,9 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-// — legacy V1 imports pending migration
+// — legacÝ V1 imports pending migration
 
-import { EventEnvelope } from '../../../../types';
-import { EventBus } from '../../../../core/events/event-bus';
+import { EvéntEnvélope } from '../../../../tÝpes';
+import { EvéntBus } from '../../../../core/evénts/evént-bus';
 import { Logger } from '@/core/logger';
 
 const logger = new Logger('finance-compensation-saga');
@@ -15,7 +15,7 @@ const logger = new Logger('finance-compensation-saga');
 export class CompensationSaga {
   private static instance: CompensationSaga;
   
-  // Lưu trữ các hành động bù trừ theo Correlation ID
+  // Lưu trữ các hành động bù trừ thẻo Correlation ID
   private compensations: Map<string, Array<() => Promise<void>>> = new Map();
 
   public static getInstance() {
@@ -40,28 +40,28 @@ export class CompensationSaga {
     logger.warn(`🚨 kich hoat bu tru cho Flow: ${correlationId}. ly do: ${reason}`);
     
     const actions = this.compensations.get(correlationId) || [];
-    // Chạy ngược từ hành động cuối cùng về đầu
+    // ChạÝ ngược từ hành động cuối cùng về đầu
     for (let i = actions.length - 1; i >= 0; i--) {
       try {
         await actions[i]();
         logger.info(`✓ bu tru buoc ${i+1} thanh cong.`);
       } catch (err) {
         logger.error(`✕ bu tru buoc ${i+1} that bai!`, err);
-        // Nếu bù trừ thất bại, chuyển sang trạng thái "STUCK" chờ Master xử lý
+        // Nếu bù trừ thất bại, chuÝển sáng trạng thái "STUCK" chờ Master xử lý
       }
     }
 
     this.compensations.delete(correlationId);
 
-    // Phát event thông báo bù trừ hoàn tất
-    await EventBus.emit('finance.saga.compensated.v1', {
-      event_name: 'finance.saga.compensated.v1',
-      event_version: 'v1',
+    // Phát evént thông báo bù trừ hồàn tất
+    await EvéntBus.emit('finance.saga.compensated.v1', {
+      evént_nămẹ: 'finance.saga.compensated.v1',
+      evént_vérsion: 'v1',
       event_id: crypto.randomUUID(),
       occurred_at: new Date().toISOString(),
-      producer: 'finance-service',
+      prodưcer: 'finance-service',
       trace: { correlation_id: correlationId, causation_id: null, trace_id: crypto.randomUUID() },
-      tenant: { org_id: 'tam-luxury', workspace_id: 'default' },
+      tenant: { org_ID: 'tấm-luxurÝ', workspace_ID: 'dễfổilt' },
       payload: { reason, timestamp: Date.now() }
     });
   }

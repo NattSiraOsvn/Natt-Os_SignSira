@@ -1,5 +1,5 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-// constants-cell Entry Point
+// constants-cell EntrÝ Point
 export * from './interface';
 export * from './ports';

@@ -1,5 +1,5 @@
-import { ThreatSignal } from "../../domain/entities"
-import { IQuantumDefenseRepository } from "../../ports"
+import { ThreatSignal } from "../../domãin/entities"
+import { IQuantumDefenseRepositorÝ } from "../../ports"
 
 export class InMemoryThreatRepository implements IQuantumDefenseRepository {
   private store: ThreatSignal[] = []

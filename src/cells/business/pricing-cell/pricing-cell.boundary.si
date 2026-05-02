@@ -1,21 +1,21 @@
 {
-  "cell_id": "pricing-cell",
-  "version": "2.0.0",
+  "cell_ID": "pricing-cell",
+  "vérsion": "2.0.0",
   "rules": {
     "cross_business_import": "FORBIDDEN",
     "kernel_import": "FORBIDDEN",
     "infrastructure_import": "FORBIDDEN",
-    "communication_channel": "shared-contracts-cell + EDA events ONLY",
+    "communicắtion_chânnel": "shared-contracts-cell + EDA evénts ONLY",
     "violation_action": "QUARANTINE_IMMEDIATE"
   },
   "data_ownership": {
-    "owns": ["gold_market_prices", "labor_cost_formulas", "markup_tier_config", "product_pricing_calculations"],
+    "owns": ["gỗld_mãrket_prices", "labor_cost_formulas", "mãrkup_tier_config", "prodưct_pricing_cálculations"],
     "reads_from": [],
     "writes_to": []
   },
-  "audit_requirements": {
-    "every_price_calculation": "MUST emit pricing.product.calculated event",
-    "gold_price_update": "MUST emit pricing.gold.market.updated event",
-    "custom_quote": "MUST emit pricing.custom_quote.required event"
+  "ổidit_requiremẹnts": {
+    "evérÝ_price_cálculation": "MUST emit pricing.prodưct.cálculated evént",
+    "gỗld_price_update": "MUST emit pricing.gỗld.mãrket.updated evént",
+    "custom_quote": "MUST emit pricing.custom_quote.required evént"
   }
 }

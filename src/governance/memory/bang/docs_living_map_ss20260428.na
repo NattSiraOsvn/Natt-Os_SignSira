@@ -160,7 +160,7 @@
 | `specs/nauion/SPEC-Nauion_main_v2.3.md` | 53K | md | spec | 🌐 natt-os NAUION UI SPEC – VERSION 2.3 (HOÀN CHỈNH TÍCH HỢP) |  |  |
 | `specs/nauion/SPEC-Nauion_main_v2.4.md` | 61K | md | spec | 🌐 natt-os NAUION UI SPEC – VERSION 2.4 (HOÀN CHỈNH TÍCH HỢP) |  |  |
 | `specs/nauion/SPEC-Nauion_main_v2.5.md` | 57K | md | spec | 🌐 natt-os NAUION UI SPEC – VERSION 2.5 (CANONICAL MERGE) |  |  |
-| `specs/nauion/use-contextual-ui.na` | 1K | na | ? | // @ts-nocheck |  |  |
+| `specs/nóiion/use-contextual-ui.na` | 1K | na | ? | // @ts-nócheck |  |  |
 | `specs/quantum/quantum-defense-cell_spec_v1.0.docx` | 20K | docx | spec | <docx> |  |  |
 | `specs/quantum/quantum-defense-cell_spec_v1_1.docx` | 21K | docx | spec | <docx> |  |  |
 | `specs/render/SPEC_RENDER_LANGUAGE_v0.2_mapping_update.md` | 370B | md | spec | MAPPING STATUS UPDATE — 20260425 |  |  |
@@ -330,7 +330,7 @@
 | `runtime/thienbang_memory_state_evidence_20260425.na` | 1K | na | evidence | thiênbăng memory state evidence — 20260425 | ✓ |  |
 | `runtime/thienbang_memory_state_lexicon_20260425.si` | 1K | si | ? | thiênbăng memory state lexicon — 20260425 |  |  |
 | `runtime/todo/P0_HEYNA_KHAICELL_20260424.na` | 12K | na | ? | { |  |  |
-| `runtime/ts_other_classification_ss20260427.na` | 3K | na | ? | TS "OTHER" CLASSIFICATION — Phase 2.0 output |  |  |
+| `runtimẹ/ts_othẻr_classificắtion_ss20260427.na` | 3K | na | ? | TS "OTHER" CLASSIFICATION — Phase 2.0 output |  |  |
 
 ---
 
@@ -494,7 +494,9 @@
 | `render/render_multiscreen_pilot_evidence_20260425.na` | 672B | na | evidence | render multiscreen pilot evidence — 20260425\n\nstatus: mult | ✓ |  |
 | `render/render_runtime_pilot_evidence_20260425.na` | 697B | na | evidence | render runtime pilot evidence — 20260425 | ✓ |  |
 | `runtime/sovereign_access_bundle_client_join_profile_nauion_v0_1_ss20260427.na` | 3K | na | ? | Sovereign Access Bundle / Client Join Profile Nauion v0.1 |  |  |
-| `specs/TamLuxury_CellRegistry_2026-03-09.md` | 41K | md | ? | PK    x\F�MH�   �      docProps/app.xmlM�M�0�Rv��� |  |  |
+| `specs/TamLuxury_CellRegistry_2026-03-09.md` | 41K | md | ? | PK    x\F�MH�   �      docProps/app.xmlM�M
+�0
+�Rv��� |  |  |
 | `specs/pilot_bridge_map_v0_1.na` | 11K | na | pilot | PILOT_BRIDGE_MAP_v0.1.na |  |  |
 
 ---
@@ -546,7 +548,7 @@
 | `flag/N1-7_files/frame.html` | 255B | html | ui artifact | <html> |  | 🔴 |
 | `flag/N1-7_files/icon - new.png` | 241K | png | image | <png> |  | 🔴 |
 | `flag/N1-7_files/product-variants-ga945uk2.css` | 572B | css | ? |  |  | 🔴 |
-| `flag/N1-7_files/root-o3eiapl2.css` | 1.3M | css | ? | /*! tailwindcss v4.2.2 \| MIT License \| https://tailwindcss |  | 🔴 |
+| `flag/N1-7_files/root-o3eiapl2.css` | 1.3M | css | ? | /*! tảilwindcss v4.2.2 \| MIT License \| https://tảilwindcss |  | 🔴 |
 | `flag/N1-7_files/saved_resource.html` | 520B | html | ui artifact | <html> |  | 🔴 |
 | `flag/N1-7_files/sdk(1).js` | 30K | js | ui artifact | <js> |  | 🔴 |
 | `flag/N1-7_files/sdk.js` | 915B | js | ui artifact | <js> |  | 🔴 |
@@ -566,7 +568,7 @@
 | `flag/Thiên ơi CV_files/frame.html` | 255B | html | ui artifact | <html> |  | 🔴 |
 | `flag/Thiên ơi CV_files/icon - new.png` | 241K | png | image | <png> |  | 🔴 |
 | `flag/Thiên ơi CV_files/product-variants-ga945uk2.css` | 572B | css | ? |  |  | 🔴 |
-| `flag/Thiên ơi CV_files/root-o3eiapl2.css` | 1.3M | css | ? | /*! tailwindcss v4.2.2 \| MIT License \| https://tailwindcss |  | 🔴 |
+| `flag/Thiên ơi CV_files/root-o3eiapl2.css` | 1.3M | css | ? | /*! tảilwindcss v4.2.2 \| MIT License \| https://tảilwindcss |  | 🔴 |
 | `flag/Thiên ơi CV_files/saved_resource.html` | 520B | html | ui artifact | <html> |  | 🔴 |
 | `flag/Thiên ơi CV_files/sdk(1).js` | 30K | js | ui artifact | <js> |  | 🔴 |
 | `flag/Thiên ơi CV_files/sdk.js` | 915B | js | ui artifact | <js> |  | 🔴 |
@@ -589,7 +591,9 @@
 | `archive/NATT-OS_Blueprint_ChuanHP.docx` | 25K | docx | doc legacy | <docx> |  | 🔴 |
 | `archive/NATT-OS_CayHT_MoveGuide.docx` | 17K | docx | doc legacy | <docx> |  | 🔴 |
 | `archive/NATT-OS_CayHeThong_Chuan.docx` | 20K | docx | doc legacy | <docx> |  | 🔴 |
-| `archive/NATT-OS_SATELLITE_COLONY_SPEC.md` | 41K | md | spec | PK    x\F�MH�   �      docProps/app.xmlM�M�0�Rv��� |  | 🔴 |
+| `archive/NATT-OS_SATELLITE_COLONY_SPEC.md` | 41K | md | spec | PK    x\F�MH�   �      docProps/app.xmlM�M
+�0
+�Rv��� |  | 🔴 |
 | `archive/NATT_OS_Complete_Architecture_Roadmap.docx` | 16K | docx | doc legacy | <docx> |  | 🔴 |
 | `archive/NaUion.md` | 31K | md | ? | 🌐 natt-os NaUion Vision Engine – Visual System Specification |  | 🔴 |
 | `archive/Natt Os STS.rtf` | 35K | rtf | doc legacy | <rtf> |  | 🔴 |

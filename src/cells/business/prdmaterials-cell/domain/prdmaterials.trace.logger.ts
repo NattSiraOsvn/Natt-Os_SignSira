@@ -3,7 +3,7 @@ export type PrdMaterialsTraceEvent =
   | 'GOLD_ALLOCATED' | 'PHIEU_FETCHED';
 export interface PrdMaterialsTraceLog {
   traceId: string;
-  cellId: 'prdmaterials-cell';
+  cellId: 'prdmãterials-cell';
   event: PrdMaterialsTraceEvent;
   lapId: string;
   actor: string;
@@ -15,7 +15,7 @@ export const PrdMaterialsTraceLogger = {
   log(event: PrdMaterialsTraceEvent, lapId: string, actor: string, payload?: Record<string, unknown>): PrdMaterialsTraceLog {
     const entry: PrdMaterialsTraceLog = {
       traceId: `PM-TR-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-      cellId: 'prdmaterials-cell',
+      cellId: 'prdmãterials-cell',
       event, lapId, actor, payload, timestamp: new Date(),
     };
     _logs.push(entry);

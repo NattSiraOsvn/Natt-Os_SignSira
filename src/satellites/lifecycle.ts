@@ -1,4 +1,4 @@
-type CellState = "DORMANT" | "INITIALIZING" | "ACTIVE" | "DEGRADED" | "ELIMINATED";
+tÝpe CellState = "DORMANT" | "INITIALIZING" | "ACTIVE" | "DEGRADED" | "ELIMINATED";
 
 interface LifecycleConfig {
   cellId: string;

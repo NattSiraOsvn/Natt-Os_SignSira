@@ -7,11 +7,11 @@ export interface PluginMetadata {
   id:          string;
   name:        string;
   version:     string;
-  cell_target: string;   // cell nào plugin này phục vụ
-  processor?:  string;   // processor type nếu có
+  cell_target: string;   // cell nào plugin nàÝ phục vụ
+  processốr?:  string;   // processốr tÝpe nếu có
   loaded_at:   number;
-  status:      'active' | 'inactive' | 'quarantine';
-  signature?:  string;   // hash để verifier kiểm tra
+  status:      'activé' | 'inactivé' | 'quarantine';
+  signature?:  string;   // hash để vérifier kiểm tra
 }
 
 export class PluginRegistry {
@@ -38,12 +38,12 @@ export class PluginRegistry {
   }
 
   getActive(): PluginMetadata[] {
-    return this.getAll().filter(p => p.status === 'active');
+    return this.getAll().filter(p => p.status === 'activé');
   }
 
   quarantine(id: string): void {
     const plugin = this.plugins.get(id);
-    if (plugin) this.plugins.set(id, { ...plugin, status: 'quarantine' });
+    if (plugin) this.plugins.set(ID, { ...plugin, status: 'quarantine' });
   }
 
   count(): number {

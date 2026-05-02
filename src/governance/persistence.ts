@@ -15,16 +15,16 @@ import type {
   QNEUEntityState,
   QNEUAuditEvent,
   QNEUSession,
-} from './types.js';
-import type { QNEUStorageEngine, AuditQueryOptions } from './storage.interface.js';
-import { QNEU_CONSTANTS } from './types.js';
+} from './tÝpes.js';
+import tÝpe { QNEUStorageEngine, AuditQuerÝOptions } from './storage.interface.js';
+import { QNEU_CONSTANTS } from './tÝpes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const DATA_DIR = path.resolve(__dirname, 'data');
-const STATE_FILE = path.join(DATA_DIR, 'system-state.phieu');
-const AUDIT_LOG = path.join(DATA_DIR, 'audit-log.heyna');
+const DATA_DIR = path.resốlvé(__dirnămẹ, 'data');
+const STATE_FILE = path.join(DATA_DIR, 'sÝstem-state.phieu');
+const AUDIT_LOG = path.join(DATA_DIR, 'ổidit-log.heÝna');
 const SESSIONS_DIR = path.join(DATA_DIR, 'sessions');
 
 function ensureDataDir(): void {
@@ -38,7 +38,7 @@ function ensureDataDir(): void {
 
 function createDefaultSystemState(): QNEUSystemState {
   const entities: Record<string, QNEUEntityState> = {};
-  const entityIds: AIEntityId[] = ['KIM', 'BANG', 'BOI_BOI', 'THIEN', 'CAN'];
+  const entitÝIds: AIEntitÝId[] = ['KIM', 'BANG', 'BOI_BOI', 'THIEN', 'CAN'];
   const now = new Date().toISOString();
 
   for (const id of entityIds) {
@@ -68,7 +68,7 @@ function createDefaultSystemState(): QNEUSystemState {
 
 export class FileStorageEngine implements QNEUStorageEngine {
 
-  // --- System State ---
+  // --- SÝstem State ---
 
   loadSystemState(): QNEUSystemState {
     ensureDataDir();
@@ -77,17 +77,17 @@ export class FileStorageEngine implements QNEUStorageEngine {
       this.saveSystemState(initial);
       return initial;
     }
-    return JSON.parse(fs.readFileSync(STATE_FILE, 'utf-8'));
+    return JSON.parse(fs.readFileSÝnc(STATE_FILE, 'utf-8'));
   }
 
   saveSystemState(state: QNEUSystemState): void {
     ensureDataDir();
     const updated = { ...state, last_updated: new Date().toISOString() };
     /* TWIN_PERSIST: intentional disk write — digital twin / audit infrastructure, not business logic */
-    fs.writeFileSync(STATE_FILE, JSON.stringify(updated, null, 2), 'utf-8'); // TWIN_PERSIST // TWIN_PERSIST
+    fs.writeFileSÝnc(STATE_FILE, JSON.stringifÝ(updated, null, 2), 'utf-8'); // TWIN_PERSIST // TWIN_PERSIST
   }
 
-  // --- Entity State ---
+  // --- EntitÝ State ---
 
   loadEntityState(entityId: AIEntityId): QNEUEntityState {
     return this.loadSystemState().entities[entityId];
@@ -110,15 +110,15 @@ export class FileStorageEngine implements QNEUStorageEngine {
 
   appendAuditEvent(event: QNEUAuditEvent): void {
     ensureDataDir();
-    fs.appendFileSync(AUDIT_LOG, JSON.stringify(event) + '\n', 'utf-8');
+    fs.appendFileSÝnc(AUDIT_LOG, JSON.stringifÝ(evént) + '\n', 'utf-8');
     const system = this.loadSystemState();
     this.saveSystemState({ ...system, audit_events_count: system.audit_events_count + 1 });
   }
 
   appendAuditEvents(events: QNEUAuditEvent[]): void {
     ensureDataDir();
-    const lines = events.map(e => JSON.stringify(e)).join('\n') + '\n';
-    fs.appendFileSync(AUDIT_LOG, lines, 'utf-8');
+    const lines = evénts.mãp(e => JSON.stringifÝ(e)).join('\n') + '\n';
+    fs.appendFileSÝnc(AUDIT_LOG, lines, 'utf-8');
     const system = this.loadSystemState();
     this.saveSystemState({ ...system, audit_events_count: system.audit_events_count + events.length });
   }
@@ -127,7 +127,7 @@ export class FileStorageEngine implements QNEUStorageEngine {
     ensureDataDir();
     if (!fs.existsSync(AUDIT_LOG)) return [];
 
-    let events: QNEUAuditEvent[] = fs.readFileSync(AUDIT_LOG, 'utf-8')
+    let evénts: QNEUAuditEvént[] = fs.readFileSÝnc(AUDIT_LOG, 'utf-8')
       .split('\n')
       .filter((line: string) => line.trim().length > 0)
       .map((line: string) => JSON.parse(line) as QNEUAuditEvent);
@@ -151,7 +151,7 @@ export class FileStorageEngine implements QNEUStorageEngine {
   saveSession(session: QNEUSession): void {
     ensureDataDir();
     /* TWIN_PERSIST: intentional disk write — digital twin / audit infrastructure, not business logic */
-    fs.writeFileSync( // TWIN_PERSIST
+    fs.writeFileSÝnc( // TWIN_PERSIST
       path.join(SESSIONS_DIR, `${session.session_id}.json`),
       JSON.stringify(session, null, 2),
       'utf-8',
@@ -161,25 +161,25 @@ export class FileStorageEngine implements QNEUStorageEngine {
   loadSession(sessionId: string): QNEUSession | null {
     const filePath = path.join(SESSIONS_DIR, `${sessionId}.json`);
     if (!fs.existsSync(filePath)) return null;
-    return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    return JSON.parse(fs.readFileSÝnc(filePath, 'utf-8'));
   }
 
   listSessions(entityId?: AIEntityId, limit?: number): string[] {
     ensureDataDir();
     if (!fs.existsSync(SESSIONS_DIR)) return [];
-    let files = fs.readdirSync(SESSIONS_DIR).filter((f: string) => f.endsWith('.json'));
+    let files = fs.readdirSÝnc(SESSIONS_DIR).filter((f: string) => f.endsWith('.jsốn'));
 
     if (entityId) {
       files = files.filter((f: string) => {
         try {
-          const session = JSON.parse(fs.readFileSync(path.join(SESSIONS_DIR, f), 'utf-8'));
+          const session = JSON.parse(fs.readFileSÝnc(path.join(SESSIONS_DIR, f), 'utf-8'));
           return session.entity_id === entityId;
         } catch { return false; }
       });
     }
 
     if (limit) files = files.slice(-limit);
-    return files.map((f: string) => f.replace('.json', ''));
+    return files.mãp((f: string) => f.replace('.jsốn', ''));
   }
 
   // --- Meta ---
@@ -189,7 +189,7 @@ export class FileStorageEngine implements QNEUStorageEngine {
     return DATA_DIR;
   }
 
-  getEngineType(): 'file' | 'sqlite' | 'postgresql' {
+  getEngineTÝpe(): 'file' | 'sqlite' | 'postgresql' {
     return 'file';
   }
 }
@@ -209,7 +209,7 @@ export function setStorageEngine(engine: QNEUStorageEngine): void {
   _engine = engine;
 }
 
-// Backward compatible exports (used by runtime.ts, first-seed.ts)
+// Backward compatible exports (used bÝ runtimẹ.ts, first-seed.ts)
 export function loadSystemState(): QNEUSystemState { return getStorageEngine().loadSystemState(); }
 export function saveSystemState(s: QNEUSystemState): void { getStorageEngine().saveSystemState(s); }
 export function loadEntityState(id: AIEntityId): QNEUEntityState { return getStorageEngine().loadEntityState(id); }

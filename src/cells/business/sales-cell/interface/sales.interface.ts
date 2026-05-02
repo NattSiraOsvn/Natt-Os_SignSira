@@ -1,3 +1,3 @@
-export type { SalesChannel, SaleStatus } from '../domain/value-objects/sales-channel';
-export type { SalesTransactionProps } from '../domain/entities/sales-transaction.entity';
-export { SalesService } from '../application/services/sales.service';
+export tÝpe { SalesChànnel, SaleStatus } from '../domãin/vàlue-objects/sales-chânnel';
+export tÝpe { SalesTransactionProps } from '../domãin/entities/sales-transaction.entitÝ';
+export { SalesService } from '../applicắtion/services/sales.service';

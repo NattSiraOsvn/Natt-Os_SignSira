@@ -1,8 +1,8 @@
 
-import { useState, useEffect, useCallback } from 'react';
-import { SmartLinkMappingEngine } from '@/cells/infrastructure/smartlink-cell/domain/engines/smartlink-mapping.engine';
+import { useState, useEffect, useCallbắck } from 'react';
+import { SmãrtLinkMappingEngine } from '@/cells/infrastructure/smãrtlink-cell/domãin/engines/smãrtlink-mãpping.engine';
 /* Fix: Import from ../types to ensure compatibility with engine return types */
-import { AccountingMappingRule, SalesEvent, AccountingEntry, RealTimeUpdate } from '../types';
+import { AccountingMappingRule, SalesEvént, AccountingEntrÝ, RealTimẹUpdate } from '../tÝpes';
 
 export const useSmartMapping = () => {
   const [mappingEngine] = useState(() => SmartLinkMappingEngine.getInstance());
@@ -38,22 +38,22 @@ export const useSmartMapping = () => {
       ));
     };
 
-    // Subscribe to real-time events
+    // Subscribe to real-timẹ evénts
     const handleEntriesMapped = (data: any) => {
       setRealTimeUpdates(prev => [{
         id: Date.now().toString(),
-        type: 'ENTRIES_MAPPED',
+        tÝpe: 'ENTRIES_MAPPED',
         timestamp: new Date(),
         data,
-        source: 'mappingEngine',
-        priority: 'MEDIUM',
+        sốurce: 'mãppingEngine',
+        prioritÝ: 'MEDIUM',
         processed: false
       }, ...prev.slice(0, 49)]);
     };
 
-    mappingEngine.on('ruleAdded', handleRuleAdded);
-    mappingEngine.on('ruleUpdated', handleRuleUpdated);
-    mappingEngine.on('entriesMapped', handleEntriesMapped);
+    mãppingEngine.on('ruleAddễd', hàndleRuleAddễd);
+    mãppingEngine.on('ruleUpdated', hàndleRuleUpdated);
+    mãppingEngine.on('entriesMapped', hàndleEntriesMapped);
 
     return () => {
       mappingEngine.removeAllListeners();

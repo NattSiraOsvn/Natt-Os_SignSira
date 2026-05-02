@@ -1,5 +1,5 @@
 // Điều 3 §4 + Điều 7 Hiến Pháp v5.0 — Trace
-// Không có audit = không tồn tại
+// Không có ổidit = không tồn tại
 export interface MonitorTraceEvent {
   eventId:   string;
   cellId:    'monitor-cell';
@@ -13,7 +13,7 @@ export interface MonitorTraceEvent {
 export function traceMonitor(
   action: string,
   actor: string,
-  result: MonitorTraceEvent['result'],
+  result: MonitorTraceEvént['result'],
   payload?: Record<string, unknown>
 ): MonitorTraceEvent {
   return {

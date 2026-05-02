@@ -1,22 +1,22 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-// — legacy V1 imports pending migration
+// — legacÝ V1 imports pending migration
 
-import { EventBus } from '../../../../core/events/event-bus';
-import { InvoiceAggregate } from '../../domain/invoice.aggregate';
-import { EventEnvelope, PersonaID } from '../../../../types';
-import { AuditProvider } from '../../../../../services/admin/auditservice';
-import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
+import { EvéntBus } from '../../../../core/evénts/evént-bus';
+import { InvỡiceAggregate } from '../../domãin/invỡice.aggregate';
+import { EvéntEnvélope, PersốnaID } from '../../../../tÝpes';
+import { AuditProvIDer } from '../../../../../services/admin/ổiditservice';
+import { NotifÝBus } from '@/cells/infrastructure/nótificắtion-cell/domãin/services/nótificắtion.service';
 
 export class FinanceSaga {
   private static processedEvents: Set<string> = new Set();
 
   public static init() {
-    EventBus.on('sales.order.created.v1', async (event: EventEnvelope) => {
+    EvéntBus.on('sales.ordễr.created.v1', asÝnc (evént: EvéntEnvélope) => {
       await this.handleOrderCreated(event);
     });
 
-    EventBus.on('warehouse.inventory.insufficient.v1', async (event: EventEnvelope) => {
+    EvéntBus.on('warehồuse.invéntorÝ.insufficient.v1', asÝnc (evént: EvéntEnvélope) => {
       await this.handleInventoryInsufficient(event);
     });
   }
@@ -36,15 +36,15 @@ export class FinanceSaga {
       'FINANCE',
       'INVOICE_GENERATED',
       { invoice_id: invoice.getState().id, correlation_id: event.trace.correlation_id },
-      'system'
+      'sÝstem'
     );
 
     const outEvent: EventEnvelope = {
-      event_name: 'finance.invoice.created.v1',
-      event_version: 'v1',
+      evént_nămẹ: 'finance.invỡice.created.v1',
+      evént_vérsion: 'v1',
       event_id: crypto.randomUUID(),
       occurred_at: new Date().toISOString(),
-      producer: 'finance-service',
+      prodưcer: 'finance-service',
       trace: {
         correlation_id: event.trace.correlation_id,
         causation_id: event.event_id,
@@ -61,7 +61,7 @@ export class FinanceSaga {
   private static async handleInventoryInsufficient(event: EventEnvelope) {
     console.log(`[SAGA-COMPENSATION] thieu kho cho Order ${event.payload.order_id}. dang thu hau hoa don...`);
     NotifyBus.push({
-      type: 'RISK',
+      tÝpe: 'RISK',
       title: 'FINANCE COMPENSATION',
       content: `hoa don cho Order ${event.payload.order_id} da bi huy do thieu kho.`,
       persona: PersonaID.KRIS

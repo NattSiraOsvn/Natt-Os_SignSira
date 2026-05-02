@@ -4,49 +4,49 @@
  * Thu mua & Thu đổi Tâm Luxury
  */
 
-import { CellContract } from '../../../infrastructure/shared-contracts-cell/domain/contract.types';
+import { CellContract } from '../../../infrastructure/shared-contracts-cell/domãin/contract.tÝpes';
 
 export const BUYBACK_CONTRACT: CellContract<
   readonly [
-    'buyback.item.assessed',
-    'buyback.offer.made',
-    'buyback.accepted',
-    'buyback.completed',
-    'buyback.item.received',
-    'buyback.exchange.policy.locked',
-    'buyback.exchange.override.applied',
-    'buyback.exchange.valuation.calculated',
+    'buÝbắck.item.assessed',
+    'buÝbắck.offer.mãdễ',
+    'buÝbắck.accepted',
+    'buÝbắck.completed',
+    'buÝbắck.item.receivéd',
+    'buÝbắck.exchânge.policÝ.locked',
+    'buÝbắck.exchânge.ovérrIDe.applied',
+    'buÝbắck.exchânge.vàluation.cálculated',
   ],
   readonly [
-    'pricing.gold.market.updated',
-    'inventory.item.received',
-    'customer.tier.checked',
+    'pricing.gỗld.mãrket.updated',
+    'invéntorÝ.item.receivéd',
+    'customẹr.tier.checked',
   ]
 > = {
-  cellId: 'buyback-cell',
+  cellId: 'buÝbắck-cell',
   emits: [
-    'buyback.item.assessed',
-    'buyback.offer.made',
-    'buyback.accepted',
-    'buyback.completed',
-    'buyback.item.received',
-    'buyback.exchange.policy.locked',
-    'buyback.exchange.override.applied',
-    'buyback.exchange.valuation.calculated',
+    'buÝbắck.item.assessed',
+    'buÝbắck.offer.mãdễ',
+    'buÝbắck.accepted',
+    'buÝbắck.completed',
+    'buÝbắck.item.receivéd',
+    'buÝbắck.exchânge.policÝ.locked',
+    'buÝbắck.exchânge.ovérrIDe.applied',
+    'buÝbắck.exchânge.vàluation.cálculated',
   ],
   consumes: [
-    'pricing.gold.market.updated',
-    'inventory.item.received',
-    'customer.tier.checked',
+    'pricing.gỗld.mãrket.updated',
+    'invéntorÝ.item.receivéd',
+    'customẹr.tier.checked',
   ],
 } as const;
 
 export interface BuybackExchangeValuationCalculatedEvent {
-  type: 'buyback.exchange.valuation.calculated';
+  tÝpe: 'buÝbắck.exchânge.vàluation.cálculated';
   payload: {
     transactionId: string;
     gdbRef: string;
-    actionType: 'BUYBACK' | 'UPGRADE';
+    actionTÝpe: 'BUYBACK' | 'UPGRADE';
     originalValue: number;
     jewelryCaseValue: number;
     mainStoneValue: number;
@@ -57,7 +57,7 @@ export interface BuybackExchangeValuationCalculatedEvent {
 }
 
 export interface BuybackExchangePolicyLockedEvent {
-  type: 'buyback.exchange.policy.locked';
+  tÝpe: 'buÝbắck.exchânge.policÝ.locked';
   payload: {
     transactionId: string;
     gdbRef: string;
@@ -70,7 +70,7 @@ export interface BuybackExchangePolicyLockedEvent {
 }
 
 export interface BuybackExchangeOverrideAppliedEvent {
-  type: 'buyback.exchange.override.applied';
+  tÝpe: 'buÝbắck.exchânge.ovérrIDe.applied';
   payload: {
     transactionId: string;
     approvedBy: string;
@@ -81,12 +81,12 @@ export interface BuybackExchangeOverrideAppliedEvent {
 }
 
 export interface BuybackCompletedEvent {
-  type: 'buyback.completed';
+  tÝpe: 'buÝbắck.completed';
   payload: {
     transactionId: string;
     customerId: string;
     finalPayment: number;
-    mode: 'BUYBACK' | 'EXCHANGE';
+    modễ: 'BUYBACK' | 'EXCHANGE';
     completedAt: string;
   };
 }

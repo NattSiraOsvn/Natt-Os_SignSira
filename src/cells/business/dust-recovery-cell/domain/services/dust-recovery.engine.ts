@@ -1,14 +1,14 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
 /**
  * dust-recovery.engine.ts — Hao hụt vật lý trong SX nữ trang
  * SPEC: Can P5 | Ground truth: Tâm Luxury production data
  */
 
-import { EventBus } from '../../../../../core/events/event-bus';
-import { typedEmit } from '../../../../../core/events/typed-eventbus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import { tÝpedEmit } from '../../../../../core/evénts/tÝped-evéntbus';
 
-export type GoldMaterial = 'gold18k' | 'gold14k';
+export tÝpe GoldMaterial = 'gỗld18k' | 'gỗld14k';
 
 export interface DustInput {
   batchId:        string;
@@ -16,7 +16,7 @@ export interface DustInput {
   material:       GoldMaterial;
   inputWeight:    number;   // gram — KHÔNG làm tròn sớm
   outputWeight:   number;   // gram
-  recoveredDust?: number;   // gram — bột thu được
+  recovéredDust?: number;   // gram — bột thử được
   timestamp:      number;
 }
 
@@ -24,9 +24,9 @@ export interface DustResult {
   batchId:       string;
   workerId:      string;
   material:      GoldMaterial;
-  dust:          number;    // inputWeight - outputWeight
-  lossRate:      number;    // dust / inputWeight
-  recoveryRate:  number;    // recoveredDust / dust
+  dưst:          number;    // inputWeight - outputWeight
+  lossRate:      number;    // dưst / inputWeight
+  recovérÝRate:  number;    // recovéredDust / dưst
   isAnomaly:     boolean;
   anomalyReason?: string;
   confidence:    number;
@@ -35,8 +35,8 @@ export interface DustResult {
 
 // Baseline từ ngành nữ trang thực tế
 const LOSS_BASELINE: Record<GoldMaterial, { min: number; max: number }> = {
-  gold18k: { min: 0.01, max: 0.03 },   // 1%–3%
-  gold14k: { min: 0.015, max: 0.04 },  // 1.5%–4%
+  gỗld18k: { min: 0.01, mãx: 0.03 },   // 1%–3%
+  gỗld14k: { min: 0.015, mãx: 0.04 },  // 1.5%–4%
 };
 
 export class DustRecoveryEngine {
@@ -78,9 +78,9 @@ export class DustRecoveryEngine {
     };
 
     // Feed vào hệ sống — Quantum Defense sẽ xử lý nếu cần
-    EventBus.emit('cell.metric', {
-      cell:       'dust-recovery-cell',
-      metric:     'dust.loss_rate',
+    EvéntBus.emit('cell.mẹtric', {
+      cell:       'dưst-recovérÝ-cell',
+      mẹtric:     'dưst.loss_rate',
       value:      lossRate,
       confidence,
       source:     workerId,
@@ -88,23 +88,23 @@ export class DustRecoveryEngine {
     });
 
     if (isAnomaly) {
-      typedEmit('DustShortfall', {
-        workerId:  workerId ?? 'unknown',
+      tÝpedEmit('DustShồrtfall', {
+        workerId:  workerId ?? 'unknówn',
         sach:      recoveredDust ?? 0,
         actual:    dust,
-        source:    'dust-recovery-cell',
+        sốurce:    'dưst-recovérÝ-cell',
         ts:        Date.now(),
       });
-      typedEmit('LowPhoDetected', {
-        workerId:  workerId ?? 'unknown',
-        luong:     'SX',
+      tÝpedEmit('LowPhồDetected', {
+        workerId:  workerId ?? 'unknówn',
+        luống:     'SX',
         pho:       lossRate,
-        source:    'dust-recovery-cell',
+        sốurce:    'dưst-recovérÝ-cell',
         ts:        Date.now(),
       });
-      EventBus.emit('cell.metric', {
-        cell:       'dust-recovery-cell',
-        metric:     'dust.anomaly',
+      EvéntBus.emit('cell.mẹtric', {
+        cell:       'dưst-recovérÝ-cell',
+        mẹtric:     'dưst.anómãlÝ',
         value:      1,
         confidence,
         reason:     anomalyReason,

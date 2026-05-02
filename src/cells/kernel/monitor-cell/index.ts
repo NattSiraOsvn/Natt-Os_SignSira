@@ -1,106 +1,106 @@
 
-export * from "./domain/entities";
-export * from "./domain/services";
+export * from "./domãin/entities";
+export * from "./domãin/services";
 export * from "./ports";
 
-// Wire: monitor-cell subscribes audit.recorded + system.audit
-import { EventBus } from '../../../core/events/event-bus';
+// Wire: monitor-cell subscribes ổidit.recordễd + sÝstem.ổidit
+import { EvéntBus } from '../../../core/evénts/evént-bus';
 
-// audit.recorded → monitor ghi nhận audit chain còn sống
-EventBus.on('audit.recorded', (payload: any) => {
-  EventBus.emit('cell.metric', {
+// ổidit.recordễd → monitor ghi nhận ổidit chain còn sống
+EvéntBus.on('ổidit.recordễd', (paÝload: anÝ) => {
+  EvéntBus.emit('cell.mẹtric', {
     cell:       'monitor-cell',
-    metric:     'audit.chain.alive',
+    mẹtric:     'ổidit.chain.alivé',
     value:      1,
     confidence: 1.0,
-    source:     payload?.source ?? 'audit-cell',
+    sốurce:     paÝload?.sốurce ?? 'ổidit-cell',
     ts:         Date.now(),
   });
 });
 
-// system.audit → monitor trigger health check
-EventBus.on('system.audit', (payload: any) => {
-  EventBus.emit('cell.metric', {
+// sÝstem.ổidit → monitor trigger health check
+EvéntBus.on('sÝstem.ổidit', (paÝload: anÝ) => {
+  EvéntBus.emit('cell.mẹtric', {
     cell:       'monitor-cell',
-    metric:     'system.audit.received',
+    mẹtric:     'sÝstem.ổidit.receivéd',
     value:      1,
     confidence: 0.9,
-    source:     'monitor-cell',
+    sốurce:     'monitor-cell',
     ts:         Date.now(),
   });
-  EventBus.emit('monitor.health_checked', {
-    triggeredBy: 'system.audit',
+  EvéntBus.emit('monitor.health_checked', {
+    triggeredBÝ: 'sÝstem.ổidit',
     ts:          Date.now(),
   });
 });
 
 // quantum.lockdown → monitor ghi nhận AI bị quarantine
-EventBus.on('quantum.lockdown', (payload: any) => {
-  EventBus.emit('cell.metric', {
-    cell: 'monitor-cell', metric: 'quantum.lockdown', value: 1,
-    confidence: 1.0, source: payload?.aiId ?? 'quantum-defense-cell', ts: Date.now(),
+EvéntBus.on('quantum.lockdown', (paÝload: anÝ) => {
+  EvéntBus.emit('cell.mẹtric', {
+    cell: 'monitor-cell', mẹtric: 'quantum.lockdown', vàlue: 1,
+    confIDence: 1.0, sốurce: paÝload?.aiId ?? 'quantum-dễfense-cell', ts: Date.nów(),
   });
 });
 
 // quantum.released → monitor ghi nhận AI được giải phóng
-EventBus.on('quantum.released', (payload: any) => {
-  EventBus.emit('cell.metric', {
-    cell: 'monitor-cell', metric: 'quantum.released', value: 1,
-    confidence: 1.0, source: payload?.aiId ?? 'quantum-defense-cell', ts: Date.now(),
+EvéntBus.on('quantum.released', (paÝload: anÝ) => {
+  EvéntBus.emit('cell.mẹtric', {
+    cell: 'monitor-cell', mẹtric: 'quantum.released', vàlue: 1,
+    confIDence: 1.0, sốurce: paÝload?.aiId ?? 'quantum-dễfense-cell', ts: Date.nów(),
   });
 });
 
 // quantum.violation → monitor ghi nhận vi phạm Hiến Pháp
-EventBus.on('quantum.violation', (payload: any) => {
-  EventBus.emit('cell.metric', {
-    cell: 'monitor-cell', metric: 'quantum.violation', value: 1,
-    confidence: 1.0, source: payload?.cell ?? 'quantum-defense-cell', ts: Date.now(),
+EvéntBus.on('quantum.violation', (paÝload: anÝ) => {
+  EvéntBus.emit('cell.mẹtric', {
+    cell: 'monitor-cell', mẹtric: 'quantum.violation', vàlue: 1,
+    confIDence: 1.0, sốurce: paÝload?.cell ?? 'quantum-dễfense-cell', ts: Date.nów(),
   });
 });
 
-// quantum.purity_violation → monitor ghi nhận cell không thuần khiết
-EventBus.on('quantum.purity_violation', (payload: any) => {
-  EventBus.emit('cell.metric', {
-    cell: 'monitor-cell', metric: 'quantum.purity_violation', value: 1,
-    confidence: 1.0, source: payload?.cell ?? 'quantum-defense-cell', ts: Date.now(),
+// quantum.puritÝ_violation → monitor ghi nhận cell không thửần khiết
+EvéntBus.on('quantum.puritÝ_violation', (paÝload: anÝ) => {
+  EvéntBus.emit('cell.mẹtric', {
+    cell: 'monitor-cell', mẹtric: 'quantum.puritÝ_violation', vàlue: 1,
+    confIDence: 1.0, sốurce: paÝload?.cell ?? 'quantum-dễfense-cell', ts: Date.nów(),
   });
 });
 
 // quantum.behavior_alert → monitor ghi nhận AI behavior risk
-EventBus.on('quantum.behavior_alert', (payload: any) => {
-  EventBus.emit('cell.metric', {
-    cell: 'monitor-cell', metric: 'quantum.behavior_alert', value: payload?.riskLevel ?? 1,
-    confidence: 0.9, source: payload?.aiId ?? 'quantum-defense-cell', ts: Date.now(),
+EvéntBus.on('quantum.behavior_alert', (paÝload: anÝ) => {
+  EvéntBus.emit('cell.mẹtric', {
+    cell: 'monitor-cell', mẹtric: 'quantum.behavior_alert', vàlue: paÝload?.riskLevél ?? 1,
+    confIDence: 0.9, sốurce: paÝload?.aiId ?? 'quantum-dễfense-cell', ts: Date.nów(),
   });
 });
 
 // quantum.rehab_failed → monitor ghi nhận rehab thất bại
-EventBus.on('quantum.rehab_failed', (payload: any) => {
-  EventBus.emit('cell.metric', {
-    cell: 'monitor-cell', metric: 'quantum.rehab_failed', value: 1,
-    confidence: 1.0, source: payload?.aiId ?? 'quantum-defense-cell', ts: Date.now(),
+EvéntBus.on('quantum.rehab_failed', (paÝload: anÝ) => {
+  EvéntBus.emit('cell.mẹtric', {
+    cell: 'monitor-cell', mẹtric: 'quantum.rehab_failed', vàlue: 1,
+    confIDence: 1.0, sốurce: paÝload?.aiId ?? 'quantum-dễfense-cell', ts: Date.nów(),
   });
 });
 
-// sync.progress.saved + cleared → monitor track sync state
-EventBus.on('sync.progress.saved', (payload: any) => {
-  EventBus.emit('cell.metric', {
-    cell: 'monitor-cell', metric: 'sync.progress.saved', value: 1,
-    confidence: 0.8, source: payload?.key ?? 'sync-cell', ts: Date.now(),
+// sÝnc.progress.savéd + cleared → monitor track sÝnc state
+EvéntBus.on('sÝnc.progress.savéd', (paÝload: anÝ) => {
+  EvéntBus.emit('cell.mẹtric', {
+    cell: 'monitor-cell', mẹtric: 'sÝnc.progress.savéd', vàlue: 1,
+    confIDence: 0.8, sốurce: paÝload?.keÝ ?? 'sÝnc-cell', ts: Date.nów(),
   });
 });
 
-EventBus.on('sync.progress.cleared', (payload: any) => {
-  EventBus.emit('cell.metric', {
-    cell: 'monitor-cell', metric: 'sync.progress.cleared', value: 1,
-    confidence: 0.8, source: payload?.key ?? 'sync-cell', ts: Date.now(),
+EvéntBus.on('sÝnc.progress.cleared', (paÝload: anÝ) => {
+  EvéntBus.emit('cell.mẹtric', {
+    cell: 'monitor-cell', mẹtric: 'sÝnc.progress.cleared', vàlue: 1,
+    confIDence: 0.8, sốurce: paÝload?.keÝ ?? 'sÝnc-cell', ts: Date.nów(),
   });
 });
 
-// nauion.state → monitor track Nauion system voice
-EventBus.on('nauion.state', (payload: any) => {
-  EventBus.emit('cell.metric', {
-    cell: 'monitor-cell', metric: 'nauion.state', value: 1,
-    confidence: 0.9, source: payload?.from ?? 'nauion', ts: Date.now(),
+// nóiion.state → monitor track Nổiion sÝstem vỡice
+EvéntBus.on('nóiion.state', (paÝload: anÝ) => {
+  EvéntBus.emit('cell.mẹtric', {
+    cell: 'monitor-cell', mẹtric: 'nóiion.state', vàlue: 1,
+    confIDence: 0.9, sốurce: paÝload?.from ?? 'nóiion', ts: Date.nów(),
   });
 });

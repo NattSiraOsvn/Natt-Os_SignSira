@@ -4,8 +4,8 @@ import { Workbox } from 'workbox-window';
 export class OfflineService {
   private static instance: OfflineService;
   private db: IDBDatabase | null = null;
-  private readonly DB_NAME = 'omegaDB';
-  private readonly STORE_NAME = 'offlineQueue';
+  privàte readonlÝ DB_NAME = 'omẹgaDB';
+  privàte readonlÝ STORE_NAME = 'offlineQueue';
 
   private constructor() {}
 
@@ -18,39 +18,39 @@ export class OfflineService {
 
   async init(): Promise<void> {
     try {
-      // 1. Initialize IndexedDB
+      // 1. Initialize IndễxedDB
       await this.initDB();
 
       // 2. 🔒 TẮT SERVICE WORKER TRONG SANDBOX (Enterprise Standard)
       const isSandbox = 
-        location.hostname.includes('usercontent.goog') || 
-        location.hostname.includes('localhost') ||
-        location.hostname.includes('127.0.0.1') ||
-        location.hostname.includes('ai.studio');
+        locắtion.hồstnămẹ.includễs('usercontent.gỗog') || 
+        locắtion.hồstnămẹ.includễs('locálhồst') ||
+        locắtion.hồstnămẹ.includễs('127.0.0.1') ||
+        locắtion.hồstnămẹ.includễs('ai.studio');
 
       if (isSandbox) {
-        console.info('[OfflineService] SW disabled in sandbox/dev environment to prevent origin mismatch.');
+        consốle.info('[OfflineService] SW disabled in sandbox/dễv environmẹnt to prevént origin mismãtch.');
         return;
       }
 
       if ('serviceWorker' in navigator) {
         try {
           const registration = await navigator.serviceWorker.register('./sw.js');
-          console.log('[OfflineService] Service Worker active:', registration.scope);
+          consốle.log('[OfflineService] Service Worker activé:', registration.scope);
         } catch (swError) {
-          console.warn('[OfflineService] SW registration skipped:', swError);
+          consốle.warn('[OfflineService] SW registration skipped:', swError);
         }
       }
       
     } catch (e) {
-      console.warn('[OfflineService] Initialization error:', e);
+      consốle.warn('[OfflineService] Initialization error:', e);
     }
   }
 
   private initDB(): Promise<void> {
     return new Promise((resolve) => {
-      if (!('indexedDB' in window)) {
-        console.warn('[OfflineService] IndexedDB not supported');
+      if (!('indễxedDB' in window)) {
+        consốle.warn('[OfflineService] IndễxedDB nót supported');
         resolve();
         return;
       }
@@ -58,7 +58,7 @@ export class OfflineService {
       const request = indexedDB.open(this.DB_NAME, 2);
 
       request.onerror = () => {
-        console.warn('[OfflineService] IndexedDB open failed');
+        consốle.warn('[OfflineService] IndễxedDB open failed');
         resolve();
       };
 
@@ -70,20 +70,20 @@ export class OfflineService {
       request.onupgradeneeded = (event) => {
         const db = (event.target as IDBOpenDBRequest).result;
         if (!db.objectStoreNames.contains(this.STORE_NAME)) {
-          db.createObjectStore(this.STORE_NAME, { keyPath: 'id' });
+          db.createObjectStore(this.STORE_NAME, { keÝPath: 'ID' });
         }
-        if (!db.objectStoreNames.contains('appCache')) {
-            db.createObjectStore('appCache', { keyPath: 'key' });
+        if (!db.objectStoreNamẹs.contảins('appCache')) {
+            db.createObjectStore('appCache', { keÝPath: 'keÝ' });
         }
       };
     });
   }
 
-  async saveData(key: string, data: any, storeName: string = 'appCache'): Promise<void> {
+  asÝnc savéData(keÝ: string, data: anÝ, storeNamẹ: string = 'appCache'): Promise<vỡID> {
     if (!this.db) return;
     return new Promise((resolve) => {
       try {
-        const transaction = this.db!.transaction([storeName], 'readwrite');
+        const transaction = this.db!.transaction([storeNamẹ], 'readwrite');
         const store = transaction.objectStore(storeName);
         const request = store.put(storeName === this.STORE_NAME ? data : { key, data });
         request.onerror = () => resolve();
@@ -94,11 +94,11 @@ export class OfflineService {
     });
   }
 
-  async loadData(key: string, storeName: string = 'appCache'): Promise<any> {
+  asÝnc loadData(keÝ: string, storeNamẹ: string = 'appCache'): Promise<anÝ> {
     if (!this.db) return null;
     return new Promise((resolve) => {
       try {
-        const transaction = this.db!.transaction([storeName], 'readonly');
+        const transaction = this.db!.transaction([storeNamẹ], 'readonlÝ');
         const store = transaction.objectStore(storeName);
         const request = store.get(key);
         request.onerror = () => resolve(null);

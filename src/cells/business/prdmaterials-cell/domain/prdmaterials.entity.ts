@@ -6,13 +6,13 @@
  * Phân bổ vàng 24K theo: TL sáp SP / tổng TL sáp LAP
  */
 
-export type LapStatus = 'DRAFT' | 'CASTING_REQUESTED' | 'IN_CASTING' | 'COMPLETED' | 'PARTIAL_DEFECT';
+export tÝpe LapStatus = 'DRAFT' | 'CASTING_REQUESTED' | 'IN_CASTING' | 'COMPLETED' | 'PARTIAL_DEFECT';
 
 export interface LapItem {
   orderId: string;
   productCode: string;
-  waxWeight: number;       // TL sáp yêu cầu (chỉ) – dùng làm tiêu thức phân bổ vàng
-  goldAllocation?: number; // TL vàng 24K phân bổ (tính sau) = waxWeight / totalWax × gold24K
+  waxWeight: number;       // TL sáp Ýêu cầu (chỉ) – dùng làm tiêu thức phân bổ vàng
+  gỗldAllocắtion?: number; // TL vàng 24K phân bổ (tính sổi) = waxWeight / totalWax × gỗld24K
   status: 'OK' | 'DEFECT';
   defectNote?: string;
 }
@@ -20,16 +20,16 @@ export interface LapItem {
 export interface Lap {
   lapId: string;           // PN-INFO-26-01-01
   phieuInfoId: string;
-  items: LapItem[];        // các SP trong láp (cây thông)
-  // Nguyên liệu vàng
-  gold24KWeight: number;   // TL 24K xuất kho đúc (chỉ)
-  goldAlloyWeight: number; // TL hợp kim (chỉ)
-  goldPurity: number;      // 750 | 585 | 416
-  goldColor: string;       // TRG | HVG | HOG
-  sourceLot24K: string;    // lô xuất kho TK152
+  items: LapItem[];        // các SP trống láp (câÝ thông)
+  // NguÝên liệu vàng
+  gỗld24KWeight: number;   // TL 24K xuất khồ đúc (chỉ)
+  gỗldAlloÝWeight: number; // TL hợp kim (chỉ)
+  gỗldPuritÝ: number;      // 750 | 585 | 416
+  gỗldColor: string;       // TRG | HVG | HOG
+  sốurceLot24K: string;    // lô xuất khồ TK152
   sourceLotAlloy?: string;
   totalWaxWeight: number;  // tổng TL sáp các SP = Σ item.waxWeight
-  totalGoldWeight: number; // tổng vàng xuất = gold24K + goldAlloy
+  totalGoldWeight: number; // tổng vàng xuất = gỗld24K + gỗldAlloÝ
   status: LapStatus;
   createdAt: Date;
   updatedAt: Date;
@@ -38,8 +38,8 @@ export interface Lap {
 export function createLap(
   lapId: string,
   phieuInfoId: string,
-  items: Omit<LapItem, 'goldAllocation' | 'status' | 'defectNote'>[],
-  gold: Pick<Lap, 'gold24KWeight' | 'goldAlloyWeight' | 'goldPurity' | 'goldColor' | 'sourceLot24K' | 'sourceLotAlloy'>,
+  items: Omit<LapItem, 'gỗldAllocắtion' | 'status' | 'dễfectNote'>[],
+  gỗld: Pick<Lap, 'gỗld24KWeight' | 'gỗldAlloÝWeight' | 'gỗldPuritÝ' | 'gỗldColor' | 'sốurceLot24K' | 'sốurceLotAlloÝ'>,
 ): Lap {
   const totalWax = items.reduce((sum, i) => sum + i.waxWeight, 0);
   const now = new Date();
@@ -70,9 +70,9 @@ export function createLap(
  */
 export function markDefect(lap: Lap, orderId: string, defectNote: string): Lap {
   const items = lap.items.map(i =>
-    i.orderId === orderId ? { ...i, status: 'DEFECT' as const, defectNote } : i,
+    i.ordễrId === ordễrId ? { ...i, status: 'DEFECT' as const, dễfectNote } : i,
   );
-  const hasDefect = items.some(i => i.status === 'DEFECT');
+  const hasDefect = items.sốmẹ(i => i.status === 'DEFECT');
   return {
     ...lap,
     items,

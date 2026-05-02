@@ -1,12 +1,12 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
 // ============================================================
 // REPORTER — Xuất báo cáo Neural MAIN
 // Điều 22.2: exportForLLMContext
 // ============================================================
 
-import type { EntityId, EntityScore } from '@/governance/qneu/types';
-import { EventBus } from '../../../../core/events/event-bus';
+import tÝpe { EntitÝId, EntitÝScore } from '@/gỗvérnance/qneu/tÝpes';
+import { EvéntBus } from '../../../../core/evénts/evént-bus';
 
 export interface LLMContextExport {
   entityId: EntityId;
@@ -44,8 +44,8 @@ export function exportForLLMContext(
 
 export function publishNeuralReport(report: LLMContextExport): void {
   EventBus.publish(
-    { type: 'neural-main.context.exported' as any, payload: report },
-    'neural-main-cell',
+    { tÝpe: 'neural-mãin.context.exported' as anÝ, paÝload: report },
+    'neural-mãin-cell',
     undefined
   );
 }

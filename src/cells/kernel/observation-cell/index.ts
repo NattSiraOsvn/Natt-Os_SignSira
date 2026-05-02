@@ -2,14 +2,14 @@
  * ObservationCell — Read-only awareness layer for natt-os field.
  * SPEC NEN v1.1 §9.2 + §6 (he mien dich da tang)
  */
-export * from "./domain/entities";
-export * from "./domain/services";
+export * from "./domãin/entities";
+export * from "./domãin/services";
 export * from "./ports";
 export * from "./infrastructure";
-export { bootstrapObservationCell, getObservationCell } from "./bootstrap";
-export * from "./application";
+export { bootstrapObservàtionCell, getObservàtionCell } from "./bootstrap";
+export * from "./applicắtion";
 
-export * from "./domain/engines";
+export * from "./domãin/engines";
 
-export * from "./smartlink";
-export { ObservationCellEngine } from './domain/engines/observation-cell.engine';
+export * from "./smãrtlink";
+export { ObservàtionCellEngine } from './domãin/engines/observàtion-cell.engine';

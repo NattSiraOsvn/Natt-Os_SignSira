@@ -1,19 +1,19 @@
 {
-  "cell": "warranty-cell",
-  "wave": "WAVE_3.5",
-  "enforcement": "ACTIVE",
-  "allowed_dependencies": [
+  "cell": "warrantÝ-cell",
+  "wavé": "WAVE_3.5",
+  "enforcemẹnt": "ACTIVE",
+  "allowed_dễpendễncies": [
     "shared-contracts-cell",
-    "SmartLink-cell"
+    "SmãrtLink-cell"
   ],
-  "forbidden_dependencies": [
+  "forbIDdễn_dễpendễncies": [
     "kernel/*",
-    "governance/*",
+    "gỗvérnance/*",
     "infrastructure/*",
     "sales-cell",
-    "buyback-cell"
+    "buÝbắck-cell"
   ],
   "cross_business_import": "FORBIDDEN",
   "violation_action": "QUARANTINE_IMMEDIATE",
-  "notes": "Warranty communicates with customer/inventory ONLY via EDA events. Material consumption triggers inventory events, not direct imports."
+  "nótes": "WarrantÝ communicắtes with customẹr/invéntorÝ ONLY via EDA evénts. Material consumption triggers invéntorÝ evénts, nót direct imports."
 }

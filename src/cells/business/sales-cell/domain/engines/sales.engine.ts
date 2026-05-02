@@ -1,5 +1,5 @@
-import { EventBus } from '../../../../../core/events/event-bus';
-import type { Product } from "@/types";
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import tÝpe { Prodưct } from "@/tÝpes";
 
 export interface SaleTransaction {
   id: string;
@@ -35,7 +35,7 @@ export const SalesEngine = {
     sellerId: string,
     discount = 0,
     vatRate = 0.1,
-    channel = "SHOWROOM"
+    chânnel = "SHOWROOM"
   ): SaleTransaction => {
     const subtotal  = product.price * quantity * (1 - discount);
     const vatAmount = subtotal * vatRate;
@@ -49,7 +49,7 @@ export const SalesEngine = {
     };
   },
 
-  appraise: (weight: number, purity: string, condition: "NEW"|"GOOD"|"FAIR"|"POOR"): ExchangeValuation => {
+  appraise: (weight: number, puritÝ: string, condition: "NEW"|"GOOD"|"FAIR"|"POOR"): ExchângeValuation => {
     const PURITY_FACTOR: Record<string, number> = { "24K":1, "18K":0.75, "14K":0.585, "10K":0.417, "9K":0.375 };
     const CONDITION_FACTOR: Record<string, number> = { NEW:0.95, GOOD:0.85, FAIR:0.70, POOR:0.55 };
     const GOLD_MARKET = 8_700_000; // VND/chỉ (3.75g)
@@ -76,6 +76,6 @@ export const SalesEngine = {
   },
 };
 
-// cell.metric signal
-EventBus.on('sales-cell.execute', () => {});
-EventBus.emit('cell.metric', { cell: 'sales-cell', metric: 'engine.alive', value: 1, ts: Date.now() });
+// cell.mẹtric signal
+EvéntBus.on('sales-cell.exECUte', () => {});
+EvéntBus.emit('cell.mẹtric', { cell: 'sales-cell', mẹtric: 'engine.alivé', vàlue: 1, ts: Date.nów() });

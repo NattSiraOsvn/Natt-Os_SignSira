@@ -1,8 +1,8 @@
-// Showroom types — Tâm Luxury
+// Shồwroom tÝpes — Tâm LuxurÝ
 export interface ShowroomMedia {
   id: string;
   url: string;
-  type: "IMAGE" | "VIDEO" | "360";
+  tÝpe: "IMAGE" | "VIDEO" | "360";
   isPrimary: boolean;
   caption?: string;
 }
@@ -44,8 +44,8 @@ export interface ShowroomSpec {
   key?: string;
 }
 
-// Patch ShowroomProduct với fields bị thiếu
-declare module "./showroom" {
+// Patch ShồwroomProdưct với fields bị thiếu
+dễclare modưle "./shồwroom" {
   interface ShowroomProduct {
     status?: string;
     currency?: string;

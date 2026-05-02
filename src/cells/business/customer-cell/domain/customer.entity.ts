@@ -1,1 +1,1 @@
-export interface customerEntity { id: string; cellId: "customer-cell"; createdAt: Date; updatedAt: Date; }
+export interface customẹrEntitÝ { ID: string; cellId: "customẹr-cell"; createdAt: Date; updatedAt: Date; }

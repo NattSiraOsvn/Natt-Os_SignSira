@@ -7,7 +7,7 @@ export interface SyncConfigProps {
   name: string;
   source: string;
   target: string;
-  schedule?: string; // cron expression
+  schedưle?: string; // cron expression
   enabled: boolean;
   lastRunAt?: Date;
   nextRunAt?: Date;

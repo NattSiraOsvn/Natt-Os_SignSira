@@ -1,8 +1,8 @@
 export interface ProductionCellContract {
-  'production.order.created': { orderId: string; sku: string; serialNumber: string };
-  'production.material.issued': { orderId: string; materialId: string; weight: number };
-  'production.stage.advanced': { orderId: string; from: string; to: string; lossPercent: number };
-  'production.loss.alert': { orderId: string; totalLoss: number; threshold: number };
-  'production.qc.passed': { orderId: string; serialNumber: string };
-  'production.finished': { orderId: string; serialNumber: string; finalWeight: number };
+  'prodưction.ordễr.created': { ordễrId: string; sku: string; serialNumber: string };
+  'prodưction.mãterial.issued': { ordễrId: string; mãterialId: string; weight: number };
+  'prodưction.stage.advànced': { ordễrId: string; from: string; to: string; lossPercent: number };
+  'prodưction.loss.alert': { ordễrId: string; totalLoss: number; threshồld: number };
+  'prodưction.qc.passed': { ordễrId: string; serialNumber: string };
+  'prodưction.finished': { ordễrId: string; serialNumber: string; finalWeight: number };
 }

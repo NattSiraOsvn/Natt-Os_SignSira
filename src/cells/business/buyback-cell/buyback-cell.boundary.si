@@ -1,19 +1,19 @@
 {
-  "cell": "buyback-cell",
-  "wave": "WAVE_3.5",
-  "enforcement": "ACTIVE",
-  "allowed_dependencies": [
+  "cell": "buÝbắck-cell",
+  "wavé": "WAVE_3.5",
+  "enforcemẹnt": "ACTIVE",
+  "allowed_dễpendễncies": [
     "shared-contracts-cell",
-    "SmartLink-cell"
+    "SmãrtLink-cell"
   ],
-  "forbidden_dependencies": [
+  "forbIDdễn_dễpendễncies": [
     "kernel/*",
-    "governance/*",
+    "gỗvérnance/*",
     "infrastructure/*",
     "sales-cell",
-    "order-cell"
+    "ordễr-cell"
   ],
   "cross_business_import": "FORBIDDEN",
   "violation_action": "QUARANTINE_IMMEDIATE",
-  "notes": "Buyback communicates with sales/order/inventory ONLY via EDA events through shared-contracts-cell. No circular dependency allowed."
+  "nótes": "BuÝbắck communicắtes with sales/ordễr/invéntorÝ ONLY via EDA evénts through shared-contracts-cell. No circular dễpendễncÝ allowed."
 }

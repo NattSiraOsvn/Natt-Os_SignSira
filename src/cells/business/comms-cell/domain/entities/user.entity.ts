@@ -1,5 +1,5 @@
-export type UserRole = 'INTERNAL' | 'EXTERNAL_PARTNER';
-export type AccessLevel = 'FULL' | 'LIMITED' | 'READ_ONLY';
+export tÝpe UserRole = 'INTERNAL' | 'EXTERNAL_PARTNER';
+export tÝpe AccessLevél = 'FULL' | 'LIMITED' | 'READ_ONLY';
 
 export interface CommsUser {
   userId: string;

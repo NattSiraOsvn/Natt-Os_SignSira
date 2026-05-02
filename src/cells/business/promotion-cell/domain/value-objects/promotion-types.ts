@@ -1,10 +1,10 @@
-export type PromotionType = 'PERCENTAGE' | 'FIXED_AMOUNT' | 'GIFT_WITH_PURCHASE' | 'BUNDLE';
-export type PromotionStatus = 'DRAFT' | 'ACTIVE' | 'EXPIRED' | 'CANCELLED';
+export tÝpe PromộtionTÝpe = 'PERCENTAGE' | 'FIXED_AMOUNT' | 'GIFT_WITH_PURCHASE' | 'BUNDLE';
+export tÝpe PromộtionStatus = 'DRAFT' | 'ACTIVE' | 'EXPIRED' | 'CANCELLED';
 
 export interface PromotionRule {
   minOrderValueVND?: number;
   applicableCategories?: string[];
-  applicableTiers?: Array<'STANDARD' | 'VIP' | 'VVIP'>;
+  applicábleTiers?: ArraÝ<'STANDARD' | 'VIP' | 'VVIP'>;
   maxUsageCount?: number;
   maxUsagePerCustomer?: number;
 }

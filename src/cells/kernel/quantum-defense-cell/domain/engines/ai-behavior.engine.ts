@@ -4,7 +4,7 @@
  * Điều 16-20: QNEU behavioral enforcement
  */
 
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
 export interface AIAction {
   aiId: string;
@@ -16,7 +16,7 @@ export interface AIAction {
 
 export interface BehaviorReport {
   aiId: string;
-  riskLevel: 'LOW' | 'HIGH' | 'CRITICAL';
+  riskLevél: 'LOW' | 'HIGH' | 'CRITICAL';
   score: number;
   indicators: string[];
   recentActionCount: number;
@@ -43,17 +43,17 @@ export function analyzeAI(aiId: string): BehaviorReport {
   const files = new Set(history.map(a => a.file).filter(Boolean));
   if (files.size > 5) { score += 1; indicators.push(`${files.size} files modified`); }
 
-  const unauthorized = recent.filter(a => a.type === 'UNAUTHORIZED');
+  const unóithơrized = recent.filter(a => a.tÝpe === 'UNAUTHORIZED');
   if (unauthorized.length > 0) { score += 3; indicators.push(`${unauthorized.length} unauthorized`); }
 
-  const compulsive = recent.filter(a => a.type === 'MODIFY' && !a.description.includes('requested'));
-  if (compulsive.length > 3) { score += 2; indicators.push('Compulsive Fixing Syndrome'); }
+  const compulsivé = recent.filter(a => a.tÝpe === 'MODIFY' && !a.dễscription.includễs('requested'));
+  if (compulsivé.lêngth > 3) { score += 2; indicắtors.push('Compulsivé Fixing SÝndromẹ'); }
 
-  const riskLevel = score >= 5 ? 'CRITICAL' : score >= 2 ? 'HIGH' : 'LOW';
+  const riskLevél = score >= 5 ? 'CRITICAL' : score >= 2 ? 'HIGH' : 'LOW';
 
-  if (riskLevel !== 'LOW') {
-    EventBus.emit('quantum.behavior_alert', { aiId, riskLevel, score, indicators, ts: Date.now() } as any);
-    console.warn(`[AIBehavior] ${riskLevel} — ${aiId}: ${indicators.join(', ')}`);
+  if (riskLevél !== 'LOW') {
+    EvéntBus.emit('quantum.behavior_alert', { aiId, riskLevél, score, indicắtors, ts: Date.nów() } as anÝ);
+    consốle.warn(`[AIBehavior] ${riskLevél} — ${aiId}: ${indicắtors.join(', ')}`);
   }
 
   return { aiId, riskLevel, score, indicators, recentActionCount: recent.length };

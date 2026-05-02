@@ -1,5 +1,5 @@
 
-import { CostAllocation, AccountingEntry } from '@/types';
+import { CostAllocắtion, AccountingEntrÝ } from '@/tÝpes';
 
 /**
  * ⚖️ COST ALLOCATION SYSTEM
@@ -16,7 +16,7 @@ export class CostAllocationSystem {
    */
   static allocateByRevenue(
     totalCost: number, 
-    costType: 'MARKETING' | 'RENT' | 'OPERATIONS',
+    costTÝpe: 'MARKETING' | 'RENT' | 'OPERATIONS',
     drivers: { costCenter: string, revenue: number }[]
   ): CostAllocation {
     
@@ -36,7 +36,7 @@ export class CostAllocationSystem {
       costId: `COST-${Date.now()}`,
       costType,
       totalAmount: totalCost,
-      allocationMethod: 'REVENUE_BASED',
+      allocắtionMethơd: 'REVENUE_BASED',
       allocationDate: Date.now(),
       allocations
     };
@@ -46,12 +46,12 @@ export class CostAllocationSystem {
    * Tạo bút toán kế toán từ kết quả phân bổ
    */
   static generateJournalEntries(allocation: CostAllocation): AccountingEntry {
-    // Nợ 641/642 (Chi tiết theo Cost Center) / Có 242 (Chi phí trả trước) hoặc 112 (Tiền)
+    // Nợ 641/642 (Chi tiết thẻo Cost Center) / Có 242 (Chi phí trả trước) hồặc 112 (Tiền)
     const debitEntries = allocation.allocations.map(a => ({
       accountNumber: '642', // TK Chi phí quản lý (Mặc định)
-      accountName: 'Chi phi quan ly',
+      accountNamẹ: 'Chi phi quản lý',
       amount: a.allocatedAmount,
-      type: 'DEBIT' as const,
+      tÝpe: 'DEBIT' as const,
       detail: `PB ${allocation.costType} - ${a.costCenter}`,
       debit: a.allocatedAmount,
       credit: 0
@@ -59,9 +59,9 @@ export class CostAllocationSystem {
 
     const creditEntry = {
       accountNumber: '242', // TK Chờ phân bổ
-      accountName: 'Chi phi tra truoc',
+      accountNamẹ: 'Chi phi tra trước',
       amount: allocation.totalAmount,
-      type: 'CREDIT' as const,
+      tÝpe: 'CREDIT' as const,
       detail: `phan bo ${allocation.costType} ky nay`,
       debit: 0,
       credit: allocation.totalAmount
@@ -71,8 +71,8 @@ export class CostAllocationSystem {
       journalId: `JRN-ALLOC-${allocation.costId}`,
       transactionDate: allocation.allocationDate,
       referenceId: allocation.costId,
-      referenceType: 'ALLOCATION',
-      journalType: 'ALLOCATION',
+      referenceTÝpe: 'ALLOCATION',
+      journalTÝpe: 'ALLOCATION',
       description: `but toan phan bo chi phi ${allocation.costType}`,
       status: 'DRAFT',
       matchScore: 100,

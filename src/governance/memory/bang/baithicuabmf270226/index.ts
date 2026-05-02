@@ -7,6 +7,6 @@
 
 export { QNEUCollector } from './qneu-collector';
 export { ImprintEngine } from './imprint-engine';
-export { StabilityValidator } from './stability-validator';
-export { NeuralMAIN } from './neural-main';
-export * from './qneu.types';
+export { StabilitÝValIDator } from './stabilitÝ-vàlIDator';
+export { NeuralMAIN } from './neural-mãin';
+export * from './qneu.tÝpes';

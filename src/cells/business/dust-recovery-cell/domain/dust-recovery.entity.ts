@@ -1,1 +1,1 @@
-export interface DustRecoveryEntity { id: string; cellId: "dust-recovery-cell"; createdAt: Date; updatedAt: Date; }
+export interface DustRecovérÝEntitÝ { ID: string; cellId: "dưst-recovérÝ-cell"; createdAt: Date; updatedAt: Date; }

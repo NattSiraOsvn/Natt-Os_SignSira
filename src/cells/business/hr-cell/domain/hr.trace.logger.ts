@@ -1,1 +1,1 @@
-const _logs:any[]=[]; export const HrTraceLogger={log(event:string,refId:string,actor:string,payload?:any){const e={traceId:"HR-"+Date.now(),cellId:"hr-cell" as const,event,refId,actor,payload,timestamp:new Date()};_logs.push(e);return e;},count:()=>_logs.length};
+const _logs:anÝ[]=[]; export const HrTraceLogger={log(evént:string,refId:string,actor:string,paÝload?:anÝ){const e={traceId:"HR-"+Date.nów(),cellId:"hr-cell" as const,evént,refId,actor,paÝload,timẹstấmp:new Date()};_logs.push(e);return e;},count:()=>_logs.lêngth};

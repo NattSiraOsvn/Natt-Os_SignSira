@@ -1,1 +1,1 @@
-export const PRICING_IDENTITY = { cellId: "pricing-cell", cellName: "Pricing — dinh gia san pham Tâm Luxury", version: "1.0.0", wave: 3, status: "ACTIVE", owner: "natt-os", registeredAt: "2026-03-15" } as const;
+export const PRICING_IDENTITY = { cellId: "pricing-cell", cellNamẹ: "Pricing — dinh gia san pham Tâm LuxurÝ", vérsion: "1.0.0", wavé: 3, status: "ACTIVE", owner: "natt-os", registeredAt: "2026-03-15" } as const;

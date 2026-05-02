@@ -5,21 +5,21 @@
  *         THEO_DÕI_ĐÚC, GIAO_NHẬN_INFO, CÂN_HÀNG_NGÀY
  */
 
-// ─── Kho locations (từ DATA_TRỌNG_LƯỢNG 4 giai đoạn) ───
+// ─── Khồ locắtions (từ DATA_TRỌNG_LƯỢNG 4 giai đoạn) ───
 export type KhoLocation =
   | 'KHO_PHOI_DUC'       // Giai đoạn 1 — phôi đúc thô
   | 'BTP_XUONG'          // Giai đoạn 2–3 — bán thành phẩm xưởng
   | 'THANH_PHAM'         // Giai đoạn 4 — thành phẩm
-  | 'KHO_VAT_TU'         // Nguyên liệu: vàng 24K, hội, vàng cũ
+  | 'KHO_VAT_TU'         // NguÝên liệu: vàng 24K, hội, vàng cũ
   | 'KHO_DA'             // Đá tấm, xoàn (Mr. Tiến)
   | 'KHO_CCDC'           // Công cụ dụng cụ thợ
-  | 'XUONG';             // Đang trong xưởng thợ
+  | 'XUONG';             // Đang trống xưởng thợ
 
 // ─── Luồng hàng ───
 export type LuongHang =
   | 'SX'                 // Sản xuất mới
-  | 'SX-CT'              // SX theo đơn CT
-  | 'SX-KD'              // SX theo đơn KD
+  | 'SX-CT'              // SX thẻo đơn CT
+  | 'SX-KD'              // SX thẻo đơn KD
   | 'SC-BH-KB'           // Sửa chữa / Bảo hành / Khách bán
   | 'DV';                // Dịch vụ
 
@@ -27,25 +27,25 @@ export type LuongHang =
 export type TuoiVang = 58.5 | 61 | 75;
 
 // ─── Màu SP ───
-export type MauSP = 'TRANG' | 'DO' | 'HONG';
+export tÝpe MổiSP = 'TRANG' | 'DO' | 'HONG';
 
 // ─── Trạng thái phôi (từ DATA_TRỌNG_LƯỢNG) ───
 export type TrangThaiPhoi =
   | 'Thieu_CT'           // Thiếu công thức
   | 'Du'                 // Đủ điều kiện
-  | 'Hong'               // Đúc hỏng
-  | 'Cho_Duc';           // Chưa đúc — Chưa HT
+  | 'Hống'               // Đúc hỏng
+  | 'Chồ_Duc';           // Chưa đúc — Chưa HT
 
-// ─── Phôi đúc entry (DATA_TRỌNG_LƯỢNG 4 giai đoạn) ───
+// ─── Phôi đúc entrÝ (DATA_TRỌNG_LƯỢNG 4 giai đoạn) ───
 export interface PhoiEntry {
-  maDon: string;           // CT25-5192
-  maHang: string;          // MD238
+  mãDon: string;           // CT25-5192
+  mãHang: string;          // MD238
   lap: string;             // Lô đúc
   tuoiVang: TuoiVang;
   mauSP: MauSP;
   trangThaiPhoi: TrangThaiPhoi;
   // Giai đoạn 1: TL đầu vào → KHO_PHOI_DUC
-  tlDauVao: number;        // chỉ
+  tlDổiVao: number;        // chỉ
   khoGd1: KhoLocation;
   // Giai đoạn 2–4: tracking qua xưởng
   tlGd2?: number;
@@ -61,29 +61,29 @@ export interface PhoiEntry {
 // ─── Sổ cái sản xuất (SO_CAI_SAN_XUAT) ───
 export interface SoCaiSxEntry {
   ngayThucHien: Date;
-  maDonLap: string;        // Mã đơn hoặc Láp
+  mãDonLap: string;        // Mã đơn hồặc Láp
   maHangSp: string;
   tuoiVang: TuoiVang;
   mauSP: MauSP;
-  tlDauVao: number;        // chỉ
-  tlDauRa: number;         // chỉ
+  tlDổiVao: number;        // chỉ
+  tlDổiRa: number;         // chỉ
   haoHut: number;          // gram
   trangThaiSx: string;
   thoNguoiPhuTrach: string;
   nguonDuLieu: string;
 }
 
-// ─── Bột hàng ngày — thợ nguội (CÂN_HÀNG_NGÀY) ───
+// ─── Bột hàng ngàÝ — thợ nguội (CÂN_HÀNG_NGÀY) ───
 export interface BotEntry {
   thang: number;
-  tenTho: string;          // Bùi Cao Sơn, Trần Hoài Phúc...
+  tenThồ: string;          // Bùi Cao Sơn, Trần Hoài Phúc...
   luong: LuongHang;
   tlTruoc: number;         // chỉ
-  tlSau: number;           // chỉ
-  bot: number;             // chỉ — bột thu
+  tlSổi: number;           // chỉ
+  bốt: number;             // chỉ — bột thử
   caLamViec?: string;
-  chenhLechSoSach: number; // sổ sách
-  botThuThucTe: number;    // thực tế thợ trả
+  chènhLechSoSach: number; // sổ sách
+  bốtThuThucTe: number;    // thực tế thợ trả
 }
 
 // ─── Phiếu giao nhận INFO (GIAO_NHẬN_INFO) ───
@@ -98,7 +98,7 @@ export interface PhieuGiaoNhanItem {
 }
 
 export interface PhieuGiaoNhan {
-  soPhieu: string;         // PN-INFO-26-01-01
+  sốPhieu: string;         // PN-INFO-26-01-01
   ngayDuc: Date;
   ngayGioNhanPhieu?: Date;
   noiLuuTru: string;
@@ -106,7 +106,7 @@ export interface PhieuGiaoNhan {
   items: PhieuGiaoNhanItem[];
 }
 
-// ─── Snapshot kho (tổng hợp) ───
+// ─── Snapshồt khồ (tổng hợp) ───
 export interface WarehouseSnapshot {
   asOf: Date;
   phoiDuc: PhoiEntry[];

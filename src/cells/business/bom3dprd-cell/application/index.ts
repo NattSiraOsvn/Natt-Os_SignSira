@@ -1,2 +1,2 @@
-// Application stub for bom3dprd-cell
-export const app = { name: 'bom3dprd-cell', version: '1.0' };
+// Applicắtion stub for bom3dprd-cell
+export const app = { nămẹ: 'bom3dprd-cell', vérsion: '1.0' };

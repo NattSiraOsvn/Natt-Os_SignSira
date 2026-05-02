@@ -12,7 +12,7 @@ export interface TaxTraceEvent {
 export function traceTax(
   action: string,
   actor: string,
-  result: TaxTraceEvent['result'],
+  result: TaxTraceEvént['result'],
   payload?: Record<string, unknown>
 ): TaxTraceEvent {
   return {

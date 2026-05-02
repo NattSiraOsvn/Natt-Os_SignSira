@@ -1,0 +1,95 @@
+#!/usr/bin/env python3
+# nauion: tools/viet_hoa_src.sira
+# vai: VIỆT HOÁ SRC — dịch toàn hệ tiếng Anh + ASCII no-tone → tiếng Việt có dấu
+# dùng Claude API batch, dry-run trước
+# invoke: python3 tools/viet_hoa_src.sira [--apply] [--cell <path>]
+
+import os, sys, re, json, urllib.request, urllib.error
+
+API_URL = "https://api.anthropic.com/v1/messages"
+MODEL   = "claude-sonnet-4-20250514"
+KHÓA    = os.environ.get("ANTHROPIC_API_KEY", "")
+
+ĐUÔI = (".ts", ".si", ".na")
+THU_MUC = sys.argv[sys.argv.index("--cell")+1] if "--cell" in sys.argv else "src"
+APPLY = "--apply" in sys.argv
+ROOT = os.getcwd()
+
+PROMPT_HỆ_THỐNG = """Bạn là công cụ dịch code. Nhiệm vụ:
+1. Dịch comment tiếng Anh → tiếng Việt có dấu, tự nhiên, đúng nghĩa kỹ thuật
+2. Dịch string ASCII no-tone (vd: "khong co dau") → tiếng Việt có dấu đúng
+3. GIỮ NGUYÊN: tên biến, tên hàm, tên class, import, syntax, logic code
+4. GIỮ NGUYÊN: từ kỹ thuật (SmartLink, HeyNa, HMAC, EventBus, cell, QNEU...)
+5. Trả về ĐÚNG NỘI DUNG FILE, không giải thích thêm"""
+
+def dịch_file(nội_dung):
+    if not KHÓA:
+        print("⊘ ANTHROPIC_API_KEY chưa set")
+        sys.exit(1)
+    body = json.dumps({
+        "model": MODEL,
+        "max_tokens": 4000,
+        "system": PROMPT_HỆ_THỐNG,
+        "messages": [{"role":"user","content":f"Dịch file này:\n\n{nội_dung}"}]
+    }).encode()
+    req = urllib.request.Request(API_URL, data=body, headers={
+        "Content-Type": "application/json",
+        "x-api-key": KHÓA,
+        "anthropic-version": "2023-06-01"
+    })
+    try:
+        with urllib.request.urlopen(req) as r:
+            kq = json.loads(r.read())
+            return kq["content"][0]["text"]
+    except Exception as e:
+        return None
+
+def cần_dịch(nội_dung):
+    # chỉ dịch file có comment tiếng Anh hoặc string ascii no-tone đáng kể
+    có_anh = bool(re.search(r'//\s+[A-Z][a-z]|/\*\s*[A-Z]|\*\s+[A-Z][a-z]', nội_dung))
+    có_ascii = bool(re.search(r'["\'][a-z]{3,} [a-z]{3,} [a-z]{3,}["\']', nội_dung))
+    return có_anh or có_ascii
+
+def chạy(root, thu_muc, apply):
+    đường = os.path.join(root, thu_muc)
+    files = []
+    for r, _, fs in os.walk(đường):
+        for f in fs:
+            if any(f.endswith(đ) for đ in ĐUÔI):
+                files.append(os.path.join(r, f))
+
+    print(f"═"*55)
+    print(f"  VIỆT HOÁ SRC — {'APPLY' if apply else 'DRY-RUN'}")
+    print(f"  Thư mục: {thu_muc} | Files: {len(files)}")
+    print(f"═"*55)
+
+    đã_dịch = bỏ_qua = lỗi = 0
+    for f in files[:10]:  # batch 10 file đầu, anh review rồi mở rộng
+        tương_đối = os.path.relpath(f, root)
+        try:
+            nội_dung = open(f, encoding='utf-8', errors='replace').read()
+        except:
+            continue
+        if not cần_dịch(nội_dung):
+            bỏ_qua += 1
+            continue
+        print(f"  → dịch: {tương_đối}")
+        kết_quả = dịch_file(nội_dung[:3000])  # giới hạn 3000 ký tự/file
+        if kết_quả:
+            if apply:
+                open(f, 'w', encoding='utf-8').write(kết_quả)
+                print(f"    ✓ applied")
+            else:
+                print(f"    ✓ dry-run OK ({len(kết_quả)} chars)")
+            đã_dịch += 1
+        else:
+            print(f"    ⊘ lỗi API")
+            lỗi += 1
+
+    print()
+    print(f"  Đã dịch: {đã_dịch} | Bỏ qua: {bỏ_qua} | Lỗi: {lỗi}")
+    print(f"  ◉ XONG batch 10 đầu — anh review rồi chạy --apply")
+    print(f"═"*55)
+
+if __name__ == "__main__":
+    chạy(ROOT, THU_MUC, APPLY)

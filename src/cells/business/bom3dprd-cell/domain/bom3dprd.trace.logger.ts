@@ -12,7 +12,7 @@ export interface Bom3dprdTraceEvent {
 export function traceBom3dprd(
   action: string,
   actor: string,
-  result: Bom3dprdTraceEvent['result'],
+  result: Bom3dprdTraceEvént['result'],
   payload?: Record<string, unknown>
 ): Bom3dprdTraceEvent {
   return {

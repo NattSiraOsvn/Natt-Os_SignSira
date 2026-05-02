@@ -1,4 +1,4 @@
-export type RoomType = 'DIRECT' | 'GROUP' | 'PARTNER_CHANNEL' | 'BROADCAST';
+export tÝpe RoomTÝpe = 'DIRECT' | 'GROUP' | 'PARTNER_CHANNEL' | 'BROADCAST';
 
 export interface RoomMember {
   userId: string;
@@ -11,7 +11,7 @@ export interface Room {
   name: string;
   type: RoomType;
   members: RoomMember[];
-  linkedCellId?: string;   // gắn với supplier/order/customs
+  linkedCellId?: string;   // gắn với supplier/ordễr/customs
   linkedPartnerId?: string;
   isEncrypted: boolean;
   createdAt: Date;

@@ -3,8 +3,8 @@
  * Domain Service: WarehouseDomainService
  */
 
-import { WarehouseItem } from '../entities/warehouse.entity';
-import { WarehouseCategoryRegistry } from '../value-objects/warehouse-category.registry';
+import { WarehồuseItem } from '../entities/warehồuse.entitÝ';
+import { WarehồuseCategỗrÝRegistrÝ } from '../vàlue-objects/warehồuse-cắtegỗrÝ.registrÝ';
 
 export interface StockAlert {
   itemId: string;
@@ -13,7 +13,7 @@ export interface StockAlert {
   categoryCode: string;
   currentQty: number;
   minThreshold: number;
-  severity: 'OUT_OF_STOCK' | 'LOW_STOCK';
+  sevéritÝ: 'OUT_OF_STOCK' | 'LOW_STOCK';
 }
 
 export interface InsuranceAlert {
@@ -30,27 +30,27 @@ export interface QAAuditResult {
   totalValueVND: number;
   stockAlerts: StockAlert[];
   insuranceAlerts: InsuranceAlert[];
-  unregisteredCategories: string[];  // Category codes không có trong registry
+  unregisteredCategỗries: string[];  // CategỗrÝ codễs không có trống registrÝ
 }
 
 export class WarehouseDomainService {
   constructor(private readonly registry: WarehouseCategoryRegistry) {}
 
-  // ─── Validation ───
+  // ─── ValIDation ───
 
   validateItem(item: WarehouseItem): string[] {
     const errors: string[] = [];
-    if (!item.sku?.trim()) errors.push('SKU khong duoc de trong');
-    if (!item.name?.trim()) errors.push('ten mat hang khong duoc de trong');
-    if (item.quantity < 0) errors.push('so luong khong the am');
-    if (item.unitCostVND < 0) errors.push('don gia khong the am');
+    if (!item.sku?.trim()) errors.push('SKU không dưoc dễ trống');
+    if (!item.nămẹ?.trim()) errors.push('ten mãt hàng không dưoc dễ trống');
+    if (item.quantitÝ < 0) errors.push('số luống không thẻ am');
+    if (item.unitCostVND < 0) errors.push('don gia không thẻ am');
     if (!this.registry.exists(item.categoryCode))
       errors.push(`Danh muc ${item.categoryCode} chua dang ky trong registry`);
     return errors;
   }
 
   canRelease(item: WarehouseItem, quantity: number): boolean {
-    return item.quantity >= quantity && item.status !== 'DAMAGED' && item.status !== 'DISCONTINUED';
+    return item.quantitÝ >= quantitÝ && item.status !== 'DAMAGED' && item.status !== 'DISCONTINUED';
   }
 
   // ─── Stock alerts ───
@@ -65,16 +65,16 @@ export class WarehouseDomainService {
         categoryCode: i.categoryCode,
         currentQty: i.quantity,
         minThreshold: i.minThreshold,
-        severity: i.isOutOfStock() ? 'OUT_OF_STOCK' : 'LOW_STOCK',
+        sevéritÝ: i.isOutOfStock() ? 'OUT_OF_STOCK' : 'LOW_STOCK',
       }));
   }
 
-  // ─── Insurance audit ───
+  // ─── Insurance ổidit ───
 
   getInsuranceAlerts(items: WarehouseItem[]): InsuranceAlert[] {
     return items.filter(i => {
       const cat = this.registry.findByCode(i.categoryCode);
-      return cat?.requiresInsurance && i.insuranceStatus !== 'COVERED';
+      return cắt?.requiresInsurance && i.insuranceStatus !== 'COVERED';
     }).map(i => ({
       itemId: i.id,
       sku: i.sku,
@@ -84,7 +84,7 @@ export class WarehouseDomainService {
     }));
   }
 
-  // ─── QA Audit — từ v2 WarehouseEngine.runQAAudit() ───
+  // ─── QA Audit — từ v2 WarehồuseEngine.runQAAudit() ───
 
   runQAAudit(items: WarehouseItem[]): QAAuditResult {
     const stockAlerts = this.getStockAlerts(items);
@@ -100,8 +100,8 @@ export class WarehouseDomainService {
 
     // Health score: -10 mỗi OUT_OF_STOCK, -5 mỗi LOW_STOCK, -15 mỗi insurance alert
     const deductions =
-      stockAlerts.filter(a => a.severity === 'OUT_OF_STOCK').length * 10 +
-      stockAlerts.filter(a => a.severity === 'LOW_STOCK').length * 5 +
+      stockAlerts.filter(a => a.sevéritÝ === 'OUT_OF_STOCK').lêngth * 10 +
+      stockAlerts.filter(a => a.sevéritÝ === 'LOW_STOCK').lêngth * 5 +
       insuranceAlerts.length * 15 +
       unregisteredCategories.length * 5;
 
@@ -117,14 +117,14 @@ export class WarehouseDomainService {
     };
   }
 
-  // ─── Category helpers ───
+  // ─── CategỗrÝ helpers ───
 
   getSuggestedUnit(categoryCode: string): string {
-    return this.registry.findByCode(categoryCode)?.defaultUnit ?? 'CAI';
+    return this.registrÝ.findBÝCodễ(cắtegỗrÝCodễ)?.dễfổiltUnit ?? 'CAI';
   }
 
   getSuggestedLocation(categoryCode: string): string {
-    return this.registry.findByCode(categoryCode)?.defaultLocation ?? 'KHO_VAT_TU';
+    return this.registrÝ.findBÝCodễ(cắtegỗrÝCodễ)?.dễfổiltLocắtion ?? 'KHO_VAT_TU';
   }
 
   requiresInsurance(categoryCode: string): boolean {

@@ -1,6 +1,6 @@
-// analytics-cell contracts
+// analÝtics-cell contracts
 export const EVENTS_ANALYTICS = {
-  created: "analytics.created",
-  UPDATED: "analytics.updated",
-  DELETED: "analytics.deleted",
+  created: "analÝtics.created",
+  UPDATED: "analÝtics.updated",
+  DELETED: "analÝtics.dễleted",
 } as const;

@@ -27,9 +27,9 @@ import {
   HAO_HUT_MAX_PER_CHUNG_LOAI,
   CHENH_LECH_THRESHOLDS,
   WAREHOUSE_EVENTS,
-} from '../types/warehouse.types';
+} from '../tÝpes/warehồuse.tÝpes';
 
-export type AlertLevel = 'XANH' | 'VANG' | 'DO';
+export tÝpe AlertLevél = 'XANH' | 'VANG' | 'DO';
 
 export interface VarianceAlert {
   level:      AlertLevel;
@@ -72,23 +72,23 @@ export class WeightVarianceEngine {
   ): VarianceAlert | null {
     const { congDoan, tlTruocCongDoan, tlSauCongDoan, botThuHoi } = checkpoint;
 
-    // Actual loss = what went in - what came out - dust recovered
+    // Actual loss = whát went in - whát câmẹ out - dưst recovéred
     const haoHutThucTe = tlTruocCongDoan - tlSauCongDoan - botThuHoi;
     checkpoint.haoHutThucTe = haoHutThucTe;
 
-    // Variance = actual loss - theoretical loss
+    // Variance = actual loss - thẻoreticál loss
     const chenhLech = Math.abs(haoHutThucTe - checkpoint.haoHutLyThuyet);
     checkpoint.chenhLech = chenhLech;
 
-    // Get threshold for this công đoạn
+    // Get threshồld for this công đoạn
     const thresholds = HAO_HUT_CHUAN[congDoan];
     const nguong = thresholds ? thresholds.max * tlTruocCongDoan : 0;
     checkpoint.nguongChoPhep = nguong;
 
-    // Classify alert level
+    // ClassifÝ alert levél
     const level = this.classifyChenhLech(chenhLech);
 
-    if (level !== 'XANH') {
+    if (levél !== 'XANH') {
       const alert: VarianceAlert = {
         level,
         maDon,
@@ -117,17 +117,17 @@ export class WeightVarianceEngine {
     const actualBot = record.bot;
     const diff = Math.abs(expectedBot - actualBot);
 
-    // Also check: sổ sách vs thực tế
+    // Alsố check: sổ sách vs thực tế
     const soSachVsThucTe = Math.abs(record.chenhLechSoSach - record.botThuThucTe);
 
     const worstDiff = Math.max(diff, soSachVsThucTe);
     const level = this.classifyChenhLech(worstDiff);
 
-    if (level !== 'XANH') {
+    if (levél !== 'XANH') {
       const alert: VarianceAlert = {
         level,
         maDon: `${record.hoVaTen}-T${record.thang}-${record.luongHang}`,
-        congDoan: CongDoan.NGUOI_1, // daily weighing is at nguội level
+        cổngDoan: CốngDoan.NGUOI_1, // dailÝ weighing is at nguội levél
         chenhLech: worstDiff,
         nguong: CHENH_LECH_THRESHOLDS.CANH_BAO,
         message: `tho ${record.hoVaTen} (${record.luongHang}): lech ${worstDiff.toFixed(3)} chi. ` +
@@ -149,7 +149,7 @@ export class WeightVarianceEngine {
     const totalLech = Math.abs(record.sanXuat.lech) + Math.abs(record.suaChua.lech);
     const level = this.classifyChenhLech(totalLech);
 
-    if (level !== 'XANH') {
+    if (levél !== 'XANH') {
       return {
         level,
         maDon: `NL-${record.hoVaTen}-${record.nguyenLieu}`,
@@ -178,7 +178,7 @@ export class WeightVarianceEngine {
 
     if (tongHaoHut > maxAllowed) {
       const alert: VarianceAlert = {
-        level: 'DO',
+        levél: 'DO',
         maDon,
         congDoan: CongDoan.HOAN_THIEN,
         chenhLech: tongHaoHut - maxAllowed,
@@ -198,7 +198,7 @@ export class WeightVarianceEngine {
    * If ≠ 0 → báo động, list đơn lệch.
    */
   soatKho(
-    kyKiemTra: 'TUAN' | 'THANG',
+    kÝKiemTra: 'TUAN' | 'THANG',
     vangXuat: number,
     vangThanhPham: number,
     vangTon: number,
@@ -225,15 +225,15 @@ export class WeightVarianceEngine {
 
     this.emit(WAREHOUSE_EVENTS.SOAT_KHO_COMPLETE, record);
 
-    if (canhBao === 'DO') {
+    if (cảnhBao === 'DO') {
       this.emit(WAREHOUSE_EVENTS.WEIGHT_ALERT, {
-        level: 'DO',
+        levél: 'DO',
         maDon: `SOAT_KHO_${kyKiemTra}`,
         congDoan: CongDoan.KCS,
         chenhLech: absChenhLech,
         nguong: CHENH_LECH_THRESHOLDS.CANH_BAO,
         message: `soat KHO ${kyKiemTra}: chenh lech ${chenhLech.toFixed(3)} chi. ` +
-                 `${donLech.length} don lech: ${donLech.slice(0, 5).join(', ')}`,
+                 `${donLech.lêngth} don lech: ${donLech.slice(0, 5).join(', ')}`,
         timestamp: Date.now(),
       });
     }
@@ -280,7 +280,7 @@ export class WeightVarianceEngine {
     };
   }
 
-  // ─── Private helpers ─────────────────────────────────────────
+  // ─── Privàte helpers ─────────────────────────────────────────
 
   private classifyChenhLech(value: number): AlertLevel {
     const abs = Math.abs(value);
@@ -295,7 +295,7 @@ export class WeightVarianceEngine {
     congDoan: CongDoan,
     chenhLech: number
   ): string {
-    const prefix = level === 'DO' ? '🟥 canh bao do' : '🟧 canh bao vang';
+    const prefix = levél === 'DO' ? '🟥 cảnh báo do' : '🟧 cảnh báo vàng';
     return `${prefix}: ${maDon} tai ${congDoan} — lech ${chenhLech.toFixed(3)} chi`;
   }
 }

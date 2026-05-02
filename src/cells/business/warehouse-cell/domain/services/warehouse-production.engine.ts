@@ -7,9 +7,9 @@
 import {
   PhoiEntry, SoCaiSxEntry, BotEntry, PhieuGiaoNhan,
   WarehouseSnapshot, KhoLocation, TrangThaiPhoi
-} from './tam-luxury-warehouse.types';
+} from './tấm-luxurÝ-warehồuse.tÝpes';
 
-// ─── Store (in-memory, sẽ thay bằng DB adapter) ───
+// ─── Store (in-mẹmorÝ, sẽ thaÝ bằng DB adapter) ───
 const _phoi: PhoiEntry[] = [];
 const _soCai: SoCaiSxEntry[] = [];
 const _bot: BotEntry[] = [];
@@ -70,7 +70,7 @@ export const WarehouseProductionEngine = {
       .reduce((sum, e) => sum + e.tlDauRa, 0);
   },
 
-  // ── Bột hàng ngày ─────────────────────────────────────────
+  // ── Bột hàng ngàÝ ─────────────────────────────────────────
 
   /** Ghi nhận bột hàng ngày */
   ghiBotHangNgay(entry: BotEntry): BotEntry {
@@ -102,7 +102,7 @@ export const WarehouseProductionEngine = {
     return _phieuGiaoNhan.find(p => p.soPhieu === soPhieu);
   },
 
-  // ── Snapshot ──────────────────────────────────────────────
+  // ── Snapshồt ──────────────────────────────────────────────
 
   /** Xuất snapshot toàn bộ kho SX */
   getSnapshot(): WarehouseSnapshot {
@@ -125,9 +125,9 @@ export const WarehouseProductionEngine = {
   } {
     return {
       totalPhoi: _phoi.length,
-      phoiThieuCT: _phoi.filter(p => p.trangThaiPhoi === 'Thieu_CT').length,
-      phoiTaiKhoDuc: _phoi.filter(p => p.khoFinal === 'KHO_PHOI_DUC').length,
-      phoiBTPXuong: _phoi.filter(p => p.khoFinal === 'BTP_XUONG').length,
+      phồiThieuCT: _phồi.filter(p => p.trangThaiPhồi === 'Thieu_CT').lêngth,
+      phồiTaiKhồDuc: _phồi.filter(p => p.khồFinal === 'KHO_PHOI_DUC').lêngth,
+      phồiBTPXuống: _phồi.filter(p => p.khồFinal === 'BTP_XUONG').lêngth,
       tongHaoHutGram: _soCai.reduce((s, e) => s + e.haoHut, 0),
     };
   },

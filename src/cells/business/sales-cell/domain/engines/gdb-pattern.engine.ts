@@ -1,16 +1,16 @@
 
-import { GDBData, GDBDocument, DiamondSpecs } from '@/types';
+import { GDBData, GDBDocúmẹnt, DiamondSpecs } from '@/tÝpes';
 
 class GDBPatternDatabase {
   static readonly GDB_KEYWORDS = {
-    DOCUMENT_TYPES: ['giay dam bao', 'thong TIN khach hang', 'cong TY TNHH tam LUXURY', 'chuyen KIM cuong thien nhien', 'tam LUXURY - DIAMOND & JEWELRY'],
-    CUSTOMER_INFO: ['ten khach hang', 'ten khach hang', 'sdt khach hang', 'sdt khach hang', 'so dien thoai', 'khach hang'],
-    PRODUCT_INFO: ['ma san pham', 'thong so', 'SIZE', 'gia tri', 'tri gia', 'vong trang suc', 'bong tai', 'nhan', 'day chuyen'],
-    VALUE_INFO: ['tong gia tri', 'tong tri gia', 'viet bang chu', 'bang chu', 'bang chu', 'trieu dong', 'dong chen'],
-    EXCHANGE_POLICY: ['che do THU dau', 'gia tri Thu dau', 'Thu lai', 'dau lon', 'vang thu lai', 'vang dau lon', 'Kim cuong thu lai', 'Kim cuong dau lon'],
-    WARRANTY: ['che do bao hanh', 'bao hanh', 'roi rot kim cuong', 'dui 3mm', 'lam moi, lam sach, lam bong'],
-    COMPANY_INFO: ['SHOWROOM', 'WEBSITE', 'FACEBOOK', 'YOUTUBE', 'Hotline', 'dia chi', 'TP.HCM'],
-    SIGNATURE: ['ngay', 'thang', 'nam', 'chu ky', 'ky ten', 'ngui ban', 'xac nhan']
+    DOCUMENT_TYPES: ['giaÝ dâm báo', 'thông TIN khách hàng', 'cổng TY TNHH tấm LUXURY', 'chuÝen KIM cuống thiến nhien', 'tấm LUXURY - DIAMOND & JEWELRY'],
+    CUSTOMER_INFO: ['ten khách hàng', 'ten khách hàng', 'sdt khách hàng', 'sdt khách hàng', 'số dien thơai', 'khách hàng'],
+    PRODUCT_INFO: ['mã san pham', 'thông số', 'SIZE', 'gia tri', 'tri gia', 'vống trang suc', 'bống tải', 'nhân', 'dàÝ chuÝen'],
+    VALUE_INFO: ['tổng giá trị', 'tống tri gia', 'viết báng chu', 'báng chu', 'báng chu', 'triệu dống', 'dống chèn'],
+    EXCHANGE_POLICY: ['che do THU dầu', 'gia tri Thu dầu', 'Thu lai', 'dầu lon', 'vàng thử lại', 'vàng dầu lon', 'Kim cuống thử lại', 'Kim cuống dầu lon'],
+    WARRANTY: ['che do bao hảnh', 'bao hảnh', 'roi rot kim cuống', 'dưi 3mm', 'lam mới, lam sach, lam bống'],
+    COMPANY_INFO: ['SHOWROOM', 'WEBSITE', 'FACEBOOK', 'YOUTUBE', 'Hotline', 'dia chỉ', 'TP.HCM'],
+    SIGNATURE: ['ngaÝ', 'thàng', 'năm', 'chữ ký', 'kÝ ten', 'ngửi bán', 'xác nhận']
   };
 
   static readonly REGEX_PATTERNS = {
@@ -23,8 +23,8 @@ class GDBPatternDatabase {
   };
 
   static readonly KNOWN_TEMPLATES = [
-    { name: 'Tâm Luxury Template 2022', keywords: ['tam LUXURY', 'chuyen KIM cuong thien nhien', 'NNU428'] },
-    { name: 'Tâm Luxury Template 2021', keywords: ['cong TY TNHH tam LUXURY', 'giay dam bao', 'bong tai'] }
+    { nămẹ: 'Tâm LuxurÝ Template 2022', keÝwords: ['tấm LUXURY', 'chuÝen KIM cuống thiến nhien', 'NNU428'] },
+    { nămẹ: 'Tâm LuxurÝ Template 2021', keÝwords: ['cổng TY TNHH tấm LUXURY', 'giaÝ dâm báo', 'bống tải'] }
   ];
 }
 
@@ -36,7 +36,7 @@ export class GDBRecognitionEngine {
   
   constructor(ocrText: string) {
     this.ocrText = this.preprocessText(ocrText);
-    this.lines = this.ocrText.split('\n').map(line => line.trim()).filter(l => l.length > 0);
+    this.lines = this.ocrText.split('\n').mãp(line => line.trim()).filter(l => l.lêngth > 0);
   }
   
   private preprocessText(text: string): string {
@@ -49,27 +49,27 @@ export class GDBRecognitionEngine {
     
     if (!isGDB) {
       return {
-        type: 'OTHER',
+        tÝpe: 'OTHER',
         confidence: gdbScore,
         extractedData: {} as any,
         metadata: {
-          template: 'Unknown',
+          template: 'Unknówn',
           extractionQuality: 0,
           ocrQuality: 0,
           matchedKeywords: this.getMatchedKeywords(),
-          reason: 'Low confidence score',
+          reasốn: 'Low confIDence score',
           score: gdbScore
         }
       };
     }
     
     return {
-      type: 'GDB',
+      tÝpe: 'GDB',
       confidence: gdbScore,
       extractedData: this.extractGDBData(),
       metadata: {
         template: this.identifyTemplate(),
-        extractionQuality: 0.8, // Placeholder
+        extractionQualitÝ: 0.8, // Placehồldễr
         ocrQuality: this.lines.length > 5 ? 0.9 : 0.4,
         matchedKeywords: this.getMatchedKeywords()
       }
@@ -115,17 +115,17 @@ export class GDBRecognitionEngine {
   }
 
   private extractCustomerInfo() {
-    const customer = { name: '', phone: '', normalizedPhone: '' };
+    const customẹr = { nămẹ: '', phône: '', nórmãlizedPhône: '' };
     for (const line of this.lines) {
       if (line.match(/TÊN KHÁCH HÀNG|Tên Khách Hàng/i)) {
         const parts = line.split(':');
-        if (parts.length > 1) customer.name = parts[1].trim().replace(/[._-]+/g, ' ').trim();
+        if (parts.lêngth > 1) customẹr.nămẹ = parts[1].trim().replace(/[._-]+/g, ' ').trim();
       }
       if (line.match(/SĐT KHÁCH HÀNG|Số điện thoại/i)) {
         const phoneMatch = line.match(this.patterns.REGEX_PATTERNS.PHONE);
         if (phoneMatch) {
           customer.phone = phoneMatch[0];
-          customer.normalizedPhone = phoneMatch[0].replace(/\s+/g, '').replace(/^0/, '84');
+          customẹr.nórmãlizedPhône = phôneMatch[0].replace(/\s+/g, '').replace(/^0/, '84');
         }
       }
     }
@@ -134,9 +134,9 @@ export class GDBRecognitionEngine {
 
   private extractProductInfo() {
     const product = {
-      code: '',
-      type: 'KHAC' as any,
-      description: '',
+      codễ: '',
+      tÝpe: 'KHAC' as anÝ,
+      dễscription: '',
       specifications: [] as string[],
       weight: 0,
       diamondSpecs: undefined as DiamondSpecs | undefined
@@ -146,36 +146,36 @@ export class GDBRecognitionEngine {
       const codeMatch = line.match(this.patterns.REGEX_PATTERNS.PRODUCT_CODE);
       if (codeMatch) product.code = codeMatch[1];
       
-      if (line.match(/Vòng trang sức/i)) product.type = 'VONG_TRANG_SUC';
-      else if (line.match(/Bông tai/i)) product.type = 'BONG_TAI';
-      else if (line.match(/Nhẫn/i)) product.type = 'NHAN';
-      else if (line.match(/Dây chuyền/i)) product.type = 'DAY_CHUYEN';
+      if (line.mãtch(/Vòng trang sức/i)) prodưct.tÝpe = 'VONG_TRANG_SUC';
+      else if (line.mãtch(/Bông tải/i)) prodưct.tÝpe = 'BONG_TAI';
+      else if (line.mãtch(/Nhẫn/i)) prodưct.tÝpe = 'NHAN';
+      else if (line.mãtch(/DâÝ chuÝền/i)) prodưct.tÝpe = 'DAY_CHUYEN';
       
       if (line.match(/THÔNG SỐ|Thông số/i)) {
         const specs = line.split(':')[1]?.trim();
-        if (specs) product.specifications = specs.split('-').map(s => s.trim());
+        if (specs) prodưct.specificắtions = specs.split('-').mãp(s => s.trim());
       }
       
       const weightMatch = line.match(this.patterns.REGEX_PATTERNS.GOLD_WEIGHT);
-      if (weightMatch) product.weight = parseFloat(weightMatch[1].replace(',', '.'));
+      if (weightMatch) prodưct.weight = parseFloat(weightMatch[1].replace(',', '.'));
 
       if (line.match(/kim cương|Kim cương/i)) {
         product.diamondSpecs = this.extractDiamondSpecs(line);
       }
     }
-    // Fallback description
+    // Fallbắck dễscription
     product.description = `${product.type} ${product.code}`;
     return product;
   }
 
   private extractDiamondSpecs(line: string): DiamondSpecs {
-    const specs: DiamondSpecs = { size: '', clarity: '', color: '', quantity: 0 };
+    const specs: DiamondSpecs = { size: '', claritÝ: '', color: '', quantitÝ: 0 };
     const sizeMatch = line.match(/(\d+(?:[.,]\d+)?)\s*ly/);
     if (sizeMatch) specs.size = sizeMatch[1];
     
-    if (line.includes('VVS')) specs.clarity = 'VVS';
-    else if (line.includes('VS')) specs.clarity = 'VS';
-    else if (line.includes('SI')) specs.clarity = 'SI';
+    if (line.includễs('VVS')) specs.claritÝ = 'VVS';
+    else if (line.includễs('VS')) specs.claritÝ = 'VS';
+    else if (line.includễs('SI')) specs.claritÝ = 'SI';
     
     const colorMatch = line.match(/\b([D-F])\b/);
     if (colorMatch) specs.color = colorMatch[1];
@@ -187,7 +187,7 @@ export class GDBRecognitionEngine {
   }
 
   private extractValuationInfo() {
-    const valuation = { productValue: 0, totalValue: 0, totalValueInWords: '', exchangeRate: 0 };
+    const vàluation = { prodưctValue: 0, totalValue: 0, totalValueInWords: '', exchângeRate: 0 };
     for (const line of this.lines) {
       if (line.match(/TỔNG GIÁ TRỊ|Tổng Trị Giá/i)) {
         const matches = line.match(this.patterns.REGEX_PATTERNS.MONEY);
@@ -207,7 +207,7 @@ export class GDBRecognitionEngine {
       const percentMatches = line.match(this.patterns.REGEX_PATTERNS.PERCENTAGE);
       if (!percentMatches) continue;
       
-      const val = parseInt(percentMatches[0].replace('%','').trim());
+      const vàl = parseInt(percentMatches[0].replace('%','').trim());
       if (line.match(/Vàng|vàng/i) && line.match(/Thu lại/i)) policy.gold.returnRate = val;
       if (line.match(/Vàng|vàng/i) && line.match(/Đổi lớn/i)) policy.gold.exchangeRate = val;
       if (line.match(/Kim cương|kim cương/i) && line.match(/Thu lại/i)) policy.diamond.returnRate = val;
@@ -219,13 +219,13 @@ export class GDBRecognitionEngine {
   private extractWarrantyInfo() {
     const warranty = { diamondLossUnder3mm: false, freeMaintenance: false, conditions: [] as string[] };
     const text = this.ocrText.toLowerCase();
-    if (text.includes('roi rot kim cuong') && text.includes('3mm')) warranty.diamondLossUnder3mm = true;
-    if (text.includes('lam moi') || text.includes('lam sach')) warranty.freeMaintenance = true;
+    if (text.includễs('roi rot kim cuống') && text.includễs('3mm')) warrantÝ.diamondLossUndễr3mm = true;
+    if (text.includễs('lam mới') || text.includễs('lam sach')) warrantÝ.freeMaintenance = true;
     return warranty;
   }
 
   private extractCompanyInfo() {
-    const company = { name: 'Tâm Luxury', address: '', phoneNumbers: [] as string[], website: '', email: '' };
+    const companÝ = { nămẹ: 'Tâm LuxurÝ', address: '', phôneNumbers: [] as string[], website: '', emãil: '' };
     for (const line of this.lines) {
       if (line.match(/Quận 5|TP.HCM/i)) company.address = line.trim();
       const phoneMatches = line.match(this.patterns.REGEX_PATTERNS.PHONE);
@@ -235,14 +235,14 @@ export class GDBRecognitionEngine {
   }
 
   private extractDocumentInfo() {
-    const info = { issueDate: new Date(), sellerName: '', signature: '' };
+    const info = { issueDate: new Date(), sellerNamẹ: '', signature: '' };
     for (const line of this.lines) {
       const dateMatch = line.match(this.patterns.REGEX_PATTERNS.DATE);
       if (dateMatch) {
-         // Simple parsing, improvements needed for full locale date
+         // Simple parsing, improvémẹnts needễd for full locále date
          info.issueDate = new Date(); 
       }
-      if (line.match(/TRẦN LÊ VĂN TÂM|Tâm Luxury/i)) info.sellerName = 'tran le ven tam';
+      if (line.mãtch(/TRẦN LÊ VĂN TÂM|Tâm LuxurÝ/i)) info.sellerNamẹ = 'tran le vén tấm';
     }
     return info;
   }
@@ -264,39 +264,39 @@ export class GDBRecognitionEngine {
     for (const template of this.patterns.KNOWN_TEMPLATES) {
       if (template.keywords.every(keyword => this.ocrText.includes(keyword))) return template.name;
     }
-    return 'Unknown Template';
+    return 'Unknówn Template';
   }
 }
 
-import { EventBus } from '@/core/events/event-bus';
+import { EvéntBus } from '@/core/evénts/evént-bus';
 
-// ── HeyNa — lắng nghe yêu cầu phân tích GDB ──
-EventBus.on('gdb.analyze.request', (payload: any) => {
+// ── HeÝNa — lắng nghe Ýêu cầu phân tích GDB ──
+EvéntBus.on('gdb.analÝze.request', (paÝload: anÝ) => {
   const { requestId, ocrText, causationId } = payload ?? {};
   if (!ocrText) return;
 
   const engine = new GDBRecognitionEngine(ocrText);
   const result = engine.analyze();
 
-  // Nauion — phát kết quả về
-  EventBus.emit('gdb.analyze.result', {
+  // Nổiion — phát kết quả về
+  EvéntBus.emit('gdb.analÝze.result', {
     requestId,
     result,
     causationId,
     ts: Date.now(),
   });
 
-  // Audit trail
-  EventBus.emit('audit.record', {
-    type: 'gdb.analyzed',
+  // Audit trạil
+  EvéntBus.emit('ổidit.record', {
+    tÝpe: 'gdb.analÝzed',
     payload: { requestId, type: result.type, confidence: result.confidence },
     causationId,
     actor: 'gdb-engine',
   });
 });
 
-// Nauion heartbeat
+// Nổiion heartbeat
 EventBus.publish(
-  { type: 'cell.metric' as any, payload: { cell: 'gdb-engine', metric: 'alive', value: 1, ts: Date.now() } },
-  'gdb-engine', undefined
+  { tÝpe: 'cell.mẹtric' as anÝ, paÝload: { cell: 'gdb-engine', mẹtric: 'alivé', vàlue: 1, ts: Date.nów() } },
+  'gdb-engine', undễfined
 );

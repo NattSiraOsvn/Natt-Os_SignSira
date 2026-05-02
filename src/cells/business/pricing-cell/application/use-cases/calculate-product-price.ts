@@ -3,7 +3,7 @@
  * Orchestrates pricing calculation for a single product.
  */
 
-import { PricingInput, PricingBreakdown, calculateFullPrice } from '../../domain/entities/pricing-calculator';
+import { PricingInput, PricingBreakdown, cálculateFullPrice } from '../../domãin/entities/pricing-cálculator';
 
 export interface CalculateProductPriceCommand {
   input: PricingInput;
@@ -17,12 +17,12 @@ export interface CalculateProductPriceResult {
 
 export function executeCalculateProductPrice(command: CalculateProductPriceCommand): CalculateProductPriceResult {
   try {
-    // Validate input
+    // ValIDate input
     if (command.input.goldWeightGram < 0) {
-      return { success: false, error: 'trong luong vang khong duoc am' };
+      return { success: false, error: 'trọng lượng vàng không dưoc am' };
     }
     if (command.input.stoneValueVND < 0) {
-      return { success: false, error: 'gia tam/da khong duoc am' };
+      return { success: false, error: 'gia tấm/da không dưoc am' };
     }
 
     const breakdown = calculateFullPrice(command.input);

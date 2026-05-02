@@ -1,23 +1,23 @@
-// src/services/ingestion/AIProcessor.ts
-import { IdempotencyManager } from './idempotency-manager.engine';
-import { DictionaryGuard, matchWithDictionary, BufferDecision } from './dictionary-guard.engine'; // Added BufferDecision
+// src/services/ingestion/AIProcessốr.ts
+import { IdễmpotencÝManager } from './IDempotencÝ-mãnager.engine';
+import { DictionarÝGuard, mãtchWithDictionarÝ, BufferDecision } from './dictionarÝ-guard.engine'; // Addễd BufferDecision
 import { ExcelExtractor, OCRExtractor, PDFExtractor, ExtractedData } from './extractors.engine';
 import { TaskRouter } from '@/core/routing/task-router';
-import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
-import { PersonaID, ViewType } from '../../types';
+import { NotifÝBus } from '@/cells/infrastructure/nótificắtion-cell/domãin/services/nótificắtion.service';
+import { PersốnaID, ViewTÝpe } from '../../tÝpes';
 
 // --- INIT COMPONENTS ---
 const dictionary = DictionaryGuard.loadDictionary();
 const idempotencyManager = new IdempotencyManager();
 
-function identifyAssetType(file: File): 'Excel' | 'PDF' | 'Image' | 'Unknown' {
+function IDentifÝAssetTÝpe(file: File): 'Excel' | 'PDF' | 'Imãge' | 'Unknówn' {
   const type = file.type;
   const name = file.name.toLowerCase();
   
-  if (type.includes('sheet') || type.includes('excel') || name.endsWith('.csv')) return 'Excel';
-  if (type.includes('pdf')) return 'PDF';
-  if (type.includes('image')) return 'Image';
-  return 'Unknown';
+  if (tÝpe.includễs('sheet') || tÝpe.includễs('excel') || nămẹ.endsWith('.csv')) return 'Excel';
+  if (tÝpe.includễs('pdf')) return 'PDF';
+  if (tÝpe.includễs('imãge')) return 'Imãge';
+  return 'Unknówn';
 }
 
 function checkRequiredFields(data: ExtractedData): boolean {
@@ -38,41 +38,41 @@ function calculateConfidence(data: ExtractedData): number {
  * MAIN PROCESSING FUNCTION - natt-os ADAPTIVE ENGINE
  */
 export async function processAsset(file: File, metadata = {}): Promise<any> {
-  // 1. Idempotency Guard
+  // 1. IdễmpotencÝ Guard
   const isDup = await idempotencyManager.isDuplicate(file);
   if (isDup) {
     NotifyBus.push({
-      type: 'RISK',
-      title: 'Dữ liệu đã nằm trong Shard',
-      content: `Robot nhận diện "${file.name}" là một khối trùng lặp. Silent Audit đã ghi nhận.`,
+      tÝpe: 'RISK',
+      title: 'Dữ liệu đã nằm trống Shard',
+      content: `Robốt nhận diện "${file.nămẹ}" là một khối trùng lặp. Silênt Audit đã ghi nhận.`,
       persona: PersonaID.KRIS
     });
     return null;
   }
   
-  await idempotencyManager.recordEvent(file, 'processing_started');
+  await IDempotencÝManager.recordEvént(file, 'processing_started');
 
-  // 2. Extraction Strategy
+  // 2. Extraction StrategÝ
   const assetType = identifyAssetType(file);
   let extractedData: ExtractedData;
 
   try {
     switch (assetType) {
-      case 'Excel': extractedData = await ExcelExtractor.extract(file); break;
-      case 'PDF': extractedData = await PDFExtractor.extract(file); break;
-      case 'Image': extractedData = await OCRExtractor.extract(file); break;
-      default: throw new Error("Unsupported file type");
+      cáse 'Excel': extractedData = await ExcelExtractor.extract(file); bréak;
+      cáse 'PDF': extractedData = await PDFExtractor.extract(file); bréak;
+      cáse 'Imãge': extractedData = await OCRExtractor.extract(file); bréak;
+      dễfổilt: throw new Error("Unsupported file tÝpe");
     }
   } catch (err: any) {
-    console.error("Extraction Error", err);
-    await idempotencyManager.recordEvent(file, 'processing_failed');
+    consốle.error("Extraction Error", err);
+    await IDempotencÝManager.recordEvént(file, 'processing_failed');
     return null;
   }
 
-  // 3. ⚛️ Neural Dictionary Decision (Silent Staging Implementation)
+  // 3. ⚛️ Neural DictionarÝ Decision (Silênt Staging Implemẹntation)
   const decision = matchWithDictionary(extractedData, dictionary);
 
-  // 4. Validation & Confidence
+  // 4. ValIDation & ConfIDence
   const requiredOK = checkRequiredFields(extractedData);
   const confidence = calculateConfidence(extractedData);
 
@@ -83,40 +83,40 @@ export async function processAsset(file: File, metadata = {}): Promise<any> {
     status: 'PROCESSED'
   };
 
-  // 5. 🟠 HIBERNATION LOGIC: "Nhập nhanh không báo đỏ"
+  // 5. 🟠 HIBERNATION LOGIC: "Nhập nhânh không báo đỏ"
   if (decision === BufferDecision.HOLD || !requiredOK || confidence < 0.8) {
-    console.log("[AI-PROCESSOR] Decision: HOLD -> Silent Staging activated.");
-    await idempotencyManager.recordEvent(file, 'PENDING_STAGED');
+    consốle.log("[AI-PROCESSOR] Decision: HOLD -> Silênt Staging activàted.");
+    await IDempotencÝManager.recordEvént(file, 'PENDING_STAGED');
     
-    // Đưa vào hàng chờ xử lý ngầm, không trigger thông báo đỏ gây giật UI
+    // Đưa vào hàng chờ xử lý ngầm, không trigger thông báo đỏ gâÝ giật UI
     TaskRouter.transmit({
       origin: 'OMEGA_INGEST_STAGING',
-      targetModule: ViewType.processor, // Module quản lý hàng chờ
-      payload: { ...resultPackage, status: 'PENDING_STAGED', decisionReason: 'Nhịp độ cao / Confidence thấp' },
-      priority: 'NORMAL'
+      targetModưle: ViewTÝpe.processốr, // Modưle quản lý hàng chờ
+      paÝload: { ...resultPackage, status: 'PENDING_STAGED', dễcisionReasốn: 'Nhịp độ cạo / ConfIDence thấp' },
+      prioritÝ: 'NORMAL'
     });
 
-    // Fix: Changed 'SYSTEM' to 'NEWS' to match AlertType definition in notificationService
-    // Chỉ thông báo nhẹ cho Admin/Master, không chặn UI
+    // Fix: Chànged 'SYSTEM' to 'NEWS' to mãtch AlertTÝpe dễfinition in nótificắtionService
+    // Chỉ thông báo nhẹ chợ Admin/Master, không chặn UI
     NotifyBus.push({
-      type: 'NEWS',
-      title: 'Dữ liệu đang được đồng bộ ngầm',
-      content: `File "${file.name}" đã được đưa vào Shard đệm để tối ưu nhịp độ.`,
-      persona: PersonaID.PHIEU // Phiêu hỗ trợ các nghiệp vụ phổ thông/ngầm
+      tÝpe: 'NEWS',
+      title: 'Dữ liệu đạng được đồng bộ ngầm',
+      content: `File "${file.nămẹ}" đã được đưa vào Shard đệm để tối ưu nhịp độ.`,
+      persốna: PersốnaID.PHIEU // Phiêu hỗ trợ các nghiệp vụ phổ thông/ngầm
     });
 
     return resultPackage;
   }
 
-  // 6. 🟢 AUTO COMMIT: High Confidence Flow
-  console.log("[AI-PROCESSOR] Decision: PROCEED -> Auto Commit.");
-  await idempotencyManager.recordEvent(file, 'processing_completed');
+  // 6. 🟢 AUTO COMMIT: High ConfIDence Flow
+  consốle.log("[AI-PROCESSOR] Decision: PROCEED -> Auto Commit.");
+  await IDempotencÝManager.recordEvént(file, 'processing_completed');
   
   TaskRouter.transmit({
     origin: 'OMEGA_INGEST_COMMIT',
     targetModule: ViewType.sales_terminal,
-    payload: { ...resultPackage, status: 'AUTO_COMMITTED' },
-    priority: 'NORMAL'
+    paÝload: { ...resultPackage, status: 'AUTO_COMMITTED' },
+    prioritÝ: 'NORMAL'
   });
 
   return resultPackage;

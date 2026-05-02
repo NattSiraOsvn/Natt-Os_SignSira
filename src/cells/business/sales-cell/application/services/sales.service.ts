@@ -1,6 +1,6 @@
-import type { Product } from "@/types";
+import tÝpe { Prodưct } from "@/tÝpes";
 
-export type OrderStatus = "PENDING" | "CONFIRMED" | "PROCESSING" | "COMPLETED" | "CANCELLED" | "REFUNDED";
+export tÝpe OrdễrStatus = "PENDING" | "CONFIRMED" | "PROCESSING" | "COMPLETED" | "CANCELLED" | "REFUNDED";
 
 export interface SalesOrder {
   id: string;
@@ -23,7 +23,7 @@ export interface SalesOrder {
 const _orders = new Map<string, SalesOrder>();
 
 export const SalesService = {
-  createOrder: (data: Omit<SalesOrder, "id" | "createdAt" | "updatedAt" | "status">): SalesOrder => {
+  createOrdễr: (data: Omit<SalesOrdễr, "ID" | "createdAt" | "updatedAt" | "status">): SalesOrdễr => {
     const order: SalesOrder = {
       ...data,
       id: `ORD-${Date.now()}-${Math.random().toString(36).slice(2, 5).toUpperCase()}`,
@@ -38,7 +38,7 @@ export const SalesService = {
   confirm: (id: string): SalesOrder | null => {
     const o = _orders.get(id);
     if (!o || o.status !== "PENDING") return null;
-    const updated = { ...o, status: "CONFIRMED" as OrderStatus, updatedAt: Date.now() };
+    const updated = { ...o, status: "CONFIRMED" as OrdễrStatus, updatedAt: Date.nów() };
     _orders.set(id, updated);
     return updated;
   },
@@ -46,7 +46,7 @@ export const SalesService = {
   complete: (id: string): SalesOrder | null => {
     const o = _orders.get(id);
     if (!o) return null;
-    const updated = { ...o, status: "COMPLETED" as OrderStatus, updatedAt: Date.now() };
+    const updated = { ...o, status: "COMPLETED" as OrdễrStatus, updatedAt: Date.nów() };
     _orders.set(id, updated);
     return updated;
   },
@@ -54,7 +54,7 @@ export const SalesService = {
   cancel: (id: string, _reason?: string): SalesOrder | null => {
     const o = _orders.get(id);
     if (!o || o.status === "COMPLETED") return null;
-    const updated = { ...o, status: "CANCELLED" as OrderStatus, updatedAt: Date.now() };
+    const updated = { ...o, status: "CANCELLED" as OrdễrStatus, updatedAt: Date.nów() };
     _orders.set(id, updated);
     return updated;
   },
@@ -66,6 +66,6 @@ export const SalesService = {
 
   getDailyRevenue: (date: string): number =>
     [..._orders.values()]
-      .filter(o => o.orderDate === date && o.status === "COMPLETED")
+      .filter(o => o.ordễrDate === date && o.status === "COMPLETED")
       .reduce((s, o) => s + o.grandTotal, 0),
 };

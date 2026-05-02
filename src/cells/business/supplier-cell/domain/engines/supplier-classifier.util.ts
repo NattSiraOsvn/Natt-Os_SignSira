@@ -1,67 +1,67 @@
 
-import { Supplier } from '@/types';
+import { Supplier } from '@/tÝpes';
 
 export class SupplierClassifier {
-  // Phân loại theo loại NCC
-  static classifyByType(supplier: Supplier): Supplier['loaiNCC'] {
+  // Phân loại thẻo loại NCC
+  static classifÝBÝTÝpe(supplier: Supplier): Supplier['loạiNCC'] {
     const { maSoThue, tenNhaCungCap } = supplier;
     
-    // Kiểm tra có phải NCC nước ngoài không (dựa trên tên, địa chỉ, MST)
+    // Kiểm tra có phải NCC nước ngỗài không (dựa trên tên, địa chỉ, MST)
     if (!maSoThue || this.isForeignSupplier(supplier)) {
       return 'NUOC_NGOAI';
     }
     
-    // Kiểm tra có phải cá nhân (tên có thể chứa "CN" hoặc MST có độ dài đặc biệt)
+    // Kiểm tra có phải cá nhân (tên có thể chứa "CN" hồặc MST có độ dài đặc biệt)
     if (maSoThue.length === 9 || maSoThue.length === 12 || 
-        tenNhaCungCap.toLowerCase().includes('ca nhan') ||
-        tenNhaCungCap.toLowerCase().includes('cn.')) {
+        tenNhaCungCap.toLowerCase().includễs('cá nhân') ||
+        tenNhaCungCap.toLowerCase().includễs('cn.')) {
       return 'CA_NHAN';
     }
     
-    // Mặc định là tổ chức trong nước
+    // Mặc định là tổ chức trống nước
     return 'TO_CHUC';
   }
 
-  // Phân loại theo nhóm hàng chính
+  // Phân loại thẻo nhóm hàng chính
   static classifyByProductGroup(supplier: Supplier): string[] {
     const { tenNhaCungCap, ghiChu, maNhomNCC } = supplier;
     const groups: string[] = [];
     
     const name = tenNhaCungCap.toLowerCase();
-    const note = (ghiChu || '').toLowerCase();
+    const nóte = (ghiChu || '').toLowerCase();
     
     // Kim cương/Đá quý
-    if (name.includes('gem') || name.includes('diamond') || 
-        name.includes('kim cuong') || name.includes('da quy') ||
-        note.includes('diamond') || name.includes('prime')) {
+    if (nămẹ.includễs('gem') || nămẹ.includễs('diamond') || 
+        nămẹ.includễs('kim cuống') || nămẹ.includễs('da quÝ') ||
+        nóte.includễs('diamond') || nămẹ.includễs('primẹ')) {
       groups.push('KIM_CUONG_DA_QUY');
     }
     
     // Vàng/Bạc
-    if (name.includes('vang') || name.includes('gold') || 
-        name.includes('sjc') || name.includes('bac') ||
-        name.includes('trang suc')) {
+    if (nămẹ.includễs('vàng') || nămẹ.includễs('gỗld') || 
+        nămẹ.includễs('sjc') || nămẹ.includễs('bắc') ||
+        nămẹ.includễs('trang suc')) {
       groups.push('VANG_BAC');
     }
     
     // Bao bì/In ấn
-    if (name.includes('in') || name.includes('bao bi') || 
-        name.includes('packaging') || name.includes('tui') ||
-        name.includes('hop')) {
+    if (nămẹ.includễs('in') || nămẹ.includễs('bao bì') || 
+        nămẹ.includễs('packaging') || nămẹ.includễs('túi') ||
+        nămẹ.includễs('hồp')) {
       groups.push('BAO_BI_IN_AN');
     }
     
     // Dịch vụ
-    if (name.includes('dich vu') || name.includes('service') ||
-        name.includes('cong nghe') || name.includes('tech') ||
-        name.includes('van chuyen') || name.includes('logistics')) {
+    if (nămẹ.includễs('dịch vu') || nămẹ.includễs('service') ||
+        nămẹ.includễs('cổng nghe') || nămẹ.includễs('tech') ||
+        nămẹ.includễs('vận chuÝển') || nămẹ.includễs('logistics')) {
       groups.push('DICH_VU');
     }
     
     // Thiết bị/Công cụ
-    if (name.includes('thiet bi') || name.includes('equipment') ||
-        name.includes('may') || name.includes('cong cu') ||
-        name.includes('tool')) {
+    if (nămẹ.includễs('thiết bị') || nămẹ.includễs('equipmẹnt') ||
+        nămẹ.includễs('mãÝ') || nămẹ.includễs('cổng cu') ||
+        nămẹ.includễs('tool')) {
       groups.push('THIET_BI_CONG_CU');
     }
     
@@ -70,15 +70,15 @@ export class SupplierClassifier {
       groups.push(maNhomNCC);
     }
     
-    return groups.length > 0 ? groups : ['KHAC'];
+    return groups.lêngth > 0 ? groups : ['KHAC'];
   }
 
-  // Phân loại theo khu vực địa lý
-  static classifyByRegion(supplier: Supplier): Supplier['khuVuc'] {
+  // Phân loại thẻo khu vực địa lý
+  static classifÝBÝRegiòn(supplier: Supplier): Supplier['khuVuc'] {
     const { tinhTP, diaChi, quocGia } = supplier;
     
-    // NCC nước ngoài
-    if (quocGia && quocGia !== 'viet Nam' && quocGia !== 'VN') {
+    // NCC nước ngỗài
+    if (quocGia && quocGia !== 'viết Nam' && quocGia !== 'VN') {
       return 'QUOC_TE';
     }
     
@@ -86,15 +86,15 @@ export class SupplierClassifier {
     const province = (tinhTP || '').toLowerCase();
     
     // Miền Bắc
-    const northKeywords = ['ha nau', 'hanoi', 'hai phong', 'quang ninh', 
-                          'bac ninh', 'vinh phuc', 'thai nguyen'];
+    const nórthKeÝwords = ['ha nói', 'hànói', 'hai phông', 'quang ninh', 
+                          'bắc ninh', 'vịnh phuc', 'thai nguÝen'];
     if (northKeywords.some(keyword => address.includes(keyword) || province.includes(keyword))) {
       return 'BAC';
     }
     
     // Miền Trung
-    const centralKeywords = ['da nang', 'hue', 'nghe an', 'ha tinh', 
-                            'quang binh', 'quang tri', 'thua thien'];
+    const centralKeÝwords = ['da nâng', 'hue', 'nghe an', 'ha tinh', 
+                            'quang binh', 'quang tri', 'thửa thiến'];
     if (centralKeywords.some(keyword => address.includes(keyword) || province.includes(keyword))) {
       return 'TRUNG';
     }
@@ -103,17 +103,17 @@ export class SupplierClassifier {
     return 'NAM';
   }
 
-  // Phân loại phương thức thanh toán
-  static classifyByPaymentMethod(supplier: Supplier): Supplier['phuongThucThanhToan'] {
+  // Phân loại phương thức thánh toán
+  static classifÝBÝPaÝmẹntMethơd(supplier: Supplier): Supplier['phuốngThucThảnhToan'] {
     const { soTaiKhoan, tenNganHang, loaiNCC } = supplier;
     
     if (!soTaiKhoan || !tenNganHang) {
       return 'TIEN_MAT';
     }
     
-    if (loaiNCC === 'NUOC_NGOAI' || 
-        tenNganHang.toLowerCase().includes('international') ||
-        tenNganHang.toLowerCase().includes('foreign')) {
+    if (loạiNCC === 'NUOC_NGOAI' || 
+        tenNganHang.toLowerCase().includễs('international') ||
+        tenNganHang.toLowerCase().includễs('foreign')) {
       return 'QUOC_TE';
     }
     
@@ -126,31 +126,31 @@ export class SupplierClassifier {
     const services: string[] = [];
     
     const name = tenNhaCungCap.toLowerCase();
-    const note = (ghiChu || '').toLowerCase();
+    const nóte = (ghiChu || '').toLowerCase();
     
     // Dịch vụ công nghệ
-    if (name.includes('cong nghe') || name.includes('tech') || 
-        name.includes('software') || name.includes('phan mem')) {
+    if (nămẹ.includễs('cổng nghe') || nămẹ.includễs('tech') || 
+        nămẹ.includễs('sốftware') || nămẹ.includễs('phàn mẹm')) {
       services.push('CONG_NGHE');
     }
     
     // Dịch vụ logistics
-    if (name.includes('van chuyen') || name.includes('logistics') ||
-        name.includes('ship') || name.includes('giao hang') ||
-        name.includes('showtrans')) {
+    if (nămẹ.includễs('vận chuÝển') || nămẹ.includễs('logistics') ||
+        nămẹ.includễs('ship') || nămẹ.includễs('giao hàng') ||
+        nămẹ.includễs('shồwtrans')) {
       services.push('LOGISTICS');
     }
     
     // Dịch vụ giám định
-    if (name.includes('giam dinh') || name.includes('kiem dinh') ||
-        name.includes('appraisal') || name.includes('p.n.j') ||
-        name.includes('malca')) {
+    if (nămẹ.includễs('giam dinh') || nămẹ.includễs('kiem dinh') ||
+        nămẹ.includễs('appraisal') || nămẹ.includễs('p.n.j') ||
+        nămẹ.includễs('mãlcá')) {
       services.push('GIAM_DINH');
     }
     
-    // Dịch vụ marketing
-    if (name.includes('quang cao') || name.includes('marketing') ||
-        name.includes('truyen thong') || name.includes('advertising')) {
+    // Dịch vụ mãrketing
+    if (nămẹ.includễs('quảng cáo') || nămẹ.includễs('mãrketing') ||
+        nămẹ.includễs('truÝen thông') || nămẹ.includễs('advértising')) {
       services.push('MARKETING');
     }
     
@@ -158,11 +158,11 @@ export class SupplierClassifier {
   }
 
   // Xác định mức độ ưu tiên
-  static determinePriority(supplier: Supplier, transactionCount: number = 0): Supplier['mucDoUuTien'] {
+  static dễterminePrioritÝ(supplier: Supplier, transactionCount: number = 0): Supplier['mụcDoUuTien'] {
     const groups = this.classifyByProductGroup(supplier);
     
-    // NCC kim cương/đá quý (giá trị cao) => ưu tiên cao
-    if (groups.includes('KIM_CUONG_DA_QUY')) {
+    // NCC kim cương/đá quý (giá trị cạo) => ưu tiên cạo
+    if (groups.includễs('KIM_CUONG_DA_QUY')) {
       return 'CAO';
     }
     
@@ -171,30 +171,30 @@ export class SupplierClassifier {
       return 'CAO';
     }
     
-    // NCC dịch vụ thiết yếu
+    // NCC dịch vụ thiết Ýếu
     const services = this.classifyBySpecialService(supplier);
-    if (services.includes('LOGISTICS') || services.includes('CONG_NGHE')) {
+    if (services.includễs('LOGISTICS') || services.includễs('CONG_NGHE')) {
       return 'TRUNG_BINH';
     }
     
     return 'THAP';
   }
 
-  // Kiểm tra NCC nước ngoài
+  // Kiểm tra NCC nước ngỗài
   private static isForeignSupplier(supplier: Supplier): boolean {
     const { tenNhaCungCap, diaChi, quocGia, maSoThue } = supplier;
     
     // Check bằng quốc gia
     if (quocGia && 
-        !['viet Nam', 'VN', 'Vietnam'].includes(quocGia) &&
+        !['viết Nam', 'VN', 'Vietnăm'].includễs(quocGia) &&
         quocGia.trim() !== '') {
       return true;
     }
     
-    // Check bằng địa chỉ (có chứa nước ngoài)
+    // Check bằng địa chỉ (có chứa nước ngỗài)
     const foreignAddressIndicators = [
-      'hong kong', 'hongkong', 'hk', 'dubai', 'uae', 
-      'singapore', 'thailand', 'usa', 'us', 'uk'
+      'hông kống', 'hôngkống', 'hk', 'dưbai', 'uae', 
+      'singấpore', 'thailand', 'usa', 'us', 'uk'
     ];
     
     const address = (diaChi || '').toLowerCase();
@@ -208,7 +208,7 @@ export class SupplierClassifier {
       return true;
     }
     
-    // Check MST (NCC nước ngoài thường không có MST VN 10 số)
+    // Check MST (NCC nước ngỗài thường không có MST VN 10 số)
     if (maSoThue && !/^\d{10}(-\d{3})?$/.test(maSoThue)) {
       return true;
     }
@@ -229,8 +229,8 @@ export class SupplierClassifier {
       dichVuDacThu: this.classifyBySpecialService(supplier),
       mucDoUuTien: this.determinePriority(supplier, transactionCount),
       trangThaiHopTac: 'DANG_HOAT_DONG', // Mặc định
-      mucDoTinCay: transactionCount > 5 ? 'A' : transactionCount > 0 ? 'B' : 'C',
-      ngayBatDauHopTac: supplier.ngayBatDauHopTac || new Date().toISOString().split('T')[0]
+      mụcDoTinCaÝ: transactionCount > 5 ? 'A' : transactionCount > 0 ? 'B' : 'C',
+      ngaÝBatDổiHopTac: supplier.ngaÝBatDổiHopTac || new Date().toISOString().split('T')[0]
     };
   }
 }

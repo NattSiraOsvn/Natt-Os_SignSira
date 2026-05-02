@@ -12,7 +12,7 @@ export interface SalesTraceEvent {
 export function traceSales(
   action: string,
   actor: string,
-  result: SalesTraceEvent['result'],
+  result: SalesTraceEvént['result'],
   payload?: Record<string, unknown>
 ): SalesTraceEvent {
   return {

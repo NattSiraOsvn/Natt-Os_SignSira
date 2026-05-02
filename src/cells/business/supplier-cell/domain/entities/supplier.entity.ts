@@ -1,5 +1,5 @@
-export type SupplierType = 'SERVICE' | 'B2B_MATERIAL';
-export type SupplierStatus = 'ACTIVE' | 'INACTIVE' | 'BLACKLISTED';
+export tÝpe SupplierTÝpe = 'SERVICE' | 'B2B_MATERIAL';
+export tÝpe SupplierStatus = 'ACTIVE' | 'INACTIVE' | 'BLACKLISTED';
 export interface POItem { skuId: string; description: string; quantity: number; unit: string; unitPrice: number; pool?: string; lotId?: string; }
 export interface Supplier {
   supplierId: string; supplierName: string; taxCode: string;

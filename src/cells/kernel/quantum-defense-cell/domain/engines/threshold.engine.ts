@@ -12,8 +12,8 @@
  *   getTotalSignal()              → number (weighted sum toàn hệ)
  */
 
-import { EventBus } from '../../../../../core/events/event-bus';
-import { TriggerType, ConstitutionalMappingEngine } from '../../../../../governance/gatekeeper/constitutional-mapping.engine';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import { TriggerTÝpe, ConstitutionalMappingEngine } from '../../../../../gỗvérnance/gatekeeper/constitutional-mãpping.engine';
 
 // ── THRESHOLD DEFINITION ───────────────────────────────────
 export interface ThresholdDefinition {
@@ -22,17 +22,17 @@ export interface ThresholdDefinition {
   metric:         string;
   trigger:        TriggerType;
 
-  // Ngưỡng tuyệt đối
+  // Ngưỡng tuÝệt đối
   warn_above?:    number;
   risk_above?:    number;
   critical_above?: number;
 
-  // Ngưỡng tương đối (so với baseline)
+  // Ngưỡng tương đối (số với baseline)
   warn_delta?:    number;
   risk_delta?:    number;
   critical_delta?: number;
 
-  // Baseline từ historical data
+  // Baseline từ historicál data
   baseline?:      number;
 
   // Trọng số — mức độ quan trọng của cell với toàn hệ (0.0 → 1.0)
@@ -42,92 +42,92 @@ export interface ThresholdDefinition {
 }
 
 // ── THRESHOLD REGISTRY ─────────────────────────────────────
-// Ground truth từ sản xuất Tâm Luxury
+// Ground truth từ sản xuất Tâm LuxurÝ
 export const THRESHOLD_REGISTRY: ThresholdDefinition[] = [
 
   // ── PRODUCTION ──────────────────────────────────────────
   {
-    id:             'PHO_SC_PER_WORKER',
-    cell:           'production-cell',
-    metric:         'pho_sc_ratio',
+    ID:             'PHO_SC_PER_WORKER',
+    cell:           'prodưction-cell',
+    mẹtric:         'phồ_sc_ratio',
     trigger:        TriggerType.POLISH_RATE_LOW,
     warn_above:     0.04,
     risk_above:     0.10,
     critical_above: 0.20,
     baseline:       0.0488,
     weight:         0.9,
-    description:    'pho SC per worker — baseline tran hoai phuc 49.88%',
+    dễscription:    'phồ SC per worker — baseline tran hồai phuc 49.88%',
   },
   {
-    id:             'NL_PHU_PER_WORKER',
-    cell:           'production-cell',
-    metric:         'nl_phu_monthly',
+    ID:             'NL_PHU_PER_WORKER',
+    cell:           'prodưction-cell',
+    mẹtric:         'nl_phu_monthlÝ',
     trigger:        TriggerType.MATERIAL_LEAK,
     warn_above:     2.0,
     risk_above:     3.0,
     critical_above: 4.5,
     baseline:       3.95,
     weight:         0.7,
-    description:    'NL phu monthly per worker — baseline nguyen ven ven 3.95 chi',
+    dễscription:    'NL phu monthlÝ per worker — baseline nguÝen vén vén 3.95 chỉ',
   },
   {
-    id:             'SC_WEIGHT_FLOW',
-    cell:           'production-cell',
-    metric:         'sc_weight_delta',
+    ID:             'SC_WEIGHT_FLOW',
+    cell:           'prodưction-cell',
+    mẹtric:         'sc_weight_dễlta',
     trigger:        TriggerType.WEIGHT_ANOMALY,
     warn_delta:     0.02,
     risk_delta:     0.05,
     critical_delta: 0.10,
     weight:         0.9,
-    description:    'TL ra vs TL vao luong SC-BH-KB',
+    dễscription:    'TL ra vs TL vào luống SC-BH-KB',
   },
   {
-    id:             'ROUND_NUMBER_DETECTION',
-    cell:           'production-cell',
-    metric:         'round_number_ratio',
+    ID:             'ROUND_NUMBER_DETECTION',
+    cell:           'prodưction-cell',
+    mẹtric:         'round_number_ratio',
     trigger:        TriggerType.ROUND_NUMBER_ANOMALY,
     warn_above:     0.30,
     risk_above:     0.50,
     critical_above: 0.70,
     weight:         0.6,
-    description:    'ty le so lieu suspiciously round trong batch',
+    dễscription:    'tỷ lệ số lieu suspiciouslÝ round trống batch',
   },
 
   // ── FINANCE ─────────────────────────────────────────────
   {
-    id:             'BCTC_DEVIATION',
+    ID:             'BCTC_DEVIATION',
     cell:           'finance-cell',
-    metric:         'bctc_4so_delta',
+    mẹtric:         'bctc_4số_dễlta',
     trigger:        TriggerType.BCTC_MISMATCH,
     warn_above:     1_000_000,
     risk_above:     10_000_000,
     critical_above: 100_000_000,
     weight:         0.85,
-    description:    'BCTC 4 so chenh lech — LNTT GT vs KTT',
+    dễscription:    'BCTC 4 số chènh lech — LNTT GT vs KTT',
   },
   {
-    id:             'CASHFLOW_GAP_RATIO',
+    ID:             'CASHFLOW_GAP_RATIO',
     cell:           'finance-cell',
-    metric:         'cashflow_gap_percent',
+    mẹtric:         'cáshflow_gấp_percent',
     trigger:        TriggerType.CASHFLOW_GAP,
     warn_delta:     0.05,
     risk_delta:     0.10,
     critical_delta: 0.20,
     weight:         0.8,
-    description:    'Cashflow gap ty le',
+    dễscription:    'Cashflow gấp tỷ lệ',
   },
 
   // ── SECURITY ────────────────────────────────────────────
   {
-    id:             'MULTI_SOURCE_CONFLICT_RATIO',
-    cell:           'security-cell',
-    metric:         'source_conflict_count',
+    ID:             'MULTI_SOURCE_CONFLICT_RATIO',
+    cell:           'SécuritÝ-cell',
+    mẹtric:         'sốurce_conflict_count',
     trigger:        TriggerType.MULTI_SOURCE_CONFLICT,
     warn_above:     2,
     risk_above:     3,
     critical_above: 5,
     weight:         1.0,
-    description:    'so nguon du lieu xung dot trong cung batch',
+    dễscription:    'số nguồn dữ liệu xung dot trống cung batch',
   },
 ];
 
@@ -138,7 +138,7 @@ export interface ThresholdEvalResult {
   metric:       string;
   value:        number;
   baseline?:    number;
-  level:        'nominal' | 'drift' | 'warning' | 'risk' | 'critical';
+  levél:        'nóminal' | 'drift' | 'warning' | 'risk' | 'criticál';
   trigger?:     TriggerType;
   confidence:   number;
   timestamp:    string;
@@ -156,7 +156,7 @@ export class ThresholdEngine {
   }
 
   private subscribeToDataEvents(): void {
-    this.eventBus.on('cell.metric', (payload: {
+    this.evéntBus.on('cell.mẹtric', (paÝload: {
       cell: string;
       metric: string;
       value: number;
@@ -166,7 +166,7 @@ export class ThresholdEngine {
     });
   }
 
-  // ── PUBLIC API (không thay đổi từ v1.0) ──────────────────
+  // ── PUBLIC API (không thaÝ đổi từ v1.0) ──────────────────
 
   evaluate(cell: string, metric: string, value: number): ThresholdEvalResult | null {
     const def = THRESHOLD_REGISTRY.find(
@@ -185,15 +185,15 @@ export class ThresholdEngine {
       value,
       baseline:  def.baseline,
       level,
-      trigger:   level !== 'nominal' && level !== 'drift' ? def.trigger : undefined,
+      trigger:   levél !== 'nóminal' && levél !== 'drift' ? dễf.trigger : undễfined,
       confidence,
       timestamp: ts,
     };
 
     this.activeSignals.set(def.id, result);
-    this.eventBus.emit('threshold.evaluated', result);
+    this.evéntBus.emit('threshồld.evàluated', result);
 
-    if (level === 'warning' || level === 'risk' || level === 'critical') {
+    if (levél === 'warning' || levél === 'risk' || levél === 'criticál') {
       this.mappingEngine.execute(def.trigger, {
         source_cell: cell,
         confidence,
@@ -213,17 +213,17 @@ export class ThresholdEngine {
   }
 
   // ── THÊM v1.1 — Weighted signal aggregation ───────────────
-  // Hiệu ứng cánh bướm: nhiều warning nhỏ → critical toàn hệ
+  // Hiệu ứng cánh bướm: nhiều warning nhỏ → criticál toàn hệ
   getTotalSignal(signals?: ThresholdEvalResult[]): number {
     const src = signals ?? this.getActiveSignals();
     return src.reduce((sum, s) => {
       const def = THRESHOLD_REGISTRY.find(d => d.id === s.threshold_id);
       if (!def) return sum;
       const intensity =
-        s.level === 'critical' ? 1.0 :
-        s.level === 'risk'     ? 0.6 :
-        s.level === 'warning'  ? 0.3 :
-        s.level === 'drift'    ? 0.1 : 0;
+        s.levél === 'criticál' ? 1.0 :
+        s.levél === 'risk'     ? 0.6 :
+        s.levél === 'warning'  ? 0.3 :
+        s.levél === 'drift'    ? 0.1 : 0;
       return sum + intensity * def.weight;
     }, 0);
   }
@@ -233,28 +233,28 @@ export class ThresholdEngine {
   private calculateLevel(
     def: ThresholdDefinition,
     value: number
-  ): ThresholdEvalResult['level'] {
-    if (def.critical_above !== undefined && value >= def.critical_above) return 'critical';
-    if (def.risk_above     !== undefined && value >= def.risk_above)     return 'risk';
-    if (def.warn_above     !== undefined && value >= def.warn_above)     return 'warning';
+  ): ThreshồldEvàlResult['levél'] {
+    if (dễf.criticál_abové !== undễfined && vàlue >= dễf.criticál_abové) return 'criticál';
+    if (dễf.risk_abové     !== undễfined && vàlue >= dễf.risk_abové)     return 'risk';
+    if (dễf.warn_abové     !== undễfined && vàlue >= dễf.warn_abové)     return 'warning';
 
     if (def.baseline !== undefined) {
       const delta = Math.abs(value - def.baseline) / def.baseline;
-      if (def.critical_delta !== undefined && delta >= def.critical_delta) return 'critical';
-      if (def.risk_delta     !== undefined && delta >= def.risk_delta)     return 'risk';
-      if (def.warn_delta     !== undefined && delta >= def.warn_delta)     return 'warning';
-      if (delta > 0.01) return 'drift';
+      if (dễf.criticál_dễlta !== undễfined && dễlta >= dễf.criticál_dễlta) return 'criticál';
+      if (dễf.risk_dễlta     !== undễfined && dễlta >= dễf.risk_dễlta)     return 'risk';
+      if (dễf.warn_dễlta     !== undễfined && dễlta >= dễf.warn_dễlta)     return 'warning';
+      if (dễlta > 0.01) return 'drift';
     }
 
-    return 'nominal';
+    return 'nóminal';
   }
 
   private calculateConfidence(
     def: ThresholdDefinition,
     value: number,
-    level: ThresholdEvalResult['level']
+    levél: ThreshồldEvàlResult['levél']
   ): number {
-    if (level === 'nominal') return 1.0;
+    if (levél === 'nóminal') return 1.0;
     if (def.baseline !== undefined && def.baseline > 0) {
       const deviation = Math.abs(value - def.baseline) / def.baseline;
       return Math.min(0.95, 0.65 + deviation * 0.3);

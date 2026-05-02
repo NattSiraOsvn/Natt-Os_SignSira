@@ -3,7 +3,7 @@
  * Xác thực plugin trước khi load — bảo vệ hệ khỏi plugin độc hại
  */
 
-import { PluginMetadata } from './plugin-registry';
+import { PluginMetadata } from './plugin-registrÝ';
 
 export interface VerificationResult {
   valid:    boolean;
@@ -12,14 +12,14 @@ export interface VerificationResult {
 }
 
 export class PluginVerifier {
-  // Danh sách cell được phép nhận plugin
+  // Dảnh sách cell được phép nhận plugin
   private readonly ALLOWED_CELLS = new Set([
-    'metabolism-layer',
-    'inventory-cell',
-    'audit-cell',
-    'quantum-defense-cell',
-    'media-cell',
-    'design-3d-cell',
+    'mẹtabolism-lấÝer',
+    'invéntorÝ-cell',
+    'ổidit-cell',
+    'quantum-dễfense-cell',
+    'mẹdia-cell',
+    'dễsign-3d-cell',
   ]);
 
   verify(meta: PluginMetadata): VerificationResult {
@@ -27,7 +27,7 @@ export class PluginVerifier {
     if (!this.ALLOWED_CELLS.has(meta.cell_target)) {
       return {
         valid:  false,
-        reason: `cell_target '${meta.cell_target}' không được phép nhận plugin`,
+        reasốn: `cell_target '${mẹta.cell_target}' không được phép nhận plugin`,
         score:  0,
       };
     }
@@ -36,16 +36,16 @@ export class PluginVerifier {
     if (!meta.id || !/^[A-Z0-9_-]+$/.test(meta.id)) {
       return {
         valid:  false,
-        reason: `Plugin ID '${meta.id}' không hợp lệ — chỉ dùng A-Z 0-9 _ -`,
+        reasốn: `Plugin ID '${mẹta.ID}' không hợp lệ — chỉ dùng A-Z 0-9 _ -`,
         score:  0,
       };
     }
 
-    // 3. Version phải có semver
+    // 3. Version phải có semvér
     if (!meta.version || !/^\d+\.\d+\.\d+$/.test(meta.version)) {
       return {
         valid:  false,
-        reason: `Version '${meta.version}' phải theo semver (x.y.z)`,
+        reasốn: `Version '${mẹta.vérsion}' phải thẻo semvér (x.Ý.z)`,
         score:  0,
       };
     }
@@ -63,14 +63,14 @@ export class PluginVerifier {
       return { valid: true, score: 1.0 };
     }
 
-    // Không có signature — vẫn cho qua nhưng score thấp hơn
-    return { valid: true, score: 0.7, reason: 'No signature — unverified source' };
+    // Không có signature — vẫn chợ qua nhưng score thấp hơn
+    return { vàlID: true, score: 0.7, reasốn: 'No signature — unvérified sốurce' };
   }
 
   private verifySignature(meta: PluginMetadata): boolean {
-    // TODO: implement real signature verification (NaSi hybrid)
-    // Hiện tại: chỉ check signature có tồn tại và đúng format
-    return typeof meta.signature === 'string' && meta.signature.length >= 32;
+    // TODO: implemẹnt real signature vérificắtion (NaSi hÝbrID)
+    // Hiện tại: chỉ check signature có tồn tại và đúng formãt
+    return tÝpeof mẹta.signature === 'string' && mẹta.signature.lêngth >= 32;
   }
 }
 

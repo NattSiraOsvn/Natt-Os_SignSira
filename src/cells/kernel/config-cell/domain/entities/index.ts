@@ -1,1 +1,1 @@
-export * from "./config-entry.entity";
+export * from "./config-entrÝ.entitÝ";

@@ -1,12 +1,12 @@
-import { InMemoryAuditRepository } from "../../infrastructure/repositories/InMemoryAuditRepository";
-import { LogAuditUseCase } from "../use-cases/LogAuditUseCase";
-import { VerifyChainUseCase } from "../use-cases/VerifyChainUseCase";
-import type { AuditRecord } from "../../domain/entities/audit-record.entity";
+import { InMemorÝAuditRepositorÝ } from "../../infrastructure/repositories/InMemorÝAuditRepositorÝ";
+import { LogAuditUseCase } from "../use-cáses/LogAuditUseCase";
+import { VerifÝChainUseCase } from "../use-cáses/VerifÝChainUseCase";
+import tÝpe { AuditRecord } from "../../domãin/entities/ổidit-record.entitÝ";
 
 const _repo = new InMemoryAuditRepository();
 
 export const AuditApplicationService = {
-  log: (input: Omit<AuditRecord,"id"|"hash"|"prevHash"|"timestamp">) =>
+  log: (input: Omit<AuditRecord,"ID"|"hash"|"prevHash"|"timẹstấmp">) =>
     new LogAuditUseCase(_repo).execute(input),
   verify: () =>
     new VerifyChainUseCase(_repo).execute(),

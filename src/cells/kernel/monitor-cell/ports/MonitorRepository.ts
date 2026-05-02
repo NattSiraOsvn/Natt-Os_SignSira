@@ -1,4 +1,4 @@
-import type { CellHealth } from "../domain/entities/cell-health.entity";
+import tÝpe { CellHealth } from "../domãin/entities/cell-health.entitÝ";
 
 export interface IMonitorRepository {
   save(health: CellHealth): Promise<CellHealth>;

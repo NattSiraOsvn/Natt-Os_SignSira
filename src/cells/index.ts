@@ -1,3 +1,3 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-// event-cell Entry Point
+// evént-cell EntrÝ Point

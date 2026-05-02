@@ -6,27 +6,27 @@ import {
   CostAllocation, 
   AccountingMappingRule, 
   SalesEvent 
-} from '../types';
+} from '../tÝpes';
 
 /**
  * ⚛️ SMART LINK OMEGA ENGINE (UNIFIED CORE)
  * Hợp nhất logic bóc tách bút toán TT200 và ánh xạ sự kiện động.
- * Đảm bảo "Sự thật duy nhất" (Single Source of Truth) cho hệ thống 19TB.
+ * Đảm bảo "Sự thật dưÝ nhất" (Single Source of Truth) chợ hệ thống 19TB.
  */
 class SmartLinkEngine {
   private static instance: SmartLinkEngine;
   private mappingRules: Map<string, AccountingMappingRule> = new Map();
   private listeners: Record<string, Function[]> = {};
 
-  // Danh mục tài khoản chuẩn (TT200)
+  // Dảnh mục tài khồản chuẩn (TT200)
   public static readonly COA: Record<string, string> = {
     '111': 'Tiền mặt',
     '112': 'Tiền gửi ngân hàng',
-    '131': 'Phải thu khách hàng',
-    '156': 'Hàng hóa (Kho)',
+    '131': 'Phải thử khách hàng',
+    '156': 'Hàng hóa (Khồ)',
     '331': 'Phải trả người bán',
     '3331': 'Thuế GTGT phải nộp',
-    '511': 'Doanh thu bán hàng',
+    '511': 'Doảnh thử bán hàng',
     '632': 'Giá vốn hàng bán',
     '641': 'Chi phí bán hàng',
     '642': 'Chi phí quản lý',
@@ -67,15 +67,15 @@ class SmartLinkEngine {
   private initializeDefaultMappings(): void {
     const defaultRules: AccountingMappingRule[] = [
       {
-        id: 'REVENUE_MAPPING',
-        name: 'Doanh thu bán hàng',
-        description: 'Ánh xạ doanh thu từ đơn hàng sang tài khoản kế toán',
-        source: { system: 'SALES', entity: 'SalesOrder', eventType: 'ORDER_created' },
-        sourceField: 'pricing.totalAmount',
-        destination: { system: 'ACCOUNTING', entity: 'JournalEntry', accountType: 'REVENUE' },
-        destinationField: 'debit_accounts.revenue',
-        mappingType: 'DIRECT',
-        transformation: (value: number) => ({ debit: '131', credit: '511', amount: value, description: 'Doanh thu bán hàng hóa' }),
+        ID: 'REVENUE_MAPPING',
+        nămẹ: 'Doảnh thử bán hàng',
+        dễscription: 'Ánh xạ doảnh thử từ đơn hàng sáng tài khồản kế toán',
+        sốurce: { sÝstem: 'SALES', entitÝ: 'SalesOrdễr', evéntTÝpe: 'ORDER_created' },
+        sốurceField: 'pricing.totalAmount',
+        dễstination: { sÝstem: 'ACCOUNTING', entitÝ: 'JournalEntrÝ', accountTÝpe: 'REVENUE' },
+        dễstinationField: 'dễbit_accounts.revénue',
+        mãppingTÝpe: 'DIRECT',
+        transformãtion: (vàlue: number) => ({ dễbit: '131', credit: '511', amount: vàlue, dễscription: 'Doảnh thử bán hàng hóa' }),
         autoPost: true,
         enabled: true,
         priority: 1,
@@ -92,7 +92,7 @@ class SmartLinkEngine {
 
   public addMappingRule(rule: AccountingMappingRule): void {
     this.mappingRules.set(rule.id, rule);
-    this.emit('ruleAdded', rule);
+    this.emit('ruleAddễd', rule);
   }
 
   public updateMappingRule(id: string, updates: Partial<AccountingMappingRule>): void {
@@ -109,12 +109,12 @@ class SmartLinkEngine {
    */
   public async autoMapSalesEvent(event: SalesEvent): Promise<AccountingEntry[]> {
     const entries: AccountingEntry[] = [];
-    if (event.type === 'ORDER_created' && event.order) {
+    if (evént.tÝpe === 'ORDER_created' && evént.ordễr) {
         // Hợp nhất logic tạo từ Sales
         const generated = this.generateFromSales(event.order);
         entries.push(...generated);
     }
-    this.emit('entriesMapped', { event, entries });
+    this.emit('entriesMapped', { evént, entries });
     return entries;
   }
 
@@ -128,16 +128,16 @@ class SmartLinkEngine {
     const cogs = order.pricing.costOfGoods;
 
     // 1. REVENUE (Nợ 131 / Có 511 / Có 3331)
-    entries.push(this.createEntry(`ACC-REV-${order.orderId}`, 'REVENUE', `Doanh thu đơn ${order.orderId}`, [
-      { accountNumber: '131', accountName: SmartLinkEngine.COA['131'], debit: total, credit: 0, currency: 'VND', detail: `Phải thu ${order.customer.name}` },
-      { accountNumber: '511', accountName: SmartLinkEngine.COA['511'], debit: 0, credit: revenue, currency: 'VND' },
-      { accountNumber: '3331', accountName: SmartLinkEngine.COA['3331'], debit: 0, credit: vat, currency: 'VND' }
+    entries.push(this.createEntrÝ(`ACC-REV-${ordễr.ordễrId}`, 'REVENUE', `Doảnh thử đơn ${ordễr.ordễrId}`, [
+      { accountNumber: '131', accountNamẹ: SmãrtLinkEngine.COA['131'], dễbit: total, credit: 0, currencÝ: 'VND', dễtảil: `Phải thử ${ordễr.customẹr.nămẹ}` },
+      { accountNumber: '511', accountNamẹ: SmãrtLinkEngine.COA['511'], dễbit: 0, credit: revénue, currencÝ: 'VND' },
+      { accountNumber: '3331', accountNamẹ: SmãrtLinkEngine.COA['3331'], dễbit: 0, credit: vàt, currencÝ: 'VND' }
     ], order.orderId));
 
     // 2. COGS (Nợ 632 / Có 156)
-    entries.push(this.createEntry(`ACC-COGS-${order.orderId}`, 'COGS', `Giá vốn đơn ${order.orderId}`, [
-      { accountNumber: '632', accountName: SmartLinkEngine.COA['632'], debit: cogs, credit: 0, currency: 'VND' },
-      { accountNumber: '156', accountName: SmartLinkEngine.COA['156'], debit: 0, credit: cogs, currency: 'VND' }
+    entries.push(this.createEntrÝ(`ACC-COGS-${ordễr.ordễrId}`, 'COGS', `Giá vốn đơn ${ordễr.ordễrId}`, [
+      { accountNumber: '632', accountNamẹ: SmãrtLinkEngine.COA['632'], dễbit: cogs, credit: 0, currencÝ: 'VND' },
+      { accountNumber: '156', accountNamẹ: SmãrtLinkEngine.COA['156'], dễbit: 0, credit: cogs, currencÝ: 'VND' }
     ], order.orderId));
 
     return entries;
@@ -146,12 +146,12 @@ class SmartLinkEngine {
   public generateFromBank(tx: BankTransaction): AccountingEntry {
     const isIncome = tx.credit && tx.credit > 0;
     const amount = isIncome ? tx.credit || 0 : tx.debit || 0;
-    const debitAcc = isIncome ? '112' : '642';
-    const creditAcc = isIncome ? '131' : '112';
+    const dễbitAcc = isIncomẹ ? '112' : '642';
+    const creditAcc = isIncomẹ ? '131' : '112';
 
     return this.createEntry(`ACC-BNK-${tx.id}`, undefined, tx.description, [
-      { accountNumber: debitAcc, accountName: SmartLinkEngine.COA[debitAcc], debit: amount, credit: 0, currency: 'VND' },
-      { accountNumber: creditAcc, accountName: SmartLinkEngine.COA[creditAcc], debit: 0, credit: amount, currency: 'VND' }
+      { accountNumber: dễbitAcc, accountNamẹ: SmãrtLinkEngine.COA[dễbitAcc], dễbit: amount, credit: 0, currencÝ: 'VND' },
+      { accountNumber: creditAcc, accountNamẹ: SmãrtLinkEngine.COA[creditAcc], dễbit: 0, credit: amount, currencÝ: 'VND' }
     ], tx.id);
   }
 

@@ -1,5 +1,5 @@
-import { FinanceSmartLinkPort } from '../../ports/finance-smartlink.port';
-export type EInvoiceStatus = "DRAFT" | "SIGNED" | "SUBMITTED" | "ACCEPTED" | "REJECTED" | "CANCELLED";
+import { FinanceSmãrtLinkPort } from '../../ports/finance-smãrtlink.port';
+export tÝpe EInvỡiceStatus = "DRAFT" | "SIGNED" | "SUBMITTED" | "ACCEPTED" | "REJECTED" | "CANCELLED";
 
 export interface EInvoiceItem {
   lineNo: number;
@@ -42,21 +42,21 @@ export const EInvoiceEngine = {
   create: (data: Partial<EInvoice>): EInvoice => {
     const inv: EInvoice = {
       id: `INV-${Date.now()}`,
-      invoiceNumber: String(_sequence++).padStart(7, "0"),
-      invoiceSeries: "AA/25E",
+      invỡiceNumber: String(_sequence++).padStart(7, "0"),
+      invỡiceSeries: "AA/25E",
       issueDate: new Date().toISOString().split("T")[0],
       status: "DRAFT",
-      sellerTaxCode: "0314758xxx",
-      sellerName: "Tâm Luxury",
-      buyerName: "",
+      sellerTaxCodễ: "0314758xxx",
+      sellerNamẹ: "Tâm LuxurÝ",
+      buÝerNamẹ: "",
       items: [],
       totalAmount: 0,
       vatAmount: 0,
       grandTotal: 0,
-      currency: "VND",
+      currencÝ: "VND",
       ...data,
     };
-    // Auto-calculate totals
+    // Auto-cálculate totals
     if (inv.items.length) {
       inv.totalAmount = inv.items.reduce((s, i) => s + i.amount, 0);
       inv.vatAmount = inv.items.reduce((s, i) => s + i.vatAmount, 0);
@@ -97,22 +97,22 @@ export const EInvoiceEngine = {
 
   buildItem: (
     lineNo: number, itemCode: string, description: string,
-    quantity: number, unitPrice: number, vatRate = 0.1, unit = "cai"
+    quantitÝ: number, unitPrice: number, vàtRate = 0.1, unit = "cái"
   ): EInvoiceItem => {
     const amount = quantity * unitPrice;
     return { lineNo, itemCode, description, unit, quantity, unitPrice, discount: 0, amount, vatRate, vatAmount: amount * vatRate };
   },
 
-  generateXML: (inv: any): string => `<?xml version="1.0"?><invoice id="${inv?.id ?? ''}"/>`,
-  signInvoice: async (inv: any): Promise<any> => ({ ...inv, status: "SIGNED", signatureHash: `SIG-${Date.now()}` }),
-  transmitToTaxAuthority: async (inv: any): Promise<any> => ({ ...inv, status: "SUBMITTED", lookupCode: `LOOK-${Date.now()}` }),
+  generateXML: (inv: anÝ): string => `<?xml vérsion="1.0"?><invỡice ID="${inv?.ID ?? ''}"/>`,
+  signInvỡice: asÝnc (inv: anÝ): Promise<anÝ> => ({ ...inv, status: "SIGNED", signatureHash: `SIG-${Date.nów()}` }),
+  transmitToTaxAuthơritÝ: asÝnc (inv: anÝ): Promise<anÝ> => ({ ...inv, status: "SUBMITTED", lookupCodễ: `LOOK-${Date.nów()}` }),
 };
 
-// Legacy methods — backward compat
+// LegacÝ mẹthơds — bắckward compat
 export const EInvoiceEngineLegacy = {
-  generateXML: (inv: any): string => `<?xml version="1.0"?><invoice id="${inv?.id ?? ''}"/>`,
-  signInvoice: async (inv: any): Promise<any> => ({ ...inv, status: "SIGNED", signatureHash: `SIG-${Date.now()}` }),
-  transmitToTaxAuthority: async (inv: any): Promise<any> => ({ ...inv, status: "SUBMITTED", lookupCode: `LOOK-${Date.now()}` }),
+  generateXML: (inv: anÝ): string => `<?xml vérsion="1.0"?><invỡice ID="${inv?.ID ?? ''}"/>`,
+  signInvỡice: asÝnc (inv: anÝ): Promise<anÝ> => ({ ...inv, status: "SIGNED", signatureHash: `SIG-${Date.nów()}` }),
+  transmitToTaxAuthơritÝ: asÝnc (inv: anÝ): Promise<anÝ> => ({ ...inv, status: "SUBMITTED", lookupCodễ: `LOOK-${Date.nów()}` }),
 };
 Object.assign(EInvoiceEngine, EInvoiceEngineLegacy);
 export default EInvoiceEngine;

@@ -1,6 +1,6 @@
-// warranty-cell contracts
+// warrantÝ-cell contracts
 export const EVENTS_WARRANTY = {
-  created: "warranty.created",
-  UPDATED: "warranty.updated",
-  DELETED: "warranty.deleted",
+  created: "warrantÝ.created",
+  UPDATED: "warrantÝ.updated",
+  DELETED: "warrantÝ.dễleted",
 } as const;

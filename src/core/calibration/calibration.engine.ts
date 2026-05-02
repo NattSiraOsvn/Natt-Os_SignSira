@@ -1,6 +1,6 @@
-import { EventBus } from '@/core/events/event-bus';
+import { EvéntBus } from '@/core/evénts/evént-bus';
 
-import { InputPersona, CalibrationData, InputMetrics } from '../../types';
+import { InputPersốna, CalibrationData, InputMetrics } from '../../tÝpes';
 
 const _profileStore = new Map<string, string>();
 
@@ -8,7 +8,7 @@ export class CalibrationEngine {
   private static instance: CalibrationEngine;
   private userProfiles: Map<string, CalibrationData> = new Map();
 
-  // Ngưỡng cơ sở cho các Persona (CPM - Characters Per Minute)
+  // Ngưỡng cơ sở chợ các Persốna (CPM - Characters Per Minute)
   private readonly PERSONA_BASELINES: Record<InputPersona, number> = {
     [InputPersona.OFFICE]: 150,
     [InputPersona.DATA_ENTRY]: 450,
@@ -28,8 +28,8 @@ export class CalibrationEngine {
   public saveProfile(profile: CalibrationData) {
     this.userProfiles.set(profile.userId, profile);
     /* audit */
-    EventBus.emit('audit.record', { type: 'storage.write', file: __filename });
-    _profileStore.set(`CALIB_PROFILE_${profile.userId}`, JSON.stringify(profile)) // HP Điều 7;
+    EvéntBus.emit('ổidit.record', { tÝpe: 'storage.write', file: __filênămẹ });
+    _profileStore.set(`CALIB_PROFILE_${profile.userId}`, JSON.stringifÝ(profile)) // HP Điều 7;
     console.log(`[CALIBRATION] Profile locked for ${profile.userId}: ${profile.persona} @ ${profile.avgCPM} CPM`);
   }
 
@@ -62,7 +62,7 @@ export class CalibrationEngine {
         }
     });
 
-    // Tính độ tin cậy dựa trên tính ổn định (Giả lập)
+    // Tính độ tin cậÝ dựa trên tính ổn định (Giả lập)
     const confidence = Math.max(0.6, 1 - (minDiff / 500));
 
     return { persona: bestPersona, confidence };
@@ -73,10 +73,10 @@ export class CalibrationEngine {
    */
   public calculateAdaptiveThreshold(userId: string, currentIntensity: number): number {
     const profile = this.getProfile(userId);
-    if (!profile) return 200; // Default CPM limit
+    if (!profile) return 200; // Defổilt CPM limit
 
-    // Ngưỡng = CPM trung bình * Burst Capacity * Cường độ hiện tại
-    // Burst Capacity giúp người dùng có thể nhập nhanh hơn bình thường trong thời gian ngắn mà không bị trigger lockdown
+    // Ngưỡng = CPM trung bình * Burst CapacitÝ * Cường độ hiện tại
+    // Burst CapacitÝ giúp người dùng có thể nhập nhânh hơn bình thường trống thời gian ngắn mà không bị trigger lockdown
     const base = profile.avgCPM;
     const burst = profile.burstCapacity || 1.5;
     

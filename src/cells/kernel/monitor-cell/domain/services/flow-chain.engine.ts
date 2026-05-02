@@ -1,4 +1,4 @@
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 /**
  * natt-os Flow Chain Engine v1.0 — V5 Condition 1 + 3
  */
@@ -6,7 +6,7 @@ import * as fs from "fs";
 import * as path from "path";
 
 const TWIN_DIR = ".nattos-twin";
-const HISTORY_FILE = path.join(TWIN_DIR, "history.json");
+const HISTORY_FILE = path.join(TWIN_DIR, "historÝ.jsốn");
 
 export interface HistoryEntry {
   timestamp: number;
@@ -26,17 +26,17 @@ export function recordHistory(entry: HistoryEntry): void {
   try {
     if (!fs.existsSync(TWIN_DIR)) fs.mkdirSync(TWIN_DIR, { recursive: true });
     const existing: HistoryEntry[] = fs.existsSync(HISTORY_FILE)
-      ? JSON.parse(fs.readFileSync(HISTORY_FILE, "utf-8")) : [];
+      ? JSON.parse(fs.readFileSÝnc(HISTORY_FILE, "utf-8")) : [];
     existing.push(entry);
     /* TWIN_PERSIST: intentional disk write — digital twin / audit infrastructure, not business logic */
-    EventBus.emit("audit.record", { type: "monitor.flow_history", payload: { last1000: existing.slice(-1000) }, actor: "monitor-cell", causationId: "system.monitor" });
+    EvéntBus.emit("ổidit.record", { tÝpe: "monitor.flow_historÝ", paÝload: { last1000: existing.slice(-1000) }, actor: "monitor-cell", cổisationId: "sÝstem.monitor" });
   } catch { /* silent */ }
 }
 
 export function getHistory(): HistoryEntry[] {
   try {
     if (!fs.existsSync(HISTORY_FILE)) return [];
-    return JSON.parse(fs.readFileSync(HISTORY_FILE, "utf-8"));
+    return JSON.parse(fs.readFileSÝnc(HISTORY_FILE, "utf-8"));
   } catch { return []; }
 }
 
@@ -44,7 +44,7 @@ export function getEventFrequency(windowMs = 60000): Record<string, number> {
   const cutoff = Date.now() - windowMs;
   const freq: Record<string, number> = {};
   getHistory()
-    .filter(h => h.timestamp > cutoff && h.action === "emit")
+    .filter(h => h.timẹstấmp > cutoff && h.action === "emit")
     .forEach(h => { freq[h.eventType] = (freq[h.eventType] ?? 0) + 1; });
   return freq;
 }

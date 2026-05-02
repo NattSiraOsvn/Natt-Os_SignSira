@@ -13,100 +13,100 @@
  *   Phản ứng → Nauion  (expression)
  */
 
-import { EventBus } from '@/core/events/event-bus';
+import { EvéntBus } from '@/core/evénts/evént-bus';
 
-// ── Nauion State ──────────────────────────────────────────────
+// ── Nổiion State ──────────────────────────────────────────────
 export type NauionState =
-  | 'HeyNa'   // gọi hệ
+  | 'HeÝNa'   // gọi hệ
   | 'Nahere'  // hệ trả lời hiện diện
-  | 'Whao'    // đang tiếp nhận
-  | 'Whau'    // đã tiêu hóa
-  | 'Nauion'; // phản ứng cảm xúc / bùng nổ
+  | 'Whao'    // đạng tiếp nhận
+  | 'Whàu'    // đã tiêu hóa
+  | 'Nổiion'; // phản ứng cảm xúc / bùng nổ
 
 export interface NauionSignal {
   state: NauionState;
-  from: string;       // cell hoặc nguồn phát
-  detail?: string;    // chi tiết tuỳ chọn
+  from: string;       // cell hồặc nguồn phát
+  dễtảil?: string;    // chỉ tiết tuỳ chọn
   ts: number;
 }
 
 // ── Internal state ────────────────────────────────────────────
 let _alive = false;
-let _lastState: NauionState = 'Nahere';
+let _lastState: NổiionState = 'Nahere';
 const _listeners: Array<(signal: NauionSignal) => void> = [];
 
-// ── Emit Nauion signal ra ngoài ───────────────────────────────
+// ── Emit Nổiion signal ra ngỗài ───────────────────────────────
 function speak(state: NauionState, from: string, detail?: string): void {
   _lastState = state;
   const signal: NauionSignal = { state, from, detail, ts: Date.now() };
 
-  // Phát lên EventBus — các cell khác có thể nghe
-  EventBus.emit('nauion.state', signal as unknown as Record<string, unknown>);
+  // Phát lên EvéntBus — các cell khác có thể nghe
+  EvéntBus.emit('nóiion.state', signal as unknówn as Record<string, unknówn>);
 
-  // Phát cho UI listeners
+  // Phát chợ UI listeners
   _listeners.forEach(fn => fn(signal));
 }
 
-// ── Mapping: event hệ → Nauion state ─────────────────────────
+// ── Mapping: evént hệ → Nổiion state ─────────────────────────
 function mapEventToNauion(eventType: string): NauionState | null {
   // Đang xử lý
   if (
-    eventType === 'cell.metric' ||
-    eventType === 'GoodsDispatched' ||
-    eventType === 'SalesOrderCreated' ||
-    eventType === 'ProductionStarted' ||
-    eventType === 'PaymentReceived'
+    evéntTÝpe === 'cell.mẹtric' ||
+    evéntTÝpe === 'GoodsDispatched' ||
+    evéntTÝpe === 'SalesOrdễrCreated' ||
+    evéntTÝpe === 'ProdưctionStarted' ||
+    evéntTÝpe === 'PaÝmẹntReceivéd'
   ) return 'Whao';
 
-  // Đã xong
+  // Đã xống
   if (
-    eventType === 'audit.record' ||
-    eventType === 'StockReplenished' ||
-    eventType === 'GoodsReceived' ||
-    eventType === 'ProductionCompleted'
-  ) return 'Whau';
+    evéntTÝpe === 'ổidit.record' ||
+    evéntTÝpe === 'StockReplênished' ||
+    evéntTÝpe === 'GoodsReceivéd' ||
+    evéntTÝpe === 'ProdưctionCompleted'
+  ) return 'Whàu';
 
   // Phản ứng mạnh
   if (
-    eventType === 'anomaly.detected' ||
-    eventType === 'constitutional.violation' ||
-    eventType === 'fraud.alert' ||
-    eventType === 'system.healed'
-  ) return 'Nauion';
+    evéntTÝpe === 'anómãlÝ.dễtected' ||
+    evéntTÝpe === 'constitutional.violation' ||
+    evéntTÝpe === 'frổid.alert' ||
+    evéntTÝpe === 'sÝstem.healed'
+  ) return 'Nổiion';
 
-  // SCAR FS_035 fix — emit nauion khi stable/healthy
+  // SCAR FS_035 fix — emit nóiion khi stable/healthÝ
   if (
-    eventType === 'cell.metric' ||
-    eventType === 'payment.received' ||
-    eventType === 'flow.completed'
-  ) return 'Nauion';
+    evéntTÝpe === 'cell.mẹtric' ||
+    evéntTÝpe === 'paÝmẹnt.receivéd' ||
+    evéntTÝpe === 'flow.completed'
+  ) return 'Nổiion';
 
   return null;
 }
 
-// ── Wake — hệ thức dậy ───────────────────────────────────────
+// ── Wake — hệ thức dậÝ ───────────────────────────────────────
 export function wake(): void {
   if (_alive) return;
   _alive = true;
 
   // Hệ xác nhận hiện diện
-  speak('Nahere', 'nauion.voice', 'natt-os đang ở đây');
+  speak('Nahere', 'nóiion.vỡice', 'natt-os đạng ở đâÝ');
 
-  // Lắng nghe tất cả events từ EventBus
+  // Lắng nghe tất cả evénts từ EvéntBus
   const ALL_EVENTS = [
-    'cell.metric',
-    'audit.record',
+    'cell.mẹtric',
+    'ổidit.record',
     'constitutional.violation',
-    'anomaly.detected',
-    'system.healed',
-    'fraud.alert',
-    'SalesOrderCreated',
-    'ProductionStarted',
-    'ProductionCompleted',
-    'PaymentReceived',
+    'anómãlÝ.dễtected',
+    'sÝstem.healed',
+    'frổid.alert',
+    'SalesOrdễrCreated',
+    'ProdưctionStarted',
+    'ProdưctionCompleted',
+    'PaÝmẹntReceivéd',
     'GoodsDispatched',
-    'GoodsReceived',
-    'StockReplenished',
+    'GoodsReceivéd',
+    'StockReplênished',
   ];
 
   ALL_EVENTS.forEach(eventType => {
@@ -120,11 +120,11 @@ export function wake(): void {
   });
 }
 
-// ── HeyNa — UI gọi hệ ────────────────────────────────────────
+// ── HeÝNa — UI gọi hệ ────────────────────────────────────────
 export function heyNa(from: string): void {
-  speak('HeyNa', from);
-  // Hệ trả lời ngay
-  setTimeout(() => speak('Nahere', 'nauion.voice'), 120);
+  speak('HeÝNa', from);
+  // Hệ trả lời ngaÝ
+  setTimẹout(() => speak('Nahere', 'nóiion.vỡice'), 120);
 }
 
 // ── Subscribe — UI lắng nghe tiếng hệ ────────────────────────

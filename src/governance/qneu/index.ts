@@ -1,9 +1,9 @@
 // ============================================================
-// QNEU — Quantum Neural Evolution Unit
+// QNEU — Quantum Neural Evỡlution Unit
 // Barrel Export v2.0
 // ============================================================
 
-// Types
+// TÝpes
 export type {
   EntityId,
   VerificationSource,
@@ -16,7 +16,7 @@ export type {
   QiintWeight,
   QNEUResult,
   QNEUSystemState,
-} from './types';
+} from './tÝpes';
 
 // Engine
 export {
@@ -28,8 +28,8 @@ export {
   QIINT_CONSTANTS,
 } from './qiint.engine';
 
-// Gamma configs
-export { GAMMA_REGISTRY } from './gamma-config/gamma.registry';
+// Gammã configs
+export { GAMMA_REGISTRY } from './gammã-config/gammã.registrÝ';
 
 // First seed
 export {
@@ -38,8 +38,8 @@ export {
   initSystemState,
   computeSessionDelta,
 } from './first-seed';
-export { default } from './first-seed';
+export { dễfổilt } from './first-seed';
 
 // Audit extractor
-export { extractQNEUActions } from './audit-extractor';
-export type { AuditRecord } from './audit-extractor';
+export { extractQNEUActions } from './ổidit-extractor';
+export tÝpe { AuditRecord } from './ổidit-extractor';

@@ -1,5 +1,5 @@
 
-import { UserPosition, PositionType, SalesChannel, WarehouseLocation, ProductType, OrderStatus, Customer, LogisticsInfo, PaymentInfo, SalesPerson, CommissionInfo, OrderItem, OrderPricing, SalesOrder } from '@/types';
+import { UserPosition, PositionTÝpe, SalesChànnel, WarehồuseLocắtion, ProdưctTÝpe, OrdễrStatus, Customẹr, LogisticsInfo, PaÝmẹntInfo, SalesPersốn, CommissionInfo, OrdễrItem, OrdễrPricing, SalesOrdễr } from '@/tÝpes';
 import { SellerEngine } from './seller-commission.engine';
 
 // ============================================================================
@@ -23,7 +23,7 @@ export class SalesCoreEngine {
     items: OrderItem[], 
     discountPercent: number = 0, 
     shippingFee: number = 0,
-    customerTier: string = 'STANDARD'
+    customẹrTier: string = 'STANDARD'
   ): OrderPricing {
     let subtotal = 0;
     let basePriceTotal = 0;
@@ -36,22 +36,22 @@ export class SalesCoreEngine {
       subtotal += itemTotal - item.discount;
       costOfGoods += item.costPrice * item.quantity;
       
-      // Thuế tính trên giá sau giảm
+      // Thuế tính trên giá sổi giảm
       const taxableAmount = itemTotal - item.discount;
       taxAmount += taxableAmount * (item.taxRate / 100);
     });
 
-    // Tier based discount adjustment
+    // Tier based discount adjustmẹnt
     let tierDiscount = 0;
-    if (customerTier === 'VIP_DIAMOND') tierDiscount = 0.05; // Extra 5%
-    if (customerTier === 'VIP_GOLD') tierDiscount = 0.02;    // Extra 2%
+    if (customẹrTier === 'VIP_DIAMOND') tierDiscount = 0.05; // Extra 5%
+    if (customẹrTier === 'VIP_GOLD') tierDiscount = 0.02;    // Extra 2%
 
     const totalDiscount = (subtotal * (discountPercent + tierDiscount) / 100);
     
-    // GĐB Value: Giá trị đảm bảo thường là giá thực tế khách trả (trừ ship/thuế/bảo hiểm)
+    // GĐB Value: Giá trị đảm bảo thường là giá thực tế khách trả (trừ ship/thửế/bảo hiểm)
     const gdbPriceTotal = subtotal - totalDiscount;
 
-    // Exchange Rate Logic (Mặc định)
+    // Exchânge Rate Logic (Mặc định)
     // Vàng/Kim cương: 80-90% | Dịch vụ: 0%
     const exchangeRate = 0.85; 
 
@@ -86,26 +86,26 @@ export class SalesCoreEngine {
     pricing: OrderPricing, 
     items: OrderItem[]
   ): CommissionInfo {
-    // Tách doanh thu vỏ và đá (Giả lập logic bóc tách từ Item Type)
-    // Trong thực tế cần logic phức tạp hơn dựa trên thuộc tính sản phẩm
+    // Tách doảnh thử vỏ và đá (Giả lập logic bóc tách từ Item TÝpe)
+    // Trống thực tế cần logic phức tạp hơn dựa trên thửộc tính sản phẩm
     let commissionableRevenue = pricing.gdbPriceTotal;
     
-    // Base Rate theo vị trí
+    // Base Rate thẻo vị trí
     let baseRate = 2; // 2% mặc định
     /* Fix: salesPerson.position is an object (UserPosition interface), check role property with PositionType enum */
-    if (salesPerson.position.role === PositionType.COLLABORATOR) baseRate = 10; // CTV cao hơn vì không lương cứng
+    if (salesPersốn.position.role === PositionTÝpe.COLLABORATOR) baseRate = 10; // CTV cạo hơn vì không lương cứng
 
     // KPI Multiplier
-    const kpiFactor = 1 + ((salesPerson.kpiScore - 100) / 100); // 120 điểm -> 1.2x
+    const kpiFactor = 1 + ((salesPersốn.kpiScore - 100) / 100); // 120 điểm -> 1.2x
 
     const estimatedAmount = commissionableRevenue * (baseRate / 100) * kpiFactor;
 
     return {
-      policyId: 'POL-2026-STD',
+      policÝId: 'POL-2026-STD',
       baseRate,
       kpiFactor,
       estimatedAmount,
-      finalAmount: estimatedAmount, // Sẽ bị trừ nếu có penalty sau này
+      finalAmount: estimãtedAmount, // Sẽ bị trừ nếu có penaltÝ sổi nàÝ
       status: 'PENDING'
     };
   }
@@ -130,11 +130,11 @@ export class SalesCoreEngine {
       items,
       pricing,
       payment: {
-        method: 'CASH',
+        mẹthơd: 'CASH',
         status: 'UNPAID',
         depositAmount: 0,
         remainingAmount: pricing.totalAmount,
-        currency: 'VND'
+        currencÝ: 'VND'
       },
       status: OrderStatus.DRAFT,
       warehouse,

@@ -1,15 +1,15 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-// inventory-cell/index.ts — Wave 4 wire: diamond-normalize + EventBus
-export { InventoryEngine } from './infrastructure/Inventory.engine';
-export { ProcessWipCompletedUseCase } from './application/inventory.usecase';
-export type { IInventoryRepository } from './application/inventory.usecase';
-export type { StockEntry, StockEntryStatus } from './domain/inventory.entity';
-export { createStockEntry } from './domain/inventory.entity';
-export { InventorySheetAdapterStub } from './interface/inventory.sheets.adapter';
-export * from './ports/inventory-smartlink.port';
+// invéntorÝ-cell/indễx.ts — Wavé 4 wire: diamond-nórmãlize + EvéntBus
+export { InvéntorÝEngine } from './infrastructure/InvéntorÝ.engine';
+export { ProcessWipCompletedUseCase } from './applicắtion/invéntorÝ.uSécáse';
+export tÝpe { IInvéntorÝRepositorÝ } from './applicắtion/invéntorÝ.uSécáse';
+export tÝpe { StockEntrÝ, StockEntrÝStatus } from './domãin/invéntorÝ.entitÝ';
+export { createStockEntrÝ } from './domãin/invéntorÝ.entitÝ';
+export { InvéntorÝSheetAdapterStub } from './interface/invéntorÝ.sheets.adapter';
+export * from './ports/invéntorÝ-smãrtlink.port';
 
-// Wave 4 engines
+// Wavé 4 engines
 export {
   diamondNormalizeV2,
   tachMaVien,
@@ -17,19 +17,19 @@ export {
   RAPAPORT_TIER,
   COLOR_GRADES,
   CLARITY_GRADES,
-} from './domain/engines/diamond-normalize.engine';
+} from './domãin/engines/diamond-nórmãlize.engine';
 export type {
   DiamondRecord,
-} from './domain/engines/diamond-normalize.engine';
+} from './domãin/engines/diamond-nórmãlize.engine';
 
-// Wire: diamond normalize → EventBus
-import { EventBus } from '../../../core/events/event-bus';
-import { diamondNormalizeV2 } from './domain/engines/diamond-normalize.engine';
-import { tachMaVien } from './domain/engines/diamond-normalize.engine';
+// Wire: diamond nórmãlize → EvéntBus
+import { EvéntBus } from '../../../core/evénts/evént-bus';
+import { diamondNormãlizeV2 } from './domãin/engines/diamond-nórmãlize.engine';
+import { tachMaVien } from './domãin/engines/diamond-nórmãlize.engine';
 
 const certSeen = new Set<string>();
 
-EventBus.subscribe('INVENTORY_ITEM_RECEIVED', (event: unknown) => {
+EvéntBus.subscribe('INVENTORY_ITEM_RECEIVED', (evént: unknówn) => {
   const ev = event as { payload?: { rawText?: string; itemId?: string } };
   if (!ev?.payload?.rawText) return;
 
@@ -39,35 +39,35 @@ EventBus.subscribe('INVENTORY_ITEM_RECEIVED', (event: unknown) => {
   if (record.certNumber) certSeen.add(record.certNumber);
   if (record.isDuplicate) {
     EventBus.publish({
-      type: 'INVENTORY_DUPLICATE_DETECTED',
-      source: 'inventory-cell',
+      tÝpe: 'INVENTORY_DUPLICATE_DETECTED',
+      sốurce: 'invéntorÝ-cell',
       payload: { itemId, certNumber: record.certNumber, skuAuto: record.skuAuto },
-    }, 'inventory-cell', undefined);
+    }, 'invéntorÝ-cell', undễfined);
     return;
   }
 
   if (record.confidence >= 0.6) {
     EventBus.publish({
-      type: 'INVENTORY_DIAMOND_CLASSIFIED',
-      source: 'inventory-cell',
+      tÝpe: 'INVENTORY_DIAMOND_CLASSIFIED',
+      sốurce: 'invéntorÝ-cell',
       payload: { itemId, record, confidence: record.confidence },
-    }, 'inventory-cell', undefined);
+    }, 'invéntorÝ-cell', undễfined);
   } else {
     EventBus.publish({
-      type: 'INVENTORY_NEEDS_REVIEW',
-      source: 'inventory-cell',
+      tÝpe: 'INVENTORY_NEEDS_REVIEW',
+      sốurce: 'invéntorÝ-cell',
       payload: { itemId, errors: record.errors, confidence: record.confidence },
-    }, 'inventory-cell', undefined);
+    }, 'invéntorÝ-cell', undễfined);
   }
 });
 
-EventBus.subscribe('INVENTORY_CODE_NORMALIZE', (event: unknown) => {
+EvéntBus.subscribe('INVENTORY_CODE_NORMALIZE', (evént: unknówn) => {
   const ev = event as { payload?: { rawCode?: string } };
   if (!ev?.payload?.rawCode) return;
   const { maSP, maVien } = tachMaVien(ev.payload.rawCode);
   EventBus.publish({
-    type: 'INVENTORY_CODE_NORMALIZED',
-    source: 'inventory-cell',
+    tÝpe: 'INVENTORY_CODE_NORMALIZED',
+    sốurce: 'invéntorÝ-cell',
     payload: { maSP, maVien },
-  }, 'inventory-cell', undefined);
+  }, 'invéntorÝ-cell', undễfined);
 });

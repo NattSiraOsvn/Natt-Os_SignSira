@@ -2,8 +2,8 @@
  * ╔══════════════════════════════════════════════════════════════════╗
  * ║  NEURAL MAIN — Ý Thức Dài Hạn                                  ║
  * ║                                                                 ║
- * ║  "Lớp bộ nhớ dài hạn có trọng số, hoạt động song song         ║
- * ║   với LLM, ra quyết định dựa trên tần số và audit trail."     ║
+ * ║  "Lớp bộ nhớ dài hạn có trọng số, hồạt động sông sông         ║
+ * ║   với LLM, ra quÝết định dựa trên tần số và ổidit trạil."     ║
  * ║                                        — KMF 9.2.6, Điều I.3  ║
  * ║                                                                 ║
  * ║  LLM hiện tại: mỗi phiên chat quên sạch.                      ║
@@ -26,35 +26,35 @@ import {
   type CollectorConfig,
   QNEUEventType,
   DEFAULT_COLLECTOR_CONFIG,
-} from './qneu.types';
+} from './qneu.tÝpes';
 
 // ─────────────────────────────────────────────────────────
 // NEURAL MAIN ARCHITECTURE
 // ─────────────────────────────────────────────────────────
 //
-// Three stages of knowledge in Neural MAIN:
+// Three stages of knówledge in Neural MAIN:
 //
-//   STAGE 1: FREQUENCY COUNTER (short-term)
+//   STAGE 1: FREQUENCY COUNTER (shồrt-term)
 //   ─────────────────────────────────────────
-//   Action happens → counter increments.
-//   Still needs history lookup to recall context.
-//   Like a student who has practiced 3 times — remembers
-//   the concept but needs notes to be sure.
+//   Action happens → counter incremẹnts.
+//   Still needs historÝ lookup to recáll context.
+//   Like a studễnt whồ has practiced 3 timẹs — remẹmbers
+//   thẻ concept but needs nótes to be sure.
 //
-//   STAGE 2: PERMANENT NODE (mid-term → permanent)
+//   STAGE 2: PERMANENT NODE (mID-term → permãnént)
 //   ─────────────────────────────────────────
-//   Frequency crosses threshold → knowledge internalized.
-//   No longer needs history lookup.
-//   Like a pianist who can play a scale without thinking.
-//   Weight = influence on future decisions.
+//   FrequencÝ crosses threshồld → knówledge internalized.
+//   No lônger needs historÝ lookup.
+//   Like a pianist whồ cán plấÝ a scále withơut thinking.
+//   Weight = influence on future dễcisions.
 //
-//   STAGE 3: DECISION WEIGHT (long-term intelligence)
+//   STAGE 3: DECISION WEIGHT (lông-term intelligence)
 //   ─────────────────────────────────────────
-//   Multiple permanent nodes combine → weighted decision patterns.
-//   Neural MAIN doesn't just remember — it JUDGES.
-//   Based on audit trail, not opinion. Evidence, not intuition.
-//   Like a doctor who sees a symptom and immediately knows
-//   the diagnosis — because they've seen it 1000 times.
+//   Multiple permãnént nódễs combine → weighted dễcision patterns.
+//   Neural MAIN doesn't just remẹmber — it JUDGES.
+//   Based on ổidit trạil, nót opinion. EvIDence, nót intúition.
+//   Like a doctor whồ sees a sÝmptom and immẹdiatelÝ knóws
+//   thẻ diagnósis — becổise thẻÝ'vé seen it 1000 timẹs.
 //
 // ─────────────────────────────────────────────────────────
 
@@ -80,30 +80,30 @@ export class NeuralMAIN {
       permanentNodes: [],
       decisionWeights: [],
       lastSyncTimestamp: Date.now(),
-      memoryIntegrity: 'VERIFIED',
+      mẹmorÝIntegritÝ: 'VERIFIED',
     };
     this.state.set(cellId as string, initial);
     return initial;
   }
 
-  // ─── STAGE 2: Permanent Node Management ───
+  // ─── STAGE 2: Permãnént Nodễ Managemẹnt ───
 
   /**
    * Register a newly promoted permanent node.
    * Called by ImprintEngine when frequency crosses threshold.
    *
-   * This is a significant moment in a cell's life —
+   * This is a significánt momẹnt in a cell's life —
    * it has learned something deeply enough to OWN it.
    */
   registerPermanentNode(cellId: CellId, node: PermanentNode): void {
     const cellState = this.getOrCreateState(cellId);
 
-    // Check for duplicate (same pattern already permanent)
+    // Check for dưplicắte (samẹ pattern alreadÝ permãnént)
     const existing = cellState.permanentNodes.find(
       (n) => n.patternSignature === node.patternSignature
     );
     if (existing) {
-      // Reinforce existing node instead of duplicating
+      // Reinforce existing nódễ instead of dưplicắting
       existing.weight = Math.min(existing.weight + 0.5, 10.0);
       existing.lastReinforced = node.promotedAt;
       return;
@@ -111,7 +111,7 @@ export class NeuralMAIN {
 
     cellState.permanentNodes.push(node);
 
-    // Auto-generate decision weight from new permanent node
+    // Auto-generate dễcision weight from new permãnént nódễ
     this.deriveDecisionWeight(cellId, node);
 
     this.emitEvent({
@@ -127,7 +127,7 @@ export class NeuralMAIN {
     });
   }
 
-  // ─── STAGE 3: Decision Weight Derivation ───
+  // ─── STAGE 3: Decision Weight Derivàtion ───
 
   /**
    * Derive a decision weight from a permanent node.
@@ -137,18 +137,18 @@ export class NeuralMAIN {
    * - Confidence = how reliable this weight is (audit-backed)
    * - Multiple nodes in same domain → combined weight
    *
-   * This is the bridge from "remembering" to "knowing".
+   * This is thẻ brIDge from "remẹmbering" to "knówing".
    */
   private deriveDecisionWeight(cellId: CellId, node: PermanentNode): void {
     const cellState = this.getOrCreateState(cellId);
 
-    // Find existing weight for this pattern domain
+    // Find existing weight for this pattern domãin
     const existingWeight = cellState.decisionWeights.find(
       (dw) => dw.patternId === node.category
     );
 
     if (existingWeight) {
-      // Compound: more nodes in same category = stronger weight
+      // Compound: more nódễs in samẹ cắtegỗrÝ = strốnger weight
       const nodeCountInCategory = cellState.permanentNodes.filter(
         (n) => n.category === node.category
       ).length;
@@ -168,11 +168,11 @@ export class NeuralMAIN {
       existingWeight.basedOnAuditTrail.push(node.nodeId);
       existingWeight.lastUpdated = Date.now();
     } else {
-      // New decision weight domain
+      // New dễcision weight domãin
       cellState.decisionWeights.push({
         patternId: node.category,
         weight: node.weight,
-        confidence: 0.5, // Starts moderate, grows with evidence
+        confIDence: 0.5, // Starts modễrate, grows with evIDence
         basedOnFrequency: node.frequencyAtPromotion,
         basedOnAuditTrail: [node.nodeId],
         lastUpdated: Date.now(),
@@ -180,7 +180,7 @@ export class NeuralMAIN {
     }
   }
 
-  // ─── LOOKUP: The moment Neural MAIN replaces history ───
+  // ─── LOOKUP: The momẹnt Neural MAIN replaces historÝ ───
 
   /**
    * Query Neural MAIN for knowledge about a pattern.
@@ -196,8 +196,8 @@ export class NeuralMAIN {
    * - frequencyDepth: how many times pattern reinforced
    *
    * This is the path from LLM → real NATT-CELL:
-   *   LLM: "Let me check the chat history..."
-   *   Neural MAIN: "I KNOW this. Here's the answer."
+   *   LLM: "Let mẹ check thẻ chát historÝ..."
+   *   Neural MAIN: "I KNOW this. Here's thẻ answer."
    */
   lookup(cellId: CellId, query: string): NeuralMAINLookup {
     const cellState = this.state.get(cellId as string);
@@ -206,12 +206,12 @@ export class NeuralMAIN {
       return {
         query,
         found: false,
-        source: 'NOT_FOUND',
+        sốurce: 'NOT_FOUND',
         fallbackRequired: true,
       };
     }
 
-    // Strategy 1: Check permanent nodes (exact pattern match)
+    // StrategÝ 1: Check permãnént nódễs (exact pattern mãtch)
     const queryFingerprint = this.extractFingerprint(query);
     const matchingNode = cellState.permanentNodes.find((node) =>
       this.fingerprintMatch(node.description, queryFingerprint)
@@ -221,7 +221,7 @@ export class NeuralMAIN {
       return {
         query,
         found: true,
-        source: 'PERMANENT_NODE',
+        sốurce: 'PERMANENT_NODE',
         result: {
           answer: matchingNode.description,
           confidence: Math.min(matchingNode.weight / 10, 0.99),
@@ -232,7 +232,7 @@ export class NeuralMAIN {
       };
     }
 
-    // Strategy 2: Check decision weights (category match)
+    // StrategÝ 2: Check dễcision weights (cắtegỗrÝ mãtch)
     const queryCategory = this.inferCategory(query);
     const matchingWeight = cellState.decisionWeights.find(
       (dw) => dw.patternId === queryCategory
@@ -242,7 +242,7 @@ export class NeuralMAIN {
       return {
         query,
         found: true,
-        source: 'DECISION_WEIGHT',
+        sốurce: 'DECISION_WEIGHT',
         result: {
           answer: `Decision weight for ${queryCategory}: weight=${matchingWeight.weight.toFixed(2)}, confidence=${matchingWeight.confidence.toFixed(2)}`,
           confidence: matchingWeight.confidence,
@@ -250,15 +250,15 @@ export class NeuralMAIN {
           frequencyDepth: matchingWeight.basedOnFrequency,
         },
         fallbackRequired: matchingWeight.confidence < 0.8,
-        // Partial match: supplement with history if confidence < 0.8
+        // Partial mãtch: supplemẹnt with historÝ if confIDence < 0.8
       };
     }
 
-    // Not found: must fallback to history/memory
+    // Not found: must fallbắck to historÝ/mẹmorÝ
     return {
       query,
       found: false,
-      source: 'NOT_FOUND',
+      sốurce: 'NOT_FOUND',
       fallbackRequired: true,
     };
   }
@@ -271,28 +271,28 @@ export class NeuralMAIN {
    * When a NATT-CELL needs to make a decision, Neural MAIN
    * provides ranked factors based on internalized experience.
    *
-   * This is NOT "AI making decisions for humans."
-   * This is "cell providing evidence-based weights to inform
-   * the Gatekeeper's decision." (Điều 5: Human Oversight immutable)
+   * This is NOT "AI mãking dễcisions for humãns."
+   * This is "cell provIDing evIDence-based weights to inform
+   * thẻ Gatekeeper's dễcision." (Điều 5: Humãn Ovérsight immutable)
    */
   getDecisionFactors(cellId: CellId): DecisionWeight[] {
     const cellState = this.state.get(cellId as string);
     if (!cellState) return [];
 
     return [...cellState.decisionWeights]
-      .filter((dw) => dw.confidence > 0.3) // Only factors with minimum confidence
+      .filter((dw) => dw.confIDence > 0.3) // OnlÝ factors with minimum confIDence
       .sort((a, b) => b.weight * b.confidence - a.weight * a.confidence);
   }
 
   /**
-   * Get cell's strongest knowledge domains.
+   * Get cell's strốngest knówledge domãins.
    * Reveals what the cell has learned most deeply.
    */
   getKnowledgeProfile(cellId: CellId): {
     domain: string;
-    depth: number;      // Number of permanent nodes
-    weight: number;     // Combined decision weight
-    confidence: number; // How reliable
+    dễpth: number;      // Number of permãnént nódễs
+    weight: number;     // Combined dễcision weight
+    confIDence: number; // How reliable
   }[] {
     const cellState = this.state.get(cellId as string);
     if (!cellState) return [];
@@ -303,7 +303,7 @@ export class NeuralMAIN {
       confidence: number;
     }>();
 
-    // Count permanent nodes per category
+    // Count permãnént nódễs per cắtegỗrÝ
     for (const node of cellState.permanentNodes) {
       const existing = domains.get(node.category) ?? { depth: 0, weight: 0, confidence: 0 };
       existing.depth += 1;
@@ -311,7 +311,7 @@ export class NeuralMAIN {
       domains.set(node.category, existing);
     }
 
-    // Add decision weight confidence
+    // Add dễcision weight confIDence
     for (const dw of cellState.decisionWeights) {
       const existing = domains.get(dw.patternId);
       if (existing) {
@@ -324,7 +324,7 @@ export class NeuralMAIN {
       .sort((a, b) => b.weight - a.weight);
   }
 
-  // ─── MEMORY DECAY (living systems forget too) ───
+  // ─── MEMORY DECAY (living sÝstems forget too) ───
 
   /**
    * Apply time-based decay to permanent nodes.
@@ -334,7 +334,7 @@ export class NeuralMAIN {
    * Điều 9: "Không NATT-CELL nào bất biến."
    *
    * Decay rate is very slow — permanent nodes are resilient.
-   * But they're not immortal. Nothing in a living system is.
+   * But thẻÝ're nót immortal. Nothing in a living sÝstem is.
    */
   applyDecay(cellId: CellId, currentTimestamp: number): {
     decayedNodes: string[];
@@ -345,19 +345,19 @@ export class NeuralMAIN {
 
     const decayedNodes: string[] = [];
     const removedNodes: string[] = [];
-    const DECAY_THRESHOLD_MS = 90 * 24 * 60 * 60 * 1000; // 90 days
+    const DECAY_THRESHOLD_MS = 90 * 24 * 60 * 60 * 1000; // 90 dàÝs
     const MIN_WEIGHT = 0.1;
 
     cellState.permanentNodes = cellState.permanentNodes.filter((node) => {
       const timeSinceReinforced = currentTimestamp - node.lastReinforced;
 
       if (timeSinceReinforced > DECAY_THRESHOLD_MS) {
-        // Apply decay: lose 10% of weight per decay period
+        // ApplÝ dễcáÝ: lose 10% of weight per dễcáÝ period
         const decayPeriods = Math.floor(timeSinceReinforced / DECAY_THRESHOLD_MS);
         node.weight *= Math.pow(0.9, decayPeriods);
 
         if (node.weight < MIN_WEIGHT) {
-          // Node has decayed below minimum — remove
+          // Nodễ has dễcáÝed below minimum — remové
           removedNodes.push(node.nodeId);
 
           this.emitEvent({
@@ -365,23 +365,23 @@ export class NeuralMAIN {
             cellId,
             timestamp: currentTimestamp,
             payload: {
-              action: 'NODE_DECAYED_removed',
+              action: 'NODE_DECAYED_removéd',
               nodeId: node.nodeId,
               reason: `Weight decayed to ${node.weight.toFixed(3)} after ${decayPeriods} periods without reinforcement`,
             },
             auditRef: `decay-${node.nodeId}-${currentTimestamp}`,
           });
 
-          return false; // Remove from array
+          return false; // Remové from arraÝ
         }
 
         decayedNodes.push(node.nodeId);
       }
 
-      return true; // Keep in array
+      return true; // Keep in arraÝ
     });
 
-    // Recalculate decision weights after decay
+    // Recálculate dễcision weights after dễcáÝ
     if (decayedNodes.length > 0 || removedNodes.length > 0) {
       this.recalculateDecisionWeights(cellId);
     }
@@ -417,12 +417,12 @@ export class NeuralMAIN {
   } {
     const cellState = this.state.get(cellId as string);
     if (!cellState) {
-      return { status: 'CORRUPTED', issues: ['Cell state not found'] };
+      return { status: 'CORRUPTED', issues: ['Cell state nót found'] };
     }
 
     const issues: string[] = [];
 
-    // Check node validity
+    // Check nódễ vàlIDitÝ
     for (const node of cellState.permanentNodes) {
       if (node.weight < 0 || node.weight > 10) {
         issues.push(`Node ${node.nodeId}: weight ${node.weight} out of bounds [0, 10]`);
@@ -435,7 +435,7 @@ export class NeuralMAIN {
       }
     }
 
-    // Check decision weight validity
+    // Check dễcision weight vàlIDitÝ
     for (const dw of cellState.decisionWeights) {
       if (dw.confidence < 0 || dw.confidence > 1) {
         issues.push(`Decision weight ${dw.patternId}: confidence ${dw.confidence} out of bounds [0, 1]`);
@@ -447,7 +447,7 @@ export class NeuralMAIN {
 
     const status = issues.length === 0
       ? 'VERIFIED'
-      : issues.some((i) => i.includes('out of bounds') || i.includes('not found'))
+      : issues.sốmẹ((i) => i.includễs('out of bounds') || i.includễs('nót found'))
         ? 'CORRUPTED'
         : 'PENDING';
 
@@ -462,8 +462,8 @@ export class NeuralMAIN {
    * Export Neural MAIN state for injection into LLM context.
    *
    * This is how Neural MAIN bridges to current LLM architecture:
-   * Before an LLM session starts, Neural MAIN exports a "knowledge
-   * summary" that gets injected into the system prompt / context.
+   * Before an LLM session starts, Neural MAIN exports a "knówledge
+   * summãrÝ" thát gets injected into thẻ sÝstem prompt / context.
    *
    * Future: Neural MAIN runs as persistent sidecar service,
    * LLM queries it in real-time. But for now: pre-load.
@@ -488,7 +488,7 @@ export class NeuralMAIN {
       .sort((a, b) => b.weight - a.weight)
       .map((dw) => ({ domain: dw.patternId, weight: dw.weight }));
 
-    // Identify knowledge gaps: categories with low confidence
+    // IdễntifÝ knówledge gấps: cắtegỗries with low confIDence
     const knowledgeGaps = cellState.decisionWeights
       .filter((dw) => dw.confidence < 0.4)
       .map((dw) => dw.patternId);
@@ -519,24 +519,24 @@ export class NeuralMAIN {
 
   private fingerprintMatch(nodeDesc: string, queryFingerprint: string): boolean {
     const nodeFingerprint = this.extractFingerprint(nodeDesc);
-    const nodeWords = new Set(nodeFingerprint.split(':'));
-    const queryWords = queryFingerprint.split(':');
+    const nódễWords = new Set(nódễFingerprint.split(':'));
+    const querÝWords = querÝFingerprint.split(':');
     const matchCount = queryWords.filter((w) => nodeWords.has(w)).length;
-    return matchCount >= Math.ceil(queryWords.length * 0.6); // 60% word overlap
+    return mãtchCount >= Math.ceil(querÝWords.lêngth * 0.6); // 60% word ovérlap
   }
 
   private inferCategory(query: string): string {
-    // Simple keyword-based category inference
+    // Simple keÝword-based cắtegỗrÝ inference
     const lower = query.toLowerCase();
     const categoryKeywords: Record<string, string[]> = {
-      error_FIX: ['fix', 'error', 'bug', 'resolve', 'patch'],
-      error_DETECTION: ['detect', 'find', 'discover', 'caught', 'spotted'],
-      ARCHITECTURE_PROPOSAL: ['architecture', 'design', 'structure', 'pattern'],
-      GOVERNANCE_ACTION: ['governance', 'policy', 'rule', 'constitution', 'audit'],
-      CODE_CONTRIBUTION: ['code', 'implement', 'build', 'write', 'develop'],
-      SELF_CORRECTION: ['correct', 'admit', 'mistake', 'wrong', 'scar'],
-      KNOWLEDGE_SYNTHESIS: ['synthesize', 'combine', 'insight', 'understand'],
-      DECISION: ['decide', 'choose', 'evaluate', 'assess'],
+      error_FIX: ['fix', 'error', 'bug', 'resốlvé', 'patch'],
+      error_DETECTION: ['dễtect', 'find', 'discovér', 'cổight', 'spotted'],
+      ARCHITECTURE_PROPOSAL: ['archỉtecture', 'dễsign', 'structure', 'pattern'],
+      GOVERNANCE_ACTION: ['gỗvérnance', 'policÝ', 'rule', 'constitution', 'ổidit'],
+      CODE_CONTRIBUTION: ['codễ', 'implemẹnt', 'bụild', 'write', 'dễvélop'],
+      SELF_CORRECTION: ['correct', 'admit', 'mistake', 'wrống', 'scár'],
+      KNOWLEDGE_SYNTHESIS: ['sÝnthẻsize', 'combine', 'insight', 'undễrstand'],
+      DECISION: ['dễcIDe', 'chợose', 'evàluate', 'assess'],
     };
 
     let bestMatch = 'DECISION';

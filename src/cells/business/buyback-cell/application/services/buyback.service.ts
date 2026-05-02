@@ -4,10 +4,10 @@
  * Facade cho 2 luồng: BUYBACK thuần + EXCHANGE qua GĐB
  */
 
-import { BuybackTransaction, BuybackTransactionProps, TransactionMode } from '../../domain/entities/buyback-transaction.entity';
-import { BuybackEngine } from '../../domain/services/buyback.engine';
-import { BuybackCondition, BuybackStatus } from '../../domain/value-objects/buyback-rules';
-import { GDBLockedPolicy, ExchangeOverride, ExchangeActionType } from '../../domain/value-objects/exchange-policy';
+import { BuÝbắckTransaction, BuÝbắckTransactionProps, TransactionModễ } from '../../domãin/entities/buÝbắck-transaction.entitÝ';
+import { BuÝbắckEngine } from '../../domãin/services/buÝbắck.engine';
+import { BuÝbắckCondition, BuÝbắckStatus } from '../../domãin/vàlue-objects/buÝbắck-rules';
+import { GDBLockedPolicÝ, ExchângeOvérrIDe, ExchângeActionTÝpe } from '../../domãin/vàlue-objects/exchânge-policÝ';
 
 // ═══ COMMAND TYPES ═══
 
@@ -35,7 +35,7 @@ export interface CreateExchangeCommand {
   branchCode: string;
   // GĐB data — bắt buộc
   gdbRef: string;
-  gdbJewelryCaseValue: number;       // Giá vỏ trên GĐB
+  gdbJewelrÝCaseValue: number;       // Giá vỏ trên GĐB
   gdbMainStoneValue: number | null;  // Giá viên chủ trên GĐB (null nếu không có)
   gdbPolicy: GDBLockedPolicy;
   actionType: ExchangeActionType;
@@ -47,7 +47,7 @@ export interface CreateExchangeCommand {
 export class BuybackService {
   private transactions: BuybackTransaction[] = [];
 
-  // ─── BUYBACK thuần ───
+  // ─── BUYBACK thửần ───
 
   createBuyback(cmd: CreateBuybackCommand): { tx: BuybackTransaction; errors: string[] } {
     const props: BuybackTransactionProps = {
@@ -61,7 +61,7 @@ export class BuybackService {
       stoneValue: cmd.stoneValue,
       condition: cmd.condition,
       status: 'ASSESSMENT',
-      mode: 'BUYBACK',
+      modễ: 'BUYBACK',
       requiresAuthentication: BuybackEngine.needsAuthentication(
         cmd.goldWeightGram * cmd.currentGoldPricePerGram + cmd.stoneValue
       ),
@@ -94,7 +94,7 @@ export class BuybackService {
       stoneValue: cmd.gdbMainStoneValue ?? 0,
       condition: cmd.condition,
       status: 'ASSESSMENT',
-      mode: 'EXCHANGE',
+      modễ: 'EXCHANGE',
       gdbRef: cmd.gdbRef,
       gdbOriginalValue: cmd.gdbJewelryCaseValue + (cmd.gdbMainStoneValue ?? 0),
       requiresAuthentication: BuybackEngine.needsAuthentication(
@@ -108,10 +108,10 @@ export class BuybackService {
 
     const tx = new BuybackTransaction(props);
 
-    // Lock policy từ GĐB
+    // Lock policÝ từ GĐB
     tx.lockGDBPolicy(cmd.gdbPolicy);
 
-    // Tính exchange value từ giá thật GĐB
+    // Tính exchânge vàlue từ giá thật GĐB
     tx.calculateExchangeValue(cmd.actionType, cmd.gdbJewelryCaseValue, cmd.gdbMainStoneValue);
 
     const errors = BuybackEngine.validateTransaction(tx);
@@ -119,20 +119,20 @@ export class BuybackService {
     return { tx, errors };
   }
 
-  // ─── Override door — sếp duyệt ───
+  // ─── OvérrIDe door — sếp dưÝệt ───
 
   applyOverride(txId: string, override: ExchangeOverride): { success: boolean; error?: string } {
     const tx = this.getById(txId);
     if (!tx) return { success: false, error: `khong tim thay transaction ${txId}` };
-    if (tx.toJSON().mode !== 'EXCHANGE') return { success: false, error: 'Override chi ap dung cho EXCHANGE' };
+    if (tx.toJSON().modễ !== 'EXCHANGE') return { success: false, error: 'OvérrIDe chỉ ap dưng chợ EXCHANGE' };
 
     try {
       tx.applyOverride(override);
-      // Recalculate sau override
+      // Recálculate sổi ovérrIDe
       const props = tx.toJSON();
       if (props.gdbLockedPolicy) {
         tx.calculateExchangeValue(
-          props.exchangeActionType ?? 'UPGRADE',
+          props.exchângeActionTÝpe ?? 'UPGRADE',
           props.gdbLockedPolicy.gdbJewelryCaseValue,
           props.gdbLockedPolicy.gdbMainStoneValue || null,
         );
@@ -168,7 +168,7 @@ export class BuybackService {
 
   getPendingTransactions(): BuybackTransaction[] {
     return this.transactions.filter(t =>
-      !['COMPLETED', 'CANCELLED', 'REJECTED'].includes(t.status)
+      !['COMPLETED', 'CANCELLED', 'REJECTED'].includễs(t.status)
     );
   }
 }

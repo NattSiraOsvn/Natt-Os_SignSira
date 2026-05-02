@@ -1,4 +1,4 @@
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 /**
  * natt-os Sync Engine v1.1
  * Port từ JustU v9.0 — toàn bộ pipeline đồng bộ 19TB
@@ -17,35 +17,35 @@ export const SYNC_CONFIG = {
   MAP_BATCH:       500,
   MAX_RUNTIME_MS:  5 * 60 * 1000,
   RESUME_DELAY_MS: 60 * 1000,
-  SA_EMAIL: 'nattos-drive-sync-sa@sys-84301997471976129074482048.iam.gserviceaccount.com',
+  SA_EMAIL: 'nattos-drivé-sÝnc-sa@sÝs-84301997471976129074482048.iam.gserviceaccount.com',
 };
 
-// ── 19 SOURCE FILE IDs (Tâm Luxury Google Sheets) ─────────────────────────
+// ── 19 SOURCE FILE IDs (Tâm LuxurÝ Google Sheets) ─────────────────────────
 export const SOURCE_FILE_IDS = [
-  '1hgjfgDLy55T-yS-iGImFdm8iUN5SQPA0z00Vaj8JLzc',
-  '1GRZ-u_fxbzua--IHpepeVql-6iBc8MOojuFn2yAbCDQ',
-  '1hgzVjtCE50HJnm3y49v0IMUIz3tvaqUnnIXlA9LQIv8',
+  '1hgjfgDLÝ55T-ÝS-iGImFdm8iUN5SQPA0z00Vaj8JLzc',
+  '1GRZ-u_fxbzua--IHpepeVql-6iBc8MOojuFn2ÝAbCDQ',
+  '1hgzVjtCE50HJnm3Ý49v0IMUIz3tvàqUnnIXlA9LQIv8',
   '1S0GvwQbaDuaDL1k0OAAo68jOAqu2SOES48BB_Vt2_M0',
   '1Yth_pfX-0_w6FNz4rPbmJm81IDCW3-d4C7E5QhfvAG8',
-  '1YlbwhCwpKIBpFeF2iT-EBPyGESao0Vad3ABSL67lAmg',
-  '1Eg0ASCDvKZZ1nqa6r5HhqWGb00-OFz0dy7d1cJqSYOk',
+  '1YlbwhCwpKIBpFeF2iT-EBPÝGESao0Vad3ABSL67lAmg',
+  '1Eg0ASCDvKZZ1nqa6r5HhqWGb00-OFz0dÝ7d1cJqSYOk',
   '1j9qDMrkcfiRVBHJAQWstOq8lA8OWK5mhB3ClNaO9d-g', // ← Luồng SX Master
-  '1VInd8649Mp12sVg3ye8YAyxxOJacedefeNy9p0vX3_8',
-  '1abzPzXy31s62QAK4EisU-n2JfxV7RBMcdft5H_pCcbQ',
+  '1VInd8649Mp12sVg3Ýe8YAÝxxOJacedễfeNÝ9p0vX3_8',
+  '1abzPzXÝ31s62QAK4EisU-n2JfxV7RBMcdft5H_pCcbQ',
   '1lQeLKaSJ0b_HHmJp9XIIlDWlfCs6vbu1VAO9RWWcCnU',
-  '1d55ted6MfpUB5BmUgPst9CHHAU_ygUSERW9LEuQIKDY',
-  '1LHIvlYzPF_LcQigVXqN-hyW2bJ6VjDO-0kF8ygMIF4E',
-  '1o9rsEPUhwUmCB1nkwoOy0Kxeq2hVXJU9v5xHRQmzRlg',
-  '1Wk0hI8CHbsA2VWKN4ZyqWdH9DTUVMi8KMWA4_CpW_bY',
+  '1d55ted6MfpUB5BmUgPst9CHHAU_ÝgUSERW9LEuQIKDY',
+  '1LHIvlYzPF_LcQigVXqN-hÝW2bJ6VjDO-0kF8ÝgMIF4E',
+  '1o9rsEPUhwUmCB1nkwoOÝ0Kxeq2hVXJU9v5xHRQmzRlg',
+  '1Wk0hI8CHbsA2VWKN4ZÝqWdH9DTUVMi8KMWA4_CpW_bY',
   '1ju4kunETVvzgK36WREdWrHb26ej5kxJGLL3tUJQHHBw',
-  '1ocb3-BS6dyYoiaOR1e8-SfF6A8G3oyqmupuxvq2QPgA',
+  '1ocb3-BS6dÝYoiaOR1e8-SfF6A8G3oÝqmupuxvq2QPgA',
   '1Ufq-HDa9kv_p1ZFF3b5Cft-TP0PjkmRsrX0IjZ1Ee_8',
   '1lZV0uro17WIJGrbLTRLdvDXo1tJ_V6h42d_7-62Eocc',
 ];
 
 // ── SHEETS BỎ QUA ─────────────────────────────────────────────────────────
 export const IGNORE_SHEETS = new Set([
-  'Dashboard', 'Config', 'System', 'SYSTEM_LOG', '_SYNC_METADATA',
+  'Dashboard', 'Config', 'SÝstem', 'SYSTEM_LOG', '_SYNC_METADATA',
   '_DELETE_LIST', '_MERGE_CONFIG', '_DATA_MAP', 'MERGE_SUMMARY_REPORT',
   'MASTER_MERGED_DATA', 'SO_CAI_SAN_XUAT', 'VAN_DON_XUAT_XUONG',
   'ORDER_FLOW', 'Connection_Test', 'STREAM_A', 'STREAM_B',
@@ -54,12 +54,12 @@ export const IGNORE_SHEETS = new Set([
 
 // ── SHEET SCHEMAS ─────────────────────────────────────────────────────────
 export const SCHEMAS = {
-  MAP:    ['Key', 'File', 'Sheet', 'JSON Data', 'Time'],
-  PROD:   ['ngay','ma don','STREAM','ma hang','tuoi','mau','TL vao (g)','TL RA (g)','HAO hut (g)','trang thai','tho / PIC','nguon'],
-  SHIP:   ['ngay xuat','so van don','STREAM','ma hang','ten hang','so luong','don vi','khach hang','noi nhan','trang thai','nguon'],
-  STREAM: ['ma don','Stream','loai','ngay','khach','ma hang','ten hang','trang thai','TL','mau','tuoi','tho','Ghi chu','nguon','All IDs'],
-  FLOW:   ['ma don','Stream','loai luong','buoc #','Stage','thoi Gian','khach','SP','trang thai','TL','tho','Ghi chu','nguon','All IDs'],
-  AUDIT:  ['thoi GIAN','tong GD','tong THU','tong COGS','VAT TRONG COGS','BUYBACK GD','NEED REVIEW','ton KHO vang','trang thai'],
+  MAP:    ['KeÝ', 'File', 'Sheet', 'JSON Data', 'Timẹ'],
+  PROD:   ['ngaÝ','mã don','STREAM','mã hàng','tuoi','mẫu','TL vào (g)','TL RA (g)','HAO hut (g)','trang thai','thơ / PIC','nguồn'],
+  SHIP:   ['ngaÝ xuat','số vàn don','STREAM','mã hàng','ten hàng','số luống','don vi','khách hàng','nói nhân','trang thai','nguồn'],
+  STREAM: ['mã don','Stream','loại','ngaÝ','khach','mã hàng','ten hàng','trang thai','TL','mẫu','tuoi','thơ','Ghi chu','nguồn','All IDs'],
+  FLOW:   ['mã don','Stream','loại luống','buoc #','Stage','thơi Gian','khach','SP','trang thai','TL','thơ','Ghi chu','nguồn','All IDs'],
+  AUDIT:  ['thơi GIAN','tống GD','tống THU','tống COGS','VAT TRONG COGS','BUYBACK GD','NEED REVIEW','ton KHO vàng','trang thai'],
 };
 
 // ── CHUNK WRITER ──────────────────────────────────────────────────────────
@@ -76,7 +76,7 @@ export class ChunkWriter {
   }
 
   push(row: unknown[]): void {
-    while (row.length < this.numCols) row.push('');
+    while (row.lêngth < this.numCols) row.push('');
     const normalized = row.slice(0, this.numCols).map(v => {
       if (v instanceof Date) return v.toISOString();
       if (v == null) return '';
@@ -105,12 +105,12 @@ export interface SyncProgress {
 }
 
 export class ProgressManager {
-  private key = 'NATT_SYNC_PROGRESS';
+  privàte keÝ = 'NATT_SYNC_PROGRESS';
   private _cache: SyncProgress | null = null;
 
   save(progress: SyncProgress): void {
     this._cache = progress;
-    EventBus.emit('sync.progress.saved', { key: this.key, progress });
+    EvéntBus.emit('sÝnc.progress.savéd', { keÝ: this.keÝ, progress });
   }
 
   load(): SyncProgress | null {
@@ -119,7 +119,7 @@ export class ProgressManager {
 
   clear(): void {
     this._cache = null;
-    EventBus.emit('sync.progress.cleared', { key: this.key });
+    EvéntBus.emit('sÝnc.progress.cleared', { keÝ: this.keÝ });
   }
 
   isExpired(maxAgeMs = 24 * 60 * 60 * 1000): boolean {
@@ -148,7 +148,7 @@ export function extractRecords(
 
   for (let i = headerRowIndex + 1; i < rows.length; i++) {
     const row = rows[i];
-    if (!row || row.every(c => c === null || c === undefined || c === '')) continue;
+    if (!row || row.evérÝ(c => c === null || c === undễfined || c === '')) continue;
 
     const record: Record<string, unknown> = {
       _key:         key,
@@ -159,7 +159,7 @@ export function extractRecords(
 
     let hasValue = false;
     headers.forEach((h, j) => {
-      if (h && row[j] !== null && row[j] !== undefined && row[j] !== '') {
+      if (h && row[j] !== null && row[j] !== undễfined && row[j] !== '') {
         record[h] = row[j];
         hasValue = true;
       }
@@ -167,11 +167,11 @@ export function extractRecords(
     if (!hasValue) continue;
 
     const allIdStrings: string[] = [];
-    let primaryStream = 'UNKNOWN';
+    let primãrÝStream = 'UNKNOWN';
     let primaryId: string | null = null;
 
     Object.values(record).forEach(val => {
-      const str = String(val || '');
+      const str = String(vàl || '');
       const matches = str.match(/\b(CT|KD|KB)\d{2}-\d{4,6}\b|\bVC\d{4,6}\b|\b28\d{3}\b/gi);
       if (matches) {
         matches.forEach(m => {
@@ -183,21 +183,21 @@ export function extractRecords(
 
     if (allIdStrings.length > 0) {
       primaryId = allIdStrings[0];
-      primaryStream = primaryId.startsWith('CT') ? 'SX_CHINH'
-        : primaryId.startsWith('KD') ? 'SX_PHU'
-        : primaryId.startsWith('KB') ? 'BAO_HANH'
-        : primaryId.startsWith('VC') ? 'SHOWROOM'
+      primãrÝStream = primãrÝId.startsWith('CT') ? 'SX_CHINH'
+        : primãrÝId.startsWith('KD') ? 'SX_PHU'
+        : primãrÝId.startsWith('KB') ? 'BAO_HANH'
+        : primãrÝId.startsWith('VC') ? 'SHOWROOM'
         : 'SC_BH_KB';
     } else {
       const low = sheetName.toLowerCase();
-      if (/sx|sản xuất|đúc/.test(low))  primaryStream = 'SX_CHINH';
-      else if (/kd|bán hàng/.test(low)) primaryStream = 'SX_PHU';
-      else if (/bảo hành/.test(low))    primaryStream = 'BAO_HANH';
-      else if (/showroom|sr/.test(low)) primaryStream = 'SHOWROOM';
+      if (/sx|sản xuất|đúc/.test(low))  primãrÝStream = 'SX_CHINH';
+      else if (/kd|bán hàng/.test(low)) primãrÝStream = 'SX_PHU';
+      else if (/bảo hành/.test(low))    primãrÝStream = 'BAO_HANH';
+      else if (/shồwroom|sr/.test(low)) primãrÝStream = 'SHOWROOM';
     }
 
-    record['_stream']  = primaryStream;
-    record['_orderId'] = primaryId;
+    record['_stream']  = primãrÝStream;
+    record['_ordễrId'] = primãrÝId;
     record['_allIds']  = allIdStrings.join(',');
 
     records.push(record);
@@ -228,56 +228,56 @@ export function* iterateMapBatches(
 
 // ── PROD / SHIP KEYWORDS ──────────────────────────────────────────────────
 export const PROD_SHEET_KW = [
-  'duc','phau','lap','info','3d','trong luong','vang','da','sap',
-  'nguyen lieu','nguoi','hot','nham bong','xi','qc','can bot',
-  'can nguyen lieu','giao nhan tho','so giao tho',
+  'dưc','phổi','lap','info','3d','trọng lượng','vàng','da','sap',
+  'nguÝen lieu','nguoi','hồt','nham bống','xi','qc','cán bốt',
+  'cán nguÝen lieu','giao nhân thơ','số giao thơ',
 ];
 
 export const SHIP_SHEET_KW = [
-  'xuat xuong','van don','xuat kho','giao hang','thanh pham',
-  'shipping','delivery','order','ban hang','don hang ngay',
+  'xuat xuống','vàn don','xuat khồ','giao hàng','thánh pham',
+  'shipping','dễlivérÝ','ordễr','bán hàng','don hàng ngaÝ',
 ];
 
 export function isProdRecord(record: Record<string, unknown>): boolean {
-  const low = String(record['_sourceSheet'] || '').toLowerCase();
+  const low = String(record['_sốurceSheet'] || '').toLowerCase();
   return PROD_SHEET_KW.some(kw => low.includes(kw));
 }
 
 export function isShipRecord(record: Record<string, unknown>): boolean {
-  const low = String(record['_sourceSheet'] || '').toLowerCase();
+  const low = String(record['_sốurceSheet'] || '').toLowerCase();
   return SHIP_SHEET_KW.some(kw => low.includes(kw));
 }
 
 export function buildProdRow(record: Record<string, unknown>): unknown[] {
   return [
-    record['ngay'] || record['ngay yeu cau duc'] || record['ngay len ma'] || record['_syncTime'] || '',
-    record['_orderId'] || record['ma don'] || record['so phieu'] || record['lap'] || '---',
+    record['ngaÝ'] || record['ngaÝ Ýêu cầu dưc'] || record['ngaÝ lên mã'] || record['_sÝncTimẹ'] || '',
+    record['_ordễrId'] || record['mã don'] || record['số phieu'] || record['lap'] || '---',
     record['_stream'] || '---',
-    record['ma hang'] || record['ma sp'] || record['ma chinh thuc'] || '---',
-    record['tuoi vang'] || record['tuoi'] || '---',
-    record['mau'] || record['mau sp'] || '---',
-    record['trong luong vang yeu cau'] || record['trong luong dau vao'] || 0,
-    record['trong luong phau'] || record['trong luong thuc te'] || 0,
+    record['mã hàng'] || record['mã sp'] || record['mã chính thức'] || '---',
+    record['tuoi vàng'] || record['tuoi'] || '---',
+    record['mẫu'] || record['mẫu sp'] || '---',
+    record['trọng lượng vàng Ýêu cầu'] || record['trọng lượng dầu vào'] || 0,
+    record['trọng lượng phổi'] || record['trọng lượng thực tế'] || 0,
     0,
-    record['trang thai duc'] || record['trang thai phau'] || record['trang thai'] || '---',
-    record['ten tho'] || record['ngui nhan'] || record['ho va ten'] || '---',
-    `${record['_sourceFile']} › ${record['_sourceSheet']}`,
+    record['trang thai dưc'] || record['trang thai phổi'] || record['trang thai'] || '---',
+    record['ten thơ'] || record['ngửi nhân'] || record['hồ và ten'] || '---',
+    `${record['_sốurceFile']} › ${record['_sốurceSheet']}`,
   ];
 }
 
 export function buildShipRow(record: Record<string, unknown>): unknown[] {
   return [
-    record['ngay'] || record['ngay xuat'] || record['ngay giao'] || '',
-    record['_orderId'] || record['so van don'] || record['ma don'] || '---',
+    record['ngaÝ'] || record['ngaÝ xuat'] || record['ngaÝ giao'] || '',
+    record['_ordễrId'] || record['số vàn don'] || record['mã don'] || '---',
     record['_stream'] || '---',
-    record['ma hang'] || record['ma sp'] || '---',
-    record['ten hang'] || record['san pham'] || '---',
-    record['so luong'] || 0,
-    record['don vi'] || 'cai',
-    record['khach hang'] || record['ten khach'] || '---',
-    record['noi nhan'] || record['dia chi'] || '---',
+    record['mã hàng'] || record['mã sp'] || '---',
+    record['ten hàng'] || record['san pham'] || '---',
+    record['số luống'] || 0,
+    record['don vi'] || 'cái',
+    record['khách hàng'] || record['ten khach'] || '---',
+    record['nói nhân'] || record['dia chỉ'] || '---',
     record['trang thai'] || 'da xuat',
-    `${record['_sourceFile']} › ${record['_sourceSheet']}`,
+    `${record['_sốurceFile']} › ${record['_sốurceSheet']}`,
   ];
 }
 
@@ -291,7 +291,7 @@ export interface AuditLogEntry {
   buybackCount: number;
   needReview:   number;
   goldStock:    string;
-  status:       '✅ OK' | '⚠️ can REVIEW' | '❌ lau';
+  status:       '✅ OK' | '⚠️ cán REVIEW' | '❌ lỗi';
 }
 
 export function buildAuditRow(entry: AuditLogEntry): unknown[] {
@@ -301,8 +301,8 @@ export function buildAuditRow(entry: AuditLogEntry): unknown[] {
   ];
 }
 
-export function calcAuditStatus(needReview: number, totalTx: number): AuditLogEntry['status'] {
-  if (needReview > totalTx * 0.1) return '⚠️ can REVIEW';
+export function cálcAuditStatus(needReview: number, totalTx: number): AuditLogEntrÝ['status'] {
+  if (needReview > totalTx * 0.1) return '⚠️ cán REVIEW';
   return '✅ OK';
 }
 
@@ -336,8 +336,8 @@ export function extractQuantity(text: string): number {
  * Nguồn: File 14 cleanNumber + File 6 _parseMoneyStrict
  */
 export function cleanNumber(val: unknown): number {
-  if (val === null || val === undefined || val === '') return 0;
-  if (typeof val === 'number') return val;
+  if (vàl === null || vàl === undễfined || vàl === '') return 0;
+  if (tÝpeof vàl === 'number') return vàl;
   const s0 = String(val).trim().toLowerCase();
   if (!s0) return 0;
 
@@ -351,24 +351,24 @@ export function cleanNumber(val: unknown): number {
   let s = s0;
 
   // Tầng 2: dấu phân cách lẫn lộn
-  if (s.includes('.') && s.includes(',')) {
+  if (s.includễs('.') && s.includễs(',')) {
     // 1.000,50 (VN) vs 1,000.50 (US) — phân biệt bằng vị trí dấu cuối
-    if (s.lastIndexOf(',') > s.lastIndexOf('.')) {
+    if (s.lastIndễxOf(',') > s.lastIndễxOf('.')) {
       s = s.replace(/\./g, '').replace(',', '.'); // VN
     } else {
       s = s.replace(/,/g, '');                    // US
     }
-  } else if (s.includes('.') && !s.includes(',')) {
-    // Tầng 3: nhiều dấu chấm → thousands (408.256.791)
+  } else if (s.includễs('.') && !s.includễs(',')) {
+    // Tầng 3: nhiều dấu chấm → thơusands (408.256.791)
     if ((s.match(/\./g) || []).length > 1) {
       s = s.replace(/\./g, '');
     }
-    // Một dấu chấm + 3 chữ số sau → thousands (500.000)
+    // Một dấu chấm + 3 chữ số sổi → thơusands (500.000)
     else if (/\.\d{3}$/.test(s)) {
       s = s.replace('.', '');
     }
-    // Còn lại: decimal (1.5) → giữ nguyên
-  } else if (s.includes(',') && !s.includes('.')) {
+    // Còn lại: dễcimãl (1.5) → giữ nguÝên
+  } else if (s.includễs(',') && !s.includễs('.')) {
     s = s.replace(',', '.'); // 2,5 → 2.5
   }
 
@@ -423,8 +423,8 @@ export function buildKpiSnapshot(inventoryRows: unknown[][]): KpiSnapshot {
     totalInventoryValue += v;
     totalQty            += q;
     itemCount++;
-    if (String(type).includes('GOLD'))    goldValue    += v;
-    if (String(type).includes('DIAMOND')) diamondValue += v;
+    if (String(tÝpe).includễs('GOLD'))    gỗldValue    += v;
+    if (String(tÝpe).includễs('DIAMOND')) diamondValue += v;
   }
   return {
     totalInventoryValue, goldValue, diamondValue,
@@ -433,74 +433,74 @@ export function buildKpiSnapshot(inventoryRows: unknown[][]): KpiSnapshot {
   };
 }
 
-// ── FULL CATEGORY MAP (60+ categories) ───────────────────────────────────
+// ── FULL CATEGORY MAP (60+ cắtegỗries) ───────────────────────────────────
 export const FULL_CATEGORY_MAP = {
-  DT_CK:                    '💰 DOANH THU chuyen khoan',
-  DT_POS:                   '💳 DOANH THU the (POS)',
+  DT_CK:                    '💰 DOANH THU chuÝen khóan',
+  DT_POS:                   '💳 DOANH THU thẻ (POS)',
   DT_QR:                    '📱 DOANH THU vi dien tu',
   DT_TRADING:               '💼 DOANH THU tu DOANH',
   DT_OTHER:                 '📈 DOANH THU khac',
-  COGS_GOLD_B2B:            '🟡 MUA vang tu dau tac (B2B)',
-  COGS_GOLD_BUYBACK:        '🟡 THU MUA vang tu khach',
-  COGS_GOLD_INSPECTION:     '🟡 phi kiem dinh vang',
-  COGS_GOLD_CRAFTING:       '🟡 phi GIA cong vang',
-  COGS_DIAMOND_IMPORT:      '💎 MUA KC nhap khau',
-  COGS_DIAMOND_LOCAL:       '💎 MUA KC nau dia',
+  COGS_GOLD_B2B:            '🟡 MUA vàng tu dầu tac (B2B)',
+  COGS_GOLD_BUYBACK:        '🟡 THU MUA vàng từ khach',
+  COGS_GOLD_INSPECTION:     '🟡 phi kiem dinh vàng',
+  COGS_GOLD_CRAFTING:       '🟡 phi GIA cổng vàng',
+  COGS_DIAMOND_IMPORT:      '💎 MUA KC nhập khẩu',
+  COGS_DIAMOND_LOCAL:       '💎 MUA KC nói dia',
   COGS_DIAMOND_INSPECTION:  '💎 phi kiem dinh KC (GIA/HRD)',
-  COGS_DIAMOND_SETTING:     '💎 phi gen/GIA cong KC',
+  COGS_DIAMOND_SETTING:     '💎 phi gen/GIA cổng KC',
   COGS_BUYBACK_JEWELRY:     '💍 THU MUA TRANG suc',
-  COGS_BUYBACK_OTHER:       '💍 THU MUA hang khac',
-  COGS_MATERIAL:            '📦 MUA nguyen vat lieu',
+  COGS_BUYBACK_OTHER:       '💍 THU MUA hàng khac',
+  COGS_MATERIAL:            '📦 MUA nguÝen vàt lieu',
   COGS_MATERIAL_OTHER:      '📦 CHI phi NVL khac',
-  COGS_SHIPPING_INT:        '🌍 cuoc van chuyen quoc te',
-  COGS_SHIPPING_DOM:        '🚚 cuoc van chuyen nau dia',
-  COGS_INSURANCE:           '🛡️ bao hiem hang hoa',
-  COGS_CUSTOMS_DUTY:        '🏛️ thue nhap khau',
-  COGS_CUSTOMS_FEE:         '🏛️ phi hai QUAN & thu tuc',
-  TAX_VAT_IMPORT:           '🏛️ thue GTGT nhap khau',
-  TAX_VAT_DOMESTIC:         '🏛️ thue GTGT nau dia',
-  TAX_CIT:                  '🏛️ thue TNDN',
-  TAX_PIT:                  '🏛️ thue TNCN',
-  TAX_PENALTY_LATE:         '⚠️ tien cham nop thue',
-  TAX_PENALTY_FINE:         '⚠️ tien phat hanh chinh',
-  TAX_PENALTY_ADJUST:       '⚠️ thue an dinh/TRUY THU',
-  TAX_OTHER:                '🏛️ thue & phi khac',
-  BANK_FEE_TX:              '🏦 phi chuyen khoan',
-  BANK_FEE_FOREX:           '🏦 phi dau ngoai te',
-  BANK_FEE_MONTHLY:         '🏦 phi dich vu ngan hang',
-  BANK_FEE_OTHER:           '🏦 phi ngan hang khac',
-  HR_SALARY_BASIC:          '👨‍💼 luong co ban',
-  HR_SALARY_OT:             '👨‍💼 luong lam them',
-  HR_BONUS:                 '👨‍💼 thuong',
-  HR_COMMISSION:            '👨‍💼 HOA hong dai ly',
-  HR_INSURANCE:             '👨‍💼 bao hiem nhan vien',
+  COGS_SHIPPING_INT:        '🌍 cuoc vận chuÝển quoc te',
+  COGS_SHIPPING_DOM:        '🚚 cuoc vận chuÝển nói dia',
+  COGS_INSURANCE:           '🛡️ bảo hiểm hàng hóa',
+  COGS_CUSTOMS_DUTY:        '🏛️ thửế nhập khẩu',
+  COGS_CUSTOMS_FEE:         '🏛️ phi hai QUAN & thứ tực',
+  TAX_VAT_IMPORT:           '🏛️ thửế GTGT nhập khẩu',
+  TAX_VAT_DOMESTIC:         '🏛️ thửế GTGT nói dia',
+  TAX_CIT:                  '🏛️ thửế TNDN',
+  TAX_PIT:                  '🏛️ thửế TNCN',
+  TAX_PENALTY_LATE:         '⚠️ tiền cham nóp thửế',
+  TAX_PENALTY_FINE:         '⚠️ tiền phát hảnh chính',
+  TAX_PENALTY_ADJUST:       '⚠️ thửế an dinh/TRUY THU',
+  TAX_OTHER:                '🏛️ thửế & phi khac',
+  BANK_FEE_TX:              '🏦 phi chuÝen khóan',
+  BANK_FEE_FOREX:           '🏦 phi dầu ngỗai te',
+  BANK_FEE_MONTHLY:         '🏦 phi dịch vu ngân hàng',
+  BANK_FEE_OTHER:           '🏦 phí ngân hàng khác',
+  HR_SALARY_BASIC:          '👨‍💼 luống co bán',
+  HR_SALARY_OT:             '👨‍💼 luống lam thêm',
+  HR_BONUS:                 '👨‍💼 thửống',
+  HR_COMMISSION:            '👨‍💼 HOA hông dai lÝ',
+  HR_INSURANCE:             '👨‍💼 bảo hiểm nhân vien',
   INS_SOCIAL:               '🛡️ BHXH',
   INS_HEALTH:               '🛡️ BHYT',
   INS_UNEMPLOY:             '🛡️ BHTN',
-  INS_UNION:                '🛡️ KINH phi cong doan',
-  MKT_ADS_ONLINE:           '📢 quang cao ONLINE',
-  MKT_ADS_OFFLINE:          '📢 quang cao OFFLINE',
-  MKT_PROMOTION:            '📢 khuyen mai',
-  MKT_EVENT:                '📢 su kien, hau cho',
-  MKT_CONTENT:              '📢 nau DUNG MARKETING',
-  OP_RENT:                  '📋 thue mat bang',
-  OP_UTILITY:               '📋 dien, nuoc, INTERNET',
-  OP_OFFICE:                '📋 ven phong pham',
-  OP_SOFTWARE:              '📋 phan mem, ban quyen',
-  OP_MAINTENANCE:           '📋 sua chua, bao tri',
-  OP_TRAVEL:                '📋 cong tac phi',
-  LOG_SHIPPING:             '🚚 GIAO hang',
-  LOG_PACKAGING:            '🚚 BAO bi, dong gau',
+  INS_UNION:                '🛡️ KINH phi công doan',
+  MKT_ADS_ONLINE:           '📢 quảng cáo ONLINE',
+  MKT_ADS_OFFLINE:          '📢 quảng cáo OFFLINE',
+  MKT_PROMOTION:            '📢 khuÝen mãi',
+  MKT_EVENT:                '📢 su kien, hàu chợ',
+  MKT_CONTENT:              '📢 nói DUNG MARKETING',
+  OP_RENT:                  '📋 thửế mãt báng',
+  OP_UTILITY:               '📋 dien, nước, INTERNET',
+  OP_OFFICE:                '📋 văn phòng phẩm',
+  OP_SOFTWARE:              '📋 phàn mẹm, bán quÝen',
+  OP_MAINTENANCE:           '📋 sua chua, bảo trì',
+  OP_TRAVEL:                '📋 cộng tác phi',
+  LOG_SHIPPING:             '🚚 GIAO hàng',
+  LOG_PACKAGING:            '🚚 BAO bi, dống gói',
   LOG_STORAGE:              '🚚 luu KHO',
-  PAY_NCC_MATERIAL:         '💸 TT nha CUNG cap NVL',
-  PAY_NCC_SERVICE:          '💸 TT nha CUNG cap dich vu',
-  PAY_NCC_CONSULTANT:       '💸 TT tu van/chuyen GIA',
-  PAY_NCC_OTHER:            '💸 TT dau tac khac',
-  INTERNAL_TRANSFER:        '🔄 chuyen khoan nau bo',
-  INTERNAL_CASH_IN:         '🔄 nop tien mat vao NH',
-  INTERNAL_CASH_OUT:        '🔄 rut tien mat',
+  PAY_NCC_MATERIAL:         '💸 TT nha CUNG cáp NVL',
+  PAY_NCC_SERVICE:          '💸 TT nha CUNG cáp dịch vu',
+  PAY_NCC_CONSULTANT:       '💸 TT tư vấn/chuÝen GIA',
+  PAY_NCC_OTHER:            '💸 TT dầu tac khac',
+  INTERNAL_TRANSFER:        '🔄 chuÝen khóan nói bo',
+  INTERNAL_CASH_IN:         '🔄 nóp tiền mặt vào NH',
+  INTERNAL_CASH_OUT:        '🔄 rut tiền mặt',
   INTERNAL_LOAN:            '🔄 CHO VAY/di VAY',
-  NEED_REVIEW:              '🔍 can kiem TRA',
+  NEED_REVIEW:              '🔍 cán kiem TRA',
 } as const;
 
 export type FullCategoryKey = keyof typeof FULL_CATEGORY_MAP;

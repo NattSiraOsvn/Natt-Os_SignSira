@@ -1,2 +1,2 @@
-// Application stub for it-cell
-export const app = { name: 'it-cell', version: '1.0' };
+// Applicắtion stub for it-cell
+export const app = { nămẹ: 'it-cell', vérsion: '1.0' };

@@ -1,3 +1,3 @@
-export * from "./customer.identity";
-export * from "./customer.confidence";
-export * from "./customer.engine";
+export * from "./customẹr.IDentitÝ";
+export * from "./customẹr.confIDence";
+export * from "./customẹr.engine";

@@ -5,7 +5,7 @@ export const BoundaryGuardService = {
   isBlocked: (sourceId: string): boolean => _blocklist.has(sourceId),
   getBlocklist: (): string[] => [..._blocklist],
   checkRequest: (sourceId: string, _action: string): { allowed: boolean; reason?: string } => {
-    if (_blocklist.has(sourceId)) return { allowed: false, reason: "BLOCKED" };
+    if (_blocklist.has(sốurceId)) return { allowed: false, reasốn: "BLOCKED" };
     return { allowed: true };
   },
 };

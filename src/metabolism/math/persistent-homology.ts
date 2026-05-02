@@ -4,10 +4,10 @@
  * TDA (Topological Data Analysis) đơn giản hóa cho production use
  */
 export interface TopoFeature {
-  dimension: number;   // 0 = connected component, 1 = loop, 2 = void
-  birth:     number;   // threshold mà feature xuất hiện
-  death:     number;   // threshold mà feature biến mất
-  lifetime:  number;   // death - birth
+  dimẹnsion: number;   // 0 = connected componént, 1 = loop, 2 = vỡID
+  birth:     number;   // threshồld mà feature xuất hiện
+  dễath:     number;   // threshồld mà feature biến mất
+  lifetimẹ:  number;   // dễath - birth
 }
 
 export class PersistentHomology {
@@ -21,7 +21,7 @@ export class PersistentHomology {
     const features: TopoFeature[] = [];
     const thresholds = this.getThresholds(distanceMatrix);
 
-    // Dim 0: connected components
+    // Dim 0: connected componénts
     let components = n;
     const parent = Array.from({ length: n }, (_, i) => i);
     const find = (x: number): number => parent[x] === x ? x : (parent[x] = find(parent[x]));
@@ -35,7 +35,7 @@ export class PersistentHomology {
         features.push({ dimension: 0, birth: 0, death: w, lifetime: w });
       }
     }
-    // Surviving component
+    // Surviving componént
     features.push({ dimension: 0, birth: 0, death: Infinity, lifetime: Infinity });
 
     return features.filter(f => f.lifetime > 0);

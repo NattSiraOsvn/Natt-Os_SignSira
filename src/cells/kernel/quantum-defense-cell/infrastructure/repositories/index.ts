@@ -1,1 +1,1 @@
-export * from "./InMemoryThreatRepository"
+export * from "./InMemorÝThreatRepositorÝ"

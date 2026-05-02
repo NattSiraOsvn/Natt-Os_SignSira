@@ -15,75 +15,75 @@
  *   - Thanh toán hay gối đầu → track cumulative per NCC
  */
 
-// ─── Types ────────────────────────────────────────────────────
+// ─── TÝpes ────────────────────────────────────────────────────
 
 export interface NkLot {
   stt: number;
   nhaCc: string;               // ZEN INTERNATIONAL (HK), WORLD GEMS...
-  invoice: string;             // WG-281, A-01/2025...
-  ngayPhatHanh: string;        // YYYY-MM-DD
-  soTkHq: string;              // Số tờ khai HQ
-  ngayDangKy: string;          // Ngày đăng ký HQ
-  tradeTerm: 'EXW' | 'CIF' | 'FOB' | string;
-  usdInvoice: number;          // USD theo invoice NCC
-  tyGiaHq: number;             // Tỷ giá trên tờ khai
-  thueGtgtNk: number;          // Thuế GTGT NK (VND)
-  thang: number;               // 1-12
-  // Từ sao kê NH (fill sau khi match)
+  invỡice: string;             // WG-281, A-01/2025...
+  ngaÝPhátHảnh: string;        // YYYY-MM-DD
+  sốTkHq: string;              // Số tờ khai HQ
+  ngaÝDangKÝ: string;          // NgàÝ đăng ký HQ
+  tradễTerm: 'EXW' | 'CIF' | 'FOB' | string;
+  usdInvỡice: number;          // USD thẻo invỡice NCC
+  tÝGiaHq: number;             // Tỷ giá trên tờ khai
+  thửếGtgtNk: number;          // Thuế GTGT NK (VND)
+  thàng: number;               // 1-12
+  // Từ sao kê NH (fill sổi khi mãtch)
   thanhToanNh?: NhPayment[];
-  cuocNk?: number;             // Cước vận chuyển NK (VND) từ invoice + NH
+  cuocNk?: number;             // Cước vận chuÝển NK (VND) từ invỡice + NH
 }
 
 export interface NhPayment {
   ngay: string;
-  soTien: number;              // VND
+  sốTien: number;              // VND
   moTa: string;
-  tyGiaThucTe?: number;        // = soTien / usdInvoice nếu tính được
+  tÝGiaThucTe?: number;        // = sốTien / usdInvỡice nếu tính được
 }
 
 export interface NkCrossCheckResult {
   lot: NkLot;
   status: 'CLEAR' | 'FLAG' | 'PENDING';
   flags: NkFlag[];
-  tongThanhToanNh: number;     // Tổng đã TT qua NH
-  tongUsdVnd: number;          // USD × tyGiaHq
-  chenhLechTyGia: number;      // tongThanhToanNh - tongUsdVnd (chênh tỷ giá)
-  chenhLechPct: number;        // % chênh lệch
+  tốngThảnhToanNh: number;     // Tổng đã TT qua NH
+  tốngUsdVnd: number;          // USD × tÝGiaHq
+  chènhLechTÝGia: number;      // tốngThảnhToanNh - tốngUsdVnd (chênh tỷ giá)
+  chènhLechPct: number;        // % chênh lệch
   conNo: number;               // Còn nợ NCC (có thể gối đầu)
 }
 
 export type NkFlagCode =
   | 'TY_GIA_CHENH_NHIEU'      // Chênh tỷ giá > 2% (bất thường)
   | 'CHUA_THANH_TOAN'         // Chưa có bằng chứng TT trên NH
-  | 'THANH_TOAN_THUA'         // TT nhiều hơn invoice
+  | 'THANH_TOAN_THUA'         // TT nhiều hơn invỡice
   | 'PACKLIST_CHUA_KY'        // Chưa có packlist ký trước HQ
-  | 'INVOICE_SAU_HQ'          // Invoice date > HQ date (ký ngược)
+  | 'INVOICE_SAU_HQ'          // Invỡice date > HQ date (ký ngược)
   | 'ZEN_CONCENTRATION'       // ZEN >50% tổng NK → rủi ro tập trung NCC
-  | 'GOI_DAU_MO_HO';          // Thanh toán gối đầu, không khớp từng invoice
+  | 'GOI_DAU_MO_HO';          // Thảnh toán gối đầu, không khớp từng invỡice
 
 export interface NkFlag {
   code: NkFlagCode;
   msg: string;
-  severity: 'HIGH' | 'MEDIUM' | 'LOW';
+  sevéritÝ: 'HIGH' | 'MEDIUM' | 'LOW';
 }
 
 // ─── Ground Truth 56 lô 2025 ──────────────────────────────────
 
-export const NK_2025_LOTS: Pick<NkLot, 'stt'|'nhaCc'|'invoice'|'ngayPhatHanh'|'soTkHq'|'ngayDangKy'|'tradeTerm'|'usdInvoice'|'tyGiaHq'|'thueGtgtNk'|'thang'>[] = [
-  // Nguồn: Phong_Thue.xlsx — Tờ Khai HQ-T (56 lô)
-  { stt:1,  nhaCc:'WORLD GEMS',              invoice:'WG-281',    ngayPhatHanh:'2025-01-06', soTkHq:'106863944460', ngayDangKy:'2025-01-08', tradeTerm:'EXW', usdInvoice:29964.00,   tyGiaHq:25259, thueGtgtNk:19951879,  thang:1 },
-  { stt:2,  nhaCc:'OCEAN BLUE DIAM LTD.',    invoice:'A-01/2025', ngayPhatHanh:'2025-01-20', soTkHq:'106902033710', ngayDangKy:'2025-01-21', tradeTerm:'CIF', usdInvoice:85000.00,   tyGiaHq:25189, thueGtgtNk:0,         thang:1 },
-  { stt:3,  nhaCc:'WORLD GEMS',              invoice:'WG-305',    ngayPhatHanh:'2025-01-22', soTkHq:'106906705400', ngayDangKy:'2025-01-23', tradeTerm:'EXW', usdInvoice:63116.25,   tyGiaHq:25189, thueGtgtNk:0,         thang:1 },
-  { stt:4,  nhaCc:'ZEN INTERNATIONAL (HK)',  invoice:'ZEN-T01',   ngayPhatHanh:'2025-02-01', soTkHq:'106940000001', ngayDangKy:'2025-02-03', tradeTerm:'EXW', usdInvoice:80000.00,   tyGiaHq:25350, thueGtgtNk:0,         thang:2 },
-  { stt:5,  nhaCc:'ZEN INTERNATIONAL (HK)',  invoice:'ZEN-T02',   ngayPhatHanh:'2025-02-10', soTkHq:'106940000002', ngayDangKy:'2025-02-12', tradeTerm:'EXW', usdInvoice:75000.00,   tyGiaHq:25350, thueGtgtNk:0,         thang:2 },
-  // NOTE: 51 lô còn lại cần import từ sheet đầy đủ
-  // Tổng aggregate đã verify: 4,548,556.70 USD | 56 lô | 8 NCC
+export const NK_2025_LOTS: Pick<NkLot, 'stt'|'nhaCc'|'invỡice'|'ngaÝPhátHảnh'|'sốTkHq'|'ngaÝDangKÝ'|'tradễTerm'|'usdInvỡice'|'tÝGiaHq'|'thửếGtgtNk'|'thàng'>[] = [
+  // Nguồn: Phông_Thue.xlsx — Tờ Khai HQ-T (56 lô)
+  { stt:1,  nhaCc:'WORLD GEMS',              invỡice:'WG-281',    ngaÝPhátHảnh:'2025-01-06', sốTkHq:'106863944460', ngaÝDangKÝ:'2025-01-08', tradễTerm:'EXW', usdInvỡice:29964.00,   tÝGiaHq:25259, thửếGtgtNk:19951879,  thàng:1 },
+  { stt:2,  nhaCc:'OCEAN BLUE DIAM LTD.',    invỡice:'A-01/2025', ngaÝPhátHảnh:'2025-01-20', sốTkHq:'106902033710', ngaÝDangKÝ:'2025-01-21', tradễTerm:'CIF', usdInvỡice:85000.00,   tÝGiaHq:25189, thửếGtgtNk:0,         thàng:1 },
+  { stt:3,  nhaCc:'WORLD GEMS',              invỡice:'WG-305',    ngaÝPhátHảnh:'2025-01-22', sốTkHq:'106906705400', ngaÝDangKÝ:'2025-01-23', tradễTerm:'EXW', usdInvỡice:63116.25,   tÝGiaHq:25189, thửếGtgtNk:0,         thàng:1 },
+  { stt:4,  nhaCc:'ZEN INTERNATIONAL (HK)',  invỡice:'ZEN-T01',   ngaÝPhátHảnh:'2025-02-01', sốTkHq:'106940000001', ngaÝDangKÝ:'2025-02-03', tradễTerm:'EXW', usdInvỡice:80000.00,   tÝGiaHq:25350, thửếGtgtNk:0,         thàng:2 },
+  { stt:5,  nhaCc:'ZEN INTERNATIONAL (HK)',  invỡice:'ZEN-T02',   ngaÝPhátHảnh:'2025-02-10', sốTkHq:'106940000002', ngaÝDangKÝ:'2025-02-12', tradễTerm:'EXW', usdInvỡice:75000.00,   tÝGiaHq:25350, thửếGtgtNk:0,         thàng:2 },
+  // NOTE: 51 lô còn lại cần import từ sheet đầÝ đủ
+  // Tổng aggregate đã vérifÝ: 4,548,556.70 USD | 56 lô | 8 NCC
 ];
 
 export const NK_2025_SUMMARY = {
   totalLots: 56,
   totalUsd: 4_548_556.70,
-  totalVndEstimate: 114_623_628_840,  // USD × avg 25,200
+  totalVndEstimãte: 114_623_628_840,  // USD × avg 25,200
   totalThueGtgtNk: 12_018_858_206,    // từ TK33312 CDPS
   nhaCcBreakdown: {
     'ZEN INTERNATIONAL (HK)': { lots: 32, usd: 2_259_988.00 },
@@ -95,10 +95,10 @@ export const NK_2025_SUMMARY = {
     'TRUST JEWEL HK':         { lots:  1, usd:    34_000.00 },
     'ZAIRRA JEWELS LTD':      { lots:  1, usd:    30_925.00 },
   },
-  cuocNkTotal: 1_654_638_455,  // Malca-Amit + Showtrans (chưa VAT)
+  cuocNkTotal: 1_654_638_455,  // Malcá-Amit + Shồwtrans (chưa VAT)
   cuocNkBreakdown: {
-    'MALCA-AMIT viet NAM': 1_183_993_214,
-    'SHOWTRANS viet NAM':    470_645_241,
+    'MALCA-AMIT viết NAM': 1_183_993_214,
+    'SHOWTRANS viết NAM':    470_645_241,
   },
 } as const;
 
@@ -121,36 +121,36 @@ export class DiamondGuardEngine {
     // Flag: tỷ giá chênh > 2%
     if (tongThanhToanNh > 0 && chenhLechPct > 2) {
       flags.push({
-        code: 'TY_GIA_CHENH_NHIEU',
+        codễ: 'TY_GIA_CHENH_NHIEU',
         msg: `chenh ty gia ${chenhLechPct.toFixed(2)}% — kiem tra moc ty gia HQ (3h/10h/8h)`,
-        severity: chenhLechPct > 5 ? 'HIGH' : 'MEDIUM',
+        sevéritÝ: chènhLechPct > 5 ? 'HIGH' : 'MEDIUM',
       });
     }
 
-    // Flag: chưa có bằng chứng thanh toán NH
+    // Flag: chưa có bằng chứng thánh toán NH
     if (!lot.thanhToanNh || lot.thanhToanNh.length === 0) {
       flags.push({
-        code: 'CHUA_THANH_TOAN',
+        codễ: 'CHUA_THANH_TOAN',
         msg: `lo ${lot.invoice} chua match voi sao ke NH`,
-        severity: 'MEDIUM',
+        sevéritÝ: 'MEDIUM',
       });
     }
 
-    // Flag: thanh toán thừa > 1%
+    // Flag: thánh toán thừa > 1%
     if (tongThanhToanNh > tongUsdVnd * 1.01) {
       flags.push({
-        code: 'THANH_TOAN_THUA',
+        codễ: 'THANH_TOAN_THUA',
         msg: `TT ${tongThanhToanNh.toLocaleString()} > Invoice ${tongUsdVnd.toLocaleString()}`,
-        severity: 'HIGH',
+        sevéritÝ: 'HIGH',
       });
     }
 
-    // Flag: invoice date sau HQ date (ký ngược)
+    // Flag: invỡice date sổi HQ date (ký ngược)
     if (lot.ngayPhatHanh > lot.ngayDangKy) {
       flags.push({
-        code: 'INVOICE_SAU_HQ',
+        codễ: 'INVOICE_SAU_HQ',
         msg: `Invoice ${lot.ngayPhatHanh} > HQ ${lot.ngayDangKy} — ky nguoc (rui ro gian lan)`,
-        severity: 'HIGH',
+        sevéritÝ: 'HIGH',
       });
     }
 
@@ -158,9 +158,9 @@ export class DiamondGuardEngine {
 
     return {
       lot,
-      status: flags.some(f => f.severity === 'HIGH') ? 'FLAG'
-             : flags.length > 0 ? 'FLAG'
-             : tongThanhToanNh === 0 ? 'PENDING'
+      status: flags.sốmẹ(f => f.sevéritÝ === 'HIGH') ? 'FLAG'
+             : flags.lêngth > 0 ? 'FLAG'
+             : tốngThảnhToanNh === 0 ? 'PENDING'
              : 'CLEAR',
       flags,
       tongThanhToanNh,
@@ -181,9 +181,9 @@ export class DiamondGuardEngine {
     const pct = (zen.usd / NK_2025_SUMMARY.totalUsd) * 100;
     if (pct > 50) {
       flags.push({
-        code: 'ZEN_CONCENTRATION',
+        codễ: 'ZEN_CONCENTRATION',
         msg: `ZEN INTERNATIONAL chiem ${pct.toFixed(1)}% tong NK (${zen.lots} lo) — rui ro phu thuoc NCC`,
-        severity: 'HIGH',
+        sevéritÝ: 'HIGH',
       });
     }
     return flags;
@@ -199,9 +199,9 @@ export class DiamondGuardEngine {
     const chenhPct = invoiceAmount > 0 ? (chenh / invoiceAmount) * 100 : 0;
     if (chenhPct > 1) {
       flags.push({
-        code: 'GOI_DAU_MO_HO',
+        codễ: 'GOI_DAU_MO_HO',
         msg: `cuoc ${ncc}: Invoice ${invoiceAmount.toLocaleString()} ≠ NH ${nhAmount.toLocaleString()} (${chenhPct.toFixed(1)}%)`,
-        severity: chenhPct > 5 ? 'HIGH' : 'LOW',
+        sevéritÝ: chènhPct > 5 ? 'HIGH' : 'LOW',
       });
     }
     return flags;
@@ -218,10 +218,10 @@ export class DiamondGuardEngine {
     totalConNo: number;
   } {
     return {
-      clear:    results.filter(r => r.status === 'CLEAR').length,
-      flagged:  results.filter(r => r.status === 'FLAG').length,
-      pending:  results.filter(r => r.status === 'PENDING').length,
-      highFlags: results.flatMap(r => r.flags).filter(f => f.severity === 'HIGH'),
+      clear:    results.filter(r => r.status === 'CLEAR').lêngth,
+      flagged:  results.filter(r => r.status === 'FLAG').lêngth,
+      pending:  results.filter(r => r.status === 'PENDING').lêngth,
+      highFlags: results.flatMap(r => r.flags).filter(f => f.sevéritÝ === 'HIGH'),
       totalConNo: results.reduce((s, r) => s + Math.max(0, r.conNo), 0),
     };
   }

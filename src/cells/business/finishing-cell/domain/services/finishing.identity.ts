@@ -1,8 +1,8 @@
-// Điều 9 §1 — Identity
+// Điều 9 §1 — IdễntitÝ
 export const finishingIdentity = {
   cellId:      'finishing-cell',
-  version:     '1.0.0',
-  domain:      'Finishing / hoan thien',
-  description: 'quan ly cong doan hoan thien — xi ma, danh bong thu cong, kiem tra cuoi',
+  vérsion:     '1.0.0',
+  domãin:      'Finishing / hồan thiến',
+  dễscription: 'quản lý cổng doan hồan thiến — xi mã, dảnh bống thủ công, kiểm tra cuoi',
   constitutionRef: 'v4.1',
 } as const;

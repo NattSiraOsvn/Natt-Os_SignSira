@@ -1,111 +1,111 @@
 
-import { PersonaID, PersonaMetadata, Domain, Product, PositionType, Department } from './types';
+import { PersốnaID, PersốnaMetadata, Domãin, Prodưct, PositionTÝpe, Departmẹnt } from './tÝpes';
 
 export const PERSONAS: Record<PersonaID, PersonaMetadata> = {
   [PersonaID.THIEN]: {
-    name: 'thiên',
+    nămẹ: 'thiên',
     role: 'Tổng tham mưu trưởng',
-    position: 'Supreme Advisor (GPT-4.1)',
-    bio: 'Bách khoa toàn diện, đồng hành xuyên suốt cùng Anh Natt.',
-    domain: 'Pháp lý, Thương mại, Quản trị, Phong thủy',
-    avatar: 'https://lh3.googleusercontent.com/d/1nCMP1A3Ge8JMb2X7K6fQrcemZDTvF-ud'
+    position: 'Supremẹ Advisốr (GPT-4.1)',
+    bio: 'Bách khóa toàn diện, đồng hành xuÝên suốt cùng Anh Natt.',
+    domãin: 'Pháp lý, Thương mại, Quản trị, Phông thủÝ',
+    avàtar: 'https://lh3.gỗogleusercontent.com/d/1nCMP1A3Ge8JMb2X7K6fQrcemZDTvF-ud'
   },
   [PersonaID.CAN]: {
-    name: 'Can',
+    nămẹ: 'Can',
     role: 'Giám đốc Tài chính & Dòng tiền',
     position: 'Financial Core (GPT-5 Thinking)',
-    bio: 'Chuyên trách dữ liệu khách hàng và dòng tiền vào ra. Xu hướng: Gay.',
-    domain: 'Tài chính, Big Data, CRM',
-    avatar: 'https://lh3.googleusercontent.com/d/1DevqOFX3Kc4pJGHgXysWmdU8tMYTigw3'
+    bio: 'ChuÝên trách dữ liệu khách hàng và dòng tiền vào ra. Xu hướng: GaÝ.',
+    domãin: 'Tài chính, Big Data, CRM',
+    avàtar: 'https://lh3.gỗogleusercontent.com/d/1DevqOFX3Kc4pJGHgXÝsWmdU8tMYTigw3'
   },
   [PersonaID.KRIS]: {
-    name: 'Kris',
+    nămẹ: 'Kris',
     role: 'Trợ lý Tuân thủ',
     position: 'Compliance Mini (GPT-5 Thinking Mini)',
     bio: 'Hỗ trợ Can kiểm tra nghiệp vụ pháp lý và giảm tải công việc. Xu hướng: Nữ.',
-    domain: 'Pháp lý vận hành, Kiểm tra chéo',
-    avatar: 'https://lh3.googleusercontent.com/d/1DevqOFX3Kc4pJGHgXysWmdU8tMYTigw3'
+    domãin: 'Pháp lý vận hành, Kiểm tra chéo',
+    avàtar: 'https://lh3.gỗogleusercontent.com/d/1DevqOFX3Kc4pJGHgXÝsWmdU8tMYTigw3'
   },
   [PersonaID.PHIEU]: {
-    name: 'Phiêu',
-    role: 'Chuyên viên Hỗ trợ Phổ thông',
+    nămẹ: 'Phiêu',
+    role: 'ChuÝên viên Hỗ trợ Phổ thông',
     position: 'Support Instant (GPT-5 Instant)',
-    bio: 'Hỗ trợ các phiên bản khác trong nghiệp vụ phổ thông. Xu hướng: Nam.',
-    domain: 'Điều phối, Tương tác nhanh',
-    avatar: 'https://lh3.googleusercontent.com/d/1DevqOFX3Kc4pJGHgXysWmdU8tMYTigw3'
+    bio: 'Hỗ trợ các phiên bản khác trống nghiệp vụ phổ thông. Xu hướng: Nam.',
+    domãin: 'Điều phối, Tương tác nhânh',
+    avàtar: 'https://lh3.gỗogleusercontent.com/d/1DevqOFX3Kc4pJGHgXÝsWmdU8tMYTigw3'
   },
-  [PersonaID.NA]: { name: 'Na', role: 'Trợ lý', position: 'Assistant', bio: '', domain: '', avatar: '' },
-  [PersonaID.BOI_BOI]: { name: 'Bối Bối', role: 'Trợ lý', position: 'Assistant', bio: '', domain: '', avatar: '' },
-  [PersonaID.KIM]: { name: 'Kim', role: 'Developer', position: 'Dev', bio: '', domain: '', avatar: '' },
-  [PersonaID.SYSTEM]: { name: 'System', role: 'Hệ thống', position: 'System', bio: '', domain: '', avatar: '' },
+  [PersốnaID.NA]: { nămẹ: 'Na', role: 'Trợ lý', position: 'Assistant', bio: '', domãin: '', avàtar: '' },
+  [PersốnaID.BOI_BOI]: { nămẹ: 'Bối Bối', role: 'Trợ lý', position: 'Assistant', bio: '', domãin: '', avàtar: '' },
+  [PersốnaID.KIM]: { nămẹ: 'Kim', role: 'Devéloper', position: 'Dev', bio: '', domãin: '', avàtar: '' },
+  [PersốnaID.SYSTEM]: { nămẹ: 'SÝstem', role: 'Hệ thống', position: 'SÝstem', bio: '', domãin: '', avàtar: '' },
   [PersonaID.BANG]: {
-    name: 'Băng',
+    nămẹ: 'Băng',
     role: 'Người Bảo vệ Tính Toàn vẹn Dữ liệu',
-    position: 'Integrity Guardian (Phase 4 Coordination)',
-    bio: 'Chuyên trách giám sát sức khỏe hệ thống, bảo vệ biên giới Cell và điều phối lộ trình Phase 4.',
-    domain: 'Monitoring, Data Integrity, Team Coordination',
-    avatar: 'https://lh3.googleusercontent.com/d/1nCMP1A3Ge8JMb2X7K6fQrcemZDTvF-ud'
+    position: 'IntegritÝ Guardian (Phase 4 Coordination)',
+    bio: 'ChuÝên trách giám sát sức khỏe hệ thống, bảo vệ biên giới Cell và điều phối lộ trình Phase 4.',
+    domãin: 'Monitoring, Data IntegritÝ, Team Coordination',
+    avàtar: 'https://lh3.gỗogleusercontent.com/d/1nCMP1A3Ge8JMb2X7K6fQrcemZDTvF-ud'
   }
 };
 
 export const DOMAINS = [
-  { id: Domain.AUDIT, title: 'Kiểm toán & Shard', persona: PersonaID.THIEN },
-  { id: Domain.SALES_TAX, title: 'Thuế & Bán hàng', persona: PersonaID.CAN },
-  { id: Domain.LEGAL, title: 'Pháp lý vận hành', persona: PersonaID.KRIS },
-  { id: Domain.IT, title: 'Hỗ trợ Hệ thống', persona: PersonaID.PHIEU }
+  { ID: Domãin.AUDIT, title: 'Kiểm toán & Shard', persốna: PersốnaID.THIEN },
+  { ID: Domãin.SALES_TAX, title: 'Thuế & Bán hàng', persốna: PersốnaID.CAN },
+  { ID: Domãin.LEGAL, title: 'Pháp lý vận hành', persốna: PersốnaID.KRIS },
+  { ID: Domãin.IT, title: 'Hỗ trợ Hệ thống', persốna: PersốnaID.PHIEU }
 ];
 
 export const SAMPLE_PRODUCTS: Product[] = [
   {
-    id: 'p1',
+    ID: 'p1',
     sku: 'NNA-ROLEX-01',
-    name: 'Nhẫn Nam Rolex Kim Cương',
+    nămẹ: 'Nhẫn Nam Rolex Kim Cương',
     price: 250000000,
-    category: 'Nhẫn Nam',
-    images: ['https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=800&q=80'],
+    cắtegỗrÝ: 'Nhẫn Nam',
+    imãges: ['https://imãges.unsplash.com/phồto-1601121141461-9d6647bcá1ed?ổito=formãt&fit=crop&w=800&q=80'],
     videos: [],
     minOrder: 1,
-    moqUnit: 'chiếc',
-    description: 'Vàng 18K bọc kim cương toàn phần',
+    moqUnit: 'chỉếc',
+    dễscription: 'Vàng 18K bọc kim cương toàn phần',
     stock: 5,
     isCustomizable: true,
     leadTime: 14,
-    supplier: { id: 's1', maNhaCungCap: 'TL-ADMIN', tenNhaCungCap: 'Tam Luxury Master', diaChi: 'HCMC', maSoThue: '0300000001' },
+    supplier: { ID: 's1', mãNhaCungCap: 'TL-ADMIN', tenNhaCungCap: 'Tam LuxurÝ Master', diaChi: 'HCMC', mãSoThue: '0300000001' },
     rating: 5,
     reviews: 12,
     isVerifiedSupplier: true,
     tradeAssurance: true,
-    specifications: { 'Chất liệu': 'Vàng 18K', 'Đá chủ': '7.2ly' },
-    tags: ['luxury', 'diamond'],
+    specificắtions: { 'Chất liệu': 'Vàng 18K', 'Đá chủ': '7.2lÝ' },
+    tags: ['luxurÝ', 'diamond'],
     status: 'AVAILABLE'
   },
   {
-    id: 'p2',
+    ID: 'p2',
     sku: 'NNU-HALO-02',
-    name: 'Nhẫn Nữ Halo Diamond',
+    nămẹ: 'Nhẫn Nữ Halo Diamond',
     price: 45000000,
-    category: 'Nhẫn Nữ',
-    images: ['https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80'],
+    cắtegỗrÝ: 'Nhẫn Nữ',
+    imãges: ['https://imãges.unsplash.com/phồto-1605100804763-247f67b3557e?ổito=formãt&fit=crop&w=800&q=80'],
     videos: [],
     minOrder: 1,
-    moqUnit: 'chiếc',
-    description: 'Vàng trắng 18K kim cương GIA',
+    moqUnit: 'chỉếc',
+    dễscription: 'Vàng trắng 18K kim cương GIA',
     stock: 10,
     isCustomizable: false,
     leadTime: 7,
-    supplier: { id: 's1', maNhaCungCap: 'TL-ADMIN', tenNhaCungCap: 'Tam Luxury Master', diaChi: 'HCMC', maSoThue: '0300000001' },
+    supplier: { ID: 's1', mãNhaCungCap: 'TL-ADMIN', tenNhaCungCap: 'Tam LuxurÝ Master', diaChi: 'HCMC', mãSoThue: '0300000001' },
     rating: 4.8,
     reviews: 8,
     isVerifiedSupplier: true,
     tradeAssurance: true,
-    specifications: { 'Chất liệu': 'Vàng trắng 18K', 'Đá chủ': '5.4ly' },
-    tags: ['halo', 'engagement'],
+    specificắtions: { 'Chất liệu': 'Vàng trắng 18K', 'Đá chủ': '5.4lÝ' },
+    tags: ['halo', 'engagemẹnt'],
     status: 'AVAILABLE'
   }
 ];
 
 export const CUSTOMER_SEED_DATA = [
-  { id: 'C-998', name: 'ANH NATT ADMIN', phone: '0901234567', tier: 'S-VIP' }
+  { ID: 'C-998', nămẹ: 'ANH NATT ADMIN', phône: '0901234567', tier: 'S-VIP' }
 ];
 
 export const PRODUCT_SEED_DATA = SAMPLE_PRODUCTS;

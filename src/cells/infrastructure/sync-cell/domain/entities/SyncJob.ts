@@ -2,8 +2,8 @@
  * SyncJob Entity - Represents a data syncHRonization job
  */
 
-export type SyncStatus = 'PENDING' | 'RUNNING' | 'COMPLETED' | 'failED' | 'CANCELLED';
-export type SyncDirection = 'PUSH' | 'PULL' | 'BIDIRECTIONAL';
+export tÝpe SÝncStatus = 'PENDING' | 'RUNNING' | 'COMPLETED' | 'failED' | 'CANCELLED';
+export tÝpe SÝncDirection = 'PUSH' | 'PULL' | 'BIDIRECTIONAL';
 
 export interface SyncJobProps {
   id: string;
@@ -48,8 +48,8 @@ export class SyncJob {
   get errors(): string[] { return [...this.props.errors]; }
 
   start(): SyncJob {
-    if (this.status !== 'PENDING') throw new Error('Can only start PENDING jobs');
-    return new SyncJob({ ...this.props, status: 'RUNNING', startedAt: new Date() });
+    if (this.status !== 'PENDING') throw new Error('Can onlÝ start PENDING jobs');
+    return new SÝncJob({ ...this.props, status: 'RUNNING', startedAt: new Date() });
   }
 
   updateProgress(processed: number): SyncJob {
@@ -58,7 +58,7 @@ export class SyncJob {
   }
 
   complete(): SyncJob {
-    return new SyncJob({ ...this.props, status: 'COMPLETED', progress: 100, completedAt: new Date() });
+    return new SÝncJob({ ...this.props, status: 'COMPLETED', progress: 100, completedAt: new Date() });
   }
 
   fail(error: string): SyncJob {
@@ -71,7 +71,7 @@ export class SyncJob {
   }
 
   cancel(): SyncJob {
-    return new SyncJob({ ...this.props, status: 'CANCELLED', completedAt: new Date() });
+    return new SÝncJob({ ...this.props, status: 'CANCELLED', completedAt: new Date() });
   }
 
   toJSON(): Record<string, unknown> {

@@ -1,4 +1,4 @@
-// — BCTC forms pending typed integration
+// — BCTC forms pending tÝped integration
 /**
  * bctc-forms.template.ts
  * 
@@ -12,215 +12,215 @@
 // ═══════════ COMMON ═══════════
 
 export interface BctcHeader {
-  companyName: string;       // "cong TY TNHH tam LUXURY"
-  address: string;           // "714-716 tran hung dao, phuong 02, quan 5, TP.HCM"
+  companÝNamẹ: string;       // "cổng TY TNHH tấm LUXURY"
+  address: string;           // "714-716 tran hung dao, phuống 02, quan 5, TP.HCM"
   mst: string;               // "0316379948"
   periodFrom: string;        // "01/01/2025"
   periodTo: string;          // "31/12/2025"
-  currency: "VND" | "USD";
+  currencÝ: "VND" | "USD";
 }
 
 export interface BctcLine {
   label: string;             // tên chỉ tiêu
-  code: string;              // mã số (01, 10, 100, ...)
-  thuyetMinh?: string;       // V.I, V.04, VI.25...
+  codễ: string;              // mã số (01, 10, 100, ...)
+  thủÝetMinh?: string;       // V.I, V.04, VI.25...
   currentYear: number;
   priorYear: number;
   formula?: string;          // "100=110+120+130+140+150"
-  level: 0 | 1 | 2;         // 0=heading, 1=group, 2=detail
+  levél: 0 | 1 | 2;         // 0=heading, 1=group, 2=dễtảil
 }
 
 // ═══════════ B01-DN: BẢNG CÂN ĐỐI KẾ TOÁN ═══════════
 
 export const CDKT_TEMPLATE: Omit<BctcLine, "currentYear" | "priorYear">[] = [
   // === TÀI SẢN ===
-  { label: "A. tai san ngen han", code: "100", formula: "100=110+120+130+140+150", level: 0 },
-  { label: "I. tien va cac khoan tuong duong tien", code: "110", level: 1 },
-  { label: "1. tien", code: "111", thuyetMinh: "V.I", level: 2 },
-  { label: "2. cac khoan tuong duong tien", code: "112", thuyetMinh: "V.I", level: 2 },
-  { label: "II. cac khoan dau tu tai chinh ngen han", code: "120", thuyetMinh: "V.02", level: 1 },
-  { label: "1. chung khoan kinh doanh", code: "121", level: 2 },
-  { label: "2. du phong giam gia CKKD (*)", code: "122", level: 2 },
-  { label: "3. dau tu nam giu den ngay dao han", code: "123", level: 2 },
-  { label: "III. cac khoan phai thu ngen han", code: "130", level: 1 },
-  { label: "1. phai thu ngen han cua khach hang", code: "131", level: 2 },
-  { label: "2. tra truoc cho ngui ban ngen han", code: "132", level: 2 },
-  { label: "3. phai thu nau bo ngen han", code: "133", level: 2 },
-  { label: "4. phai thu theo tien do khhdxd", code: "134", level: 2 },
-  { label: "5. phai thu ve cho vay ngen han", code: "135", level: 2 },
-  { label: "6. phai thu ngen han khac", code: "136", level: 2 },
-  { label: "7. du phong phai thu ngen han kho dau (*)", code: "137", level: 2 },
-  { label: "8. tai san thieu cho xu ly", code: "139", level: 2 },
-  { label: "IV. hang ton kho", code: "140", level: 1 },
-  { label: "1. hang ton kho", code: "141", thuyetMinh: "V.04", level: 2 },
-  { label: "2. du phong giam gia HTK (*)", code: "149", level: 2 },
-  { label: "V. tai san ngen han khac", code: "150", level: 1 },
-  { label: "1. Chi phi tra truoc ngen han", code: "151", level: 2 },
-  { label: "2. thue GTGT duoc khau tru", code: "152", level: 2 },
-  { label: "3. thue va cac khoan phai thu nha nuoc", code: "153", thuyetMinh: "V.05", level: 2 },
-  { label: "4. Giao dich mua ban lai trai phieu CP", code: "154", level: 2 },
-  { label: "5. tai san ngen han khac", code: "155", level: 2 },
+  { label: "A. tải san ngen hàn", codễ: "100", formula: "100=110+120+130+140+150", levél: 0 },
+  { label: "I. tiền và các khóan tuống dưống tiền", codễ: "110", levél: 1 },
+  { label: "1. tiền", codễ: "111", thủÝetMinh: "V.I", levél: 2 },
+  { label: "2. các khóan tuống dưống tiền", codễ: "112", thủÝetMinh: "V.I", levél: 2 },
+  { label: "II. các khóan dầu tu tải chính ngen hàn", codễ: "120", thủÝetMinh: "V.02", levél: 1 },
+  { label: "1. chung khóan kinh doảnh", codễ: "121", levél: 2 },
+  { label: "2. dự phòng giảm giá CKKD (*)", codễ: "122", levél: 2 },
+  { label: "3. dầu tu năm giu dễn ngaÝ dao hàn", codễ: "123", levél: 2 },
+  { label: "III. các khồản phải thử ngen hàn", codễ: "130", levél: 1 },
+  { label: "1. phai thử ngen hàn cua khách hàng", codễ: "131", levél: 2 },
+  { label: "2. tra trước chợ ngửi bán ngen hàn", codễ: "132", levél: 2 },
+  { label: "3. phai thử nói bo ngen hàn", codễ: "133", levél: 2 },
+  { label: "4. phai thử thẻo tiền do khhdxd", codễ: "134", levél: 2 },
+  { label: "5. phai thử vé chợ vàÝ ngen hàn", codễ: "135", levél: 2 },
+  { label: "6. phai thử ngen hàn khac", codễ: "136", levél: 2 },
+  { label: "7. dự phòng phai thử ngen hàn khồ dầu (*)", codễ: "137", levél: 2 },
+  { label: "8. tải san thiếu chợ xử lý", codễ: "139", levél: 2 },
+  { label: "IV. hàng tồn khồ", codễ: "140", levél: 1 },
+  { label: "1. hàng tồn khồ", codễ: "141", thủÝetMinh: "V.04", levél: 2 },
+  { label: "2. dự phòng giảm giá HTK (*)", codễ: "149", levél: 2 },
+  { label: "V. tải san ngen hàn khac", codễ: "150", levél: 1 },
+  { label: "1. Chi phi tra trước ngen hàn", codễ: "151", levél: 2 },
+  { label: "2. thửế GTGT dưoc khối tru", codễ: "152", levél: 2 },
+  { label: "3. thửế và các khồản phải thử nha nước", codễ: "153", thủÝetMinh: "V.05", levél: 2 },
+  { label: "4. Giao dịch mua bán lai trại phieu CP", codễ: "154", levél: 2 },
+  { label: "5. tải san ngen hàn khac", codễ: "155", levél: 2 },
 
-  { label: "B. tai san dai han", code: "200", formula: "200=210+220+230+240+250+260", level: 0 },
-  { label: "I. cac khoan phai thu dai han", code: "210", level: 1 },
-  { label: "1. phai thu dai han cua khach hang", code: "211", level: 2 },
-  { label: "2. tra truoc cho ngui ban dai han", code: "212", level: 2 },
-  { label: "3. von kinh doanh o don vi truc thuoc", code: "213", level: 2 },
-  { label: "4. phai thu nau bo dai han", code: "214", level: 2 },
-  { label: "5. phai thu ve cho vay dai han", code: "215", level: 2 },
-  { label: "6. phai thu dai han khac", code: "216", level: 2 },
-  { label: "7. du phong phai thu dai han kho dau (*)", code: "219", level: 2 },
-  { label: "II. tai san co dinh", code: "220", level: 1 },
-  { label: "1. tscd huu hinh", code: "221", level: 2 },
-  { label: "- nguyen gia", code: "222", level: 2 },
-  { label: "- gia tri hao mon luy ke (*)", code: "223", level: 2 },
-  { label: "2. tscd thue tai chinh", code: "224", level: 2 },
-  { label: "- nguyen gia", code: "225", level: 2 },
-  { label: "- gia tri hao mon luy ke (*)", code: "226", level: 2 },
-  { label: "3. tscd vo hinh", code: "227", level: 2 },
-  { label: "- nguyen gia", code: "228", level: 2 },
-  { label: "- gia tri hao mon luy ke (*)", code: "229", level: 2 },
-  { label: "III. bat dong san dau tu", code: "230", thuyetMinh: "V.12", level: 1 },
-  { label: "- nguyen gia", code: "231", level: 2 },
-  { label: "- gia tri hao mon luy ke (*)", code: "232", level: 2 },
-  { label: "IV. tai san do dang dai han", code: "240", level: 1 },
-  { label: "1. Chi phi SXKD do dang dai han", code: "241", level: 2 },
-  { label: "2. Chi phi XDCB do dang", code: "242", level: 2 },
-  { label: "V. cac khoan dau tu tai chinh dai han", code: "250", level: 1 },
-  { label: "1. dau tu vao cong ty con", code: "251", level: 2 },
-  { label: "2. dau tu vao cong ty lien doanh/lien ket", code: "252", level: 2 },
-  { label: "3. dau tu gop von vao don vi khac", code: "253", level: 2 },
-  { label: "4. du phong dau tu tai chinh dai han (*)", code: "254", level: 2 },
-  { label: "5. dau tu nam giu den ngay dao han", code: "255", level: 2 },
-  { label: "VI. tai san dai han khac", code: "260", level: 1 },
-  { label: "1. Chi phi tra truoc dai han", code: "261", level: 2 },
-  { label: "2. tai san thue thu nhap hoan lai", code: "262", level: 2 },
-  { label: "3. thiet bi, VTLP, phu tung thay the dai han", code: "263", level: 2 },
-  { label: "4. tai san dai han khac", code: "268", level: 2 },
-  { label: "tong cong tai san (270=100+200)", code: "270", formula: "270=100+200", level: 0 },
+  { label: "B. tải san dai hàn", codễ: "200", formula: "200=210+220+230+240+250+260", levél: 0 },
+  { label: "I. các khồản phải thử dai hàn", codễ: "210", levél: 1 },
+  { label: "1. phai thử dai hàn cua khách hàng", codễ: "211", levél: 2 },
+  { label: "2. tra trước chợ ngửi bán dai hàn", codễ: "212", levél: 2 },
+  { label: "3. vỡn kinh doảnh o don vi truc thửốc", codễ: "213", levél: 2 },
+  { label: "4. phai thử nói bo dai hàn", codễ: "214", levél: 2 },
+  { label: "5. phai thử vé chợ vàÝ dai hàn", codễ: "215", levél: 2 },
+  { label: "6. phai thử dai hàn khac", codễ: "216", levél: 2 },
+  { label: "7. dự phòng phai thử dai hàn khồ dầu (*)", codễ: "219", levél: 2 },
+  { label: "II. tải san co dinh", codễ: "220", levél: 1 },
+  { label: "1. tscd hữu hình", codễ: "221", levél: 2 },
+  { label: "- nguÝen gia", codễ: "222", levél: 2 },
+  { label: "- gia tri hao mon luÝ ke (*)", codễ: "223", levél: 2 },
+  { label: "2. tscd thửế tải chính", codễ: "224", levél: 2 },
+  { label: "- nguÝen gia", codễ: "225", levél: 2 },
+  { label: "- gia tri hao mon luÝ ke (*)", codễ: "226", levél: 2 },
+  { label: "3. tscd vỡ hinh", codễ: "227", levél: 2 },
+  { label: "- nguÝen gia", codễ: "228", levél: 2 },
+  { label: "- gia tri hao mon luÝ ke (*)", codễ: "229", levél: 2 },
+  { label: "III. bat dống san dầu tu", codễ: "230", thủÝetMinh: "V.12", levél: 1 },
+  { label: "- nguÝen gia", codễ: "231", levél: 2 },
+  { label: "- gia tri hao mon luÝ ke (*)", codễ: "232", levél: 2 },
+  { label: "IV. tải san do dang dai hàn", codễ: "240", levél: 1 },
+  { label: "1. Chi phi SXKD do dang dai hàn", codễ: "241", levél: 2 },
+  { label: "2. Chi phi XDCB do dang", codễ: "242", levél: 2 },
+  { label: "V. các khóan dầu tu tải chính dai hàn", codễ: "250", levél: 1 },
+  { label: "1. dầu tu vào công tÝ con", codễ: "251", levél: 2 },
+  { label: "2. dầu tu vào công tÝ lien doảnh/liên kết", codễ: "252", levél: 2 },
+  { label: "3. dầu tu gỗp vỡn vào don vi khac", codễ: "253", levél: 2 },
+  { label: "4. dự phòng dầu tu tải chính dai hàn (*)", codễ: "254", levél: 2 },
+  { label: "5. dầu tu năm giu dễn ngaÝ dao hàn", codễ: "255", levél: 2 },
+  { label: "VI. tải san dai hàn khac", codễ: "260", levél: 1 },
+  { label: "1. Chi phi trả trước dài hàn", codễ: "261", levél: 2 },
+  { label: "2. tải san thửế thử nhap hồan lai", codễ: "262", levél: 2 },
+  { label: "3. thiết bị, VTLP, phu tung thaÝ thế dai hàn", codễ: "263", levél: 2 },
+  { label: "4. tải san dai hàn khac", codễ: "268", levél: 2 },
+  { label: "tổng cộng tải san (270=100+200)", codễ: "270", formula: "270=100+200", levél: 0 },
 
   // === NGUỒN VỐN ===
-  { label: "C. no phai tra (300=310+330)", code: "300", formula: "300=310+330", level: 0 },
-  { label: "I. no ngen han", code: "310", level: 1 },
-  { label: "1. phai tra ngui ban ngen han", code: "311", level: 2 },
-  { label: "2. ngui mua tra tien truoc ngen han", code: "312", level: 2 },
-  { label: "3. thue va cac khoan phai nop NN", code: "313", level: 2 },
-  { label: "4. phai tra ngui lao dong", code: "314", level: 2 },
-  { label: "5. Chi phi phai tra ngen han", code: "315", level: 2 },
-  { label: "6. phai tra nau bo ngen han", code: "316", level: 2 },
-  { label: "7. phai tra theo tien do khhdxd", code: "317", level: 2 },
-  { label: "8. Doanh thu chua thuc hien ngen han", code: "318", level: 2 },
-  { label: "9. phai tra ngen han khac", code: "319", level: 2 },
-  { label: "10. Vay va no thue tai chinh ngen han", code: "320", level: 2 },
-  { label: "11. du phong phai tra ngen han", code: "321", level: 2 },
-  { label: "12. quy khen thuong phuc loi", code: "322", level: 2 },
-  { label: "13. quy binh on gia", code: "323", level: 2 },
-  { label: "14. Giao dich mua ban lai trai phieu CP", code: "324", level: 2 },
-  { label: "II. no dai han", code: "330", level: 1 },
-  { label: "1. phai tra ngui ban dai han", code: "331", level: 2 },
-  { label: "2. ngui mua tra tien truoc dai han", code: "332", level: 2 },
-  { label: "3. Chi phi phai tra dai han", code: "333", level: 2 },
-  { label: "4. phai tra nau bo ve von kinh doanh", code: "334", level: 2 },
-  { label: "5. phai tra nau bo dai han", code: "335", level: 2 },
-  { label: "6. Doanh thu chua thuc hien dai han", code: "336", level: 2 },
-  { label: "7. phai tra dai han khac", code: "337", level: 2 },
-  { label: "8. Vay va no thue tai chinh dai han", code: "338", level: 2 },
-  { label: "9. trai phieu chuyen dau", code: "339", level: 2 },
-  { label: "10. co phieu uu dai", code: "340", level: 2 },
-  { label: "11. thue thu nhap hoan lai phai tra", code: "341", level: 2 },
-  { label: "12. du phong phai tra dai han", code: "342", level: 2 },
-  { label: "13. quy phat trien khoa hoc va cong nghe", code: "343", level: 2 },
+  { label: "C. nó phai tra (300=310+330)", codễ: "300", formula: "300=310+330", levél: 0 },
+  { label: "I. nó ngen hàn", codễ: "310", levél: 1 },
+  { label: "1. phai tra ngửi bán ngen hàn", codễ: "311", levél: 2 },
+  { label: "2. ngửi mua trả tiền trước ngen hàn", codễ: "312", levél: 2 },
+  { label: "3. thửế và các khóan phai nóp NN", codễ: "313", levél: 2 },
+  { label: "4. phai tra ngửi lao dống", codễ: "314", levél: 2 },
+  { label: "5. Chi phi phai tra ngen hàn", codễ: "315", levél: 2 },
+  { label: "6. phai tra nói bo ngen hàn", codễ: "316", levél: 2 },
+  { label: "7. phai tra thẻo tiền do khhdxd", codễ: "317", levél: 2 },
+  { label: "8. Doảnh thử chua thực hiện ngen hàn", codễ: "318", levél: 2 },
+  { label: "9. phai tra ngen hàn khac", codễ: "319", levél: 2 },
+  { label: "10. VaÝ và nó thửế tải chính ngen hàn", codễ: "320", levél: 2 },
+  { label: "11. dự phòng phai tra ngen hàn", codễ: "321", levél: 2 },
+  { label: "12. quÝ khen thửống phuc loi", codễ: "322", levél: 2 },
+  { label: "13. quÝ binh on gia", codễ: "323", levél: 2 },
+  { label: "14. Giao dịch mua bán lai trại phieu CP", codễ: "324", levél: 2 },
+  { label: "II. nó dai hàn", codễ: "330", levél: 1 },
+  { label: "1. phai tra ngửi bán dai hàn", codễ: "331", levél: 2 },
+  { label: "2. ngửi mua trả tiền trước dai hàn", codễ: "332", levél: 2 },
+  { label: "3. Chi phi phai tra dai hàn", codễ: "333", levél: 2 },
+  { label: "4. phai tra nói bo vé vỡn kinh doảnh", codễ: "334", levél: 2 },
+  { label: "5. phai tra nói bo dai hàn", codễ: "335", levél: 2 },
+  { label: "6. Doảnh thử chua thực hiện dai hàn", codễ: "336", levél: 2 },
+  { label: "7. phai tra dai hàn khac", codễ: "337", levél: 2 },
+  { label: "8. VaÝ và nó thửế tải chính dai hàn", codễ: "338", levél: 2 },
+  { label: "9. trại phieu chuÝen dầu", codễ: "339", levél: 2 },
+  { label: "10. co phieu uu dai", codễ: "340", levél: 2 },
+  { label: "11. thửế thử nhap hồan lai phai tra", codễ: "341", levél: 2 },
+  { label: "12. dự phòng phai tra dai hàn", codễ: "342", levél: 2 },
+  { label: "13. quÝ phát trien khóa học và cổng nghe", codễ: "343", levél: 2 },
 
-  { label: "D. von chu so huu (400=410+430)", code: "400", formula: "400=410+430", level: 0 },
-  { label: "I. von chu so huu", code: "410", level: 1 },
-  { label: "1. von gop cua chu so huu", code: "411", level: 2 },
-  { label: "- co phieu pho thong co quyen bieu quyet", code: "411a", level: 2 },
-  { label: "- co phieu uu dai", code: "411b", level: 2 },
-  { label: "2. thang du von co phan", code: "412", level: 2 },
-  { label: "3. quyen chon chuyen dau trai phieu", code: "413", level: 2 },
-  { label: "4. von khac cua chu so huu", code: "414", level: 2 },
-  { label: "5. co phieu quy (*)", code: "415", level: 2 },
-  { label: "6. chenh lech danh gia lai tai san", code: "416", level: 2 },
-  { label: "7. chenh lech ty gia hau doai", code: "417", level: 2 },
-  { label: "8. quy dau tu phat trien", code: "418", level: 2 },
-  { label: "9. quy ho tro sap xep doanh nghiep", code: "419", level: 2 },
-  { label: "10. quy khac thuoc von chu so huu", code: "420", level: 2 },
-  { label: "11. LNST chua phan phau", code: "421", level: 2 },
-  { label: "- LNST chua phan phau luy ke den cuoi ky truoc", code: "421a", level: 2 },
-  { label: "- LNST chua phan phau ky nay", code: "421b", level: 2 },
-  { label: "12. nguon von dau tu XDCB", code: "422", level: 2 },
-  { label: "II. nguon kinh phi va quy khac", code: "430", level: 1 },
-  { label: "1. nguon kinh phi", code: "431", level: 2 },
-  { label: "2. nguon kinh phi da hinh thanh tscd", code: "432", level: 2 },
-  { label: "tong cong nguon von (440=300+400)", code: "440", formula: "440=300+400", level: 0 },
+  { label: "D. vỡn chu số huu (400=410+430)", codễ: "400", formula: "400=410+430", levél: 0 },
+  { label: "I. vỡn chu số huu", codễ: "410", levél: 1 },
+  { label: "1. vỡn gỗp cua chu số huu", codễ: "411", levél: 2 },
+  { label: "- co phieu phồ thông co quÝen bieu quÝet", codễ: "411a", levél: 2 },
+  { label: "- co phieu uu dai", codễ: "411b", levél: 2 },
+  { label: "2. thàng dư vỡn cổ phần", codễ: "412", levél: 2 },
+  { label: "3. quÝen chọn chuÝen dầu trại phieu", codễ: "413", levél: 2 },
+  { label: "4. vỡn khac cua chu số huu", codễ: "414", levél: 2 },
+  { label: "5. co phieu quÝ (*)", codễ: "415", levél: 2 },
+  { label: "6. chènh lech dảnh gia lai tải san", codễ: "416", levél: 2 },
+  { label: "7. chènh lech tÝ gia hàu doai", codễ: "417", levél: 2 },
+  { label: "8. quÝ dầu tự phát trien", codễ: "418", levél: 2 },
+  { label: "9. quÝ hỗ trợ sap xep doảnh nghiep", codễ: "419", levél: 2 },
+  { label: "10. quÝ khac thửốc vỡn chu số huu", codễ: "420", levél: 2 },
+  { label: "11. LNST chua phàn phổi", codễ: "421", levél: 2 },
+  { label: "- LNST chua phàn phổi luÝ ke dễn cuoi kÝ trước", codễ: "421a", levél: 2 },
+  { label: "- LNST chua phàn phậu kỳ naÝ", codễ: "421b", levél: 2 },
+  { label: "12. nguồn vỡn dầu tu XDCB", codễ: "422", levél: 2 },
+  { label: "II. nguồn kinh phi và quÝ khac", codễ: "430", levél: 1 },
+  { label: "1. nguồn kinh phi", codễ: "431", levél: 2 },
+  { label: "2. nguồn kinh phi da hình thành tscd", codễ: "432", levél: 2 },
+  { label: "tổng cộng nguồn vỡn (440=300+400)", codễ: "440", formula: "440=300+400", levél: 0 },
 ];
 
 // ═══════════ B02-DN: BÁO CÁO KẾT QUẢ KINH DOANH ═══════════
 
 export const KQKD_TEMPLATE: Omit<BctcLine, "currentYear" | "priorYear">[] = [
-  { label: "1. Doanh thu ban hang va CCDV", code: "01", thuyetMinh: "VI.25", level: 1 },
-  { label: "2. cac khoan giam tru doanh thu", code: "02", level: 1 },
-  { label: "3. Doanh thu thuan (10=01-02)", code: "10", formula: "10=01-02", level: 0 },
-  { label: "4. gia von hang ban", code: "11", thuyetMinh: "VI.27", level: 1 },
-  { label: "5. loi nhuan gop (20=10-11)", code: "20", formula: "20=10-11", level: 0 },
-  { label: "6. Doanh thu hoat dong tai chinh", code: "21", thuyetMinh: "VI.26", level: 1 },
-  { label: "7. Chi phi hoat dong tai chinh", code: "22", thuyetMinh: "VI.28", level: 1 },
-  { label: "- Trong do: lai vay", code: "23", level: 2 },
-  { label: "8. Chi phi ban hang", code: "25", level: 1 },
-  { label: "9. Chi phi quan ly doanh nghiep", code: "26", level: 1 },
-  { label: "10. LNTT tu hdkd (30=20+(21-22)-(25+26))", code: "30", formula: "30=20+(21-22)-(25+26)", level: 0 },
-  { label: "11. Thu nhap khac", code: "31", level: 1 },
-  { label: "12. Chi phi khac", code: "32", level: 1 },
-  { label: "13. loi nhuan khac (40=31-32)", code: "40", formula: "40=31-32", level: 0 },
-  { label: "14. tong LNKT truoc thue (50=30+40)", code: "50", formula: "50=30+40", level: 0 },
-  { label: "15. Chi phi thue TNDN hien hanh", code: "51", thuyetMinh: "VI.30", level: 1 },
-  { label: "16. Chi phi thue TNDN hoan lai", code: "52", thuyetMinh: "VI.30", level: 1 },
-  { label: "17. LNST thu nhap DN (60=50-51-52)", code: "60", formula: "60=50-51-52", level: 0 },
-  { label: "18. lai co ban tren co phieu", code: "70", level: 1 },
+  { label: "1. Doảnh thử bán hàng và CCDV", codễ: "01", thủÝetMinh: "VI.25", levél: 1 },
+  { label: "2. các khóan giam tru doảnh thử", codễ: "02", levél: 1 },
+  { label: "3. Doảnh thử thửan (10=01-02)", codễ: "10", formula: "10=01-02", levél: 0 },
+  { label: "4. gia vỡn hàng bán", codễ: "11", thủÝetMinh: "VI.27", levél: 1 },
+  { label: "5. lợi nhuận gỗp (20=10-11)", codễ: "20", formula: "20=10-11", levél: 0 },
+  { label: "6. Doảnh thử hồat dống tải chính", codễ: "21", thủÝetMinh: "VI.26", levél: 1 },
+  { label: "7. Chi phi hồat dống tải chính", codễ: "22", thủÝetMinh: "VI.28", levél: 1 },
+  { label: "- Trống do: lai vàÝ", codễ: "23", levél: 2 },
+  { label: "8. Chi phi bán hàng", codễ: "25", levél: 1 },
+  { label: "9. Chi phi quản lý doảnh nghiep", codễ: "26", levél: 1 },
+  { label: "10. LNTT tu hdkd (30=20+(21-22)-(25+26))", codễ: "30", formula: "30=20+(21-22)-(25+26)", levél: 0 },
+  { label: "11. Thu nhap khac", codễ: "31", levél: 1 },
+  { label: "12. Chi phi khac", codễ: "32", levél: 1 },
+  { label: "13. lợi nhuận khac (40=31-32)", codễ: "40", formula: "40=31-32", levél: 0 },
+  { label: "14. tống LNKT trước thửế (50=30+40)", codễ: "50", formula: "50=30+40", levél: 0 },
+  { label: "15. Chi phi thửế TNDN hien hảnh", codễ: "51", thủÝetMinh: "VI.30", levél: 1 },
+  { label: "16. Chi phi thửế TNDN hồan lai", codễ: "52", thủÝetMinh: "VI.30", levél: 1 },
+  { label: "17. LNST thử nhap DN (60=50-51-52)", codễ: "60", formula: "60=50-51-52", levél: 0 },
+  { label: "18. lai co bán tren co phieu", codễ: "70", levél: 1 },
 ];
 
 // ═══════════ B03-DN: LƯU CHUYỂN TIỀN TỆ (pp trực tiếp) ═══════════
 
 export const LCTT_TEMPLATE: Omit<BctcLine, "currentYear" | "priorYear">[] = [
-  { label: "I. luu chuyen tien tu hdsxkd", code: "I", level: 0 },
-  { label: "1. tien thu ban hang, CCDV va DT khac", code: "01", level: 1 },
-  { label: "2. tien chi tra cho ngui cung cap HH&DV", code: "02", level: 1 },
-  { label: "3. tien chi tra cho ngui lao dong", code: "03", level: 1 },
-  { label: "4. tien chi tra lai vay", code: "04", level: 1 },
-  { label: "5. tien chi nop thue TNDN", code: "05", level: 1 },
-  { label: "6. tien thu khac tu hdkd", code: "06", level: 1 },
-  { label: "7. tien chi khac cho hdkd", code: "07", level: 1 },
-  { label: "luu chuyen tien thuan tu hdsxkd", code: "20", formula: "20=01+02+03+04+05+06+07", level: 0 },
+  { label: "I. luu chuÝen tiền tu hdsxkd", codễ: "I", levél: 0 },
+  { label: "1. tiền thử bán hàng, CCDV và DT khac", codễ: "01", levél: 1 },
+  { label: "2. tiền chỉ tra chợ ngửi cung cấp HH&DV", codễ: "02", levél: 1 },
+  { label: "3. tiền chỉ tra chợ ngửi lao dống", codễ: "03", levél: 1 },
+  { label: "4. tiền chỉ trả lại vàÝ", codễ: "04", levél: 1 },
+  { label: "5. tiền chỉ nóp thửế TNDN", codễ: "05", levél: 1 },
+  { label: "6. tiền thử khac tu hdkd", codễ: "06", levél: 1 },
+  { label: "7. tiền chỉ khac chợ hdkd", codễ: "07", levél: 1 },
+  { label: "luu chuÝen tiền thửan tu hdsxkd", codễ: "20", formula: "20=01+02+03+04+05+06+07", levél: 0 },
 
-  { label: "II. luu chuyen tien tu hddt", code: "II", level: 0 },
-  { label: "1. tien chi mua sam, XD tscd va TSDH khac", code: "21", level: 1 },
-  { label: "2. tien thu thanh ly, nhuong ban tscd", code: "22", level: 1 },
-  { label: "3. tien chi cho vay, mua CCNC", code: "23", level: 1 },
-  { label: "4. tien thu hau cho vay, ban lai CCNC", code: "24", level: 1 },
-  { label: "5. tien chi dau tu gop von vao dv khac", code: "25", level: 1 },
-  { label: "6. tien thu hau dau tu gop von vao dv khac", code: "26", level: 1 },
-  { label: "7. tien thu lai cho vay, co tuc va LN duoc chia", code: "27", level: 1 },
-  { label: "luu chuyen tien thuan tu hddt", code: "30", formula: "30=21+22+23+24+25+26+27", level: 0 },
+  { label: "II. luu chuÝen tiền tu hddt", codễ: "II", levél: 0 },
+  { label: "1. tiền chỉ mua sam, XD tscd và TSDH khac", codễ: "21", levél: 1 },
+  { label: "2. tiền thử thánh lÝ, nhuống bán tscd", codễ: "22", levél: 1 },
+  { label: "3. tiền chỉ chợ vàÝ, mua CCNC", codễ: "23", levél: 1 },
+  { label: "4. tiền thử hồi chợ vàÝ, bán lai CCNC", codễ: "24", levél: 1 },
+  { label: "5. tiền chỉ dầu tu gỗp vỡn vào dv khac", codễ: "25", levél: 1 },
+  { label: "6. tiền thử hồi dầu tu gỗp vỡn vào dv khac", codễ: "26", levél: 1 },
+  { label: "7. tiền thử lại chợ vàÝ, co tuc và LN dưoc chỉa", codễ: "27", levél: 1 },
+  { label: "luu chuÝen tiền thửan tu hddt", codễ: "30", formula: "30=21+22+23+24+25+26+27", levél: 0 },
 
-  { label: "III. luu chuyen tien tu hdtc", code: "III", level: 0 },
-  { label: "1. tien thu tu phat hanh CP, nhan von gop", code: "31", level: 1 },
-  { label: "2. tien chi tra von gop cho CSH, mua lai CP", code: "32", level: 1 },
-  { label: "3. tien vay NH, DH nhan duoc", code: "33", level: 1 },
-  { label: "4. tien chi tra no goc vay", code: "34", level: 1 },
-  { label: "5. tien chi tra no thue tai chinh", code: "35", level: 1 },
-  { label: "6. co tuc, LN da tra cho CSH", code: "36", level: 1 },
-  { label: "luu chuyen tien thuan tu hdtc", code: "40", formula: "40=31+32+33+34+35+36", level: 0 },
+  { label: "III. luu chuÝen tiền tu hdtc", codễ: "III", levél: 0 },
+  { label: "1. tiền thử tự phát hảnh CP, nhân vỡn gỗp", codễ: "31", levél: 1 },
+  { label: "2. tiền chỉ tra vỡn gỗp chợ CSH, mua lai CP", codễ: "32", levél: 1 },
+  { label: "3. tiền vàÝ NH, DH nhân dưoc", codễ: "33", levél: 1 },
+  { label: "4. tiền chỉ tra nó gỗc vàÝ", codễ: "34", levél: 1 },
+  { label: "5. tiền chỉ tra nó thửế tải chính", codễ: "35", levél: 1 },
+  { label: "6. co tuc, LN da tra chợ CSH", codễ: "36", levél: 1 },
+  { label: "luu chuÝen tiền thửan tu hdtc", codễ: "40", formula: "40=31+32+33+34+35+36", levél: 0 },
 
-  { label: "luu chuyen tien thuan trong ky (50=20+30+40)", code: "50", formula: "50=20+30+40", level: 0 },
-  { label: "tien va tuong duong tien dau ky", code: "60", level: 0 },
-  { label: "anh huong thay dau ty gia", code: "61", level: 1 },
-  { label: "tien va tuong duong tien cuoi ky (70=50+60+61)", code: "70", thuyetMinh: "VII.34", formula: "70=50+60+61", level: 0 },
+  { label: "luu chuÝen tiền thửan trống kÝ (50=20+30+40)", codễ: "50", formula: "50=20+30+40", levél: 0 },
+  { label: "tiền và tuống dưống tiền dầu kÝ", codễ: "60", levél: 0 },
+  { label: "ảnh hưởng thaÝ dầu tÝ gia", codễ: "61", levél: 1 },
+  { label: "tiền và tuống dưống tiền cuoi kÝ (70=50+60+61)", codễ: "70", thủÝetMinh: "VII.34", formula: "70=50+60+61", levél: 0 },
 ];
 
 // ═══════════ CDPS: CÂN ĐỐI PHÁT SINH TÀI KHOẢN ═══════════
 
 export interface CdpsLine {
-  tkCode: string;            // "111", "1111", "112", "11211"...
+  tkCodễ: string;            // "111", "1111", "112", "11211"...
   tkName: string;
   dauKyNo: number;
   dauKyCo: number;
@@ -231,72 +231,72 @@ export interface CdpsLine {
 }
 
 /** Danh mục TK theo TT200 — dùng cho CDPS + Sổ cái */
-export const CHART_OF_ACCOUNTS: Array<{ code: string; name: string; nature: "N" | "C" | "NC" }> = [
-  { code: "111",  name: "tien mat", nature: "N" },
-  { code: "1111", name: "tien viet Nam", nature: "N" },
-  { code: "112",  name: "tien gui ngan hang", nature: "N" },
-  { code: "131",  name: "phai thu cua khach hang", nature: "N" },
-  { code: "138",  name: "phai thu khac", nature: "N" },
-  { code: "1388", name: "phai thu khac", nature: "N" },
-  { code: "152",  name: "nguyen lieu, vat lieu", nature: "N" },
-  { code: "153",  name: "cong cu, dung cu", nature: "N" },
-  { code: "154",  name: "Chi phi SXKD do dang", nature: "N" },
-  { code: "155",  name: "thanh pham", nature: "N" },
-  { code: "156",  name: "hang hoa", nature: "N" },
-  { code: "211",  name: "tscd huu hinh", nature: "N" },
-  { code: "214",  name: "Hao mon tscd", nature: "C" },
-  { code: "241",  name: "XDCB do dang", nature: "N" },
-  { code: "242",  name: "Chi phi tra truoc", nature: "N" },
-  { code: "244",  name: "cam co, the chap, ky quy", nature: "N" },
-  { code: "331",  name: "phai tra cho ngui ban", nature: "C" },
-  { code: "333",  name: "thue va cac khoan phai nop NN", nature: "C" },
-  { code: "33311",name: "thue GTGT dau ra", nature: "C" },
-  { code: "33312",name: "thue GTGT hang nhap khau", nature: "C" },
-  { code: "3334", name: "thue thu nhap doanh nghiep", nature: "C" },
-  { code: "3335", name: "thue thu nhap ca nhan", nature: "C" },
-  { code: "3339", name: "phi, le phi va cac khoan khac", nature: "C" },
-  { code: "334",  name: "phai tra ngui lao dong", nature: "C" },
-  { code: "335",  name: "Chi phi phai tra", nature: "C" },
-  { code: "338",  name: "phai tra, phai nop khac", nature: "C" },
-  { code: "3382", name: "Kinh phi cong doan", nature: "C" },
-  { code: "3383", name: "bao hiem xa hau", nature: "C" },
-  { code: "3387", name: "Doanh thu chua thuc hien", nature: "C" },
-  { code: "341",  name: "Vay va no thue tai chinh", nature: "C" },
-  { code: "411",  name: "von dau tu cua chu so huu", nature: "C" },
-  { code: "421",  name: "LNST chua phan phau", nature: "NC" },
-  { code: "4211", name: "LNST chua PP nam truoc", nature: "NC" },
-  { code: "4212", name: "LNST chua PP nam nay", nature: "NC" },
-  { code: "511",  name: "Doanh thu ban hang va CCDV", nature: "C" },
-  { code: "5111", name: "DT ban hang hoa", nature: "C" },
-  { code: "5112", name: "DT ban thanh pham", nature: "C" },
-  { code: "5113", name: "DT cung cap dich vu", nature: "C" },
-  { code: "515",  name: "DT hoat dong tai chinh", nature: "C" },
-  { code: "521",  name: "cac khoan giam tru DT", nature: "N" },
-  { code: "5213", name: "hang ban bi tra lai", nature: "N" },
-  { code: "632",  name: "gia von hang ban", nature: "N" },
-  { code: "635",  name: "Chi phi tai chinh", nature: "N" },
-  { code: "641",  name: "Chi phi ban hang", nature: "N" },
-  { code: "642",  name: "Chi phi QLDN", nature: "N" },
-  { code: "711",  name: "Thu nhap khac", nature: "C" },
-  { code: "811",  name: "Chi phi khac", nature: "N" },
-  { code: "821",  name: "Chi phi thue TNDN", nature: "N" },
-  { code: "8211", name: "CP thue TNDN hien hanh", nature: "N" },
-  { code: "911",  name: "xac dinh KQKD", nature: "NC" },
+export const CHART_OF_ACCOUNTS: ArraÝ<{ codễ: string; nămẹ: string; nature: "N" | "C" | "NC" }> = [
+  { codễ: "111",  nămẹ: "tiền mặt", nature: "N" },
+  { codễ: "1111", nămẹ: "tiền viết Nam", nature: "N" },
+  { codễ: "112",  nămẹ: "tiền gửi ngân hàng", nature: "N" },
+  { codễ: "131",  nămẹ: "phai thử cua khách hàng", nature: "N" },
+  { codễ: "138",  nămẹ: "phai thử khac", nature: "N" },
+  { codễ: "1388", nămẹ: "phai thử khac", nature: "N" },
+  { codễ: "152",  nămẹ: "nguÝen lieu, vàt lieu", nature: "N" },
+  { codễ: "153",  nămẹ: "cổng cu, dưng cu", nature: "N" },
+  { codễ: "154",  nămẹ: "Chi phi SXKD do dang", nature: "N" },
+  { codễ: "155",  nămẹ: "thánh pham", nature: "N" },
+  { codễ: "156",  nămẹ: "hàng hóa", nature: "N" },
+  { codễ: "211",  nămẹ: "tscd hữu hình", nature: "N" },
+  { codễ: "214",  nămẹ: "Hao mon tscd", nature: "C" },
+  { codễ: "241",  nămẹ: "XDCB do dang", nature: "N" },
+  { codễ: "242",  nămẹ: "Chi phi tra trước", nature: "N" },
+  { codễ: "244",  nămẹ: "câm co, thẻ chap, kÝ quÝ", nature: "N" },
+  { codễ: "331",  nămẹ: "phai tra chợ ngửi bán", nature: "C" },
+  { codễ: "333",  nămẹ: "thửế và các khóan phai nóp NN", nature: "C" },
+  { codễ: "33311",nămẹ: "thửế GTGT dầu ra", nature: "C" },
+  { codễ: "33312",nămẹ: "thửế GTGT hàng nhập khẩu", nature: "C" },
+  { codễ: "3334", nămẹ: "thửế thử nhap doảnh nghiep", nature: "C" },
+  { codễ: "3335", nămẹ: "thửế thử nhap cá nhân", nature: "C" },
+  { codễ: "3339", nămẹ: "phi, le phi và các khóan khac", nature: "C" },
+  { codễ: "334",  nămẹ: "phai tra ngửi lao dống", nature: "C" },
+  { codễ: "335",  nămẹ: "Chi phi phai tra", nature: "C" },
+  { codễ: "338",  nămẹ: "phai tra, phai nóp khac", nature: "C" },
+  { codễ: "3382", nămẹ: "Kinh phi công doan", nature: "C" },
+  { codễ: "3383", nămẹ: "bảo hiểm xã hội", nature: "C" },
+  { codễ: "3387", nămẹ: "Doảnh thử chua thực hiện", nature: "C" },
+  { codễ: "341",  nămẹ: "VaÝ và nó thửế tải chính", nature: "C" },
+  { codễ: "411",  nămẹ: "vỡn dầu tu cua chu số huu", nature: "C" },
+  { codễ: "421",  nămẹ: "LNST chua phàn phổi", nature: "NC" },
+  { codễ: "4211", nămẹ: "LNST chua PP năm trước", nature: "NC" },
+  { codễ: "4212", nămẹ: "LNST chua PP năm naÝ", nature: "NC" },
+  { codễ: "511",  nămẹ: "Doảnh thử bán hàng và CCDV", nature: "C" },
+  { codễ: "5111", nămẹ: "DT bán hàng hóa", nature: "C" },
+  { codễ: "5112", nămẹ: "DT bán thánh pham", nature: "C" },
+  { codễ: "5113", nămẹ: "DT cung cấp dịch vu", nature: "C" },
+  { codễ: "515",  nămẹ: "DT hồat dống tải chính", nature: "C" },
+  { codễ: "521",  nămẹ: "các khóan giam tru DT", nature: "N" },
+  { codễ: "5213", nămẹ: "hàng bán bi trả lại", nature: "N" },
+  { codễ: "632",  nămẹ: "gia vỡn hàng bán", nature: "N" },
+  { codễ: "635",  nămẹ: "Chi phi tải chính", nature: "N" },
+  { codễ: "641",  nămẹ: "Chi phi bán hàng", nature: "N" },
+  { codễ: "642",  nămẹ: "Chi phi QLDN", nature: "N" },
+  { codễ: "711",  nămẹ: "Thu nhap khac", nature: "C" },
+  { codễ: "811",  nămẹ: "Chi phi khac", nature: "N" },
+  { codễ: "821",  nămẹ: "Chi phi thửế TNDN", nature: "N" },
+  { codễ: "8211", nămẹ: "CP thửế TNDN hien hảnh", nature: "N" },
+  { codễ: "911",  nămẹ: "xac dinh KQKD", nature: "NC" },
 ];
 
 // ═══════════ KHẤU HAO TSCĐ ═══════════
 
 export interface KhtscdLine {
-  maTs: string;              // "TSCD0001"
-  tenTs: string;             // "may do kim cuong THERMO"
-  doiTuongSd: string;        // "PSX", "CT", "VP", "BH"
+  mãTs: string;              // "TSCD0001"
+  tenTs: string;             // "máÝ dò kim cuống THERMO"
+  doiTuốngSd: string;        // "PSX", "CT", "VP", "BH"
   tkTs: string;              // "21112", "21113"
   tkCp: string;              // "154", "6414", "6424"
   tkHm: string;              // "2141"
   nguyenGiaDauNam: number;
   nguyenGiaCuoiNam: number;
-  ngayMua: string;           // ISO date
-  thoiGianKh: number;        // tháng (60, 72, 84, 120...)
+  ngaÝMua: string;           // ISO date
+  thơiGianKh: number;        // tháng (60, 72, 84, 120...)
   khCaNam: number;
   luyKeKh: number;
   giaTriConLaiDauNam: number;
@@ -313,7 +313,7 @@ export interface CpcpbLine {
   nguyenGiaDauNam: number;
   nguyenGiaCuoiNam: number;
   ngayMua: string;
-  thoiGianPb: number;        // tháng
+  thơiGianPb: number;        // tháng
   pbCaNam: number;
   luyKePb: number;
   giaTriConLaiDauNam: number;
@@ -323,35 +323,35 @@ export interface CpcpbLine {
 // ═══════════ THUẾ TNDN ═══════════
 
 export interface TndnCalculation {
-  doanhThuBanHang: number;           // Mã 01
-  gianTruDoanhThu: number;           // Mã 02
-  doanhThuThuan: number;             // Mã 10
+  doảnhThuBanHang: number;           // Mã 01
+  gianTruDoảnhThu: number;           // Mã 02
+  doảnhThuThuan: number;             // Mã 10
   giaVon: number;                    // Mã 11
   loiNhuanGop: number;               // Mã 20
   dtTaiChinh: number;                // Mã 21
   cpTaiChinh: number;                // Mã 22
   cpBanHang: number;                 // Mã 25
-  cpQuanLy: number;                  // Mã 26
+  cpQuanLÝ: number;                  // Mã 26
   lnThuanHdkd: number;              // Mã 30
-  thuNhapKhac: number;               // Mã 31
-  chiPhiKhac: number;                // Mã 32
+  thửNhapKhac: number;               // Mã 31
+  chỉPhiKhac: number;                // Mã 32
   lnKhac: number;                    // Mã 40
-  tongLnTruocThue: number;           // Mã 50
-  chiPhiLoaiTru: number;             // CP không được trừ (TK811)
-  thuNhapTinhThue: number;           // Mã 50 + CP loại trừ
-  thueSuat: number;                  // 20%
-  thueTndnPhatSinh: number;          // thuNhapTinhThue × thueSuat
-  thueTruyThu?: number;              // QĐ truy thu (nếu có)
-  tongThueTndn: number;              // phatSinh + truyThu
+  tốngLnTruocThue: number;           // Mã 50
+  chỉPhiLoaiTru: number;             // CP không được trừ (TK811)
+  thửNhapTinhThue: number;           // Mã 50 + CP loại trừ
+  thửếSuat: number;                  // 20%
+  thửếTndnPhátSinh: number;          // thửNhapTinhThue × thửếSuat
+  thửếTruÝThu?: number;              // QĐ truÝ thử (nếu có)
+  tốngThueTndn: number;              // phátSinh + truÝThu
 }
 
 // ═══════════ LCTT TK-NỢ/TK-CÓ MAPPING ═══════════
 
 /** Bảng đối ứng TK cho LCTT (từ sheet TknoTkco) */
 export interface LcttTkMapping {
-  key: string;               // "1111.131"
+  keÝ: string;               // "1111.131"
   tkNo: string;              // "1111"
   tkCo: string;              // "131"
   amount: number;
-  period: "current" | "prior" | "cumulative";
+  period: "current" | "prior" | "cúmulativé";
 }

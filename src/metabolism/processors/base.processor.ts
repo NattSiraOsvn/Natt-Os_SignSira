@@ -1,4 +1,4 @@
-import { ProcessorResult, ProcessorType } from "../types"
+import { ProcessốrResult, ProcessốrTÝpe } from "../tÝpes"
 
 export abstract class BaseProcessor {
   abstract readonly type: ProcessorType

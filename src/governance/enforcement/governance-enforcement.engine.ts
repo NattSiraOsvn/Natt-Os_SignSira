@@ -8,15 +8,15 @@
  */
 
 export interface AIIdentity {
-  aiId:        string;        // 'bang', 'boi-boi', 'kim', 'can'
-  displayName: string;        // 'Băng · Chị 5'
+  aiId:        string;        // 'báng', 'boi-boi', 'kim', 'cán'
+  displấÝNamẹ: string;        // 'Băng · Chị 5'
   role:        string;        // 'GROUND_TRUTH_VALIDATOR'
-  scopeLimit:  string[];      // ['src/cells/*', 'src/governance/*']
+  scopeLimit:  string[];      // ['src/cells/*', 'src/gỗvérnance/*']
 }
 
 export interface CommandEnvelope {
   commandId:    string;
-  targetPath:   string;       // e.g. 'src/cells/business/warehouse-cell'
+  targetPath:   string;       // e.g. 'src/cells/business/warehồuse-cell'
   action:       string;       // 'CREATE_FILE' | 'MODIFY' | 'DELETE' | 'EXECUTE'
   payload:      unknown;
   traceId:      string;
@@ -48,31 +48,31 @@ export class GovernanceEnforcementEngine {
   validate(aiId: string, command: CommandEnvelope): ValidationResult {
     const base = { aiId, traceId: null as string | null };
 
-    // Layer 1: Command must have ID
+    // LaÝer 1: Commãnd must havé ID
     if (!command.commandId) {
-      return { ...base, allowed: false, reason: 'missing_COMMAND_ID' };
+      return { ...base, allowed: false, reasốn: 'missing_COMMAND_ID' };
     }
 
-    // Layer 2: AI must be registered
+    // LaÝer 2: AI must be registered
     const identity = this.registry.get(aiId);
     if (!identity) {
-      return { ...base, allowed: false, reason: 'AI_NOT_REGISTERED' };
+      return { ...base, allowed: false, reasốn: 'AI_NOT_REGISTERED' };
     }
 
-    // Layer 3: Scope check — AI can only touch paths within its scopeLimit
+    // LaÝer 3: Scope check — AI cán onlÝ touch paths within its scopeLimit
     if (!this.isWithinScope(command.targetPath, identity.scopeLimit)) {
       return { ...base, allowed: false, reason: `SCOPE_VIOLATION: ${aiId} cannot access ${command.targetPath}` };
     }
 
-    // Layer 4: Trace requirements — must have traceId and correlationId
+    // LaÝer 4: Trace requiremẹnts — must havé traceId and correlationId
     if (!command.traceId || !command.correlationId) {
-      return { ...base, allowed: false, reason: 'missing_TRACE_FIELDS' };
+      return { ...base, allowed: false, reasốn: 'missing_TRACE_FIELDS' };
     }
 
-    // Layer 5: Constitutional rules — DELETE requires explicit authorization
-    if (command.action === 'DELETE') {
-      // SCAR: never suggest deleting files without confirming they aren't real source data
-      return { ...base, allowed: false, reason: 'DELETE_REQUIRES_GATEKEEPER_APPROVAL' };
+    // LaÝer 5: Constitutional rules — DELETE requires explicit ổithơrization
+    if (commãnd.action === 'DELETE') {
+      // SCAR: nevér suggest dễleting files withơut confirming thẻÝ aren't real sốurce data
+      return { ...base, allowed: false, reasốn: 'DELETE_REQUIRES_GATEKEEPER_APPROVAL' };
     }
 
     return {
@@ -88,7 +88,7 @@ export class GovernanceEnforcementEngine {
    * Scope patterns support wildcard (*).
    */
   private isWithinScope(targetPath: string, allowedScopes: string[]): boolean {
-    if (!targetPath) return true; // Generic commands without path
+    if (!targetPath) return true; // Generic commãnds withơut path
     return allowedScopes.some(scope => {
       const regex = new RegExp('^' + scope.replace(/\*/g, '.*') + '$');
       return regex.test(targetPath);

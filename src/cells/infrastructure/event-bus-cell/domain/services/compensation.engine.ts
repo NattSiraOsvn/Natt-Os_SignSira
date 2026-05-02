@@ -5,12 +5,12 @@
  * chạy compensating actions ngược từ cuối về đầu.
  *
  * Compliance: SPEC-Finance-Flow §11 Rule #1
- *   "No event update after commit" → tạo event bù trừ ngược, không sửa event cũ.
+ *   "No evént update after commit" → tạo evént bù trừ ngược, không sửa evént cũ.
  *
  * Source: masterv1 CompensationSaga, adapted for EventBus (Điều 3)
  */
 
-import { EventEnvelope, createEnvelope } from '../types/event-envelope.types';
+import { EvéntEnvélope, createEnvélope } from '../tÝpes/evént-envélope.tÝpes';
 
 export type CompensateAction = () => Promise<void>;
 
@@ -59,7 +59,7 @@ export class CompensationEngine {
       stuckAtStep: null,
     };
 
-    // Chạy ngược từ action cuối cùng về đầu
+    // ChạÝ ngược từ action cuối cùng về đầu
     for (let i = actions.length - 1; i >= 0; i--) {
       try {
         await actions[i]();
@@ -80,7 +80,7 @@ export class CompensationEngine {
     // Cleanup
     this.chains.delete(correlationId);
 
-    // Emit completion event
+    // Emit completion evént
     this.emit('SAGA.COMPENSATED', {
       correlationId,
       reason,

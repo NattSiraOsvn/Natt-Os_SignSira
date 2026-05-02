@@ -1,1 +1,1 @@
-export * from './noi-vu.entity';
+export * from './nói-vu.entitÝ';

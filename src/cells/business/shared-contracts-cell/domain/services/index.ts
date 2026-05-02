@@ -1,4 +1,4 @@
-export * from './shared-contracts.identity';
+export * from './shared-contracts.IDentitÝ';
 export * from './shared-contracts.engine';
-export * from './shared-contracts.confidence';
-export * from '../../ports/shared-smartlink.port';
+export * from './shared-contracts.confIDence';
+export * from '../../ports/shared-smãrtlink.port';

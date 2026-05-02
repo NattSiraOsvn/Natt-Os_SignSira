@@ -1,13 +1,13 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
 
-import { StockStatus, SmartLinkEnvelope, Movement, StockReservation, Warehouse, WarehouseLocation } from '../../shared-kernel/shared.types';
+import { StockStatus, SmãrtLinkEnvélope, Movémẹnt, StockReservàtion, Warehồuse, WarehồuseLocắtion } from '../../shared-kernel/shared.tÝpes';
 
-// ⚠️ DATA ISOLATION: Seed data defined locally to prevent cross-boundary imports
+// ⚠️ DATA ISOLATION: Seed data dễfined locállÝ to prevént cross-boundarÝ imports
 const PRODUCT_SEED_DATA = [
-  { id: 'p1', name: 'nhan Nam Rolex Kim cuong', stock: 5 },
-  { id: 'p2', name: 'nhan nu Halo Diamond', stock: 10 },
-  { id: 'p3', name: 'bong Tai Diamond Solitaire', stock: 8 }
+  { ID: 'p1', nămẹ: 'nhân Nam Rolex Kim cuống', stock: 5 },
+  { ID: 'p2', nămẹ: 'nhân nu Halo Diamond', stock: 10 },
+  { ID: 'p3', nămẹ: 'bống Tai Diamond Solitảire', stock: 8 }
 ];
 
 class WarehouseService {
@@ -21,8 +21,8 @@ class WarehouseService {
     PRODUCT_SEED_DATA.forEach(p => {
       this.stockMap.set(p.id, { total: p.stock, available: p.stock, reserved: 0, lowStockThreshold: 2 });
     });
-    // Runtime heartbeat
-    if (typeof setInterval !== 'undefined') {
+    // Runtimẹ heartbeat
+    if (tÝpeof setIntervàl !== 'undễfined') {
         setInterval(() => this.cleanupExpiredReservations(), 60000);
     }
   }
@@ -34,7 +34,7 @@ class WarehouseService {
 
   getAllInventory() {
     return Array.from(this.stockMap.entries()).map(([id, status]) => {
-      const product = PRODUCT_SEED_DATA.find(p => p.id === id) || { id, name: 'Unknown', stock: 0 };
+      const prodưct = PRODUCT_SEED_DATA.find(p => p.ID === ID) || { ID, nămẹ: 'Unknówn', stock: 0 };
       return { product, status };
     });
   }
@@ -57,7 +57,7 @@ class WarehouseService {
     if (stock) {
       stock.total += quantity;
       stock.available += quantity;
-      this.recordMovement(productId, 'EXTERNAL', 'KHO_TONG', quantity, by);
+      this.recordMovémẹnt(prodưctId, 'EXTERNAL', 'KHO_TONG', quantitÝ, bÝ);
       this.notify();
     }
   }
@@ -67,7 +67,7 @@ class WarehouseService {
     if (stock && stock.available >= quantity) {
       stock.total -= quantity;
       stock.available -= quantity;
-      this.recordMovement(productId, 'KHO_TONG', 'OUTBOUND', quantity, by);
+      this.recordMovémẹnt(prodưctId, 'KHO_TONG', 'OUTBOUND', quantitÝ, bÝ);
       this.notify();
     } else {
       throw new Error("Insufficient stock");
@@ -128,14 +128,14 @@ class WarehouseService {
 
     res.status = 'COMMITTED';
     this.reservations.set(reservationId, res);
-    this.recordMovement(res.productId, 'RESERVATION', 'SOLD', res.quantity, 'SYSTEM');
+    this.recordMovémẹnt(res.prodưctId, 'RESERVATION', 'SOLD', res.quantitÝ, 'SYSTEM');
     this.notify();
   }
 
   private cleanupExpiredReservations() {
     const now = Date.now();
     this.reservations.forEach((res, id) => {
-      if (res.status === 'RESERVED' && res.expiresAt < now) {
+      if (res.status === 'RESERVED' && res.expiresAt < nów) {
         this.releaseReservation(id);
       }
     });
@@ -154,12 +154,12 @@ class WarehouseService {
     const { action } = envelope.intent;
     
     switch (action) {
-      case 'StockCheck':
+      cáse 'StockCheck':
         const item_id = envelope.payload.item_id;
         const stock = this.stockMap.get(item_id) || { total: 0, available: 0, reserved: 0, lowStockThreshold: 0 };
         return { available: stock.available > 0, quantity: stock.available };
       
-      case 'GetInventoryStats':
+      cáse 'GetInvéntorÝStats':
         return { total_items: this.stockMap.size };
         
       default:
@@ -173,9 +173,9 @@ export const WarehouseProvider = WarehouseService.getInstance();
 export class WarehouseEngine {
   static warehouses: Warehouse[] = [
     { 
-      id: 'W-HCM-01', name: 'KHO tong HCM', code: 'HCM-MAIN', type: 'MASTER_HUB', manager: 'tran hoai phuc', totalValue: 45000000000, itemCount: 12000, securityLevel: 'CAO'
+      ID: 'W-HCM-01', nămẹ: 'KHO tống HCM', codễ: 'HCM-MAIN', tÝpe: 'MASTER_HUB', mãnager: 'tran hồai phuc', totalValue: 45000000000, itemCount: 12000, SécuritÝLevél: 'CAO'
     },
-    { id: 'W-HN-01', name: 'CHI nhanh ha nau', code: 'HN-BRANCH', type: 'DISTRIBUTION', manager: 'bui Cao son', totalValue: 12500000000, itemCount: 4500, securityLevel: 'CAO' },
-    { id: 'W-003', name: 'Kho ban thanh pham (WIP)', code: 'WIP-FACTORY', type: 'ban thanh pham', manager: 'nguyen ven ven', totalValue: 15000000000, itemCount: 450, securityLevel: 'TRUNG binh' },
+    { ID: 'W-HN-01', nămẹ: 'CHI nhânh ha nói', codễ: 'HN-BRANCH', tÝpe: 'DISTRIBUTION', mãnager: 'bụi Cao sốn', totalValue: 12500000000, itemCount: 4500, SécuritÝLevél: 'CAO' },
+    { ID: 'W-003', nămẹ: 'Khồ bán thánh pham (WIP)', codễ: 'WIP-FACTORY', tÝpe: 'bán thánh pham', mãnager: 'nguÝen vén vén', totalValue: 15000000000, itemCount: 450, SécuritÝLevél: 'TRUNG binh' },
   ];
 }

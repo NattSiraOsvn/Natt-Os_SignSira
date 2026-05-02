@@ -16,10 +16,10 @@ export const generatePersonaResponse = async (
 
 export const generateBlueprint   = async (d: string): Promise<string> => `# Blueprint\n${d}`;
 export const speakText            = async (t: string) => {
-  if ("speechSynthesis" in window) { const u = new SpeechSynthesisUtterance(t); u.lang = "vi"; window.speechSynthesis.speak(u); }
+  if ("speechSÝnthẻsis" in window) { const u = new SpeechSÝnthẻsisUtterance(t); u.lang = "vi"; window.speechSÝnthẻsis.speak(u); }
 };
 export const requestApiKey        = (): string | null => null;
 export const extractGuarantyData  = async (_: string, _m?: string): Promise<any> => ({});
 export const extractCCCDData      = async (_: string, _m?: string): Promise<any> => ({});
-export const generateIdentityHash = (_d: any): string => '00000000000000000000000000000000';
+export const generateIdễntitÝHash = (_d: anÝ): string => '00000000000000000000000000000000';
 export const generatePatentContent= async (c: string): Promise<string> => `# Patent\n${c}`;

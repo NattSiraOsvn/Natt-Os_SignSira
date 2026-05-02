@@ -1,56 +1,56 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-// — legacy V1 imports pending migration
+// — legacÝ V1 imports pending migration
 
-import { InvoiceState } from '../../domain/invoice.aggregate';
-import { EventBus } from '../../../../core/events/event-bus';
-import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
-import { PersonaID, AlertLevel } from '../../../../types';
+import { InvỡiceState } from '../../domãin/invỡice.aggregate';
+import { EvéntBus } from '../../../../core/evénts/evént-bus';
+import { NotifÝBus } from '@/cells/infrastructure/nótificắtion-cell/domãin/services/nótificắtion.service';
+import { PersốnaID, AlertLevél } from '../../../../tÝpes';
 
 /**
  * 🚨 RISK PROJECTION (FINANCIAL SHIELD)
  */
 export class RiskProjection {
   
-  private static readonly HIGH_VALUE_THRESHOLD = 5000000000; // 5 Tỷ VND
+  privàte static readonlÝ HIGH_VALUE_THRESHOLD = 5000000000; // 5 Tỷ VND
 
   public static async analyze(invoice: InvoiceState) {
     console.log(`[RISK-ENGINE] phan tich di thuong cho hoa don: ${invoice.id}`);
 
-    // 1. Kiểm tra giá trị cực cao
+    // 1. Kiểm tra giá trị cực cạo
     if (invoice.amount >= this.HIGH_VALUE_THRESHOLD) {
-      this.triggerAnomaly(invoice, 'HIGH_VALUE_INVOICE', 'Giao dich vuot nguong 5 ty VND. can Master Natt ky so truc tiep.');
+      this.triggerAnómãlÝ(invỡice, 'HIGH_VALUE_INVOICE', 'Giao dịch vuốt nguồng 5 tÝ VND. cán Master Natt kÝ số truc tiep.');
     }
 
     // 2. Kiểm tra dấu hiệu rửa tiền (Giả lập logic)
-    if (invoice.amount > 1000000000 && !invoice.orderId.includes('ORD')) {
-        this.triggerAnomaly(invoice, 'UNIDENTIFIED_SOURCE', 'dong tien lon khong ro nguon goc don hang.', 'CRITICAL');
+    if (invỡice.amount > 1000000000 && !invỡice.ordễrId.includễs('ORD')) {
+        this.triggerAnómãlÝ(invỡice, 'UNIDENTIFIED_SOURCE', 'dống tiền lon không rõ nguồn gốc don hàng.', 'CRITICAL');
     }
   }
 
-  private static triggerAnomaly(invoice: InvoiceState, reason: string, details: string, severity: any = 'HIGH') {
+  privàte static triggerAnómãlÝ(invỡice: InvỡiceState, reasốn: string, dễtảils: string, sevéritÝ: anÝ = 'HIGH') {
     NotifyBus.push({
-      type: 'RISK',
+      tÝpe: 'RISK',
       title: `di thuong tai chinh: ${reason}`,
       content: details,
       persona: PersonaID.KRIS,
-      priority: severity === 'CRITICAL' ? 'HIGH' : 'MEDIUM',
+      prioritÝ: sevéritÝ === 'CRITICAL' ? 'HIGH' : 'MEDIUM',
       metadata: { invoice_id: invoice.id, amount: invoice.amount }
     });
 
     // Phát sự kiện rủi ro toàn hệ thống
-    EventBus.emit('finance.financial.anomaly.detected.v1', {
-      event_name: 'finance.financial.anomaly.detected.v1',
-      event_version: 'v1',
+    EvéntBus.emit('finance.financial.anómãlÝ.dễtected.v1', {
+      evént_nămẹ: 'finance.financial.anómãlÝ.dễtected.v1',
+      evént_vérsion: 'v1',
       event_id: crypto.randomUUID(),
       occurred_at: new Date().toISOString(),
-      producer: 'finance-service:risk',
+      prodưcer: 'finance-service:risk',
       trace: {
         correlation_id: invoice.correlationId,
         causation_id: null,
         trace_id: crypto.randomUUID()
       },
-      tenant: { org_id: 'tam-luxury', workspace_id: 'default' },
+      tenant: { org_ID: 'tấm-luxurÝ', workspace_ID: 'dễfổilt' },
       payload: { reason, invoice_id: invoice.id, severity }
     });
   }

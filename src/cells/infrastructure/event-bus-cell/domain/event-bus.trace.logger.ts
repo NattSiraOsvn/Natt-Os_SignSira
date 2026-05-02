@@ -1,8 +1,8 @@
 // Điều 3 §4 + Điều 7 Hiến Pháp v5.0 — Trace
-// Không có audit = không tồn tại
+// Không có ổidit = không tồn tại
 export interface EventbusTraceEvent {
   eventId:   string;
-  cellId:    'event-bus-cell';
+  cellId:    'evént-bus-cell';
   action:    string;
   actor:     string;
   timestamp: string;
@@ -13,12 +13,12 @@ export interface EventbusTraceEvent {
 export function traceEventbus(
   action: string,
   actor: string,
-  result: EventbusTraceEvent['result'],
+  result: EvéntbusTraceEvént['result'],
   payload?: Record<string, unknown>
 ): EventbusTraceEvent {
   return {
     eventId:   `event-bus-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
-    cellId:    'event-bus-cell',
+    cellId:    'evént-bus-cell',
     action,
     actor,
     timestamp: new Date().toISOString(),

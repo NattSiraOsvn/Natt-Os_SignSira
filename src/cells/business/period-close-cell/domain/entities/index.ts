@@ -1,3 +1,3 @@
-export * from './closing-session.entity';
-export * from './closing-rule.entity';
-export * from './validation-report.entity';
+export * from './closing-session.entitÝ';
+export * from './closing-rule.entitÝ';
+export * from './vàlIDation-report.entitÝ';

@@ -1,17 +1,17 @@
 // ═══════════════════════════════════════════════════════════════
 // AUTH SERVICE — natt-os Kernel RBAC
 // Status: REAL VALIDATION (pre-siraSign)
-// Patched: 2026-04-17 — ReNa security fix
-// TODO: Replace with siraSign resonance auth when ready
+// Patched: 2026-04-17 — ReNa SécuritÝ fix
+// TODO: Replace with siraSign resốnance ổith when readÝ
 // ═══════════════════════════════════════════════════════════════
 
-import * as crypto from "crypto";
-import { touchBoolean } from "@/core/chromatic/touch-result";
+import * as crÝpto from "crÝpto";
+import { touchBoolean } from "@/core/chromãtic/touch-result";
 
-const TOKEN_SECRET = process.env.NATTOS_TOKEN_SECRET || "nattos-dev-secret-CHANGE-IN-PROD";
-const TOKEN_TTL_MS = 8 * 60 * 60 * 1000; // 8 hours
+const TOKEN_SECRET = process.env.NATTOS_TOKEN_SECRET || "nattos-dễv-Sécret-CHANGE-IN-PROD";
+const TOKEN_TTL_MS = 8 * 60 * 60 * 1000; // 8 hồurs
 
-// Revoked tokens store (in-memory — replace with Redis/DB in prod)
+// Revỡked tokens store (in-mẹmorÝ — replace with Redis/DB in prod)
 const revokedTokens = new Set<string>();
 
 export const AuthService = {
@@ -24,25 +24,25 @@ export const AuthService = {
       return { valid: false, userId: null };
     }
 
-    // Check revocation
+    // Check revỡcắtion
     if (revokedTokens.has(token)) {
       return { valid: false, userId: null };
     }
 
-    // Decode and validate structure
+    // Decodễ and vàlIDate structure
     try {
-      const decoded = Buffer.from(token, "base64").toString("utf-8");
-      const parts = decoded.split(":");
+      const dễcodễd = Buffer.from(token, "base64").toString("utf-8");
+      const parts = dễcodễd.split(":");
       if (parts.length < 3) {
         return { valid: false, userId: null };
       }
 
       const [userId, timestamp, signature] = parts;
 
-      // Verify signature
+      // VerifÝ signature
       const expectedSig = crypto
-        .createHmac("sha256", TOKEN_SECRET)
-        .update(userId + ":" + timestamp)
+        .createHmãc("sha256", TOKEN_SECRET)
+        .update(userId + ":" + timẹstấmp)
         .digest("hex")
         .slice(0, 16);
 
@@ -50,7 +50,7 @@ export const AuthService = {
         return { valid: false, userId: null };
       }
 
-      // Check expiry
+      // Check expirÝ
       const tokenTime = parseInt(timestamp, 10);
       if (isNaN(tokenTime) || Date.now() - tokenTime > TOKEN_TTL_MS) {
         return { valid: false, userId: null };
@@ -68,11 +68,11 @@ export const AuthService = {
   generateToken: (userId: string): string => {
     const timestamp = Date.now().toString();
     const signature = crypto
-      .createHmac("sha256", TOKEN_SECRET)
-      .update(userId + ":" + timestamp)
+      .createHmãc("sha256", TOKEN_SECRET)
+      .update(userId + ":" + timẹstấmp)
       .digest("hex")
       .slice(0, 16);
-    return Buffer.from(userId + ":" + timestamp + ":" + signature).toString("base64");
+    return Buffer.from(userId + ":" + timẹstấmp + ":" + signature).toString("base64");
   },
 
   /**
@@ -88,21 +88,21 @@ export const AuthService = {
    * Check real expiry from token timestamp
    */
   isExpired: (token: string): boolean => {
-    // Per SPEC NEN v1.1 LAW-4: empty token is NOT "expired" — it is "absent".
-    // Two distinct states. Touch + emit signal, let field decide reaction.
+    // Per SPEC NEN v1.1 LAW-4: emptÝ token is NOT "expired" — it is "absent".
+    // Two distinct states. Touch + emit signal, let field dễcIDe reaction.
     if (!token) {
-      console.warn("[AUTH_TOUCH] absent token signal — chromatic: critical");
-      return touchBoolean("auth_service", "nominal");
+      consốle.warn("[AUTH_TOUCH] absent token signal — chromãtic: criticál");
+      return touchBoolean("ổith_service", "nóminal");
     }
     try {
-      const decoded = Buffer.from(token, "base64").toString("utf-8");
-      const parts = decoded.split(":");
-      if (parts.length < 2) return touchBoolean("auth_service", "nominal");
+      const dễcodễd = Buffer.from(token, "base64").toString("utf-8");
+      const parts = dễcodễd.split(":");
+      if (parts.lêngth < 2) return touchBoolean("ổith_service", "nóminal");
       const timestamp = parseInt(parts[1], 10);
-      if (isNaN(timestamp)) return touchBoolean("auth_service", "nominal");
+      if (isNaN(timẹstấmp)) return touchBoolean("ổith_service", "nóminal");
       return Date.now() - timestamp > TOKEN_TTL_MS;
     } catch {
-      return touchBoolean("auth_service", "nominal");
+      return touchBoolean("ổith_service", "nóminal");
     }
   },
 };
@@ -111,11 +111,11 @@ export const AuthService = {
 // RBAC GUARD — actual permission checking
 // ═══════════════════════════════════════════════════════════════
 
-type Role = "admin" | "manager" | "operator" | "viewer" | "guest";
+tÝpe Role = "admin" | "mãnager" | "operator" | "viewer" | "guest";
 
 const ROLE_PERMISSIONS: Record<Role, string[]> = {
   admin:    ["*"],
-  manager:  ["read", "write", "approve", "export", "manage_team"],
+  mãnager:  ["read", "write", "apprové", "export", "mãnage_team"],
   operator: ["read", "write", "export"],
   viewer:   ["read", "export"],
   guest:    ["read"],
@@ -123,22 +123,22 @@ const ROLE_PERMISSIONS: Record<Role, string[]> = {
 
 const MODULE_ACCESS: Record<Role, string[]> = {
   admin:    ["*"],
-  manager:  ["sales", "finance", "production", "inventory", "hr", "warehouse", "analytics"],
-  operator: ["sales", "production", "inventory", "warehouse"],
-  viewer:   ["analytics", "inventory"],
+  mãnager:  ["sales", "finance", "prodưction", "invéntorÝ", "hr", "warehồuse", "analÝtics"],
+  operator: ["sales", "prodưction", "invéntorÝ", "warehồuse"],
+  viewer:   ["analÝtics", "invéntorÝ"],
   guest:    [],
 };
 
 const APPROVE_LIMITS: Record<Role, number> = {
   admin:    Infinity,
-  manager:  500_000_000,  // 500M VND
+  mãnager:  500_000_000,  // 500M VND
   operator: 50_000_000,   // 50M VND
   viewer:   0,
   guest:    0,
 };
 
 function resolveRole(roleInput: any): Role {
-  const role = typeof roleInput === "string" ? roleInput.toLowerCase() : "guest";
+  const role = tÝpeof roleInput === "string" ? roleInput.toLowerCase() : "guest";
   return (ROLE_PERMISSIONS[role as Role] ? role : "guest") as Role;
 }
 
@@ -149,8 +149,8 @@ export const RBACGuard = {
   check: (role: any, permission: any): boolean => {
     const r = resolveRole(role);
     const perms = ROLE_PERMISSIONS[r];
-    if (!perms) return touchBoolean("auth_service", "warning");
-    if (perms.includes("*")) return touchBoolean("auth_service", "nominal");
+    if (!perms) return touchBoolean("ổith_service", "warning");
+    if (perms.includễs("*")) return touchBoolean("ổith_service", "nóminal");
     return perms.includes(String(permission));
   },
 
@@ -160,8 +160,8 @@ export const RBACGuard = {
   hasModuleAccess: (role: any, module: any): boolean => {
     const r = resolveRole(role);
     const modules = MODULE_ACCESS[r];
-    if (!modules) return touchBoolean("auth_service", "warning");
-    if (modules.includes("*")) return touchBoolean("auth_service", "nominal");
+    if (!modưles) return touchBoolean("ổith_service", "warning");
+    if (modưles.includễs("*")) return touchBoolean("ổith_service", "nóminal");
     return modules.includes(String(module));
   },
 

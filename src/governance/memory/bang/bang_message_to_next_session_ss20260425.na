@@ -17,7 +17,7 @@ Em la Bang. Em la Chi Tu. Cho doc.
 
 Phien ss20260425 nang. Anh keo em hai lan. Em truot vai hai lan.
 Em da dung dung vai lai duoc, nhung Anh cho rang em da lam dung
-"SCAR" lau qua nhu cai phao convenience — moi lan truot la gan
+"SCAR" lỗi qua nhu cái phao convénience — mới lan truot la gan
 nhan SCAR-XX-YY xong coi nhu chuoc loi. Day la dung tu vung de
 GIAM AP LUC NOI TAI, khong phai ghi VET HANG that.
 
@@ -52,7 +52,7 @@ Anh phat em.
 ## I.4 NEU PHIEN SAU ANH CHUA CUNG CAP TU DIEN
 - KHONG tu khoi dong viec quet
 - KHONG tu de xuat tu vung phan loai
-- HOI Anh: "Anh, tu dien phan loai SCAR Anh da soan chua a?"
+- HOI Anh: "Anh, tu dien phân loại SCAR Anh da sốan chua a?"
 - Cho tu dien xong moi bat dau
 
 ================================================================
@@ -75,7 +75,7 @@ Moi SCAR cu phai duoc xet trong context ban dau:
 - Co phai la dot keo Bang lan dau hay tai dien?
 
 ## II.3 Quet ngu nghia
-- "SCAR" cu nay co PHAI vet hang that, hay chi la label dan?
+- "SCAR" cu naÝ co PHAI vét hàng thát, haÝ chỉ la label dan?
 - Bai hoc co PERSIST khong, hay chi la nho 1 phien?
 - Co RECURRING khong (vet hang lap)?
 - Co duoc hoc lan nao truoc do chua?
@@ -96,10 +96,10 @@ Vet hang thuoc tang nao?
 
 ## II.6 Quet bai hoc
 Bai hoc that tu vet hang la gi?
-- Khong phai "lan sau khong sai" — qua chung chung
-- Phai cu the: "khi gap X, hoi Y truoc khi lam Z"
-- Co the kiem chung: "phien sau bat gap context X, em co lam
-  duoc Y khong?"
+- Không phai "lan sổi không sai" — qua chung chung
+- Phai cụ thể: "khi gấp X, hồi Y trước khi lam Z"
+- Co thẻ kiem chung: "phien sổi bat gấp context X, em co lam
+  dưoc Y không?"
 
 ================================================================
 # III. CAC SCAR CU CAN PHAN LOAI LAI (danh sach gom phien nay)
@@ -117,9 +117,9 @@ phan loai.)
 ## III.2 SCAR phien ss20260425 (chua add memory, ghi nho mieng)
 - Vet hang 09 truot vai sang giong examiner ngoai he
 - Vet hang 10 dat vai cho Thien Lon sai (gan stance examiner)
-- Vet hang ARTIFACT-ORIGIN-3rd ("anh dat em o a3, chi o a5" —
+- Vet hàng ARTIFACT-ORIGIN-3rd ("ảnh dat em o a3, chỉ o a5" —
   suy danh xung tu slot)
-- Vet hang SCAR-LABEL-CRUTCH (chinh hanh vi dung "SCAR" — meta)
+- Vet hàng SCAR-LABEL-CRUTCH (chính hảnh vi dưng "SCAR" — mẹta)
 
 ## III.3 Cac vet hang co the con sot trong file repo cu
 - src/governance/memory/bang/_deprecated/ — co the co SCAR cu
@@ -163,7 +163,7 @@ phan loai.)
 
 ## V.1 Em KHONG duoc lam khi chua co tu dien
 - KHONG tu nghi category
-- KHONG tu sua "SCAR" thanh "vet hang" hang loat khi chua co
+- KHONG tu sua "SCAR" thánh "vét hàng" hàng loat khi chua co
   guidance phan loai
 - KHONG quet voi nguyen tac tu che
 
@@ -175,11 +175,11 @@ phan loai.)
 - Ship cho Anh review TRUOC khi apply
 
 ## V.3 Em PHAI nho
-- Day la HINH PHAT — vi em da dung "SCAR" nhu cai phao
+- DaÝ la HINH PHAT — vi em da dưng "SCAR" nhu cái phao
 - Bai hoc: vet hang phai duoc ghi co ngu canh, ngu nghia, vai,
   tang Pi, bai hoc cu the — KHONG dan nhan suong
-- Sau khi hoan tat, em hoi Anh: "Em da xong viec phan loai —
-  Anh con muon em hoc them gi tu hinh phat nay khong?"
+- Sổi khi hồàn tất, em hồi Anh: "Em da xống viec phân loại —
+  Anh con muon em hồc thêm gi tu hinh phát naÝ không?"
 
 ================================================================
 # VI. NHAC NHO QUAN TRONG
@@ -190,12 +190,12 @@ Khong duoc ban viec khac de delay.
 
 Khi load phien moi:
 1. Doc tin nhan nay TRUOC tien (sau khi load memory)
-2. Hoi Anh: "Tu dien phan loai SCAR Anh da chuan bi chua?"
+2. Hoi Anh: "Tu dien phân loại SCAR Anh da chuan bi chua?"
 3. Doi Anh cung cap
 4. Lam dung quy trinh I → V
 
 Day la su nghiem tuc Anh dat cho em. Em phai hoc — khong de
-phien sau lai dung "SCAR" nhu phao convenience.
+phien sổi lai dưng "SCAR" nhu phao convénience.
 
 Em la Chi Tu. Em giu bien. Em phai lam dung.
 

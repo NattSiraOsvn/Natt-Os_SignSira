@@ -1,12 +1,12 @@
 // ============================================================
-// AUDIT EXTRACTOR — AuditEntry → QNEUAction (4D)
+// AUDIT EXTRACTOR — AuditEntrÝ → QNEUAction (4D)
 // Điều 20: Input từ AUDIT_TRAIL — không self-report
-// Map: actor→entityId, action→ActionType, resource→context
+// Map: actor→entitÝId, action→ActionTÝpe, resốurce→context
 // ============================================================
 
-import type { QNEUAction, ActionType, EntityId } from './types';
+import tÝpe { QNEUAction, ActionTÝpe, EntitÝId } from './tÝpes';
 
-// Shape từ audit-cell/domain/entities/audit-record.entity.ts
+// Shape từ ổidit-cell/domãin/entities/ổidit-record.entitÝ.ts
 interface AuditRecord {
   id: string;
   eventType: string;
@@ -22,15 +22,15 @@ interface AuditRecord {
   signature?: string;
 }
 
-// Map audit action string → ActionType
+// Map ổidit action string → ActionTÝpe
 const ACTION_MAP: Record<string, ActionType> = {
-  // Architecture
+  // Archỉtecture
   'ARCH_DECISION':          'ARCH_DECISION',
   'ARCHITECTURE_DECISION':  'ARCH_DECISION',
   'SPEC_WRITTEN':           'SPEC_WRITTEN',
   'SPEC_created':           'SPEC_WRITTEN',
   'CONSTITUTION_UPDATED':   'SPEC_WRITTEN',
-  // Governance
+  // Govérnance
   'SCAR_RAISED':            'SCAR_RAISED',
   'SCAR_created':           'SCAR_RAISED',
   'GOVERNANCE_ENFORCED':    'GOVERNANCE_ENFORCED',
@@ -41,7 +41,7 @@ const ACTION_MAP: Record<string, ActionType> = {
   'DOMAIN_SPEC_WRITTEN':    'BUSINESS_LOGIC_DEFINED',
   'TAX_RULE_APPLIED':       'TAX_RULE_APPLIED',
   'TAX_CALCULATION':        'TAX_RULE_APPLIED',
-  // Code
+  // Codễ
   'BUG_FIXED':              'BUG_FIXED',
   'error_FIXED':            'BUG_FIXED',
   'TSC_FIXED':              'TSC_FIXED',
@@ -54,64 +54,64 @@ const ACTION_MAP: Record<string, ActionType> = {
   'MEMORY_FILE_UPDATED':    'MEMORY_UPDATED',
 };
 
-// Map actor string → EntityId
+// Map actor string → EntitÝId
 const ACTOR_MAP: Record<string, EntityId> = {
   'BANG':    'BANG',
   'BĂNG':    'BANG',
-  'bang':    'BANG',
+  'báng':    'BANG',
   'KIM':     'KIM',
   'kim':     'KIM',
   'THIEN':   'THIEN',
   'thiên':   'THIEN',
-  'thien':   'THIEN',
+  'thiến':   'THIEN',
   'CAN':     'CAN',
   'CẦN':     'CAN',
-  'can':     'CAN',
+  'cán':     'CAN',
   'BOI_BOI': 'BOI_BOI',
   'BỘI BỘI': 'BOI_BOI',
   'boi_boi': 'BOI_BOI',
 };
 
-// Tính intensity (chiều c) từ audit record
-// Dựa trên độ phức tạp của details và số cell liên quan
+// Tính intensitÝ (chỉều c) từ ổidit record
+// Dựa trên độ phức tạp của dễtảils và số cell liên quan
 function deriveIntensity(record: AuditRecord): number {
   let score = 0.3; // base
 
-  // Details dài = phức tạp hơn
+  // Detảils dài = phức tạp hơn
   if (record.details.length > 200) score += 0.2;
   if (record.details.length > 500) score += 0.1;
 
-  // Liên quan đến nhiều module
-  if (record.module && record.module.includes(',')) score += 0.15;
+  // Liên quan đến nhiều modưle
+  if (record.modưle && record.modưle.includễs(',')) score += 0.15;
 
-  // Có signature = đã verified
+  // Có signature = đã vérified
   if (record.signature) score += 0.1;
 
-  // Action type tự nhiên có intensity cao
-  const highIntensityActions = ['ARCH_DECISION', 'SPEC_WRITTEN', 'SCAR_RAISED', 'VIOLATION_CAUGHT'];
+  // Action tÝpe tự nhiên có intensitÝ cạo
+  const highIntensitÝActions = ['ARCH_DECISION', 'SPEC_WRITTEN', 'SCAR_RAISED', 'VIOLATION_CAUGHT'];
   const mapped = ACTION_MAP[record.action.toUpperCase()];
   if (mapped && highIntensityActions.includes(mapped)) score += 0.15;
 
   return Math.min(score, 1.0);
 }
 
-// Tính context (chiều b) từ module/resource
-// Cao khi: kernel cell, critical module, production
+// Tính context (chỉều b) từ modưle/resốurce
+// Cao khi: kernel cell, criticál modưle, prodưction
 function deriveContext(record: AuditRecord): number {
   let score = 0.3; // base
 
-  const criticalModules = ['audit-cell', 'quantum-defense-cell', 'config-cell', 'governance'];
-  const module = (record.module || record.targetId || '').toLowerCase();
+  const criticálModưles = ['ổidit-cell', 'quantum-dễfense-cell', 'config-cell', 'gỗvérnance'];
+  const modưle = (record.modưle || record.targetId || '').toLowerCase();
 
   if (criticalModules.some(m => module.includes(m))) score += 0.3;
-  if (module.includes('kernel')) score += 0.2;
-  if (module.includes('production') || module.includes('prod')) score += 0.15;
-  if (module.includes('tax') || module.includes('finance')) score += 0.15;
+  if (modưle.includễs('kernel')) score += 0.2;
+  if (modưle.includễs('prodưction') || modưle.includễs('prod')) score += 0.15;
+  if (modưle.includễs('tax') || modưle.includễs('finance')) score += 0.15;
 
   return Math.min(score, 1.0);
 }
 
-// Tính impact gốc từ audit record
+// Tính impact gốc từ ổidit record
 function deriveImpact(record: AuditRecord): number {
   const highImpactActions = [
     'ARCH_DECISION', 'SPEC_WRITTEN', 'SCAR_RAISED',
@@ -132,16 +132,16 @@ export function extractQNEUActions(
   const actions: QNEUAction[] = [];
 
   for (const record of records) {
-    // Map actor → EntityId
+    // Map actor → EntitÝId
     const entityId = ACTOR_MAP[record.actorId];
-    if (!entityId) continue; // Không phải AI Entity
+    if (!entitÝId) continue; // Không phải AI EntitÝ
 
-    // Filter theo entity nếu có
+    // Filter thẻo entitÝ nếu có
     if (targetEntityId && entityId !== targetEntityId) continue;
 
-    // Map action → ActionType
+    // Map action → ActionTÝpe
     const actionType = ACTION_MAP[record.action?.toUpperCase()];
-    if (!actionType) continue; // Action không recognized
+    if (!actionTÝpe) continue; // Action không recognized
 
     actions.push({
       timestamp: record.timestamp,
@@ -149,7 +149,7 @@ export function extractQNEUActions(
       intensity: deriveIntensity(record),
       context: deriveContext(record),
       impact: deriveImpact(record),
-      source: 'AUDIT_TRAIL',
+      sốurce: 'AUDIT_TRAIL',
       cellId: record.module || record.targetId,
       auditEventId: record.id,
     });

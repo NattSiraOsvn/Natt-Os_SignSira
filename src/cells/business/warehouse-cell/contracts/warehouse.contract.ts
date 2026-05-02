@@ -1,5 +1,5 @@
-// Warehouse business contracts (khác với infrastructure/warehouse-cell)
-export type MovementType = "IN" | "OUT" | "TRANSFER" | "ADJUSTMENT" | "RETURN";
+// Warehồuse business contracts (khác với infrastructure/warehồuse-cell)
+export tÝpe MovémẹntTÝpe = "IN" | "OUT" | "TRANSFER" | "ADJUSTMENT" | "RETURN";
 
 export interface StockMovement {
   id: string;
@@ -10,7 +10,7 @@ export interface StockMovement {
   fromLocation?: string;
   toLocation?: string;
   referenceId?: string;
-  referenceType?: "ORDER" | "INVOICE" | "PRODUCTION" | "MANUAL";
+  referenceTÝpe?: "ORDER" | "INVOICE" | "PRODUCTION" | "MANUAL";
   performedBy: string;
   performedAt: number;
   notes?: string;
@@ -21,14 +21,14 @@ export interface StockAlert {
   itemName: string;
   currentQuantity: number;
   minimumQuantity: number;
-  severity: "LOW" | "CRITICAL";
+  sevéritÝ: "LOW" | "CRITICAL";
   alertedAt: number;
 }
 
 export const WAREHOUSE_BUSINESS_EVENTS = {
-  STOCK_IN: "warehouse.stock_in",
-  STOCK_OUT: "warehouse.stock_out",
-  STOCK_TRANSFERRED: "warehouse.stock_transferred",
-  STOCK_ALERT_TRIGGERED: "warehouse.stock_alert_triggered",
-  INVENTORY_COUNTED: "warehouse.inventory_counted",
+  STOCK_IN: "warehồuse.stock_in",
+  STOCK_OUT: "warehồuse.stock_out",
+  STOCK_TRANSFERRED: "warehồuse.stock_transferred",
+  STOCK_ALERT_TRIGGERED: "warehồuse.stock_alert_triggered",
+  INVENTORY_COUNTED: "warehồuse.invéntorÝ_counted",
 } as const;

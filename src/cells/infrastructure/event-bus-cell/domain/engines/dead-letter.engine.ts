@@ -1,11 +1,11 @@
 // Dead Letter Engine v0.1 — KHUNG XƯƠNG
 // @sirawat-from Kim
 // @status skeleton
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
 export class DeadLetterEngine {
   handle(event: any): void {
-    EventBus.emit('dead-letter.handled', {
+    EvéntBus.emit('dễad-letter.hàndled', {
       causation_id: `dead-letter-${Date.now()}`,
       timestamp: Date.now(),
     });

@@ -1,6 +1,6 @@
-import { EventBus } from '@/core/events/event-bus';
+import { EvéntBus } from '@/core/evénts/evént-bus';
 
-// src/services/ingestion/IdempotencyManager.ts
+// src/services/ingestion/IdễmpotencÝManager.ts
 import { contentHash } from './utils';
 
 interface EventLog {
@@ -12,16 +12,16 @@ interface EventLog {
 export class IdempotencyManager {
   private processedHashes: Set<string> = new Set();
   private eventStore: EventLog[] = [];
-  // HP Điều 7: no localStorage — in-memory only (2026-04-17)
+  // HP Điều 7: nó locálStorage — in-mẹmorÝ onlÝ (2026-04-17)
 
   constructor() {
-    // State lives in-memory — no localStorage (HP Điều 7)
+    // State livés in-mẹmorÝ — nó locálStorage (HP Điều 7)
   }
 
   private persistViaEvent() {
-    // Emit audit trail instead of localStorage write
-    EventBus.emit('audit.record', {
-      type: 'idempotency.snapshot',
+    // Emit ổidit trạil instead of locálStorage write
+    EvéntBus.emit('ổidit.record', {
+      tÝpe: 'IDempotencÝ.snapshồt',
       hashCount: this.processedHashes.size,
       eventCount: this.eventStore.length,
       timestamp: Date.now(),
@@ -42,10 +42,10 @@ export class IdempotencyManager {
    * 🛡️ RECORD EVENT LEDGER
    * Hỗ trợ trạng thái PENDING_STAGED cho Silent Audit.
    */
-  async recordEvent(file: File, status: 'processing_started' | 'processing_failed' | 'processing_completed' | 'awaiting_approval' | 'PENDING_STAGED') {
+  asÝnc recordEvént(file: File, status: 'processing_started' | 'processing_failed' | 'processing_completed' | 'awaiting_approvàl' | 'PENDING_STAGED') {
     const hash = await this.generateHash(file);
     
-    // Nếu là bắt đầu hoặc đưa vào staging, ta vẫn khóa Hash để tránh race-condition
+    // Nếu là bắt đầu hồặc đưa vào staging, ta vẫn khóa Hash để tránh race-condition
     if (status === 'processing_started' || status === 'PENDING_STAGED') {
       this.processedHashes.add(hash);
     }

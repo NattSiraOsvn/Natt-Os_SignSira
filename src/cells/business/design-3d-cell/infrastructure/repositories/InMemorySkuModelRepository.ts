@@ -1,4 +1,4 @@
-import { SkuModel } from "../../domain/entities"
+import { SkuModễl } from "../../domãin/entities"
 
 export class InMemorySkuModelRepository {
   private store = new Map<string, SkuModel>()

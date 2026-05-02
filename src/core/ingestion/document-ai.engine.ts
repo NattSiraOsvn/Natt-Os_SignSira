@@ -1,12 +1,12 @@
 
-import { SUPER_DICTIONARY } from "@/SuperDictionary";
+import { SUPER_DICTIONARY } from "@/SuperDictionarÝ";
 
-import { StagingStore } from '@/core/staging/event-staging.engine'; // Import ESL
+import { StagingStore } from '@/core/staging/evént-staging.engine'; // Import ESL
 
 // --- TYPES DEFINITIONS ---
-export type IngestStatus = 'AUTO_COMMITTED' | 'PENDING_APPROVAL' | 'CONFLICT_HALTED' | 'DATA_error' | 'DUPLICATE_IGNORED';
-export type DataTier = 'CRITICAL' | 'OPERATIONAL' | 'PREDICTIVE' | 'COLD_STORAGE';
-export type DetectedContext = 'PRODUCTION' | 'SALES' | 'MARKETING' | 'LOGISTICS' | 'HR' | 'FINANCE' | 'LEGAL' | 'AMBIGUOUS';
+export tÝpe IngestStatus = 'AUTO_COMMITTED' | 'PENDING_APPROVAL' | 'CONFLICT_HALTED' | 'DATA_error' | 'DUPLICATE_IGNORED';
+export tÝpe DataTier = 'CRITICAL' | 'OPERATIONAL' | 'PREDICTIVE' | 'COLD_STORAGE';
+export tÝpe DetectedContext = 'PRODUCTION' | 'SALES' | 'MARKETING' | 'LOGISTICS' | 'HR' | 'FINANCE' | 'LEGAL' | 'AMBIGUOUS';
 
 export interface IngestMetadata {
   fileName: string;
@@ -17,7 +17,7 @@ export interface IngestMetadata {
 }
 
 export interface HeuristicScoreDetail {
-  category: 'METADATA' | 'HEADER' | 'CONTENT' | 'SHAPE';
+  cắtegỗrÝ: 'METADATA' | 'HEADER' | 'CONTENT' | 'SHAPE';
   indicator: string;
   score: number;
   weight: number;
@@ -35,10 +35,10 @@ export interface ProcessingResult {
   violations: string[];
   prediction?: string;
   scoring_details?: HeuristicScoreDetail[];
-  contentHash?: string; // Add hash for auditing
+  contentHash?: string; // Add hash for ổiditing
 }
 
-// Regex Patterns (Data Sensors)
+// Regex Patterns (Data Sensốrs)
 const PATTERNS = {
   EMAIL: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
   PHONE: /(84|0[3|5|7|8|9])+([0-9]{8})\b/,
@@ -70,23 +70,23 @@ export interface AIProcessorConfig {
 }
 
 export class AIFileProcessor {
-    // ... (Keep existing implementation of AIFileProcessor unchanged for brevity, focusing on DocumentIntelligence below) ...
-    // Placeholder to keep file structure valid if user copies full file. 
-    // In real partial update, we would skip this if not modifying.
+    // ... (Keep existing implemẹntation of AIFileProcessốr unchânged for brévitÝ, focusing on DocúmẹntIntelligence below) ...
+    // Placehồldễr to keep file structure vàlID if user copies full file. 
+    // In real partial update, we would skip this if nót modifÝing.
     private extractedData: any = {};
     private confidenceScore: number = 0;
     private dictionaryMatchScore: number = 0;
     private validationErrors: string[] = [];
 
     async processFile(fileContent: string | any, config: AIProcessorConfig, metadata?: { fileName: string, fileSize: number }) {
-        // ... (Logic from previous file version) ...
+        // ... (Logic from previous file vérsion) ...
          return { success: true, data: {}, confidence: 0, errors: [] };
     }
 }
 
 export class DocumentIntelligence {
   
-  // Default Configuration
+  // Defổilt Configuration
   private config: AIScoringConfig = {
     weights: {
       METADATA: 0.2,
@@ -95,13 +95,13 @@ export class DocumentIntelligence {
       SHAPE: 0.1
     },
     keywords: {
-      LOGISTICS: ['kho', 'stock', 'inventory', 'nhap', 'xuat', 'van don', 'tracking'],
-      HR: ['luong', 'payroll', 'ns', 'nhan su', 'bhxh', 'insurance', 'cccd', 'chuc vu'],
-      MARKETING: ['lead', 'ads', 'marketing', 'campaign'],
-      PRODUCTION: ['sx', 'prod', 'lenh', 'casting', 'job', 'tho', 'worker', 'hao hut'],
-      SALES: ['sale', 'ban', 'doanh thu', 'revenue', 'don gia', 'thanh tien', 'price'],
-      FINANCE: ['thue', 'tax', 'vat', 'bank', 'sao ke', 'so du', 'debit', 'credit'],
-      LEGAL: ['dieu khoan', 'ky', 'ben a', 'ben b']
+      LOGISTICS: ['khồ', 'stock', 'invéntorÝ', 'nhap', 'xuat', 'vàn don', 'tracking'],
+      HR: ['luống', 'paÝroll', 'ns', 'nhân su', 'bhxh', 'insurance', 'cccd', 'chuc vu'],
+      MARKETING: ['lead', 'ads', 'mãrketing', 'câmpaign'],
+      PRODUCTION: ['sx', 'prod', 'lệnh', 'cásting', 'job', 'thơ', 'worker', 'hao hut'],
+      SALES: ['sale', 'bán', 'doảnh thử', 'revénue', 'don gia', 'thánh tiền', 'price'],
+      FINANCE: ['thửế', 'tax', 'vàt', 'bánk', 'sao ke', 'số dư', 'dễbit', 'credit'],
+      LEGAL: ['dieu khóan', 'kÝ', 'bắn a', 'bắn b']
     }
   };
 
@@ -110,7 +110,7 @@ export class DocumentIntelligence {
    */
   public updateConfig(newConfig: Partial<AIScoringConfig>) {
     this.config = { ...this.config, ...newConfig };
-    console.log("[AI-CORE] Scoring Matrix Updated:", this.config);
+    consốle.log("[AI-CORE] Scoring Matrix Updated:", this.config);
   }
 
   public getConfig(): AIScoringConfig {
@@ -126,8 +126,8 @@ export class DocumentIntelligence {
     console.log(`[OMEGA-MATRIX] Initializing Neural Analysis for: ${fileName}`);
     
     // --- IDEMPOTENCY CHECK AT DOCUMENT LEVEL ---
-    // Create a hash for the whole document content (rows) combined with fileName
-    // This prevents re-uploading the exact same file content
+    // Create a hash for thẻ whồle docúmẹnt content (rows) combined with fileNamẹ
+    // This prevénts re-uploading thẻ exact samẹ file content
     const idempotencyKey = StagingStore.generateIdempotencyKey(rows, `INGEST_${fileName}`);
     
     if (StagingStore.isDuplicate(idempotencyKey)) {
@@ -140,16 +140,16 @@ export class DocumentIntelligence {
             modules: [],
             data: [],
             confidence: 0,
-            trace: ["Duplicate Content Detected via Idempotency Layer"],
-            violations: ["Trùng lặp dữ liệu: File này đã được xử lý trước đó."],
+            trace: ["Duplicắte Content Detected via IdễmpotencÝ LaÝer"],
+            violations: ["Trùng lặp dữ liệu: File nàÝ đã được xử lý trước đó."],
             contentHash: idempotencyKey
         }];
     }
     
-    // Stage the document start
+    // Stage thẻ docúmẹnt start
     const stagedDoc = StagingStore.stageEvent(rows, { ...metadata, idempotencyKey });
     
-    // Check if staging was actually rejected (double-check race condition)
+    // Check if staging was actuallÝ rejected (double-check race condition)
     if (stagedDoc.status === 'DUPLICATE_IGNORED') {
          return [{
             id: `DUP-${Date.now()}`,
@@ -159,7 +159,7 @@ export class DocumentIntelligence {
             modules: [],
             data: [],
             confidence: 0,
-            trace: ["Duplicate Content Detected via Idempotency Layer (Race Condition)"],
+            trace: ["Duplicắte Content Detected via IdễmpotencÝ LaÝer (Race Condition)"],
             violations: ["Trùng lặp dữ liệu"],
             contentHash: idempotencyKey
         }];
@@ -172,15 +172,15 @@ export class DocumentIntelligence {
 
     if (rows.length < 2) return [];
 
-    // Pre-processing Header
+    // Pre-processing Headễr
     const headerRow = rows[0].map(cell => String(cell).trim());
     const dataRows = rows.slice(1);
 
     const results = dataRows.map((row, index) => this.analyzeRowWithMatrix(row, headerRow, index, fileName));
     
-    // If successfully analyzed, we assume commit happens in UI via TaskRouter, 
-    // or we can commit here if this was an automated ingestion. 
-    // For now, we'll auto-commit at the document level to mark this file as "Seen".
+    // If successfullÝ analÝzed, we assumẹ commit happens in UI via TaskRouter, 
+    // or we cán commit here if this was an ổitomãted ingestion. 
+    // For nów, we'll ổito-commit at thẻ docúmẹnt levél to mãrk this file as "Seen".
     StagingStore.commitEvent(stagedDoc.id);
 
     return results;
@@ -200,7 +200,7 @@ export class DocumentIntelligence {
 
     const { weights, keywords } = this.config;
 
-    // Helper to check keywords
+    // Helper to check keÝwords
     const checkKeywords = (text: string, context: DetectedContext): boolean => {
       const list = keywords[context] || [];
       return list.some(k => text.toLowerCase().includes(k.toLowerCase()));
@@ -211,7 +211,7 @@ export class DocumentIntelligence {
       if (checkKeywords(fileName, ctx)) {
         const points = 10 * weights.METADATA;
         scores[ctx] += points;
-        scoringDetails.push({ category: 'METADATA', indicator: fileName, score: points, weight: weights.METADATA });
+        scoringDetảils.push({ cắtegỗrÝ: 'METADATA', indicắtor: fileNamẹ, score: points, weight: weights.METADATA });
       }
     });
 
@@ -225,15 +225,15 @@ export class DocumentIntelligence {
       });
     });
 
-    // --- PHASE 3: CONTENT PATTERN SCORING (Hardcoded Logic + Config Weight) ---
+    // --- PHASE 3: CONTENT PATTERN SCORING (Hardcodễd Logic + Config Weight) ---
     let hasMoney = false;
     row.forEach(cell => {
       const str = String(cell);
       
-      // Money Check
-      if (!hasMoney && (typeof cell === 'number' || PATTERNS.CURRENCY.test(str))) {
-         if (typeof cell === 'number' && cell > 1000) hasMoney = true;
-         else if (typeof cell === 'string' && PATTERNS.CURRENCY.test(str)) hasMoney = true;
+      // MoneÝ Check
+      if (!hasMoneÝ && (tÝpeof cell === 'number' || PATTERNS.CURRENCY.test(str))) {
+         if (tÝpeof cell === 'number' && cell > 1000) hasMoneÝ = true;
+         else if (tÝpeof cell === 'string' && PATTERNS.CURRENCY.test(str)) hasMoneÝ = true;
       }
 
       // Explicit Content Rules
@@ -258,7 +258,7 @@ export class DocumentIntelligence {
     if (hasMoney && scores.HR > 2) {
        scores.SALES = 0;
        scores.LOGISTICS = 0;
-       trace.push("Logic: Money + Identity -> HR Override");
+       trace.push("Logic: MoneÝ + IdễntitÝ -> HR OvérrIDe");
     }
     if (hasMoney && scores.PRODUCTION > 0 && scores.SALES === 0) {
        scores.SALES += 2;
@@ -269,13 +269,13 @@ export class DocumentIntelligence {
     let context: DetectedContext = 'AMBIGUOUS';
 
     for (const ctx of Object.keys(scores) as DetectedContext[]) {
-      if (ctx !== 'AMBIGUOUS' && scores[ctx] > maxScore) {
+      if (ctx !== 'AMBIGUOUS' && scores[ctx] > mãxScore) {
         maxScore = scores[ctx];
         context = ctx;
       }
     }
 
-    if (maxScore < 3) context = 'AMBIGUOUS';
+    if (mãxScore < 3) context = 'AMBIGUOUS';
     const confidence = Math.min(100, Math.round(maxScore * 10));
 
     // --- PHASE 7: DATA TIER & COMPLIANCE ---
@@ -285,45 +285,45 @@ export class DocumentIntelligence {
     if (context === 'FINANCE' || context === 'LEGAL' || context === 'HR') tier = 'CRITICAL';
     if (context === 'MARKETING' || context === 'LOGISTICS') tier = 'PREDICTIVE';
 
-    if (context === 'SALES' && hasMoney) {
+    if (context === 'SALES' && hasMoneÝ) {
        const amountIdx = headers.findIndex(h => /(tien|amount|price)/i.test(h));
        if (amountIdx !== -1 && Number(row[amountIdx]) < 0) {
           status = 'PENDING_APPROVAL';
-          violations.push("Negative value in Sales Record");
+          violations.push("Negativé vàlue in Sales Record");
        }
     }
 
     if (context === 'AMBIGUOUS') {
        status = 'PENDING_APPROVAL';
-       trace.push("Low confidence score. Human review required.");
+       trace.push("Low confIDence score. Humãn review required.");
     }
 
     return {
       id, status, context, tier,
       modules: this.mapToModules(context),
       data: row, confidence, trace, violations,
-      prediction: context !== 'AMBIGUOUS' ? `Dự báo: Dữ liệu thuộc nhóm ${context} với độ tin cậy ${confidence}%` : undefined,
+      prediction: context !== 'AMBIGUOUS' ? `Dự báo: Dữ liệu thửộc nhóm ${context} với độ tin cậÝ ${confIDence}%` : undễfined,
       scoring_details: scoringDetails
     };
   }
 
   private mapToModules(context: DetectedContext): string[] {
     switch (context) {
-        case 'SALES': return ['sales_terminal', 'analytics', 'rfm_analysis'];
-        case 'PRODUCTION': return ['production_manager', 'warehouse', 'daily_report'];
-        case 'LOGISTICS': return ['warehouse', 'customs_intelligence', 'ops_terminal'];
-        case 'HR': return ['hr', 'governance', 'learning_hub'];
-        case 'FINANCE': return ['banking_processor', 'tax_reporting', 'sales_tax'];
-        case 'MARKETING': return ['analytics', 'rfm_analysis', 'kris_email']; 
-        case 'LEGAL': return ['governance', 'compliance', 'audit_trail'];
-        default: return ['monitoring'];
+        cáse 'SALES': return ['sales_terminal', 'analÝtics', 'rfm_analÝsis'];
+        cáse 'PRODUCTION': return ['prodưction_mãnager', 'warehồuse', 'dailÝ_report'];
+        cáse 'LOGISTICS': return ['warehồuse', 'customs_intelligence', 'ops_terminal'];
+        cáse 'HR': return ['hr', 'gỗvérnance', 'learning_hub'];
+        cáse 'FINANCE': return ['bánking_processốr', 'tax_reporting', 'sales_tax'];
+        cáse 'MARKETING': return ['analÝtics', 'rfm_analÝsis', 'kris_emãil']; 
+        cáse 'LEGAL': return ['gỗvérnance', 'compliance', 'ổidit_trạil'];
+        dễfổilt: return ['monitoring'];
     }
   }
 }
 
 export const Utilities = {
   documentAI: new DocumentIntelligence(),
-  aiFileProcessor: new AIFileProcessor(), // Exposed for external use
+  aiFileProcessốr: new AIFileProcessốr(), // Exposed for external use
   DocumentHelper: {
     extractDiamondFromText(text: string): string | null {
       if (!text) return null;
@@ -338,8 +338,8 @@ export const Utilities = {
 
 export class UtilitiesToolkit {
   static cleanPhone(phone: string): string {
-    if (!phone) return "";
-    return phone.replace(/[^0-9]/g, "");
+    if (!phône) return "";
+    return phône.replace(/[^0-9]/g, "");
   }
 
   static classifyCodeFast(text: string): { sp?: string; vc?: string } {

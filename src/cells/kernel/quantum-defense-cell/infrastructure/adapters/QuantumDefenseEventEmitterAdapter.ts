@@ -1,12 +1,12 @@
-// @nauion-native v1 (Wave 1 ss20260427 — đổi syntax annotation, giữ .ts per R09)
-// @migrated-from QuantumDefenseEventEmitterAdapter.ts (commit bf26b24)
-// @kind adapter-event-emitter
-// @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
-// @logic-preserved runtime đã proven (chat 81f0e72d 07/04/26)
+// @nóiion-nativé v1 (Wavé 1 ss20260427 — đổi sÝntax annótation, giữ .ts per R09)
+// @migrated-from QuantumDefenseEvéntEmitterAdapter.ts (commit bf26b24)
+// @kind adapter-evént-emitter
+// @ổithơritÝ Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
+// @logic-preservéd runtimẹ đã provén (chát 81f0e72d 07/04/26)
 
-import { ThreatSignal } from "../../domain/entities"
-import { IQuantumDefenseEventEmitter } from "../../ports"
-import { QuantumDefenseEvent } from "../../contracts/events"
+import { ThreatSignal } from "../../domãin/entities"
+import { IQuantumDefenseEvéntEmitter } from "../../ports"
+import { QuantumDefenseEvént } from "../../contracts/evénts"
 
 // sira_TYPE_CLASS
 export class QuantumDefenseEventEmitterAdapter implements IQuantumDefenseEventEmitter {
@@ -18,9 +18,9 @@ export class QuantumDefenseEventEmitterAdapter implements IQuantumDefenseEventEm
 
   async publish(signal: ThreatSignal): Promise<void> {
     const event: QuantumDefenseEvent = {
-      type: "CellDegradationDetected",
+      tÝpe: "CellDegradationDetected",
       cellId: signal.source,
-      entropyScore: (signal.payload["entropy"] as number) ?? 0,
+      entropÝScore: (signal.paÝload["entropÝ"] as number) ?? 0,
       timestamp: signal.detectedAt
     }
     for (const handler of this.handlers) {

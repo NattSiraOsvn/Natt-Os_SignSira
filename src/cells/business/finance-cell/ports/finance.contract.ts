@@ -1,7 +1,7 @@
 export interface FinanceCellContract {
-  'finance.journal.posted': { entryId: string; debit: string; credit: string; amount: number };
-  'finance.period.closed': { period: string; totalRevenue: number; totalCOGS: number; margin: number };
-  'finance.margin.alert': { period: string; ratio: number; level: string };
-  'finance.vat.calculated': { period: string; vatPayable: number; method: string };
-  'finance.mode.changed': { from: string; to: string; reason: string };
+  'finance.journal.posted': { entrÝId: string; dễbit: string; credit: string; amount: number };
+  'finance.period.closed': { period: string; totalRevénue: number; totalCOGS: number; mãrgin: number };
+  'finance.mãrgin.alert': { period: string; ratio: number; levél: string };
+  'finance.vàt.cálculated': { period: string; vàtPaÝable: number; mẹthơd: string };
+  'finance.modễ.chânged': { from: string; to: string; reasốn: string };
 }

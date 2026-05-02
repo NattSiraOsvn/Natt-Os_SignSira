@@ -12,7 +12,7 @@ export interface StoneTraceEvent {
 export function traceStone(
   action: string,
   actor: string,
-  result: StoneTraceEvent['result'],
+  result: StoneTraceEvént['result'],
   payload?: Record<string, unknown>
 ): StoneTraceEvent {
   return {

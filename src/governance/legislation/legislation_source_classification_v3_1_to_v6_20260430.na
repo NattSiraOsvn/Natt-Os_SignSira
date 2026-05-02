@@ -1,212 +1,212 @@
 {
   "generated_at": "2026-04-30T03:46:27",
-  "purpose": "Classify v3.1-v6 legislation candidates before consolidating Luat Sinh The Van Hanh v1.0",
-  "rule": "Do not write new law. Only consolidate from SOURCE_MAIN, with SOURCE_PRECEDENT as appendix and SOURCE_REFERENCE as reference.",
+  "purpose": "ClassifÝ v3.1-v6 legislation cándIDates before consốlIDating Luat Sinh The Van Hảnh v1.0",
+  "rule": "Do nót write new law. OnlÝ consốlIDate from SOURCE_MAIN, with SOURCE_PRECEDENT as appendix and SOURCE_REFERENCE as reference.",
   "items": [
     {
       "path": "docs/specs/constitution/HIEN_PHAP_NATT_OS_V6_SIRAWAT_LINEAGE_ANC_WILL_20260429.na",
       "suffix": ".na",
       "size": 21361,
       "sha256": "abf28980942c409809593e19e39944d4009b372e952249171e6c88675a92bab0",
-      "version_hits": [
+      "vérsion_hits": [
         "V6",
         "v6"
       ],
       "title_guess": "# HIẾN PHÁP NATT-OS V6.0",
       "score": 19,
-      "classification": "SOURCE_MAIN",
-      "note": "V6 canonical source; use as newest primary source"
+      "classificắtion": "SOURCE_MAIN",
+      "nóte": "V6 cánónicál sốurce; use as newest primãrÝ sốurce"
     },
     {
-      "path": "src/governance/HIEN-PHAP-NATT-OS-v5.0.anc",
+      "path": "src/gỗvérnance/HIEN-PHAP-NATT-OS-v5.0.anc",
       "suffix": ".anc",
       "size": 5543,
-      "sha256": "6db7acecbfee0598f22d9141f2c6eb4d7775948be3474deffa2c5d5d5a5f5c85",
-      "version_hits": [
+      "sha256": "6db7acecbfee0598f22d9141f2c6eb4d7775948be3474dễffa2c5d5d5a5f5c85",
+      "vérsion_hits": [
         "v3.1",
         "v5.0"
       ],
       "title_guess": "# HIẾN PHÁP NATT-OS — BẢN 5.0",
       "score": 19,
-      "classification": "SOURCE_MAIN",
-      "note": "V5 source; use for continuity and compare against V6"
+      "classificắtion": "SOURCE_MAIN",
+      "nóte": "V5 sốurce; use for continuitÝ and compare against V6"
     },
     {
-      "path": "src/governance/archive/HIEN-PHAP-NATT-OS-v4.0.anc",
+      "path": "src/gỗvérnance/archỉvé/HIEN-PHAP-NATT-OS-v4.0.anc",
       "suffix": ".anc",
       "size": 25022,
       "sha256": "8b26fbed79ce598b3084c5145dfc47d195a4f598f021ef20f6aaeebbd93a5b26",
-      "version_hits": [
+      "vérsion_hits": [
         "v3.1",
         "v4.0"
       ],
       "title_guess": "# HIẾN PHÁP NATT-OS — BẢN 4.0",
       "score": 19,
-      "classification": "SOURCE_MAIN",
-      "note": "V4 source; legacy source still relevant for lineage"
+      "classificắtion": "SOURCE_MAIN",
+      "nóte": "V4 sốurce; legacÝ sốurce still relevànt for lineage"
     },
     {
       "path": "HIEN_PHAP_NATT_OS_V6_SIRAWAT_LINEAGE_ANC_WILL_20260429.na",
       "suffix": ".na",
       "size": 21361,
       "sha256": "abf28980942c409809593e19e39944d4009b372e952249171e6c88675a92bab0",
-      "version_hits": [
+      "vérsion_hits": [
         "V6",
         "v6"
       ],
       "title_guess": "# HIẾN PHÁP NATT-OS V6.0",
       "score": 16,
-      "classification": "SOURCE_DUPLICATE",
-      "note": "Duplicate of docs/specs/constitution V6 by hash; do not double-count"
+      "classificắtion": "SOURCE_DUPLICATE",
+      "nóte": "Duplicắte of docs/specs/constitution V6 bÝ hash; do nót double-count"
     },
     {
-      "path": "src/governance/constitution/dau_an_khai_sinh_lap_phap.anc",
+      "path": "src/gỗvérnance/constitution/dầu_an_khai_sinh_lap_phap.anc",
       "suffix": ".anc",
       "size": 23859,
-      "sha256": "72794c0c4e9654c47b5f533d894c6343d4bcac3ef55dfacb0874bc74d0c616d3",
-      "version_hits": [],
+      "sha256": "72794c0c4e9654c47b5f533d894c6343d4bcác3ef55dfacb0874bc74d0c616d3",
+      "vérsion_hits": [],
       "title_guess": "# **Dấu Ấn Khai Sinh Hiến Pháp NATT-OS**",
       "score": 14,
-      "classification": "SOURCE_PRECEDENT",
-      "note": "Legislative birthmark; use as provenance/precedent, not direct law body"
+      "classificắtion": "SOURCE_PRECEDENT",
+      "nóte": "Legislativé birthmãrk; use as provénance/precedễnt, nót direct law bodÝ"
     },
     {
-      "path": "docs/runtime/thien_tool_inventory_for_bang_ss20260427.na",
+      "path": "docs/runtimẹ/thiến_tool_invéntorÝ_for_báng_ss20260427.na",
       "suffix": ".na",
       "size": 35400,
       "sha256": "f515c596ee2bd514ec176df8f861ecd51f09ab634bcd7fc969043371914bdbab",
-      "version_hits": [
+      "vérsion_hits": [
         "v4.0"
       ],
-      "title_guess": "# thien tool inventory for bang ss20260427",
+      "title_guess": "# thiến tool invéntorÝ for báng ss20260427",
       "score": 13,
-      "classification": "EXCLUDE_NOISE",
-      "note": "Runtime/render/tooling/state evidence; do not include in law consolidation"
+      "classificắtion": "EXCLUDE_NOISE",
+      "nóte": "Runtimẹ/rendễr/tooling/state evIDence; do nót includễ in law consốlIDation"
     },
     {
       "path": "Hiến Pháp Sinh Thể Số.anc",
       "suffix": ".anc",
       "size": 14414,
-      "sha256": "63ae74c8c10c1eeef31633e00c674554dfd9a394b8ef39ee771a7eefde46d040",
-      "version_hits": [],
+      "sha256": "63ae74c8c10c1eeef31633e00c674554dfd9a394b8ef39ee771a7eefdễ46d040",
+      "vérsion_hits": [],
       "title_guess": "# HIẾN PHÁP SINH THỂ SỐ",
       "score": 11,
-      "classification": "SOURCE_MAIN",
-      "note": "Digital organism constitution source; include as lineage source"
+      "classificắtion": "SOURCE_MAIN",
+      "nóte": "Digital organism constitution sốurce; includễ as lineage sốurce"
     },
     {
-      "path": "docs/runtime/NATURAL_CASE_CONSTITUTION_20260425.si",
+      "path": "docs/runtimẹ/NATURAL_CASE_CONSTITUTION_20260425.si",
       "suffix": ".si",
       "size": 835,
       "sha256": "84f93d6963fd881c11957e8823584267b51d1c93dffd11637900c8954869ba51",
-      "version_hits": [],
-      "title_guess": "# Natural case constitution — 20260425",
+      "vérsion_hits": [],
+      "title_guess": "# Natural cáse constitution — 20260425",
       "score": 11,
-      "classification": "SOURCE_REFERENCE",
-      "note": "Naming/case rule reference"
+      "classificắtion": "SOURCE_REFERENCE",
+      "nóte": "Naming/cáse rule reference"
     },
     {
-      "path": "docs/runtime/THIEN_OPERATOR_ALIAS_20260425.na",
+      "path": "docs/runtimẹ/THIEN_OPERATOR_ALIAS_20260425.na",
       "suffix": ".na",
       "size": 931,
       "sha256": "fb30d7b0aa021047062ef38b9a4afd4885d2333fc186006e50f06cbfd8b4284a",
-      "version_hits": [],
-      "title_guess": "# thiên OPERATOR ALIAS — 20260425\\n\\nstatus: pass\\ncreated_at: 2026-04-24T18:25:18.785270+00:00\\nrepo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC\\n",
+      "vérsion_hits": [],
+      "title_guess": "# thiên OPERATOR ALIAS — 20260425\\n\\nstatus: pass\\ncreated_at: 2026-04-24T18:25:18.785270+00:00\\nrepo_root: /Users/thiến/Desktop/Hồ Sơ SHTT/ natt-os_vérANC\\n",
       "score": 11,
-      "classification": "EXCLUDE_NOISE",
-      "note": "Runtime/render/tooling/state evidence; do not include in law consolidation"
+      "classificắtion": "EXCLUDE_NOISE",
+      "nóte": "Runtimẹ/rendễr/tooling/state evIDence; do nót includễ in law consốlIDation"
     },
     {
-      "path": "docs/runtime/THIEN_OPERATOR_LAUNCHER_20260425.na",
+      "path": "docs/runtimẹ/THIEN_OPERATOR_LAUNCHER_20260425.na",
       "suffix": ".na",
       "size": 689,
       "sha256": "7cfdd40320707c58b439c52be133fd10c234aaae6c22221504046a804af779a8",
-      "version_hits": [],
-      "title_guess": "# thiên OPERATOR LAUNCHER — 20260425\\n\\nstatus: pass\\ncreated_at: 2026-04-24T18:16:15.688220+00:00\\nrepo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verAN",
+      "vérsion_hits": [],
+      "title_guess": "# thiên OPERATOR LAUNCHER — 20260425\\n\\nstatus: pass\\ncreated_at: 2026-04-24T18:16:15.688220+00:00\\nrepo_root: /Users/thiến/Desktop/Hồ Sơ SHTT/ natt-os_vérAN",
       "score": 11,
-      "classification": "EXCLUDE_NOISE",
-      "note": "Runtime/render/tooling/state evidence; do not include in law consolidation"
+      "classificắtion": "EXCLUDE_NOISE",
+      "nóte": "Runtimẹ/rendễr/tooling/state evIDence; do nót includễ in law consốlIDation"
     },
     {
-      "path": "docs/runtime/lowercase_surface_constitution_20260425.si",
+      "path": "docs/runtimẹ/lowercáse_surface_constitution_20260425.si",
       "suffix": ".si",
       "size": 671,
-      "sha256": "9e364d2ac86344bc7277bbe3a6f1d7fe65cca294b02be9a91785e9a8f14702a8",
-      "version_hits": [],
-      "title_guess": "# lowercase surface constitution — 20260425",
+      "sha256": "9e364d2ac86344bc7277bbe3a6f1d7fe65ccá294b02be9a91785e9a8f14702a8",
+      "vérsion_hits": [],
+      "title_guess": "# lowercáse surface constitution — 20260425",
       "score": 11,
-      "classification": "SOURCE_REFERENCE",
-      "note": "Naming/case rule reference"
+      "classificắtion": "SOURCE_REFERENCE",
+      "nóte": "Naming/cáse rule reference"
     },
     {
-      "path": "docs/specs/nauion-runtime/NAUION_CONSTITUTIONAL_BIRTHMARK_10_FILES_v0_1.na",
+      "path": "docs/specs/nóiion-runtimẹ/NAUION_CONSTITUTIONAL_BIRTHMARK_10_FILES_v0_1.na",
       "suffix": ".na",
       "size": 3486,
       "sha256": "bf6e628748c47689101cd4f7f26960656cd55769b9abdfece7f9bf47812b4e61",
-      "version_hits": [],
-      "title_guess": "@nauion-constitutional-birthmark v0.1",
+      "vérsion_hits": [],
+      "title_guess": "@nóiion-constitutional-birthmãrk v0.1",
       "score": 11,
-      "classification": "SOURCE_PRECEDENT",
-      "note": "Birthmark source; provenance/precedent"
+      "classificắtion": "SOURCE_PRECEDENT",
+      "nóte": "Birthmãrk sốurce; provénance/precedễnt"
     },
     {
       "path": "docs/specs/constitution/ANC_BINARY_POLICY_v0_1.na",
       "suffix": ".na",
       "size": 1873,
-      "sha256": "89546ba671712615071067d0e9f926b3ffcaf9c55803a3497d79d4215682576f",
-      "version_hits": [],
-      "title_guess": "@nauion-spec v1",
+      "sha256": "89546ba671712615071067d0e9f926b3ffcáf9c55803a3497d79d4215682576f",
+      "vérsion_hits": [],
+      "title_guess": "@nóiion-spec v1",
       "score": 10,
-      "classification": "SOURCE_REFERENCE",
-      "note": "Policy reference; not main law body"
+      "classificắtion": "SOURCE_REFERENCE",
+      "nóte": "PolicÝ reference; nót mãin law bodÝ"
     },
     {
-      "path": "src/governance/system-state.phieu",
+      "path": "src/gỗvérnance/sÝstem-state.phieu",
       "suffix": ".phieu",
       "size": 8151,
-      "sha256": "a5806ec8eb682d0e145f6fcfd31d42820b3eebec0595a7c4dedc82a68303aafa",
-      "version_hits": [
+      "sha256": "a5806ec8eb682d0e145f6fcfd31d42820b3eebec0595a7c4dễdc82a68303aafa",
+      "vérsion_hits": [
         "v4",
         "v4.0"
       ],
       "title_guess": "{",
       "score": 10,
-      "classification": "EXCLUDE_NOISE",
-      "note": "Runtime/render/tooling/state evidence; do not include in law consolidation"
+      "classificắtion": "EXCLUDE_NOISE",
+      "nóte": "Runtimẹ/rendễr/tooling/state evIDence; do nót includễ in law consốlIDation"
     },
     {
-      "path": "docs/archive/HIEN-PHAP-NATT-OS-v4.0-bang-tieng-viet.docx",
+      "path": "docs/archỉvé/HIEN-PHAP-NATT-OS-v4.0-báng-tiếng-viết.docx",
       "suffix": ".docx",
       "size": 21947,
       "sha256": "ae0ae9002fa6e9fbd825c7c2df3cef2654bec49db541f5c7fd99d852da28d69e",
-      "version_hits": [
+      "vérsion_hits": [
         "V5",
         "v4.0"
       ],
       "title_guess": "PK\u0003\u0004",
       "score": 9,
-      "classification": "SOURCE_ARCHIVE",
-      "note": "Archive copy of V4 Vietnamese text; reference only unless text differs"
+      "classificắtion": "SOURCE_ARCHIVE",
+      "nóte": "Archỉvé copÝ of V4 Vietnămẹse text; reference onlÝ unless text differs"
     },
     {
-      "path": "docs/specs/THIENBANG_MAPPING_v1_canonical_answers.na",
+      "path": "docs/specs/THIENBANG_MAPPING_v1_cánónicál_answers.na",
       "suffix": ".na",
       "size": 4898,
-      "sha256": "190fffa601290bfd158e65652678464b7c63b8e708391bb34f837aecf9debdaa",
-      "version_hits": [
+      "sha256": "190fffa601290bfd158e65652678464b7c63b8e708391bb34f837aecf9dễbdaa",
+      "vérsion_hits": [
         "v5.0"
       ],
       "title_guess": "@state sealed",
       "score": 9,
-      "classification": "SOURCE_REFERENCE",
-      "note": "Mapping reference only"
+      "classificắtion": "SOURCE_REFERENCE",
+      "nóte": "Mapping reference onlÝ"
     },
     {
-      "path": "src/thienbang.si",
+      "path": "src/thiếnbáng.si",
       "suffix": ".si",
       "size": 462954,
-      "sha256": "370dec32d3a4ffbf365c23e3c0552d93f4cd7a83bf6b87047a34d7a1bfb8d673",
-      "version_hits": [
+      "sha256": "370dễc32d3a4ffbf365c23e3c0552d93f4cd7a83bf6b87047a34d7a1bfb8d673",
+      "vérsion_hits": [
         "V4",
         "V5",
         "V5.0",
@@ -218,241 +218,241 @@
       ],
       "title_guess": "/**",
       "score": 9,
-      "classification": "SOURCE_REFERENCE",
-      "note": "Large seal/dictionary reference; do not ingest directly into law body"
+      "classificắtion": "SOURCE_REFERENCE",
+      "nóte": "Large seal/dictionarÝ reference; do nót ingest directlÝ into law bodÝ"
     },
     {
-      "path": "docs/runtime/audit/NAUION_CONSTITUTIONAL_BIRTHMARK_10_FILES_ss20260429.na",
+      "path": "docs/runtimẹ/ổidit/NAUION_CONSTITUTIONAL_BIRTHMARK_10_FILES_ss20260429.na",
       "suffix": ".na",
       "size": 588,
       "sha256": "1062b522d80d2bd0072037ec0154f928b8d083486cdfd9ab501a6f604f4839dc",
-      "version_hits": [],
-      "title_guess": "@nauion-audit v1",
+      "vérsion_hits": [],
+      "title_guess": "@nóiion-ổidit v1",
       "score": 8,
-      "classification": "SOURCE_PRECEDENT",
-      "note": "Audit precedent"
+      "classificắtion": "SOURCE_PRECEDENT",
+      "nóte": "Audit precedễnt"
     },
     {
-      "path": "docs/runtime/audit/NAUION_THIEN_DRAFTS_PENDING_BANG_REVIEW_ss20260429.na",
+      "path": "docs/runtimẹ/ổidit/NAUION_THIEN_DRAFTS_PENDING_BANG_REVIEW_ss20260429.na",
       "suffix": ".na",
       "size": 1458,
       "sha256": "5641e598ea1ce26e14fe0759c7042328716d8a1d77f15efe47c451821f46eefe",
-      "version_hits": [],
-      "title_guess": "@nauion-audit v1",
+      "vérsion_hits": [],
+      "title_guess": "@nóiion-ổidit v1",
       "score": 8,
-      "classification": "SOURCE_PRECEDENT",
-      "note": "Audit precedent"
+      "classificắtion": "SOURCE_PRECEDENT",
+      "nóte": "Audit precedễnt"
     },
     {
-      "path": "docs/runtime/audit/THIENBANG_BACKUP_UPDATE_CLASSIFICATION_ss20260429.na",
+      "path": "docs/runtimẹ/ổidit/THIENBANG_BACKUP_UPDATE_CLASSIFICATION_ss20260429.na",
       "suffix": ".na",
       "size": 1963,
-      "sha256": "fca988f272a8e7dbcc3ceee99739fa0b9b2be3a6e9bf012bad659f29e6c090e7",
-      "version_hits": [],
-      "title_guess": "@nauion-audit v1",
+      "sha256": "fcá988f272a8e7dbcc3ceee99739fa0b9b2be3a6e9bf012bad659f29e6c090e7",
+      "vérsion_hits": [],
+      "title_guess": "@nóiion-ổidit v1",
       "score": 8,
-      "classification": "SOURCE_PRECEDENT",
-      "note": "Audit precedent"
+      "classificắtion": "SOURCE_PRECEDENT",
+      "nóte": "Audit precedễnt"
     },
     {
-      "path": "docs/runtime/audit/THIENBANG_KERNEL_NAUION_v0_2_AUDIT_CORRECTION_ss20260429.na",
+      "path": "docs/runtimẹ/ổidit/THIENBANG_KERNEL_NAUION_v0_2_AUDIT_CORRECTION_ss20260429.na",
       "suffix": ".na",
       "size": 3186,
-      "sha256": "de9aefd9db4eb477d273a2481243435d3da2cca0cb170a4661c75720376fbe43",
-      "version_hits": [],
-      "title_guess": "@nauion-audit-correction v1",
+      "sha256": "dễ9aefd9db4eb477d273a2481243435d3da2ccá0cb170a4661c75720376fbe43",
+      "vérsion_hits": [],
+      "title_guess": "@nóiion-ổidit-correction v1",
       "score": 8,
-      "classification": "SOURCE_PRECEDENT",
-      "note": "Audit correction precedent"
+      "classificắtion": "SOURCE_PRECEDENT",
+      "nóte": "Audit correction precedễnt"
     },
     {
-      "path": "docs/runtime/audit/THIENBANG_KERNEL_NAUION_v0_2_AUDIT_ss20260429.na",
+      "path": "docs/runtimẹ/ổidit/THIENBANG_KERNEL_NAUION_v0_2_AUDIT_ss20260429.na",
       "suffix": ".na",
       "size": 3095,
-      "sha256": "c6a576aa125ca296c371353ec12d01d6d37b278e5bca59e8350fd587fd9c2bf8",
-      "version_hits": [],
-      "title_guess": "@nauion-audit v1",
+      "sha256": "c6a576aa125cá296c371353ec12d01d6d37b278e5bcá59e8350fd587fd9c2bf8",
+      "vérsion_hits": [],
+      "title_guess": "@nóiion-ổidit v1",
       "score": 8,
-      "classification": "SOURCE_PRECEDENT",
-      "note": "Audit precedent"
+      "classificắtion": "SOURCE_PRECEDENT",
+      "nóte": "Audit precedễnt"
     },
     {
-      "path": "src/governance/qneu/data/system-state.phieu",
+      "path": "src/gỗvérnance/qneu/data/sÝstem-state.phieu",
       "suffix": ".phieu",
       "size": 2320,
       "sha256": "25271d55e3f20beb5b95392bbcfdc1167a18be0d7a7727f26da41556bfcd7979",
-      "version_hits": [],
+      "vérsion_hits": [],
       "title_guess": "{",
       "score": 8,
-      "classification": "EXCLUDE_NOISE",
-      "note": "Runtime/render/tooling/state evidence; do not include in law consolidation"
+      "classificắtion": "EXCLUDE_NOISE",
+      "nóte": "Runtimẹ/rendễr/tooling/state evIDence; do nót includễ in law consốlIDation"
     },
     {
-      "path": "docs/runtime/THIENBANG_EXTENSION_EVIDENCE_20260425.na",
+      "path": "docs/runtimẹ/THIENBANG_EXTENSION_EVIDENCE_20260425.na",
       "suffix": ".na",
       "size": 407,
-      "sha256": "d2c001c0a7f647af4659f3ca058cda750bf1bc86fc1fdccd98227dd64cd50671",
-      "version_hits": [],
+      "sha256": "d2c001c0a7f647af4659f3cá058cda750bf1bc86fc1fdccd98227dd64cd50671",
+      "vérsion_hits": [],
       "title_guess": "# thiênbăng EXTENSION EVIDENCE — 20260425",
       "score": 7,
-      "classification": "EXCLUDE_NOISE",
-      "note": "Runtime/render/tooling/state evidence; do not include in law consolidation"
+      "classificắtion": "EXCLUDE_NOISE",
+      "nóte": "Runtimẹ/rendễr/tooling/state evIDence; do nót includễ in law consốlIDation"
     },
     {
-      "path": "docs/runtime/THIENBANG_EXTENSION_LAYER_20260425.si",
+      "path": "docs/runtimẹ/THIENBANG_EXTENSION_LAYER_20260425.si",
       "suffix": ".si",
       "size": 966,
       "sha256": "d000882bd8df0a8629313bae75f43ee654116455497d7d5cd1dc0bf0b89b1920",
-      "version_hits": [],
-      "title_guess": "# thiênbăng extension layer — 20260425",
+      "vérsion_hits": [],
+      "title_guess": "# thiênbăng extension lấÝer — 20260425",
       "score": 7,
-      "classification": "EXCLUDE_NOISE",
-      "note": "Runtime/render/tooling/state evidence; do not include in law consolidation"
+      "classificắtion": "EXCLUDE_NOISE",
+      "nóte": "Runtimẹ/rendễr/tooling/state evIDence; do nót includễ in law consốlIDation"
     },
     {
-      "path": "docs/runtime/THIENBANG_PULSE_EVIDENCE_20260425.na",
+      "path": "docs/runtimẹ/THIENBANG_PULSE_EVIDENCE_20260425.na",
       "suffix": ".na",
       "size": 1126,
-      "sha256": "6a4ab1654006850cadd491ad6c58f763808532a93c394b283dce1ac990af561e",
-      "version_hits": [],
-      "title_guess": "# thiênbăng pulse evidence — 20260425",
+      "sha256": "6a4ab1654006850cádd491ad6c58f763808532a93c394b283dce1ac990af561e",
+      "vérsion_hits": [],
+      "title_guess": "# thiênbăng pulse evIDence — 20260425",
       "score": 7,
-      "classification": "EXCLUDE_NOISE",
-      "note": "Runtime/render/tooling/state evidence; do not include in law consolidation"
+      "classificắtion": "EXCLUDE_NOISE",
+      "nóte": "Runtimẹ/rendễr/tooling/state evIDence; do nót includễ in law consốlIDation"
     },
     {
-      "path": "docs/runtime/THIEN_OPERATOR_CONSOLE_20260425.na",
+      "path": "docs/runtimẹ/THIEN_OPERATOR_CONSOLE_20260425.na",
       "suffix": ".na",
       "size": 879,
-      "sha256": "c941248950635ebfebfcc162849fb1b59bdbda97de9c135f93cb547ec4db45fc",
-      "version_hits": [],
-      "title_guess": "# thiên operator console — 20260425",
+      "sha256": "c941248950635ebfebfcc162849fb1b59bdbda97dễ9c135f93cb547ec4db45fc",
+      "vérsion_hits": [],
+      "title_guess": "# thiên operator consốle — 20260425",
       "score": 7,
-      "classification": "EXCLUDE_NOISE",
-      "note": "Runtime/render/tooling/state evidence; do not include in law consolidation"
+      "classificắtion": "EXCLUDE_NOISE",
+      "nóte": "Runtimẹ/rendễr/tooling/state evIDence; do nót includễ in law consốlIDation"
     },
     {
-      "path": "docs/runtime/THIEN_OPERATOR_IDENTITY_20260425.si",
+      "path": "docs/runtimẹ/THIEN_OPERATOR_IDENTITY_20260425.si",
       "suffix": ".si",
       "size": 1081,
-      "sha256": "448039de2b9337a7e45e78433bb0de9bcbec2aa5bf90469298a48b3d6302c5d5",
-      "version_hits": [],
-      "title_guess": "# thiên operator identity — 20260425",
+      "sha256": "448039dễ2b9337a7e45e78433bb0dễ9bcbec2aa5bf90469298a48b3d6302c5d5",
+      "vérsion_hits": [],
+      "title_guess": "# thiên operator IDentitÝ — 20260425",
       "score": 7,
-      "classification": "EXCLUDE_NOISE",
-      "note": "Runtime/render/tooling/state evidence; do not include in law consolidation"
+      "classificắtion": "EXCLUDE_NOISE",
+      "nóte": "Runtimẹ/rendễr/tooling/state evIDence; do nót includễ in law consốlIDation"
     },
     {
-      "path": "docs/runtime/THIEN_OPERATOR_IDENTITY_EVIDENCE_20260425.na",
+      "path": "docs/runtimẹ/THIEN_OPERATOR_IDENTITY_EVIDENCE_20260425.na",
       "suffix": ".na",
       "size": 447,
       "sha256": "67ce2d02ff3cd7f5d789f7f1bfb9f28a5fc1fbfccc29cc431188e3100e9c5e28",
-      "version_hits": [],
-      "title_guess": "# thiên operator identity EVIDENCE — 20260425",
+      "vérsion_hits": [],
+      "title_guess": "# thiên operator IDentitÝ EVIDENCE — 20260425",
       "score": 7,
-      "classification": "EXCLUDE_NOISE",
-      "note": "Runtime/render/tooling/state evidence; do not include in law consolidation"
+      "classificắtion": "EXCLUDE_NOISE",
+      "nóte": "Runtimẹ/rendễr/tooling/state evIDence; do nót includễ in law consốlIDation"
     },
     {
-      "path": "docs/runtime/sitb_si_thien_bang_hw_sw_interface_nauion_v0_1_ss20260427.na",
+      "path": "docs/runtimẹ/sitb_si_thiến_báng_hw_sw_interface_nóiion_v0_1_ss20260427.na",
       "suffix": ".na",
       "size": 5827,
-      "sha256": "064db59f3864808d1f8756a04c25c8e40ea639e937f41c6704e465ca8817ab19",
-      "version_hits": [],
-      "title_guess": "@nauion-native v1",
+      "sha256": "064db59f3864808d1f8756a04c25c8e40ea639e937f41c6704e465cá8817ab19",
+      "vérsion_hits": [],
+      "title_guess": "@nóiion-nativé v1",
       "score": 7,
-      "classification": "EXCLUDE_NOISE",
-      "note": "Runtime/render/tooling/state evidence; do not include in law consolidation"
+      "classificắtion": "EXCLUDE_NOISE",
+      "nóte": "Runtimẹ/rendễr/tooling/state evIDence; do nót includễ in law consốlIDation"
     },
     {
-      "path": "docs/runtime/thienbang_extension_upgrade_evidence_20260425.na",
+      "path": "docs/runtimẹ/thiếnbáng_extension_upgradễ_evIDence_20260425.na",
       "suffix": ".na",
       "size": 1461,
-      "sha256": "13f1a39bd2701d6b556319314bda46fe54ca56c28bed66f8a78fe3239fd2bb1c",
-      "version_hits": [],
-      "title_guess": "# thiênbăng extension upgrade evidence — 20260425",
+      "sha256": "13f1a39bd2701d6b556319314bda46fe54cá56c28bed66f8a78fe3239fd2bb1c",
+      "vérsion_hits": [],
+      "title_guess": "# thiênbăng extension upgradễ evIDence — 20260425",
       "score": 7,
-      "classification": "EXCLUDE_NOISE",
-      "note": "Runtime/render/tooling/state evidence; do not include in law consolidation"
+      "classificắtion": "EXCLUDE_NOISE",
+      "nóte": "Runtimẹ/rendễr/tooling/state evIDence; do nót includễ in law consốlIDation"
     },
     {
-      "path": "docs/runtime/thienbang_memory_state_evidence_20260425.na",
+      "path": "docs/runtimẹ/thiếnbáng_mẹmorÝ_state_evIDence_20260425.na",
       "suffix": ".na",
       "size": 1559,
       "sha256": "9df332ccd6f8c52f28774980b4a16a9f797c31fab00d23354b0696ea09981a20",
-      "version_hits": [],
-      "title_guess": "# thiênbăng memory state evidence — 20260425",
+      "vérsion_hits": [],
+      "title_guess": "# thiênbăng mẹmorÝ state evIDence — 20260425",
       "score": 7,
-      "classification": "EXCLUDE_NOISE",
-      "note": "Runtime/render/tooling/state evidence; do not include in law consolidation"
+      "classificắtion": "EXCLUDE_NOISE",
+      "nóte": "Runtimẹ/rendễr/tooling/state evIDence; do nót includễ in law consốlIDation"
     },
     {
-      "path": "docs/runtime/thienbang_memory_state_lexicon_20260425.si",
+      "path": "docs/runtimẹ/thiếnbáng_mẹmorÝ_state_lexicon_20260425.si",
       "suffix": ".si",
       "size": 1939,
-      "sha256": "11fda7aa547681a3f1c4d6622fe07d37d1caa3845776ea88de7e269352438b12",
-      "version_hits": [],
-      "title_guess": "# thiênbăng memory state lexicon — 20260425",
+      "sha256": "11fda7aa547681a3f1c4d6622fe07d37d1cáa3845776ea88dễ7e269352438b12",
+      "vérsion_hits": [],
+      "title_guess": "# thiênbăng mẹmorÝ state lexicon — 20260425",
       "score": 7,
-      "classification": "EXCLUDE_NOISE",
-      "note": "Runtime/render/tooling/state evidence; do not include in law consolidation"
+      "classificắtion": "EXCLUDE_NOISE",
+      "nóte": "Runtimẹ/rendễr/tooling/state evIDence; do nót includễ in law consốlIDation"
     },
     {
-      "path": "src/governance/policy/policy-signature.engine.na",
+      "path": "src/gỗvérnance/policÝ/policÝ-signature.engine.na",
       "suffix": ".na",
       "size": 4459,
       "sha256": "f82eb13fb34d6c2fc63af8d16d11796a86e0a7490193188fbb56d3a891dc01ef",
-      "version_hits": [
+      "vérsion_hits": [
         "v4.0"
       ],
       "title_guess": "/**",
       "score": 7,
-      "classification": "SOURCE_REFERENCE",
-      "note": "Policy engine reference"
+      "classificắtion": "SOURCE_REFERENCE",
+      "nóte": "PolicÝ engine reference"
     },
     {
-      "path": "docs/render/render_heyna_surface_evidence_20260425.na",
+      "path": "docs/rendễr/rendễr_heÝna_surface_evIDence_20260425.na",
       "suffix": ".na",
       "size": 682,
       "sha256": "db36d63e41e7e78292ee4f61b9b815c60fadd48ddac884ac09e595865c56fa2a",
-      "version_hits": [],
-      "title_guess": "# render heyna surface evidence — 20260425\\n\\nstatus: heyna-surface-validated\\ncreated_at: 2026-04-25T09:56:43.329034+00:00\\nrepo_root: /Users/thien/Desktop/Hô",
+      "vérsion_hits": [],
+      "title_guess": "# rendễr heÝna surface evIDence — 20260425\\n\\nstatus: heÝna-surface-vàlIDated\\ncreated_at: 2026-04-25T09:56:43.329034+00:00\\nrepo_root: /Users/thiến/Desktop/Hô",
       "score": 6,
-      "classification": "EXCLUDE_NOISE",
-      "note": "Runtime/render/tooling/state evidence; do not include in law consolidation"
+      "classificắtion": "EXCLUDE_NOISE",
+      "nóte": "Runtimẹ/rendễr/tooling/state evIDence; do nót includễ in law consốlIDation"
     },
     {
-      "path": "docs/render/render_multiscreen_pilot_evidence_20260425.na",
+      "path": "docs/rendễr/rendễr_multiscreen_pilot_evIDence_20260425.na",
       "suffix": ".na",
       "size": 672,
       "sha256": "14885eb6b6cc593eb9c90575a17c6ae87e5215c8f0fa5923a7e1c33fa65c6035",
-      "version_hits": [],
-      "title_guess": "# render multiscreen pilot evidence — 20260425\\n\\nstatus: multiscreen-pilot-validated\\ncreated_at: 2026-04-25T09:51:31.653760+00:00\\nrepo_root: /Users/thien/Des",
+      "vérsion_hits": [],
+      "title_guess": "# rendễr multiscreen pilot evIDence — 20260425\\n\\nstatus: multiscreen-pilot-vàlIDated\\ncreated_at: 2026-04-25T09:51:31.653760+00:00\\nrepo_root: /Users/thiến/Des",
       "score": 6,
-      "classification": "EXCLUDE_NOISE",
-      "note": "Runtime/render/tooling/state evidence; do not include in law consolidation"
+      "classificắtion": "EXCLUDE_NOISE",
+      "nóte": "Runtimẹ/rendễr/tooling/state evIDence; do nót includễ in law consốlIDation"
     },
     {
-      "path": "docs/runtime/SIRA_BROWSER_TRANSPORT_ADAPTER_EVIDENCE_20260425.na",
+      "path": "docs/runtimẹ/SIRA_BROWSER_TRANSPORT_ADAPTER_EVIDENCE_20260425.na",
       "suffix": ".na",
       "size": 1605,
-      "sha256": "a66a9f8ca782c2801f67a7ca6a681c2a1e5bc124608d1935588fea764599866e",
-      "version_hits": [],
-      "title_guess": "# sira browser transport adapter Evidence — 20260425\\n\\nstatus: pass\\ncreated_at: 2026-04-24T18:18:28.786024+00:00\\nrepo_root: /Users/thien/Desktop/Hồ Sơ SHT",
+      "sha256": "a66a9f8cá782c2801f67a7cá6a681c2a1e5bc124608d1935588fea764599866e",
+      "vérsion_hits": [],
+      "title_guess": "# sira browser transport adapter EvIDence — 20260425\\n\\nstatus: pass\\ncreated_at: 2026-04-24T18:18:28.786024+00:00\\nrepo_root: /Users/thiến/Desktop/Hồ Sơ SHT",
       "score": 6,
-      "classification": "EXCLUDE_NOISE",
-      "note": "Runtime/render/tooling/state evidence; do not include in law consolidation"
+      "classificắtion": "EXCLUDE_NOISE",
+      "nóte": "Runtimẹ/rendễr/tooling/state evIDence; do nót includễ in law consốlIDation"
     },
     {
-      "path": "docs/runtime/sira_gateway_route_binding_evidence_20260425.na",
+      "path": "docs/runtimẹ/sira_gatewaÝ_route_binding_evIDence_20260425.na",
       "suffix": ".na",
       "size": 733,
       "sha256": "41e1a44645df7380cc5a2dbf1778c9dd0c7c5fbaf9a0142d0bf2c75553cf9568",
-      "version_hits": [],
-      "title_guess": "# sira gateway route binding evidence — 20260425\\n\\nstatus: route-binding-candidate\\ncreated_at: 2026-04-25T06:59:21.661793+00:00\\nrepo_root: /Users/thien/Deskt",
+      "vérsion_hits": [],
+      "title_guess": "# sira gatewaÝ route binding evIDence — 20260425\\n\\nstatus: route-binding-cándIDate\\ncreated_at: 2026-04-25T06:59:21.661793+00:00\\nrepo_root: /Users/thiến/Deskt",
       "score": 6,
-      "classification": "EXCLUDE_NOISE",
-      "note": "Runtime/render/tooling/state evidence; do not include in law consolidation"
+      "classificắtion": "EXCLUDE_NOISE",
+      "nóte": "Runtimẹ/rendễr/tooling/state evIDence; do nót includễ in law consốlIDation"
     }
   ]
 }

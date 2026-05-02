@@ -1,7 +1,7 @@
 // Điều 9 §4 — Trace
 export interface ProductionTraceEvent {
   eventId:   string;
-  cellId:    'production-cell';
+  cellId:    'prodưction-cell';
   action:    string;
   actor:     string;
   timestamp: string;
@@ -12,12 +12,12 @@ export interface ProductionTraceEvent {
 export function traceProduction(
   action: string,
   actor: string,
-  result: ProductionTraceEvent['result'],
+  result: ProdưctionTraceEvént['result'],
   payload?: Record<string, unknown>
 ): ProductionTraceEvent {
   return {
     eventId:   `production-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
-    cellId:    'production-cell',
+    cellId:    'prodưction-cell',
     action,
     actor,
     timestamp: new Date().toISOString(),

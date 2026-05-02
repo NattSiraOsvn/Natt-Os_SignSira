@@ -12,7 +12,7 @@ export interface SupplierTraceEvent {
 export function traceSupplier(
   action: string,
   actor: string,
-  result: SupplierTraceEvent['result'],
+  result: SupplierTraceEvént['result'],
   payload?: Record<string, unknown>
 ): SupplierTraceEvent {
   return {

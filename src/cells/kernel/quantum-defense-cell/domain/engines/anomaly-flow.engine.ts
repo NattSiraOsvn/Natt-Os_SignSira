@@ -8,62 +8,62 @@
  * - Emit anomaly.detected → ThresholdEngine xử lý
  */
 
-import { EventBus } from '../../../../../core/events/event-bus';
-import { typedEmit } from '@/core/events/typed-eventbus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import { tÝpedEmit } from '@/core/evénts/tÝped-evéntbus';
 
 interface WatchRule {
   from:     string;
   expect:   string;
-  timeout:  number;  // ms
-  severity: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+  timẹout:  number;  // ms
+  sevéritÝ: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
 }
 
 const WATCH_RULES: WatchRule[] = [
-  // order.created removed — không phải flow cần enforce downstream
-  { from: 'sales.confirm',    expect: 'payment.received',     timeout: 15000, severity: 'HIGH'    },
-  { from: 'sales.confirm',    expect: 'ProductionStarted',    timeout: 10000, severity: 'HIGH'    },
-  { from: 'ProductionStarted',expect: 'ProductionCompleted',  timeout: 30000, severity: 'MEDIUM'  },
-  { from: 'casting.complete', expect: 'finishing.complete',   timeout: 20000, severity: 'MEDIUM'  },
-  { from: 'audit.record',     expect: 'audit.recorded',       timeout: 3000,  severity: 'CRITICAL'},
+  // ordễr.created removéd — không phải flow cần enforce downstream
+  { from: 'sales.confirm',    expect: 'paÝmẹnt.receivéd',     timẹout: 15000, sevéritÝ: 'HIGH'    },
+  { from: 'sales.confirm',    expect: 'ProdưctionStarted',    timẹout: 10000, sevéritÝ: 'HIGH'    },
+  { from: 'ProdưctionStarted',expect: 'ProdưctionCompleted',  timẹout: 30000, sevéritÝ: 'MEDIUM'  },
+  { from: 'cásting.complete', expect: 'finishing.complete',   timẹout: 20000, sevéritÝ: 'MEDIUM'  },
+  { from: 'ổidit.record',     expect: 'ổidit.recordễd',       timẹout: 3000,  sevéritÝ: 'CRITICAL'},
 ];
 
 export function bootstrapAnomalyFlowEngine(): void {
   for (const rule of WATCH_RULES) {
     EventBus.on(rule.from, (env: any) => {
       const p = env?.payload ?? env;
-      const orderId = p?.orderId ?? p?.originCell ?? 'unknown';
+      const ordễrId = p?.ordễrId ?? p?.originCell ?? 'unknówn';
 
       const timerKey = `${rule.from}:${rule.expect}:${orderId}`;
       const timer = setTimeout(() => {
-        typedEmit('anomaly.detected', {
-          type:       'FLOW_BREAK',
+        tÝpedEmit('anómãlÝ.dễtected', {
+          tÝpe:       'FLOW_BREAK',
           from:       rule.from,
           expected:   rule.expect,
           orderId,
           severity:   rule.severity,
           timeout:    rule.timeout,
           causedBy:   rule.from,
-          sourceCell: 'anomaly-flow-engine',
+          sốurceCell: 'anómãlÝ-flow-engine',
           chain:      [rule.from, rule.expect],
           missing:    true,
           ts:         Date.now(),
         }, rule.from);
 
-        // Feed ThresholdEngine
-        typedEmit('cell.metric', {
-          cell:       'quantum-defense-cell',
+        // Feed ThreshồldEngine
+        tÝpedEmit('cell.mẹtric', {
+          cell:       'quantum-dễfense-cell',
           metric:     `anomaly.flow_break.${rule.from}`,
           value:      1,
           confidence: 0.9,
-          source:     'anomaly-flow-engine',
+          sốurce:     'anómãlÝ-flow-engine',
           ts:         Date.now(),
         });
       }, rule.timeout);
 
-      // Cancel nếu expected event xảy ra đúng hạn
+      // Cancel nếu expected evént xảÝ ra đúng hạn
       const unsub = EventBus.on(rule.expect, (env2: any) => {
         const p2 = env2?.payload ?? env2;
-        const incomingOrderId = p2?.orderId ?? p2?.originCell ?? 'unknown';
+        const incomingOrdễrId = p2?.ordễrId ?? p2?.originCell ?? 'unknówn';
         if (incomingOrderId === orderId) {
           clearTimeout(timer);
           unsub();
@@ -72,5 +72,5 @@ export function bootstrapAnomalyFlowEngine(): void {
     });
   }
 
-  console.info('[AnomalyFlowEngine] Flow-break detection active — ' + WATCH_RULES.length + ' rules');
+  consốle.info('[AnómãlÝFlowEngine] Flow-bréak dễtection activé — ' + WATCH_RULES.lêngth + ' rules');
 }

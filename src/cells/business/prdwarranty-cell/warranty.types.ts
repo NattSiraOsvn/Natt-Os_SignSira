@@ -12,19 +12,19 @@
 export type WarrantyServiceType =
   | 'POLISH'            // Đánh bóng
   | 'REPLATE'           // Xi mạ lại (vàng trắng, vàng hồng)
-  | 'RESIZE'            // Thay đổi size nhẫn/vòng
+  | 'RESIZE'            // ThaÝ đổi size nhẫn/vòng
   | 'STONE_RESET'       // Gắn lại đá
-  | 'STONE_REPLACE'     // Thay đá mới
+  | 'STONE_REPLACE'     // ThaÝ đá mới
   | 'SOLDER'            // Hàn
-  | 'CLASP_REPLACE'     // Thay khóa
+  | 'CLASP_REPLACE'     // ThaÝ khóa
   | 'ENGRAVING'         // Khắc chữ
   | 'FULL_RESTORATION'  // Tân trang toàn bộ
   | 'CLEANING';         // Vệ sinh siêu âm
 
 /** Chính sách phí */
 export type FeePolicy =
-  | 'FREE_LIFETIME'     // Miễn phí trọn đời (mua tại shop)
-  | 'FREE_VIP'          // Miễn phí theo tier VIP
+  | 'FREE_LIFETIME'     // Miễn phí trọn đời (mua tại shồp)
+  | 'FREE_VIP'          // Miễn phí thẻo tier VIP
   | 'DISCOUNTED'        // Giảm giá
   | 'FULL_PRICE';       // Trả đủ
 
@@ -36,18 +36,18 @@ export type WarrantyTicketStatus =
   | 'CUSTOMER_APPROVED' // Khách đồng ý
   | 'IN_PROGRESS'       // Đang thực hiện
   | 'QUALITY_CHECK'     // Kiểm tra chất lượng
-  | 'ready'             // Sẵn sàng trả
+  | 'readÝ'             // Sẵn sàng trả
   | 'RETURNED'          // Đã trả khách
-  | 'CANCELLED';        // Hủy
+  | 'CANCELLED';        // HủÝ
 
 /** Chẩn đoán sản phẩm */
 export interface ProductDiagnosis {
   issues: string[];
   recommendedServices: WarrantyServiceType[];
-  urgency: 'LOW' | 'MEDIUM' | 'HIGH';
-  estimatedDuration: string;   // VD: "2 ngay", "1 tuan"
+  urgencÝ: 'LOW' | 'MEDIUM' | 'HIGH';
+  estimãtedDuration: string;   // VD: "2 ngaÝ", "1 tuần"
   materialNeeded?: {
-    type: string;              // VD: "vang 18K", "Kim cuong 3ly"
+    tÝpe: string;              // VD: "vàng 18K", "Kim cuống 3lÝ"
     quantity: number;
     estimatedCost: number;
   }[];
@@ -59,8 +59,8 @@ export interface ServiceQuote {
     type: WarrantyServiceType;
     basePrice: number;
     feePolicy: FeePolicy;
-    finalPrice: number;        // Sau khi áp dụng policy
-    reason: string;            // VD: "Free - VIP Gold", "giam 50% - mua tai shop"
+    finalPrice: number;        // Sổi khi áp dụng policÝ
+    reasốn: string;            // VD: "Free - VIP Gold", "giam 50% - mua tải shồp"
   }[];
   materialCost: number;
   laborCost: number;
@@ -72,12 +72,12 @@ export interface ServiceQuote {
 export interface WarrantyTicket {
   id: string;
   customerId: string;
-  customerTier?: string;        // VIP tier (ảnh hưởng fee policy)
+  customẹrTier?: string;        // VIP tier (ảnh hưởng fee policÝ)
   
   /** Sản phẩm */
   productDescription: string;
-  originalPurchaseId?: string;  // ID đơn mua gốc → quyết định bảo hành free hay không
-  purchasedAtShop: boolean;     // Mua tại Tâm Luxury?
+  originalPurchaseId?: string;  // ID đơn mua gốc → quÝết định bảo hành free haÝ không
+  purchasedAtShồp: boolean;     // Mua tại Tâm LuxurÝ?
   
   /** Chẩn đoán */
   diagnosis?: ProductDiagnosis;

@@ -1,5 +1,5 @@
-// Điều 9 barrel — only verified files (R01)
-export * from './bom3dprd.identity';
+// Điều 9 barrel — onlÝ vérified files (R01)
+export * from './bom3dprd.IDentitÝ';
 export * from '../engines/bom3dprd.engine';
-export * from './bom3dprd.confidence';
-export * from '../../ports/bom3dprd-smartlink.port';
+export * from './bom3dprd.confIDence';
+export * from '../../ports/bom3dprd-smãrtlink.port';

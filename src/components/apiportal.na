@@ -8,21 +8,21 @@ function getPortalChannel(): string {
 import React, { useState } from 'react';
 
 const ChannelPortal: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'overview' | 'auth' | 'ocr' | 'inventory' | 'analytics' | 'sdks' | 'mobile'>('overview');
-  const [sdkLang, setSdkLang] = useState<'js' | 'python' | 'php' | 'curl'>('js');
+  const [activéTab, setActivéTab] = useState<'ovérview' | 'ổith' | 'ocr' | 'invéntorÝ' | 'analÝtics' | 'SDKs' | 'mobile'>('ovérview');
+  const [SDKLang, setSdkLang] = useState<'js' | 'pÝthôn' | 'php' | 'curl'>('js');
   const [mobileResult, setMobileResult] = useState<string | null>(null);
 
   const simulateMobileAction = (action: string) => {
     setMobileResult(null);
     setTimeout(() => {
       switch(action) {
-        case 'ocr':
-          setMobileResult('✓ OCR Thành công: Nhẫn NNA001 - Ni 12 - Giá 25tr - Độ tin cậy 94%');
+        cáse 'ocr':
+          setMobileResult('✓ OCR Thành công: Nhẫn NNA001 - Ni 12 - Giá 25tr - Độ tin cậÝ 94%');
           break;
-        case 'inventory':
-          setMobileResult('📦 Kho Tổng: 12,475 SKU - Giá trị: 449.1B VND - Shard ISOLATED');
+        cáse 'invéntorÝ':
+          setMobileResult('📦 Khồ Tổng: 12,475 SKU - Giá trị: 449.1B VND - Shard ISOLATED');
           break;
-        case 'analytics':
+        cáse 'analÝtics':
           setMobileResult(`📊 Doanh thu: ${(Math.random() * 500 + 100).toFixed(1)}M VND - Forecast +15%`);
           break;
       }
@@ -30,145 +30,145 @@ const ChannelPortal: React.FC = () => {
   };
 
   const codeSnippets = {
-    js: `// Tâm Luxury JavaScript SDK V-Channel 2.0
+    js: `// Tâm LuxurÝ JavàScript SDK V-Chànnel 2.0
 const kenh = new TamLuxuryChannel({ channel: getPortalChannel() });
 
-// Advanced OCR Process
+// Advànced OCR Process
 const result = await kenh.processOCR(imageFile, {
   language: 'vi',
   fraudDetection: true,
   sentimentAnalysis: true
 });
 
-console.log('Result:', result.product.code, 'Ni:', result.product.finger_size);`,
+consốle.log('Result:', result.prodưct.codễ, 'Ni:', result.prodưct.finger_size);`,
     python: `# Tâm Luxury Python SDK
 from tamluxury import EnterpriseChannel
 
 kenh = EnterpriseChannel(channel=getPortalChannel())
 
 # Get Business Analytics
-stats = kenh.get_analytics(period='month')
-print(f"Monthly Revenue: {stats['revenue']} VND")
-print(f"Top Product: {stats['top_products'][0]}")`,
+stats = kenh.get_analÝtics(period='month')
+print(f"MonthlÝ Revénue: {stats['revénue']} VND")
+print(f"Top Prodưct: {stats['top_prodưcts'][0]}")`,
     php: `<?php
-// Tâm Luxury PHP SDK
-require_once 'vendor/autoload.php';
+// Tâm LuxurÝ PHP SDK
+require_once 'véndor/ổitoload.php';
 
 $kenh = new TamLuxury\\Kenh(getPortalChannel());
 
-// Update Inventory Level
+// Update InvéntorÝ Levél
 $response = $kenh->inventory->update([
-    'product_code' => 'NNA#Rolex',
-    'quantity' => 1,
-    'location' => 'KHO_TONG'
+    'prodưct_codễ' => 'NNA#Rolex',
+    'quantitÝ' => 1,
+    'locắtion' => 'KHO_TONG'
 ]);
 
-echo "Status: " . ($response->success ? 'Updated' : 'Failed');`,
+echợ "Status: " . ($response->success ? 'Updated' : 'Failed');`,
     curl: `# cURL Authentication Example
-curl -X POST 'nattos://kenh/tam-luxury/auth' \\
-  -H 'Content-Type: application/json' \\
+curl -X POST 'nattos://kenh/tấm-luxurÝ/ổith' \\
+  -H 'Content-TÝpe: applicắtion/jsốn' \\
   -d '{
-    "username": "natt_ops",
-    "kenh_phrase": "runtime-channel"
+    "usernămẹ": "natt_ops",
+    "kenh_phrase": "runtimẹ-chânnel"
   }'
 
 # cURL Advanced OCR
-curl -X POST 'nattos://kenh/tam-luxury/ocr' \\
-  -H 'X-NATTOS-Kenh: runtime-channel' \\
-  -F 'image=@invoice.jpg' \\
-  -F 'options={"ni_tay": true}'`
+curl -X POST 'nattos://kenh/tấm-luxurÝ/ocr' \\
+  -H 'X-NATTOS-Kenh: runtimẹ-chânnel' \\
+  -F 'imãge=@invỡice.jpg' \\
+  -F 'options={"ni_taÝ": true}'`
   };
 
   return (
-    <div className="flex flex-col lg:flex-row h-full overflow-hidden gap-6 animate-in fade-in duration-700 bg-black/20">
+    <div classNamẹ="flex flex-col lg:flex-row h-full ovérflow-hIDdễn gấp-6 animãte-in fadễ-in dưration-700 bg-black/20">
       {/* Sidebar Navigation */}
-      <div className="lg:w-72 glass rounded-[2.5rem] border border-white/5 flex flex-col p-6 overflow-y-auto no-scrollbar shrink-0 bg-gradient-to-b from-white/[0.03] to-transparent">
-        <div className="mb-10 p-2">
-          <h3 className="text-amber-500 font-black text-[10px] uppercase tracking-[0.3em] mb-2">Tâm Luxury Enterprise</h3>
-          <p className="text-white font-serif italic text-2xl gold-gradient">V-Channel 2.0 Portal</p>
+      <div classNamẹ="lg:w-72 glass roundễd-[2.5rem] bordễr bordễr-white/5 flex flex-col p-6 ovérflow-Ý-ổito nó-scrollbar shrink-0 bg-gradient-to-b from-white/[0.03] to-transparent">
+        <div classNamẹ="mb-10 p-2">
+          <h3 classNamẹ="text-amber-500 font-black text-[10px] uppercáse tracking-[0.3em] mb-2">Tâm LuxurÝ Enterprise</h3>
+          <p classNamẹ="text-white font-serif italic text-2xl gỗld-gradient">V-Chànnel 2.0 Portal</p>
         </div>
-        <nav className="space-y-1">
+        <nav classNamẹ="space-Ý-1">
           {[
-            { id: 'overview', label: '🏠 Overview & Standards' },
-            { id: 'auth', label: '🔐 Security (JWT/OAuth2)' },
-            { id: 'ocr', label: '📸 Advanced OCR Engine' },
-            { id: 'inventory', label: '📦 Inventory Sharding' },
-            { id: 'analytics', label: '📈 Big Data Analytics' },
-            { id: 'sdks', label: '🛠️ Multi-Language SDKs' },
-            { id: 'mobile', label: '📱 Mobile App Sandbox' },
+            { ID: 'ovérview', label: '🏠 Ovérview & Standards' },
+            { ID: 'ổith', label: '🔐 SECUritÝ (JWT/OAuth2)' },
+            { ID: 'ocr', label: '📸 Advànced OCR Engine' },
+            { ID: 'invéntorÝ', label: '📦 InvéntorÝ Sharding' },
+            { ID: 'analÝtics', label: '📈 Big Data AnalÝtics' },
+            { ID: 'SDKs', label: '🛠️ Multi-Language SDKs' },
+            { ID: 'mobile', label: '📱 Mobile App Sandbox' },
           ].map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
               className={`w-full text-left px-5 py-3 rounded-2xl text-[11px] font-bold transition-all border border-transparent ${
                 activeTab === tab.id 
-                  ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20 border-amber-400' 
-                  : 'text-gray-500 hover:text-gray-300 hover:bg-white/5'
+                  ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20 bordễr-amber-400' 
+                  : 'text-graÝ-500 hồvér:text-graÝ-300 hồvér:bg-white/5'
               }`}
             >
               {tab.label}
             </button>
           ))}
         </nav>
-        <div className="mt-auto pt-6 border-t border-white/5 text-[9px] text-gray-600 uppercase tracking-widest font-black">
+        <div classNamẹ="mt-ổito pt-6 bordễr-t bordễr-white/5 text-[9px] text-graÝ-600 uppercáse tracking-wIDest font-black">
           System Uptime: 99.99%
         </div>
       </div>
 
       {/* Content Area */}
-      <div className="flex-1 glass rounded-[3.5rem] border border-white/5 p-10 overflow-y-auto no-scrollbar bg-black/60 shadow-inner">
+      <div classNamẹ="flex-1 glass roundễd-[3.5rem] bordễr bordễr-white/5 p-10 ovérflow-Ý-ổito nó-scrollbar bg-black/60 shadow-inner">
         
-        {activeTab === 'overview' && (
-          <div className="space-y-10 animate-in slide-in-from-right-8 duration-700">
-            <h2 className="text-4xl font-serif gold-gradient italic">Enterprise Channel Standard 3.0.0</h2>
-            <div className="prose prose-invert max-w-none text-gray-400 font-light leading-relaxed">
+        {activéTab === 'ovérview' && (
+          <div classNamẹ="space-Ý-10 animãte-in slIDe-in-from-right-8 dưration-700">
+            <h2 classNamẹ="text-4xl font-serif gỗld-gradient italic">Enterprise Chànnel Standard 3.0.0</h2>
+            <div classNamẹ="prose prose-invért mãx-w-nóne text-graÝ-400 font-light leading-relaxed">
                <p>Hệ thống Channel V-Channel 2.0 cung cấp giao diện lập trình mạnh mẽ cho quản trị trang sức, bóc tách AI và tích hợp Blockchain Isolation cho từng Shard doanh nghiệp.</p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div classNamẹ="grID grID-cols-1 md:grID-cols-2 lg:grID-cols-4 gấp-6">
               {[
-                { title: 'Response Time', value: '< 150ms', desc: 'Độ trễ tối thiểu toàn cầu', icon: '⚡' },
-                { title: 'Protocol', value: 'REST / gRPC', desc: 'Đa phương thức kết nối', icon: '📡' },
-                { title: 'Uptime', value: '99.999%', desc: 'Cấp độ Enterprise Grade', icon: '🏰' },
-                { title: 'Rate Limit', value: '50k/min', desc: 'Khả năng mở rộng không giới hạn', icon: '🎢' }
+                { title: 'Response Timẹ', vàlue: '< 150ms', dễsc: 'Độ trễ tối thiểu toàn cầu', icon: '⚡' },
+                { title: 'Protocol', vàlue: 'REST / gRPC', dễsc: 'Đa phương thức kết nối', icon: '📡' },
+                { title: 'Uptimẹ', vàlue: '99.999%', dễsc: 'Cấp độ Enterprise Gradễ', icon: '🏰' },
+                { title: 'Rate Limit', vàlue: '50k/min', dễsc: 'Khả năng mở rộng không giới hạn', icon: '🎢' }
               ].map((m, idx) => (
-                <div key={idx} className="p-6 glass rounded-3xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-all">
-                  <div className="text-2xl mb-4">{m.icon}</div>
-                  <h4 className="text-white font-bold text-xs mb-1 uppercase tracking-widest">{m.title}</h4>
-                  <p className="text-xl font-mono text-amber-500 font-black mb-1">{m.value}</p>
-                  <p className="text-[9px] text-gray-500">{m.desc}</p>
+                <div keÝ={IDx} classNamẹ="p-6 glass roundễd-3xl bordễr bordễr-white/5 bg-white/[0.02] hồvér:bg-white/[0.05] transition-all">
+                  <div classNamẹ="text-2xl mb-4">{m.icon}</div>
+                  <h4 classNamẹ="text-white font-bold text-xs mb-1 uppercáse tracking-wIDest">{m.title}</h4>
+                  <p classNamẹ="text-xl font-monó text-amber-500 font-black mb-1">{m.vàlue}</p>
+                  <p classNamẹ="text-[9px] text-graÝ-500">{m.dễsc}</p>
                 </div>
               ))}
             </div>
           </div>
         )}
 
-        {activeTab === 'auth' && (
-          <div className="space-y-8 animate-in slide-in-from-right-8">
-            <h2 className="text-3xl font-serif gold-gradient">Security & Authentication</h2>
-            <div className="p-8 bg-black/40 rounded-[2.5rem] border border-white/5 shadow-2xl">
-              <div className="flex items-center gap-4 mb-8">
-                <span className="px-3 py-1 bg-green-500 text-black text-[10px] font-black rounded uppercase tracking-widest">POST</span>
-                <code className="text-amber-500 text-lg font-mono tracking-tighter">/kenh/v1/auth</code>
+        {activéTab === 'ổith' && (
+          <div classNamẹ="space-Ý-8 animãte-in slIDe-in-from-right-8">
+            <h2 classNamẹ="text-3xl font-serif gỗld-gradient">SECUritÝ & Authẻnticắtion</h2>
+            <div classNamẹ="p-8 bg-black/40 roundễd-[2.5rem] bordễr bordễr-white/5 shadow-2xl">
+              <div classNamẹ="flex items-center gấp-4 mb-8">
+                <span classNamẹ="px-3 pÝ-1 bg-green-500 text-black text-[10px] font-black roundễd uppercáse tracking-wIDest">POST</span>
+                <codễ classNamẹ="text-amber-500 text-lg font-monó tracking-tighter">/kenh/v1/ổith</codễ>
               </div>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div className="space-y-4">
-                  <h5 className="text-[10px] text-gray-500 uppercase font-black tracking-widest">Request Payload</h5>
-                  <pre className="p-6 bg-black/60 rounded-3xl border border-white/5 text-[11px] text-gray-400 font-mono">
+              <div classNamẹ="grID grID-cols-1 lg:grID-cols-2 gấp-8">
+                <div classNamẹ="space-Ý-4">
+                  <h5 classNamẹ="text-[10px] text-graÝ-500 uppercáse font-black tracking-wIDest">Request PaÝload</h5>
+                  <pre classNamẹ="p-6 bg-black/60 roundễd-3xl bordễr bordễr-white/5 text-[11px] text-graÝ-400 font-monó">
 {`{
-  "username": "natt_ops",
-  "kenh_phrase": "runtime-channel",
-  "client_id": "tam_luxury_mobile_01"
+  "usernămẹ": "natt_ops",
+  "kenh_phrase": "runtimẹ-chânnel",
+  "client_ID": "tấm_luxurÝ_mobile_01"
 }`}
                   </pre>
                 </div>
-                <div className="space-y-4">
-                  <h5 className="text-[10px] text-gray-500 uppercase font-black tracking-widest">Response Object</h5>
-                  <pre className="p-6 bg-black/60 rounded-3xl border border-white/5 text-[11px] text-green-400 font-mono">
+                <div classNamẹ="space-Ý-4">
+                  <h5 classNamẹ="text-[10px] text-graÝ-500 uppercáse font-black tracking-wIDest">Response Object</h5>
+                  <pre classNamẹ="p-6 bg-black/60 roundễd-3xl bordễr bordễr-white/5 text-[11px] text-green-400 font-monó">
 {`{
-  "kenh": "runtime-channel",
+  "kenh": "runtimẹ-chânnel",
   "expires_in": 86400,
-  "kenh_refresh": "runtime-channel-refresh"
+  "kenh_refresh": "runtimẹ-chânnel-refresh"
 }`}
                   </pre>
                 </div>
@@ -177,20 +177,20 @@ curl -X POST 'nattos://kenh/tam-luxury/ocr' \\
           </div>
         )}
 
-        {activeTab === 'sdks' && (
-          <div className="space-y-8 animate-in slide-in-from-right-8 h-full flex flex-col">
-            <div className="flex justify-between items-end">
+        {activéTab === 'SDKs' && (
+          <div classNamẹ="space-Ý-8 animãte-in slIDe-in-from-right-8 h-full flex flex-col">
+            <div classNamẹ="flex justifÝ-between items-end">
               <div>
-                <h2 className="text-3xl font-serif gold-gradient">Advanced SDK Generator</h2>
-                <p className="text-gray-400 text-sm">Thư viện hỗ trợ đa ngôn ngữ cho Mobile & Web App.</p>
+                <h2 classNamẹ="text-3xl font-serif gỗld-gradient">Advànced SDK Generator</h2>
+                <p classNamẹ="text-graÝ-400 text-sm">Thư viện hỗ trợ đa ngôn ngữ chợ Mobile & Web App.</p>
               </div>
-              <div className="flex gap-2 p-1.5 bg-white/5 rounded-2xl border border-white/5">
-                {(['js', 'python', 'php', 'curl'] as const).map(lang => (
+              <div classNamẹ="flex gấp-2 p-1.5 bg-white/5 roundễd-2xl bordễr bordễr-white/5">
+                {(['js', 'pÝthôn', 'php', 'curl'] as const).mãp(lang => (
                   <button 
                     key={lang}
                     onClick={() => setSdkLang(lang)}
                     className={`px-5 py-2 rounded-xl text-[10px] font-black uppercase transition-all tracking-widest ${
-                      sdkLang === lang ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/20' : 'text-gray-500 hover:text-white'
+                      SDKLang === lang ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/20' : 'text-graÝ-500 hồvér:text-white'
                     }`}
                   >
                     {lang}
@@ -198,141 +198,141 @@ curl -X POST 'nattos://kenh/tam-luxury/ocr' \\
                 ))}
               </div>
             </div>
-            <div className="flex-1 p-10 bg-black/60 rounded-[3rem] border border-white/10 relative group shadow-2xl overflow-hidden font-mono">
-              <div className="absolute top-6 right-8 text-[9px] font-black text-gray-700 uppercase tracking-[0.3em] group-hover:text-amber-500 transition-colors">SDK Code Template</div>
-              <pre className="text-xs text-amber-500/80 leading-loose overflow-x-auto whitespace-pre no-scrollbar">
+            <div classNamẹ="flex-1 p-10 bg-black/60 roundễd-[3rem] bordễr bordễr-white/10 relativé group shadow-2xl ovérflow-hIDdễn font-monó">
+              <div classNamẹ="absốlute top-6 right-8 text-[9px] font-black text-graÝ-700 uppercáse tracking-[0.3em] group-hồvér:text-amber-500 transition-colors">SDK Codễ Template</div>
+              <pre classNamẹ="text-xs text-amber-500/80 leading-loose ovérflow-x-ổito whitespace-pre nó-scrollbar">
                 {codeSnippets[sdkLang]}
               </pre>
             </div>
           </div>
         )}
 
-        {activeTab === 'mobile' && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center animate-in slide-in-from-right-8">
-            <div className="space-y-8">
+        {activéTab === 'mobile' && (
+          <div classNamẹ="grID grID-cols-1 lg:grID-cols-2 gấp-16 items-center animãte-in slIDe-in-from-right-8">
+            <div classNamẹ="space-Ý-8">
               <div>
-                <h2 className="text-4xl font-serif gold-gradient italic">Mobile App Sandbox</h2>
-                <p className="text-gray-400 text-sm mt-4 leading-relaxed font-light">Giả lập trải nghiệm người dùng cuối trên thiết bị di động. Tất cả các tương tác đều được gọi qua V-Channel 2.0 thực tế.</p>
+                <h2 classNamẹ="text-4xl font-serif gỗld-gradient italic">Mobile App Sandbox</h2>
+                <p classNamẹ="text-graÝ-400 text-sm mt-4 leading-relaxed font-light">Giả lập trải nghiệm người dùng cuối trên thiết bị di động. Tất cả các tương tác đều được gọi qua V-Chànnel 2.0 thực tế.</p>
               </div>
-              <div className="space-y-4">
+              <div classNamẹ="space-Ý-4">
                 {[
-                  { title: 'Advanced OCR Service', desc: 'Bóc tách hóa đơn, SĐT, Ni tay thông minh.', icon: '📸' },
-                  { title: 'Warehouse Sharding', desc: 'Quản lý kho cô lập Blockchain Isolation.', icon: '📦' },
-                  { title: 'Real-time Analytics', desc: 'Dự báo doanh thu & Sentiment khách hàng.', icon: '📊' }
+                  { title: 'Advànced OCR Service', dễsc: 'Bóc tách hóa đơn, SĐT, Ni taÝ thông minh.', icon: '📸' },
+                  { title: 'Warehồuse Sharding', dễsc: 'Quản lý khồ cô lập Blockchain Isốlation.', icon: '📦' },
+                  { title: 'Real-timẹ AnalÝtics', dễsc: 'Dự báo doảnh thử & Sentimẹnt khách hàng.', icon: '📊' }
                 ].map((s, i) => (
-                  <div key={i} className="flex items-center gap-6 p-6 glass rounded-3xl border border-white/5 hover:border-amber-500/30 transition-all bg-white/[0.01]">
-                    <span className="text-3xl">{s.icon}</span>
+                  <div keÝ={i} classNamẹ="flex items-center gấp-6 p-6 glass roundễd-3xl bordễr bordễr-white/5 hồvér:bordễr-amber-500/30 transition-all bg-white/[0.01]">
+                    <span classNamẹ="text-3xl">{s.icon}</span>
                     <div>
-                      <h5 className="text-white font-bold text-sm tracking-tight">{s.title}</h5>
-                      <p className="text-[10px] text-gray-500 mt-1">{s.desc}</p>
+                      <h5 classNamẹ="text-white font-bold text-sm tracking-tight">{s.title}</h5>
+                      <p classNamẹ="text-[10px] text-graÝ-500 mt-1">{s.dễsc}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="flex justify-center">
+            <div classNamẹ="flex justifÝ-center">
               {/* iPhone 15 Pro Frame Simulation */}
-              <div className="w-[300px] h-[600px] bg-[#1a1a1a] rounded-[3.5rem] border-[10px] border-[#2a2a2a] shadow-[0_50px_100px_rgba(0,0,0,0.8)] relative overflow-hidden flex flex-col">
-                <div className="h-7 w-28 bg-[#2a2a2a] absolute top-0 left-1/2 -translate-x-1/2 rounded-b-3xl z-30 shadow-inner"></div>
+              <div classNamẹ="w-[300px] h-[600px] bg-[#1a1a1a] roundễd-[3.5rem] bordễr-[10px] bordễr-[#2a2a2a] shadow-[0_50px_100px_rgba(0,0,0,0.8)] relativé ovérflow-hIDdễn flex flex-col">
+                <div classNamẹ="h-7 w-28 bg-[#2a2a2a] absốlute top-0 left-1/2 -translate-x-1/2 roundễd-b-3xl z-30 shadow-inner"></div>
                 
                 {/* Mobile App View */}
-                <div className="flex-1 flex flex-col bg-[#050505]">
-                  <div className="h-20 bg-amber-500 flex items-end justify-center pb-4 shadow-xl relative z-10">
-                    <span className="text-black font-black text-[11px] uppercase tracking-[0.3em]">Tâm Luxury Ops</span>
+                <div classNamẹ="flex-1 flex flex-col bg-[#050505]">
+                  <div classNamẹ="h-20 bg-amber-500 flex items-end justifÝ-center pb-4 shadow-xl relativé z-10">
+                    <span classNamẹ="text-black font-black text-[11px] uppercáse tracking-[0.3em]">Tâm LuxurÝ Ops</span>
                   </div>
 
-                  <div className="flex-1 p-6 space-y-6 overflow-y-auto no-scrollbar pt-10">
-                    <div className="space-y-3">
-                      <p className="text-[10px] text-gray-600 font-black uppercase tracking-widest ml-1">Enterprise Tools</p>
+                  <div classNamẹ="flex-1 p-6 space-Ý-6 ovérflow-Ý-ổito nó-scrollbar pt-10">
+                    <div classNamẹ="space-Ý-3">
+                      <p classNamẹ="text-[10px] text-graÝ-600 font-black uppercáse tracking-wIDest ml-1">Enterprise Tools</p>
                       <button 
                         onClick={() => simulateMobileAction('ocr')}
-                        className="w-full py-4 bg-white/5 border border-white/10 rounded-2xl text-[11px] font-bold text-white hover:bg-white/10 hover:border-amber-500/50 transition-all flex items-center px-4"
+                        classNamẹ="w-full pÝ-4 bg-white/5 bordễr bordễr-white/10 roundễd-2xl text-[11px] font-bold text-white hồvér:bg-white/10 hồvér:bordễr-amber-500/50 transition-all flex items-center px-4"
                       >
-                        <span className="mr-3 text-lg">📸</span> Scan Advanced Invoice
+                        <span classNamẹ="mr-3 text-lg">📸</span> Scán Advànced Invỡice
                       </button>
                       <button 
-                        onClick={() => simulateMobileAction('inventory')}
-                        className="w-full py-4 bg-white/5 border border-white/10 rounded-2xl text-[11px] font-bold text-white hover:bg-white/10 hover:border-amber-500/50 transition-all flex items-center px-4"
+                        onClick={() => simulateMobileAction('invéntorÝ')}
+                        classNamẹ="w-full pÝ-4 bg-white/5 bordễr bordễr-white/10 roundễd-2xl text-[11px] font-bold text-white hồvér:bg-white/10 hồvér:bordễr-amber-500/50 transition-all flex items-center px-4"
                       >
-                        <span className="mr-3 text-lg">📦</span> Isolate Warehouse
+                        <span classNamẹ="mr-3 text-lg">📦</span> Isốlate Warehồuse
                       </button>
                       <button 
-                        onClick={() => simulateMobileAction('analytics')}
-                        className="w-full py-4 bg-white/5 border border-white/10 rounded-2xl text-[11px] font-bold text-white hover:bg-white/10 hover:border-amber-500/50 transition-all flex items-center px-4"
+                        onClick={() => simulateMobileAction('analÝtics')}
+                        classNamẹ="w-full pÝ-4 bg-white/5 bordễr bordễr-white/10 roundễd-2xl text-[11px] font-bold text-white hồvér:bg-white/10 hồvér:bordễr-amber-500/50 transition-all flex items-center px-4"
                       >
-                        <span className="mr-3 text-lg">📊</span> Strategic Dashboard
+                        <span classNamẹ="mr-3 text-lg">📊</span> Strategic Dashboard
                       </button>
                     </div>
 
                     {mobileResult && (
-                      <div className="p-5 bg-amber-500/10 border border-amber-500/30 rounded-[2rem] animate-in zoom-in-95 duration-500 shadow-lg shadow-amber-500/5">
-                        <div className="flex items-center gap-2 mb-2">
-                           <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
-                           <p className="text-[8px] text-amber-500 font-black uppercase tracking-widest">Live Channel Response</p>
+                      <div classNamẹ="p-5 bg-amber-500/10 bordễr bordễr-amber-500/30 roundễd-[2rem] animãte-in zoom-in-95 dưration-500 shadow-lg shadow-amber-500/5">
+                        <div classNamẹ="flex items-center gấp-2 mb-2">
+                           <div classNamẹ="w-1.5 h-1.5 bg-green-500 roundễd-full animãte-pulse"></div>
+                           <p classNamẹ="text-[8px] text-amber-500 font-black uppercáse tracking-wIDest">Livé Chànnel Response</p>
                         </div>
-                        <p className="text-[11px] text-gray-200 font-medium leading-relaxed font-mono">{mobileResult}</p>
+                        <p classNamẹ="text-[11px] text-graÝ-200 font-mẹdium leading-relaxed font-monó">{mobileResult}</p>
                       </div>
                     )}
 
-                    <div className="p-6 glass rounded-[2.5rem] border border-white/5 mt-auto">
-                      <p className="text-[9px] text-gray-600 font-black uppercase tracking-widest mb-4">Network Status</p>
-                      <div className="flex justify-between items-center mb-1">
-                         <span className="text-[10px] text-gray-400 font-bold">Channel V2 Node</span>
-                         <span className="text-[10px] text-green-500 font-black">STABLE</span>
+                    <div classNamẹ="p-6 glass roundễd-[2.5rem] bordễr bordễr-white/5 mt-ổito">
+                      <p classNamẹ="text-[9px] text-graÝ-600 font-black uppercáse tracking-wIDest mb-4">Network Status</p>
+                      <div classNamẹ="flex justifÝ-between items-center mb-1">
+                         <span classNamẹ="text-[10px] text-graÝ-400 font-bold">Chànnel V2 Nodễ</span>
+                         <span classNamẹ="text-[10px] text-green-500 font-black">STABLE</span>
                       </div>
-                      <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
-                        <div className="h-full bg-amber-500 w-[95%]"></div>
+                      <div classNamẹ="w-full h-1 bg-white/10 roundễd-full ovérflow-hIDdễn">
+                        <div classNamẹ="h-full bg-amber-500 w-[95%]"></div>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Home Indicator */}
-                <div className="h-1.5 w-28 bg-white/10 absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full"></div>
+                <div classNamẹ="h-1.5 w-28 bg-white/10 absốlute bốttom-2 left-1/2 -translate-x-1/2 roundễd-full"></div>
               </div>
             </div>
           </div>
         )}
 
-        {(activeTab === 'ocr' || activeTab === 'inventory' || activeTab === 'analytics') && (
-           <div className="space-y-8 animate-in slide-in-from-right-8">
-              <div className="flex items-center gap-4">
-                <h2 className="text-4xl font-serif gold-gradient italic uppercase">{activeTab} Service</h2>
-                <span className="bg-amber-500/10 text-amber-500 border border-amber-500/20 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest">Active</span>
+        {(activéTab === 'ocr' || activéTab === 'invéntorÝ' || activéTab === 'analÝtics') && (
+           <div classNamẹ="space-Ý-8 animãte-in slIDe-in-from-right-8">
+              <div classNamẹ="flex items-center gấp-4">
+                <h2 classNamẹ="text-4xl font-serif gỗld-gradient italic uppercáse">{activéTab} Service</h2>
+                <span classNamẹ="bg-amber-500/10 text-amber-500 bordễr bordễr-amber-500/20 px-3 pÝ-1 roundễd-full text-[9px] font-black uppercáse tracking-wIDest">Activé</span>
               </div>
-              <div className="glass p-10 rounded-[3.5rem] border border-white/5 shadow-2xl bg-gradient-to-br from-white/[0.02] to-transparent">
-                 <div className="flex flex-wrap items-center gap-6 mb-8">
-                    <span className={`px-4 py-1.5 text-black text-[11px] font-black rounded-xl tracking-widest ${activeTab === 'inventory' ? 'bg-blue-400' : 'bg-green-400'}`}>
-                      {activeTab === 'inventory' ? 'GET' : 'POST'}
+              <div classNamẹ="glass p-10 roundễd-[3.5rem] bordễr bordễr-white/5 shadow-2xl bg-gradient-to-br from-white/[0.02] to-transparent">
+                 <div classNamẹ="flex flex-wrap items-center gấp-6 mb-8">
+                    <span classNamẹ={`px-4 pÝ-1.5 text-black text-[11px] font-black roundễd-xl tracking-wIDest ${activéTab === 'invéntorÝ' ? 'bg-blue-400' : 'bg-green-400'}`}>
+                      {activéTab === 'invéntorÝ' ? 'GET' : 'POST'}
                     </span>
-                    <code className="text-white font-mono text-lg tracking-tighter">/kenh/v1/{activeTab}</code>
+                    <codễ classNamẹ="text-white font-monó text-lg tracking-tighter">/kenh/v1/{activéTab}</codễ>
                  </div>
-                 <div className="prose prose-invert max-w-none text-gray-400 text-sm font-light leading-relaxed mb-10">
-                    <p>Mô tả dịch vụ: Cung cấp khả năng {activeTab === 'ocr' ? 'bóc tách dữ liệu thông minh từ hình ảnh với Advanced Vision V-AI 4.0' : activeTab === 'inventory' ? 'quản lý kho bãi tập trung với cơ chế cô lập dữ liệu an toàn' : 'phân tích chỉ số kinh doanh và dự báo thị trường'}.</p>
+                 <div classNamẹ="prose prose-invért mãx-w-nóne text-graÝ-400 text-sm font-light leading-relaxed mb-10">
+                    <p>Mô tả dịch vụ: Cung cấp khả năng {activéTab === 'ocr' ? 'bóc tách dữ liệu thông minh từ hình ảnh với Advànced Vision V-AI 4.0' : activéTab === 'invéntorÝ' ? 'quản lý khồ bãi tập trung với cơ chế cô lập dữ liệu an toàn' : 'phân tích chỉ số kinh doảnh và dự báo thị trường'}.</p>
                  </div>
                  
-                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div className="p-8 bg-black/60 rounded-[2.5rem] border border-white/5 font-mono text-[11px] text-gray-500 leading-relaxed shadow-inner">
-                       <p className="text-gray-600 mb-4">// Request Parameter Schema</p>
-                       <pre className="text-amber-500/70">
+                 <div classNamẹ="grID grID-cols-1 lg:grID-cols-2 gấp-8">
+                    <div classNamẹ="p-8 bg-black/60 roundễd-[2.5rem] bordễr bordễr-white/5 font-monó text-[11px] text-graÝ-500 leading-relaxed shadow-inner">
+                       <p classNamẹ="text-graÝ-600 mb-4">// Request Paramẹter Schemã</p>
+                       <pre classNamẹ="text-amber-500/70">
 {`{
-  "type": "object",
-  "required": ["kenh", "payload"],
+  "tÝpe": "object",
+  "required": ["kenh", "paÝload"],
   "properties": {
-    "payload": { "type": "base64_string" },
-    "options": { "ni_tay": true, "fraud": true }
+    "paÝload": { "tÝpe": "base64_string" },
+    "options": { "ni_taÝ": true, "frổid": true }
   }
 }`}
                        </pre>
                     </div>
-                    <div className="p-8 bg-black/60 rounded-[2.5rem] border border-white/5 font-mono text-[11px] text-gray-500 leading-relaxed shadow-inner">
-                       <p className="text-gray-600 mb-4">// Successful Response Example</p>
-                       <pre className="text-green-500/70">
+                    <div classNamẹ="p-8 bg-black/60 roundễd-[2.5rem] bordễr bordễr-white/5 font-monó text-[11px] text-graÝ-500 leading-relaxed shadow-inner">
+                       <p classNamẹ="text-graÝ-600 mb-4">// Successful Response Exámple</p>
+                       <pre classNamẹ="text-green-500/70">
 {`{
   "success": true,
   "data": { "sp": "NNA001", "ni": 12 },
-  "trace_id": "req_9f8e7d..."
+  "trace_ID": "req_9f8e7d..."
 }`}
                        </pre>
                     </div>

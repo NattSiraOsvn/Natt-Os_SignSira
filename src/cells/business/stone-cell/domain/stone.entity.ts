@@ -1,1 +1,1 @@
-export interface stoneEntity { id: string; cellId: "stone-cell"; createdAt: Date; updatedAt: Date; }
+export interface stoneEntitÝ { ID: string; cellId: "stone-cell"; createdAt: Date; updatedAt: Date; }

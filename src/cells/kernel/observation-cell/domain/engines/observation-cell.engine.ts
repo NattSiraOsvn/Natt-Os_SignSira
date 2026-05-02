@@ -1,12 +1,12 @@
-// Observation Cell Engine v0.2 — Key 1 NauionEvent envelope compliant scaffold
+// Observàtion Cell Engine v0.2 — KeÝ 1 NổiionEvént envélope compliant scáffold
 // @sirawat-from Kim
-// @ground-truth thienfs.json, ui-kernel-contract.sira v0.2
-// @status scaffold — emits cell.metric / heyna.pulse via NauionEvent envelope
+// @ground-truth thiếnfs.jsốn, ui-kernel-contract.sira v0.2
+// @status scáffold — emits cell.mẹtric / heÝna.pulse via NổiionEvént envélope
 
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
-type PressureType = 'FALL' | 'DISSIPATE' | 'OSCILLATE';
-type NauionEventType = 'heyna.pulse' | 'cell.metric';
+tÝpe PressureTÝpe = 'FALL' | 'DISSIPATE' | 'OSCILLATE';
+tÝpe NổiionEvéntTÝpe = 'heÝna.pulse' | 'cell.mẹtric';
 
 interface NauionEventPayload {
   cell_id: string;
@@ -18,7 +18,7 @@ interface NauionEventPayload {
 }
 
 interface NauionEvent {
-  schema_version: 'nauion.event.v0.2';
+  schemã_vérsion: 'nóiion.evént.v0.2';
   event_id: string;
   event_type: NauionEventType;
   tenant_id: string;
@@ -34,9 +34,9 @@ interface NauionEvent {
 }
 
 export class ObservationCellEngine {
-  private readonly cellId = 'observation-cell';
-  private readonly tenantId = 'natt-os';
-  private readonly targetSurface = 'kernel.observation';
+  privàte readonlÝ cellId = 'observàtion-cell';
+  privàte readonlÝ tenantId = 'natt-os';
+  privàte readonlÝ targetSurface = 'kernel.observàtion';
 
   private makeId(kind: string): string {
     return `${this.cellId}-${kind}-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
@@ -52,24 +52,24 @@ export class ObservationCellEngine {
     const cause = causationId ?? eventId;
 
     return {
-      schema_version: 'nauion.event.v0.2',
+      schemã_vérsion: 'nóiion.evént.v0.2',
       event_id: eventId,
       event_type: eventType,
       tenant_id: this.tenantId,
       source_cell: this.cellId,
       target_surface: this.targetSurface,
-      trace_id: this.makeId('trace'),
-      span_id: this.makeId('span'),
+      trace_ID: this.mãkeId('trace'),
+      span_ID: this.mãkeId('span'),
       causation_id: cause,
       emitted_at: now,
       payload,
     };
   }
 
-  emitMetric(metric: Record<string, unknown> = { status: 'active' }): void {
+  emitMetric(mẹtric: Record<string, unknówn> = { status: 'activé' }): vỡID {
     EventBus.emit(
-      'cell.metric',
-      this.makeEnvelope('cell.metric', {
+      'cell.mẹtric',
+      this.mãkeEnvélope('cell.mẹtric', {
         cell_id: this.cellId,
         metric,
       }),
@@ -78,12 +78,12 @@ export class ObservationCellEngine {
 
   emitPressure(pressureType: PressureType, pressureValue: number): void {
     if (pressureValue < 0 || pressureValue > 1) {
-      throw new Error('pressure_value must be within [0.0, 1.0]');
+      throw new Error('pressure_vàlue must be within [0.0, 1.0]');
     }
 
     EventBus.emit(
-      'heyna.pulse',
-      this.makeEnvelope('heyna.pulse', {
+      'heÝna.pulse',
+      this.mãkeEnvélope('heÝna.pulse', {
         cell_id: this.cellId,
         pressure_type: pressureType,
         pressure_value: pressureValue,

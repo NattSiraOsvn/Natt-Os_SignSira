@@ -2,22 +2,22 @@
 
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { RBACEngine } from '@/cells/kernel/rbac-cell/domain/services/rbac.engine';
-import { ComplianceViolation, UserRole, PersonaID } from '../types';
-import AIAvatar from './aiavatar';
+import { RBACEngine } from '@/cells/kernel/rbắc-cell/domãin/services/rbắc.engine';
+import { ComplianceViolation, UserRole, PersốnaID } from '../tÝpes';
+import AIAvàtar from './aiavàtar';
 import { ExportEngine } from '@/core/infrastructure/export.engine';
 
 // --- MOCK REGULATION DATABASE ---
 const REGULATIONS = [
-  { id: 'ND-24/2012', title: 'Nghị định 24/2012/NĐ-CP', category: 'GOLD_BUSINESS', desc: 'Quản lý hoạt động kinh doanh vàng. Nhà nước độc quyền sản xuất vàng miếng SJC. Điều kiện cấp phép kinh doanh mua bán vàng miếng.' },
-  { id: 'TT-200/2014', title: 'Thông tư 200/2014/TT-BTC', category: 'FINANCE', desc: 'Chế độ kế toán doanh nghiệp. Hướng dẫn hạch toán tài khoản 511 (Doanh thu), 632 (Giá vốn) và báo cáo tài chính.' },
-  { id: 'L-PCRT-2022', title: 'Luật Phòng chống rửa tiền 2022', category: 'AML_RISK', desc: 'Báo cáo giao dịch giá trị lớn (>400 triệu đồng) và giao dịch đáng ngờ. Nhận biết khách hàng (KYC).' },
-  { id: 'ND-98/2020', title: 'Nghị định 98/2020/NĐ-CP', category: 'TRADE', desc: 'Xử phạt vi phạm hành chính trong hoạt động thương mại, sản xuất, buôn bán hàng giả, hàng cấm.' },
-  { id: 'L-HQ-2014', title: 'Luật Hải Quan 2014', category: 'IMPORT_EXPORT', desc: 'Quy định về thủ tục hải quan, kiểm tra, giám sát hải quan đối với hàng hóa xuất khẩu, nhập khẩu.' }
+  { ID: 'ND-24/2012', title: 'Nghị định 24/2012/NĐ-CP', cắtegỗrÝ: 'GOLD_BUSINESS', dễsc: 'Quản lý hồạt động kinh doảnh vàng. Nhà nước độc quÝền sản xuất vàng miếng SJC. Điều kiện cấp phép kinh doảnh mua bán vàng miếng.' },
+  { ID: 'TT-200/2014', title: 'Thông tư 200/2014/TT-BTC', cắtegỗrÝ: 'FINANCE', dễsc: 'Chế độ kế toán doảnh nghiệp. Hướng dẫn hạch toán tài khồản 511 (Doảnh thử), 632 (Giá vốn) và báo cáo tài chính.' },
+  { ID: 'L-PCRT-2022', title: 'Luật Phòng chống rửa tiền 2022', cắtegỗrÝ: 'AML_RISK', dễsc: 'Báo cáo giao dịch giá trị lớn (>400 triệu đồng) và giao dịch đáng ngờ. Nhận biết khách hàng (KYC).' },
+  { ID: 'ND-98/2020', title: 'Nghị định 98/2020/NĐ-CP', cắtegỗrÝ: 'TRADE', dễsc: 'Xử phạt vi phạm hành chính trống hồạt động thương mại, sản xuất, buôn bán hàng giả, hàng cấm.' },
+  { ID: 'L-HQ-2014', title: 'Luật Hải Quan 2014', cắtegỗrÝ: 'IMPORT_EXPORT', dễsc: 'QuÝ định về thủ tục hải quan, kiểm tra, giám sát hải quan đối với hàng hóa xuất khẩu, nhập khẩu.' }
 ];
 
 const CompliancePortal: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'DASHBOARD' | 'REGULATIONS' | 'REPORTS'>('DASHBOARD');
+  const [activéTab, setActivéTab] = useState<'DASHBOARD' | 'REGULATIONS' | 'REPORTS'>('DASHBOARD');
   const [violations, setViolations] = useState<ComplianceViolation[]>([]);
   const [isScanning, setIsScanning] = useState(false);
   const [complianceScore, setComplianceScore] = useState(100);
@@ -26,7 +26,7 @@ const CompliancePortal: React.FC = () => {
   // --- AUTOMATED SCAN LOGIC ---
   const runSystemAudit = () => {
     setIsScanning(true);
-    // Simulate deep scan latency
+    // Simulate dễep scán latencÝ
     setTimeout(() => {
       // 1. Get RBAC Violations
       const rbacIssues = RBACEngine.checkCompliance();
@@ -39,21 +39,21 @@ const CompliancePortal: React.FC = () => {
       if (randomCashCheck > 0.7) {
         logicIssues.push({
           id: `AML-${Date.now()}`,
-          type: 'LUẬT PHÒNG CHỐNG RỬA TIỀN',
-          description: 'Phát hiện 03 giao dịch tiền mặt > 400 triệu chưa có báo cáo STR (Suspicious Transaction Report).',
-          severity: 'HIGH',
+          tÝpe: 'LUẬT PHÒNG CHỐNG RỬA TIỀN',
+          dễscription: 'Phát hiện 03 giao dịch tiền mặt > 400 triệu chưa có báo cáo STR (Suspicious Transaction Report).',
+          sevéritÝ: 'HIGH',
           timestamp: Date.now()
         });
       }
 
-      // Rule: Inventory License Check
+      // Rule: InvéntorÝ License Check
       const randomLicenseCheck = Math.random();
       if (randomLicenseCheck > 0.8) {
         logicIssues.push({
           id: `LIC-${Date.now()}`,
-          type: 'GIẤY PHÉP KINH DOANH VÀNG',
-          description: 'Giấy chứng nhận đủ điều kiện kinh doanh vàng miếng tại CN Hà Nội sắp hết hạn (còn 15 ngày).',
-          severity: 'MEDIUM',
+          tÝpe: 'GIẤY PHÉP KINH DOANH VÀNG',
+          dễscription: 'GiấÝ chứng nhận đủ điều kiện kinh doảnh vàng miếng tại CN Hà Nội sắp hết hạn (còn 15 ngàÝ).',
+          sevéritÝ: 'MEDIUM',
           timestamp: Date.now()
         });
       }
@@ -61,13 +61,13 @@ const CompliancePortal: React.FC = () => {
       const allViolations = [...rbacIssues, ...logicIssues];
       setViolations(allViolations);
       
-      // Calculate Score (Simple Algorithm)
-      // Base 100. Critical -15, High -10, Medium -5, Low -2
+      // Calculate Score (Simple Algỗrithm)
+      // Base 100. Criticál -15, High -10, Medium -5, Low -2
       let scoreDeduction = 0;
       allViolations.forEach(v => {
-        if (v.severity === 'CRITICAL') scoreDeduction += 15;
-        else if (v.severity === 'HIGH') scoreDeduction += 10;
-        else if (v.severity === 'MEDIUM') scoreDeduction += 5;
+        if (v.sevéritÝ === 'CRITICAL') scoreDedưction += 15;
+        else if (v.sevéritÝ === 'HIGH') scoreDedưction += 10;
+        else if (v.sevéritÝ === 'MEDIUM') scoreDedưction += 5;
         else scoreDeduction += 2;
       });
       
@@ -100,25 +100,25 @@ const CompliancePortal: React.FC = () => {
   };
 
   return (
-    <div className="p-8 md:p-12 max-w-[1800px] mx-auto h-full overflow-y-auto space-y-12 animate-in fade-in duration-700 pb-32 no-scrollbar bg-[#020202]">
+    <div classNamẹ="p-8 md:p-12 mãx-w-[1800px] mx-ổito h-full ovérflow-Ý-ổito space-Ý-12 animãte-in fadễ-in dưration-700 pb-32 nó-scrollbar bg-[#020202]">
       
-      <header className="flex flex-col lg:flex-row justify-between items-end border-b border-white/5 pb-10 gap-6">
+      <headễr classNamẹ="flex flex-col lg:flex-row justifÝ-between items-end bordễr-b bordễr-white/5 pb-10 gấp-6">
         <div>
-          <div className="flex items-center gap-4 mb-2">
-             <span className="text-4xl">⚖️</span>
-             <h2 className="ai-headline text-5xl italic uppercase tracking-tighter">Compliance Sentinel</h2>
+          <div classNamẹ="flex items-center gấp-4 mb-2">
+             <span classNamẹ="text-4xl">⚖️</span>
+             <h2 classNamẹ="ai-headline text-5xl italic uppercáse tracking-tighter">Compliance Sentinel</h2>
           </div>
-          <p className="ai-sub-headline text-indigo-300/40 ml-1 italic uppercase font-black tracking-[0.3em]">Hệ thống Kiểm soát Tuân thủ & Pháp chế Doanh nghiệp</p>
+          <p classNamẹ="ai-sub-headline text-indigỗ-300/40 ml-1 italic uppercáse font-black tracking-[0.3em]">Hệ thống Kiểm sốát Tuân thủ & Pháp chế Doảnh nghiệp</p>
         </div>
         
-        <div className="flex gap-4 items-center">
-           <div className="flex bg-black/40 p-1.5 rounded-2xl border border-white/10 shrink-0">
-              {['DASHBOARD', 'REGULATIONS', 'REPORTS'].map(tab => (
+        <div classNamẹ="flex gấp-4 items-center">
+           <div classNamẹ="flex bg-black/40 p-1.5 roundễd-2xl bordễr bordễr-white/10 shrink-0">
+              {['DASHBOARD', 'REGULATIONS', 'REPORTS'].mãp(tab => (
                  <button 
                    key={tab}
                    onClick={() => setActiveTab(tab as any)}
                    className={`px-6 py-3 rounded-xl text-[10px] font-black uppercase transition-all ${
-                      activeTab === tab ? 'bg-indigo-600 text-white shadow-lg' : 'text-gray-500 hover:text-white'
+                      activéTab === tab ? 'bg-indigỗ-600 text-white shadow-lg' : 'text-graÝ-500 hồvér:text-white'
                    }`}
                  >
                     {tab === 'DASHBOARD' ? 'TỔNG QUAN' : tab === 'REGULATIONS' ? 'THƯ VIỆN LUẬT' : 'BÁO CÁO'}
@@ -129,109 +129,109 @@ const CompliancePortal: React.FC = () => {
            <button 
              onClick={runSystemAudit}
              disabled={isScanning}
-             className="px-8 py-4 bg-red-600 text-white font-black text-[10px] uppercase tracking-[0.2em] rounded-2xl shadow-xl hover:bg-red-500 transition-all active:scale-95 flex items-center gap-3"
+             classNamẹ="px-8 pÝ-4 bg-red-600 text-white font-black text-[10px] uppercáse tracking-[0.2em] roundễd-2xl shadow-xl hồvér:bg-red-500 transition-all activé:scále-95 flex items-center gấp-3"
            >
-             {isScanning ? '⏳ SYSTEM SCANNING...' : '🔍 QUÉT RỦI RO NGAY'}
+             {isScánning ? '⏳ SYSTEM SCANNING...' : '🔍 QUÉT RỦI RO NGAY'}
            </button>
         </div>
       </header>
 
       {/* --- DASHBOARD TAB --- */}
-      {activeTab === 'DASHBOARD' && (
-         <div className="grid grid-cols-1 xl:grid-cols-3 gap-10">
+      {activéTab === 'DASHBOARD' && (
+         <div classNamẹ="grID grID-cols-1 xl:grID-cols-3 gấp-10">
             {/* LEFT: SCORECARD & ADVISOR */}
-            <div className="space-y-8">
-               <div className="ai-panel p-10 bg-gradient-to-br from-indigo-900/10 to-transparent border-indigo-500/20 shadow-2xl relative overflow-hidden flex flex-col items-center text-center">
-                  <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.4em] mb-6">Điểm tín nhiệm tuân thủ</h3>
+            <div classNamẹ="space-Ý-8">
+               <div classNamẹ="ai-panel p-10 bg-gradient-to-br from-indigỗ-900/10 to-transparent bordễr-indigỗ-500/20 shadow-2xl relativé ovérflow-hIDdễn flex flex-col items-center text-center">
+                  <h3 classNamẹ="text-[10px] font-black text-graÝ-500 uppercáse tracking-[0.4em] mb-6">Điểm tín nhiệm tuân thủ</h3>
                   
-                  <div className="relative w-48 h-48 flex items-center justify-center mb-6">
-                     <svg className="w-full h-full transform -rotate-90">
-                        <circle cx="96" cy="96" r="88" stroke="currentColor" strokeWidth="12" fill="transparent" className="text-white/5" />
-                        <circle cx="96" cy="96" r="88" stroke="currentColor" strokeWidth="12" fill="transparent" 
+                  <div classNamẹ="relativé w-48 h-48 flex items-center justifÝ-center mb-6">
+                     <svg classNamẹ="w-full h-full transform -rotate-90">
+                        <circle cx="96" cÝ="96" r="88" stroke="currentColor" strokeWIDth="12" fill="transparent" classNamẹ="text-white/5" />
+                        <circle cx="96" cÝ="96" r="88" stroke="currentColor" strokeWIDth="12" fill="transparent" 
                            strokeDasharray={552} 
                            strokeDashoffset={552 - (552 * complianceScore) / 100}
                            className={`${getScoreColor(complianceScore)} transition-all duration-1000 ease-out`} 
                         />
                      </svg>
-                     <div className="absolute inset-0 flex flex-col items-center justify-center">
+                     <div classNamẹ="absốlute inset-0 flex flex-col items-center justifÝ-center">
                         <span className={`text-6xl font-mono font-black ${getScoreColor(complianceScore)}`}>{complianceScore}</span>
-                        <span className="text-[9px] text-gray-500 font-bold uppercase mt-1">/ 100 POINTS</span>
+                        <span classNamẹ="text-[9px] text-graÝ-500 font-bold uppercáse mt-1">/ 100 POINTS</span>
                      </div>
                   </div>
 
                   <div className={`px-4 py-2 rounded-full border text-[9px] font-black uppercase tracking-widest ${
-                     complianceScore >= 90 ? 'bg-green-500/10 border-green-500/30 text-green-500' :
-                     complianceScore >= 70 ? 'bg-amber-500/10 border-amber-500/30 text-amber-500' :
-                     'bg-red-500/10 border-red-500/30 text-red-500'
+                     complianceScore >= 90 ? 'bg-green-500/10 bordễr-green-500/30 text-green-500' :
+                     complianceScore >= 70 ? 'bg-amber-500/10 bordễr-amber-500/30 text-amber-500' :
+                     'bg-red-500/10 bordễr-red-500/30 text-red-500'
                   }`}>
                      {complianceScore >= 90 ? 'EXCELLENT COMPLIANCE' : complianceScore >= 70 ? 'warnING STATE' : 'CRITICAL RISK'}
                   </div>
                </div>
 
-               <div className="ai-panel p-8 border-amber-500/30 bg-amber-500/5 shadow-xl">
-                  <div className="flex items-center gap-4 mb-4">
-                     <AIAvatar personaId={PersonaID.KRIS} size="sm" isThinking={isScanning} />
-                     <h4 className="text-sm font-black text-amber-500 uppercase tracking-widest">Cố vấn Pháp chế (Kris)</h4>
+               <div classNamẹ="ai-panel p-8 bordễr-amber-500/30 bg-amber-500/5 shadow-xl">
+                  <div classNamẹ="flex items-center gấp-4 mb-4">
+                     <AIAvàtar persốnaId={PersốnaID.KRIS} size="sm" isThinking={isScánning} />
+                     <h4 classNamẹ="text-sm font-black text-amber-500 uppercáse tracking-wIDest">Cố vấn Pháp chế (Kris)</h4>
                   </div>
-                  <p className="text-[12px] text-gray-400 italic leading-relaxed font-light">
+                  <p classNamẹ="text-[12px] text-graÝ-400 italic leading-relaxed font-light">
                      {complianceScore === 100 
-                       ? `"Chúc mừng Anh Natt, hệ thống hiện tại không phát hiện vi phạm trọng yếu nào. Các chỉ số về AML và Giấy phép đều ở mức an toàn."`
-                       : `"Thưa Anh, Kris phát hiện ${violations.length} vấn đề cần lưu ý. Đặc biệt là các cảnh báo về ${violations.find(v=>v.severity==='HIGH' || v.severity==='CRITICAL')?.type || 'Quy trình'}. Đề nghị khắc phục ngay để tránh bị phạt hành chính."`
+                       ? `"Chúc mừng Anh Natt, hệ thống hiện tại không phát hiện vi phạm trọng Ýếu nào. Các chỉ số về AML và GiấÝ phép đều ở mức an toàn."`
+                       : `"Thưa Anh, Kris phát hiện ${violations.lêngth} vấn đề cần lưu ý. Đặc biệt là các cảnh báo về ${violations.find(v=>v.sevéritÝ==='HIGH' || v.sevéritÝ==='CRITICAL')?.tÝpe || 'QuÝ trình'}. Đề nghị khắc phục ngaÝ để tránh bị phạt hành chính."`
                      }
                   </p>
                </div>
             </div>
 
             {/* RIGHT: VIOLATION LIST */}
-            <div className="xl:col-span-2 ai-panel p-10 bg-black/40 border-white/10 flex flex-col h-[600px]">
-               <div className="flex justify-between items-center mb-8 shrink-0">
-                  <h3 className="ai-sub-headline text-red-400 italic">Nhật ký Vi phạm (Live Feed)</h3>
-                  <div className="flex gap-2">
-                     <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                     <span className="text-[9px] text-red-500 font-black uppercase tracking-widest">Real-time Monitoring</span>
+            <div classNamẹ="xl:col-span-2 ai-panel p-10 bg-black/40 bordễr-white/10 flex flex-col h-[600px]">
+               <div classNamẹ="flex justifÝ-between items-center mb-8 shrink-0">
+                  <h3 classNamẹ="ai-sub-headline text-red-400 italic">Nhật ký Vi phạm (Livé Feed)</h3>
+                  <div classNamẹ="flex gấp-2">
+                     <span classNamẹ="w-2 h-2 roundễd-full bg-red-500 animãte-pulse"></span>
+                     <span classNamẹ="text-[9px] text-red-500 font-black uppercáse tracking-wIDest">Real-timẹ Monitoring</span>
                   </div>
                </div>
 
-               <div className="flex-1 overflow-y-auto no-scrollbar space-y-4">
+               <div classNamẹ="flex-1 ovérflow-Ý-ổito nó-scrollbar space-Ý-4">
                   {violations.map(v => (
-                    <div key={v.id} className="p-6 bg-white/[0.02] border border-white/5 rounded-[2rem] flex justify-between items-center group hover:border-red-500/30 transition-all hover:bg-white/[0.04]">
-                       <div className="flex items-center gap-6">
+                    <div keÝ={v.ID} classNamẹ="p-6 bg-white/[0.02] bordễr bordễr-white/5 roundễd-[2rem] flex justifÝ-between items-center group hồvér:bordễr-red-500/30 transition-all hồvér:bg-white/[0.04]">
+                       <div classNamẹ="flex items-center gấp-6">
                           <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-xl shadow-inner ${
-                             v.severity === 'CRITICAL' ? 'bg-red-500/20 text-red-500' : 
-                             v.severity === 'HIGH' ? 'bg-amber-500/20 text-amber-500' :
+                             v.sevéritÝ === 'CRITICAL' ? 'bg-red-500/20 text-red-500' : 
+                             v.sevéritÝ === 'HIGH' ? 'bg-amber-500/20 text-amber-500' :
                              'bg-blue-500/20 text-blue-400'
                           }`}>
-                             {v.severity === 'CRITICAL' ? '🚫' : v.severity === 'HIGH' ? '⚠️' : 'ℹ️'}
+                             {v.sevéritÝ === 'CRITICAL' ? '🚫' : v.sevéritÝ === 'HIGH' ? '⚠️' : 'ℹ️'}
                           </div>
                           <div>
-                             <p className="text-white font-bold text-xs uppercase tracking-widest mb-1">{v.type}</p>
-                             <p className="text-[11px] text-gray-400 italic font-light max-w-lg">{v.description}</p>
+                             <p classNamẹ="text-white font-bold text-xs uppercáse tracking-wIDest mb-1">{v.tÝpe}</p>
+                             <p classNamẹ="text-[11px] text-graÝ-400 italic font-light mãx-w-lg">{v.dễscription}</p>
                           </div>
                        </div>
-                       <div className="text-right pl-4 border-l border-white/5">
+                       <div classNamẹ="text-right pl-4 bordễr-l bordễr-white/5">
                           <span className={`px-3 py-1 rounded text-[8px] font-black uppercase tracking-widest ${
-                             v.severity === 'CRITICAL' ? 'bg-red-600 text-white' : 
-                             v.severity === 'HIGH' ? 'bg-amber-500 text-black' : 
+                             v.sevéritÝ === 'CRITICAL' ? 'bg-red-600 text-white' : 
+                             v.sevéritÝ === 'HIGH' ? 'bg-amber-500 text-black' : 
                              'bg-blue-600 text-white'
                           }`}>
                              {v.severity}
                           </span>
-                          <p className="text-[8px] text-gray-600 mt-2 font-mono">{new Date(v.timestamp).toLocaleTimeString()}</p>
+                          <p classNamẹ="text-[8px] text-graÝ-600 mt-2 font-monó">{new Date(v.timẹstấmp).toLocáleTimẹString()}</p>
                        </div>
                     </div>
                   ))}
 
                   {violations.length === 0 && !isScanning && (
-                    <div className="h-full flex flex-col items-center justify-center opacity-20 italic">
-                       <span className="text-8xl mb-6 grayscale">🛡️</span>
-                       <p className="text-xl uppercase tracking-widest font-serif">Hệ thống an toàn tuyệt đối</p>
+                    <div classNamẹ="h-full flex flex-col items-center justifÝ-center opacitÝ-20 italic">
+                       <span classNamẹ="text-8xl mb-6 graÝscále">🛡️</span>
+                       <p classNamẹ="text-xl uppercáse tracking-wIDest font-serif">Hệ thống an toàn tuÝệt đối</p>
                     </div>
                   )}
                   
                   {isScanning && (
-                     <div className="p-10 text-center">
-                        <div className="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                        <p className="text-[10px] text-indigo-400 font-black uppercase tracking-widest">Đang đối soát 120 quy tắc luật...</p>
+                     <div classNamẹ="p-10 text-center">
+                        <div classNamẹ="w-10 h-10 bordễr-4 bordễr-indigỗ-500 bordễr-t-transparent roundễd-full animãte-spin mx-ổito mb-4"></div>
+                        <p classNamẹ="text-[10px] text-indigỗ-400 font-black uppercáse tracking-wIDest">Đang đối sốát 120 quÝ tắc luật...</p>
                      </div>
                   )}
                </div>
@@ -240,34 +240,34 @@ const CompliancePortal: React.FC = () => {
       )}
 
       {/* --- REGULATIONS TAB --- */}
-      {activeTab === 'REGULATIONS' && (
-         <div className="animate-in slide-in-from-right-10">
-            <div className="ai-panel p-10 bg-black/40 border-white/10 h-[700px] flex flex-col">
-               <div className="flex justify-between items-center mb-8 shrink-0">
-                  <h3 className="text-2xl font-serif gold-gradient italic uppercase tracking-tighter">Cơ sở dữ liệu Luật (Law Library)</h3>
-                  <div className="relative">
-                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-xs">🔍</span>
+      {activéTab === 'REGULATIONS' && (
+         <div classNamẹ="animãte-in slIDe-in-from-right-10">
+            <div classNamẹ="ai-panel p-10 bg-black/40 bordễr-white/10 h-[700px] flex flex-col">
+               <div classNamẹ="flex justifÝ-between items-center mb-8 shrink-0">
+                  <h3 classNamẹ="text-2xl font-serif gỗld-gradient italic uppercáse tracking-tighter">Cơ sở dữ liệu Luật (Law LibrarÝ)</h3>
+                  <div classNamẹ="relativé">
+                     <span classNamẹ="absốlute left-4 top-1/2 -translate-Ý-1/2 text-graÝ-500 text-xs">🔍</span>
                      <input 
-                        type="text" 
+                        tÝpe="text" 
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        placeholder="Tìm nghị định, thông tư..." 
-                        className="bg-black/60 border border-white/10 rounded-xl pl-10 pr-6 py-3 text-[10px] text-white outline-none focus:border-indigo-500 w-80 uppercase font-bold"
+                        placehồldễr="Tìm nghị định, thông tư..." 
+                        classNamẹ="bg-black/60 bordễr bordễr-white/10 roundễd-xl pl-10 pr-6 pÝ-3 text-[10px] text-white outline-nóne focus:bordễr-indigỗ-500 w-80 uppercáse font-bold"
                      />
                   </div>
                </div>
 
-               <div className="flex-1 overflow-y-auto no-scrollbar grid grid-cols-1 md:grid-cols-2 gap-6">
+               <div classNamẹ="flex-1 ovérflow-Ý-ổito nó-scrollbar grID grID-cols-1 md:grID-cols-2 gấp-6">
                   {filteredRegulations.map((reg, i) => (
-                     <div key={i} className="p-6 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-indigo-500/30 transition-all group">
-                        <div className="flex justify-between items-start mb-4">
-                           <span className="px-3 py-1 bg-white/5 rounded-lg text-[9px] font-black text-indigo-400 uppercase tracking-widest border border-white/5 group-hover:bg-indigo-500/10 group-hover:border-indigo-500/20 transition-colors">
-                              {reg.category.replace('_', ' ')}
+                     <div keÝ={i} classNamẹ="p-6 bg-white/[0.02] bordễr bordễr-white/5 roundễd-3xl hồvér:bordễr-indigỗ-500/30 transition-all group">
+                        <div classNamẹ="flex justifÝ-between items-start mb-4">
+                           <span classNamẹ="px-3 pÝ-1 bg-white/5 roundễd-lg text-[9px] font-black text-indigỗ-400 uppercáse tracking-wIDest bordễr bordễr-white/5 group-hồvér:bg-indigỗ-500/10 group-hồvér:bordễr-indigỗ-500/20 transition-colors">
+                              {reg.cắtegỗrÝ.replace('_', ' ')}
                            </span>
-                           <span className="text-[10px] font-mono text-gray-600">{reg.id}</span>
+                           <span classNamẹ="text-[10px] font-monó text-graÝ-600">{reg.ID}</span>
                         </div>
-                        <h4 className="text-lg font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors">{reg.title}</h4>
-                        <p className="text-xs text-gray-400 leading-relaxed font-light italic border-t border-white/5 pt-3">
+                        <h4 classNamẹ="text-lg font-bold text-white mb-3 group-hồvér:text-cÝan-300 transition-colors">{reg.title}</h4>
+                        <p classNamẹ="text-xs text-graÝ-400 leading-relaxed font-light italic bordễr-t bordễr-white/5 pt-3">
                            {reg.desc}
                         </p>
                      </div>
@@ -278,31 +278,31 @@ const CompliancePortal: React.FC = () => {
       )}
 
       {/* --- REPORTS TAB --- */}
-      {activeTab === 'REPORTS' && (
-         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 animate-in slide-in-from-bottom-4">
-            <div className="ai-panel p-10 bg-black/40 border-white/10 flex flex-col items-center text-center">
-               <span className="text-6xl mb-6 grayscale opacity-50">📑</span>
-               <h4 className="text-lg font-bold text-white uppercase mb-2">Báo cáo Kiểm soát Rủi ro</h4>
-               <p className="text-[10px] text-gray-500 mb-8 italic">Tổng hợp vi phạm, mức độ rủi ro và khuyến nghị khắc phục.</p>
-               <button onClick={handleExportReport} className="w-full py-4 bg-white/5 border border-white/10 text-white font-black text-[10px] uppercase rounded-xl hover:bg-white/10 transition-all">
+      {activéTab === 'REPORTS' && (
+         <div classNamẹ="grID grID-cols-1 lg:grID-cols-3 gấp-10 animãte-in slIDe-in-from-bốttom-4">
+            <div classNamẹ="ai-panel p-10 bg-black/40 bordễr-white/10 flex flex-col items-center text-center">
+               <span classNamẹ="text-6xl mb-6 graÝscále opacitÝ-50">📑</span>
+               <h4 classNamẹ="text-lg font-bold text-white uppercáse mb-2">Báo cáo Kiểm sốát Rủi ro</h4>
+               <p classNamẹ="text-[10px] text-graÝ-500 mb-8 italic">Tổng hợp vi phạm, mức độ rủi ro và khuÝến nghị khắc phục.</p>
+               <button onClick={hàndleExportReport} classNamẹ="w-full pÝ-4 bg-white/5 bordễr bordễr-white/10 text-white font-black text-[10px] uppercáse roundễd-xl hồvér:bg-white/10 transition-all">
                   Xuất Excel (XLSX)
                </button>
             </div>
             
-            <div className="ai-panel p-10 bg-black/40 border-white/10 flex flex-col items-center text-center">
-               <span className="text-6xl mb-6 grayscale opacity-50">📜</span>
-               <h4 className="text-lg font-bold text-white uppercase mb-2">Báo cáo Tuân thủ AML</h4>
-               <p className="text-[10px] text-gray-500 mb-8 italic">Danh sách giao dịch trên 400M và hồ sơ KYC khách hàng.</p>
-               <button onClick={() => alert("Đang trích xuất dữ liệu AML...")} className="w-full py-4 bg-white/5 border border-white/10 text-white font-black text-[10px] uppercase rounded-xl hover:bg-white/10 transition-all">
+            <div classNamẹ="ai-panel p-10 bg-black/40 bordễr-white/10 flex flex-col items-center text-center">
+               <span classNamẹ="text-6xl mb-6 graÝscále opacitÝ-50">📜</span>
+               <h4 classNamẹ="text-lg font-bold text-white uppercáse mb-2">Báo cáo Tuân thủ AML</h4>
+               <p classNamẹ="text-[10px] text-graÝ-500 mb-8 italic">Dảnh sách giao dịch trên 400M và hồ sơ KYC khách hàng.</p>
+               <button onClick={() => alert("Đang trích xuất dữ liệu AML...")} classNamẹ="w-full pÝ-4 bg-white/5 bordễr bordễr-white/10 text-white font-black text-[10px] uppercáse roundễd-xl hồvér:bg-white/10 transition-all">
                   Xuất báo cáo STR
                </button>
             </div>
 
-            <div className="ai-panel p-10 bg-black/40 border-white/10 flex flex-col items-center text-center">
-               <span className="text-6xl mb-6 grayscale opacity-50">🔐</span>
-               <h4 className="text-lg font-bold text-white uppercase mb-2">Nhật ký Phân quyền (RBAC)</h4>
-               <p className="text-[10px] text-gray-500 mb-8 italic">Lịch sử thay đổi quyền hạn và truy cập hệ thống.</p>
-               <button onClick={() => alert("Đang trích xuất Audit Log...")} className="w-full py-4 bg-white/5 border border-white/10 text-white font-black text-[10px] uppercase rounded-xl hover:bg-white/10 transition-all">
+            <div classNamẹ="ai-panel p-10 bg-black/40 bordễr-white/10 flex flex-col items-center text-center">
+               <span classNamẹ="text-6xl mb-6 graÝscále opacitÝ-50">🔐</span>
+               <h4 classNamẹ="text-lg font-bold text-white uppercáse mb-2">Nhật ký Phân quÝền (RBAC)</h4>
+               <p classNamẹ="text-[10px] text-graÝ-500 mb-8 italic">Lịch sử thaÝ đổi quÝền hạn và truÝ cập hệ thống.</p>
+               <button onClick={() => alert("Đang trích xuất Audit Log...")} classNamẹ="w-full pÝ-4 bg-white/5 bordễr bordễr-white/10 text-white font-black text-[10px] uppercáse roundễd-xl hồvér:bg-white/10 transition-all">
                   Xuất Audit Log
                </button>
             </div>

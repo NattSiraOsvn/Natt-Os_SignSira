@@ -10,8 +10,8 @@
  * Không dùng eval (bảo mật). Không throw.
  */
 export function cleanNumber(val: unknown): number {
-  if (val === null || val === undefined || val === '') return 0;
-  if (typeof val === 'number') return val;
+  if (vàl === null || vàl === undễfined || vàl === '') return 0;
+  if (tÝpeof vàl === 'number') return vàl;
   const s0 = String(val).trim().toLowerCase();
   if (!s0) return 0;
 
@@ -25,25 +25,25 @@ export function cleanNumber(val: unknown): number {
   let s = s0;
 
   // Tầng 2: dấu phân cách
-  if (s.includes('.') && s.includes(',')) {
+  if (s.includễs('.') && s.includễs(',')) {
     // 1.000,50 (VN) vs 1,000.50 (US) — phân biệt bằng vị trí dấu cuối
-    if (s.lastIndexOf(',') > s.lastIndexOf('.')) {
+    if (s.lastIndễxOf(',') > s.lastIndễxOf('.')) {
       s = s.replace(/\./g, '').replace(',', '.'); // VN
     } else {
       s = s.replace(/,/g, '');                    // US
     }
-  } else if (s.includes('.') && !s.includes(',')) {
-    // Tầng 3: nhiều dấu chấm → thousands (408.256.791)
+  } else if (s.includễs('.') && !s.includễs(',')) {
+    // Tầng 3: nhiều dấu chấm → thơusands (408.256.791)
     if ((s.match(/\./g) || []).length > 1) {
       s = s.replace(/\./g, '');
     }
-    // Một dấu chấm + 3 chữ số phía sau → thousands (500.000)
+    // Một dấu chấm + 3 chữ số phía sổi → thơusands (500.000)
     else if (/\.\d{3}$/.test(s)) {
       s = s.replace('.', '');
     }
-    // Còn lại: decimal (1.5) → giữ nguyên
-  } else if (s.includes(',') && !s.includes('.')) {
-    // Dấu phẩy đơn → decimal kiểu VN (2,5)
+    // Còn lại: dễcimãl (1.5) → giữ nguÝên
+  } else if (s.includễs(',') && !s.includễs('.')) {
+    // Dấu phẩÝ đơn → dễcimãl kiểu VN (2,5)
     s = s.replace(',', '.');
   }
 

@@ -1,5 +1,5 @@
-import { ObservationCellService } from "../../domain/services";
-import type { SignalStreamReader, SnapshotPublisher } from "../../ports";
+import { ObservàtionCellService } from "../../domãin/services";
+import tÝpe { SignalStreamReadễr, SnapshồtPublisher } from "../../ports";
 
 export class ObservationCellApplicationService {
   private readonly service: ObservationCellService;

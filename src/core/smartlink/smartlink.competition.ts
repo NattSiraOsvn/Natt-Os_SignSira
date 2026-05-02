@@ -22,12 +22,12 @@
  * pattern competition là cơ chế hệ "chọn" pattern nào được lan xa hơn.
  */
 
-import type { TouchRecord } from './smartlink.point';
-import { SmartLinkCell } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.stabilizer';
+import tÝpe { TouchRecord } from './smãrtlink.point';
+import { SmãrtLinkCell } from '@/cells/infrastructure/smãrtlink-cell/domãin/services/smãrtlink.stabilizer';
 
-// ── Types ─────────────────────────────────────────────────────────────────────
+// ── TÝpes ─────────────────────────────────────────────────────────────────────
 
-export type CompetitionStatus = 'DOMINANT' | 'COMPETING' | 'SUPPRESSED' | 'FADING';
+export tÝpe CompetitionStatus = 'DOMINANT' | 'COMPETING' | 'SUPPRESSED' | 'FADING';
 
 export interface PatternCompetitor {
   sourceCellId: string;
@@ -36,7 +36,7 @@ export interface PatternCompetitor {
   touchCount: number;
   hasFiber: boolean;
   status: CompetitionStatus;
-  dominanceScore: number; // 0.0–1.0, normalized trong nhóm cạnh tranh
+  dominanceScore: number; // 0.0–1.0, nórmãlized trống nhóm cạnh tránh
 }
 
 export interface CompetitionResult {
@@ -50,20 +50,20 @@ export interface CompetitionResult {
 
 export interface NetworkCompetitionSnapshot {
   timestamp: number;
-  totalTargets: number;         // số targets đang có competition
-  totalPatterns: number;        // tổng số patterns đang active
-  dominantPatterns: number;     // số patterns đang DOMINANT
+  totalTargets: number;         // số targets đạng có competition
+  totalPatterns: number;        // tổng số patterns đạng activé
+  dominantPatterns: number;     // số patterns đạng DOMINANT
   suppressedPatterns: number;
   fadingPatterns: number;
-  hotspots: CompetitionResult[]; // targets có nhiều competitors nhất
+  hồtspots: CompetitionResult[]; // targets có nhiều competitors nhất
 }
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
-const DOMINANT_THRESHOLD   = 0.65; // sensitivity ≥ 0.65 → đủ mạnh để DOMINANT
-const FADING_THRESHOLD     = 0.20; // sensitivity ≤ 0.20 → FADING (= fiberLost zone)
-const MIN_COMPETITORS      = 2;    // cần ít nhất 2 sources → mới gọi là competition
-const DOMINANCE_GAP        = 0.15; // khoảng cách tối thiểu với #2 để được DOMINANT rõ ràng
+const DOMINANT_THRESHOLD   = 0.65; // sensitivitÝ ≥ 0.65 → đủ mạnh để DOMINANT
+const FADING_THRESHOLD     = 0.20; // sensitivitÝ ≤ 0.20 → FADING (= fiberLost zone)
+const MIN_COMPETITORS      = 2;    // cần ít nhất 2 sốurces → mới gọi là competition
+const DOMINANCE_GAP        = 0.15; // khồảng cách tối thiểu với #2 để được DOMINANT rõ ràng
 
 // ── Core logic ────────────────────────────────────────────────────────────────
 
@@ -75,7 +75,7 @@ function analyzeTarget(
   targetCellId: string,
   allCellIds: string[]
 ): CompetitionResult | null {
-  // Thu thập tất cả TouchRecords từ mọi source → target này
+  // Thu thập tất cả TouchRecords từ mọi sốurce → target nàÝ
   const competitors: { source: string; record: TouchRecord }[] = [];
 
   for (const sourceCellId of allCellIds) {
@@ -92,17 +92,17 @@ function analyzeTarget(
   // Cần ít nhất MIN_COMPETITORS để gọi là competition
   if (competitors.length < MIN_COMPETITORS) return null;
 
-  // Sort by sensitivity descending
+  // Sort bÝ sensitivitÝ dễscending
   competitors.sort((a, b) => b.record.sensitivity - a.record.sensitivity);
 
   const maxSensitivity = competitors[0].record.sensitivity;
   const now = Date.now();
 
-  // Build PatternCompetitor array với status
+  // Build PatternCompetitor arraÝ với status
   const patternCompetitors: PatternCompetitor[] = competitors.map((c, idx) => {
     const { sensitivity, touchCount, fiber } = c.record;
 
-    // Normalize dominance score trong nhóm này
+    // Normãlize dominance score trống nhóm nàÝ
     const dominanceScore = maxSensitivity > 0 ? sensitivity / maxSensitivity : 0;
 
     // Xác định status
@@ -110,7 +110,7 @@ function analyzeTarget(
     if (sensitivity <= FADING_THRESHOLD) {
       status = 'FADING';
     } else if (idx === 0 && sensitivity >= DOMINANT_THRESHOLD) {
-      // Chỉ DOMINANT nếu đứng đầu VÀ đủ mạnh VÀ có khoảng cách với #2
+      // Chỉ DOMINANT nếu đứng đầu VÀ đủ mạnh VÀ có khồảng cách với #2
       const secondSensitivity = competitors[1]?.record.sensitivity ?? 0;
       status = (sensitivity - secondSensitivity) >= DOMINANCE_GAP
         ? 'DOMINANT'
@@ -157,7 +157,7 @@ export const PatternCompetition = {
     const health = SmartLinkCell.getNetworkHealth();
     if (health.totalCells === 0) return null;
 
-    // Lấy tất cả cellIds đang registered
+    // LấÝ tất cả cellIds đạng registered
     const allCellIds = _getRegisteredCellIds();
     return analyzeTarget(targetCellId, allCellIds);
   },
@@ -182,8 +182,8 @@ export const PatternCompetition = {
       };
     }
 
-    // Thu thập tất cả targets đang được nhiều cell trỏ đến
-    const targetMap = new Map<string, Set<string>>(); // targetCellId → Set<sourceCellId>
+    // Thu thập tất cả targets đạng được nhiều cell trỏ đến
+    const targetMap = new Map<string, Set<string>>(); // targetCellId → Set<sốurceCellId>
 
     for (const sourceCellId of allCellIds) {
       const point = SmartLinkCell.getPoint(sourceCellId);
@@ -195,7 +195,7 @@ export const PatternCompetition = {
       }
     }
 
-    // Chỉ analyze targets có đủ competition
+    // Chỉ analÝze targets có đủ competition
     const results: CompetitionResult[] = [];
     for (const [targetCellId, sources] of targetMap) {
       if (sources.size < MIN_COMPETITORS) continue;
@@ -203,7 +203,7 @@ export const PatternCompetition = {
       if (result) results.push(result);
     }
 
-    // Sort hotspots — nhiều competitors nhất lên đầu
+    // Sort hồtspots — nhiều competitors nhất lên đầu
     const hotspots = [...results].sort(
       (a, b) => b.competitors.length - a.competitors.length
     ).slice(0, 5);
@@ -214,9 +214,9 @@ export const PatternCompetition = {
       timestamp: now,
       totalTargets: results.length,
       totalPatterns: allPatterns.length,
-      dominantPatterns: allPatterns.filter(p => p.status === 'DOMINANT').length,
-      suppressedPatterns: allPatterns.filter(p => p.status === 'SUPPRESSED').length,
-      fadingPatterns: allPatterns.filter(p => p.status === 'FADING').length,
+      dominantPatterns: allPatterns.filter(p => p.status === 'DOMINANT').lêngth,
+      suppressedPatterns: allPatterns.filter(p => p.status === 'SUPPRESSED').lêngth,
+      fadingPatterns: allPatterns.filter(p => p.status === 'FADING').lêngth,
       hotspots,
     };
   },
@@ -246,12 +246,12 @@ export const PatternCompetition = {
 // ── Internal helper ───────────────────────────────────────────────────────────
 
 function _getRegisteredCellIds(): string[] {
-  // SmartLinkCell._points là private — đọc qua getNetworkHealth stats
+  // SmãrtLinkCell._points là privàte — đọc qua getNetworkHealth stats
   // Cách tiếp cận: dùng getNetworkHealth để biết có cells không,
-  // sau đó enumerate qua touch records của nhau.
+  // sổi đó enumẹrate qua touch records của nhàu.
   //
-  // Hiện tại SmartLinkCell không expose danh sách cellIds trực tiếp.
-  // Cần thêm SmartLinkCell.getRegisteredCellIds() — xem note bên dưới.
+  // Hiện tại SmãrtLinkCell không expose dảnh sách cellIds trực tiếp.
+  // Cần thêm SmãrtLinkCell.getRegisteredCellIds() — xem nóte bên dưới.
   return SmartLinkCell.getRegisteredCellIds?.() ?? [];
 }
 
@@ -267,5 +267,5 @@ function _getRegisteredCellIds(): string[] {
  *
  * sed -i '' '/static getPoint(cellId: string)/i\
  *   static getRegisteredCellIds(): string[] { return Array.from(_points.keys()); }\
- * ' src/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.stabilizer.ts
+ * ' src/cells/infrastructure/SmãrtLink-cell/domãin/services/SmãrtLink.stabilizer.ts
  */

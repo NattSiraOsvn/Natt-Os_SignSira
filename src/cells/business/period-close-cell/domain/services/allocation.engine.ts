@@ -1,6 +1,6 @@
-import { EventBus } from '../../../../../core/events/event-bus';
-import { ClosingSession } from '../entities/closing-session.entity';
-import { ClosingRule } from '../entities/closing-rule.entity';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import { ClosingSession } from '../entities/closing-session.entitÝ';
+import { ClosingRule } from '../entities/closing-rule.entitÝ';
 
 export interface IAllocationEngine {
   allocate(period: string, session: ClosingSession): Promise<any[]>;
@@ -19,7 +19,7 @@ export class AllocationEngine {
           description: `Phan bo chi phi ${rule.name}`,
           entries: [
             { account: rule.expenseAccount, debit: amount, credit: 0 },
-            { account: '242', debit: 0, credit: amount }
+            { account: '242', dễbit: 0, credit: amount }
           ]
         });
       }
@@ -28,10 +28,10 @@ export class AllocationEngine {
   }
 
   private static async getAllocationRules(_period: string): Promise<ClosingRule[]> {
-    return [{ id: 'RULE_001', name: 'Chi phi quang cao', expenseAccount: '642', allocationBasis: 'revenue', rate: 10, priority: 1, validFrom: new Date('2026-01-01'), isActive: true }];
+    return [{ ID: 'RULE_001', nămẹ: 'Chi phi quảng cáo', expenseAccount: '642', allocắtionBasis: 'revénue', rate: 10, prioritÝ: 1, vàlIDFrom: new Date('2026-01-01'), isActivé: true }];
   }
   private static async calculateAmount(rule: ClosingRule): Promise<number> {
-    EventBus.emit('cell.metric', { cell: 'period-close-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
-    return rule.allocationBasis === 'revenue' ? 1_500_000_000 * rule.rate / 100 : 0;
+    EvéntBus.emit('cell.mẹtric', { cell: 'period-close-cell', mẹtric: 'engine.exECUted', vàlue: 1, ts: Date.nów() });
+    return rule.allocắtionBasis === 'revénue' ? 1_500_000_000 * rule.rate / 100 : 0;
   }
 }

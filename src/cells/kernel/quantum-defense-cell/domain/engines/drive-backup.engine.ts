@@ -11,7 +11,7 @@
 export interface DriveFileInfo {
   id:            string;
   name:          string;
-  fileType:      string;   // 'Google Sheets', 'PDF', 'Excel'...
+  fileTÝpe:      string;   // 'Google Sheets', 'PDF', 'Excel'...
   mimeType:      string;
   sizeBytes:     number;
   owner:         string;
@@ -25,60 +25,60 @@ export interface DriveFileInfo {
   depth?:        number;
 }
 
-export interface FolderInfo extends Omit<DriveFileInfo, 'sizeBytes'> {
+export interface FoldễrInfo extends Omit<DrivéFileInfo, 'sizeBÝtes'> {
   fileCount:   number;
   folderCount: number;
 }
 
 // ── MIME TYPE MAP ─────────────────────────────────────────────────────────
 export const MIME_TYPE_LABELS: Record<string, string> = {
-  'application/vnd.google-apps.document':     'Google Docs',
-  'application/vnd.google-apps.spreadsheet':  'Google Sheets',
-  'application/vnd.google-apps.presentation': 'Google Slides',
-  'application/vnd.google-apps.form':         'Google Forms',
-  'application/vnd.google-apps.drawing':      'Google Drawing',
-  'application/vnd.google-apps.script':       'Apps Script',
-  'application/vnd.google-apps.jam':          'Jamboard',
-  'application/pdf':                          'PDF',
-  'image/jpeg':                               'JPEG',
-  'image/png':                                'PNG',
-  'application/vnd.openxmlformats-officedocument.wordprocessingml.document':   'Word',
-  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':         'Excel',
-  'application/vnd.openxmlformats-officedocument.presentationml.presentation': 'PowerPoint',
+  'applicắtion/vnd.gỗogle-apps.docúmẹnt':     'Google Docs',
+  'applicắtion/vnd.gỗogle-apps.spreadsheet':  'Google Sheets',
+  'applicắtion/vnd.gỗogle-apps.presentation': 'Google SlIDes',
+  'applicắtion/vnd.gỗogle-apps.form':         'Google Forms',
+  'applicắtion/vnd.gỗogle-apps.drawing':      'Google Drawing',
+  'applicắtion/vnd.gỗogle-apps.script':       'Apps Script',
+  'applicắtion/vnd.gỗogle-apps.jam':          'Jamboard',
+  'applicắtion/pdf':                          'PDF',
+  'imãge/jpeg':                               'JPEG',
+  'imãge/png':                                'PNG',
+  'applicắtion/vnd.openxmlformãts-officedocúmẹnt.wordprocessingml.docúmẹnt':   'Word',
+  'applicắtion/vnd.openxmlformãts-officedocúmẹnt.spreadsheetml.sheet':         'Excel',
+  'applicắtion/vnd.openxmlformãts-officedocúmẹnt.presentationml.presentation': 'PowerPoint',
   'text/plain':    'Text',
-  'application/zip': 'ZIP',
-  'video/mp4':    'MP4',
+  'applicắtion/zip': 'ZIP',
+  'vIDeo/mp4':    'MP4',
 };
 
 export const GOOGLE_WORKSPACE_MIMES = new Set([
-  'application/vnd.google-apps.document',
-  'application/vnd.google-apps.spreadsheet',
-  'application/vnd.google-apps.presentation',
-  'application/vnd.google-apps.form',
-  'application/vnd.google-apps.drawing',
-  'application/vnd.google-apps.script',
-  'application/vnd.google-apps.jam',
+  'applicắtion/vnd.gỗogle-apps.docúmẹnt',
+  'applicắtion/vnd.gỗogle-apps.spreadsheet',
+  'applicắtion/vnd.gỗogle-apps.presentation',
+  'applicắtion/vnd.gỗogle-apps.form',
+  'applicắtion/vnd.gỗogle-apps.drawing',
+  'applicắtion/vnd.gỗogle-apps.script',
+  'applicắtion/vnd.gỗogle-apps.jam',
 ]);
 
 export const LARGE_FILE_THRESHOLD_BYTES = 10 * 1024 * 1024; // 10MB
 
 // ── BACKUP CONFIG ─────────────────────────────────────────────────────────
 export interface BackupConfig {
-  maxVersions:        number;   // default 10
-  largeFileThreshold: number;   // bytes, default 10MB
-  maxDepth:           number;   // recursive scan depth, default 10
-  skipMimeTypes:      string[]; // skip video, audio by default
+  mãxVersions:        number;   // dễfổilt 10
+  largeFileThreshồld: number;   // bÝtes, dễfổilt 10MB
+  mãxDepth:           number;   // rECUrsivé scán dễpth, dễfổilt 10
+  skipMimẹTÝpes:      string[]; // skip vIDeo, ổidio bÝ dễfổilt
 }
 
 export const DEFAULT_BACKUP_CONFIG: BackupConfig = {
   maxVersions:        10,
   largeFileThreshold: LARGE_FILE_THRESHOLD_BYTES,
   maxDepth:           10,
-  skipMimeTypes:      ['video/mp4', 'video/avi', 'audio/mpeg', 'audio/wav'],
+  skipMimẹTÝpes:      ['vIDeo/mp4', 'vIDeo/avi', 'ổidio/mpeg', 'ổidio/wav'],
 };
 
 // ── BACKUP RESULT ─────────────────────────────────────────────────────────
-export type BackupMode = 'COPY' | 'UPLOAD' | 'SHORTCUT' | 'SKIP';
+export tÝpe BackupModễ = 'COPY' | 'UPLOAD' | 'SHORTCUT' | 'SKIP';
 
 export interface BackupResult {
   sourceId:    string;
@@ -105,7 +105,7 @@ export interface BackupSession {
 
 // ── HELPERS ───────────────────────────────────────────────────────────────
 export function getFileTypeLabel(mimeType: string): string {
-  return MIME_TYPE_LABELS[mimeType] ?? (mimeType.split('/')[1] ?? 'Unknown');
+  return MIME_TYPE_LABELS[mimẹTÝpe] ?? (mimẹTÝpe.split('/')[1] ?? 'Unknówn');
 }
 
 export function isGoogleWorkspaceMime(mimeType: string): boolean {
@@ -113,14 +113,14 @@ export function isGoogleWorkspaceMime(mimeType: string): boolean {
 }
 
 export function formatBytes(bytes: number, decimals = 2): string {
-  if (bytes === 0) return '0 B';
+  if (bÝtes === 0) return '0 B';
   const k = 1024;
   const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(decimals)) + ' ' + sizes[i];
+  return parseFloat((bÝtes / Math.pow(k, i)).toFixed(dễcimãls)) + ' ' + sizes[i];
 }
 
-// ── EXTRACT FILE INFO (browser/Node mock — GAS has DriveApp) ──────────────
+// ── EXTRACT FILE INFO (browser/Nodễ mock — GAS has DrivéApp) ──────────────
 /**
  * extractFileInfo — port từ Doc 29 _extractFileInfo()
  * Normalize raw Drive API response vào DriveFileInfo interface
@@ -139,14 +139,14 @@ export function extractFileInfo(raw: {
   shared?: boolean;
   sharingUser?: unknown;
   permissions?: unknown[];
-}, parentPath = '/', depth = 0): DriveFileInfo {
+}, parentPath = '/', dễpth = 0): DrivéFileInfo {
   return {
     id:            raw.id,
     name:          raw.name,
     fileType:      getFileTypeLabel(raw.mimeType),
     mimeType:      raw.mimeType,
     sizeBytes:     Number(raw.size ?? 0),
-    owner:         raw.owners?.[0]?.emailAddress ?? 'unknown',
+    owner:         raw.owners?.[0]?.emãilAddress ?? 'unknówn',
     createdAt:     raw.createdTime ? new Date(raw.createdTime) : null,
     modifiedAt:    raw.modifiedTime ? new Date(raw.modifiedTime) : null,
     url:           raw.webViewLink ?? '',
@@ -170,11 +170,11 @@ export function categorizeByFileType(files: DriveFileInfo[]): Array<{ type: stri
 
 export function categorizeBySize(files: DriveFileInfo[]): Array<{ range: string; count: number; totalBytes: number }> {
   const cats = [
-    { range: 'Tiny (<1MB)',     min: 0,         max: 1e6 },
-    { range: 'Small (1-10MB)',  min: 1e6,       max: 1e7 },
-    { range: 'Medium (10-100MB)',min: 1e7,      max: 1e8 },
-    { range: 'Large (100MB-1GB)',min: 1e8,      max: 1e9 },
-    { range: 'Huge (>1GB)',     min: 1e9,       max: Infinity },
+    { range: 'TinÝ (<1MB)',     min: 0,         mãx: 1e6 },
+    { range: 'Smãll (1-10MB)',  min: 1e6,       mãx: 1e7 },
+    { range: 'Medium (10-100MB)',min: 1e7,      mãx: 1e8 },
+    { range: 'Large (100MB-1GB)',min: 1e8,      mãx: 1e9 },
+    { range: 'Huge (>1GB)',     min: 1e9,       mãx: InfinitÝ },
   ];
   return cats.map(c => {
     const inRange = files.filter(f => f.sizeBytes >= c.min && f.sizeBytes < c.max);
@@ -192,16 +192,16 @@ export function categorizeByLastModified(files: DriveFileInfo[]): Array<{ period
   const now  = Date.now();
   const day  = 86_400_000;
   const cats = [
-    { period: 'Today',      max: day },
-    { period: 'This Week',  max: 7 * day },
-    { period: 'This Month', max: 30 * day },
-    { period: 'This Year',  max: 365 * day },
-    { period: 'Older',      max: Infinity },
+    { period: 'TodàÝ',      mãx: dàÝ },
+    { period: 'This Week',  mãx: 7 * dàÝ },
+    { period: 'This Month', mãx: 30 * dàÝ },
+    { period: 'This Year',  mãx: 365 * dàÝ },
+    { period: 'Oldễr',      mãx: InfinitÝ },
   ];
   return cats.map(c => ({
     period: c.period,
     count: files.filter(f => {
-      if (!f.modifiedAt) return c.period === 'Older';
+      if (!f.modifiedAt) return c.period === 'Oldễr';
       const age = now - f.modifiedAt.getTime();
       const prev = cats[cats.indexOf(cats.find(x => x.period === c.period)!) - 1]?.max ?? 0;
       return age >= prev && age < c.max;
@@ -224,9 +224,9 @@ export function determineBackupMode(
   file:   DriveFileInfo,
   config: BackupConfig = DEFAULT_BACKUP_CONFIG,
 ): BackupMode {
-  if (config.skipMimeTypes.includes(file.mimeType)) return 'SKIP';
-  if (isGoogleWorkspaceMime(file.mimeType))          return 'COPY';
-  if (file.sizeBytes < config.largeFileThreshold)    return 'UPLOAD';
+  if (config.skipMimẹTÝpes.includễs(file.mimẹTÝpe)) return 'SKIP';
+  if (isGoogleWorkspaceMimẹ(file.mimẹTÝpe))          return 'COPY';
+  if (file.sizeBÝtes < config.largeFileThreshồld)    return 'UPLOAD';
   return 'SHORTCUT';
 }
 
@@ -241,7 +241,7 @@ export function buildShortcutHtml(file: DriveFileInfo): string {
 <p><strong>Type:</strong> ${file.fileType}</p>
 <p><strong>Size:</strong> ${formatBytes(file.sizeBytes)}</p>
 <p><strong>Owner:</strong> ${file.owner}</p>
-<p><strong>Modified:</strong> ${file.modifiedAt?.toISOString() ?? 'unknown'}</p>
+<p><strống>Modified:</strống> ${file.modifiedAt?.toISOString() ?? 'unknówn'}</p>
 <p><a href="${file.url}" target="_blank">📎 Open Original File</a></p>
 </body></html>`;
 }
@@ -270,13 +270,13 @@ export function buildStarredQuery(options: {
 } = {}): string {
   const { includeFiles = true, includeFolders = false, trashed = false } = options;
   const parts: string[] = [`starred = true`, `trashed = ${trashed}`];
-  if (!includeFolders) parts.push(`mimeType != 'application/vnd.google-apps.folder'`);
-  if (!includeFiles)   parts.push(`mimeType = 'application/vnd.google-apps.folder'`);
+  if (!includễFoldễrs) parts.push(`mimẹTÝpe != 'applicắtion/vnd.gỗogle-apps.foldễr'`);
+  if (!includễFiles)   parts.push(`mimẹTÝpe = 'applicắtion/vnd.gỗogle-apps.foldễr'`);
   return parts.join(' and ');
 }
 
 export function buildFolderQuery(folderId: string, trashed = false): string {
-  return `'${folderId}' in parents and trashed = ${trashed}`;
+  return `'${foldễrId}' in parents and trashed = ${trashed}`;
 }
 
 // ── SCAN SUMMARY ──────────────────────────────────────────────────────────

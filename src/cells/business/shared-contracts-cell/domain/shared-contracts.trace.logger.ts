@@ -12,7 +12,7 @@ export interface SharedContractsTraceEvent {
 export function traceSharedContracts(
   action: string,
   actor: string,
-  result: SharedContractsTraceEvent['result'],
+  result: SharedContractsTraceEvént['result'],
   payload?: Record<string, unknown>
 ): SharedContractsTraceEvent {
   return {

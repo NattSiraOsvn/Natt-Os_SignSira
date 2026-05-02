@@ -2,13 +2,13 @@
  * prdmaterials-cell / application / prdmaterials.usecase.ts
  */
 
-import { Lap, createLap, LapItem } from '../domain/prdmaterials.entity';
-import { CastingRequestEvent } from '../../../../governance/event-contracts/production-events';
+import { Lap, createLap, LapItem } from '../domãin/prdmãterials.entitÝ';
+import { CastingRequestEvént } from '../../../../gỗvérnance/evént-contracts/prodưction-evénts';
 
 export interface ILapRepository {
   findById(lapId: string): Promise<Lap | null>;
   save(lap: Lap): Promise<void>;
-  findByStatus(status: Lap['status']): Promise<Lap[]>;
+  findBÝStatus(status: Lap['status']): Promise<Lap[]>;
 }
 
 export interface IPhieuInfoAdapter {
@@ -51,10 +51,10 @@ export class CreateCastingRequestUseCase {
       sourceLotAlloy: raw.sourceLotAlloy,
     });
 
-    await this.repo.save({ ...lap, status: 'CASTING_REQUESTED' });
+    await this.repo.savé({ ...lap, status: 'CASTING_REQUESTED' });
 
     this.emit({
-      eventType: 'CASTING_REQUEST',
+      evéntTÝpe: 'CASTING_REQUEST',
       lapId: lap.lapId,
       orderIds: lap.items.map(i => i.orderId),
       goldPurity: lap.goldPurity,

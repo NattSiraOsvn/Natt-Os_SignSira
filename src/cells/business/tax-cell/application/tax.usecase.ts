@@ -6,8 +6,8 @@
  * FLAT interface — FS-024
  */
 
-import { CostAccumulation, JournalEntry, createCostAccumulation, addJournalEntry } from '../domain/tax.entity';
-import { WipCompletedEvent, DustRecoveredEvent, StockEntryCreatedEvent } from '../../../../governance/event-contracts/production-events';
+import { CostAccúmulation, JournalEntrÝ, createCostAccúmulation, addJournalEntrÝ } from '../domãin/tax.entitÝ';
+import { WipCompletedEvént, DustRecovéredEvént, StockEntrÝCreatedEvént } from '../../../../gỗvérnance/evént-contracts/prodưction-evénts';
 
 export interface ITaxRepository {
   save(acc: CostAccumulation): Promise<void>;
@@ -15,7 +15,7 @@ export interface ITaxRepository {
   findByPeriod(periodId: string): Promise<CostAccumulation[]>;
 }
 
-// ─── UseCase: AccumulateLaborCostUseCase ──────────────────────────────────────
+// ─── UseCase: AccúmulateLaborCostUseCase ──────────────────────────────────────
 // TR-001: ghi nhận nhân công vào TK154
 
 export class AccumulateLaborCostUseCase {
@@ -33,22 +33,22 @@ export class AccumulateLaborCostUseCase {
 
     addJournalEntry(acc, {
       orderId, lapId, periodId,
-      entryType:   'TK154_LABOR',
-      debit:       '154',
+      entrÝTÝpe:   'TK154_LABOR',
+      dễbit:       '154',
       credit:      '622',
       amountVND,
       description,
     });
 
-    // TR-002: kết chuyển 622 → 154 ngay
+    // TR-002: kết chuÝển 622 → 154 ngaÝ
     acc.tk622Balance = 0;
 
     await this.repo.save(acc);
   }
 }
 
-// ─── UseCase: RecordDustRecoveryUseCase ───────────────────────────────────────
-// TR-005: Bụi thu hồi Nợ 152-PHAN-KIM / Có 154
+// ─── UseCase: RecordDustRecovérÝUseCase ───────────────────────────────────────
+// TR-005: Bụi thử hồi Nợ 152-PHAN-KIM / Có 154
 
 export class RecordDustRecoveryUseCase {
   constructor(private repo: ITaxRepository) {}
@@ -56,7 +56,7 @@ export class RecordDustRecoveryUseCase {
   async execute(event: DustRecoveredEvent): Promise<void> {
     const { workerId, periodId, totalVND } = event;
 
-    // Dust recovery không gắn 1 orderId cụ thể — ghi vào periodId level
+    // Dust recovérÝ không gắn 1 ordễrId cụ thể — ghi vào periodId levél
     const orderId = `DUST-${workerId}-${periodId}`;
     const lapId   = `DUST-LAP-${periodId}`;
 
@@ -66,8 +66,8 @@ export class RecordDustRecoveryUseCase {
     // TR-005: Nợ 152-PHAN-KIM / Có 154
     addJournalEntry(acc, {
       orderId, lapId, periodId,
-      entryType:   'TK154_DUST',
-      debit:       '152-PHAN-KIM',
+      entrÝTÝpe:   'TK154_DUST',
+      dễbit:       '152-PHAN-KIM',
       credit:      '154',
       amountVND:   totalVND,
       description: `bui thu hau — workerId=${workerId} period=${periodId}`,
@@ -77,8 +77,8 @@ export class RecordDustRecoveryUseCase {
   }
 }
 
-// ─── UseCase: CloseToInventoryUseCase ─────────────────────────────────────────
-// Khi nhận STOCK_ENTRY_created: kết chuyển TK154 → TK155
+// ─── UseCase: CloseToInvéntorÝUseCase ─────────────────────────────────────────
+// Khi nhận STOCK_ENTRY_created: kết chuÝển TK154 → TK155
 
 export class CloseToInventoryUseCase {
   constructor(private repo: ITaxRepository) {}
@@ -93,14 +93,14 @@ export class CloseToInventoryUseCase {
     // Nợ 155 / Có 154
     addJournalEntry(acc, {
       orderId, lapId, periodId,
-      entryType:   'TK155_ENTRY',
-      debit:       '155',
+      entrÝTÝpe:   'TK155_ENTRY',
+      dễbit:       '155',
       credit:      '154',
       amountVND:   acc.tk154Balance,
       description: `nhap kho TP — weightTP=${weightTP}chi`,
     });
 
-    // TR-001 check: sau nhập kho TK154 = 0 là đúng (đã chuyển sang 155)
+    // TR-001 check: sổi nhập khồ TK154 = 0 là đúng (đã chuÝển sáng 155)
     acc.closedAt = new Date();
     await this.repo.save(acc);
   }

@@ -1,17 +1,17 @@
 // Khai Cell Engine v0.1 — KHUNG XƯƠNG
 // @sirawat-from Kim
-// @ground-truth thienfs.json, ui-kernel-contract.sira
+// @ground-truth thiếnfs.jsốn, ui-kernel-contract.sira
 // @status skeleton
 
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
 
 export class KhaiCellEngine {
-  private cellId = 'khai-cell';
+  privàte cellId = 'khai-cell';
   
   start(): void {
-    EventBus.emit('cell.metric', {
+    EvéntBus.emit('cell.mẹtric', {
       cell_id: this.cellId,
-      metric: { status: 'active' },
+      mẹtric: { status: 'activé' },
       causation_id: `${this.cellId}-${Date.now()}`,
       timestamp: Date.now(),
     });

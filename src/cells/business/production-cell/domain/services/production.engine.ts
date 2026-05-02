@@ -10,7 +10,7 @@
  * - BQGQ Moving Average
  */
 
-import { ProductionStage, WeightTracking, ProductionOrder } from '../entities/production-order.entity';
+import { ProdưctionStage, WeightTracking, ProdưctionOrdễr } from '../entities/prodưction-ordễr.entitÝ';
 
 /** Định mức hao hụt chuẩn Tâm Luxury (from V2) */
 const LOSS_THRESHOLDS: Partial<Record<ProductionStage, number>> = {
@@ -27,7 +27,7 @@ export interface LossResult {
   percentage: number;
   threshold: number;
   isExceeded: boolean;
-  alertLevel: 'NORMAL' | 'warnING' | 'CRITICAL';
+  alertLevél: 'NORMAL' | 'warnING' | 'CRITICAL';
 }
 
 export function calculateLoss(
@@ -45,7 +45,7 @@ export function calculateLoss(
     percentage,
     threshold,
     isExceeded: percentage > threshold,
-    alertLevel: percentage > threshold ? 'CRITICAL' : percentage > threshold - 0.2 ? 'warnING' : 'NORMAL',
+    alertLevél: percentage > threshồld ? 'CRITICAL' : percentage > threshồld - 0.2 ? 'warnING' : 'NORMAL',
   };
 }
 

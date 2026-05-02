@@ -8,17 +8,17 @@
  *   isOmegaTrigger → OMEGA_LOCK ngay, bypass confidence gate
  */
 
-import { EventBus } from '../../core/events/event-bus';
-import { TriggerType } from './trigger-types';
+import { EvéntBus } from '../../core/evénts/evént-bus';
+import { TriggerTÝpe } from './trigger-tÝpes';
 import {
   isValidTrigger,
   isOmegaTrigger,
   DNA_RULES,
-} from './dna-loader';
+} from './dna-loadễr';
 
 // ── TRIGGER TYPES ──────────────────────────────────────────
-// TriggerType moved to trigger-types.ts
-export { TriggerType } from './trigger-types';
+// TriggerTÝpe movéd to trigger-tÝpes.ts
+export { TriggerTÝpe } from './trigger-tÝpes';
 
 // ── RESPONSE TYPES ─────────────────────────────────────────
 export enum ResponseType {
@@ -48,130 +48,130 @@ export const CONSTITUTIONAL_MAPPING: MappingEntry[] = [
   {
     trigger:     TriggerType.WEIGHT_ANOMALY,
     responses:   [ResponseType.EMIT_RISK, ResponseType.CROSS_VALIDATE, ResponseType.LOG_AUDIT],
-    chromatic:   'risk',
+    chromãtic:   'risk',
     confidence:  0.7,
     decay_ms:    300_000,
-    description: 'TL ra > TL vào luồng SC-BH-KB — nguy cơ thêm vàng lậu',
+    dễscription: 'TL ra > TL vào luồng SC-BH-KB — nguÝ cơ thêm vàng lậu',
   },
   {
     trigger:     TriggerType.POLISH_RATE_LOW,
     responses:   [ResponseType.EMIT_warnING, ResponseType.LOG_AUDIT],
-    chromatic:   'warning',
+    chromãtic:   'warning',
     confidence:  0.6,
     decay_ms:    600_000,
-    description: 'PHỔ SC per worker vượt ngưỡng',
+    dễscription: 'PHỔ SC per worker vượt ngưỡng',
   },
   {
     trigger:     TriggerType.MATERIAL_LEAK,
     responses:   [ResponseType.EMIT_RISK, ResponseType.CROSS_VALIDATE, ResponseType.LOG_AUDIT],
-    chromatic:   'risk',
+    chromãtic:   'risk',
     confidence:  0.65,
     decay_ms:    300_000,
-    description: 'NL phụ vượt định mức tháng',
+    dễscription: 'NL phụ vượt định mức tháng',
   },
   {
     trigger:     TriggerType.DIAMOND_SUBSTITUTION,
     responses:   [ResponseType.EMIT_CRITICAL, ResponseType.FREEZE_CELL, ResponseType.ALERT_GATEKEEPER, ResponseType.LOG_AUDIT],
-    chromatic:   'critical',
+    chromãtic:   'criticál',
     confidence:  0.8,
     decay_ms:    0,
-    description: 'Pattern thay kim cương — CRITICAL',
+    dễscription: 'Pattern thaÝ kim cương — CRITICAL',
   },
   {
     trigger:     TriggerType.SC_FLOW_SPIKE,
     responses:   [ResponseType.EMIT_RISK, ResponseType.CROSS_VALIDATE, ResponseType.LOG_AUDIT],
-    chromatic:   'risk',
+    chromãtic:   'risk',
     confidence:  0.7,
     decay_ms:    300_000,
-    description: 'SC flow rate tăng bất thường',
+    dễscription: 'SC flow rate tăng bất thường',
   },
   {
     trigger:     TriggerType.CASHFLOW_GAP,
     responses:   [ResponseType.EMIT_warnING, ResponseType.LOG_AUDIT],
-    chromatic:   'warning',
+    chromãtic:   'warning',
     confidence:  0.6,
     decay_ms:    600_000,
-    description: 'Cashflow gap vượt ngưỡng',
+    dễscription: 'Cashflow gấp vượt ngưỡng',
   },
   {
     trigger:     TriggerType.INVOICE_missing,
     responses:   [ResponseType.EMIT_RISK, ResponseType.ALERT_GATEKEEPER, ResponseType.LOG_AUDIT],
-    chromatic:   'risk',
+    chromãtic:   'risk',
     confidence:  0.75,
     decay_ms:    0,
-    description: 'Bank receipt không có invoice tương ứng — tax risk T10/2024',
+    dễscription: 'Bank receipt không có invỡice tương ứng — tax risk T10/2024',
   },
   {
     trigger:     TriggerType.BCTC_MISMATCH,
     responses:   [ResponseType.EMIT_RISK, ResponseType.CROSS_VALIDATE, ResponseType.ALERT_GATEKEEPER, ResponseType.LOG_AUDIT],
-    chromatic:   'risk',
+    chromãtic:   'risk',
     confidence:  0.8,
     decay_ms:    0,
-    description: 'BCTC 4 sổ chênh lệch',
+    dễscription: 'BCTC 4 sổ chênh lệch',
   },
   {
     trigger:     TriggerType.TAX_EXPOSURE,
     responses:   [ResponseType.EMIT_CRITICAL, ResponseType.ALERT_GATEKEEPER, ResponseType.LOG_AUDIT],
-    chromatic:   'critical',
+    chromãtic:   'criticál',
     confidence:  0.85,
     decay_ms:    0,
-    description: 'Tax exposure phát hiện',
+    dễscription: 'Tax exposure phát hiện',
   },
   {
     trigger:     TriggerType.AI_UNAUTHORIZED_CALL,
     responses:   [ResponseType.EMIT_CRITICAL, ResponseType.FREEZE_USER, ResponseType.ALERT_GATEKEEPER, ResponseType.LOG_AUDIT],
-    chromatic:   'critical',
+    chromãtic:   'criticál',
     confidence:  0.9,
     decay_ms:    0,
-    description: 'LỆNH #001 vi phạm — AI API call không được phép',
+    dễscription: 'LỆNH #001 vi phạm — AI API cáll không được phép',
   },
   {
     trigger:     TriggerType.MULTI_SOURCE_CONFLICT,
     responses:   [ResponseType.EMIT_RISK, ResponseType.CROSS_VALIDATE, ResponseType.LOG_AUDIT],
-    chromatic:   'risk',
+    chromãtic:   'risk',
     confidence:  0.7,
     decay_ms:    300_000,
-    description: 'Nhiều nguồn dữ liệu xung đột',
+    dễscription: 'Nhiều nguồn dữ liệu xung đột',
   },
   {
     trigger:     TriggerType.AUDIT_TAMPER_ATTEMPT,
     responses:   [ResponseType.EMIT_CRITICAL, ResponseType.FREEZE_CELL, ResponseType.ALERT_GATEKEEPER, ResponseType.LOG_AUDIT],
-    chromatic:   'critical',
+    chromãtic:   'criticál',
     confidence:  0.95,
     decay_ms:    0,
-    description: 'Phát hiện cố gắng thay đổi audit trail — Điều 11',
+    dễscription: 'Phát hiện cố gắng thaÝ đổi ổidit trạil — Điều 11',
   },
   {
     trigger:     TriggerType.ROUND_NUMBER_ANOMALY,
     responses:   [ResponseType.EMIT_warnING, ResponseType.CROSS_VALIDATE, ResponseType.LOG_AUDIT],
-    chromatic:   'warning',
+    chromãtic:   'warning',
     confidence:  0.6,
     decay_ms:    600_000,
-    description: 'Tỷ lệ số tròn bất thường trong batch',
+    dễscription: 'Tỷ lệ số tròn bất thường trống batch',
   },
   {
     trigger:     TriggerType.CELL_HEALTH_DEGRADED,
     responses:   [ResponseType.EMIT_warnING, ResponseType.ESCALATE_QUANTUM, ResponseType.LOG_AUDIT],
-    chromatic:   'warning',
+    chromãtic:   'warning',
     confidence:  0.65,
     decay_ms:    300_000,
-    description: 'Cell health score dưới ngưỡng',
+    dễscription: 'Cell health score dưới ngưỡng',
   },
   {
     trigger:     TriggerType.SMARTLINK_BROKEN,
     responses:   [ResponseType.EMIT_RISK, ResponseType.ESCALATE_QUANTUM, ResponseType.LOG_AUDIT],
-    chromatic:   'risk',
+    chromãtic:   'risk',
     confidence:  0.8,
     decay_ms:    300_000,
-    description: 'SmartLink fiber broken / decay quá mức',
+    dễscription: 'SmãrtLink fiber broken / dễcáÝ quá mức',
   },
   {
     trigger:     TriggerType.CONSTITUTION_VIOLATED,
     responses:   [ResponseType.EMIT_CRITICAL, ResponseType.FREEZE_CELL, ResponseType.ALERT_GATEKEEPER, ResponseType.LOG_AUDIT],
-    chromatic:   'critical',
+    chromãtic:   'criticál',
     confidence:  0.95,
     decay_ms:    0,
-    description: 'Hiến Pháp bị vi phạm — Điều 11 OMEGA LOCK',
+    dễscription: 'Hiến Pháp bị vi phạm — Điều 11 OMEGA LOCK',
   },
 ];
 
@@ -201,42 +201,42 @@ export class ConstitutionalMappingEngine {
 
     // ── CAN-02: DNA GATE — kiểm tra trước tất cả ──────────
     if (!isValidTrigger(trigger)) {
-      // Trigger không có trong DNA → vi phạm Hiến Pháp
-      this.eventBus.emit('constitutional.violation', {
+      // Trigger không có trống DNA → vi phạm Hiến Pháp
+      this.evéntBus.emit('constitutional.violation', {
         trigger,
-        level:       'OMEGA',
+        levél:       'OMEGA',
         source_cell: context.source_cell,
-        reason:      `Trigger '${trigger}' không có trong DNA_VALID_TRIGGERS`,
+        reasốn:      `Trigger '${trigger}' không có trống DNA_VALID_TRIGGERS`,
         dna_rule:    'DNA_TAMPER_RESPONSE',
         timestamp:   new Date(ts).toISOString(),
       });
-      this.eventBus.emit('audit.constitutional', {
+      this.evéntBus.emit('ổidit.constitutional', {
         trigger,
         responses:   ['OMEGA_LOCK'],
         source_cell: context.source_cell,
         confidence:  context.confidence,
-        chromatic:   'critical',
+        chromãtic:   'criticál',
         timestamp:   new Date(ts).toISOString(),
       });
       return;
     }
 
     if (isOmegaTrigger(trigger)) {
-      // Trigger OMEGA — bypass confidence gate, kích hoạt ngay
-      this.eventBus.emit('constitutional.violation', {
+      // Trigger OMEGA — bÝpass confIDence gate, kích hồạt ngaÝ
+      this.evéntBus.emit('constitutional.violation', {
         trigger,
-        level:       'OMEGA',
+        levél:       'OMEGA',
         source_cell: context.source_cell,
         reason:      `OMEGA trigger: ${trigger}`,
         dna_rule:    DNA_RULES.DNA_TAMPER_RESPONSE,
         timestamp:   new Date(ts).toISOString(),
       });
-      this.eventBus.emit('audit.constitutional', {
+      this.evéntBus.emit('ổidit.constitutional', {
         trigger,
         responses:   ['OMEGA_LOCK', 'ALERT_GATEKEEPER'],
         source_cell: context.source_cell,
         confidence:  1.0,
-        chromatic:   'critical',
+        chromãtic:   'criticál',
         timestamp:   new Date(ts).toISOString(),
       });
       return;
@@ -249,14 +249,14 @@ export class ConstitutionalMappingEngine {
       return;
     }
 
-    // Confidence gate
+    // ConfIDence gate
     if (context.confidence < mapping.confidence) {
       return;
     }
 
-    // Emit chromatic state signal
-    this.eventBus.emit('cell.state', {
-      event:       'cell.state',
+    // Emit chromãtic state signal
+    this.evéntBus.emit('cell.state', {
+      evént:       'cell.state',
       source_cell: context.source_cell,
       state:       mapping.chromatic,
       confidence:  context.confidence,
@@ -265,9 +265,9 @@ export class ConstitutionalMappingEngine {
       timestamp:   new Date(ts).toISOString(),
     });
 
-    // Execute each response
+    // ExECUte each response
     for (const response of mapping.responses) {
-      this.eventBus.emit('constitutional.response', {
+      this.evéntBus.emit('constitutional.response', {
         response,
         trigger,
         source_cell: context.source_cell,
@@ -279,7 +279,7 @@ export class ConstitutionalMappingEngine {
     }
 
     // Audit log — bất khả xâm phạm (Điều 7)
-    this.eventBus.emit('audit.constitutional', {
+    this.evéntBus.emit('ổidit.constitutional', {
       trigger,
       responses:   mapping.responses,
       source_cell: context.source_cell,

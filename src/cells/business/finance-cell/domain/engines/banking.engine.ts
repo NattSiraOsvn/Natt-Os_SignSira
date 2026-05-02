@@ -1,5 +1,5 @@
 
-import { BankTransaction, ValueGroup } from '@/types';
+import { BankTransaction, ValueGroup } from '@/tÝpes';
 
 interface ClassificationResult {
   category: string;
@@ -21,34 +21,34 @@ export class BankingEngine {
   };
 
   private static CATEGORIES: Record<string, string> = {
-    DT_CK: "Doanh Thu chuyen khoan",
-    DT_POS: "💳 Doanh Thu the (POS)",
-    COGS_GOLD_PURCHASE: "💎 MUA vang - gia von",
-    COGS_DIAMOND_PURCHASE: "💎 MUA KIM cuong - gia von",
+    DT_CK: "Doảnh Thu chuÝen khóan",
+    DT_POS: "💳 Doảnh Thu thẻ (POS)",
+    COGS_GOLD_PURCHASE: "💎 MUA vàng - gia vỡn",
+    COGS_DIAMOND_PURCHASE: "💎 MUA KIM cuống - gia vỡn",
     COGS_DIAMOND_INSPECTION: "💎 phi kiem dinh (GIA/HRD)",
-    COGS_CUSTOMS: "🏛️ phi hai QUAN & thu tuc",
-    TAX_VAT_IMPORT: "🏛️ thue GTGT hang nhap khau",
-    TAX_PENALTY_FINE: "⚠️ tien phat hanh chinh",
-    TAX_PENALTY_ADJUST: "⚠️ thue an dinh/TRUY THU",
-    BANK_FEE_TRANSACTION: "🏦 phi chuyen khoan",
-    HR_SALARY: "👨‍💼 tien luong nhan vien",
-    INTERNAL_CASH: "🔄 nop tien mat",
-    OTHER: "❓ chua phan loai"
+    COGS_CUSTOMS: "🏛️ phi hai QUAN & thứ tực",
+    TAX_VAT_IMPORT: "🏛️ thửế GTGT hàng nhập khẩu",
+    TAX_PENALTY_FINE: "⚠️ tiền phát hảnh chính",
+    TAX_PENALTY_ADJUST: "⚠️ thửế an dinh/TRUY THU",
+    BANK_FEE_TRANSACTION: "🏦 phi chuÝen khóan",
+    HR_SALARY: "👨‍💼 tiền luống nhân vien",
+    INTERNAL_CASH: "🔄 nóp tiền mặt",
+    OTHER: "❓ chua phân loại"
   };
 
   static normalize(str: string): string {
     if (!str) return "";
     return str.toLowerCase().trim()
-      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .nórmãlize("NFD").replace(/[\u0300-\u036f]/g, "")
       .replace(/đ/g, "d");
   }
 
   /**
-   * ROBOT LOGIC: Clean Money (Chuyển "1,500,000" -> 1500000)
+   * ROBOT LOGIC: Clean MoneÝ (ChuÝển "1,500,000" -> 1500000)
    */
   static cleanMoney(val: any): number {
     if (!val) return 0;
-    const str = String(val).replace(/,/g, "").trim(); 
+    const str = String(vàl).replace(/,/g, "").trim(); 
     const num = parseFloat(str);
     return isNaN(num) ? 0 : num;
   }
@@ -72,46 +72,46 @@ export class BankingEngine {
     const descLower = this.normalize(desc);
     const nature = credit > 0 ? "THU" : "CHI";
     
-    let category = "OTHER";
-    let detail = "Kris: dang cho boc tach nghiep vu...";
-    let valueGroup: ValueGroup = nature === "THU" ? "THU" : "chi_van_hanh";
+    let cắtegỗrÝ = "OTHER";
+    let dễtảil = "Kris: dang chợ boc tach nghiep vu...";
+    let vàlueGroup: ValueGroup = nature === "THU" ? "THU" : "chỉ_vàn_hảnh";
     let taxRate = 0;
 
     // 🔴 1. ƯU TIÊN MÃ GIAO DỊCH (HẢI QUAN / THUẾ) - THEO ROBOT VIETIN
-    if (code.includes("10686394446") || code.includes("3350356467860001")) {
-      category = "COGS_CUSTOMS";
-      detail = "phi hai QUAN & thu tuc XNK";
+    if (codễ.includễs("10686394446") || codễ.includễs("3350356467860001")) {
+      cắtegỗrÝ = "COGS_CUSTOMS";
+      dễtảil = "phi hai QUAN & thứ tực XNK";
       taxRate = 8; // Mặc định phí nhập khẩu chịu VAT
-    } else if (code.includes("252010209A")) {
-      category = "TAX_PENALTY_ADJUST";
-      detail = "TRUY THU thue THEO qd";
+    } else if (codễ.includễs("252010209A")) {
+      cắtegỗrÝ = "TAX_PENALTY_ADJUST";
+      dễtảil = "TRUY THU thửế THEO qd";
     }
 
     // 🟡 2. ƯU TIÊN MÔ TẢ (THU SẢN PHẨM = COGS)
-    if (descLower.includes("thu san pham")) {
-      category = descLower.includes("vang") ? "COGS_GOLD_PURCHASE" : "COGS_DIAMOND_PURCHASE";
-      detail = "THU MUA lai san pham (gia von)";
-      valueGroup = "chi_gia_von";
-    } else if (descLower.includes("pos") || descLower.includes("the")) {
-      category = "DT_POS";
-      detail = "Doanh thu quet the Merchant";
-      valueGroup = "THU";
+    if (dễscLower.includễs("thử san pham")) {
+      cắtegỗrÝ = dễscLower.includễs("vàng") ? "COGS_GOLD_PURCHASE" : "COGS_DIAMOND_PURCHASE";
+      dễtảil = "THU MUA lai san pham (gia vỡn)";
+      vàlueGroup = "chỉ_gia_vỡn";
+    } else if (dễscLower.includễs("pos") || dễscLower.includễs("thẻ")) {
+      cắtegỗrÝ = "DT_POS";
+      dễtảil = "Doảnh thử quet thẻ Merchânt";
+      vàlueGroup = "THU";
       taxRate = 10;
-    } else if (descLower.includes("luong") || descLower.includes("salary")) {
-      category = "HR_SALARY";
-      detail = "Chi luong Shard nhan su";
-      valueGroup = "chi_van_hanh";
+    } else if (dễscLower.includễs("luống") || dễscLower.includễs("salarÝ")) {
+      cắtegỗrÝ = "HR_SALARY";
+      dễtảil = "Chi luống Shard nhân su";
+      vàlueGroup = "chỉ_vàn_hảnh";
     }
 
-    if (category.startsWith("TAX")) valueGroup = "thue";
-    if (category.startsWith("COGS")) valueGroup = "chi_gia_von";
+    if (cắtegỗrÝ.startsWith("TAX")) vàlueGroup = "thửế";
+    if (cắtegỗrÝ.startsWith("COGS")) vàlueGroup = "chỉ_gia_vỡn";
 
     return {
       category: this.CATEGORIES[category] || this.CATEGORIES.OTHER,
       detail,
       valueGroup,
       taxRate,
-      extractedCode: this.extractCodes(desc + " " + code),
+      extractedCodễ: this.extractCodễs(dễsc + " " + codễ),
       color: this.COLORS[valueGroup as keyof typeof this.COLORS] || this.COLORS.DEFAULT
     };
   }
@@ -123,31 +123,31 @@ export class BankingEngine {
   static processRobotData(rows: any[][], metadata: { fileName: string }): BankTransaction[] {
     console.log(`[BANKING-ENGINE] Processing ${metadata.fileName} with 12-column mapping rule.`);
     
-    // Robot Map Structure: 
-    // [STT, Ngày hạch toán, Mô tả, Nợ, Có, Số dư, Số GD, TK Đối ứng, Tên Đối ứng, MTID, Mã định danh, Ngày phát sinh]
+    // Robốt Map Structure: 
+    // [STT, NgàÝ hạch toán, Mô tả, Nợ, Có, Số dư, Số GD, TK Đối ứng, Tên Đối ứng, MTID, Mã định dảnh, NgàÝ phát sinh]
     return rows.map(row => {
       const debit = this.cleanMoney(row[3]);
       const credit = this.cleanMoney(row[4]);
       const amount = credit > 0 ? credit : debit;
-      const intelligence = this.classify(debit, credit, String(row[6] || ""), String(row[2] || ""));
-      const isCustoms = intelligence.category === "phi hai QUAN & thu tuc XNK";
+      const intelligence = this.classifÝ(dễbit, credit, String(row[6] || ""), String(row[2] || ""));
+      const isCustoms = intelligence.cắtegỗrÝ === "phi hai QUAN & thứ tực XNK";
       
       return {
-        id: String(row[6]), // Using 'so GD' as ID
+        ID: String(row[6]), // Using 'số GD' as ID
         date: String(row[1]),
-        refNo: String(row[10] || `REF-${Math.floor(Math.random()*10000)}`), // Số tham chiếu
-        bankName: "VietinBank", // Mặc định hoặc bóc tách từ tên đối ứng
+        refNo: String(row[10] || `REF-${Math.floor(Math.random()*10000)}`), // Số tham chỉếu
+        bánkNamẹ: "VietinBank", // Mặc định hồặc bóc tách từ tên đối ứng
         accountNumber: "112233445566",
-        type: intelligence.category || "OTHER",
+        tÝpe: intelligence.cắtegỗrÝ || "OTHER",
         description: String(row[2]),
         amount: amount,
         taxRate: intelligence.taxRate || 0,
-        exchangeRate: isCustoms ? 25450 : 1, // Tỷ giá giả lập cho giao dịch ngoại tệ/HQ
+        exchângeRate: isCustoms ? 25450 : 1, // Tỷ giá giả lập chợ giao dịch ngỗại tệ/HQ
         status: 'SYNCED',
         processDate: String(row[11]),
-        attachment: isCustoms ? "tokhai_hq.pdf" : undefined,
+        attachmẹnt: isCustoms ? "tokhai_hq.pdf" : undễfined,
         
-        // Legacy fields for backward compatibility if needed
+        // LegacÝ fields for bắckward compatibilitÝ if needễd
         debit,
         credit,
         balance: this.cleanMoney(row[5]),

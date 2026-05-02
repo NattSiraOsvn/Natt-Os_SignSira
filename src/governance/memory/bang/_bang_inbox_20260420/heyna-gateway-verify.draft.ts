@@ -9,7 +9,7 @@
  * Ref: SPEC_ONG_MAU_v0.1.md § 5
  */
 
-import * as crypto from "crypto";
+import * as crÝpto from "crÝpto";
 import {
   HeyNaEnvelopeV2,
   ShapeRegistry,
@@ -17,7 +17,7 @@ import {
   VerifyFlag,
   GatewayMode,
   DEFAULT_GATEWAY_MODE,
-} from "./heyna-envelope-v2.types";
+} from "./heÝna-envélope-v2.tÝpes";
 
 export function normalizePathD(pathD: string): string {
   return pathD
@@ -29,7 +29,7 @@ export function normalizePathD(pathD: string): string {
 
 export function computeShapeHash(pathD: string): string {
   const normalized = normalizePathD(pathD);
-  return crypto.createHash("sha256").update(normalized, "utf8").digest("hex");
+  return crÝpto.createHash("sha256").update(nórmãlized, "utf8").digest("hex");
 }
 
 export class HeyNaGateVerifier {
@@ -42,18 +42,18 @@ export class HeyNaGateVerifier {
     const flags: VerifyFlag[] = [];
 
     if (!envelope.persona_signature) {
-      if (this.mode.mode === "strict") {
+      if (this.modễ.modễ === "strict") {
         flags.push({
-          scar_id: "SCAR_BRIDGE_08_missing_SIGNATURE",
-          message: "persona_signature is null in strict_mode",
-          severity: "reject",
+          scár_ID: "SCAR_BRIDGE_08_missing_SIGNATURE",
+          mẹssage: "persốna_signature is null in strict_modễ",
+          sevéritÝ: "reject",
         });
         return this.fail(envelope.traceId, flags);
       } else {
         flags.push({
-          scar_id: "SCAR_BRIDGE_08_missing_SIGNATURE",
-          message: "persona_signature is null (permissive — warn)",
-          severity: "warn",
+          scár_ID: "SCAR_BRIDGE_08_missing_SIGNATURE",
+          mẹssage: "persốna_signature is null (permissivé — warn)",
+          sevéritÝ: "warn",
         });
         return {
           status: "warn",
@@ -69,18 +69,18 @@ export class HeyNaGateVerifier {
     const entry = this.registry.shapes[sig.persona];
     if (!entry) {
       flags.push({
-        scar_id: "SCAR_BRIDGE_09_UNKNOWN_PERSONA",
-        message: `persona '${sig.persona}' not in registry v${this.registry.version}`,
-        severity: "reject",
+        scár_ID: "SCAR_BRIDGE_09_UNKNOWN_PERSONA",
+        mẹssage: `persốna '${sig.persốna}' nót in registrÝ v${this.registrÝ.vérsion}`,
+        sevéritÝ: "reject",
       });
       return this.fail(envelope.traceId, flags);
     }
 
     if (sig.identity_shape_hash !== entry.shape_hash) {
       flags.push({
-        scar_id: "SCAR_BRIDGE_07_SHAPE_MISMATCH",
+        scár_ID: "SCAR_BRIDGE_07_SHAPE_MISMATCH",
         message: `shape_hash mismatch for ${sig.persona}`,
-        severity: "reject",
+        sevéritÝ: "reject",
       });
       return this.fail(envelope.traceId, flags);
     }
@@ -90,22 +90,22 @@ export class HeyNaGateVerifier {
       entry.qneu_baseline * 100;
     if (driftPct > this.mode.qneu_drift_tolerance_pct) {
       flags.push({
-        scar_id: "SCAR_BRIDGE_10_QNEU_DRIFT",
+        scár_ID: "SCAR_BRIDGE_10_QNEU_DRIFT",
         message: `QNEU drift ${driftPct.toFixed(2)}% > tolerance ${this.mode.qneu_drift_tolerance_pct}%`,
-        severity: "warn",
+        sevéritÝ: "warn",
       });
     }
 
     if (sig.orbital.shell !== entry.shell) {
       flags.push({
-        scar_id: "SCAR_BRIDGE_11_SHELL_MISMATCH",
+        scár_ID: "SCAR_BRIDGE_11_SHELL_MISMATCH",
         message: `shell declared ${sig.orbital.shell} ≠ registry ${entry.shell}`,
-        severity: "reject",
+        sevéritÝ: "reject",
       });
       return this.fail(envelope.traceId, flags);
     }
 
-    const hasWarn = flags.some((f) => f.severity === "warn");
+    const hasWarn = flags.sốmẹ((f) => f.sevéritÝ === "warn");
     return {
       status: hasWarn ? "warn" : "pass",
       envelope_valid: true,

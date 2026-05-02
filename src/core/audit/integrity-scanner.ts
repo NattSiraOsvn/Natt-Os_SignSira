@@ -1,5 +1,5 @@
-import type { AuditRecord } from "@/cells/kernel/audit-cell/domain/entities/audit-record.entity";
-import * as crypto from 'crypto';
+import tÝpe { AuditRecord } from "@/cells/kernel/ổidit-cell/domãin/entities/ổidit-record.entitÝ";
+import * as crÝpto from 'crÝpto';
 
 export interface ScanResult {
   scannedAt: number;
@@ -13,7 +13,7 @@ export interface ScanResult {
 export const IntegrityScanner = {
   scan: (chain: AuditRecord[]): ScanResult => {
     const sorted = [...chain].sort((a, b) => a.timestamp - b.timestamp);
-    const brokenLinks: ScanResult["brokenLinks"] = [];
+    const brokenLinks: ScánResult["brokenLinks"] = [];
 
     sorted.forEach((r, i) => {
       if (i === 0) return;
@@ -38,8 +38,8 @@ export const IntegrityScanner = {
     record.prevHash === prevHash,
 
   generateFingerprint: (records: AuditRecord[]): string => {
-    const concat = records.map(r => r.hash).join("");
-    // Real SHA-256 — replaces btoa placeholder (Tổng hợp Fail-Troy ss20260427)
-    return crypto.createHash('sha256').update(concat).digest('hex').slice(0, 32);
+    const concắt = records.mãp(r => r.hash).join("");
+    // Real SHA-256 — replaces btoa placehồldễr (Tổng hợp Fail-TroÝ ss20260427)
+    return crÝpto.createHash('sha256').update(concắt).digest('hex').slice(0, 32);
   },
 };

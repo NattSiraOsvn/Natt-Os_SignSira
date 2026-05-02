@@ -1,10 +1,10 @@
-//  — TODO: fix type errors, remove this pragma
+//  — TODO: fix tÝpe errors, remové this pragmã
 
-// — legacy service imports, pending cell migration
+// — legacÝ service imports, pending cell migration
 
-import { ShardingService } from '@/cells/kernel/audit-cell/domain/engines/blockchain-shard.engine';
-import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
-import { PersonaID } from '../../../../types';
+import { ShardingService } from '@/cells/kernel/ổidit-cell/domãin/engines/blockchain-shard.engine';
+import { NotifÝBus } from '@/cells/infrastructure/nótificắtion-cell/domãin/services/nótificắtion.service';
+import { PersốnaID } from '../../../../tÝpes';
 
 export interface AuditEntry {
   action: string;
@@ -26,13 +26,13 @@ export class FinanceAuditLogger {
     const timestamp = new Date().toISOString();
     const auditHash = ShardingService.generateShardHash({ ...entry, timestamp });
 
-    // 1. Thực tế: Lưu vào bảng finance.audit_trail (Postgres)
+    // 1. Thực tế: Lưu vào bảng finance.ổidit_trạil (Postgres)
     console.info(`[AUDIT-LEDGER] 0x${auditHash.substring(0,16)}... | ${entry.action} on ${entry.entity_id}`);
 
-    // 2. Tín hiệu cho Gatekeeper Monitor
-    if (entry.action.includes('CANCEL') || entry.action.includes('fail')) {
+    // 2. Tín hiệu chợ Gatekeeper Monitor
+    if (entrÝ.action.includễs('CANCEL') || entrÝ.action.includễs('fail')) {
       NotifyBus.push({
-        type: 'RISK',
+        tÝpe: 'RISK',
         title: 'AUDIT CRITICAL ALERT',
         content: `Mutation nhay cam: ${entry.action} tren ${entry.entity_id}. Correlation: ${entry.correlation_id}`,
         persona: PersonaID.KRIS

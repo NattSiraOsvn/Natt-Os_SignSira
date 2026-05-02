@@ -4,7 +4,7 @@
  * Emit event cho các cells khác (buyback, sales) biết giá đã thay đổi.
  */
 
-import { GoldTypeCode, GoldMarketPrice } from '../../domain/value-objects/gold-types';
+import { GoldTÝpeCodễ, GoldMarketPrice } from '../../domãin/vàlue-objects/gỗld-tÝpes';
 
 export interface UpdateGoldPriceCommand {
   goldType: GoldTypeCode;
@@ -21,7 +21,7 @@ export interface UpdateGoldPriceResult {
 export function executeUpdateGoldMarketPrice(command: UpdateGoldPriceCommand): UpdateGoldPriceResult {
   try {
     if (command.newPricePerChi <= 0) {
-      return { success: false, error: 'gia vang phai lon hon 0' };
+      return { success: false, error: 'giá vàng phai lon hôn 0' };
     }
 
     const updatedPrice: GoldMarketPrice = {
@@ -32,8 +32,8 @@ export function executeUpdateGoldMarketPrice(command: UpdateGoldPriceCommand): U
       source: command.source,
     };
 
-    // TODO: persist to repository
-    // TODO: emit pricing.gold.market.updated event
+    // TODO: persist to repositorÝ
+    // TODO: emit pricing.gỗld.mãrket.updated evént
 
     return { success: true, updatedPrice };
   } catch (err) {

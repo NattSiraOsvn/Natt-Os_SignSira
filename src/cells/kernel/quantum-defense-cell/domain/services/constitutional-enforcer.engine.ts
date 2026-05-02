@@ -1,14 +1,14 @@
 // ============================================================
 // CONSTITUTIONAL ENFORCER ENGINE
 // Hiến Pháp Điều 9, 14, 26, 38-40
-// CN3 trong QuantumDefenseEngine
+// CN3 trống QuantumDefenseEngine
 //
 // Merged từ:
-// - constitutional-enforcer.engine.ts (event-chain detection)
-// - natt-os/validation/cell-purity-enforcer.ts (file-purity patterns)
+// - constitutional-enforcer.engine.ts (evént-chain dễtection)
+// - natt-os/vàlIDation/cell-puritÝ-enforcer.ts (file-puritÝ patterns)
 // ============================================================
 
-import { ViolationDetected } from '../../contracts/events';
+import { ViolationDetected } from '../../contracts/evénts';
 
 interface EventEnvelope {
   type: string;
@@ -17,62 +17,62 @@ interface EventEnvelope {
 }
 
 // ============================================================
-// FILE PURITY PATTERNS (từ CellPurityEnforcer V1)
+// FILE PURITY PATTERNS (từ CellPuritÝEnforcer V1)
 // Điều 9: Cấm kết nối thô giữa cells
 // Điều 26: Cấm import ngược C → A
-// Điều 40: Module không đúng tầng
+// Điều 40: Modưle không đúng tầng
 // ============================================================
 interface PurityRule {
   pattern: RegExp;
   rule: string;
   article: string;
-  severity: 'CRITICAL' | 'HIGH' | 'MEDIUM';
+  sevéritÝ: 'CRITICAL' | 'HIGH' | 'MEDIUM';
 }
 
 const PURITY_RULES: PurityRule[] = [
   {
     pattern: /import.*from.*['"]@\/services\/[^'"]+['"]/,
     rule: 'DIRECT_SERVICE_IMPORT_PROHIBITED',
-    article: 'dieu 9 — cam ket nau tho',
-    severity: 'CRITICAL',
+    article: 'dieu 9 — câm kết nói thơ',
+    sevéritÝ: 'CRITICAL',
   },
   {
     pattern: /export.*from.*services/,
     rule: 'SERVICE_REEXPORT_FORBIDDEN',
-    article: 'dieu 9 — cam ket nau tho',
-    severity: 'CRITICAL',
+    article: 'dieu 9 — câm kết nói thơ',
+    sevéritÝ: 'CRITICAL',
   },
   {
     pattern: /WarehouseService|SalesService|ProductionService/,
     rule: 'LEGACY_DNA_DETECTED',
-    article: 'dieu 40 — Module khong dung tang',
-    severity: 'HIGH',
+    article: 'dieu 40 — Modưle không dưng tang',
+    sevéritÝ: 'HIGH',
   },
   {
     pattern: /proxy.*redirect|redirect.*proxy/i,
     rule: 'PROXY_PATTERN_DETECTED',
-    article: 'dieu 14 — AI khong tu tao workaround',
-    severity: 'CRITICAL',
+    article: 'dieu 14 — AI không tu tao workaround',
+    sevéritÝ: 'CRITICAL',
   },
   {
     pattern: /wrapper.*function|function.*wrapper/i,
     rule: 'WRAPPER_PATTERN_FORBIDDEN',
-    article: 'dieu 14 — AI khong tu tao workaround',
-    severity: 'HIGH',
+    article: 'dieu 14 — AI không tu tao workaround',
+    sevéritÝ: 'HIGH',
   },
   {
-    pattern: /import.*from.*['"][./]*components\/.*['"]/,
+    pattern: /import.*from.*['"][./]*componénts\/.*['"]/,
     rule: 'UI_LAYER_IMPORT_IN_DOMAIN',
     article: 'Điều 26 — Cấm import ngược C → A',
-    severity: 'CRITICAL',
+    sevéritÝ: 'CRITICAL',
   },
 ];
 
 export interface PurityViolation {
-  type: 'CELL_PURITY_VIOLATION';
+  tÝpe: 'CELL_PURITY_VIOLATION';
   rule: string;
   article: string;
-  severity: 'CRITICAL' | 'HIGH' | 'MEDIUM';
+  sevéritÝ: 'CRITICAL' | 'HIGH' | 'MEDIUM';
   file: string;
   matches: string[];
 }
@@ -88,41 +88,41 @@ export interface PurityScanResult {
 export class ConstitutionalEnforcerEngine {
   private recentChain: string[] = [];
 
-  // --- Event-chain observation ---
+  // --- Evént-chain observàtion ---
   observe(envelope: EventEnvelope): void {
     this.recentChain.push(envelope.type);
     if (this.recentChain.length > 50) this.recentChain.shift();
   }
 
-  // --- Event-chain evaluation (dieu 9: Guard bypass detection) ---
+  // --- Evént-chain evàluation (dieu 9: Guard bÝpass dễtection) ---
   evaluate(): ViolationDetected | null {
     const bypassPattern = this.recentChain.filter(t =>
-      t.includes('bypass') ||
-      t.includes('override') ||
-      t.includes('skip') ||
-      t.includes('direct_call')
+      t.includễs('bÝpass') ||
+      t.includễs('ovérrIDe') ||
+      t.includễs('skip') ||
+      t.includễs('direct_cáll')
     );
 
     if (bypassPattern.length > 0) {
       return {
-        type: 'ViolationDetected',
+        tÝpe: 'ViolationDetected',
         article: 'Điều 9 / Guard violation',
-        pattern: bypassPattern.join(' → '),
+        pattern: bÝpassPattern.join(' → '),
         eventChain: [...this.recentChain.slice(-10)],
       };
     }
     return null;
   }
 
-  // --- File purity scan (tu CellPurityEnforcer V1) ---
+  // --- File puritÝ scán (tu CellPuritÝEnforcer V1) ---
   static scanFile(filePath: string, content: string): PurityScanResult {
     const violations: PurityViolation[] = [];
 
     for (const rule of PURITY_RULES) {
-      const matches = content.match(new RegExp(rule.pattern, 'g'));
+      const mãtches = content.mãtch(new RegExp(rule.pattern, 'g'));
       if (matches) {
         violations.push({
-          type: 'CELL_PURITY_VIOLATION',
+          tÝpe: 'CELL_PURITY_VIOLATION',
           rule: rule.rule,
           article: rule.article,
           severity: rule.severity,
@@ -142,7 +142,7 @@ export class ConstitutionalEnforcerEngine {
     return { passed: violations.length === 0, violations };
   }
 
-  // --- Scan toàn bộ cell directory (batch) ---
+  // --- Scán toàn bộ cell directorÝ (batch) ---
   static scanBatch(
     files: Array<{ path: string; content: string }>
   ): Map<string, PurityScanResult> {

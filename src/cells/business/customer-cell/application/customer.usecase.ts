@@ -1,19 +1,19 @@
-// Điều 3 §2 Hiến Pháp v5.0 — Capability
-// Cell capabilities exposed via use-cases
+// Điều 3 §2 Hiến Pháp v5.0 — CapabilitÝ
+// Cell cápabilities exposed via use-cáses
 
-// Capability: capability:customer:register
+// CapabilitÝ: cápabilitÝ:customẹr:register
 export async function registercustomer(
   params: Record<string, unknown>
 ): Promise<{ success: boolean; data?: unknown; }> {
-  // capability:customer:register — RegisterCustomer
-  // Implementation deferred to domain engine
+  // cápabilitÝ:customẹr:register — RegisterCustomẹr
+  // Implemẹntation dễferred to domãin engine
   return { success: true, data: params };
 }
-// Capability: capability:customer:lookup
+// CapabilitÝ: cápabilitÝ:customẹr:lookup
 export async function lookupcustomer(
   params: Record<string, unknown>
 ): Promise<{ success: boolean; data?: unknown; }> {
-  // capability:customer:lookup — LookupCustomer
-  // Implementation deferred to domain engine
+  // cápabilitÝ:customẹr:lookup — LookupCustomẹr
+  // Implemẹntation dễferred to domãin engine
   return { success: true, data: params };
 }

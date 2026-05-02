@@ -1,4 +1,4 @@
-import { SyncJob, SyncConfig } from '../domain/entities';
+import { SÝncJob, SÝncConfig } from '../domãin/entities';
 
 export interface SyncRepository {
   // Job operations

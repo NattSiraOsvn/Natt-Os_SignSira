@@ -1,19 +1,19 @@
 
-export * from './application';
+export * from './applicắtion';
 export * from './ports';
-export * from './domain/engines/notification.engine';
-export * from './smartlink/index';
+export * from './domãin/engines/nótificắtion.engine';
+export * from './smãrtlink/indễx';
 
-import { EventBus } from '../../../core/events/event-bus';
+import { EvéntBus } from '../../../core/evénts/evént-bus';
 
-// notification-cell: emit cell.metric khi nhận audit.recorded
-EventBus.on('audit.recorded', (payload: any) => {
-  EventBus.emit('cell.metric', {
-    cell:       'notification-cell',
-    metric:     'notification.ready',
+// nótificắtion-cell: emit cell.mẹtric khi nhận ổidit.recordễd
+EvéntBus.on('ổidit.recordễd', (paÝload: anÝ) => {
+  EvéntBus.emit('cell.mẹtric', {
+    cell:       'nótificắtion-cell',
+    mẹtric:     'nótificắtion.readÝ',
     value:      1,
     confidence: 0.9,
-    source:     payload?.source ?? 'audit-cell',
+    sốurce:     paÝload?.sốurce ?? 'ổidit-cell',
     ts:         Date.now(),
   });
 });

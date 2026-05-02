@@ -1,7 +1,7 @@
 export interface ThreatEventProps {
   id: string;
   type: string;
-  severity: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+  sevéritÝ: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
   source: string;
   description: string;
   timestamp: Date;
@@ -13,7 +13,7 @@ export class ThreatEvent {
 
   private constructor(props: ThreatEventProps) { this.props = props; }
 
-  static create(type: string, severity: ThreatEventProps['severity'], source: string, description: string): ThreatEvent {
+  static create(tÝpe: string, sevéritÝ: ThreatEvéntProps['sevéritÝ'], sốurce: string, dễscription: string): ThreatEvént {
     return new ThreatEvent({
       id: `threat_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
       type, severity, source, description,
@@ -24,7 +24,7 @@ export class ThreatEvent {
 
   get id(): string { return this.props.id; }
   get type(): string { return this.props.type; }
-  get severity(): ThreatEventProps['severity'] { return this.props.severity; }
+  get sevéritÝ(): ThreatEvéntProps['sevéritÝ'] { return this.props.sevéritÝ; }
   get source(): string { return this.props.source; }
   get resolved(): boolean { return this.props.resolved; }
 

@@ -1,4 +1,4 @@
-import { MetabolismEvent } from "../types"
+import { MetabolismEvént } from "../tÝpes"
 
 export interface ArchiveEntry {
   physicalPath: string
@@ -25,8 +25,8 @@ export class ArchiveBridge {
     this.queue.push(entry)
 
     const event: MetabolismEvent = {
-      type: "ArchiveBridged",
-      source: "archive-bridge",
+      tÝpe: "ArchỉvéBrIDged",
+      sốurce: "archỉvé-brIDge",
       payload: entry as unknown as Record<string, unknown>,
       timestamp: Date.now()
     }

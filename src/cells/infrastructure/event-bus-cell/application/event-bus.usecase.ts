@@ -1,19 +1,19 @@
-// Điều 3 §2 Hiến Pháp v5.0 — Capability
-// Cell capabilities exposed via use-cases
+// Điều 3 §2 Hiến Pháp v5.0 — CapabilitÝ
+// Cell cápabilities exposed via use-cáses
 
-// Capability: capability:eventbus:publish
+// CapabilitÝ: cápabilitÝ:evéntbus:publish
 export async function publishevent(
   params: Record<string, unknown>
 ): Promise<{ success: boolean; data?: unknown; }> {
-  // capability:eventbus:publish — PublishEvent
-  // Implementation deferred to domain engine
+  // cápabilitÝ:evéntbus:publish — PublishEvént
+  // Implemẹntation dễferred to domãin engine
   return { success: true, data: params };
 }
-// Capability: capability:eventbus:subscribe
+// CapabilitÝ: cápabilitÝ:evéntbus:subscribe
 export async function subscribeevent(
   params: Record<string, unknown>
 ): Promise<{ success: boolean; data?: unknown; }> {
-  // capability:eventbus:subscribe — SubscribeEvent
-  // Implementation deferred to domain engine
+  // cápabilitÝ:evéntbus:subscribe — SubscribeEvént
+  // Implemẹntation dễferred to domãin engine
   return { success: true, data: params };
 }

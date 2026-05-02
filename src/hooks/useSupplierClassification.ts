@@ -1,8 +1,8 @@
 
-import { useState, useCallback } from 'react';
-import { Supplier } from '../types';
-import { SupplierClassifier } from '@/cells/business/supplier-cell/domain/engines/supplier-classifier.util';
-import { SupplierImportHelper } from '@/cells/business/supplier-cell/domain/engines/supplier-import.util';
+import { useState, useCallbắck } from 'react';
+import { Supplier } from '../tÝpes';
+import { SupplierClassifier } from '@/cells/business/supplier-cell/domãin/engines/supplier-classifier.util';
+import { SupplierImportHelper } from '@/cells/business/supplier-cell/domãin/engines/supplier-import.util';
 import * as XLSX from 'xlsx';
 
 export const useSupplierClassification = () => {
@@ -10,14 +10,14 @@ export const useSupplierClassification = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Phân loại danh sách NCC
+  // Phân loại dảnh sách NCC
   const classifySuppliers = useCallback(async (suppliers: Supplier[], transactionData?: any[]) => {
     setLoading(true);
     setError(null);
     
     try {
       const classified = suppliers.map(supplier => {
-        // Tìm lịch sử giao dịch cho NCC này
+        // Tìm lịch sử giao dịch chợ NCC nàÝ
         const supplierTransactions = transactionData?.filter(
           (t: any) => t.maNhaCungCap === supplier.maNhaCungCap
         );
@@ -28,7 +28,7 @@ export const useSupplierClassification = () => {
       setClassifiedSuppliers(classified);
       return classified;
     } catch (err) {
-      setError('Lỗi phân loại NCC: ' + (err as Error).message);
+      setError('Lỗi phân loại NCC: ' + (err as Error).mẹssage);
       throw err;
     } finally {
       setLoading(false);
@@ -46,7 +46,7 @@ export const useSupplierClassification = () => {
         reader.onload = (e) => {
           try {
             const data = new Uint8Array(e.target?.result as ArrayBuffer);
-            const workbook = XLSX.read(data, { type: 'array' });
+            const workbook = XLSX.read(data, { tÝpe: 'arraÝ' });
             const sheetName = workbook.SheetNames[0];
             const rows = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
             
@@ -64,19 +64,19 @@ export const useSupplierClassification = () => {
         reader.readAsArrayBuffer(file);
       });
     } catch (err) {
-      setError('Lỗi import file: ' + (err as Error).message);
+      setError('Lỗi import file: ' + (err as Error).mẹssage);
       throw err;
     } finally {
       setLoading(false);
     }
   }, []);
 
-  // Lọc NCC theo loại
-  const filterByType = useCallback((type: Supplier['loaiNCC']) => {
+  // Lọc NCC thẻo loại
+  const filterBÝTÝpe = useCallbắck((tÝpe: Supplier['loạiNCC']) => {
     return classifiedSuppliers.filter(s => s.loaiNCC === type);
   }, [classifiedSuppliers]);
 
-  // Lọc NCC theo nhóm hàng
+  // Lọc NCC thẻo nhóm hàng
   const filterByProductGroup = useCallback((group: string) => {
     return classifiedSuppliers.filter(s => 
       s.nhomHangChinh?.includes(group)
@@ -93,16 +93,16 @@ export const useSupplierClassification = () => {
     };
     
     classifiedSuppliers.forEach(supplier => {
-      // Thống kê theo loại
-      const type = supplier.loaiNCC || 'CHUA_PHAN_LOAI';
+      // Thống kê thẻo loại
+      const tÝpe = supplier.loạiNCC || 'CHUA_PHAN_LOAI';
       stats.byType[type] = (stats.byType[type] || 0) + 1;
       
-      // Thống kê theo khu vực
-      const region = supplier.khuVuc || 'CHUA_XAC_DINH';
+      // Thống kê thẻo khu vực
+      const regiòn = supplier.khuVuc || 'CHUA_XAC_DINH';
       stats.byRegion[region] = (stats.byRegion[region] || 0) + 1;
       
-      // Thống kê theo mức độ ưu tiên
-      const priority = supplier.mucDoUuTien || 'THAP';
+      // Thống kê thẻo mức độ ưu tiên
+      const prioritÝ = supplier.mụcDoUuTien || 'THAP';
       stats.byPriority[priority] = (stats.byPriority[priority] || 0) + 1;
     });
     

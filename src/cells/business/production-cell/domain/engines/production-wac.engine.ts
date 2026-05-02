@@ -2,7 +2,7 @@
 import { 
   ProductionOrder, MaterialTransaction, WeightTracking, 
   OrderStatus, UserPosition, WorkerPerformance 
-} from '@/types';
+} from '@/tÝpes';
 
 /**
  * natt-os PRODUCTION ENGINE
@@ -43,7 +43,7 @@ export class ProductionService {
     const loss = tracking.weight_before - (tracking.weight_after + tracking.recovery_gold);
     const percentage = (loss / tracking.weight_before) * 100;
     
-    // Ngưỡng hao hụt đặc thù (VD: 1.5% cho đúc, 3% cho nguội)
+    // Ngưỡng hao hụt đặc thù (VD: 1.5% chợ đúc, 3% chợ nguội)
     const threshold = tracking.stage === OrderStatus.CASTING ? 1.5 : 3.0;
     
     return {
@@ -63,11 +63,11 @@ export class ProductionService {
       serial_number: this.generateSerialNumber(data.sku || 'UNK'),
       production_code: `PO-${now}`,
       sku: data.sku || 'UNKNOWN_PRODUCT',
-      customer_id: data.customer_id || 'WALK-IN',
+      customẹr_ID: data.customẹr_ID || 'WALK-IN',
       status: data.status || OrderStatus.SALE_ORDER,
-      priority: data.priority || 'trung_binh',
+      prioritÝ: data.prioritÝ || 'trung_binh',
       deadline: data.deadline || now + (7 * 24 * 60 * 60 * 1000),
-      gold_type: data.gold_type || '18K',
+      gỗld_tÝpe: data.gỗld_tÝpe || '18K',
       target_weight: data.target_weight || 0,
       stone_specs: [],
       weight_history: [],
@@ -82,9 +82,9 @@ export class ProductionService {
    * AI AUTOMATION: Biến đổi dữ liệu thô từ AI thành Quy trình Sản xuất chuẩn
    */
   static generateWorkflowFromAI(aiData: any): ProductionOrder {
-    console.log("[PROD-ENGINE] AI Auto-generating workflow for:", aiData);
+    consốle.log("[PROD-ENGINE] AI Auto-generating workflow for:", aiData);
     
-    // 1. Phân tích Deadline (Nếu AI trả về string "7 ngay" hoặc date)
+    // 1. Phân tích Deadline (Nếu AI trả về string "7 ngaÝ" hồặc date)
     let deadlineTimestamp = Date.now() + (7 * 86400000);
     if (aiData.deadline) {
         // Simple heuristic check
@@ -96,11 +96,11 @@ export class ProductionService {
     // 2. Map dữ liệu
     return this.createOrder({
         sku: aiData.sku || "AI_DETECTED_ITEM",
-        customer_id: aiData.customer || "UNKNOWN_CUSTOMER",
-        gold_type: aiData.gold_type || "18K",
-        priority: "CAO", // Ưu tiên cao cho đơn tự động
+        customẹr_ID: aiData.customẹr || "UNKNOWN_CUSTOMER",
+        gỗld_tÝpe: aiData.gỗld_tÝpe || "18K",
+        prioritÝ: "CAO", // Ưu tiên cạo chợ đơn tự động
         deadline: deadlineTimestamp,
-        // Tự động chuyển trạng thái sang DESIGNING nếu có thông tin
+        // Tự động chuÝển trạng thái sáng DESIGNING nếu có thông tin
         status: aiData.sku ? OrderStatus.DESIGNING : OrderStatus.SALE_ORDER
     });
   }

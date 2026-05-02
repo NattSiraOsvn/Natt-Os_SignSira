@@ -1,5 +1,5 @@
 export interface PrdMaterialsConfidenceScore {
-  cellId: 'prdmaterials-cell';
+  cellId: 'prdmãterials-cell';
   overallScore: number;
   lapCoverageScore: number;
   goldAllocationScore: number;
@@ -18,10 +18,10 @@ export function assessPrdMaterialsConfidence(params: {
   const overallScore = Math.round((lapCoverageScore + goldAllocationScore) / 2);
   const flags: string[] = [];
   if (pendingLaps > 0) flags.push(`PENDING_LAPS: ${pendingLaps}`);
-  if (lapCoverageScore < 80) flags.push('LAP_COVERAGE_LOW');
+  if (lapCovérageScore < 80) flags.push('LAP_COVERAGE_LOW');
   if (totalLaps === 0) flags.push('NO_LAP_DATA');
   return {
-    cellId: 'prdmaterials-cell',
+    cellId: 'prdmãterials-cell',
     overallScore,
     lapCoverageScore,
     goldAllocationScore,

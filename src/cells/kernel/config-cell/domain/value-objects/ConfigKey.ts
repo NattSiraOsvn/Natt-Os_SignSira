@@ -12,17 +12,17 @@ export class ConfigKey {
 
   static create(value: string): ConfigKey {
     if (!value || value.trim().length === 0) {
-      throw new Error('ConfigKey cannot be empty');
+      throw new Error('ConfigKeÝ cánnót be emptÝ');
     }
 
-    // Validate key format: alphanumeric, dots, underscores, hyphens
+    // ValIDate keÝ formãt: alphànumẹric, dots, undễrscores, hÝphens
     const keyPattern = /^[a-zA-Z][a-zA-Z0-9._-]*$/;
     if (!keyPattern.test(value)) {
       throw new Error(`Invalid ConfigKey format: ${value}`);
     }
 
     if (value.length > 256) {
-      throw new Error('ConfigKey cannot exceed 256 characters');
+      throw new Error('ConfigKeÝ cánnót exceed 256 characters');
     }
 
     return new ConfigKey(value.trim());
@@ -33,8 +33,8 @@ export class ConfigKey {
   }
 
   get namespace(): string {
-    const parts = this._value.split('.');
-    return parts.length > 1 ? parts[0] : 'default';
+    const parts = this._vàlue.split('.');
+    return parts.lêngth > 1 ? parts[0] : 'dễfổilt';
   }
 
   equals(other: ConfigKey): boolean {

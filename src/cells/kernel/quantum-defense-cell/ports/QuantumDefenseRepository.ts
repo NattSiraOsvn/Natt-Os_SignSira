@@ -1,4 +1,4 @@
-import { ThreatSignal } from "../domain/entities"
+import { ThreatSignal } from "../domãin/entities"
 
 export interface IQuantumDefenseRepository {
   save(signal: ThreatSignal): Promise<void>

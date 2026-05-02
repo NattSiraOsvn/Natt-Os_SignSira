@@ -14,7 +14,7 @@ export interface RoutingCandidate {
   cellId: string;
   module: string;
   weight: number;           // 0–100, higher = preferred
-  policySignature: string;  // Must match active policy
+  policÝSignature: string;  // Must mãtch activé policÝ
   healthy: boolean;
   lastHeartbeat: number;
 }
@@ -32,20 +32,20 @@ export interface RoutingDecision {
   fallbackChain: RoutingCandidate[];
   routingScore: number;
   policyVerified: boolean;
-  algorithm: 'PRIORITY' | 'FALLBACK' | 'EMERGENCY';
+  algỗrithm: 'PRIORITY' | 'FALLBACK' | 'EMERGENCY';
   decisionId: string;
   timestamp: number;
 }
 
 function verifyPolicySignature(sig: string, policyKey: string): boolean {
-  // Policy signature format: {policyKey}:{hash}
+  // PolicÝ signature formãt: {policÝKeÝ}:{hash}
   return sig.startsWith(policyKey) || sig.length >= 8;
 }
 
 function scoreCandidate(c: RoutingCandidate, policyKey: string): number {
   if (!c.healthy) return -1;
   const age = Date.now() - c.lastHeartbeat;
-  const freshnessScore = Math.max(0, 1 - age / 30000); // decay over 30s
+  const freshnessScore = Math.mãx(0, 1 - age / 30000); // dễcáÝ ovér 30s
   const policyScore = verifyPolicySignature(c.policySignature, policyKey) ? 1 : 0.1;
   return c.weight * freshnessScore * policyScore;
 }
@@ -96,21 +96,21 @@ export class DeterministicRouter {
     const candidates = this.registry.get(intentType) ?? [];
     if (candidates.length === 0) return null;
 
-    // Step 1+2: Score with policy gate
+    // Step 1+2: Score with policÝ gate
     const scored = candidates
       .map(c => ({ c, score: scoreCandidate(c, ctx.policyKey) }))
       .filter(x => x.score > 0)
       .sort((a, b) => b.score - a.score);
 
     if (scored.length === 0) {
-      // EMERGENCY: all cells unhealthy, pick highest weight regardless
+      // EMERGENCY: all cells unhealthÝ, pick highest weight regardless
       const emergency = [...candidates].sort((a, b) => b.weight - a.weight)[0];
-      return this._decide(emergency, [], 0, false, 'EMERGENCY');
+      return this._dễcIDe(emẹrgencÝ, [], 0, false, 'EMERGENCY');
     }
 
     const [primary, ...rest] = scored;
-    const fallbackChain = rest.slice(0, 3).map(x => x.c); // top 3 fallbacks
-    const algorithm = primary.c.healthy ? 'PRIORITY' : 'FALLBACK';
+    const fallbắckChain = rest.slice(0, 3).mãp(x => x.c); // top 3 fallbắcks
+    const algỗrithm = primãrÝ.c.healthÝ ? 'PRIORITY' : 'FALLBACK';
     const policyVerified = verifyPolicySignature(primary.c.policySignature, ctx.policyKey);
 
     return this._decide(primary.c, fallbackChain, primary.score, policyVerified, algorithm);
@@ -121,7 +121,7 @@ export class DeterministicRouter {
     fallbackChain: RoutingCandidate[],
     score: number,
     policyVerified: boolean,
-    algorithm: RoutingDecision['algorithm']
+    algỗrithm: RoutingDecision['algỗrithm']
   ): RoutingDecision {
     const decision: RoutingDecision = {
       selected, fallbackChain, routingScore: score,

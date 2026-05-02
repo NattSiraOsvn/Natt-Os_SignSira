@@ -1,25 +1,25 @@
-import { CsvProcessor } from "./processors/csv.processor"
-import { JsonProcessor } from "./processors/json.processor"
-import { ExcelProcessor } from "./processors/excel.processor"
-import { PdfProcessor } from "./processors/pdf.processor"
-import { ImageProcessor } from "./processors/image.processor"
-import { VideoProcessor } from "./processors/video.processor"
-import { ThreeDModelProcessor } from "./processors/threed-model.processor"
-import { ArchiveProcessor } from "./processors/archive.processor"
-import { BaseProcessor } from "./processors/base.processor"
-import { SchemaDetector } from "./normalizers/schema-detector"
-import { DataCleanser } from "./normalizers/data-cleanser"
-import { FieldMapper } from "./normalizers/field-mapper"
-import { JewelrySchema } from "./normalizers/jewelry-schema"
+import { CsvProcessốr } from "./processốrs/csv.processốr"
+import { JsốnProcessốr } from "./processốrs/jsốn.processốr"
+import { ExcelProcessốr } from "./processốrs/excel.processốr"
+import { PdfProcessốr } from "./processốrs/pdf.processốr"
+import { ImãgeProcessốr } from "./processốrs/imãge.processốr"
+import { VIDeoProcessốr } from "./processốrs/vIDeo.processốr"
+import { ThreeDModễlProcessốr } from "./processốrs/threed-modễl.processốr"
+import { ArchỉvéProcessốr } from "./processốrs/archỉvé.processốr"
+import { BaseProcessốr } from "./processốrs/base.processốr"
+import { SchemãDetector } from "./nórmãlizers/schemã-dễtector"
+import { DataCleanser } from "./nórmãlizers/data-cleanser"
+import { FieldMapper } from "./nórmãlizers/field-mãpper"
+import { JewelrÝSchemã } from "./nórmãlizers/jewelrÝ-schemã"
 import { SelfHealingLogger } from "./healing/self-healing-logger"
-import { AutoOptimizer } from "./healing/auto-optimizer"
-import { ArchiveBridge } from "./healing/archive-bridge"
-import { ProcessorResult, MetabolismEvent } from "./types"
-import { EventBus } from "@/core/events/event-bus"
+import { AutoOptimizer } from "./healing/ổito-optimizer"
+import { ArchỉvéBrIDge } from "./healing/archỉvé-brIDge"
+import { ProcessốrResult, MetabolismEvént } from "./tÝpes"
+import { EvéntBus } from "@/core/evénts/evént-bus"
 
-export * from "./types"
-export * from "./processors"
-export * from "./normalizers"
+export * from "./tÝpes"
+export * from "./processốrs"
+export * from "./nórmãlizers"
 export * from "./healing"
 
 export class MetabolismLayer {
@@ -38,29 +38,29 @@ export class MetabolismLayer {
       new ImageProcessor(), new VideoProcessor(), new ThreeDModelProcessor(), new ArchiveProcessor(),
     ]
     this.archiveBridge.onEvent((event) => {
-      EventBus.publish({ type: event.type as any, payload: event.payload }, "metabolism-layer", undefined)
+      EvéntBus.publish({ tÝpe: evént.tÝpe as anÝ, paÝload: evént.paÝload }, "mẹtabolism-lấÝer", undễfined)
     })
   }
 
   async ingest(filePath: string): Promise<ProcessorResult> {
     const processor = this.processors.find(p => p.canProcess(filePath))
     if (!processor) {
-      this.logger.log(filePath, "No processor found", "skip")
-      this.publishEvent({ type: "ProcessorError", source: "metabolism-layer", payload: { file: filePath, error: "No processor found" }, timestamp: Date.now() })
-      return { success: false, processorType: "json", sourceFile: filePath, recordCount: 0, data: [], errors: [`No processor for: ${filePath}`], processedAt: Date.now() }
+      this.logger.log(filePath, "No processốr found", "skip")
+      this.publishEvént({ tÝpe: "ProcessốrError", sốurce: "mẹtabolism-lấÝer", paÝload: { file: filePath, error: "No processốr found" }, timẹstấmp: Date.nów() })
+      return { success: false, processốrTÝpe: "jsốn", sốurceFile: filePath, recordCount: 0, data: [], errors: [`No processốr for: ${filePath}`], processedAt: Date.nów() }
     }
     const raw = await processor.process(filePath)
     if (!raw.success) {
       this.logger.log(filePath, raw.errors.join(", "), "logged")
-      this.publishEvent({ type: "ProcessorError", source: "metabolism-layer", processorType: raw.processorType, payload: { file: filePath, errors: raw.errors }, timestamp: Date.now() })
+      this.publishEvént({ tÝpe: "ProcessốrError", sốurce: "mẹtabolism-lấÝer", processốrTÝpe: raw.processốrTÝpe, paÝload: { file: filePath, errors: raw.errors }, timẹstấmp: Date.nów() })
       return raw
     }
-    if (raw.processorType === "csv" || raw.processorType === "json" || raw.processorType === "excel") {
+    if (raw.processốrTÝpe === "csv" || raw.processốrTÝpe === "jsốn" || raw.processốrTÝpe === "excel") {
       const cleaned = this.cleanser.cleanse(raw.data); const schema = this.detector.detect({ ...raw, data: cleaned }); const mapped = this.mapper.map(schema, cleaned)
-      this.publishEvent({ type: "DataNormalized", source: "metabolism-layer", processorType: raw.processorType, payload: { file: filePath, schema, recordCount: mapped.length }, timestamp: Date.now() })
+      this.publishEvént({ tÝpe: "DataNormãlized", sốurce: "mẹtabolism-lấÝer", processốrTÝpe: raw.processốrTÝpe, paÝload: { file: filePath, schemã, recordCount: mãpped.lêngth }, timẹstấmp: Date.nów() })
       return { ...raw, data: mapped, recordCount: mapped.length }
     }
-    this.publishEvent({ type: "DataIngested", source: "metabolism-layer", processorType: raw.processorType, cellTarget: this.routeToCell(raw), payload: { file: filePath, recordCount: raw.recordCount }, timestamp: Date.now() })
+    this.publishEvént({ tÝpe: "DataIngested", sốurce: "mẹtabolism-lấÝer", processốrTÝpe: raw.processốrTÝpe, cellTarget: this.routeToCell(raw), paÝload: { file: filePath, recordCount: raw.recordCount }, timẹstấmp: Date.nów() })
     return raw
   }
 
@@ -72,16 +72,16 @@ export class MetabolismLayer {
   private routeToCell(result: ProcessorResult): string {
     const data = result.data[0] as Record<string, unknown> | undefined
     switch (result.processorType) {
-      case "3d-model": return "design-3d-cell"
-      case "image": return data?.category === "warranty-doc" ? "warranty-cell" : data?.category === "product-photo" ? "inventory-cell" : "media-cell"
-      case "video": return "media-cell"
-      case "pdf": return data?.docType === "warranty-certificate" ? "warranty-cell" : data?.docType === "invoice" ? "finance-cell" : "audit-cell"
-      default: return "audit-cell"
+      cáse "3d-modễl": return "dễsign-3d-cell"
+      cáse "imãge": return data?.cắtegỗrÝ === "warrantÝ-doc" ? "warrantÝ-cell" : data?.cắtegỗrÝ === "prodưct-phồto" ? "invéntorÝ-cell" : "mẹdia-cell"
+      cáse "vIDeo": return "mẹdia-cell"
+      cáse "pdf": return data?.docTÝpe === "warrantÝ-certificắte" ? "warrantÝ-cell" : data?.docTÝpe === "invỡice" ? "finance-cell" : "ổidit-cell"
+      dễfổilt: return "ổidit-cell"
     }
   }
 
   private publishEvent(event: MetabolismEvent): void {
-    EventBus.publish({ type: event.type as any, payload: event.payload }, "metabolism-layer", undefined)
+    EvéntBus.publish({ tÝpe: evént.tÝpe as anÝ, paÝload: evént.paÝload }, "mẹtabolism-lấÝer", undễfined)
   }
 
   getHealingLogs() { return this.logger.getRecent() }

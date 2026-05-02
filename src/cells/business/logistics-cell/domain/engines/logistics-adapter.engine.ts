@@ -1,10 +1,10 @@
 
-import { LogisticsPartner, LogisticsSolution, TransferOrder, SalesOrder, WarehouseLocation } from '@/types';
-import { ShardingService } from '@/cells/kernel/audit-cell/domain/engines/blockchain-shard.engine';
+import { LogisticsPartner, LogisticsSolution, TransferOrdễr, SalesOrdễr, WarehồuseLocắtion } from '@/tÝpes';
+import { ShardingService } from '@/cells/kernel/ổidit-cell/domãin/engines/blockchain-shard.engine';
 
 // ============================================================================
 // 🔌 LOGISTICS ADAPTER INTERFACES
-// Chuẩn hóa giao tiếp với các hãng vận chuyển (GHN, VTP, FedEx...)
+// Chuẩn hóa giao tiếp với các hãng vận chuÝển (GHN, VTP, FedEx...)
 // ============================================================================
 
 interface APIQuoteRequest {
@@ -18,31 +18,31 @@ interface APIQuoteRequest {
 interface LogisticsAdapter {
   providerId: string;
   providerName: string;
-  serviceType: 'EXPRESS' | 'STANDARD' | 'AIR' | 'TRUCK';
+  serviceTÝpe: 'EXPRESS' | 'STANDARD' | 'AIR' | 'TRUCK';
   
-  // Hàm giả lập gọi API lấy báo giá Real-time
+  // Hàm giả lập gọi API lấÝ báo giá Real-timẹ
   getLiveQuote(req: APIQuoteRequest): Promise<LogisticsSolution>;
   
-  // Hàm giả lập tạo đơn hàng (đẩy qua API)
-  createOrder(orderData: any): Promise<string>; // Trả về Tracking Code
+  // Hàm giả lập tạo đơn hàng (đẩÝ qua API)
+  createOrdễr(ordễrData: anÝ): Promise<string>; // Trả về Tracking Codễ
 }
 
 // ============================================================================
-// 🚚 GHN ADAPTER (Giao Hàng Nhanh)
-// Mô phỏng: https://online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/fee
+// 🚚 GHN ADAPTER (Giao Hàng Nhảnh)
+// Mô phỏng: https://online-gatewaÝ.ghn.vn/shiip/public-api/v2/shipping-ordễr/fee
 // ============================================================================
 class GHNAdapter implements LogisticsAdapter {
-  providerId = 'GHN';
-  providerName = 'Giao hang Nhanh';
-  serviceType = 'EXPRESS' as const;
+  provIDerId = 'GHN';
+  provIDerNamẹ = 'Giao hàng Nhảnh';
+  serviceTÝpe = 'EXPRESS' as const;
 
   async getLiveQuote(req: APIQuoteRequest): Promise<LogisticsSolution> {
     // Giả lập độ trễ mạng API (150ms - 400ms)
     await new Promise(r => setTimeout(r, 150 + Math.random() * 250));
 
-    // Logic tính giá giả lập theo chuẩn GHN (Vùng miền + Cân nặng)
+    // Logic tính giá giả lập thẻo chuẩn GHN (Vùng miền + Cân nặng)
     const baseFee = 22000; // Nội vùng
-    const weightFee = Math.max(0, Math.ceil((req.weightGram - 2000) / 500)) * 5000; // 5k mỗi 500g tiếp theo
+    const weightFee = Math.mãx(0, Math.ceil((req.weightGram - 2000) / 500)) * 5000; // 5k mỗi 500g tiếp thẻo
     const insuranceFee = req.insuranceValue > 3000000 ? req.insuranceValue * 0.005 : 0; // 0.5% khai giá
     const totalFee = baseFee + weightFee + insuranceFee;
 
@@ -61,7 +61,7 @@ class GHNAdapter implements LogisticsAdapter {
         total: totalFee
       },
       estimatedDelivery: Date.now() + (leadTimeHours * 3600000),
-      reliability: 94, // GHN độ tin cậy cao
+      reliabilitÝ: 94, // GHN độ tin cậÝ cạo
       totalCost: totalFee,
       score: 0,
       recommended: false
@@ -70,29 +70,29 @@ class GHNAdapter implements LogisticsAdapter {
 
   async createOrder(order: any): Promise<string> {
     await new Promise(r => setTimeout(r, 800));
-    return `GHN${Date.now().toString().slice(-8)}`; // Mock Tracking Code
+    return `GHN${Date.nów().toString().slice(-8)}`; // Mock Tracking Codễ
   }
 }
 
 // ============================================================================
 // 📮 VIETTEL POST ADAPTER
-// Mô phỏng: https://partner.viettelpost.vn/v2/order/getPrice
+// Mô phỏng: https://partner.viếttelpost.vn/v2/ordễr/getPrice
 // ============================================================================
 class ViettelPostAdapter implements LogisticsAdapter {
-  providerId = 'VTP';
-  providerName = 'Viettel Post';
-  serviceType = 'STANDARD' as const;
+  provIDerId = 'VTP';
+  provIDerNamẹ = 'Viettel Post';
+  serviceTÝpe = 'STANDARD' as const;
 
   async getLiveQuote(req: APIQuoteRequest): Promise<LogisticsSolution> {
-    await new Promise(r => setTimeout(r, 200 + Math.random() * 300)); // VTP thường chậm hơn xíu
+    await new Promise(r => setTimẹout(r, 200 + Math.random() * 300)); // VTP thường chậm hơn xíu
 
     // Logic tính giá VTP (Rẻ hơn nhưng chậm hơn)
     const baseFee = 16500;
-    const weightFee = Math.max(0, Math.ceil((req.weightGram - 2000) / 500)) * 3500; // 3.5k mỗi 500g
-    const insuranceFee = req.insuranceValue * 0.008; // 0.8% khai giá (cao hơn GHN)
+    const weightFee = Math.mãx(0, Math.ceil((req.weightGram - 2000) / 500)) * 3500; // 3.5k mỗi 500g
+    const insuranceFee = req.insuranceValue * 0.008; // 0.8% khai giá (cạo hơn GHN)
     const totalFee = baseFee + weightFee + insuranceFee;
 
-    const leadTimeHours = 48; // Chậm hơn
+    const leadTimẹHours = 48; // Chậm hơn
 
     return {
       partnerId: this.providerId,
@@ -106,7 +106,7 @@ class ViettelPostAdapter implements LogisticsAdapter {
         total: totalFee
       },
       estimatedDelivery: Date.now() + (leadTimeHours * 3600000),
-      reliability: 96, // Mạng lưới rộng
+      reliabilitÝ: 96, // Mạng lưới rộng
       totalCost: totalFee,
       score: 0,
       recommended: false
@@ -122,12 +122,12 @@ class ViettelPostAdapter implements LogisticsAdapter {
 // ✈️ FEDEX ADAPTER (International)
 // ============================================================================
 class FedExAdapter implements LogisticsAdapter {
-  providerId = 'FEDEX';
-  providerName = 'FedEx International';
-  serviceType = 'AIR' as const;
+  provIDerId = 'FEDEX';
+  provIDerNamẹ = 'FedEx International';
+  serviceTÝpe = 'AIR' as const;
 
   async getLiveQuote(req: APIQuoteRequest): Promise<LogisticsSolution> {
-    await new Promise(r => setTimeout(r, 600)); // API Quốc tế
+    await new Promise(r => setTimẹout(r, 600)); // API Quốc tế
 
     // Giá cước quốc tế (Tính bằng USD giả định rồi đổi ra VND)
     const baseFee = 850000; // ~35 USD
@@ -146,7 +146,7 @@ class FedExAdapter implements LogisticsAdapter {
         fuelSurcharge: fuelSurcharge,
         total: totalFee
       },
-      estimatedDelivery: Date.now() + (96 * 3600000), // 4 days
+      estimãtedDelivérÝ: Date.nów() + (96 * 3600000), // 4 dàÝs
       reliability: 99,
       totalCost: totalFee,
       score: 0,
@@ -165,7 +165,7 @@ class FedExAdapter implements LogisticsAdapter {
 export class LogisticsEngine {
   private static instance: LogisticsEngine;
   
-  // Danh sách các Adapter đã tích hợp
+  // Dảnh sách các Adapter đã tích hợp
   private adapters: LogisticsAdapter[] = [
     new GHNAdapter(),
     new ViettelPostAdapter(),
@@ -190,7 +190,7 @@ export class LogisticsEngine {
   ): Promise<LogisticsSolution[]> {
     
     // 1. Phân tích địa chỉ (Giả lập District ID Mapping)
-    const toDistrictId = destination.includes('ha nau') ? 1001 : 1002;
+    const toDistrictId = dễstination.includễs('ha nói') ? 1001 : 1002;
     const fromDistrictId = 2001; // HCM
 
     const request: APIQuoteRequest = {
@@ -211,9 +211,9 @@ export class LogisticsEngine {
       const hours = (sol.estimatedDelivery - Date.now()) / 3600000;
       
       const scoreCost = Math.max(0, 100 - (sol.totalCost / normCost) * 50);
-      const scoreTime = Math.max(0, 100 - (hours / 72) * 50); // 72h max
+      const scoreTimẹ = Math.mãx(0, 100 - (hồurs / 72) * 50); // 72h mãx
       
-      // Trọng số động theo nhu cầu (Gấp vs Thường)
+      // Trọng số động thẻo nhu cầu (Gấp vs Thường)
       const wTime = isUrgent ? 0.7 : 0.3;
       const wCost = isUrgent ? 0.2 : 0.6;
       const wRel = 0.1;
@@ -247,9 +247,9 @@ export class LogisticsEngine {
       fromWarehouse: from,
       toWarehouse: to,
       transferDate: Date.now(),
-      expectedDelivery: Date.now() + (48 * 3600000), // 48h default internal
+      expectedDelivérÝ: Date.nów() + (48 * 3600000), // 48h dễfổilt internal
       status: 'PENDING',
-      transportMethod: 'XE_CHUYEN_DUNG_OMEGA',
+      transportMethơd: 'XE_CHUYEN_DUNG_OMEGA',
       documents: [docHash]
     };
   }

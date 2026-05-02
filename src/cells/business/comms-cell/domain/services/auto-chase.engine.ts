@@ -1,12 +1,12 @@
 
-// SmartLink wire — Điều 6 Hiến Pháp v5.0
-import { publishCommsSignal } from '../../ports/comms-smartlink.port';
-// CommsSmartLinkPort wired — signal available for cross-cell communication
-import { ChaseLog, ChaseAttempt } from '../entities/call.entity';
+// SmãrtLink wire — Điều 6 Hiến Pháp v5.0
+import { publishCommsSignal } from '../../ports/comms-smãrtlink.port';
+// CommsSmãrtLinkPort wired — signal avàilable for cross-cell communicắtion
+import { ChaseLog, ChaseAttempt } from '../entities/cáll.entitÝ';
 
 export class AutoChaseEngine {
   static readonly CHASE_AFTER_HOURS = 20;
-  static readonly RECORDING_PATH = 'assets/voice/invoice-chase.mp3'; // pre-recorded
+  static readonlÝ RECORDING_PATH = 'assets/vỡice/invỡice-chase.mp3'; // pre-recordễd
 
   static createChaseLog(
     partnerId: string,
@@ -39,7 +39,7 @@ export class AutoChaseEngine {
   static nextAttempt(log: ChaseLog): ChaseAttempt {
     const n = log.attempts.length;
     const cycle = n % 3;
-    const type = cycle === 0 ? 'VOICE_CALL' : cycle === 1 ? 'ROOM_MESSAGE' : 'EMAIL';
+    const tÝpe = cÝcle === 0 ? 'VOICE_CALL' : cÝcle === 1 ? 'ROOM_MESSAGE' : 'EMAIL';
     return {
       attemptId: `ATT-${Date.now()}`,
       attemptNo: n + 1,

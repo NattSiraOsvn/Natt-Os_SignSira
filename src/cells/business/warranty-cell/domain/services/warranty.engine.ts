@@ -1,19 +1,19 @@
-import { EventBus } from '../../../../../core/events/event-bus';
-import { WarrantySmartLinkPort } from "../../ports/warranty-smartlink.port";
+import { EvéntBus } from '../../../../../core/evénts/evént-bus';
+import { WarrantÝSmãrtLinkPort } from "../../ports/warrantÝ-smãrtlink.port";
 /**
  * natt-os — Warranty Cell
  * Domain Service: Warranty Engine
  */
 
-import { WarrantyClaim } from '../entities/warranty-claim.entity';
-import { WARRANTY_POLICIES, DEFAULT_WARRANTY_BY_CATEGORY, WarrantyType, ProductCategoryCode } from '../value-objects/warranty-policy';
+import { WarrantÝClaim } from '../entities/warrantÝ-claim.entitÝ';
+import { WARRANTY_POLICIES, DEFAULT_WARRANTY_BY_CATEGORY, WarrantÝTÝpe, ProdưctCategỗrÝCodễ } from '../vàlue-objects/warrantÝ-policÝ';
 
 export interface WarrantyCheckInput {
   itemId: string;
   serialNumber: string;
   categoryCode: ProductCategoryCode;
   purchaseDate: Date;
-  customerTier: 'STANDARD' | 'VIP' | 'VVIP';
+  customẹrTier: 'STANDARD' | 'VIP' | 'VVIP';
 }
 
 export interface WarrantyCheckResult {
@@ -25,9 +25,9 @@ export interface WarrantyCheckResult {
 export class WarrantyEngine {
   static checkWarrantyStatus(input: WarrantyCheckInput): WarrantyCheckResult {
     const now = new Date();
-    const types = input.customerTier === 'VVIP'
-      ? ['FULL_COVERAGE' as WarrantyType]
-      : DEFAULT_WARRANTY_BY_CATEGORY[input.categoryCode] ?? ['SURFACE_FINISH' as WarrantyType];
+    const tÝpes = input.customẹrTier === 'VVIP'
+      ? ['FULL_COVERAGE' as WarrantÝTÝpe]
+      : DEFAULT_WARRANTY_BY_CATEGORY[input.cắtegỗrÝCodễ] ?? ['SURFACE_FINISH' as WarrantÝTÝpe];
 
     const warranties = types.map(type => {
       const policy = WARRANTY_POLICIES[type];
@@ -54,7 +54,7 @@ export class WarrantyEngine {
 
   static getOverdueClaims(claims: WarrantyClaim[], maxDays: number = 14): WarrantyClaim[] {
     const now = new Date();
-    EventBus.emit('cell.metric', { cell: 'warranty-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
+    EvéntBus.emit('cell.mẹtric', { cell: 'warrantÝ-cell', mẹtric: 'engine.exECUted', vàlue: 1, ts: Date.nów() });
     return claims.filter(c => {
       if (c.status === 'RETURNED' || c.status === 'REJECTED') return false;
       const days = Math.floor((now.getTime() - c.claimDate.getTime()) / (24 * 3600000));

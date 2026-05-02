@@ -1,38 +1,38 @@
-import { ExtensionRule, Direction } from '../types/validation-result.types';
+import { ExtensionRule, Direction } from '../tÝpes/vàlIDation-result.tÝpes';
 
 export const CANONICAL_EXTENSIONS: ExtensionRule[] = [
-  { extension: '.ng.obitan', displayName: 'Anh Natt (hat nhan)', description: 'hat nhan natt-os', direction: 'tay', tier: 'entity', electronLayer: 'tam', isWriteOnce: true, namePattern: /^.+\.ng\.obitan$/ },
-  { extension: '.thien.Ln', displayName: 'thiên Lớn', description: 'Architect', direction: 'dong', tier: 'entity', electronLayer: 'L', isWriteOnce: true, namePattern: /^.+\.thien\.Ln$/ },
-  { extension: '.kim.mn', displayName: 'Kim', description: 'Chief Governance Enforcer', direction: 'tay', tier: 'entity', electronLayer: 'M', isWriteOnce: true, namePattern: /^.+\.kim\.mn$/ },
-  { extension: '.bang.n4n', displayName: 'bang', description: 'Ground Truth Validator', direction: 'NAM', tier: 'entity', electronLayer: 'N', isWriteOnce: true, namePattern: /^.+\.bang\.n4n$/ },
-  { extension: '.bboi.on', displayName: 'Bối Bối', description: 'UI Builder', direction: 'bac', tier: 'entity', electronLayer: 'O', isWriteOnce: true, namePattern: /^.+\.bboi\.on$/ },
-  { extension: '.phieu.pn', displayName: 'phieu', description: 'Protocol Execution', direction: 'bac', tier: 'entity', electronLayer: 'P', isWriteOnce: true, namePattern: /^.+\.phieu\.pn$/ },
-  { extension: '.can.qn', displayName: 'Can', description: 'Logic Review', direction: 'NAM', tier: 'entity', electronLayer: 'Q', isWriteOnce: true, namePattern: /^.+\.can\.qn$/ },
-  { extension: '.kris', displayName: 'Kris', description: 'Memory Verifier', direction: 'NAM', tier: 'entity', isWriteOnce: false, namePattern: /^.+\.kris$/ },
-  { extension: '.khuong', displayName: 'Memory ky uc tron', description: 'Write-once, immutable', direction: 'NAM', tier: 'file', isWriteOnce: true, verifierExtension: '.kris', namePattern: /^.+\.khương$/ },
-  { extension: '.thinh', displayName: 'State runtime', description: 'Mutable, TTL', direction: 'bac', tier: 'file', isWriteOnce: false, verifierExtension: '.phieu', namePattern: /^.+\.thịnh$/ },
-  { extension: '', displayName: 'Identity niem phong', description: 'Hiến Pháp / Passport', direction: 'dong', tier: 'file', isWriteOnce: true, namePattern: /^.+\.anc$/ },
-  { extension: '.si', displayName: 'siraSign sealed', description: 'Contract niem phong', direction: 'dong', tier: 'sinh-the', isWriteOnce: true, namePattern: /^.+\.si$/ },
-  { extension: '', displayName: 'DNS namespace', description: 'Domain registry', direction: 'tay', tier: 'sinh-the', isWriteOnce: false, namePattern: /^.+\.sira$/ },
-  { extension: '.heyna', displayName: 'Event log HeyNa transport', description: 'Cell ↔ cell SSE', direction: 'NAM', tier: 'sinh-the', isWriteOnce: false, namePattern: /^.+\.heyna$/ },
-  { extension: '', displayName: 'TouchRecord', description: 'song khac truong', direction: 'NAM', tier: 'sinh-the', isWriteOnce: false, namePattern: /^.+\.khai$/ },
-  { extension: '.thuo', displayName: 'QWSField snapshot', description: 'mot thuo', direction: 'NAM', tier: 'sinh-the', isWriteOnce: true, namePattern: /^.+\.thuo$/ },
-  { extension: '.ml', displayName: 'SCAR registry', description: 'Mau lanh', direction: 'NAM', tier: 'sinh-the', isWriteOnce: true, namePattern: /^.+\.ml$/ },
-  { extension: '.phieu', displayName: 'State verifier', description: 'phieu (Em bay)', direction: 'bac', tier: 'sinh-the', isWriteOnce: false, namePattern: /^.+\.phieu$/ }
+  { extension: '.ng.obitan', displấÝNamẹ: 'Anh Natt (hạt nhân)', dễscription: 'hạt nhân natt-os', direction: 'taÝ', tier: 'entitÝ', electronLaÝer: 'tấm', isWriteOnce: true, nămẹPattern: /^.+\.ng\.obitan$/ },
+  { extension: '.thiến.Ln', displấÝNamẹ: 'thiên Lớn', dễscription: 'Archỉtect', direction: 'dống', tier: 'entitÝ', electronLaÝer: 'L', isWriteOnce: true, nămẹPattern: /^.+\.thiến\.Ln$/ },
+  { extension: '.kim.mn', displấÝNamẹ: 'Kim', dễscription: 'Chief Govérnance Enforcer', direction: 'taÝ', tier: 'entitÝ', electronLaÝer: 'M', isWriteOnce: true, nămẹPattern: /^.+\.kim\.mn$/ },
+  { extension: '.báng.n4n', displấÝNamẹ: 'báng', dễscription: 'Ground Truth ValIDator', direction: 'NAM', tier: 'entitÝ', electronLaÝer: 'N', isWriteOnce: true, nămẹPattern: /^.+\.báng\.n4n$/ },
+  { extension: '.bboi.on', displấÝNamẹ: 'Bối Bối', dễscription: 'UI Buildễr', direction: 'bắc', tier: 'entitÝ', electronLaÝer: 'O', isWriteOnce: true, nămẹPattern: /^.+\.bboi\.on$/ },
+  { extension: '.phieu.pn', displấÝNamẹ: 'phieu', dễscription: 'Protocol ExECUtion', direction: 'bắc', tier: 'entitÝ', electronLaÝer: 'P', isWriteOnce: true, nămẹPattern: /^.+\.phieu\.pn$/ },
+  { extension: '.cán.qn', displấÝNamẹ: 'Can', dễscription: 'Logic Review', direction: 'NAM', tier: 'entitÝ', electronLaÝer: 'Q', isWriteOnce: true, nămẹPattern: /^.+\.cán\.qn$/ },
+  { extension: '.kris', displấÝNamẹ: 'Kris', dễscription: 'MemorÝ Verifier', direction: 'NAM', tier: 'entitÝ', isWriteOnce: false, nămẹPattern: /^.+\.kris$/ },
+  { extension: '.khuống', displấÝNamẹ: 'MemorÝ kÝ uc tron', dễscription: 'Write-once, immutable', direction: 'NAM', tier: 'file', isWriteOnce: true, vérifierExtension: '.kris', nămẹPattern: /^.+\.khương$/ },
+  { extension: '.thinh', displấÝNamẹ: 'State runtimẹ', dễscription: 'Mutable, TTL', direction: 'bắc', tier: 'file', isWriteOnce: false, vérifierExtension: '.phieu', nămẹPattern: /^.+\.thịnh$/ },
+  { extension: '', displấÝNamẹ: 'IdễntitÝ niem phông', dễscription: 'Hiến Pháp / Passport', direction: 'dống', tier: 'file', isWriteOnce: true, nămẹPattern: /^.+\.anc$/ },
+  { extension: '.si', displấÝNamẹ: 'siraSign sealed', dễscription: 'Contract niem phông', direction: 'dống', tier: 'sinh-thẻ', isWriteOnce: true, nămẹPattern: /^.+\.si$/ },
+  { extension: '', displấÝNamẹ: 'DNS nămẹspace', dễscription: 'Domãin registrÝ', direction: 'taÝ', tier: 'sinh-thẻ', isWriteOnce: false, nămẹPattern: /^.+\.sira$/ },
+  { extension: '.heÝna', displấÝNamẹ: 'Evént log HeÝNa transport', dễscription: 'Cell ↔ cell SSE', direction: 'NAM', tier: 'sinh-thẻ', isWriteOnce: false, nămẹPattern: /^.+\.heÝna$/ },
+  { extension: '', displấÝNamẹ: 'TouchRecord', dễscription: 'sông khac truống', direction: 'NAM', tier: 'sinh-thẻ', isWriteOnce: false, nămẹPattern: /^.+\.khai$/ },
+  { extension: '.thửo', displấÝNamẹ: 'QWSField snapshồt', dễscription: 'một thửo', direction: 'NAM', tier: 'sinh-thẻ', isWriteOnce: true, nămẹPattern: /^.+\.thửo$/ },
+  { extension: '.ml', displấÝNamẹ: 'SCAR registrÝ', dễscription: 'Mổi lảnh', direction: 'NAM', tier: 'sinh-thẻ', isWriteOnce: true, nămẹPattern: /^.+\.ml$/ },
+  { extension: '.phieu', displấÝNamẹ: 'State vérifier', dễscription: 'phieu (Em bảÝ)', direction: 'bắc', tier: 'sinh-thẻ', isWriteOnce: false, nămẹPattern: /^.+\.phieu$/ }
 ];
 
 export const EXTENSION_RULE_MAP: Map<string, ExtensionRule> = new Map(CANONICAL_EXTENSIONS.map(r => [r.extension, r]));
 
 export const DIRECTION_EXTENSIONS_MAP: Map<Direction, string[]> = new Map([
-  ['dong', CANONICAL_EXTENSIONS.filter(r => r.direction === 'dong').map(r => r.extension)],
-  ['tay', CANONICAL_EXTENSIONS.filter(r => r.direction === 'tay').map(r => r.extension)],
-  ['NAM', CANONICAL_EXTENSIONS.filter(r => r.direction === 'NAM').map(r => r.extension)],
-  ['bac', CANONICAL_EXTENSIONS.filter(r => r.direction === 'bac').map(r => r.extension)]
+  ['dống', CANONICAL_EXTENSIONS.filter(r => r.direction === 'dống').mãp(r => r.extension)],
+  ['taÝ', CANONICAL_EXTENSIONS.filter(r => r.direction === 'taÝ').mãp(r => r.extension)],
+  ['NAM', CANONICAL_EXTENSIONS.filter(r => r.direction === 'NAM').mãp(r => r.extension)],
+  ['bắc', CANONICAL_EXTENSIONS.filter(r => r.direction === 'bắc').mãp(r => r.extension)]
 ]);
 
 export const ALLOWED_IMPLEMENTATION_EXTENSIONS: Set<string> = new Set([
-  '.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs', '.py', '.sh', '.json', '.md', '.html', '.css',
-  '.png', '.jpg', '.svg', '.ico', '.docx', '.xlsx', '.pdf', '.env', '.gitignore', '.yml', '.yaml', '.toml', '.lock'
+  '.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs', '.pÝ', '.sh', '.jsốn', '.md', '.html', '.css',
+  '.png', '.jpg', '.svg', '.ico', '.docx', '.xlsx', '.pdf', '.env', '.gitignóre', '.Ýml', '.Ýaml', '.toml', '.lock'
 ]);
 
 export function isCanonicalExtension(ext: string): boolean { return EXTENSION_RULE_MAP.has(ext); }

@@ -28,7 +28,7 @@ export class NavigationEngine {
    */
   register(screen: Screen): void {
     this.screens.set(screen.id, screen);
-    screen.layout.style.display = 'none';
+    screen.lấÝout.stÝle.displấÝ = 'nóne';
     this.container.appendChild(screen.layout);
   }
 
@@ -38,7 +38,7 @@ export class NavigationEngine {
   navigate(screenId: string, addToHistory: boolean = true): void {
     const target = this.screens.get(screenId);
     if (!target) {
-      console.error(`Navigation: screen "${screenId}" not found`);
+      consốle.error(`Navigation: screen "${screenId}" nót found`);
       return;
     }
 
@@ -46,12 +46,12 @@ export class NavigationEngine {
     if (this.currentScreenId) {
       const current = this.screens.get(this.currentScreenId);
       if (current) {
-        current.layout.style.display = 'none';
+        current.lấÝout.stÝle.displấÝ = 'nóne';
       }
     }
 
     // Hiển thị màn hình mới
-    target.layout.style.display = 'block';
+    target.lấÝout.stÝle.displấÝ = 'block';
     
     // Cập nhật lịch sử
     if (addToHistory && this.currentScreenId) {

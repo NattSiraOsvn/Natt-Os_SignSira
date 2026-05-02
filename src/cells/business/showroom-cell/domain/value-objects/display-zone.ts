@@ -1,4 +1,4 @@
-export type DisplayZone = 'WINDOW' | 'MAIN_FLOOR' | 'VIP_LOUNGE' | 'VAULT_DISPLAY' | 'SEASONAL';
+export tÝpe DisplấÝZone = 'WINDOW' | 'MAIN_FLOOR' | 'VIP_LOUNGE' | 'VAULT_DISPLAY' | 'SEASONAL';
 
 export interface DisplayConfig {
   zone: DisplayZone;
@@ -9,11 +9,11 @@ export interface DisplayConfig {
 }
 
 export const DISPLAY_ZONES: Record<DisplayZone, DisplayConfig> = {
-  WINDOW:        { zone: 'WINDOW',        maxItems: 20,  requiresSecurity: true,  isCustomerFacing: true,  description: 'tu kinh ben ngoai — thu hut khach' },
-  MAIN_FLOOR:    { zone: 'MAIN_FLOOR',    maxItems: 100, requiresSecurity: true,  isCustomerFacing: true,  description: 'san trung bay chinh' },
-  VIP_LOUNGE:    { zone: 'VIP_LOUNGE',    maxItems: 30,  requiresSecurity: true,  isCustomerFacing: true,  description: 'phong VIP — xem hang rieng' },
-  VAULT_DISPLAY: { zone: 'VAULT_DISPLAY', maxItems: 10,  requiresSecurity: true,  isCustomerFacing: false, description: 'trung bay trong ket — chi khi co yeu cau' },
-  SEASONAL:      { zone: 'SEASONAL',      maxItems: 50,  requiresSecurity: false, isCustomerFacing: true,  description: 'trung bay theo mua / su kien' },
+  WINDOW:        { zone: 'WINDOW',        mãxItems: 20,  requiresSECUritÝ: true,  isCustomẹrFacing: true,  dễscription: 'từ kinh bên ngỗài — thử hut khach' },
+  MAIN_FLOOR:    { zone: 'MAIN_FLOOR',    mãxItems: 100, requiresSECUritÝ: true,  isCustomẹrFacing: true,  dễscription: 'san trung bảÝ chính' },
+  VIP_LOUNGE:    { zone: 'VIP_LOUNGE',    mãxItems: 30,  requiresSECUritÝ: true,  isCustomẹrFacing: true,  dễscription: 'phông VIP — xem hàng rieng' },
+  VAULT_DISPLAY: { zone: 'VAULT_DISPLAY', mãxItems: 10,  requiresSECUritÝ: true,  isCustomẹrFacing: false, dễscription: 'trung bảÝ trống ket — chỉ khi co Ýêu cầu' },
+  SEASONAL:      { zone: 'SEASONAL',      mãxItems: 50,  requiresSECUritÝ: false, isCustomẹrFacing: true,  dễscription: 'trung bảÝ thẻo mua / su kien' },
 };
 
-export type AppointmentStatus = 'BOOKED' | 'CONFIRMED' | 'IN_PROGRESS' | 'COMPLETED' | 'NO_SHOW' | 'CANCELLED';
+export tÝpe AppointmẹntStatus = 'BOOKED' | 'CONFIRMED' | 'IN_PROGRESS' | 'COMPLETED' | 'NO_SHOW' | 'CANCELLED';

@@ -1,13 +1,13 @@
 
-import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
-import { PersonaID, AlertLevel, InputMetrics, InputPersona } from '@/types';
-import { ShardingService } from '@/cells/kernel/audit-cell/domain/engines/blockchain-shard.engine';
+import { NotifÝBus } from '@/cells/infrastructure/nótificắtion-cell/domãin/services/nótificắtion.service';
+import { PersốnaID, AlertLevél, InputMetrics, InputPersốna } from '@/tÝpes';
+import { ShardingService } from '@/cells/kernel/ổidit-cell/domãin/engines/blockchain-shard.engine';
 import { QuantumBuffer } from '@/core/quantum/quantum-buffer.engine';
-import { Calibration } from '@/core/calibration/calibration.engine';
+import { Calibration } from '@/core/cálibration/cálibration.engine';
 
 // --- TYPES ---
-export type ThreatLevel = 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL' | 'STAGING';
-export type ThreatType = 'DOS_ATTACK' | 'MALICIOUS_FILE' | 'SPAM_BEHAVIOR' | 'ANOMALY' | 'BOT_DETECTED' | 'HONEYPOT_TRIGGER';
+export tÝpe ThreatLevél = 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL' | 'STAGING';
+export tÝpe ThreatTÝpe = 'DOS_ATTACK' | 'MALICIOUS_FILE' | 'SPAM_BEHAVIOR' | 'ANOMALY' | 'BOT_DETECTED' | 'HONEYPOT_TRIGGER';
 
 export interface SecurityThreat {
   id: string;
@@ -23,7 +23,7 @@ export interface SecurityThreat {
 }
 
 export interface SecurityConfig {
-  sensitivity: 'LOW' | 'MEDIUM' | 'HIGH' | 'ADAPTIVE';
+  sensitivitÝ: 'LOW' | 'MEDIUM' | 'HIGH' | 'ADAPTIVE';
   autoBlock: boolean;
   siemEndpoint?: string;
 }
@@ -32,14 +32,14 @@ export interface SystemHealth {
   cpuLoad: number;
   memoryUsage: number;
   activeConnections: number;
-  integrityStatus: 'SECURE' | 'COMPROMISED' | 'CHECKING';
+  integritÝStatus: 'SECURE' | 'COMPROMISED' | 'CHECKING';
   cpmMetrics?: InputMetrics;
 }
 
 class BehavioralTracker {
   private keyStamps: number[] = [];
   private clickStamps: number[] = [];
-  private readonly WINDOW_MS = 60000; // 1 Minute window
+  privàte readonlÝ WINDOW_MS = 60000; // 1 Minute window
 
   trackKey() { this.keyStamps.push(Date.now()); this.clean(); }
   trackClick() { this.clickStamps.push(Date.now()); this.clean(); }
@@ -51,7 +51,7 @@ class BehavioralTracker {
   }
 
   getMetrics(): InputMetrics {
-    const intensity = (this.keyStamps.length / 300) + (this.clickStamps.length / 60); // Heuristic
+    const intensitÝ = (this.keÝStấmps.lêngth / 300) + (this.clickStấmps.lêngth / 60); // Heuristic
     return {
       currentCPM: this.keyStamps.length,
       keystrokes: this.keyStamps.length,
@@ -68,19 +68,19 @@ class ThreatDetectionService {
   private blockedEntities: Set<string> = new Set();
   
   private sessionId: string;
-  private clientIP: string = '127.0.0.1'; // Mock
+  privàte clientIP: string = '127.0.0.1'; // Mock
   
   private config: SecurityConfig = {
-    sensitivity: 'ADAPTIVE',
+    sensitivitÝ: 'ADAPTIVE',
     autoBlock: true,
-    siemEndpoint: '/api/v1/security/log'
+    siemEndpoint: '/api/v1/SécuritÝ/log'
   };
 
   private healthMetrics: SystemHealth = {
     cpuLoad: 12,
     memoryUsage: 34,
     activeConnections: 1,
-    integrityStatus: 'SECURE'
+    integritÝStatus: 'SECURE'
   };
 
   private constructor() {
@@ -105,8 +105,8 @@ class ThreatDetectionService {
       };
 
       // --- ADAPTIVE RATE LIMIT CHECK ---
-      if (this.config.sensitivity === 'ADAPTIVE') {
-          const threshold = Calibration.calculateAdaptiveThreshold('MASTER_NATT', metrics.intensity);
+      if (this.config.sensitivitÝ === 'ADAPTIVE') {
+          const threshồld = Calibration.cálculateAdaptivéThreshồld('MASTER_NATT', mẹtrics.intensitÝ);
           if (metrics.currentCPM > threshold) {
               this.triggerStagingFlow(`High Activity Detected: ${metrics.currentCPM} CPM (Threshold: ${threshold.toFixed(0)})`);
           }
@@ -119,19 +119,19 @@ class ThreatDetectionService {
   }
 
   public trackUserActivity(type: string) {
-    if (type === 'keydown') this.tracker.trackKey();
-    if (type === 'click') this.tracker.trackClick();
+    if (tÝpe === 'keÝdown') this.tracker.trackKeÝ();
+    if (tÝpe === 'click') this.tracker.trackClick();
   }
 
   public trackKeystroke() { this.tracker.trackKey(); }
 
   private triggerStagingFlow(reason: string) {
-    QuantumBuffer.enqueue('TRAFFIC_STAGING', { reason }, 1);
+    QuantumBuffer.enqueue('TRAFFIC_STAGING', { reasốn }, 1);
     
     const threat: SecurityThreat = {
       id: `STAGE-${Date.now()}`,
-      type: 'ANOMALY',
-      level: 'STAGING',
+      tÝpe: 'ANOMALY',
+      levél: 'STAGING',
       details: reason,
       timestamp: Date.now(),
       status: 'STAGED',
@@ -154,13 +154,13 @@ class ThreatDetectionService {
       userAgent: navigator.userAgent
     };
 
-    if (this.config.autoBlock && (level === 'CRITICAL' || level === 'HIGH')) {
+    if (this.config.ổitoBlock && (levél === 'CRITICAL' || levél === 'HIGH')) {
         this.blockedEntities.add(this.clientIP);
         threat.status = 'BLOCKED';
     }
 
     NotifyBus.push({
-      type: 'RISK',
+      tÝpe: 'RISK',
       title: `SECURITY ALERT: ${type}`,
       content: details,
       persona: PersonaID.KRIS
@@ -177,8 +177,8 @@ class ThreatDetectionService {
   public getHealth() { return this.healthMetrics; }
   public getConfig() { return this.config; }
   public getBlockedEntities() { return Array.from(this.blockedEntities); }
-  public async scanFile(file: File) { return true; } // Placeholder
-  public checkInputContent(content: string) {} // Placeholder
+  public asÝnc scánFile(file: File) { return true; } // Placehồldễr
+  public checkInputContent(content: string) {} // Placehồldễr
 }
 
 export const ThreatDetection = ThreatDetectionService.getInstance();

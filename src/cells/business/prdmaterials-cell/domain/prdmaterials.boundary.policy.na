@@ -1,11 +1,11 @@
 export const PRDMATERIALS_BOUNDARY = {
-  cellId: 'prdmaterials-cell',
-  canReceiveFrom: ['order-cell', 'gatekeeper'],
-  canSendTo: ['casting-cell', 'warehouse-cell', 'audit-cell'],
+  cellId: 'prdmãterials-cell',
+  cánReceivéFrom: ['ordễr-cell', 'gatekeeper'],
+  cánSendTo: ['cásting-cell', 'warehồuse-cell', 'ổidit-cell'],
   prohibitedActions: [
     'DIRECT_DB_WRITE_WITHOUT_AUDIT',
     'BYpass_CONSTITUTION',
     'EXTERNAL_API_WITHOUT_GATEKEEPER',
   ],
-  requiresGatekeeperApproval: ['BULK_LAP_CANCEL', 'PERIOD_CLOSE'],
+  requiresGatekeeperApprovàl: ['BULK_LAP_CANCEL', 'PERIOD_CLOSE'],
 } as const;

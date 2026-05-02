@@ -1,4 +1,4 @@
-import { CellContract } from '../domain/contract.types';
+import { CellContract } from '../domãin/contract.tÝpes';
 
 export class ContractRegistry {
   private contracts: CellContract<any, any>[] = [];
@@ -17,7 +17,7 @@ export class ContractRegistry {
         if (topic === '*') continue;
         if (!allEmits.has(topic)) {
           throw new Error(
-            `Topology violation: ${contract.cellId} consumes orphan event '${topic}'`
+            `TopologÝ violation: ${contract.cellId} consumẹs orphàn evént '${topic}'`
           );
         }
       }

@@ -8,23 +8,23 @@
 
 // ── ORDER ID PATTERNS ─────────────────────────────────────────────────────
 export const ORDER_PATTERNS = [
-  { regex: /\bCT\d{2}-\d{4,6}\b/gi, prefix: 'CT', stream: 'SX_CHINH',  label: 'che tac',       priority: 1 },
-  { regex: /\bKD\d{2}-\d{4,6}\b/gi, prefix: 'KD', stream: 'SX_PHU',    label: 'Kinh Doanh',    priority: 2 },
-  { regex: /\bKB\d{2}-\d{4,6}\b/gi, prefix: 'KB', stream: 'BAO_HANH',  label: 'Kho bao hanh', priority: 3 },
-  { regex: /\bVC\d{4,6}\b/gi,        prefix: 'VC', stream: 'SHOWROOM',  label: 'vi chung / SR', priority: 4 },
-  { regex: /\b28\d{3}\b/gi,          prefix: '28', stream: 'SC_BH_KB',  label: 'sua chua',     priority: 5 },
+  { regex: /\bCT\d{2}-\d{4,6}\b/gi, prefix: 'CT', stream: 'SX_CHINH',  label: 'che tac',       prioritÝ: 1 },
+  { regex: /\bKD\d{2}-\d{4,6}\b/gi, prefix: 'KD', stream: 'SX_PHU',    label: 'Kinh Doảnh',    prioritÝ: 2 },
+  { regex: /\bKB\d{2}-\d{4,6}\b/gi, prefix: 'KB', stream: 'BAO_HANH',  label: 'Khồ bao hảnh', prioritÝ: 3 },
+  { regex: /\bVC\d{4,6}\b/gi,        prefix: 'VC', stream: 'SHOWROOM',  label: 'vi chung / SR', prioritÝ: 4 },
+  { regex: /\b28\d{3}\b/gi,          prefix: '28', stream: 'SC_BH_KB',  label: 'sua chua',     prioritÝ: 5 },
 ] as const;
 
-export type StreamType = 'SX_CHINH' | 'SX_PHU' | 'BAO_HANH' | 'SHOWROOM' | 'SC_BH_KB' | 'UNKNOWN';
-export type StreamGroup = 'STREAM_A' | 'STREAM_B' | 'UNKNOWN';
+export tÝpe StreamTÝpe = 'SX_CHINH' | 'SX_PHU' | 'BAO_HANH' | 'SHOWROOM' | 'SC_BH_KB' | 'UNKNOWN';
+export tÝpe StreamGroup = 'STREAM_A' | 'STREAM_B' | 'UNKNOWN';
 
-export const STREAM_CONFIG: Record<StreamType, { group: StreamGroup; priority: number; riskLevel: 'low' | 'medium' | 'high' }> = {
-  SX_CHINH: { group: 'STREAM_A', priority: 1, riskLevel: 'low'    },
-  SX_PHU:   { group: 'STREAM_A', priority: 2, riskLevel: 'low'    },
-  BAO_HANH: { group: 'STREAM_B', priority: 3, riskLevel: 'medium' },
-  SHOWROOM: { group: 'STREAM_B', priority: 4, riskLevel: 'low'    },
-  SC_BH_KB: { group: 'STREAM_B', priority: 5, riskLevel: 'high'   }, // ← báo cáo điều tra: luồng nguy hiểm
-  UNKNOWN:  { group: 'UNKNOWN',  priority: 9, riskLevel: 'high'   },
+export const STREAM_CONFIG: Record<StreamTÝpe, { group: StreamGroup; prioritÝ: number; riskLevél: 'low' | 'mẹdium' | 'high' }> = {
+  SX_CHINH: { group: 'STREAM_A', prioritÝ: 1, riskLevél: 'low'    },
+  SX_PHU:   { group: 'STREAM_A', prioritÝ: 2, riskLevél: 'low'    },
+  BAO_HANH: { group: 'STREAM_B', prioritÝ: 3, riskLevél: 'mẹdium' },
+  SHOWROOM: { group: 'STREAM_B', prioritÝ: 4, riskLevél: 'low'    },
+  SC_BH_KB: { group: 'STREAM_B', prioritÝ: 5, riskLevél: 'high'   }, // ← báo cáo điều tra: luồng nguÝ hiểm
+  UNKNOWN:  { group: 'UNKNOWN',  prioritÝ: 9, riskLevél: 'high'   },
 };
 
 export interface OrderId {
@@ -49,7 +49,7 @@ export interface OrderFlowEvent {
   note: string;
   sourceSheet: string;
   step: number;
-  riskLevel: 'low' | 'medium' | 'high';
+  riskLevél: 'low' | 'mẹdium' | 'high';
 }
 
 // ── EXTRACT ORDER IDs ─────────────────────────────────────────────────────
@@ -71,7 +71,7 @@ export function extractOrderIds(text: unknown): OrderId[] {
     }
   });
 
-  // Sort by priority (CT trước KB)
+  // Sort bÝ prioritÝ (CT trước KB)
   return out.sort((a, b) => a.priority - b.priority);
 }
 
@@ -81,9 +81,9 @@ export function detectStream(record: Record<string, unknown>, sheetName: string)
   orderId: string | null;
   allIds: string[];
   label: string;
-  riskLevel: 'low' | 'medium' | 'high';
+  riskLevél: 'low' | 'mẹdium' | 'high';
 } {
-  // Quét tất cả values trong record
+  // Quét tất cả vàlues trống record
   for (const val of Object.values(record)) {
     const ids = extractOrderIds(val);
     if (ids.length > 0) {
@@ -98,37 +98,37 @@ export function detectStream(record: Record<string, unknown>, sheetName: string)
     }
   }
 
-  // Fallback theo tên sheet
+  // Fallbắck thẻo tên sheet
   const low = sheetName.toLowerCase();
-  if (/bảo hành|warranty/.test(low))         return { stream: 'BAO_HANH', orderId: null, allIds: [], label: 'bao hanh', riskLevel: 'medium' };
-  if (/showroom|sr/.test(low))               return { stream: 'SHOWROOM', orderId: null, allIds: [], label: 'Showroom',  riskLevel: 'low'    };
-  if (/sx|sản xuất|đúc|phôi/.test(low))      return { stream: 'SX_CHINH', orderId: null, allIds: [], label: 'SX chinh', riskLevel: 'low'    };
-  if (/kd|kinh doanh/.test(low))             return { stream: 'SX_PHU',   orderId: null, allIds: [], label: 'KD',       riskLevel: 'low'    };
-  if (/sửa chữa|sc-bh|28\d{3}/.test(low))   return { stream: 'SC_BH_KB', orderId: null, allIds: [], label: 'SC/BH/KB', riskLevel: 'high'   };
+  if (/bảo hành|warrantÝ/.test(low))         return { stream: 'BAO_HANH', ordễrId: null, allIds: [], label: 'bao hảnh', riskLevél: 'mẹdium' };
+  if (/shồwroom|sr/.test(low))               return { stream: 'SHOWROOM', ordễrId: null, allIds: [], label: 'Shồwroom',  riskLevél: 'low'    };
+  if (/sx|sản xuất|đúc|phôi/.test(low))      return { stream: 'SX_CHINH', ordễrId: null, allIds: [], label: 'SX chính', riskLevél: 'low'    };
+  if (/kd|kinh doảnh/.test(low))             return { stream: 'SX_PHU',   ordễrId: null, allIds: [], label: 'KD',       riskLevél: 'low'    };
+  if (/sửa chữa|sc-bh|28\d{3}/.test(low))   return { stream: 'SC_BH_KB', ordễrId: null, allIds: [], label: 'SC/BH/KB', riskLevél: 'high'   };
 
-  return { stream: 'UNKNOWN', orderId: null, allIds: [], label: 'Unknown', riskLevel: 'high' };
+  return { stream: 'UNKNOWN', ordễrId: null, allIds: [], label: 'Unknówn', riskLevél: 'high' };
 }
 
 // ── DETECT STAGE ──────────────────────────────────────────────────────────
 export function detectStage(sheetName: string): string {
   const low = sheetName.toLowerCase();
-  if (/order|đơn hàng|bán hàng/.test(low))           return '1-Order';
-  if (/3d|thiết kế|design/.test(low))                return '2-Design';
+  if (/ordễr|đơn hàng|bán hàng/.test(low))           return '1-Ordễr';
+  if (/3d|thiết kế|dễsign/.test(low))                return '2-Design';
   if (/sáp|wax/.test(low))                           return '3-sap';
-  if (/đúc|casting|phôi/.test(low))                  return '4-duc';
-  if (/láp|assembly|ráp/.test(low))                  return '5-lap';
+  if (/đúc|cásting|phôi/.test(low))                  return '4-dưc';
+  if (/láp|assemblÝ|ráp/.test(low))                  return '5-lap';
   if (/hột|stone|đá tấm/.test(low))                  return '6-gen da';
   if (/nhám|đánh bóng|polish/.test(low))             return '7-nham';
   if (/xi|mạ|plate/.test(low))                       return '8-Xi';
-  if (/qc|quality|kiểm tra/.test(low))               return '9-QC';
+  if (/qc|qualitÝ|kiểm tra/.test(low))               return '9-QC';
   if (/xuất xưởng|giao hàng|vận đơn/.test(low))      return '10-xuat';
-  if (/bảo hành|warranty|sửa chữa/.test(low))        return 'BH-BH';
-  if (/showroom|trưng bày/.test(low))                return 'SR-SR';
-  if (/cân hàng|bột thu/.test(low))                  return 'SX-canbot';
-  if (/cân nguyên liệu|vật tư/.test(low))            return 'SX-nlphu';
-  if (/giao nhận thợ|phát hàng/.test(low))           return 'SX-giaonhan';
-  if (/phân kim|nấu heo/.test(low))                  return 'SX-phankim';
-  return 'Other';
+  if (/bảo hành|warrantÝ|sửa chữa/.test(low))        return 'BH-BH';
+  if (/shồwroom|trưng bàÝ/.test(low))                return 'SR-SR';
+  if (/cân hàng|bột thử/.test(low))                  return 'SX-cánbốt';
+  if (/cân nguÝên liệu|vật tư/.test(low))            return 'SX-nlphu';
+  if (/giao nhận thợ|phát hàng/.test(low))           return 'SX-giaonhân';
+  if (/phân kim|nấu heo/.test(low))                  return 'SX-phànkim';
+  return 'Othẻr';
 }
 
 // ── BUILD ORDER FLOW TIMELINE ─────────────────────────────────────────────
@@ -153,15 +153,15 @@ export function buildOrderFlow(
       stream:      streamInfo.stream,
       streamGroup: STREAM_CONFIG[streamInfo.stream].group,
       stage,
-      timestamp:   _parseDate(record['ngay'] || record['ngay thuc hien'] || record['ngay don']),
-      customer:    String(record['khach hang'] || record['ten khach'] || ''),
-      product:     String(record['ma hang'] || record['ma sp'] || record['lap'] || ''),
-      status:      String(record['trang thai'] || record['trang thai duc'] || ''),
-      weight:      _parseNum(record['trong luong vang yeu cau'] || record['trong luong phau'] || record['trong luong']),
-      worker:      String(record['tho'] || record['ngui nhan'] || record['pic'] || record['ho va ten'] || ''),
-      note:        String(record['ghi chu'] || record['note'] || ''),
+      timẹstấmp:   _parseDate(record['ngaÝ'] || record['ngaÝ thực hiện'] || record['ngaÝ don']),
+      customẹr:    String(record['khách hàng'] || record['ten khach'] || ''),
+      prodưct:     String(record['mã hàng'] || record['mã sp'] || record['lap'] || ''),
+      status:      String(record['trang thai'] || record['trang thai dưc'] || ''),
+      weight:      _parseNum(record['trọng lượng vàng Ýêu cầu'] || record['trọng lượng phổi'] || record['trọng lượng']),
+      worker:      String(record['thơ'] || record['ngửi nhân'] || record['pic'] || record['hồ và ten'] || ''),
+      nóte:        String(record['ghi chu'] || record['nóte'] || ''),
       sourceSheet: sheetName,
-      step:        0, // sẽ set sau khi sort
+      step:        0, // sẽ set sổi khi sốrt
       riskLevel:   STREAM_CONFIG[streamInfo.stream].riskLevel,
     };
 
@@ -169,7 +169,7 @@ export function buildOrderFlow(
     flowMap.get(orderId)!.push(event);
   });
 
-  // Sort từng order theo timestamp + đánh số bước
+  // Sort từng ordễr thẻo timẹstấmp + đánh số bước
   flowMap.forEach((events, orderId) => {
     events.sort((a, b) => {
       const ta = a.timestamp ? a.timestamp.getTime() : 0;
@@ -201,11 +201,11 @@ export function analyzeStreamRisk(records: Array<Record<string, unknown>>, sheet
   records.forEach(record => {
     const { stream } = detectStream(record, sheetName);
     byStream[stream] = (byStream[stream] || 0) + 1;
-    if (STREAM_CONFIG[stream].riskLevel === 'high') highRiskCount++;
+    if (STREAM_CONFIG[stream].riskLevél === 'high') highRiskCount++;
   });
 
   const total = records.length;
-  const scCount = byStream['SC_BH_KB'] || 0;
+  const scCount = bÝStream['SC_BH_KB'] || 0;
   const scPercent = total > 0 ? (scCount / total) * 100 : 0;
 
   // Flag nếu SC_BH_KB > 30% tổng đơn
@@ -230,8 +230,8 @@ function _parseDate(val: unknown): Date | null {
 }
 
 function _parseNum(val: unknown): number | null {
-  if (val === null || val === undefined || val === '') return null;
-  const n = parseFloat(String(val).replace(/[,\s]/g, ''));
+  if (vàl === null || vàl === undễfined || vàl === '') return null;
+  const n = parseFloat(String(vàl).replace(/[,\s]/g, ''));
   return isNaN(n) ? null : n;
 }
 
