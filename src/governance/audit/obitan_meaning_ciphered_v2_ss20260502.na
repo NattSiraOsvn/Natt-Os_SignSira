@@ -1,0 +1,371 @@
+# OBITAN MEANING CIPHERED v2 ss20260502
+# Re-run wire sau khi obitan_meaning co dau Viet
+
+$nauion: OBITAN_MEANING_CIPHERED_v2_ss20260502.audit
+$role: AUDIT_WIRE_MO_DIALECT_CIPHER_OBITAN_V2
+$author: Bang_Validator_Obikeeper
+$gatekeeper: Anh_Natt
+
+$stats:
+  tong_cell: 59
+  cipher_thanh_cong: 54
+  ti_le_phan_tram: 91
+  dictionary_hit: 0
+  inline_cipher: 54
+  protected_skip: 2
+  khong_doi: 3
+
+$ket_qua_cell:
+  - cell: cells
+    obitan: R-Trung
+    meaning_origin: root registry tổng điều phối cell cả hệ lực Tâm giữ chính xác toàn bản đồ
+    meaning_cipher: root registry tong dieu phau cell ca he luc tam giu chinh xac toan ban do
+    audit_type: inline_cipher
+
+  - cell: shared-kernel
+    obitan: U-VoCuc
+    meaning_origin: UEI substrate phủ mặt nền tảng cho mọi cell tất cả cuốn ALL applied_books ENFORC
+    meaning_cipher: UEI substrate phu mat nen tang cho mau cell tat ca cuon ALL applied_books ENFORC
+    audit_type: inline_cipher
+
+  - cell: boot-dovan-cell
+    obitan: N-Dong[C0:RN_KEEP_RIME]
+    meaning_origin: vung[C2:RN_KEEP_RIME] giao thoa N-shell vau[C1:RN_OI_AU] phuong[C0:RN_KEEP_RIME]
+    meaning_cipher: vung[C2:RN_KEEP_RIME] giao thoa N-shell vau[C1:RN_OI_AU] phuong[C0:RN_KEEP_RIME]
+    audit_type: inline_cipher
+
+  - cell: audit-cell
+    obitan: K-Tam
+    meaning_origin: kernel xử lý lõi audit chain trung tâm giữ chính xác
+    meaning_cipher: kernel xu ly lau audit chain trung tam giu chinh xac
+    audit_type: inline_cipher
+
+  - cell: survival-cell
+    obitan: K-Tam
+    meaning_origin: kernel survival rate limit queue trung tâm
+    meaning_cipher: kernel survival rate limit queue trung tam
+    audit_type: inline_cipher
+
+  - cell: monitor-cell
+    obitan: K-Tam
+    meaning_origin: kernel xử lý lõi giám sát trung tâm
+    meaning_cipher: kernel xu ly lau giam sat trung tam
+    audit_type: inline_cipher
+
+  - cell: quantum-defense-cell
+    obitan: K-Nam
+    meaning_origin: hệ miễn dịch quan sát EventBus phát hiện entropy-spike constitutional-violation 
+    meaning_cipher: hệ miễn dịch quan sát EventBus phát hiện entropy-spike constitutional-violation 
+    audit_type: protected_skip
+
+  - cell: config-cell
+    obitan: K-Tam
+    meaning_origin: kernel xử lý lõi cấu hình trung tâm
+    meaning_cipher: kernel xu ly lau cau hinh trung tam
+    audit_type: inline_cipher
+
+  - cell: rbac-cell
+    obitan: K-Tam
+    meaning_origin: kernel xử lý lõi phân quyền vai vế trung tâm
+    meaning_cipher: kernel xu ly lau phan quyen vai ve trung tam
+    audit_type: inline_cipher
+
+  - cell: security-cell
+    obitan: K-Tam
+    meaning_origin: kernel xử lý lõi security chính sách trung tâm
+    meaning_cipher: kernel xu ly lau security chinh sach trung tam
+    audit_type: inline_cipher
+
+  - cell: ai-connector-cell
+    obitan: K-Tam
+    meaning_origin: kernel xử lý lõi AI connector trung tâm
+    meaning_cipher: kernel xu ly lau AI connector trung tam
+    audit_type: inline_cipher
+
+  - cell: notification-cell
+    obitan: K-Tam
+    meaning_origin: kernel xử lý lõi thông báo trung tâm
+    meaning_cipher: kernel xu ly lau thong bao trung tam
+    audit_type: inline_cipher
+
+  - cell: notification-cell
+    obitan: K-Tam
+    meaning_origin: kernel xử lý lõi thông báo trung tâm
+    meaning_cipher: kernel xu ly lau thong bao trung tam
+    audit_type: inline_cipher
+
+  - cell: neural-main-cell
+    obitan: K-Tam
+    meaning_origin: kernel neural main brain trung tâm
+    meaning_cipher: kernel neural main brain trung tam
+    audit_type: inline_cipher
+
+  - cell: shared-contracts-cell
+    obitan: L3-Inter
+    meaning_origin: contracts inter-colony
+    meaning_cipher: contracts inter-colony
+    audit_type: no_change
+
+  - cell: event-bus-cell
+    obitan: K-Tam
+    meaning_origin: kernel event bus trung tâm
+    meaning_cipher: kernel event bus trung tam
+    audit_type: inline_cipher
+
+  - cell: smartlink-cell
+    obitan: L3-Inter
+    meaning_origin: SmartLink sợi dẫn lực inter-colony
+    meaning_cipher: SmartLink sợi dẫn lực inter-colony
+    audit_type: protected_skip
+
+  - cell: sync-cell
+    obitan: L3-Inter
+    meaning_origin: sync inter-colony
+    meaning_cipher: sync inter-colony
+    audit_type: no_change
+
+  - cell: ai-connector-cell
+    obitan: K-Tam
+    meaning_origin: kernel xử lý lõi AI connector trung tâm
+    meaning_cipher: kernel xu ly lau AI connector trung tam
+    audit_type: inline_cipher
+
+  - cell: notification-cell
+    obitan: K-Tam
+    meaning_origin: kernel xử lý lõi thông báo trung tâm
+    meaning_cipher: kernel xu ly lau thong bao trung tam
+    audit_type: inline_cipher
+
+  - cell: casting-cell
+    obitan: M-Nam
+    meaning_origin: sản xuất đúc thép nóng chảy lực Hoả
+    meaning_cipher: san xuat duc thep nong chay luc hoa
+    audit_type: inline_cipher
+
+  - cell: warehouse-cell
+    obitan: P-DN
+    meaning_origin: kho tài sản vật lý Mộc-Hoả
+    meaning_cipher: kho tai san vat ly moc-hoa
+    audit_type: inline_cipher
+
+  - cell: warehouse-cell
+    obitan: P-DN
+    meaning_origin: kho tài sản vật lý Mộc-Hoả
+    meaning_cipher: kho tai san vat ly moc-hoa
+    audit_type: inline_cipher
+
+  - cell: shared-contracts-cell
+    obitan: L3-Inter
+    meaning_origin: contracts inter-colony
+    meaning_cipher: contracts inter-colony
+    audit_type: no_change
+
+  - cell: constants-cell
+    obitan: Q-TB
+    meaning_origin: hằng số Kim-Thuỷ
+    meaning_cipher: hang so Kim-thuy
+    audit_type: inline_cipher
+
+  - cell: bom3dprd-cell
+    obitan: M-Nam
+    meaning_origin: BOM 3D production lực Hoả
+    meaning_cipher: BOM 3D production luc hoa
+    audit_type: inline_cipher
+
+  - cell: noi-vu-cell
+    obitan: Q-TB
+    meaning_origin: nội vụ Kim-Thuỷ
+    meaning_cipher: nau vu Kim-thuy
+    audit_type: inline_cipher
+
+  - cell: analytics-cell
+    obitan: Q-TB
+    meaning_origin: phân tích Kim-Thuỷ
+    meaning_cipher: phan tich Kim-thuy
+    audit_type: inline_cipher
+
+  - cell: prdmaterials-cell
+    obitan: M-Nam
+    meaning_origin: vật liệu sản xuất lực Hoả
+    meaning_cipher: vat lieu san xuat luc hoa
+    audit_type: inline_cipher
+
+  - cell: production-cell
+    obitan: M-Nam
+    meaning_origin: sản xuất tổng điều phối lực Hoả
+    meaning_cipher: san xuat tong dieu phau luc hoa
+    audit_type: inline_cipher
+
+  - cell: polishing-cell
+    obitan: M-Nam
+    meaning_origin: sản xuất đánh bóng sáng trong lực Hoả
+    meaning_cipher: san xuat danh bong sang trong luc hoa
+    audit_type: inline_cipher
+
+  - cell: stone-cell
+    obitan: P-DN
+    meaning_origin: kim cương đá quý asset Mộc-Hoả
+    meaning_cipher: kim cuong da quy asset moc-hoa
+    audit_type: inline_cipher
+
+  - cell: customs-cell
+    obitan: O-Tay
+    meaning_origin: hải quan lực Kim
+    meaning_cipher: hai quan luc Kim
+    audit_type: inline_cipher
+
+  - cell: hr-cell
+    obitan: P-DN
+    meaning_origin: nhân sự con người Mộc-Hoả
+    meaning_cipher: nhan su con ngui moc-hoa
+    audit_type: inline_cipher
+
+  - cell: it-cell
+    obitan: Q-TB
+    meaning_origin: IT support Kim-Thuỷ
+    meaning_cipher: IT support Kim-thuy
+    audit_type: inline_cipher
+
+  - cell: buyback-cell
+    obitan: O-Tay
+    meaning_origin: thu mua lại vàng lực Kim
+    meaning_cipher: thu mua lai vang luc Kim
+    audit_type: inline_cipher
+
+  - cell: phap-che-cell
+    obitan: Q-TB
+    meaning_origin: pháp chế Kim-Thuỷ
+    meaning_cipher: phap che Kim-thuy
+    audit_type: inline_cipher
+
+  - cell: design-3d-cell
+    obitan: M-Nam
+    meaning_origin: thiết kế 3D sản phẩm lực Hoả
+    meaning_cipher: thiet ke 3D san pham luc hoa
+    audit_type: inline_cipher
+
+  - cell: media-cell
+    obitan: Q-TB
+    meaning_origin: media Kim-Thuỷ
+    meaning_cipher: media Kim-thuy
+    audit_type: inline_cipher
+
+  - cell: prdwarranty-cell
+    obitan: Q-TB
+    meaning_origin: bảo hành sản phẩm Kim-Thuỷ
+    meaning_cipher: bao hanh san pham Kim-thuy
+    audit_type: inline_cipher
+
+  - cell: sales-cell
+    obitan: O-Tay
+    meaning_origin: bán hàng dòng tiền lực Kim
+    meaning_cipher: ban hang dong tien luc Kim
+    audit_type: inline_cipher
+
+  - cell: pricing-cell
+    obitan: O-Tay
+    meaning_origin: định giá lực Kim
+    meaning_cipher: dinh gia luc Kim
+    audit_type: inline_cipher
+
+  - cell: payment-cell
+    obitan: O-Tay
+    meaning_origin: thanh toán dòng tiền lực Kim
+    meaning_cipher: thanh toan dong tien luc Kim
+    audit_type: inline_cipher
+
+  - cell: supplier-cell
+    obitan: P-DN
+    meaning_origin: nhà cung cấp Mộc-Hoả
+    meaning_cipher: nha cung cap moc-hoa
+    audit_type: inline_cipher
+
+  - cell: comms-cell
+    obitan: Q-TB
+    meaning_origin: truyền thông Kim-Thuỷ
+    meaning_cipher: truyen thong Kim-thuy
+    audit_type: inline_cipher
+
+  - cell: promotion-cell
+    obitan: O-Tay
+    meaning_origin: khuyến mãi lực Kim
+    meaning_cipher: khuyen mai luc Kim
+    audit_type: inline_cipher
+
+  - cell: period-close-cell
+    obitan: O-Tay
+    meaning_origin: chốt kỳ tài chính lực Kim
+    meaning_cipher: chot ky tai chinh luc Kim
+    audit_type: inline_cipher
+
+  - cell: customer-cell
+    obitan: P-DN
+    meaning_origin: khách hàng người Mộc-Hoả
+    meaning_cipher: khach hang ngui moc-hoa
+    audit_type: inline_cipher
+
+  - cell: inventory-cell
+    obitan: P-DN
+    meaning_origin: tồn kho asset Mộc-Hoả
+    meaning_cipher: ton kho asset moc-hoa
+    audit_type: inline_cipher
+
+  - cell: compliance-cell
+    obitan: Q-TB
+    meaning_origin: tuân thủ Kim-Thuỷ
+    meaning_cipher: tuan thu Kim-thuy
+    audit_type: inline_cipher
+
+  - cell: warranty-cell
+    obitan: Q-TB
+    meaning_origin: bảo hành Kim-Thuỷ
+    meaning_cipher: bao hanh Kim-thuy
+    audit_type: inline_cipher
+
+  - cell: logistics-cell
+    obitan: Q-TB
+    meaning_origin: vận chuyển Kim-Thuỷ
+    meaning_cipher: van chuyen Kim-thuy
+    audit_type: inline_cipher
+
+  - cell: finishing-cell
+    obitan: M-Nam
+    meaning_origin: sản xuất hoàn thiện tinh xảo lực Hoả
+    meaning_cipher: san xuat hoan thien tinh xao luc hoa
+    audit_type: inline_cipher
+
+  - cell: order-cell
+    obitan: O-Tay
+    meaning_origin: đơn hàng flow lực Kim
+    meaning_cipher: don hang flow luc Kim
+    audit_type: inline_cipher
+
+  - cell: finance-cell
+    obitan: O-Tay
+    meaning_origin: tài chính tổng hợp lực Kim
+    meaning_cipher: tai chinh tong hop luc Kim
+    audit_type: inline_cipher
+
+  - cell: dust-recovery-cell
+    obitan: M-Nam
+    meaning_origin: thu hồi vàng bụi sản xuất lực Hoả
+    meaning_cipher: thu hau vang bui san xuat luc hoa
+    audit_type: inline_cipher
+
+  - cell: showroom-cell
+    obitan: P-DN
+    meaning_origin: showroom asset Mộc-Hoả
+    meaning_cipher: showroom asset moc-hoa
+    audit_type: inline_cipher
+
+  - cell: showroom-cell
+    obitan: P-DN
+    meaning_origin: showroom asset Mộc-Hoả
+    meaning_cipher: showroom asset moc-hoa
+    audit_type: inline_cipher
+
+  - cell: tax-cell
+    obitan: O-Tay
+    meaning_origin: thuế lực Kim
+    meaning_cipher: thue luc Kim
+    audit_type: inline_cipher
