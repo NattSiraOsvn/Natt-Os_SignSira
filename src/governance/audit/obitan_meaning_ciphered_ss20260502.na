@@ -1,0 +1,370 @@
+# OBITAN MEANING CIPHERED ss20260502
+# Wire mo dialect-cipher encode obitan_meaning 70 cell SEALED
+
+$nauion: OBITAN_MEANING_CIPHERED_ss20260502.audit
+$role: AUDIT_WIRE_MO_DIALECT_CIPHER_OBITAN
+$author: Bang_Validator_Obikeeper
+$gatekeeper: Anh_Natt
+
+$stats:
+  tong_cell: 59
+  cipher_thanh_cong: 1
+  dictionary_hit: 0
+  inline_cipher: 1
+  protected_skip: 0
+  khong_doi: 58
+
+$ket_qua_70_cell:
+  - cell: cells
+    obitan: R-Trung
+    meaning_origin: root registry tong dieu phoi cell ca he luc Tam giu chinh xac toan ban do
+    meaning_cipher: root registry tong dieu phoi cell ca he luc Tam giu chinh xac toan ban do
+    audit_type: no_change
+
+  - cell: shared-kernel
+    obitan: U-VoCuc
+    meaning_origin: UEI substrate phu mat nen tang cho moi cell tat ca cuon ALL applied_books ENFORC
+    meaning_cipher: UEI substrate phu mat nen tang cho moi cell tat ca cuon ALL applied_books ENFORC
+    audit_type: no_change
+
+  - cell: boot-dovan-cell
+    obitan: N-Dong[C0:RN_KEEP_RIME]
+    meaning_origin: vung[C2:RN_KEEP_RIME] giao thoa N-shell vau[C1:RN_OI_AU] phuong[C0:RN_KEEP_RIME]
+    meaning_cipher: vung[C2:RN_KEEP_RIME] giao thoa N-shell vau[C1:RN_OI_AU] phuong[C0:RN_KEEP_RIME]
+    audit_type: inline_cipher
+
+  - cell: audit-cell
+    obitan: K-Tam
+    meaning_origin: kernel xu ly loi audit chain trung tam giu chinh xac
+    meaning_cipher: kernel xu ly loi audit chain trung tam giu chinh xac
+    audit_type: no_change
+
+  - cell: survival-cell
+    obitan: K-Tam
+    meaning_origin: kernel survival rate limit queue trung tam
+    meaning_cipher: kernel survival rate limit queue trung tam
+    audit_type: no_change
+
+  - cell: monitor-cell
+    obitan: K-Tam
+    meaning_origin: kernel xu ly loi giam sat trung tam
+    meaning_cipher: kernel xu ly loi giam sat trung tam
+    audit_type: no_change
+
+  - cell: quantum-defense-cell
+    obitan: K-Nam
+    meaning_origin: he mien dich quan sat EventBus phat hien entropy-spike constitutional-violation 
+    meaning_cipher: he mien dich quan sat EventBus phat hien entropy-spike constitutional-violation 
+    audit_type: no_change
+
+  - cell: config-cell
+    obitan: K-Tam
+    meaning_origin: kernel xu ly loi cau hinh trung tam
+    meaning_cipher: kernel xu ly loi cau hinh trung tam
+    audit_type: no_change
+
+  - cell: rbac-cell
+    obitan: K-Tam
+    meaning_origin: kernel xu ly loi phan quyen vai ve trung tam
+    meaning_cipher: kernel xu ly loi phan quyen vai ve trung tam
+    audit_type: no_change
+
+  - cell: security-cell
+    obitan: K-Tam
+    meaning_origin: kernel xu ly loi security chinh sach trung tam
+    meaning_cipher: kernel xu ly loi security chinh sach trung tam
+    audit_type: no_change
+
+  - cell: ai-connector-cell
+    obitan: K-Tam
+    meaning_origin: kernel xu ly loi AI connector trung tam
+    meaning_cipher: kernel xu ly loi AI connector trung tam
+    audit_type: no_change
+
+  - cell: notification-cell
+    obitan: K-Tam
+    meaning_origin: kernel xu ly loi thong bao trung tam
+    meaning_cipher: kernel xu ly loi thong bao trung tam
+    audit_type: no_change
+
+  - cell: notification-cell
+    obitan: K-Tam
+    meaning_origin: kernel xu ly loi thong bao trung tam
+    meaning_cipher: kernel xu ly loi thong bao trung tam
+    audit_type: no_change
+
+  - cell: neural-main-cell
+    obitan: K-Tam
+    meaning_origin: kernel neural main brain trung tam
+    meaning_cipher: kernel neural main brain trung tam
+    audit_type: no_change
+
+  - cell: shared-contracts-cell
+    obitan: L3-Inter
+    meaning_origin: contracts inter-colony
+    meaning_cipher: contracts inter-colony
+    audit_type: no_change
+
+  - cell: event-bus-cell
+    obitan: K-Tam
+    meaning_origin: kernel event bus trung tam
+    meaning_cipher: kernel event bus trung tam
+    audit_type: no_change
+
+  - cell: smartlink-cell
+    obitan: L3-Inter
+    meaning_origin: SmartLink soi dan luc inter-colony
+    meaning_cipher: SmartLink soi dan luc inter-colony
+    audit_type: no_change
+
+  - cell: sync-cell
+    obitan: L3-Inter
+    meaning_origin: sync inter-colony
+    meaning_cipher: sync inter-colony
+    audit_type: no_change
+
+  - cell: ai-connector-cell
+    obitan: K-Tam
+    meaning_origin: kernel xu ly loi AI connector trung tam
+    meaning_cipher: kernel xu ly loi AI connector trung tam
+    audit_type: no_change
+
+  - cell: notification-cell
+    obitan: K-Tam
+    meaning_origin: kernel xu ly loi thong bao trung tam
+    meaning_cipher: kernel xu ly loi thong bao trung tam
+    audit_type: no_change
+
+  - cell: casting-cell
+    obitan: M-Nam
+    meaning_origin: san xuat duc thep nong chay luc Hoa
+    meaning_cipher: san xuat duc thep nong chay luc Hoa
+    audit_type: no_change
+
+  - cell: warehouse-cell
+    obitan: P-DN
+    meaning_origin: kho tai san vat ly Moc-Hoa
+    meaning_cipher: kho tai san vat ly Moc-Hoa
+    audit_type: no_change
+
+  - cell: warehouse-cell
+    obitan: P-DN
+    meaning_origin: kho tai san vat ly Moc-Hoa
+    meaning_cipher: kho tai san vat ly Moc-Hoa
+    audit_type: no_change
+
+  - cell: shared-contracts-cell
+    obitan: L3-Inter
+    meaning_origin: contracts inter-colony
+    meaning_cipher: contracts inter-colony
+    audit_type: no_change
+
+  - cell: constants-cell
+    obitan: Q-TB
+    meaning_origin: hang so Kim-Thuy
+    meaning_cipher: hang so Kim-Thuy
+    audit_type: no_change
+
+  - cell: bom3dprd-cell
+    obitan: M-Nam
+    meaning_origin: BOM 3D production luc Hoa
+    meaning_cipher: BOM 3D production luc Hoa
+    audit_type: no_change
+
+  - cell: noi-vu-cell
+    obitan: Q-TB
+    meaning_origin: noi vu Kim-Thuy
+    meaning_cipher: noi vu Kim-Thuy
+    audit_type: no_change
+
+  - cell: analytics-cell
+    obitan: Q-TB
+    meaning_origin: phan tich Kim-Thuy
+    meaning_cipher: phan tich Kim-Thuy
+    audit_type: no_change
+
+  - cell: prdmaterials-cell
+    obitan: M-Nam
+    meaning_origin: vat lieu san xuat luc Hoa
+    meaning_cipher: vat lieu san xuat luc Hoa
+    audit_type: no_change
+
+  - cell: production-cell
+    obitan: M-Nam
+    meaning_origin: san xuat tong dieu phoi luc Hoa
+    meaning_cipher: san xuat tong dieu phoi luc Hoa
+    audit_type: no_change
+
+  - cell: polishing-cell
+    obitan: M-Nam
+    meaning_origin: san xuat danh bong sang trong luc Hoa
+    meaning_cipher: san xuat danh bong sang trong luc Hoa
+    audit_type: no_change
+
+  - cell: stone-cell
+    obitan: P-DN
+    meaning_origin: kim cuong da quy asset Moc-Hoa
+    meaning_cipher: kim cuong da quy asset Moc-Hoa
+    audit_type: no_change
+
+  - cell: customs-cell
+    obitan: O-Tay
+    meaning_origin: hai quan luc Kim
+    meaning_cipher: hai quan luc Kim
+    audit_type: no_change
+
+  - cell: hr-cell
+    obitan: P-DN
+    meaning_origin: nhan su con nguoi Moc-Hoa
+    meaning_cipher: nhan su con nguoi Moc-Hoa
+    audit_type: no_change
+
+  - cell: it-cell
+    obitan: Q-TB
+    meaning_origin: IT support Kim-Thuy
+    meaning_cipher: IT support Kim-Thuy
+    audit_type: no_change
+
+  - cell: buyback-cell
+    obitan: O-Tay
+    meaning_origin: thu mua lai vang luc Kim
+    meaning_cipher: thu mua lai vang luc Kim
+    audit_type: no_change
+
+  - cell: phap-che-cell
+    obitan: Q-TB
+    meaning_origin: phap che Kim-Thuy
+    meaning_cipher: phap che Kim-Thuy
+    audit_type: no_change
+
+  - cell: design-3d-cell
+    obitan: M-Nam
+    meaning_origin: thiet ke 3D san pham luc Hoa
+    meaning_cipher: thiet ke 3D san pham luc Hoa
+    audit_type: no_change
+
+  - cell: media-cell
+    obitan: Q-TB
+    meaning_origin: media Kim-Thuy
+    meaning_cipher: media Kim-Thuy
+    audit_type: no_change
+
+  - cell: prdwarranty-cell
+    obitan: Q-TB
+    meaning_origin: bao hanh san pham Kim-Thuy
+    meaning_cipher: bao hanh san pham Kim-Thuy
+    audit_type: no_change
+
+  - cell: sales-cell
+    obitan: O-Tay
+    meaning_origin: ban hang dong tien luc Kim
+    meaning_cipher: ban hang dong tien luc Kim
+    audit_type: no_change
+
+  - cell: pricing-cell
+    obitan: O-Tay
+    meaning_origin: dinh gia luc Kim
+    meaning_cipher: dinh gia luc Kim
+    audit_type: no_change
+
+  - cell: payment-cell
+    obitan: O-Tay
+    meaning_origin: thanh toan dong tien luc Kim
+    meaning_cipher: thanh toan dong tien luc Kim
+    audit_type: no_change
+
+  - cell: supplier-cell
+    obitan: P-DN
+    meaning_origin: nha cung cap Moc-Hoa
+    meaning_cipher: nha cung cap Moc-Hoa
+    audit_type: no_change
+
+  - cell: comms-cell
+    obitan: Q-TB
+    meaning_origin: truyen thong Kim-Thuy
+    meaning_cipher: truyen thong Kim-Thuy
+    audit_type: no_change
+
+  - cell: promotion-cell
+    obitan: O-Tay
+    meaning_origin: khuyen mai luc Kim
+    meaning_cipher: khuyen mai luc Kim
+    audit_type: no_change
+
+  - cell: period-close-cell
+    obitan: O-Tay
+    meaning_origin: chot ky tai chinh luc Kim
+    meaning_cipher: chot ky tai chinh luc Kim
+    audit_type: no_change
+
+  - cell: customer-cell
+    obitan: P-DN
+    meaning_origin: khach hang nguoi Moc-Hoa
+    meaning_cipher: khach hang nguoi Moc-Hoa
+    audit_type: no_change
+
+  - cell: inventory-cell
+    obitan: P-DN
+    meaning_origin: ton kho asset Moc-Hoa
+    meaning_cipher: ton kho asset Moc-Hoa
+    audit_type: no_change
+
+  - cell: compliance-cell
+    obitan: Q-TB
+    meaning_origin: tuan thu Kim-Thuy
+    meaning_cipher: tuan thu Kim-Thuy
+    audit_type: no_change
+
+  - cell: warranty-cell
+    obitan: Q-TB
+    meaning_origin: bao hanh Kim-Thuy
+    meaning_cipher: bao hanh Kim-Thuy
+    audit_type: no_change
+
+  - cell: logistics-cell
+    obitan: Q-TB
+    meaning_origin: van chuyen Kim-Thuy
+    meaning_cipher: van chuyen Kim-Thuy
+    audit_type: no_change
+
+  - cell: finishing-cell
+    obitan: M-Nam
+    meaning_origin: san xuat hoan thien tinh xao luc Hoa
+    meaning_cipher: san xuat hoan thien tinh xao luc Hoa
+    audit_type: no_change
+
+  - cell: order-cell
+    obitan: O-Tay
+    meaning_origin: don hang flow luc Kim
+    meaning_cipher: don hang flow luc Kim
+    audit_type: no_change
+
+  - cell: finance-cell
+    obitan: O-Tay
+    meaning_origin: tai chinh tong hop luc Kim
+    meaning_cipher: tai chinh tong hop luc Kim
+    audit_type: no_change
+
+  - cell: dust-recovery-cell
+    obitan: M-Nam
+    meaning_origin: thu hoi vang bui san xuat luc Hoa
+    meaning_cipher: thu hoi vang bui san xuat luc Hoa
+    audit_type: no_change
+
+  - cell: showroom-cell
+    obitan: P-DN
+    meaning_origin: showroom asset Moc-Hoa
+    meaning_cipher: showroom asset Moc-Hoa
+    audit_type: no_change
+
+  - cell: showroom-cell
+    obitan: P-DN
+    meaning_origin: showroom asset Moc-Hoa
+    meaning_cipher: showroom asset Moc-Hoa
+    audit_type: no_change
+
+  - cell: tax-cell
+    obitan: O-Tay
+    meaning_origin: thue luc Kim
+    meaning_cipher: thue luc Kim
+    audit_type: no_change
