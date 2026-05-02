@@ -56,27 +56,6 @@ struct ResolutionInfo {
     legacy: u64,
 }
 
-use crate::sirasign::{self, CompoundSeal8, SiraSignPayload};
-use crate::heyna_receiver::{HeynaReceiver, HeynaConfig, HeynaEvent};
-use std::sync::OnceLock;
-
-static HEYNA_RECEIVER: OnceLock<Arc<HeynaReceiver>> = OnceLock::new();
-
-fn get_heyna() -> Arc<HeynaReceiver> {
-    HEYNA_RECEIVER.get_or_init(|| Arc::new(HeynaReceiver::new(HeynaConfig::default()))).clone()
-}
-
-fn http_response(status: &str, body: &str) -> String {
-    format!(
-        "HTTP/1.1 {}\r\nContent-Type: application/json\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{}",
-        status, body.len(), body
-    )
-}
-
-fn extract_body(request: &str) -> Option<&str> {
-    request.split("\r\n\r\n").nth(1)
-}
-
 pub async fn boot(
     esbuild_status: EsbuildStatus,
     resolver: Arc<FileResolver>,
@@ -163,48 +142,6 @@ async fn handle_connection(
     let path = parse_request_path(&request);
 
     let response = match path.as_deref() {
-        Some("/sirasign/sign") => {
-            let body = extract_body(&request).unwrap_or("");
-            match serde_json::from_str::<CompoundSeal8>(body) {
-                Ok(seal) => match sirasign::sign(seal) {
-                    Ok(payload) => {
-                        let json = serde_json::to_string(&payload).unwrap_or_else(|_| "{}".to_string());
-                        http_response("200 OK", &json)
-                    }
-                    Err(e) => http_response("400 Bad Request", &format!(r#"{{"error":"{}"}}"#, e)),
-                },
-                Err(e) => http_response("400 Bad Request", &format!(r#"{{"error":"invalid_seal_payload: {}"}}"#, e)),
-            }
-        }
-        Some("/sirasign/verify") => {
-            let body = extract_body(&request).unwrap_or("");
-            match serde_json::from_str::<SiraSignPayload>(body) {
-                Ok(payload) => {
-                    let result = sirasign::verify(&payload);
-                    let json = serde_json::to_string(&result).unwrap_or_else(|_| "{}".to_string());
-                    http_response("200 OK", &json)
-                }
-                Err(e) => http_response("400 Bad Request", &format!(r#"{{"error":"invalid_payload: {}"}}"#, e)),
-            }
-        }
-        Some("/heyna/event") => {
-            let body = extract_body(&request).unwrap_or("");
-            match serde_json::from_str::<HeynaEvent>(body) {
-                Ok(event) => {
-                    let receiver = get_heyna();
-                    match receiver.enqueue(event) {
-                        Ok(_) => http_response("200 OK", r#"{"status":"enqueued","queue_depth":"#.replace("queue_depth\"\":", &format!(r#"queue_depth":{}"#, receiver.queue_depth())).as_str()),
-                        Err(e) => http_response("503 Service Unavailable", &format!(r#"{{"error":"{}"}}"#, e)),
-                    }
-                }
-                Err(e) => http_response("400 Bad Request", &format!(r#"{{"error":"invalid_event: {}"}}"#, e)),
-            }
-        }
-        Some("/heyna/status") => {
-            let receiver = get_heyna();
-            let json = format!(r#"{{"state":"{:?}","queue_depth":{},"reconnect_count":{}}}"#, receiver.state(), receiver.queue_depth(), receiver.reconnect_count());
-            http_response("200 OK", &json)
-        }
         Some("/health") => {
             let snap = resolver.counters().snapshot();
             let body = HealthResponse {
