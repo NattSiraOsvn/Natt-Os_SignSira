@@ -1,0 +1,1335 @@
+$nauion: KERNEL_REALITY_SHAPE_SCAN-v0.2
+$role: REAL_KERNEL_EQUIVALENCE_SCAN
+$owner: NaUion-Server
+$boundary:
+  NaUion-Server: NHA_MINH
+  nattos-server: CLIENT_TAM_LUXURY_LOCAL_DEPLOY
+$scan_time: 2026-05-01 23:22:43
+$repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+$principle:
+  - khong quet theo ten OS cu
+  - quet theo hinh hai tuong duong cua nha minh
+  - moi evidence tu filesystem, khong stage, khong commit
+
+════════════════════════════════════════════════════════════
+CRITERION_1_RESOURCE_HARDWARE_EQUIVALENCE
+Kernel resource trong nhà mình có thể hiện bằng substrate, budget, capacity, processor, normalizer, healing, frame/motion budget, resource pressure.
+════════════════════════════════════════════════════════════
+
+src/cells/render-stack-cell/contract.si:28:input phải đến từ grammar / sample / pilot đã được validator xác nhận.
+src/cells/render-stack-cell/contract.si:43:không claim siraSign frame validation đã wire
+src/cells/render-stack-cell/cell.anc:36:không kéo framework ngoài
+src/cells/render-stack-cell/cell.anc:39:không wire siraSign frame validation khi chưa có contract riêng
+src/cells/render-stack-cell/render-instruction.contract.si:8:    frame_id: "ULID — duy nhat mau frame",
+src/cells/render-stack-cell/render-instruction.contract.si:11:    motion_budget: "motion_budget — frame_budget, allocated, remaining",
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:57:  "siraSign frame validation: wired",
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:97:console.log("rules=no cross-cell import; no framework; no production claim; layer m; direction nam; obitan n=2");
+src/cells/render-stack-cell/validators/validate-render-instruction.sira:9:    "frame_id không rỗng, đúng format ULID",
+src/cells/render-stack-cell/validators/validate-render-instruction.sira:12:    "motion_budget.frame_budget > 0",
+src/cells/render-stack-cell/validators/validate-render-instruction.sira:13:    "motion_budget.allocated <= motion_budget.frame_budget",
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:113:      if (!instruction.frame_id || !instruction.signals) {
+src/cells/render-stack-cell/domain/render-instruction.types.ts:16:  | 'DECAY'
+src/cells/render-stack-cell/domain/render-instruction.types.ts:23:  params: Record<string, unknown>;
+src/cells/render-stack-cell/domain/render-instruction.types.ts:35:  frame_budget: number;
+src/cells/render-stack-cell/domain/render-instruction.types.ts:36:  allocated: number;
+src/cells/render-stack-cell/domain/render-instruction.types.ts:37:  remaining: number;
+src/cells/render-stack-cell/domain/render-instruction.types.ts:47:  frame_id: string;
+src/cells/render-stack-cell/domain/render-instruction.types.ts:50:  motion_budget: MotionBudget;
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:113:      if (!instruction.frame_id || !instruction.signals) {
+src/cells/render-stack-cell/domain/render-stack.engine.sira:18:  private frameCount = 0;
+src/cells/render-stack-cell/domain/render-stack.engine.sira:25:    this.frameCount++;
+src/cells/render-stack-cell/domain/render-stack.engine.sira:26:    EventBus.emit('cell.metric', { cell: 'render-stack-cell', metric: 'frame.rendered', value: 1, confidence: 0.95, source: 'render-stack-cell', ts: Date.now() });
+src/cells/render-stack-cell/domain/render-stack.engine.sira:29:    container.className = 'natt-render-frame';
+src/cells/render-stack-cell/domain/render-stack.engine.sira:30:    container.setAttribute('data-frame-id', instruction.frame_id);
+src/cells/render-stack-cell/domain/render-stack.engine.sira:105:    // Vị trí từ params
+src/cells/render-stack-cell/domain/render-stack.engine.sira:106:    if (signal.params.position) {
+src/cells/render-stack-cell/domain/render-stack.engine.sira:107:      const pos = signal.params.position as string;
+src/cells/render-stack-cell/domain/render-instruction.types.sira:16:  | 'DECAY'
+src/cells/render-stack-cell/domain/render-instruction.types.sira:23:  params: Record<string, unknown>;
+src/cells/render-stack-cell/domain/render-instruction.types.sira:35:  frame_budget: number;
+src/cells/render-stack-cell/domain/render-instruction.types.sira:36:  allocated: number;
+src/cells/render-stack-cell/domain/render-instruction.types.sira:37:  remaining: number;
+src/cells/render-stack-cell/domain/render-instruction.types.sira:47:  frame_id: string;
+src/cells/render-stack-cell/domain/render-instruction.types.sira:50:  motion_budget: MotionBudget;
+src/cells/render-stack-cell/domain/render-stack.engine.ts:17:  private frameCount = 0;
+src/cells/render-stack-cell/domain/render-stack.engine.ts:24:    this.frameCount++;
+src/cells/render-stack-cell/domain/render-stack.engine.ts:27:    container.className = 'natt-render-frame';
+src/cells/render-stack-cell/domain/render-stack.engine.ts:28:    container.setAttribute('data-frame-id', instruction.frame_id);
+src/cells/render-stack-cell/domain/render-stack.engine.ts:103:    // Vị trí từ params
+src/cells/render-stack-cell/domain/render-stack.engine.ts:104:    if (signal.params.position) {
+src/cells/render-stack-cell/domain/render-stack.engine.ts:105:      const pos = signal.params.position as string;
+src/cells/render-stack-cell/domain/render-stack.engine.ts:125:    requestAnimationFrame(() => {
+src/cells/render-stack-cell/render-stack.cell.anc:16:    "tuan thu motion_budget & degrade_policy",
+src/cells/render-stack-cell/render-stack.cell.anc:17:    "tra frame da render"
+src/cells/render-stack-cell/render-stack.cell.anc:25:      "import framework ngoai",
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:24:  sapWeightGram: number;   // trọng lượng sáp
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:25:  requestedGoldGram: number;
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:33:  lossGram: number;
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:59:    const lossGram = job.requestedGoldGram * (CASTING_LOSS_PCT / 100);
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:60:    const castWeight = job.requestedGoldGram - lossGram;
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:68:        lossGram, lossPct, threshold: CASTING_LOSS_PCT,
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:94:      castWeight, lossGram, auditRef,
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:97:    return { orderId: job.orderId, castWeight, lossGram, lossPct, isLossExceeded, auditRef };
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:18:export function calculateCastingConfidence(params: {
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:24:    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:26:    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+src/cells/business/warehouse-cell/warehouse.service.ts:22:      this.stockMap.set(p.id, { total: p.stock, available: p.stock, reserved: 0, lowStockThreshold: 2 });
+src/cells/business/warehouse-cell/warehouse.service.ts:159:        const stock = this.stockMap.get(item_id) || { total: 0, available: 0, reserved: 0, lowStockThreshold: 0 };
+src/cells/business/warehouse-cell/index.ts:64:      'trong luong': p.goldWeightGram ?? 0,
+src/cells/business/warehouse-cell/index.ts:76:    WarehouseSmartLinkPort.notifyNhapKhoDone(p.orderId, maHang, p.goldWeightGram ?? 0);
+src/cells/business/warehouse-cell/index.ts:148:  confirmRow:  (...args: Parameters<typeof warehouseIngestHandler.confirmRow>) =>
+src/cells/business/warehouse-cell/index.ts:150:  rejectRow:   (...args: Parameters<typeof warehouseIngestHandler.rejectRow>) =>
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:23:  | 'CAPACITY_ALERT';    // → production-cell
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:48:    'CAPACITY_ALERT':    'production-cell',
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:67:  'CAPACITY_ALERT':    'WAREHOUSE.CAPACITY_ALERT',
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:112:  notifyCapacityAlert:    (warehouseId: string, pct: number) =>
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:113:    WarehouseSmartLinkPort.emit({ type: 'CAPACITY_ALERT',    payload: { warehouseId, pct }, timestamp: Date.now() }),
+src/cells/business/warehouse-cell/domain/value-objects/warehouse-category.registry.ts:144:    minStockAlert: 100,        // gram
+src/cells/business/warehouse-cell/domain/types/warehouse.types.ts:137:export const CHENH_LECH_THRESHOLDS = {
+src/cells/business/warehouse-cell/domain/engines/warehouse-qa.engine.ts:42:  capacity: number;
+src/cells/business/warehouse-cell/domain/engines/warehouse-qa.engine.ts:63:      id: 'IT-001', sku: 'GOLD-18K-01', name: 'vang thau 18K', type: 'vang', warehouseId: 'W-HCM-01', quantity: 1250.45, unit: 'GRAM', cost: 4200000, purity: '75%', location: 'SAFE-A1', status: 'sen sang', lastCountDate: '21/01/2025', minThreshold: 2000, insuranceStatus: 'chua co', internalCertId: 'TL-G-25001', qrUrl: 'https://api.qrserver.com/v1/create-qr-code/?data=GOLD-18K-01' 
+src/cells/business/warehouse-cell/domain/engines/warehouse-qa.engine.ts:66:      id: 'IT-004', sku: 'NNU-HALO-01', name: 'nhan nu Halo Diamond 18K', type: 'thanh pham', warehouseId: 'W-HCM-01', quantity: 50, unit: 'PIECE', cost: 45000000, certType: CertType.INTERNAL, internalCertId: 'TL-F-25004', location: 'DISPLAY-04', status: 'sen sang', lastCountDate: '21/01/2025', minThreshold: 10, insuranceStatus: 'con han'
+src/cells/business/warehouse-cell/domain/engines/warehouse-qa.engine.ts:69:      id: 'IT-005', sku: 'NNA-ROLEX-01', name: 'nhan Nam Rolex Custom', type: 'thanh pham', warehouseId: 'W-HCM-01', quantity: 12, unit: 'PIECE', cost: 58000000, certType: CertType.INTERNAL, internalCertId: 'TL-F-25005', location: 'DISPLAY-05', status: 'sen sang', lastCountDate: '21/01/2025', minThreshold: 5, insuranceStatus: 'con han'
+src/cells/business/warehouse-cell/domain/engines/warehouse-qa.engine.ts:72:      id: 'IT-006', sku: 'NNU-HALO-01', name: 'nhan nu Halo Diamond 18K', type: 'thanh pham', warehouseId: 'W-HN-01', quantity: 5, unit: 'PIECE', cost: 45000000, certType: CertType.INTERNAL, internalCertId: 'TL-F-25006', location: 'HN-A1', status: 'sen sang', lastCountDate: '21/01/2025', minThreshold: 15, insuranceStatus: 'con han'
+src/cells/business/warehouse-cell/domain/engines/warehouse-qa.engine.ts:136:        capacity: 100000, // items
+src/cells/business/warehouse-cell/domain/engines/warehouse-qa.engine.ts:143:        capacity: 40000,
+src/cells/business/warehouse-cell/domain/services/tam-luxury-warehouse.types.ts:70:  haoHut: number;          // gram
+src/cells/business/warehouse-cell/domain/services/warehouse-domain.service.ts:15:  minThreshold: number;
+src/cells/business/warehouse-cell/domain/services/warehouse-domain.service.ts:67:        minThreshold: i.minThreshold,
+src/cells/business/warehouse-cell/domain/services/warehouse.confidence.ts:16:export function assessWarehouseConfidence(params: {
+src/cells/business/warehouse-cell/domain/services/warehouse.confidence.ts:23:  const { totalPhoi, phoiThieuCT, totalPhieu, phieuKhopSoCai, totalSoCaiEntries } = params;
+src/cells/business/warehouse-cell/domain/services/accountability.engine.ts:161:    thresholdPercent: number = 0.5
+src/cells/business/warehouse-cell/domain/services/accountability.engine.ts:185:      if (ratio >= thresholdPercent) {
+src/cells/business/warehouse-cell/domain/services/weight-variance.engine.ts:28:  CHENH_LECH_THRESHOLDS,
+src/cells/business/warehouse-cell/domain/services/weight-variance.engine.ts:67:   * Computes hao hụt thực tế and raises alerts if threshold exceeded.
+src/cells/business/warehouse-cell/domain/services/weight-variance.engine.ts:83:    // Get threshold for this công đoạn
+src/cells/business/warehouse-cell/domain/services/weight-variance.engine.ts:84:    const thresholds = HAO_HUT_CHUAN[congDoan];
+src/cells/business/warehouse-cell/domain/services/weight-variance.engine.ts:85:    const nguong = thresholds ? thresholds.max * tlTruocCongDoan : 0;
+src/cells/business/warehouse-cell/domain/services/weight-variance.engine.ts:132:        nguong: CHENH_LECH_THRESHOLDS.CANH_BAO,
+src/cells/business/warehouse-cell/domain/services/weight-variance.engine.ts:158:        nguong: CHENH_LECH_THRESHOLDS.CANH_BAO,
+src/cells/business/warehouse-cell/domain/services/weight-variance.engine.ts:234:        nguong: CHENH_LECH_THRESHOLDS.CANH_BAO,
+src/cells/business/warehouse-cell/domain/services/warehouse-production.engine.ts:124:    tongHaoHutGram: number;
+src/cells/business/warehouse-cell/domain/services/warehouse-production.engine.ts:131:      tongHaoHutGram: _soCai.reduce((s, e) => s + e.haoHut, 0),
+src/cells/business/warehouse-cell/domain/services/warehouse-intelligence.engine.ts:19:  understocked: string[]; // qty < min threshold
+src/cells/business/warehouse-cell/domain/services/warehouse-intelligence.engine.ts:27:    minThreshold = 5,
+src/cells/business/warehouse-cell/domain/services/warehouse-intelligence.engine.ts:34:      understocked: snapshots.filter(i => i.qty < minThreshold).map(i => i.itemCode),
+src/cells/business/warehouse-cell/domain/services/intent-detector.engine.ts:61:  SO_LUONG:   /^\d+([.,]\d+)?\s*(cái|chiếc|cai|chiec|g|gram|kg|chỉ|chi|lượng|luong)?$/i,
+src/cells/business/warehouse-cell/domain/services/intent-detector.engine.ts:62:  TRONG_LUONG:/\b\d+([.,]\d+)?\s*(g|gram|kg|chỉ|chi|lượng|luong|mg)\b/i,
+src/cells/business/warehouse-cell/domain/services/intent-detector.engine.ts:77:  const getBigrams = (s: string) => {
+src/cells/business/warehouse-cell/domain/services/intent-detector.engine.ts:83:  const bg1 = getBigrams(a.toLowerCase());
+src/cells/business/warehouse-cell/domain/services/intent-detector.engine.ts:84:  const bg2 = getBigrams(b.toLowerCase());
+src/cells/business/warehouse-cell/domain/services/intent-detector.engine.ts:145:  if (/trong|trong|luong|luong|gram|kg|gold|vang|vang/.test(normKey)) {
+src/cells/business/warehouse-cell/domain/entities/warehouse.entity.ts:11:  | 'LOW_STOCK'     // Sắp hết — dưới minThreshold
+src/cells/business/warehouse-cell/domain/entities/warehouse.entity.ts:28:  minThreshold: number;          // Ngưỡng cảnh báo tồn kho
+src/cells/business/warehouse-cell/domain/entities/warehouse.entity.ts:58:  readonly minThreshold: number;
+src/cells/business/warehouse-cell/domain/entities/warehouse.entity.ts:78:    this.minThreshold = props.minThreshold;
+src/cells/business/warehouse-cell/domain/entities/warehouse.entity.ts:160:    if (this._quantity <= this.minThreshold) { this._status = 'LOW_STOCK'; return; }
+src/cells/business/warehouse-cell/domain/entities/warehouse.entity.ts:178:    return this._quantity <= this.minThreshold && this._quantity > 0;
+src/cells/business/warehouse-cell/domain/entities/warehouse.entity.ts:199:      minThreshold: this.minThreshold,
+src/cells/business/shared-contracts-cell/domain/services/shared-contracts.confidence.ts:18:export function calculateSharedContractsConfidence(params: {
+src/cells/business/shared-contracts-cell/domain/services/shared-contracts.confidence.ts:24:    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
+src/cells/business/shared-contracts-cell/domain/services/shared-contracts.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/shared-contracts-cell/domain/services/shared-contracts.confidence.ts:26:    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+src/cells/business/shared-contracts-cell/domain/services/shared-contracts.engine.ts:29:  daysRemaining: number;
+src/cells/business/shared-contracts-cell/domain/services/shared-contracts.engine.ts:38:    const daysRemaining = Math.floor((endDate - now) / 86400000);
+src/cells/business/shared-contracts-cell/domain/services/shared-contracts.engine.ts:76:    return { contractId: id, status, riskFlags, paymentRatio, daysRemaining, confidence: 0.85 };
+src/cells/business/constants-cell/domain/services/constants.confidence.ts:18:export function calculateConstantsConfidence(params: {
+src/cells/business/constants-cell/domain/services/constants.confidence.ts:24:    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
+src/cells/business/constants-cell/domain/services/constants.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/constants-cell/domain/services/constants.confidence.ts:26:    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+src/cells/business/bom3dprd-cell/data-point3-d.tsx:4:import { motion } from 'framer-motion';
+src/cells/business/bom3dprd-cell/application/bom3dprd.usecase.ts:6:  params: Record<string, unknown>
+src/cells/business/bom3dprd-cell/application/bom3dprd.usecase.ts:10:  return { success: true, data: params };
+src/cells/business/bom3dprd-cell/application/bom3dprd.usecase.ts:14:  params: Record<string, unknown>
+src/cells/business/bom3dprd-cell/application/bom3dprd.usecase.ts:18:  return { success: true, data: params };
+src/cells/business/bom3dprd-cell/domain/engines/bom3dprd.engine.ts:24:  goldWeightGram?:  number;
+src/cells/business/bom3dprd-cell/domain/services/bom3dprd.confidence.ts:18:export function calculateBom3dprdConfidence(params: {
+src/cells/business/bom3dprd-cell/domain/services/bom3dprd.confidence.ts:24:    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
+src/cells/business/bom3dprd-cell/domain/services/bom3dprd.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/bom3dprd-cell/domain/services/bom3dprd.confidence.ts:26:    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+src/cells/business/noi-vu-cell/domain/services/noi-vu.confidence.ts:18:export function calculateNoiVuConfidence(params: {
+src/cells/business/noi-vu-cell/domain/services/noi-vu.confidence.ts:24:    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
+src/cells/business/noi-vu-cell/domain/services/noi-vu.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/noi-vu-cell/domain/services/noi-vu.confidence.ts:26:    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+src/cells/business/analytics-cell/application/analytics.usecase.ts:6:  params: Record<string, unknown>
+src/cells/business/analytics-cell/application/analytics.usecase.ts:10:  return { success: true, data: params };
+src/cells/business/analytics-cell/application/analytics.usecase.ts:14:  params: Record<string, unknown>
+src/cells/business/analytics-cell/application/analytics.usecase.ts:18:  return { success: true, data: params };
+src/cells/business/analytics-cell/domain/services/analytics.confidence.ts:18:export function calculateAnalyticsConfidence(params: {
+src/cells/business/analytics-cell/domain/services/analytics.confidence.ts:24:    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
+src/cells/business/analytics-cell/domain/services/analytics.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/analytics-cell/domain/services/analytics.confidence.ts:26:    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+src/cells/business/prdmaterials-cell/domain/prdmaterials.entity.ts:47:  const allocatedItems: LapItem[] = items.map(i => ({
+src/cells/business/prdmaterials-cell/domain/prdmaterials.entity.ts:56:    items: allocatedItems,
+src/cells/business/prdmaterials-cell/domain/prdmaterials.trace.logger.ts:3:  | 'GOLD_ALLOCATED' | 'PHIEU_FETCHED';
+src/cells/business/prdmaterials-cell/domain/services/prdmaterials.confidence.ts:9:export function assessPrdMaterialsConfidence(params: {
+src/cells/business/prdmaterials-cell/domain/services/prdmaterials.confidence.ts:14:  const { totalLaps, lapsWithGoldAllocation, pendingLaps } = params;
+src/cells/business/prdmaterials-cell/domain/services/prdmaterials.engine.ts:46:    waxWeight:   p.sapWeightGram ?? 2.0,  // mặc định 2g nếu chưa có dữ liệu sáp
+src/cells/business/prdmaterials-cell/domain/services/prdmaterials.engine.ts:51:  const gold24K  = (p.sapWeightGram ?? 2.0) * 7;  // tỷ lệ vàng/sáp ≈ 7x
+src/cells/business/prdmaterials-cell/domain/services/prdmaterials.engine.ts:115:    const threshold = GOLD_LOSS_PCT[tuoi] ?? GOLD_LOSS_PCT['default'];
+src/cells/business/prdmaterials-cell/domain/services/prdmaterials.engine.ts:118:    if (lossPct > threshold) {
+src/cells/business/prdmaterials-cell/domain/services/prdmaterials.engine.ts:128:        orderId, lapId: lap.lapId, lossGold, lossPct, threshold, stage: 'CASTING',
+src/cells/business/production-cell/index.ts:3:export * from './domain/value-objects/loss-thresholds';
+src/cells/business/production-cell/application/use-cases/report-material-loss.ts:3:const THRESHOLDS:Record<string,number>={CASTING:0.03,FILING:0.02,POLISHING:0.01,SETTING:0.005,QUALITY_REJECT:0.02,OTHER:0.01};
+src/cells/business/production-cell/application/use-cases/report-material-loss.ts:8:  return{success:true,lossAmount,lossRate,isAlert:lossRate>(THRESHOLDS[input.lossReason]??0.01)};
+src/cells/business/production-cell/ports/production.contract.ts:5:  'production.loss.alert': { orderId: string; totalLoss: number; threshold: number };
+src/cells/business/production-cell/domain/value-objects/loss-thresholds.ts:2:export const LOSS_THRESHOLDS = {
+src/cells/business/production-cell/domain/engines/production-loss.engine.ts:6:  private static LOSS_THRESHOLDS: Partial<Record<OrderStatus, number>> = {
+src/cells/business/production-cell/domain/engines/production-loss.engine.ts:21:    const threshold = this.LOSS_THRESHOLDS[stage] || 1.0;
+src/cells/business/production-cell/domain/engines/production-loss.engine.ts:26:      threshold,
+src/cells/business/production-cell/domain/engines/production-loss.engine.ts:27:      isExceeded: percentage > threshold,
+src/cells/business/production-cell/domain/engines/production-loss.engine.ts:28:      alertLevel: percentage > threshold ? 'CRITICAL' : (percentage > threshold - 0.2 ? 'warnING' : 'NORMAL')
+src/cells/business/production-cell/domain/engines/production-wac.engine.ts:4:  OrderStatus, UserPosition, WorkerPerformance 
+src/cells/business/production-cell/domain/engines/production-wac.engine.ts:47:    const threshold = tracking.stage === OrderStatus.CASTING ? 1.5 : 3.0;
+src/cells/business/production-cell/domain/engines/production-wac.engine.ts:52:      isCritical: percentage > threshold
+src/cells/business/production-cell/domain/services/flow.engine.ts:20:  lossGram?: number;
+src/cells/business/production-cell/domain/services/flow.engine.ts:48:  EventBus.emit('StockReserved',       { ...base, action: 'RESERVE_MATERIAL', sapWeightGram: 2.0 });
+src/cells/business/production-cell/domain/services/flow.engine.ts:87:  EventBus.emit('ViolationDetected',  { ...p, rule: 'LOSS_THRESHOLD' });
+src/cells/business/production-cell/domain/services/flow.engine.ts:106:  advanceStage(orderId: string, worker?: string, lossGram?: number): ProductionStage {
+src/cells/business/production-cell/domain/services/flow.engine.ts:112:    if (last && !last.exitedAt) { last.exitedAt = Date.now(); last.lossGram = lossGram; }
+src/cells/business/production-cell/domain/services/flow.engine.ts:125:    (_logs.get(orderId) ?? []).reduce((s, l) => s + (l.lossGram ?? 0), 0) > 0.5,
+src/cells/business/production-cell/domain/services/production.confidence.ts:18:export function calculateProductionConfidence(params: {
+src/cells/business/production-cell/domain/services/production.confidence.ts:24:    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
+src/cells/business/production-cell/domain/services/production.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/production-cell/domain/services/production.confidence.ts:26:    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+src/cells/business/production-cell/domain/services/production.engine.ts:16:const LOSS_THRESHOLDS: Partial<Record<ProductionStage, number>> = {
+src/cells/business/production-cell/domain/services/production.engine.ts:28:  threshold: number;
+src/cells/business/production-cell/domain/services/production.engine.ts:41:  const threshold = LOSS_THRESHOLDS[stage] ?? 1.0;
+src/cells/business/production-cell/domain/services/production.engine.ts:46:    threshold,
+src/cells/business/production-cell/domain/services/production.engine.ts:47:    isExceeded: percentage > threshold,
+src/cells/business/production-cell/domain/services/production.engine.ts:48:    alertLevel: percentage > threshold ? 'CRITICAL' : percentage > threshold - 0.2 ? 'warnING' : 'NORMAL',
+src/cells/business/production-cell/domain/services/weight-guard.engine.ts:16:  weightIn:    number;  // gram
+src/cells/business/production-cell/domain/services/weight-guard.engine.ts:17:  weightOut:   number;  // gram
+src/cells/business/production-cell/domain/services/weight-guard.engine.ts:31:// Từ THRESHOLD_REGISTRY: warn=2%, risk=5%, critical=10%
+src/cells/business/production-cell/domain/services/weight-guard.engine.ts:32:const THRESHOLDS = { warn: 0.02, risk: 0.05, critical: 0.10 };
+src/cells/business/production-cell/domain/services/weight-guard.engine.ts:41:    if (absDelta >= THRESHOLDS.critical)    level = 'critical';
+src/cells/business/production-cell/domain/services/weight-guard.engine.ts:42:    else if (absDelta >= THRESHOLDS.risk)   level = 'risk';
+src/cells/business/production-cell/domain/services/weight-guard.engine.ts:43:    else if (absDelta >= THRESHOLDS.warn)   level = 'warning';
+src/cells/business/polishing-cell/domain/services/polishing.confidence.ts:18:export function calculatePolishingConfidence(params: {
+src/cells/business/polishing-cell/domain/services/polishing.confidence.ts:24:    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
+src/cells/business/polishing-cell/domain/services/polishing.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/polishing-cell/domain/services/polishing.confidence.ts:26:    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+src/cells/business/stone-cell/domain/services/stone.confidence.ts:18:export function calculateStoneConfidence(params: {
+src/cells/business/stone-cell/domain/services/stone.confidence.ts:24:    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
+src/cells/business/stone-cell/domain/services/stone.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/stone-cell/domain/services/stone.confidence.ts:26:    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+src/cells/business/customs-cell/domain/engines/customs-robot.engine.ts:131:   * MAIN PROCESSOR
+src/cells/business/customs-cell/domain/engines/customs-robot.engine.ts:178:   * PROCESSOR: Standardized Signature (rows, metadata)
+src/cells/business/customs-cell/domain/engines/customs-utils.engine.ts:83:          const data = new Uint8Array(e.target?.result as ArrayBuffer);
+src/cells/business/customs-cell/domain/engines/customs-utils.engine.ts:94:      reader.readAsArrayBuffer(file);
+src/cells/business/customs-cell/domain/engines/customs-utils.engine.ts:158:   * @param text Văn bản gốc
+src/cells/business/customs-cell/domain/engines/customs-utils.engine.ts:159:   * @param giaIndex Vị trí tìm thấy mã GIA
+src/cells/business/customs-cell/domain/engines/customs-utils.engine.ts:160:   * @param patterns Bộ Regex cần tìm
+src/cells/business/customs-cell/domain/engines/customs-utils.engine.ts:161:   * @param range Phạm vi quét (số ký tự trước/sau)
+src/cells/business/customs-cell/domain/services/customs.confidence.ts:18:export function calculateCustomsConfidence(params: {
+src/cells/business/customs-cell/domain/services/customs.confidence.ts:24:    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
+src/cells/business/customs-cell/domain/services/customs.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/customs-cell/domain/services/customs.confidence.ts:26:    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+src/cells/business/hr-cell/domain/services/personnel.engine.ts:2:export interface LeaveBalance{employeeId:string;year:number;annualEntitled:number;annualUsed:number;sickUsed:number;remaining:number;}
+src/cells/business/hr-cell/domain/services/personnel.engine.ts:29:    if(!_balances.has(key))_balances.set(key,{employeeId,year,annualEntitled:12,annualUsed:0,sickUsed:0,remaining:12});
+src/cells/business/hr-cell/domain/services/personnel.engine.ts:30:    const bal=_balances.get(key)!;bal.remaining=bal.annualEntitled-bal.annualUsed;return bal;
+src/cells/business/it-cell/domain/services/it.confidence.ts:18:export function calculateItConfidence(params: {
+src/cells/business/it-cell/domain/services/it.confidence.ts:24:    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
+src/cells/business/it-cell/domain/services/it.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/it-cell/domain/services/it.confidence.ts:26:    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+src/cells/business/it-cell/domain/services/it.engine.ts:7:    if (type === 'HARDWARE') return cost >= 30_000_000 ? '211' : '153';
+src/cells/business/it-cell/domain/entities/it-asset.entity.ts:1:export type ITAssetType = 'HARDWARE' | 'SOFTWARE_LICENSE' | 'SUBSCRIPTION' | 'INFRASTRUCTURE';
+src/cells/business/it-cell/domain/entities/it-asset.entity.ts:11:  // 211: hardware >= 30tr, 213: software >= 30tr vinh viễn
+src/cells/business/it-cell/domain/entities/it-asset.entity.ts:12:  // 642: subscription/thuê tháng, 153: hardware < 30tr
+src/cells/business/buyback-cell/buyback.types.ts:36:  goldWeight: number;         // Trọng lượng vàng thực (gram) — sau khi trừ đá, phụ kiện
+src/cells/business/buyback-cell/application/services/buyback.service.ts:19:  goldWeightGram: number;
+src/cells/business/buyback-cell/application/services/buyback.service.ts:20:  currentGoldPricePerGram: number;
+src/cells/business/buyback-cell/application/services/buyback.service.ts:32:  goldWeightGram: number;
+src/cells/business/buyback-cell/application/services/buyback.service.ts:33:  currentGoldPricePerGram: number;
+src/cells/business/buyback-cell/application/services/buyback.service.ts:59:      goldWeightGram: cmd.goldWeightGram,
+src/cells/business/buyback-cell/application/services/buyback.service.ts:60:      currentGoldPricePerGram: cmd.currentGoldPricePerGram,
+src/cells/business/buyback-cell/application/services/buyback.service.ts:66:        cmd.goldWeightGram * cmd.currentGoldPricePerGram + cmd.stoneValue
+src/cells/business/buyback-cell/application/services/buyback.service.ts:92:      goldWeightGram: cmd.goldWeightGram,
+src/cells/business/buyback-cell/domain/value-objects/buyback-rules.ts:35:export const MIN_GOLD_WEIGHT_GRAM = 0.5;
+src/cells/business/buyback-cell/domain/value-objects/buyback-rules.ts:36:export const AUTHENTICATION_REQUIRED_THRESHOLD = 10_000_000;
+src/cells/business/buyback-cell/domain/services/buyback.confidence.ts:18:export function calculateBuybackConfidence(params: {
+src/cells/business/buyback-cell/domain/services/buyback.confidence.ts:24:    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
+src/cells/business/buyback-cell/domain/services/buyback.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/buyback-cell/domain/services/buyback.confidence.ts:26:    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+src/cells/business/buyback-cell/domain/services/buyback.engine.ts:10:import { AUTHENTICATION_REQUIRED_THRESHOLD, MIN_GOLD_WEIGHT_GRAM } from '../value-objects/buyback-rules';
+src/cells/business/buyback-cell/domain/services/buyback.engine.ts:21:    if (tx.goldWeightGram < MIN_GOLD_WEIGHT_GRAM)
+src/cells/business/buyback-cell/domain/services/buyback.engine.ts:22:      errors.push(`trong luong vang tau thieu ${MIN_GOLD_WEIGHT_GRAM}g`);
+src/cells/business/buyback-cell/domain/services/buyback.engine.ts:39:    return estimatedValue >= AUTHENTICATION_REQUIRED_THRESHOLD;
+src/cells/business/buyback-cell/domain/services/buyback.engine.ts:48:  static buildPolicyFromGDB(params: {
+src/cells/business/buyback-cell/domain/services/buyback.engine.ts:59:        buybackDeduction: params.jewelryCaseBuyback,
+src/cells/business/buyback-cell/domain/services/buyback.engine.ts:60:        upgradeDeduction: params.jewelryCaseUpgrade,
+src/cells/business/buyback-cell/domain/services/buyback.engine.ts:62:      mainStone: (params.mainStoneBuyback !== null || params.mainStoneUpgrade !== null)
+src/cells/business/buyback-cell/domain/entities/buyback-transaction.entity.ts:31:  goldWeightGram: number;
+src/cells/business/buyback-cell/domain/entities/buyback-transaction.entity.ts:32:  currentGoldPricePerGram: number;
+src/cells/business/buyback-cell/domain/entities/buyback-transaction.entity.ts:65:  readonly goldWeightGram: number;
+src/cells/business/buyback-cell/domain/entities/buyback-transaction.entity.ts:66:  readonly currentGoldPricePerGram: number;
+src/cells/business/buyback-cell/domain/entities/buyback-transaction.entity.ts:98:    this.goldWeightGram = props.goldWeightGram;
+src/cells/business/buyback-cell/domain/entities/buyback-transaction.entity.ts:99:    this.currentGoldPricePerGram = props.currentGoldPricePerGram;
+src/cells/business/buyback-cell/domain/entities/buyback-transaction.entity.ts:138:    const goldValue = this.goldWeightGram * this.currentGoldPricePerGram * rates.goldRetentionRate;
+src/cells/business/buyback-cell/domain/entities/buyback-transaction.entity.ts:224:      goldWeightGram: this.goldWeightGram,
+src/cells/business/phap-che-cell/domain/services/phap-che.confidence.ts:18:export function calculatePhapCheConfidence(params: {
+src/cells/business/phap-che-cell/domain/services/phap-che.confidence.ts:24:    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
+src/cells/business/phap-che-cell/domain/services/phap-che.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/phap-che-cell/domain/services/phap-che.confidence.ts:26:    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+src/cells/business/phap-che-cell/domain/services/phap-che.engine.ts:40:      const daysRemaining = Math.floor((c.endDate.getTime() - now.getTime()) / 86400000);
+src/cells/business/phap-che-cell/domain/services/phap-che.engine.ts:41:      if (daysRemaining < 0 && c.status === 'ACTIVE') {
+src/cells/business/phap-che-cell/domain/services/phap-che.engine.ts:43:      } else if (daysRemaining <= 30 && daysRemaining >= 0) {
+src/cells/business/phap-che-cell/domain/services/phap-che.engine.ts:44:        alerts.push({ alertId: `ALT-${Date.now()}`, contractId: c.contractId, type: 'EXPIRING_SOON', message: `hop dong ${c.title} het han sau ${daysRemaining} ngay`, daysRemaining, createdAt: new Date() });
+
+FILES_MATCHED=913
+STATUS: PASS
+
+════════════════════════════════════════════════════════════
+CRITERION_2_PROCESS_MEMORY_STATE_EQUIVALENCE
+Process/memory trong nhà mình có thể hiện bằng cell lifecycle, EventEnvelope, state map, in-memory repository, quarantine, saga, causation/correlation, idempotency.
+════════════════════════════════════════════════════════════
+
+src/cells/render-stack-cell/contract.si:12:docs/render/spec_render_language_v0.2_candidate.na
+src/cells/render-stack-cell/contract.si:21:render-stack-cell không tự sửa memory.
+src/cells/render-stack-cell/contract.si:38:cell.anc khai báo đúng layer m, direction nam, obitan n=2
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:10:  cellAnc: "src/cells/render-stack-cell/cell.anc",
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:14:  spec: "docs/render/spec_render_language_v0.2_candidate.na"
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:33:must(fs.existsSync(files.cellAnc), "missing src/cells/render-stack-cell/cell.anc");
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:37:must(fs.existsSync(files.spec), "missing docs/render/spec_render_language_v0.2_candidate.na");
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:44:must(/layer\s*[:=]\s*"?m"?/i.test(anc), "src/cells/render-stack-cell/cell.anc must declare layer m");
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:45:must(/direction\s*[:=]\s*"?nam"?/i.test(anc), "src/cells/render-stack-cell/cell.anc must declare direction nam");
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:46:must(/obitan\s*[:=]\s*"?n=2"?/i.test(anc) || anc.includes("n=2"), "src/cells/render-stack-cell/cell.anc must declare obitan n=2");
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:21:  private listeners: Map<HeynaEventType, ((event: HeynaEvent) => void)[]> = new Map();
+src/cells/render-stack-cell/domain/layout.engine.sira:68:      const children = el.querySelectorAll('.natt-element');
+src/cells/render-stack-cell/domain/layout.engine.sira:74:      // Nếu không có .natt-element, append trực tiếp
+src/cells/render-stack-cell/domain/layout.engine.sira:75:      if (el.querySelectorAll('.natt-element').length === 0) {
+src/cells/render-stack-cell/domain/layout.engine.sira:96:      const children = el.querySelectorAll('.natt-element');
+src/cells/render-stack-cell/domain/layout.engine.sira:122:      const children = el.querySelectorAll('.natt-element');
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:21:  private listeners: Map<HeynaEventType, ((event: HeynaEvent) => void)[]> = new Map();
+src/cells/render-stack-cell/domain/navigation.engine.ts:17:  private screens: Map<string, Screen> = new Map();
+src/cells/render-stack-cell/domain/navigation.engine.ts:70:    this.navigate(previousScreenId, false);
+src/cells/render-stack-cell/domain/render-stack.engine.sira:13:  elements: Map<string, HTMLElement>;
+src/cells/render-stack-cell/domain/render-stack.engine.sira:19:  private states: Map<string, RenderState> = new Map();
+src/cells/render-stack-cell/domain/render-stack.engine.sira:267:    const container = el.closest('.natt-render-frame') as HTMLElement;
+src/cells/render-stack-cell/domain/render-stack.engine.sira:271:        state = { elements: new Map(), container };
+src/cells/render-stack-cell/domain/navigation.engine.sira:17:  private screens: Map<string, Screen> = new Map();
+src/cells/render-stack-cell/domain/navigation.engine.sira:70:    this.navigate(previousScreenId, false);
+src/cells/render-stack-cell/domain/interaction.engine.ts:4: * @status: pilot — bắt sự kiện người dùng, map về memory state
+src/cells/render-stack-cell/domain/interaction.engine.ts:27:  private mappings: Map<string, InteractionMapping[]> = new Map();
+src/cells/render-stack-cell/domain/interaction.engine.ts:28:  private listeners: Map<string, (e: Event) => void> = new Map();
+src/cells/render-stack-cell/domain/interaction.engine.ts:38:   * Đăng ký một mapping: element + sự kiện → memory state
+src/cells/render-stack-cell/domain/layout.engine.ts:68:      const children = el.querySelectorAll('.natt-element');
+src/cells/render-stack-cell/domain/layout.engine.ts:74:      // Nếu không có .natt-element, append trực tiếp
+src/cells/render-stack-cell/domain/layout.engine.ts:75:      if (el.querySelectorAll('.natt-element').length === 0) {
+src/cells/render-stack-cell/domain/layout.engine.ts:96:      const children = el.querySelectorAll('.natt-element');
+src/cells/render-stack-cell/domain/layout.engine.ts:122:      const children = el.querySelectorAll('.natt-element');
+src/cells/render-stack-cell/domain/render-stack.engine.ts:12:  elements: Map<string, HTMLElement>;
+src/cells/render-stack-cell/domain/render-stack.engine.ts:18:  private states: Map<string, RenderState> = new Map();
+src/cells/render-stack-cell/domain/render-stack.engine.ts:265:    const container = el.closest('.natt-render-frame') as HTMLElement;
+src/cells/render-stack-cell/domain/render-stack.engine.ts:269:        state = { elements: new Map(), container };
+src/cells/render-stack-cell/domain/interaction.engine.sira:4: * @status: pilot — bắt sự kiện người dùng, map về memory state
+src/cells/render-stack-cell/domain/interaction.engine.sira:27:  private mappings: Map<string, InteractionMapping[]> = new Map();
+src/cells/render-stack-cell/domain/interaction.engine.sira:28:  private listeners: Map<string, (e: Event) => void> = new Map();
+src/cells/render-stack-cell/domain/interaction.engine.sira:38:   * Đăng ký một mapping: element + sự kiện → memory state
+src/cells/render-stack-cell/render-stack.cell.anc:5:# @spec: docs/specs/render/SPEC_RENDER_STACK_v0.1.na
+src/cells/render-stack-cell/render-stack.cell.anc:32:  trace: "git:docs/specs/render/SPEC_RENDER_STACK_v0.1.na"
+src/cells/cells.cell.anc:5:    "boundary": "strict",
+src/cells/cells.cell.anc:9:    "lifecycle": "active"
+src/cells/business/casting-cell/index.ts:3:export type { ICastingRepository, ICastingSheetAdapter, RawCastingResult } from './application/casting.usecase';
+src/cells/business/casting-cell/application/casting.usecase.ts:8:export interface ICastingRepository {
+src/cells/business/casting-cell/application/casting.usecase.ts:32:    private readonly repo: ICastingRepository,
+src/cells/business/casting-cell/infrastructure/casting.engine.ts:6:import { ProcessCastingRequestUseCase, ICastingRepository, ICastingSheetAdapter } from '../application/casting.usecase';
+src/cells/business/casting-cell/infrastructure/casting.engine.ts:19:    private readonly repo: ICastingRepository,
+src/cells/business/casting-cell/infrastructure/casting.engine.ts:42:export class InMemoryCastingRepository implements ICastingRepository {
+src/cells/business/casting-cell/infrastructure/casting.engine.ts:43:  private store = new Map<string, CastingRecord>();
+src/cells/business/casting-cell/domain/services/casting.seed.ts:29:const _batches     = new Map<string, RawBatch>();
+src/cells/business/casting-cell/domain/services/casting.seed.ts:30:const _orderToLap  = new Map<string, string>();   // maDon → lapId
+src/cells/business/warehouse-cell/QUARANTINE_GUARD.ts:1:// warehouse-cell/QUARANTINE_GUARD.ts
+src/cells/business/warehouse-cell/QUARANTINE_GUARD.ts:2:// QUARANTINE LIFTED — 2026-03-22 — Gatekeeper: Anh Natt
+src/cells/business/warehouse-cell/QUARANTINE_GUARD.ts:7:export const QUARANTINE_REASON = "LIFTED — production flow wired, seed data loaded";
+src/cells/business/warehouse-cell/QUARANTINE_GUARD.ts:8:export const QUARANTINE_SINCE  = "2026-02-11";
+src/cells/business/warehouse-cell/QUARANTINE_GUARD.ts:9:export const QUARANTINE_LIFTED = "2026-03-22";
+src/cells/business/warehouse-cell/warehouse.service.ts:6:// ⚠️ DATA ISOLATION: Seed data defined locally to prevent cross-boundary imports
+src/cells/business/warehouse-cell/warehouse.service.ts:15:  private stockMap: Map<string, StockStatus> = new Map();
+src/cells/business/warehouse-cell/warehouse.service.ts:16:  private reservations: Map<string, StockReservation> = new Map();
+src/cells/business/warehouse-cell/QUARANTINE_README.md:1:# ⚠️ QUARANTINED CELL - DO NOT USE
+src/cells/business/warehouse-cell/QUARANTINE_README.md:5:### CONSTITUTIONAL STATUS: QUARANTINED
+src/cells/business/warehouse-cell/QUARANTINE_README.md:6:This cell has been marked as **QUARANTINED** due to incomplete layer structure.
+src/cells/business/warehouse-cell/QUARANTINE_README.md:14:### RESTRICTIONS (ENFORCED)
+src/cells/business/warehouse-cell/QUARANTINE_README.md:26:5. Remove quarantine status (requires Gatekeeper approval)
+src/cells/business/warehouse-cell/QUARANTINE_README.md:31:import warehouseCell from './warehouse-cell'; // ❌ QUARANTINE VIOLATION
+src/cells/business/warehouse-cell/QUARANTINE_README.md:35:- Quarantined by: bau bau (Constitutional Guardian)
+src/cells/business/warehouse-cell/index.ts:27:// ── In-memory stock registry (tồn kho đơn giản) ──
+src/cells/business/warehouse-cell/index.ts:28:const _stock = new Map<string, { qty: number; weight: number; unit: string }>();
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:54:      // New order → init lifecycle at Gate 1
+src/cells/business/warehouse-cell/domain/value-objects/warehouse-category.registry.ts:163:  private categories: Map<string, CategoryDefinition> = new Map();
+src/cells/business/warehouse-cell/domain/value-objects/warehouse-category.registry.ts:178:    if (!cmd.name?.trim()) return { success: false, error: 'ten danh muc khong duoc de trong' };
+src/cells/business/warehouse-cell/domain/value-objects/warehouse-category.registry.ts:187:      name: cmd.name,
+src/cells/business/warehouse-cell/domain/types/warehouse.types.ts:120:  [CongDoan.NAM]:         { min: 0.001, max: 0.002 },  // 0.1-0.2%
+src/cells/business/warehouse-cell/domain/services/warehouse-domain.service.ts:44:    if (!item.name?.trim()) errors.push('ten mat hang khong duoc de trong');
+src/cells/business/warehouse-cell/domain/services/warehouse-domain.service.ts:64:        name: i.name,
+src/cells/business/warehouse-cell/domain/services/warehouse-domain.service.ts:81:      name: i.name,
+src/cells/business/warehouse-cell/domain/services/accountability.engine.ts:36:  private history: Map<string, AccountabilityChain[]> = new Map();
+src/cells/business/warehouse-cell/domain/services/accountability.engine.ts:163:    const roleCounts: Map<string, number> = new Map();
+src/cells/business/warehouse-cell/domain/services/warehouse-production.engine.ts:12:// ─── Store (in-memory, sẽ thay bằng DB adapter) ───
+src/cells/business/warehouse-cell/domain/services/logistics.engine.ts:7:const _transfers=new Map<string,TransferOrder>();
+src/cells/business/warehouse-cell/domain/services/warehouse-gate.engine.ts:91:// ─── Order Lifecycle — tracks which gates have been passed ───
+src/cells/business/warehouse-cell/domain/services/warehouse-gate.engine.ts:93:export interface OrderLifecycle {
+src/cells/business/warehouse-cell/domain/services/warehouse-gate.engine.ts:99:  gatesPassed:     Map<number, GatePassRecord>;
+src/cells/business/warehouse-cell/domain/services/warehouse-gate.engine.ts:120:  private orders: Map<string, OrderLifecycle> = new Map();
+src/cells/business/warehouse-cell/domain/services/warehouse-gate.engine.ts:128:   * Initialize a new order lifecycle at Gate 1.
+src/cells/business/warehouse-cell/domain/services/warehouse-gate.engine.ts:136:  ): OrderLifecycle {
+src/cells/business/warehouse-cell/domain/services/warehouse-gate.engine.ts:137:    const order: OrderLifecycle = {
+src/cells/business/warehouse-cell/domain/services/warehouse-gate.engine.ts:143:      gatesPassed: new Map(),
+src/cells/business/warehouse-cell/domain/services/warehouse.engine.ts:30:  private stock: Map<string, number> = new Map();
+src/cells/business/warehouse-cell/domain/entities/warehouse-item.entity.ts:2:export type WarehouseItemStatus = 'IN_STOCK' | 'RESERVED' | 'SHIPPED' | 'QUARANTINE';
+src/cells/business/warehouse-cell/domain/entities/warehouse.entity.ts:70:    this._name = props.name;
+src/cells/business/shared-contracts-cell/shared-contracts-cell.cell.anc:9:    "lifecycle": "stable"
+src/cells/business/shared-contracts-cell/shared-contracts-cell.cell.anc:15:  "restrictions": [
+src/cells/business/constants-cell/constants-cell.cell.anc:15:    "lockdown_level": "STRICT"
+src/cells/business/bom3dprd-cell/domain/engines/bom3dprd.engine.ts:56:const _boms  = new Map<string, BomRecord>();
+src/cells/business/noi-vu-cell/domain/services/noi-vu.engine.ts:23:  private assets: Map<string, AssetRecord> = new Map();
+src/cells/business/analytics-cell/ingestion-pipeline.ts:5:import { EventEnvelope, PersonaID } from '../../../types';
+src/cells/business/analytics-cell/ingestion-pipeline.ts:12:// LEGACY V1 STUB - sagahealthprojection legacy
+src/cells/business/analytics-cell/ingestion-pipeline.ts:13:const SagaHealthProjection: any = { project: (e: any) => e, getInstance: () => SagaHealthProjection };
+src/cells/business/analytics-cell/ingestion-pipeline.ts:21:  private processedEventIds: Set<string> = new Set();
+src/cells/business/analytics-cell/ingestion-pipeline.ts:31:  public async handleEvent(event: EventEnvelope) {
+src/cells/business/analytics-cell/ingestion-pipeline.ts:32:    if (this.processedEventIds.has(event.event_id)) return;
+src/cells/business/analytics-cell/ingestion-pipeline.ts:35:      // 1. Project to Read-models (Saga Health)
+src/cells/business/analytics-cell/ingestion-pipeline.ts:36:      await SagaHealthProjection.project(event);
+src/cells/business/analytics-cell/saga-health-projection.ts:5:import { EventEnvelope, SagaLog } from '../../../types';
+src/cells/business/analytics-cell/saga-health-projection.ts:7:export interface SagaState {
+src/cells/business/analytics-cell/saga-health-projection.ts:8:  correlation_id: string;
+src/cells/business/analytics-cell/saga-health-projection.ts:10:  steps: SagaLog[];
+src/cells/business/analytics-cell/saga-health-projection.ts:15: * 📊 SAGA HEALTH PROJECTION (BĂNG - TEAM 4)
+src/cells/business/analytics-cell/saga-health-projection.ts:17:export class SagaHealthProjection {
+src/cells/business/analytics-cell/saga-health-projection.ts:18:  private static store: Map<string, SagaState> = new Map();
+src/cells/business/analytics-cell/saga-health-projection.ts:20:  public static async project(event: EventEnvelope) {
+src/cells/business/analytics-cell/domain/services/analytics.engine.ts:29:    const map = new Map<string, { last: number; count: number; total: number }>();
+src/cells/business/analytics-cell/domain/services/enterprise-linker.engine.ts:24:    const byEntity = new Map<string, LinkRecord[]>();
+src/cells/business/prdmaterials-cell/index.ts:3:export type { ILapRepository, IPhieuInfoAdapter, RawPhieuInfo } from './application/prdmaterials.usecase';
+src/cells/business/prdmaterials-cell/application/prdmaterials.usecase.ts:8:export interface ILapRepository {
+src/cells/business/prdmaterials-cell/application/prdmaterials.usecase.ts:37:    private readonly repo: ILapRepository,
+src/cells/business/prdmaterials-cell/application/prdmaterials.usecase.ts:45:    const lap = createLap(raw.lapId, raw.phieuInfoId, raw.items, {
+src/cells/business/prdmaterials-cell/application/prdmaterials.usecase.ts:69:      phieuInfoId: lap.phieuInfoId,
+src/cells/business/prdmaterials-cell/infrastructure/prdmaterials.engine.ts:5:import { CreateCastingRequestUseCase, ILapRepository, IPhieuInfoAdapter } from '../application/prdmaterials.usecase';
+src/cells/business/prdmaterials-cell/infrastructure/prdmaterials.engine.ts:18:    private readonly repo: ILapRepository,
+src/cells/business/prdmaterials-cell/infrastructure/prdmaterials.engine.ts:52:/** In-memory repository */
+src/cells/business/prdmaterials-cell/infrastructure/prdmaterials.engine.ts:53:export class InMemoryLapRepository implements ILapRepository {
+src/cells/business/prdmaterials-cell/infrastructure/prdmaterials.engine.ts:54:  private store = new Map<string, Lap>();
+src/cells/business/prdmaterials-cell/domain/services/prdmaterials.engine.ts:20:const _laps   = new Map<string, Lap>();   // key = orderId
+src/cells/business/production-cell/domain/engines/production-sales-flow.engine.ts:93:  // --- CORE FLOW: FULL LIFECYCLE ---
+src/cells/business/production-cell/domain/engines/production-sales-flow.engine.ts:223:        productName: p.name,
+src/cells/business/production-cell/domain/services/flow.engine.ts:23:const _logs    = new Map<string, FlowLog[]>();
+src/cells/business/production-cell/domain/services/flow.engine.ts:24:const _stages  = new Map<string, ProductionStage>();
+src/cells/business/production-cell/domain/services/flow.engine.ts:25:const _context = new Map<string, Record<string, unknown>>();
+src/cells/business/polishing-cell/index.ts:3:export type { IPolishingRepository, IPolishingSheetAdapter } from './application/polishing.usecase';
+src/cells/business/polishing-cell/application/polishing.usecase.ts:16:export interface IPolishingRepository {
+src/cells/business/polishing-cell/application/polishing.usecase.ts:31:    private repo:    IPolishingRepository,
+src/cells/business/polishing-cell/domain/engines/polishing.engine.ts:8:const _pending = new Map<string, { stone?: boolean; finish?: boolean; payload?: any }>();
+src/cells/business/stone-cell/index.ts:5:export type { IStoneRepository, IStoneSheetAdapter, RawStoneSpec } from './application/stone.usecase';
+src/cells/business/stone-cell/index.ts:7:export { StoneEngine, InMemoryStoneRepository } from './infrastructure/Stone.engine';
+src/cells/business/stone-cell/application/stone.usecase.ts:22:export interface IStoneRepository {
+src/cells/business/stone-cell/application/stone.usecase.ts:43:    private repo:    IStoneRepository,
+src/cells/business/stone-cell/application/stone.usecase.ts:86:    private repo: IStoneRepository,
+src/cells/business/stone-cell/infrastructure/Stone.engine.ts:9:import { IStoneRepository, ProcessWipInProgressUseCase, SetStoneUseCase } from '../application/stone.usecase';
+src/cells/business/stone-cell/infrastructure/Stone.engine.ts:14:// ─── InMemory Repository ─────────────────────────────────────────────────────
+src/cells/business/stone-cell/infrastructure/Stone.engine.ts:16:export class InMemoryStoneRepository implements IStoneRepository {
+src/cells/business/stone-cell/infrastructure/Stone.engine.ts:17:  private store = new Map<string, StoneRecord>();
+src/cells/business/stone-cell/infrastructure/Stone.engine.ts:42:  private repo    = new InMemoryStoneRepository();
+src/cells/business/stone-cell/domain/engines/stone.engine.ts:41:  private registry: Map<string, Stone> = new Map();
+src/cells/business/customs-cell/domain/engines/customs-robot.engine.ts:77:        issues.push({ type: 'RESTRICTION', severity: 'warnING', message: `dong ${item.stt}: nhap khau vang nguyen lieu can han ngach NHNN.` });
+src/cells/business/customs-cell/domain/engines/customs-robot.engine.ts:315:       console.log(`[CUSTOMS-ROBOT] bat dau doc file thuc te: ${file.name}`);
+src/cells/business/customs-cell/domain/engines/customs-robot.engine.ts:319:         const declaration = this.processNewDeclaration(rawRows, { fileName: file.name });
+src/cells/business/customs-cell/domain/engines/customs-robot.engine.ts:322:         console.error(`lau khi doc file ${file.name}:`, error);
+src/cells/business/hr-cell/hr-cell.cell.anc:5:    "boundary": "strict",
+src/cells/business/hr-cell/hr-cell.cell.anc:9:    "lifecycle": "active"
+src/cells/business/hr-cell/domain/engines/hr-email.engine.ts:116:  const usernameSeen = new Map<string, number>(); // username → first occurrence index
+src/cells/business/hr-cell/domain/services/hr.engine.ts:18:const _employees = new Map<string, Employee>();
+src/cells/business/hr-cell/domain/services/hr.engine.ts:196:      id: emp.id, name: emp.fullName ?? emp.name,
+src/cells/business/hr-cell/domain/services/personnel.engine.ts:3:const _leaves=new Map<string,LeaveRequest>();
+src/cells/business/hr-cell/domain/services/personnel.engine.ts:4:const _balances=new Map<string,LeaveBalance>();
+src/cells/business/hr-cell/handlers/training-completed-handler.ts:6:import { EventEnvelope, TrainingStatus } from '../../../../types';
+src/cells/business/hr-cell/handlers/training-completed-handler.ts:14:  async handle(event: EventEnvelope) {
+src/cells/business/hr-cell/handlers/training-completed-handler.ts:18:    await this.logAudit('TRAINING_COMPLETED', event.trace.correlation_id, {
+src/cells/business/hr-cell/handlers/training-completed-handler.ts:23:    }, event.event_id);
+src/cells/business/hr-cell/handlers/employee-created-handler.ts:6:import { EventEnvelope } from '../../../../types';
+src/cells/business/hr-cell/handlers/employee-created-handler.ts:11:  async handle(event: EventEnvelope) {
+src/cells/business/hr-cell/handlers/employee-created-handler.ts:15:    await this.logAudit('EMPLOYEE_RECORDED', event.trace.correlation_id, {
+src/cells/business/hr-cell/handlers/employee-created-handler.ts:19:    }, event.event_id);
+src/cells/business/hr-cell/handlers/training-assigned-handler.ts:6:import { EventEnvelope, TrainingStatus } from '../../../../types';
+src/cells/business/hr-cell/handlers/training-assigned-handler.ts:11:  async handle(event: EventEnvelope) {
+src/cells/business/hr-cell/handlers/training-assigned-handler.ts:15:    await this.logAudit('TRAINING_ASSIGNED', event.trace.correlation_id, {
+src/cells/business/hr-cell/handlers/training-assigned-handler.ts:19:    }, event.event_id);
+src/cells/business/buyback-cell/buyback-cell.cell.anc:8:    "lifecycle": { "implemented_by": "bang", "approved_by": "Anh Natt (Gatekeeper)" }
+src/cells/business/buyback-cell/application/services/buyback.service.ts:146:  // ─── State transitions ───
+src/cells/business/buyback-cell/infrastructure/repositories/buyback.repository.ts:2:export interface IBuybackRepository { findById(id: string): Promise<BuybackTransaction | null>; save(tx: BuybackTransaction): Promise<void>; getAll(): Promise<BuybackTransaction[]>; }
+src/cells/business/buyback-cell/infrastructure/repositories/buyback.repository.ts:3:export class InMemoryBuybackRepository implements IBuybackRepository {
+src/cells/business/buyback-cell/infrastructure/repositories/buyback.repository.ts:4:  private store: Map<string, BuybackTransactionProps> = new Map();
+src/cells/business/buyback-cell/buyback-cell.boundary.si:17:  "violation_action": "QUARANTINE_IMMEDIATE",
+src/cells/business/design-3d-cell/application/services/Design3dApplicationService.ts:4:import { InMemorySkuModelRepository } from "../../infrastructure/repositories"
+src/cells/business/design-3d-cell/application/services/Design3dApplicationService.ts:9:  private repo = new InMemorySkuModelRepository()
+src/cells/business/design-3d-cell/infrastructure/repositories/InMemorySkuModelRepository.ts:3:export class InMemorySkuModelRepository {
+src/cells/business/design-3d-cell/infrastructure/repositories/InMemorySkuModelRepository.ts:4:  private store = new Map<string, SkuModel>()
+src/cells/business/design-3d-cell/infrastructure/repositories/index.ts:1:export * from "./InMemorySkuModelRepository"
+src/cells/business/design-3d-cell/domain/engines/design-3d.engine.ts:18:// ── In-memory SKU registry ──
+src/cells/business/design-3d-cell/domain/engines/design-3d.engine.ts:19:const _models = new Map<string, SkuModel>();
+src/cells/business/prdwarranty-cell/prdwarranty-cell.cell.anc:38:      "isolation_level": "STRICT"
+src/cells/business/prdwarranty-cell/prdwarranty-cell.cell.anc:54:    "lifecycle": {
+src/cells/business/prdwarranty-cell/prdwarranty-cell.boundary.si:17:  "violation_action": "QUARANTINE_IMMEDIATE",
+src/cells/business/sales-cell/sales.service.ts:24:      event_id: crypto.randomUUID(),
+src/cells/business/sales-cell/sales.service.ts:27:      trace: { correlation_id: crypto.randomUUID(), causation_id: null, trace_id: crypto.randomUUID() },
+src/cells/business/sales-cell/sales-cell.boundary.si:15:  "violation_action": "QUARANTINE_IMMEDIATE",
+src/cells/business/sales-cell/application/services/sales.service.ts:23:const _orders = new Map<string, SalesOrder>();
+src/cells/business/sales-cell/infrastructure/repositories/sales.repository.ts:2:export class InMemorySalesRepository {
+src/cells/business/sales-cell/infrastructure/repositories/sales.repository.ts:3:  private store: Map<string, SalesTransactionProps> = new Map();
+src/cells/business/sales-cell/domain/engines/sales.engine.ts:45:      productName: product.name,
+src/cells/business/sales-cell/domain/engines/gdb-pattern.engine.ts:122:        if (parts.length > 1) customer.name = parts[1].trim().replace(/[._-]+/g, ' ').trim();
+src/cells/business/sales-cell/domain/engines/gdb-pattern.engine.ts:265:      if (template.keywords.every(keyword => this.ocrText.includes(keyword))) return template.name;
+src/cells/business/sales-cell/domain/engines/seller.engine.ts:3:const _sellers=new Map<string,Seller>();
+src/cells/business/sales-cell/domain/engines/luxury-mapping.engine.ts:358: * syncLifecycle — map Sell_Clean → VÒNG ĐỜI SP theo key ngày||khách||sdt.
+src/cells/business/sales-cell/domain/engines/luxury-mapping.engine.ts:361:export function syncLifecycle(
+src/cells/business/sales-cell/_deprecated/sales-cell_manifest_archive_note.na:7:# archive note — manifest.cell.anc cũ của sales-cell
+src/cells/business/sales-cell/_deprecated/sales-cell_manifest_archive_note.na:13:file một: src/cells/business/sales-cell/manifest.cell.anc
+src/cells/business/sales-cell/_deprecated/sales-cell_manifest_archive_note.na:19:file hai: src/cells/business/sales-cell/sales-cell.cell.anc
+src/cells/business/sales-cell/_deprecated/sales-cell_manifest_archive_note.na:29:file hai (sales-cell.cell.anc) là canonical, giữ nguyên trong cell root.
+src/cells/business/sales-cell/_deprecated/sales-cell_manifest_archive_note.na:31:file một (manifest.cell.anc) archive về _deprecated/ trong scope cell.
+src/cells/business/sales-cell/sales-cell.cell.anc:15:    "lockdown_level": "STRICT"
+src/cells/business/pricing-cell/pricing-cell.cell.anc:43:    "lifecycle": {
+src/cells/business/pricing-cell/pricing-cell.boundary.si:9:    "violation_action": "QUARANTINE_IMMEDIATE"
+src/cells/business/pricing-cell/application/use-cases/update-gold-market-price.ts:35:    // TODO: persist to repository
+src/cells/business/pricing-cell/infrastructure/repositories/gold-price.repository.ts:2: * Gold Price Repository
+src/cells/business/pricing-cell/infrastructure/repositories/gold-price.repository.ts:9:export interface IGoldPriceRepository {
+src/cells/business/pricing-cell/infrastructure/repositories/gold-price.repository.ts:15:// In-memory implementation for scaffold phase
+src/cells/business/pricing-cell/infrastructure/repositories/gold-price.repository.ts:16:export class InMemoryGoldPriceRepository implements IGoldPriceRepository {
+src/cells/business/pricing-cell/infrastructure/repositories/gold-price.repository.ts:17:  private prices: Map<GoldTypeCode, GoldMarketPrice[]> = new Map();
+src/cells/business/payment-cell/domain/engines/payment-deposit.engine.ts:41:// ── PROCESS DEPOSIT LIFECYCLE ─────────────────────────────────────────────
+src/cells/business/payment-cell/domain/engines/payment-deposit.engine.ts:47:export function processDepositLifecycle(rows: unknown[][], headerRowIndex = 1): {
+src/cells/business/payment-cell/domain/engines/payment-deposit.engine.ts:56:  const cocMap = new Map<string, DepositRecord>();
+src/cells/business/payment-cell/domain/engines/payment-deposit.engine.ts:140:export default { detectDepositType, buildDepositKey, processDepositLifecycle, createPaymentConfirmation };
+src/cells/business/payment-cell/domain/services/payment.engine.ts:5:const _records=new Map<string,PaymentRecord>();
+src/cells/business/supplier-cell/domain/engines/supplier-classify.engine.ts:60:        groups.add(category.name);
+src/cells/business/supplier-cell/domain/engines/supplier-classify.engine.ts:64:        groups.add(category.name);
+src/cells/business/comms-cell/domain/services/room.engine.ts:27:  private rooms: Map<string, RoomMessage[]> = new Map();
+src/cells/business/promotion-cell/promotion-cell.boundary.si:15:  "violation_action": "QUARANTINE_IMMEDIATE",
+src/cells/business/promotion-cell/promotion-cell.cell.anc:1:{ "cell_id": "promotion-cell", "version": "2.0.0", "wave": "3", "layer": "business", "status": "ACTIVE", "structure": { "current_structure": "5_LAYER", "migration_status": "COMPLETE" }, "adn": { "identity": { "name": "Promotion Cell", "domain": "khuyen mai Tâm Luxury" }, "lifecycle": { "implemented_by": "bang", "approved_by": "Anh Natt (Gatekeeper)" } } }
+src/cells/business/promotion-cell/application/services/promotion.service.ts:63:      name: cmd.name,
+src/cells/business/promotion-cell/application/services/promotion.service.ts:91:    // Kiểm tra tier restriction
+src/cells/business/promotion-cell/application/services/promotion.service.ts:97:    // Kiểm tra category restriction
+src/cells/business/promotion-cell/application/services/promotion.service.ts:112:      promotionName: promo.name,
+src/cells/business/promotion-cell/application/services/promotion.service.ts:129:    return { success: true, discountVND: discount, promotionId: promo.id, promotionName: promo.name };
+src/cells/business/promotion-cell/application/services/promotion.service.ts:132:  // ─── Lifecycle ───
+src/cells/business/promotion-cell/infrastructure/repositories/promotion.repository.ts:2:export class InMemoryPromotionRepository {
+src/cells/business/promotion-cell/infrastructure/repositories/promotion.repository.ts:3:  private store: Map<string, PromotionProps> = new Map();
+src/cells/business/promotion-cell/domain/entities/promotion.entity.ts:17:    this.id = props.id; this.code = props.code; this.name = props.name;
+src/cells/business/promotion-cell/domain/entities/promotion.entity.ts:46:    return { id: this.id, code: this.code, name: this.name, type: this.type, status: this._status,
+src/cells/business/period-close-cell/domain/services/allocation.engine.ts:19:          description: `Phan bo chi phi ${rule.name}`,
+src/cells/business/customer-cell/customer-cell.boundary.si:15:  "violation_action": "QUARANTINE_IMMEDIATE",
+src/cells/business/customer-cell/infrastructure/repositories/customer.repository.ts:2:export interface ICustomerRepository { findById(id: string): Promise<Customer | null>; findByPhone(phone: string): Promise<Customer | null>; save(c: Customer): Promise<void>; getAll(): Promise<Customer[]>; }
+src/cells/business/customer-cell/infrastructure/repositories/customer.repository.ts:3:export class InMemoryCustomerRepository implements ICustomerRepository {
+src/cells/business/customer-cell/infrastructure/repositories/customer.repository.ts:4:  private store: Map<string, CustomerProps> = new Map();
+src/cells/business/inventory-cell/index.ts:6:export type { IInventoryRepository } from './application/inventory.usecase';
+src/cells/business/inventory-cell/application/inventory.usecase.ts:12:export interface IInventoryRepository {
+src/cells/business/inventory-cell/application/inventory.usecase.ts:20:    private repo: IInventoryRepository,
+src/cells/business/inventory-cell/domain/engines/inventory-bqgq.engine.ts:41:  private items = new Map<string, InventoryItem>();
+src/cells/business/inventory-cell/domain/engines/inventory-bqgq.engine.ts:58:    if (name) existing.name = name;
+src/cells/business/inventory-cell/domain/engines/inventory-bqgq.engine.ts:194:        i.code, i.name,
+src/cells/business/inventory-cell/domain/services/material-issue.guard.ts:11: *   Guard normalizes + emits to field. Resonance + .anc match in field
+src/cells/business/inventory-cell/domain/services/material-issue.guard.ts:24:      trace_id: "TRACE-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 10),
+src/cells/business/inventory-cell/domain/services/inventory.engine.ts:32:  private states: Map<string, InventoryState> = new Map();
+src/cells/business/compliance-cell/compliance-cell.boundary.si:1:{ "isolation": "strict", "allowedPorts": [] }
+src/cells/business/warranty-cell/warranty-cell.cell.anc:15:    "lifecycle": { "implemented_by": "bang", "approved_by": "Anh Natt (Gatekeeper)" }
+src/cells/business/warranty-cell/warranty-cell.boundary.si:17:  "violation_action": "QUARANTINE_IMMEDIATE",
+src/cells/business/warranty-cell/infrastructure/repositories/warranty.repository.ts:3:export interface IWarrantyRepository {
+src/cells/business/warranty-cell/infrastructure/repositories/warranty.repository.ts:11:export class InMemoryWarrantyRepository implements IWarrantyRepository {
+src/cells/business/warranty-cell/infrastructure/repositories/warranty.repository.ts:12:  private store: Map<string, WarrantyClaimProps> = new Map();
+src/cells/business/warranty-cell/domain/services/warranty.engine.ts:36:      return { type, name: policy.name, expiryDate, isActive: now <= expiryDate };
+src/cells/business/logistics-cell/domain/engines/logistics-adapter.engine.ts:11:  fromDistrictId: number;
+src/cells/business/logistics-cell/domain/engines/logistics-adapter.engine.ts:12:  toDistrictId: number;
+src/cells/business/logistics-cell/domain/engines/logistics-adapter.engine.ts:192:    // 1. Phân tích địa chỉ (Giả lập District ID Mapping)
+src/cells/business/logistics-cell/domain/engines/logistics-adapter.engine.ts:193:    const toDistrictId = destination.includes('ha nau') ? 1001 : 1002;
+src/cells/business/logistics-cell/domain/engines/logistics-adapter.engine.ts:194:    const fromDistrictId = 2001; // HCM
+
+FILES_MATCHED=1170
+STATUS: PASS
+
+════════════════════════════════════════════════════════════
+CRITERION_3_KERNEL_INTERFACE_EQUIVALENCE
+Syscall/interface trong nhà mình có thể hiện bằng EventBus, Mạch HeyNa, SmartLink, contract, port, .sira validator, trigger, handler, bridge.
+════════════════════════════════════════════════════════════
+
+src/cells/render-stack-cell/contract.si:1:# render-stack-cell contract — 20260425
+src/cells/render-stack-cell/contract.si:3:status: scaffold-contract
+src/cells/render-stack-cell/contract.si:8:contract này bám theo render language v0.2 candidate.
+src/cells/render-stack-cell/contract.si:26:RenderInstruction
+src/cells/render-stack-cell/contract.si:28:input phải đến từ grammar / sample / pilot đã được validator xác nhận.
+src/cells/render-stack-cell/contract.si:33:output chỉ phục vụ pilot / dev surface cho đến khi có runner và contract production riêng.
+src/cells/render-stack-cell/contract.si:36:không import trực tiếp cell khác — điều 4 hiến pháp
+src/cells/render-stack-cell/contract.si:39:contract.si không chứa điều khoản mâu thuẫn với render language v0.2
+src/cells/render-stack-cell/cell.anc:23:cell này không import trực tiếp cell khác.
+src/cells/render-stack-cell/cell.anc:35:không import trực tiếp cell khác
+src/cells/render-stack-cell/cell.anc:38:không wire mạch heyna khi chưa có contract riêng
+src/cells/render-stack-cell/cell.anc:39:không wire siraSign frame validation khi chưa có contract riêng
+src/cells/render-stack-cell/smartlink/index.ts:2:export const render_stack_cellSmartLinkPort = { wire: () => {} };
+src/cells/render-stack-cell/render-instruction.contract.si:1:# RENDER INSTRUCTION CONTRACT
+src/cells/render-stack-cell/render-instruction.contract.si:2:# @contract: render_instruction
+src/cells/render-stack-cell/render-instruction.contract.si:6:contract render_instruction {
+src/cells/render-stack-cell/render-instruction.contract.si:16:  validator: "src/cells/render-stack-cell/validators/validate-render-instruction.sira"
+src/cells/render-stack-cell/render-instruction.contract.si:18:  transport: "pending — chua wire Mạch HeyNa"
+src/cells/render-stack-cell/index.ts:3:export * from './application';
+src/cells/render-stack-cell/index.ts:4:export * from './ports';
+src/cells/render-stack-cell/index.ts:5:export * from './smartlink';
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:11:  contract: "src/cells/render-stack-cell/contract.si",
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:34:must(fs.existsSync(files.contract), "missing src/cells/render-stack-cell/contract.si");
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:40:const contract = read(files.contract);
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:48:const all = [contract, types, engine].join("\n");
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:55:  "EventBus",
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:58:  "Mạch HeyNa wired"
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:63:const importLines = engine.split(/\r?\n/).filter(line => /^\s*import\s/.test(line));
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:64:for (const line of importLines) {
+src/cells/render-stack-cell/validators/validate-render-instruction.sira:2:# @validator: render_instruction contract
+src/cells/render-stack-cell/validators/validate-render-instruction.sira:6:validator RenderInstructionValidator {
+src/cells/render-stack-cell/application/index.ts:2:export const render_stack_cellApp = {};
+src/cells/render-stack-cell/ports/index.ts:2:export const render_stack_cellPorts = {};
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:2: * HEYNA RECEIVER ENGINE — v0.1 (PILOT)
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:4: * @status: pilot — nhận render instruction từ Mạch HeyNa (transport layer)
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:6: * Lắng nghe tín hiệu từ Mạch HeyNa và chuyển đổi thành render instruction
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:9:import type { RenderInstruction } from './render-instruction.types';
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:11:export type HeynaEventType = 'render' | 'layout' | 'navigate' | 'interaction' | 'pulse';
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:13:export interface HeynaEvent {
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:14:  type: HeynaEventType;
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:20:export class HeynaReceiverEngine {
+src/cells/render-stack-cell/domain/layout.engine.sira:10:import type { RenderInstruction } from './render-instruction.types';
+src/cells/render-stack-cell/domain/layout.engine.sira:11:import { RenderStackEngine } from './render-stack.engine';
+src/cells/render-stack-cell/domain/layout.engine.sira:13:export type LayoutMode = 'absolute' | 'grid' | 'flex';
+src/cells/render-stack-cell/domain/layout.engine.sira:15:export interface LayoutConfig {
+src/cells/render-stack-cell/domain/layout.engine.sira:23:export class LayoutEngine {
+src/cells/render-stack-cell/domain/layout.engine.sira:33:  layout(instructions: RenderInstruction[], config: LayoutConfig = { mode: 'absolute' }): HTMLElement {
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:2: * HEYNA MOCK TRANSPORT — v0.1 (PILOT)
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:4: * @status: pilot — mô phỏng Mạch HeyNa transport để test render pipeline
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:6: * Giả lập việc gửi render instruction qua Mạch HeyNa
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:9:import { HeynaReceiverEngine, HeynaEvent, HeynaEventType } from './heyna-receiver.engine';
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:11:export class HeynaMockTransport {
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:12:  private receiver: HeynaReceiverEngine;
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:16:  constructor(receiver: HeynaReceiverEngine) {
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:21:   * Bắt đầu mô phỏng transport — gửi sự kiện pulse định kỳ
+src/cells/render-stack-cell/domain/render-instruction.types.ts:3: * @contract: render-instruction.contract.si
+src/cells/render-stack-cell/domain/render-instruction.types.ts:6:export type SurfaceSignalVerb =
+src/cells/render-stack-cell/domain/render-instruction.types.ts:19:export interface SurfaceSignal {
+src/cells/render-stack-cell/domain/render-instruction.types.ts:28:export interface AttentionMap {
+src/cells/render-stack-cell/domain/render-instruction.types.ts:34:export interface MotionBudget {
+src/cells/render-stack-cell/domain/render-instruction.types.ts:40:export interface TruthBoundary {
+src/cells/render-stack-cell/domain/render-instruction.types.ts:46:export interface RenderInstruction {
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:2: * HEYNA MOCK TRANSPORT — v0.1 (PILOT)
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:4: * @status: pilot — mô phỏng Mạch HeyNa transport để test render pipeline
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:6: * Giả lập việc gửi render instruction qua Mạch HeyNa
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:9:import { HeynaReceiverEngine, HeynaEvent, HeynaEventType } from './heyna-receiver.engine';
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:11:export class HeynaMockTransport {
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:12:  private receiver: HeynaReceiverEngine;
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:16:  constructor(receiver: HeynaReceiverEngine) {
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:21:   * Bắt đầu mô phỏng transport — gửi sự kiện pulse định kỳ
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:2: * HEYNA RECEIVER ENGINE — v0.1 (PILOT)
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:4: * @status: pilot — nhận render instruction từ Mạch HeyNa (transport layer)
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:6: * Lắng nghe tín hiệu từ Mạch HeyNa và chuyển đổi thành render instruction
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:9:import type { RenderInstruction } from './render-instruction.types';
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:11:export type HeynaEventType = 'render' | 'layout' | 'navigate' | 'interaction' | 'pulse';
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:13:export interface HeynaEvent {
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:14:  type: HeynaEventType;
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:20:export class HeynaReceiverEngine {
+src/cells/render-stack-cell/domain/navigation.engine.ts:9:export interface Screen {
+src/cells/render-stack-cell/domain/navigation.engine.ts:16:export class NavigationEngine {
+src/cells/render-stack-cell/domain/render-stack.engine.sira:4: * @status: pilot — chưa wire Mạch HeyNa, chưa siraSign
+src/cells/render-stack-cell/domain/render-stack.engine.sira:9:import type { RenderInstruction, SurfaceSignal } from './render-instruction.types';
+src/cells/render-stack-cell/domain/render-stack.engine.sira:10:import { EventBus } from '../../../core/events/event-bus';
+src/cells/render-stack-cell/domain/render-stack.engine.sira:17:export class RenderStackEngine {
+src/cells/render-stack-cell/domain/render-stack.engine.sira:24:  execute(instruction: RenderInstruction): HTMLElement {
+src/cells/render-stack-cell/domain/render-stack.engine.sira:26:    EventBus.emit('cell.metric', { cell: 'render-stack-cell', metric: 'frame.rendered', value: 1, confidence: 0.95, source: 'render-stack-cell', ts: Date.now() });
+src/cells/render-stack-cell/domain/render-stack.engine.sira:166:      if (from.startsWith('position(') && to.startsWith('position(')) {
+src/cells/render-stack-cell/domain/render-stack.engine.sira:167:        const fromCoords = from.replace('position(', '').replace(')', '').split(',');
+src/cells/render-stack-cell/domain/navigation.engine.sira:9:export interface Screen {
+src/cells/render-stack-cell/domain/navigation.engine.sira:16:export class NavigationEngine {
+src/cells/render-stack-cell/domain/interaction.engine.ts:10:export type InteractionType = 'click' | 'hover' | 'focus' | 'blur' | 'input' | 'scroll';
+src/cells/render-stack-cell/domain/interaction.engine.ts:12:export interface InteractionMapping {
+src/cells/render-stack-cell/domain/interaction.engine.ts:16:  handler?: (event: Event) => void;
+src/cells/render-stack-cell/domain/interaction.engine.ts:19:export interface InteractionEvent {
+src/cells/render-stack-cell/domain/interaction.engine.ts:26:export class InteractionEngine {
+src/cells/render-stack-cell/domain/interaction.engine.ts:28:  private listeners: Map<string, (e: Event) => void> = new Map();
+src/cells/render-stack-cell/domain/interaction.engine.ts:48:    // Gắn listener nếu chưa có
+src/cells/render-stack-cell/domain/interaction.engine.ts:49:    if (!this.listeners.has(key)) {
+src/cells/render-stack-cell/domain/render-instruction.types.sira:3: * @contract: render-instruction.contract.si
+src/cells/render-stack-cell/domain/render-instruction.types.sira:6:export type SurfaceSignalVerb =
+src/cells/render-stack-cell/domain/render-instruction.types.sira:19:export interface SurfaceSignal {
+src/cells/render-stack-cell/domain/render-instruction.types.sira:28:export interface AttentionMap {
+src/cells/render-stack-cell/domain/render-instruction.types.sira:34:export interface MotionBudget {
+src/cells/render-stack-cell/domain/render-instruction.types.sira:40:export interface TruthBoundary {
+src/cells/render-stack-cell/domain/render-instruction.types.sira:46:export interface RenderInstruction {
+src/cells/render-stack-cell/domain/layout.engine.ts:10:import type { RenderInstruction } from './render-instruction.types';
+src/cells/render-stack-cell/domain/layout.engine.ts:11:import { RenderStackEngine } from './render-stack.engine';
+src/cells/render-stack-cell/domain/layout.engine.ts:13:export type LayoutMode = 'absolute' | 'grid' | 'flex';
+src/cells/render-stack-cell/domain/layout.engine.ts:15:export interface LayoutConfig {
+src/cells/render-stack-cell/domain/layout.engine.ts:23:export class LayoutEngine {
+src/cells/render-stack-cell/domain/layout.engine.ts:33:  layout(instructions: RenderInstruction[], config: LayoutConfig = { mode: 'absolute' }): HTMLElement {
+src/cells/render-stack-cell/domain/render-stack.engine.ts:4: * @status: pilot — chưa wire Mạch HeyNa, chưa siraSign
+src/cells/render-stack-cell/domain/render-stack.engine.ts:9:import type { RenderInstruction, SurfaceSignal } from './render-instruction.types';
+src/cells/render-stack-cell/domain/render-stack.engine.ts:16:export class RenderStackEngine {
+src/cells/render-stack-cell/domain/render-stack.engine.ts:23:  execute(instruction: RenderInstruction): HTMLElement {
+src/cells/render-stack-cell/domain/render-stack.engine.ts:164:      if (from.startsWith('position(') && to.startsWith('position(')) {
+src/cells/render-stack-cell/domain/render-stack.engine.ts:165:        const fromCoords = from.replace('position(', '').replace(')', '').split(',');
+src/cells/render-stack-cell/domain/render-stack.engine.ts:166:        const toCoords = to.replace('position(', '').replace(')', '').split(',');
+src/cells/render-stack-cell/domain/interaction.engine.sira:10:export type InteractionType = 'click' | 'hover' | 'focus' | 'blur' | 'input' | 'scroll';
+src/cells/render-stack-cell/domain/interaction.engine.sira:12:export interface InteractionMapping {
+src/cells/render-stack-cell/domain/interaction.engine.sira:16:  handler?: (event: Event) => void;
+src/cells/render-stack-cell/domain/interaction.engine.sira:19:export interface InteractionEvent {
+src/cells/render-stack-cell/domain/interaction.engine.sira:26:export class InteractionEngine {
+src/cells/render-stack-cell/domain/interaction.engine.sira:28:  private listeners: Map<string, (e: Event) => void> = new Map();
+src/cells/render-stack-cell/domain/interaction.engine.sira:48:    // Gắn listener nếu chưa có
+src/cells/render-stack-cell/domain/interaction.engine.sira:49:    if (!this.listeners.has(key)) {
+src/cells/render-stack-cell/render-stack.cell.anc:14:    "nhan render_instruction tu Mạch HeyNa",
+src/cells/render-stack-cell/render-stack.cell.anc:21:    input: "render_instruction (contract defined)",
+src/cells/render-stack-cell/render-stack.cell.anc:25:      "import framework ngoai",
+src/cells/render-stack-cell/render-stack.cell.anc:33:  smartlink: "pending — chua wire Mạch HeyNa"
+src/cells/core/events/event-bus.ts:1:export * from "../../../core/events/event-bus";
+src/cells/cells.cell.anc:8:    "smartlink": "event-bus",
+src/cells/business/casting-cell/interface/casting.sheets.adapter.ts:4:export interface ICastingSheetAdapter {
+src/cells/business/casting-cell/interface/casting.sheets.adapter.ts:8:export class CastingSheetAdapter implements ICastingSheetAdapter {
+src/cells/business/casting-cell/casting-cell.cell.anc:8:  "smartlink": {
+src/cells/business/casting-cell/casting-cell.cell.anc:9:    "subscribes": ["CASTING_REQUEST"],
+src/cells/business/casting-cell/casting-cell.cell.anc:10:    "emits": ["WIP_PHOI"]
+src/cells/business/casting-cell/index.ts:1:export type { CastingRecord, PhoiStatus } from './domain/casting.entity';
+src/cells/business/casting-cell/index.ts:2:export { createCastingRecord } from './domain/casting.entity';
+src/cells/business/casting-cell/index.ts:3:export type { ICastingRepository, ICastingSheetAdapter, RawCastingResult } from './application/casting.usecase';
+src/cells/business/casting-cell/index.ts:4:export { ProcessCastingRequestUseCase } from './application/casting.usecase';
+src/cells/business/casting-cell/index.ts:5:export { CastingEngine } from './infrastructure/casting.engine';
+src/cells/business/casting-cell/index.ts:6:export * from './ports/casting-smartlink.port';
+src/cells/business/casting-cell/application/casting.usecase.ts:5:import { CastingRecord, createCastingRecord } from '../domain/casting.entity';
+src/cells/business/casting-cell/application/casting.usecase.ts:6:import { CastingRequestEvent, WipPhoiEvent } from '../../../../governance/event-contracts/production-events';
+src/cells/business/casting-cell/application/casting.usecase.ts:8:export interface ICastingRepository {
+src/cells/business/casting-cell/application/casting.usecase.ts:14:export interface ICastingSheetAdapter {
+src/cells/business/casting-cell/application/casting.usecase.ts:19:export interface RawCastingResult {
+src/cells/business/casting-cell/application/casting.usecase.ts:30:export class ProcessCastingRequestUseCase {
+src/cells/business/casting-cell/application/casting.usecase.ts:34:    private readonly emitWipPhoi: (event: WipPhoiEvent) => void,
+src/cells/business/casting-cell/application/casting.usecase.ts:64:      this.emitWipPhoi({
+src/cells/business/casting-cell/infrastructure/casting.engine.ts:3: * ADAPT: subscribe CASTING_REQUEST từ SmartLink hiện có.
+src/cells/business/casting-cell/infrastructure/casting.engine.ts:6:import { ProcessCastingRequestUseCase, ICastingRepository, ICastingSheetAdapter } from '../application/casting.usecase';
+src/cells/business/casting-cell/infrastructure/casting.engine.ts:7:import { CastingRequestEvent, WipPhoiEvent } from '../../../../governance/event-contracts/production-events';
+src/cells/business/casting-cell/infrastructure/casting.engine.ts:8:import { CastingRecord } from '../domain/casting.entity';
+src/cells/business/casting-cell/infrastructure/casting.engine.ts:10:export interface ISmartLinkPort {
+src/cells/business/casting-cell/infrastructure/casting.engine.ts:11:  emit(eventType: string, payload: unknown): void;
+src/cells/business/casting-cell/infrastructure/casting.engine.ts:12:  subscribe(eventType: string, handler: (payload: unknown) => void): void;
+src/cells/business/casting-cell/infrastructure/casting.engine.ts:15:export class CastingEngine {
+src/cells/business/casting-cell/ports/casting-smartlink.port.ts:2:export class CastingSmartLinkPort {}
+src/cells/business/casting-cell/ports/casting-smartlink.port.sira:1:import { forgeSmartLinkPort } from '@/satellites/port-forge';
+src/cells/business/casting-cell/ports/casting-smartlink.port.sira:3:export const CastingSmartLinkPort = forgeSmartLinkPort({
+src/cells/business/casting-cell/domain/casting.trace.logger.ts:2:export interface CastingTraceEvent {
+src/cells/business/casting-cell/domain/casting.trace.logger.ts:12:export function traceCasting(
+src/cells/business/casting-cell/domain/casting.boundary.policy.na:2:export const castingBoundaryPolicy = {
+src/cells/business/casting-cell/domain/casting.boundary.policy.na:11:    'SmartLink-cell',
+src/cells/business/casting-cell/domain/casting.entity.ts:12:export type PhoiStatus = 'du CT' | 'thieu CT' | 'da duc' | 'hong';
+src/cells/business/casting-cell/domain/casting.entity.ts:14:export interface CastingRecord {
+src/cells/business/casting-cell/domain/casting.entity.ts:32:export function createCastingRecord(
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:3://   → sau đúc xong emit WIP_PHOI → finishing-cell
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:4://   → sau đúc xong emit WIP_STONE → stone-cell (nếu có đá chủ)
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:5:import { EventBus } from '../../../../../core/events/event-bus';
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:6:import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:10:function _emit(to: string, signal: string, payload: Record<string, unknown>) {
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:12:  EventBus.publish({ type: signal as any, payload }, 'casting-cell', undefined);
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:18:export interface CastingJob {
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:30:export interface CastingResult {
+src/cells/business/casting-cell/domain/services/casting.wiring.ts:3: * Wire engine → SmartLinkPort — Điều 9 Hiến Pháp
+src/cells/business/casting-cell/domain/services/casting.wiring.ts:4: * nattos.sh: grep SmartLinkPort in domain/services/ → WIRED
+src/cells/business/casting-cell/domain/services/casting.wiring.ts:6:import { CastingSmartLinkPort } from '../../ports/casting-smartlink.port';
+src/cells/business/casting-cell/domain/services/casting.wiring.ts:8:export { CastingSmartLinkPort };
+src/cells/business/casting-cell/domain/services/casting.wiring.ts:10:/** Gọi port từ engine khi cần emit event ra ngoài cell */
+src/cells/business/casting-cell/domain/services/casting.wiring.ts:11:export const wireCastingSmartLinkPort = CastingSmartLinkPort;
+src/cells/business/casting-cell/domain/services/casting.identity.ts:2:export const castingIdentity = {
+src/cells/business/casting-cell/domain/services/casting.seed.ts:5:import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
+src/cells/business/casting-cell/domain/services/casting.seed.ts:35:export function seedCastingBatches(): void {
+src/cells/business/casting-cell/domain/services/casting.seed.ts:60:export const CastingDataStore = {
+src/cells/business/casting-cell/domain/services/index.ts:2:export * from './casting.identity';
+src/cells/business/casting-cell/domain/services/index.ts:3:export * from '../engines/casting.engine';
+src/cells/business/casting-cell/domain/services/index.ts:4:export * from './casting.confidence';
+src/cells/business/casting-cell/domain/services/index.ts:5:export * from '../../ports/casting-smartlink.port';
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:2:// KHÔNG import SmartLink hay EventBus (R06)
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:4:export interface CastingConfidenceFactor {
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:10:export interface CastingConfidenceScore {
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:18:export function calculateCastingConfidence(params: {
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:20:  lastAuditPassed: boolean;
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/warehouse-cell/QUARANTINE_GUARD.ts:6:export const CELL_STATE    = "ACTIVE" as const;
+src/cells/business/warehouse-cell/QUARANTINE_GUARD.ts:7:export const QUARANTINE_REASON = "LIFTED — production flow wired, seed data loaded";
+src/cells/business/warehouse-cell/QUARANTINE_GUARD.ts:8:export const QUARANTINE_SINCE  = "2026-02-11";
+src/cells/business/warehouse-cell/QUARANTINE_GUARD.ts:9:export const QUARANTINE_LIFTED = "2026-03-22";
+src/cells/business/warehouse-cell/contracts/warehouse.contract.ts:1:// Warehouse business contracts (khác với infrastructure/warehouse-cell)
+src/cells/business/warehouse-cell/contracts/warehouse.contract.ts:2:export type MovementType = "IN" | "OUT" | "TRANSFER" | "ADJUSTMENT" | "RETURN";
+src/cells/business/warehouse-cell/contracts/warehouse.contract.ts:4:export interface StockMovement {
+src/cells/business/warehouse-cell/contracts/warehouse.contract.ts:19:export interface StockAlert {
+src/cells/business/warehouse-cell/contracts/warehouse.contract.ts:28:export const WAREHOUSE_BUSINESS_EVENTS = {
+src/cells/business/warehouse-cell/contracts/warehouse.contract.ts:32:  STOCK_ALERT_TRIGGERED: "warehouse.stock_alert_triggered",
+src/cells/business/warehouse-cell/warehouse.service.ts:4:import { StockStatus, SmartLinkEnvelope, Movement, StockReservation, Warehouse, WarehouseLocation } from '../../shared-kernel/shared.types';
+src/cells/business/warehouse-cell/warehouse.service.ts:6:// ⚠️ DATA ISOLATION: Seed data defined locally to prevent cross-boundary imports
+src/cells/business/warehouse-cell/warehouse.service.ts:18:  private listeners: Set<() => void> = new Set();
+src/cells/business/warehouse-cell/warehouse.service.ts:46:  subscribe(l: () => void) {
+src/cells/business/warehouse-cell/warehouse.service.ts:47:    this.listeners.add(l);
+src/cells/business/warehouse-cell/warehouse.service.ts:48:    return () => { this.listeners.delete(l); };
+src/cells/business/warehouse-cell/warehouse.service.ts:52:    this.listeners.forEach(l => l());
+src/cells/business/warehouse-cell/warehouse.service.ts:55:  async importStock(productId: string, quantity: number, by: string) {
+src/cells/business/warehouse-cell/QUARANTINE_README.md:15:- ✅ Can be imported for type references only
+src/cells/business/warehouse-cell/QUARANTINE_README.md:19:- ❌ Cannot import other production cells
+src/cells/business/warehouse-cell/QUARANTINE_README.md:31:import warehouseCell from './warehouse-cell'; // ❌ QUARANTINE VIOLATION
+src/cells/business/warehouse-cell/warehouse-service.ts:7:export * from './warehouse.service';
+src/cells/business/warehouse-cell/warehouse-cell.cell.anc:1:{"cellId":"warehouse-cell","cellName":"Warehouse Cell","version":"1.0.0","status":"ACTIVE","zone":"business","components":{"identity":"warehouse-cell@1.0.0","capability":["inbound","outbound","zone-transfer","stock-query"],"boundary":"security-cell.boundary.si","trace":"WarehouseMovement log","confidence":1.0,"smartLink":"finance-cell, inventory-cell, supplier-cell, production-cell"}}
+src/cells/business/warehouse-cell/index.ts:6:// EventBus subscriptions:
+src/cells/business/warehouse-cell/index.ts:12://   warehouseIngestHandler.process(batch)
+src/cells/business/warehouse-cell/index.ts:13://     → INGEST_LIVE      → WarehouseSmartLinkPort → inventory-cell + finance-cell
+src/cells/business/warehouse-cell/index.ts:19:export * from './domain/entities';
+src/cells/business/warehouse-cell/index.ts:20:export * from './domain/services';
+src/cells/business/warehouse-cell/index.ts:22:import { EventBus }                      from '../../../core/events/event-bus';
+src/cells/business/warehouse-cell/index.ts:23:import { createWarehouseIngestHandler }  from './domain/services/warehouse-ingest.handler';
+src/cells/business/warehouse-cell/index.ts:24:import { WarehouseSmartLinkPort }        from './ports/warehouse-smartlink.port';
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:6: * to EventBus per Điều 3 (single EventBus, no direct cell-to-cell calls).
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:13:import { EventBus } from '@/cells/infrastructure/event-bus/event-bus';
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:14:import { WeightVarianceEngine } from '../domain/services/weight-variance.engine';
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:15:import { WarehouseGateEngine } from '../domain/services/warehouse-gate.engine';
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:16:import { AccountabilityEngine } from '../domain/services/accountability.engine';
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:17:import { WAREHOUSE_EVENTS } from '../domain/types/warehouse.types';
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:19:export class WarehouseCell {
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:26:  constructor(private bus: EventBus) {
+src/cells/business/warehouse-cell/ports/index.ts:1:export * from "./warehouse-cell.contract";
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:1:// warehouse-cell/ports/warehouse-SmartLink.port.ts
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:4:import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:5:import { EventBus } from '../../../../core/events/event-bus';
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:8:export type WarehouseOutboundSignal =
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:25:export interface WarehouseSignal {
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:53:// EventBus event type map
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:70:export const WarehouseSmartLinkPort = {
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:71:  emit(signal: WarehouseSignal): void {
+src/cells/business/warehouse-cell/ports/warehouse-cell.contract.ts:1:export const WAREHOUSE_BUSINESS_EVENTS = {
+src/cells/business/warehouse-cell/ports/warehouse-cell.contract.ts:8:export type WarehouseBusinessEventType = typeof WAREHOUSE_BUSINESS_EVENTS[keyof typeof WAREHOUSE_BUSINESS_EVENTS];
+src/cells/business/warehouse-cell/domain/value-objects/warehouse-category.registry.ts:12:export type WarehouseUnit =
+src/cells/business/warehouse-cell/domain/value-objects/warehouse-category.registry.ts:22:export type WarehouseLocation =
+src/cells/business/warehouse-cell/domain/value-objects/warehouse-category.registry.ts:31:export interface CategoryDefinition {
+src/cells/business/warehouse-cell/domain/value-objects/warehouse-category.registry.ts:45:export interface RegisterCategoryCommand {
+src/cells/business/warehouse-cell/domain/value-objects/warehouse-category.registry.ts:59:export const DEFAULT_CATEGORIES: RegisterCategoryCommand[] = [
+src/cells/business/warehouse-cell/domain/value-objects/warehouse-category.registry.ts:162:export class WarehouseCategoryRegistry {
+src/cells/business/warehouse-cell/domain/value-objects/warehouse-category.registry.ts:241:export const warehouseCategoryRegistry = new WarehouseCategoryRegistry();
+src/cells/business/warehouse-cell/domain/types/warehouse.types.ts:9: * Điều 4: Cell không gọi cell trực tiếp — chỉ qua EventBus.
+src/cells/business/warehouse-cell/domain/types/warehouse.types.ts:15:export enum LuongHang {
+src/cells/business/warehouse-cell/domain/types/warehouse.types.ts:21:export enum CongDoan {
+src/cells/business/warehouse-cell/domain/types/warehouse.types.ts:33:export enum TuoiVang {
+src/cells/business/warehouse-cell/domain/types/warehouse.types.ts:41:export enum TrangThaiPhoi {
+src/cells/business/warehouse-cell/domain/types/warehouse.types.ts:46:export enum TrangThaiDon {
+
+FILES_MATCHED=2330
+STATUS: PASS
+
+════════════════════════════════════════════════════════════
+CRITERION_4_SECURITY_BOUNDARY_AUDIT_EQUIVALENCE
+Security/boundary/audit trong nhà mình có thể hiện bằng SiraSign, Ground Truth, RBAC, Quantum Defense, Hiến Pháp, Gatekeeper, boundary, hash, quarantine, validator.
+════════════════════════════════════════════════════════════
+
+src/cells/render-stack-cell/contract.si:23:render-stack-cell không tự ký siraSign.
+src/cells/render-stack-cell/contract.si:28:input phải đến từ grammar / sample / pilot đã được validator xác nhận.
+src/cells/render-stack-cell/contract.si:35:constitution boundary
+src/cells/render-stack-cell/contract.si:36:không import trực tiếp cell khác — điều 4 hiến pháp
+src/cells/render-stack-cell/contract.si:43:không claim siraSign frame validation đã wire
+src/cells/render-stack-cell/cell.anc:29:## boundary
+src/cells/render-stack-cell/cell.anc:34:forbidden
+src/cells/render-stack-cell/cell.anc:39:không wire siraSign frame validation khi chưa có contract riêng
+src/cells/render-stack-cell/render-instruction.contract.si:13:    truth_boundary: "truth_boundary — inside, at_boundary, outside"
+src/cells/render-stack-cell/render-instruction.contract.si:16:  validator: "src/cells/render-stack-cell/validators/validate-render-instruction.sira"
+src/cells/render-stack-cell/render-instruction.contract.si:17:  signature: "pending — chua co siraSign pipe"
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:57:  "siraSign frame validation: wired",
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:60:  must(!all.includes(mark), "forbidden render-stack dependency or claim: " + mark);
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:70:  must(!directOtherCell && !relativeOtherCell, "direct cross-cell import is forbidden: " + line.trim());
+src/cells/render-stack-cell/validators/validate-render-instruction.sira:2:# @validator: render_instruction contract
+src/cells/render-stack-cell/validators/validate-render-instruction.sira:6:validator RenderInstructionValidator {
+src/cells/render-stack-cell/validators/validate-render-instruction.sira:15:    "truth_boundary không có element vừa inside vừa outside"
+src/cells/render-stack-cell/domain/render-instruction.types.ts:40:export interface TruthBoundary {
+src/cells/render-stack-cell/domain/render-instruction.types.ts:42:  at_boundary: string[];
+src/cells/render-stack-cell/domain/render-instruction.types.ts:52:  truth_boundary: TruthBoundary;
+src/cells/render-stack-cell/domain/render-stack.engine.sira:4: * @status: pilot — chưa wire Mạch HeyNa, chưa siraSign
+src/cells/render-stack-cell/domain/render-instruction.types.sira:40:export interface TruthBoundary {
+src/cells/render-stack-cell/domain/render-instruction.types.sira:42:  at_boundary: string[];
+src/cells/render-stack-cell/domain/render-instruction.types.sira:52:  truth_boundary: TruthBoundary;
+src/cells/render-stack-cell/domain/render-stack.engine.ts:4: * @status: pilot — chưa wire Mạch HeyNa, chưa siraSign
+src/cells/render-stack-cell/render-stack.cell.anc:16:    "tuan thu motion_budget & degrade_policy",
+src/cells/render-stack-cell/render-stack.cell.anc:20:  boundary: {
+src/cells/render-stack-cell/render-stack.cell.anc:23:    forbidden: [
+src/cells/render-stack-cell/render-stack.cell.anc:27:      "bo qua siraSign validation"
+src/cells/cells.cell.anc:2:  "constitutionalAdn": {
+src/cells/cells.cell.anc:5:    "boundary": "strict",
+src/cells/cells.cell.anc:6:    "trace": "audit",
+src/cells/business/casting-cell/domain/casting.boundary.policy.na:1:// Điều 9 §3 — Boundary
+src/cells/business/casting-cell/domain/casting.boundary.policy.na:2:export const castingBoundaryPolicy = {
+src/cells/business/casting-cell/domain/casting.boundary.policy.na:7:    'audit-cell',
+src/cells/business/casting-cell/domain/casting.boundary.policy.na:8:    'gatekeeper',
+src/cells/business/casting-cell/domain/casting.boundary.policy.na:12:    'audit-cell',
+src/cells/business/casting-cell/domain/casting.boundary.policy.na:15:    'DIRECT_DB_WRITE_WITHOUT_AUDIT',
+src/cells/business/casting-cell/domain/casting.boundary.policy.na:16:    'BYpass_CONSTITUTION',
+src/cells/business/casting-cell/domain/casting.boundary.policy.na:17:    'EXTERNAL_API_WITHOUT_GATEKEEPER', // LỆNH_001
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:36:  auditRef: string;
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:63:    const auditRef = `casting-${job.orderId}-${Date.now()}`;
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:94:      castWeight, lossGram, auditRef,
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:97:    return { orderId: job.orderId, castWeight, lossGram, lossPct, isLossExceeded, auditRef };
+src/cells/business/casting-cell/domain/services/casting.wiring.ts:3: * Wire engine → SmartLinkPort — Điều 9 Hiến Pháp
+src/cells/business/casting-cell/domain/services/casting.identity.ts:7:  constitutionRef: 'v4.1',
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:20:  lastAuditPassed: boolean;
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/warehouse-cell/QUARANTINE_GUARD.ts:1:// warehouse-cell/QUARANTINE_GUARD.ts
+src/cells/business/warehouse-cell/QUARANTINE_GUARD.ts:2:// QUARANTINE LIFTED — 2026-03-22 — Gatekeeper: Anh Natt
+src/cells/business/warehouse-cell/QUARANTINE_GUARD.ts:4:// Giữ file để audit trail, KHÔNG throw nữa.
+src/cells/business/warehouse-cell/QUARANTINE_GUARD.ts:7:export const QUARANTINE_REASON = "LIFTED — production flow wired, seed data loaded";
+src/cells/business/warehouse-cell/QUARANTINE_GUARD.ts:8:export const QUARANTINE_SINCE  = "2026-02-11";
+src/cells/business/warehouse-cell/QUARANTINE_GUARD.ts:9:export const QUARANTINE_LIFTED = "2026-03-22";
+src/cells/business/warehouse-cell/warehouse-cell.boundary.si:1:{"cellId":"warehouse-cell","allowRead":["finance-cell","audit-cell","inventory-cell","production-cell"],"allowWrite":["supplier-cell","order-cell","casting-cell","polishing-cell"],"forbidden":["direct-ui-write"]}
+src/cells/business/warehouse-cell/warehouse.service.ts:6:// ⚠️ DATA ISOLATION: Seed data defined locally to prevent cross-boundary imports
+src/cells/business/warehouse-cell/warehouse.service.ts:176:      id: 'W-HCM-01', name: 'KHO tong HCM', code: 'HCM-MAIN', type: 'MASTER_HUB', manager: 'tran hoai phuc', totalValue: 45000000000, itemCount: 12000, securityLevel: 'CAO'
+src/cells/business/warehouse-cell/warehouse.service.ts:178:    { id: 'W-HN-01', name: 'CHI nhanh ha nau', code: 'HN-BRANCH', type: 'DISTRIBUTION', manager: 'bui Cao son', totalValue: 12500000000, itemCount: 4500, securityLevel: 'CAO' },
+src/cells/business/warehouse-cell/warehouse.service.ts:179:    { id: 'W-003', name: 'Kho ban thanh pham (WIP)', code: 'WIP-FACTORY', type: 'ban thanh pham', manager: 'nguyen ven ven', totalValue: 15000000000, itemCount: 450, securityLevel: 'TRUNG binh' },
+src/cells/business/warehouse-cell/QUARANTINE_README.md:1:# ⚠️ QUARANTINED CELL - DO NOT USE
+src/cells/business/warehouse-cell/QUARANTINE_README.md:5:### CONSTITUTIONAL STATUS: QUARANTINED
+src/cells/business/warehouse-cell/QUARANTINE_README.md:6:This cell has been marked as **QUARANTINED** due to incomplete layer structure.
+src/cells/business/warehouse-cell/QUARANTINE_README.md:12:- **Governance Impact**: Violates Constitutional Principle #6
+src/cells/business/warehouse-cell/QUARANTINE_README.md:14:### RESTRICTIONS (ENFORCED)
+src/cells/business/warehouse-cell/QUARANTINE_README.md:26:5. Remove quarantine status (requires Gatekeeper approval)
+src/cells/business/warehouse-cell/QUARANTINE_README.md:31:import warehouseCell from './warehouse-cell'; // ❌ QUARANTINE VIOLATION
+src/cells/business/warehouse-cell/QUARANTINE_README.md:34:### AUDIT TRAIL
+src/cells/business/warehouse-cell/warehouse-cell.cell.anc:1:{"cellId":"warehouse-cell","cellName":"Warehouse Cell","version":"1.0.0","status":"ACTIVE","zone":"business","components":{"identity":"warehouse-cell@1.0.0","capability":["inbound","outbound","zone-transfer","stock-query"],"boundary":"security-cell.boundary.si","trace":"WarehouseMovement log","confidence":1.0,"smartLink":"finance-cell, inventory-cell, supplier-cell, production-cell"}}
+src/cells/business/warehouse-cell/index.ts:14://     → INGEST_PROCESSING → audit-cell (chờ xác nhận)
+src/cells/business/warehouse-cell/index.ts:15://     → INGEST_PENDING   → audit-cell (chờ người duyệt)
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:38:  /** Expose engines for direct use within cell boundary */
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:61:    // Self-listen for weight alerts → forward to audit-cell
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:63:      this.bus.emit('AUDIT.WEIGHT_ANOMALY', {
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:11:  | 'INGEST_PROCESSING'  // → audit-cell (cần xác nhận)
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:12:  | 'INGEST_PENDING'     // → audit-cell (cần người duyệt)
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:14:  | 'INGEST_REJECTED'    // → audit-cell
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:37:    'INGEST_PROCESSING': 'audit-cell',
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:38:    'INGEST_PENDING':    'audit-cell',
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:40:    'INGEST_REJECTED':   'audit-cell',
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:50:  return routes[type] ?? 'audit-cell';
+src/cells/business/warehouse-cell/domain/types/warehouse.types.ts:7: * Classification/Risk, External Partners, KCS, Legal/Audit.
+src/cells/business/warehouse-cell/domain/types/warehouse.types.ts:187:// ─── KEY 7: LEGAL / AUDIT ────────────────────────────────────
+src/cells/business/warehouse-cell/domain/types/warehouse.types.ts:189:export interface LegalAuditStatus {
+src/cells/business/warehouse-cell/domain/warehouse.boundary.policy.na:3: * Điều 9 §3: Boundary Policy
+src/cells/business/warehouse-cell/domain/warehouse.boundary.policy.na:5:export const WAREHOUSE_BOUNDARY = {
+src/cells/business/warehouse-cell/domain/warehouse.boundary.policy.na:18:    'audit-cell',        // Audit trail kho
+src/cells/business/warehouse-cell/domain/warehouse.boundary.policy.na:26:  maxStockAdjustPercent: 5, // Kiểm kê — chênh lệch > 5% cần duyệt Gatekeeper
+src/cells/business/warehouse-cell/domain/engines/warehouse-qa.engine.ts:4:export interface WarehouseQAAudit {
+src/cells/business/warehouse-cell/domain/engines/warehouse-qa.engine.ts:9:    category: 'INSURANCE' | 'SECURITY' | 'LOSS' | 'CERT' | 'STOCK';
+src/cells/business/warehouse-cell/domain/engines/warehouse-qa.engine.ts:52:      id: 'W-HCM-01', name: 'KHO tong HCM', code: 'HCM-MAIN', type: 'MASTER_HUB', manager: 'tran hoai phuc', totalValue: 45000000000, itemCount: 12000, securityLevel: 'CAO',
+src/cells/business/warehouse-cell/domain/engines/warehouse-qa.engine.ts:57:    { id: 'W-HN-01', name: 'CHI nhanh ha nau', code: 'HN-BRANCH', type: 'DISTRIBUTION', manager: 'bui Cao son', totalValue: 12500000000, itemCount: 4500, securityLevel: 'CAO' },
+src/cells/business/warehouse-cell/domain/engines/warehouse-qa.engine.ts:58:    { id: 'W-003', name: 'Kho ban thanh pham (WIP)', code: 'WIP-FACTORY', type: 'ban thanh pham', manager: 'nguyen ven ven', totalValue: 15000000000, itemCount: 450, securityLevel: 'TRUNG binh' },
+src/cells/business/warehouse-cell/domain/engines/warehouse-qa.engine.ts:76:  static runQAAudit(): WarehouseQAAudit {
+src/cells/business/warehouse-cell/domain/engines/warehouse-qa.engine.ts:77:    const issues: WarehouseQAAudit['complianceIssues'] = [];
+src/cells/business/warehouse-cell/domain/services/tam-luxury-warehouse.types.ts:3: * Ground Truth: Tâm Luxury Production Warehouse Types
+src/cells/business/warehouse-cell/domain/services/warehouse-domain.service.ts:27:export interface QAAuditResult {
+src/cells/business/warehouse-cell/domain/services/warehouse-domain.service.ts:72:  // ─── Insurance audit ───
+src/cells/business/warehouse-cell/domain/services/warehouse-domain.service.ts:87:  // ─── QA Audit — từ v2 WarehouseEngine.runQAAudit() ───
+src/cells/business/warehouse-cell/domain/services/warehouse-domain.service.ts:89:  runQAAudit(items: WarehouseItem[]): QAAuditResult {
+src/cells/business/warehouse-cell/domain/services/warehouse.events.ts:76:  traceId:   string;           // Để audit-cell trace được
+src/cells/business/warehouse-cell/domain/services/warehouse-gate.engine.ts:26:  LegalAuditStatus,
+src/cells/business/warehouse-cell/domain/services/warehouse-gate.engine.ts:102:  legalStatus:     LegalAuditStatus;
+src/cells/business/warehouse-cell/domain/services/warehouse-ingest.handler.ts:12: *   audit-cell lắng nghe tất cả events → ghi audit
+src/cells/business/warehouse-cell/domain/entities/warehouse-item.entity.ts:2:export type WarehouseItemStatus = 'IN_STOCK' | 'RESERVED' | 'SHIPPED' | 'QUARANTINE';
+src/cells/business/warehouse-cell/manifest.cell.anc:12:    "registry_signature": "SIG_BY_MASTER_NAT_2026"
+src/cells/business/warehouse-cell/manifest.cell.anc:21:        "security_level": "MEDIUM"
+src/cells/business/shared-contracts-cell/shared-contracts-cell.cell.anc:2:  "constitutionalAdn": {
+src/cells/business/shared-contracts-cell/shared-contracts-cell.cell.anc:5:    "boundary": "no-business-logic, types-only",
+src/cells/business/shared-contracts-cell/shared-contracts-cell.cell.anc:15:  "restrictions": [
+src/cells/business/shared-contracts-cell/shared-contracts-cell.cell.anc:21:  "lastAudit": "2026-02-11T02:12:41+07:00"
+src/cells/business/shared-contracts-cell/ports/shared-smartlink.port.sira:6:    CONTRACT_PUBLISHED:   { eventType: "ContractPublished", routeTo: "audit-cell" },
+src/cells/business/shared-contracts-cell/domain/shared-contracts.boundary.policy.na:1:// Điều 9 §3 — Boundary
+src/cells/business/shared-contracts-cell/domain/shared-contracts.boundary.policy.na:2:export const sharedContractsBoundaryPolicy = {
+src/cells/business/shared-contracts-cell/domain/shared-contracts.boundary.policy.na:7:    'audit-cell',
+src/cells/business/shared-contracts-cell/domain/shared-contracts.boundary.policy.na:8:    'gatekeeper',
+src/cells/business/shared-contracts-cell/domain/shared-contracts.boundary.policy.na:12:    'audit-cell',
+src/cells/business/shared-contracts-cell/domain/shared-contracts.boundary.policy.na:15:    'DIRECT_DB_WRITE_WITHOUT_AUDIT',
+src/cells/business/shared-contracts-cell/domain/shared-contracts.boundary.policy.na:16:    'BYpass_CONSTITUTION',
+src/cells/business/shared-contracts-cell/domain/shared-contracts.boundary.policy.na:17:    'EXTERNAL_API_WITHOUT_GATEKEEPER', // LỆNH_001
+src/cells/business/shared-contracts-cell/domain/services/shared-contracts.identity.ts:7:  constitutionRef: 'v4.1',
+src/cells/business/shared-contracts-cell/domain/services/shared-contracts.confidence.ts:20:  lastAuditPassed: boolean;
+src/cells/business/shared-contracts-cell/domain/services/shared-contracts.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/shared-contracts-cell/domain/services/shared-contracts.engine.ts:3:// SmartLink wire — Điều 6 Hiến Pháp v5.0
+src/cells/business/constants-cell/constants-cell.cell.anc:10:    "registry_signature": "SIG_BY_MASTER_NAT_2026"
+src/cells/business/constants-cell/constants-cell.cell.anc:12:  "constitution": {
+src/cells/business/constants-cell/constants-cell.cell.anc:14:    "gatekeeper_contact": "THIEN_LON_UNDER_NAT",
+src/cells/business/constants-cell/constants-cell.cell.anc:15:    "lockdown_level": "STRICT"
+src/cells/business/constants-cell/constants-cell.cell.anc:21:    "audit_enabled": true,
+src/cells/business/constants-cell/ports/constants-smartlink.port.sira:6:    CONFIG_UPDATED:       { eventType: "ConfigUpdated", routeTo: "audit-cell" },
+src/cells/business/constants-cell/domain/constants.boundary.policy.na:1:// Điều 9 §3 — Boundary
+src/cells/business/constants-cell/domain/constants.boundary.policy.na:2:export const constantsBoundaryPolicy = {
+src/cells/business/constants-cell/domain/constants.boundary.policy.na:7:    'audit-cell',
+src/cells/business/constants-cell/domain/constants.boundary.policy.na:8:    'gatekeeper',
+src/cells/business/constants-cell/domain/constants.boundary.policy.na:12:    'audit-cell',
+src/cells/business/constants-cell/domain/constants.boundary.policy.na:15:    'DIRECT_DB_WRITE_WITHOUT_AUDIT',
+src/cells/business/constants-cell/domain/constants.boundary.policy.na:16:    'BYpass_CONSTITUTION',
+src/cells/business/constants-cell/domain/constants.boundary.policy.na:17:    'EXTERNAL_API_WITHOUT_GATEKEEPER', // LỆNH_001
+src/cells/business/constants-cell/domain/services/constants.identity.ts:7:  constitutionRef: 'v4.1',
+src/cells/business/constants-cell/domain/services/constants.engine.ts:17:  auditRef: string;
+src/cells/business/constants-cell/domain/services/constants.engine.ts:24:    const auditRef = `constants-cell-${Date.now()}`;
+src/cells/business/constants-cell/domain/services/constants.engine.ts:31:      return { success: true, data: { command: command.type, processed: true }, auditRef };
+src/cells/business/constants-cell/domain/services/constants.engine.ts:33:      return { success: false, error: err instanceof Error ? err.message : 'Unknown error', auditRef };
+src/cells/business/constants-cell/domain/services/constants.confidence.ts:20:  lastAuditPassed: boolean;
+src/cells/business/constants-cell/domain/services/constants.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/bom3dprd-cell/application/bom3dprd.usecase.ts:1:// Điều 3 §2 Hiến Pháp v5.0 — Capability
+src/cells/business/bom3dprd-cell/domain/bom3dprd.boundary.policy.na:1:// bom3dprd-cell/domain/bom3dprd.boundary.policy.ts
+src/cells/business/bom3dprd-cell/domain/bom3dprd.boundary.policy.na:2:// Điều 9 §3 — Boundary
+src/cells/business/bom3dprd-cell/domain/bom3dprd.boundary.policy.na:3:export const bom3dprdBoundaryPolicy = {
+src/cells/business/bom3dprd-cell/domain/bom3dprd.boundary.policy.na:8:    'audit-cell',
+src/cells/business/bom3dprd-cell/domain/bom3dprd.boundary.policy.na:9:    'gatekeeper',
+src/cells/business/bom3dprd-cell/domain/bom3dprd.boundary.policy.na:14:    'audit-cell',
+src/cells/business/bom3dprd-cell/domain/bom3dprd.boundary.policy.na:18:    'DIRECT_DB_WRITE_WITHOUT_AUDIT',
+src/cells/business/bom3dprd-cell/domain/bom3dprd.boundary.policy.na:19:    'BYpass_CONSTITUTION',
+src/cells/business/bom3dprd-cell/domain/engines/bom3dprd.engine.ts:106:    _emit('audit-cell', 'ViolationDetected', {
+src/cells/business/bom3dprd-cell/domain/engines/bom3dprd.engine.ts:119:  // Manual override bởi Gatekeeper
+src/cells/business/bom3dprd-cell/domain/engines/bom3dprd.engine.ts:135:    return { success: true, data: { type: cmd.type, processed: true }, auditRef: `bom3dprd-${Date.now()}` };
+src/cells/business/bom3dprd-cell/domain/services/bom3dprd.wiring.ts:3: * Wire engine → SmartLinkPort — Điều 9 Hiến Pháp
+src/cells/business/bom3dprd-cell/domain/services/bom3dprd.confidence.ts:20:  lastAuditPassed: boolean;
+src/cells/business/bom3dprd-cell/domain/services/bom3dprd.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/bom3dprd-cell/domain/services/bom3dprd.identity.ts:7:  constitutionRef: 'v4.1',
+src/cells/business/noi-vu-cell/noi-vu-cell.cell.anc:1:{"cellId":"noi-vu-cell","cellName":"nau vu Cell","version":"1.0.0","status":"ACTIVE","zone":"business","components":{"identity":"noi-vu-cell@1.0.0","capability":["overhead-tracking","624-summary","627-summary","cost-center-routing"],"boundary":"security-cell.boundary.si","trace":"OverheadExpense log","confidence":1.0,"smartLink":"finance-cell, audit-cell, payment-cell, production-cell"}}
+src/cells/business/noi-vu-cell/noi-vu-cell.boundary.si:1:{"cellId":"noi-vu-cell","allowRead":["finance-cell","audit-cell","hr-cell"],"allowWrite":["approved-by-gatekeeper"],"forbidden":["auto-approve-above-50M"]}
+src/cells/business/noi-vu-cell/domain/services/noi-vu.confidence.ts:20:  lastAuditPassed: boolean;
+src/cells/business/noi-vu-cell/domain/services/noi-vu.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/noi-vu-cell/domain/services/noi-vu.engine.ts:2:// SmartLink wire — Điều 6 Hiến Pháp v5.0
+src/cells/business/noi-vu-cell/domain/entities/noi-vu.entity.ts:1:export type NoiVuCategory = 'ELECTRICITY' | 'WATER' | 'RENT' | 'SECURITY' | 'CLEANING' | 'DRIVER' | 'PACKAGING' | 'STATIONERY' | 'MEAL_ALLOWANCE' | 'OTHER_OVERHEAD';
+src/cells/business/analytics-cell/ingestion-pipeline.ts:8:// LEGACY V1 STUB - auditservice in cell now (audit-cell)
+src/cells/business/analytics-cell/ingestion-pipeline.ts:9:const AuditProvider: any = { log: (e: any) => {}, getLogs: (): any[] => [], getInstance: () => AuditProvider };
+src/cells/business/analytics-cell/ingestion-pipeline.ts:38:      // 2. Audit Trail
+src/cells/business/analytics-cell/ingestion-pipeline.ts:39:      await AuditProvider.logAction(
+src/cells/business/analytics-cell/application/analytics.usecase.ts:1:// Điều 3 §2 Hiến Pháp v5.0 — Capability
+src/cells/business/analytics-cell/ports/analytics-smartlink.port.ts:83:    "REPORT_ready": "audit-cell",
+src/cells/business/analytics-cell/ports/analytics-smartlink.port.ts:88:  return routes[type] ?? "audit-cell";
+src/cells/business/analytics-cell/domain/engines/export.engine.ts:48:    // Sheet 4: RỦI RO & TIỀM NĂNG (Audit Insight)
+src/cells/business/analytics-cell/domain/engines/export.engine.ts:55:    const wsAudit = XLSX.utils.json_to_sheet(potentialData);
+src/cells/business/analytics-cell/domain/engines/export.engine.ts:56:    XLSX.utils.book_append_sheet(workbook, wsAudit, '4. rui RO & tiem nang');
+src/cells/business/analytics-cell/domain/engines/export.engine.ts:59:    return this.generateFileHash(fileName);
+src/cells/business/analytics-cell/domain/engines/export.engine.ts:77:  private static generateFileHash(name: string): string {
+src/cells/business/analytics-cell/domain/analytics.trace.logger.ts:1:// Điều 3 §4 + Điều 7 Hiến Pháp v5.0 — Trace
+src/cells/business/analytics-cell/domain/analytics.trace.logger.ts:2:// Không có audit = không tồn tại
+src/cells/business/analytics-cell/domain/services/analytics.confidence.ts:1:// Điều 3 §5 Hiến Pháp v5.0 — Confidence
+src/cells/business/analytics-cell/domain/services/analytics.confidence.ts:20:  lastAuditPassed: boolean;
+src/cells/business/analytics-cell/domain/services/analytics.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/prdmaterials-cell/domain/prdmaterials.entity.ts:69: * Hao hụt ngoài định mức → Nợ 811 / Có 154 (cần biên bản + Gatekeeper)
+src/cells/business/prdmaterials-cell/domain/prdmaterials.boundary.policy.na:1:export const PRDMATERIALS_BOUNDARY = {
+src/cells/business/prdmaterials-cell/domain/prdmaterials.boundary.policy.na:3:  canReceiveFrom: ['order-cell', 'gatekeeper'],
+src/cells/business/prdmaterials-cell/domain/prdmaterials.boundary.policy.na:4:  canSendTo: ['casting-cell', 'warehouse-cell', 'audit-cell'],
+src/cells/business/prdmaterials-cell/domain/prdmaterials.boundary.policy.na:6:    'DIRECT_DB_WRITE_WITHOUT_AUDIT',
+src/cells/business/prdmaterials-cell/domain/prdmaterials.boundary.policy.na:7:    'BYpass_CONSTITUTION',
+src/cells/business/prdmaterials-cell/domain/prdmaterials.boundary.policy.na:8:    'EXTERNAL_API_WITHOUT_GATEKEEPER',
+src/cells/business/prdmaterials-cell/domain/prdmaterials.boundary.policy.na:10:  requiresGatekeeperApproval: ['BULK_LAP_CANCEL', 'PERIOD_CLOSE'],
+src/cells/business/prdmaterials-cell/domain/services/prdmaterials.engine.ts:11://   MaterialLossReported → audit-cell / compliance-cell  (khi hao hụt vượt ngưỡng)
+src/cells/business/prdmaterials-cell/domain/services/prdmaterials.engine.ts:77:    _emit('audit-cell', 'AuditLogged', {
+src/cells/business/prdmaterials-cell/domain/services/prdmaterials.engine.ts:97:  _emit('audit-cell', 'AuditLogged', {
+src/cells/business/prdmaterials-cell/domain/services/prdmaterials.engine.ts:153:    return { success: true, data: { type: cmd.type, processed: true }, auditRef: `prdmaterials-${Date.now()}` };
+src/cells/business/production-cell/production-cell.cell.anc:8:  "components": { "identity": true, "capability": true, "boundary": true, "trace": true, "confidence": true, "smartlink": true }
+src/cells/business/production-cell/production-cell.boundary.si:3:  "policy": "PRODUCTION_DOMAIN",
+src/cells/business/production-cell/production-cell.boundary.si:5:  "forbidden": ["Không được ghi trực tiếp vào kho — phải qua inventory-cell event", "Không được tính lương — phải nhận từ hr-cell"]
+src/cells/business/production-cell/domain/engines/production-loss.engine.ts:18:  static calculateLoss(issuedWeight: number, btpWeight: number, recoveryWeight: number, stage: OrderStatus) {
+src/cells/business/production-cell/domain/engines/production-loss.engine.ts:19:    const loss = issuedWeight - (btpWeight + recoveryWeight);
+src/cells/business/production-cell/domain/engines/production-sales-flow.engine.ts:9:import { ShardingService } from '@/cells/kernel/audit-cell/domain/engines/blockchain-shard.engine';
+src/cells/business/production-cell/domain/engines/production-sales-flow.engine.ts:24:  documents: string[]; // Hash IDs
+src/cells/business/production-cell/domain/engines/production-sales-flow.engine.ts:49:  hash: string;
+src/cells/business/production-cell/domain/engines/production-sales-flow.engine.ts:74:      hash: ShardingService.generateShardHash({ step, detail, ts: Date.now() })
+src/cells/business/production-cell/domain/engines/production-wac.engine.ts:43:    const loss = tracking.weight_before - (tracking.weight_after + tracking.recovery_gold);
+src/cells/business/production-cell/domain/services/flow.engine.ts:86:  EventBus.emit('AuditLogged',       { ...p, event: 'MATERIAL_LOSS' });
+src/cells/business/production-cell/domain/services/production.confidence.ts:20:  lastAuditPassed: boolean;
+src/cells/business/production-cell/domain/services/production.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/production-cell/domain/services/production.engine.ts:36:  recoveryWeight: number,
+src/cells/business/production-cell/domain/services/production.engine.ts:39:  const loss = issuedWeight - (btpWeight + recoveryWeight);
+src/cells/business/production-cell/domain/services/weight-guard.engine.ts:2:// SmartLink wire — Điều 6 Hiến Pháp v5.0
+src/cells/business/production-cell/domain/entities/production-order.entity.ts:26:  recovery_gold: number;
+src/cells/business/polishing-cell/domain/polishing.boundary.policy.na:1:// Điều 9 §3 — Boundary
+src/cells/business/polishing-cell/domain/polishing.boundary.policy.na:2:export const polishingBoundaryPolicy = {
+src/cells/business/polishing-cell/domain/polishing.boundary.policy.na:7:    'audit-cell',
+src/cells/business/polishing-cell/domain/polishing.boundary.policy.na:8:    'gatekeeper',
+src/cells/business/polishing-cell/domain/polishing.boundary.policy.na:12:    'audit-cell',
+src/cells/business/polishing-cell/domain/polishing.boundary.policy.na:15:    'DIRECT_DB_WRITE_WITHOUT_AUDIT',
+src/cells/business/polishing-cell/domain/polishing.boundary.policy.na:16:    'BYpass_CONSTITUTION',
+src/cells/business/polishing-cell/domain/polishing.boundary.policy.na:17:    'EXTERNAL_API_WITHOUT_GATEKEEPER', // LỆNH_001
+src/cells/business/polishing-cell/domain/engines/polishing.engine.ts:33:    _emit('audit-cell', 'ProductionStageAdvanced', {
+src/cells/business/polishing-cell/domain/services/polishing.identity.ts:7:  constitutionRef: 'v4.1',
+src/cells/business/polishing-cell/domain/services/polishing.wiring.ts:3: * Wire engine → SmartLinkPort — Điều 9 Hiến Pháp
+src/cells/business/polishing-cell/domain/services/polishing.confidence.ts:20:  lastAuditPassed: boolean;
+src/cells/business/polishing-cell/domain/services/polishing.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/stone-cell/ports/stone-smartlink.port.sira:6:    DIAMOND_LOSS: { eventType: "DiamondLossDetected", routeTo: "audit-cell" },
+src/cells/business/stone-cell/domain/stone.boundary.policy.na:1:// Điều 9 §3 — Boundary
+src/cells/business/stone-cell/domain/stone.boundary.policy.na:2:export const stoneBoundaryPolicy = {
+src/cells/business/stone-cell/domain/stone.boundary.policy.na:7:    'audit-cell',
+src/cells/business/stone-cell/domain/stone.boundary.policy.na:8:    'gatekeeper',
+src/cells/business/stone-cell/domain/stone.boundary.policy.na:12:    'audit-cell',
+src/cells/business/stone-cell/domain/stone.boundary.policy.na:15:    'DIRECT_DB_WRITE_WITHOUT_AUDIT',
+src/cells/business/stone-cell/domain/stone.boundary.policy.na:16:    'BYpass_CONSTITUTION',
+src/cells/business/stone-cell/domain/stone.boundary.policy.na:17:    'EXTERNAL_API_WITHOUT_GATEKEEPER', // LỆNH_001
+src/cells/business/stone-cell/domain/engines/diamond-guard.engine.ts:5: * SOURCE HIERARCHY (Ground Truth):
+src/cells/business/stone-cell/domain/engines/diamond-guard.engine.ts:70:// ─── Ground Truth 56 lô 2025 ──────────────────────────────────
+src/cells/business/stone-cell/domain/engines/diamond-guard.engine.ts:213:  getAuditSummary(results: NkCrossCheckResult[]): {
+src/cells/business/stone-cell/domain/services/stone.identity.ts:7:  constitutionRef: 'v4.1',
+src/cells/business/stone-cell/domain/services/stone.wiring.ts:3: * Wire engine → SmartLinkPort — Điều 9 Hiến Pháp
+src/cells/business/stone-cell/domain/services/stone.confidence.ts:20:  lastAuditPassed: boolean;
+src/cells/business/stone-cell/domain/services/stone.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/customs-cell/customs-cell.cell.anc:10:    "boundary": "security-cell.boundary.si",
+src/cells/business/customs-cell/customs-cell.cell.anc:13:    "smartLink": "supplier-cell, warehouse-cell, finance-cell, logistics-cell, audit-cell"
+src/cells/business/customs-cell/ports/customs-smartlink.port.ts:83:    "DECLARATION_SUBMITTED": "audit-cell",
+src/cells/business/customs-cell/ports/customs-smartlink.port.ts:88:  return routes[type] ?? "audit-cell";
+src/cells/business/customs-cell/domain/engines/customs-robot.engine.ts:77:        issues.push({ type: 'RESTRICTION', severity: 'warnING', message: `dong ${item.stt}: nhap khau vang nguyen lieu can han ngach NHNN.` });
+src/cells/business/customs-cell/domain/engines/customs-robot.engine.ts:158:        action: 'nhap kho ket sat (High Security Vault)',
+src/cells/business/customs-cell/domain/engines/customs-robot.engine.ts:178:   * PROCESSOR: Standardized Signature (rows, metadata)
+src/cells/business/customs-cell/domain/services/customs.confidence.ts:20:  lastAuditPassed: boolean;
+src/cells/business/customs-cell/domain/services/customs.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/hr-cell/hr-cell.cell.anc:2:  "constitutionalAdn": {
+src/cells/business/hr-cell/hr-cell.cell.anc:5:    "boundary": "strict",
+src/cells/business/hr-cell/hr-cell.cell.anc:6:    "trace": "audit",
+src/cells/business/hr-cell/ports/hr-smartlink.port.ts:57:      toCellId: signal.type === "PAYSLIP_GENERATED" ? "finance-cell" : "audit-cell",
+src/cells/business/hr-cell/domain/engines/hr-payroll.engine.ts:5: * Điều 9 Hiến Pháp: KHÔNG import SmartLink/EventBus — engine thuần nghiệp vụ
+src/cells/business/hr-cell/domain/engines/hr-email.engine.ts:183: * Dùng khi onboard NV mới hoặc audit email hiện tại
+src/cells/business/hr-cell/domain/engines/hr-validation.engine.ts:35:   * 🛡️ FIELD-LEVEL SECURITY
+src/cells/business/hr-cell/domain/engines/hr-validation.engine.ts:38:  static checkPermission(role: UserRole, field: string): boolean {
+src/cells/business/hr-cell/domain/services/rbac.config.ts:2: * natt-os RBAC Config v1.0
+src/cells/business/hr-cell/domain/services/rbac.config.ts:4: * Target: src/cells/business/hr-cell/domain/services/rbac.config.ts
+
+FILES_MATCHED=1466
+STATUS: PASS
+
+════════════════════════════════════════════════════════════
+CROSS CHECK: ROLE + RENDER NATIVE
+════════════════════════════════════════════════════════════
+docs/runtime/boot_family_map_repo_state_20260426.na:112:l1 eventbus: client side nội bộ trong app browser.
+docs/runtime/current_system_state_for_family_20260425.na:36:→ render language candidate
+docs/runtime/current_system_state_for_family_20260425.na:37:→ render language samples validator
+docs/runtime/current_system_state_for_family_20260425.na:46:9a52c0d  test(render): add render language samples validator
+docs/runtime/current_system_state_for_family_20260425.na:53:14dbe85  docs(render): promote render language v0.2 candidate
+docs/runtime/current_system_state_for_family_20260425.na:228:9. render language
+docs/runtime/current_system_state_for_family_20260425.na:248:render language v0.2 hiện là candidate.
+docs/runtime/current_system_state_for_family_20260425.na:256:chưa claim render language v0.2 final canonical.
+docs/runtime/current_system_state_for_family_20260425.na:369:→ lớp render language và sample
+docs/runtime/current_system_state_for_family_20260425.na:413:final canonical render language v0.2
+docs/runtime/current_system_state_for_family_20260425.na:451:các lớp runtime, siraSign, dns, route gate, render language, memory và family map đã có tài nguyên thật trong repo.
+docs/runtime/current_system_state_for_family_20260425.na:464:không quay lại xem render language là ui framework.
+docs/runtime/migration_roadmap_ts_to_nauion_ss20260427.na:31:  → "Đổi sang hệ mới" = commit 100% Nauion-host Rust + nauion native, drop TS legacy nhà mình.
+docs/runtime/migration_roadmap_ts_to_nauion_ss20260427.na:32:  → KHÔNG đụng nattos-server/ (server khách Tâm Luxury, white-list).
+docs/runtime/migration_roadmap_ts_to_nauion_ss20260427.na:38:@zone NHA_MINH (migrate target)
+docs/runtime/migration_roadmap_ts_to_nauion_ss20260427.na:44:  NaUion-Server/   ts:18    na:3     14.3%  🔴 chưa start
+docs/runtime/migration_roadmap_ts_to_nauion_ss20260427.na:46:@zone SVR_KHACH (white-list)
+docs/runtime/migration_roadmap_ts_to_nauion_ss20260427.na:47:  nattos-server/   ts:194   na:2     KEEP   🟢 server khách Tâm Luxury
+docs/runtime/migration_roadmap_ts_to_nauion_ss20260427.na:50:  TS legacy nhà mình:  1268 files
+docs/runtime/migration_roadmap_ts_to_nauion_ss20260427.na:101:  rationale: Per Memory #4 — 3 transports đã canonical: HeyNa→cells, EventBus→client, SmartLink→colony.
+docs/runtime/migration_roadmap_ts_to_nauion_ss20260427.na:132:  scope:     Delete all TS files in nhà mình (NOT nattos-server/)
+docs/runtime/migration_roadmap_ts_to_nauion_ss20260427.na:144:  nattos-server/ là server khách Tâm Luxury — TS legacy đúng intent client-server.
+docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na:192:- NaUion-Server/nauion/nauion-deploy.sh
+docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na:193:- NaUion-Server/khai-cell-spec/visual_rebuild_pipeline.py
+docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na:194:- NaUion-Server/khai-cell-spec/front-audit/AUDIT-REPORT.md
+docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na:195:- NaUion-Server/khai-cell-spec/front-audit/audit-report.kris
+docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na:196:- NaUion-Server/vision/assets/index-DQO7vMIv.js
+docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na:197:- NaUion-Server/vision/vision-engine/security/sirasign-engine.ts
+docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na:198:- NaUion-Server/nauion/nauion-library/natt-v1.sh
+docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na:199:- nattos-server/app Tâm luxury/types.ts
+docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na:200:- nattos-server/apps/tam-luxury/nattos-audit.html
+docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na:201:- nattos-server/apps/tam-luxury/heyna-client.js
+docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na:202:- nattos-server/app Tâm luxury/components/devportal.tsx
+docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na:203:- nattos-server/app Tâm luxury/components/apiportal.tsx
+docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na:204:- nattos-server/app Tâm luxury/services/productionengine.ts
+docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na:205:- nattos-server/app Tâm luxury/services/einvoiceengine.ts
+docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na:206:- nattos-server/app Tâm luxury/services/recoveryengine.ts
+docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na:207:- nattos-server/app Tâm luxury/services/staging/eventstaginglayer.ts
+docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na:208:- nattos-server/app Tâm luxury/services/parser/documentparserlayer.ts
+docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na:209:- nattos-server/app Tâm luxury/finance-service/infrastructure/messaging/retry.policy.na
+docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na:210:- nattos-server/app Tâm luxury/core/processing/ai/aicoreprocessor.ts
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:43:    "path": "NaUion-Server/lib/event-bus.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:50:    "path": "NaUion-Server/nauion/spec-nauion/use-contextual-ui.na",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:57:    "path": "NaUion-Server/nauion/ui-runtime.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:64:    "path": "NaUion-Server/registry/cells.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:71:    "path": "NaUion-Server/scenes/ControlTower.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:78:    "path": "NaUion-Server/scenes/Dashboard.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:85:    "path": "NaUion-Server/scenes/Showroom.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:92:    "path": "NaUion-Server/vision/vision-engine/adaptive/density.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:99:    "path": "NaUion-Server/vision/vision-engine/adaptive/performance.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:106:    "path": "NaUion-Server/vision/vision-engine/components/Layer.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:113:    "path": "NaUion-Server/vision/vision-engine/components/SceneContainer.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:120:    "path": "NaUion-Server/vision/vision-engine/core/layer-controller.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:127:    "path": "NaUion-Server/vision/vision-engine/core/scene-manager.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:134:    "path": "NaUion-Server/vision/vision-engine/core/vision-engine.core.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:141:    "path": "NaUion-Server/vision/vision-engine/security/SecurityOverlay.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:148:    "path": "NaUion-Server/vision/vision-engine/security/rbac.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:155:    "path": "NaUion-Server/vision/vision-engine/security/sirasign-engine.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:190:    "path": "nattos-server/app Tâm luxury/analytics-ingestion-service/application/ingest-sales-event.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:197:    "path": "nattos-server/app Tâm luxury/analytics-ingestion-service/domain/projections/daily-revenue.projection.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:204:    "path": "nattos-server/app Tâm luxury/app.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:211:    "path": "nattos-server/app Tâm luxury/components/adminconfighub.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:218:    "path": "nattos-server/app Tâm luxury/components/advancedanalytics.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:225:    "path": "nattos-server/app Tâm luxury/components/aiavatar.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:232:    "path": "nattos-server/app Tâm luxury/components/apiportal.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:239:    "path": "nattos-server/app Tâm luxury/components/app.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:246:    "path": "nattos-server/app Tâm luxury/components/approval/approvaldashboard.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:253:    "path": "nattos-server/app Tâm luxury/components/appshell.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:260:    "path": "nattos-server/app Tâm luxury/components/audittrailmodule.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:267:    "path": "nattos-server/app Tâm luxury/components/bankingprocessor.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:274:    "path": "nattos-server/app Tâm luxury/components/blueprintwizard.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:281:    "path": "nattos-server/app Tâm luxury/components/calibration/calibrationwizard.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:288:    "path": "nattos-server/app Tâm luxury/components/chatconsultant.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:295:    "path": "nattos-server/app Tâm luxury/components/collaborationrooms.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:302:    "path": "nattos-server/app Tâm luxury/components/common/ButterflyProtocol.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:309:    "path": "nattos-server/app Tâm luxury/components/common/NattMedal.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:316:    "path": "nattos-server/app Tâm luxury/components/common/errorboundary.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:323:    "path": "nattos-server/app Tâm luxury/components/common/loadingspinner.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:330:    "path": "nattos-server/app Tâm luxury/components/complianceportal.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:337:    "path": "nattos-server/app Tâm luxury/components/customizationrequest.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:344:    "path": "nattos-server/app Tâm luxury/components/customsintelligence.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:351:    "path": "nattos-server/app Tâm luxury/components/dailyreportmodule.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:358:    "path": "nattos-server/app Tâm luxury/components/dashboard.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:365:    "path": "nattos-server/app Tâm luxury/components/dataanalytics.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:372:    "path": "nattos-server/app Tâm luxury/components/dataarchivevault.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:379:    "path": "nattos-server/app Tâm luxury/components/datasyncengine.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:386:    "path": "nattos-server/app Tâm luxury/components/devportal.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:393:    "path": "nattos-server/app Tâm luxury/components/dynamicmodulerenderer.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:400:    "path": "nattos-server/app Tâm luxury/components/enterprisearchitecture.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:407:    "path": "nattos-server/app Tâm luxury/components/errorboundary.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:414:    "path": "nattos-server/app Tâm luxury/components/filterpanel.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:421:    "path": "nattos-server/app Tâm luxury/components/financeaudit.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:428:    "path": "nattos-server/app Tâm luxury/components/financial/financialdashboard.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:435:    "path": "nattos-server/app Tâm luxury/components/governancemodule.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:442:    "path": "nattos-server/app Tâm luxury/components/governanceworkspace.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:449:    "path": "nattos-server/app Tâm luxury/components/hrcompliance.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:456:    "path": "nattos-server/app Tâm luxury/components/hrmanagement.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:463:    "path": "nattos-server/app Tâm luxury/components/krisemailhub.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:470:    "path": "nattos-server/app Tâm luxury/components/layout.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:477:    "path": "nattos-server/app Tâm luxury/components/learninghub.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:484:    "path": "nattos-server/app Tâm luxury/components/livevoice.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:491:    "path": "nattos-server/app Tâm luxury/components/masterdashboard.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:498:    "path": "nattos-server/app Tâm luxury/components/notificationhub.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:505:    "path": "nattos-server/app Tâm luxury/components/notificationportal.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:512:    "path": "nattos-server/app Tâm luxury/components/omegaprocessor.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:519:    "path": "nattos-server/app Tâm luxury/components/operationsterminal.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:526:    "path": "nattos-server/app Tâm luxury/components/paymenthub.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:533:    "path": "nattos-server/app Tâm luxury/components/personalsphere.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:540:    "path": "nattos-server/app Tâm luxury/components/productcard.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:547:    "path": "nattos-server/app Tâm luxury/components/productcatalog.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:554:    "path": "nattos-server/app Tâm luxury/components/productdetailmodal.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:561:    "path": "nattos-server/app Tâm luxury/components/production/ProductionTaskBoard.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:568:    "path": "nattos-server/app Tâm luxury/components/production/productcard.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:575:    "path": "nattos-server/app Tâm luxury/components/production/productcatalog.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:582:    "path": "nattos-server/app Tâm luxury/components/production/productdetailmodal.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:589:    "path": "nattos-server/app Tâm luxury/components/production/productionmanager.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:596:    "path": "nattos-server/app Tâm luxury/components/production/productionsalesflowview.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:603:    "path": "nattos-server/app Tâm luxury/components/production/productionwallboard.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:610:    "path": "nattos-server/app Tâm luxury/components/productionmanager.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:617:    "path": "nattos-server/app Tâm luxury/components/productionsalesflowview.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:624:    "path": "nattos-server/app Tâm luxury/components/productionwallboard.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:631:    "path": "nattos-server/app Tâm luxury/components/quantumfloworchestrator.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:638:    "path": "nattos-server/app Tâm luxury/components/quantumpulse.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:645:    "path": "nattos-server/app Tâm luxury/components/quickhelp.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:652:    "path": "nattos-server/app Tâm luxury/components/rbacmanager.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:659:    "path": "nattos-server/app Tâm luxury/components/rfmanalysis.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:666:    "path": "nattos-server/app Tâm luxury/components/salesarchitectureview.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:673:    "path": "nattos-server/app Tâm luxury/components/salescrm.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:680:    "path": "nattos-server/app Tâm luxury/components/salestaxmodule.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:687:    "path": "nattos-server/app Tâm luxury/components/salesterminal.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:694:    "path": "nattos-server/app Tâm luxury/components/securityoverlay.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:701:    "path": "nattos-server/app Tâm luxury/components/sellerterminal.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:708:    "path": "nattos-server/app Tâm luxury/components/sidebar.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:715:    "path": "nattos-server/app Tâm luxury/components/SmartLinkmapper.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:722:    "path": "nattos-server/app Tâm luxury/components/supplierclassificationpanel.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:729:    "path": "nattos-server/app Tâm luxury/components/systemmonitor.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:736:    "path": "nattos-server/app Tâm luxury/components/systemnavigator.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:743:    "path": "nattos-server/app Tâm luxury/components/systemticker.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:750:    "path": "nattos-server/app Tâm luxury/components/taxreportinghub.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:757:    "path": "nattos-server/app Tâm luxury/components/technicaldocs.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:764:    "path": "nattos-server/app Tâm luxury/components/thiencommandcenter.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:771:    "path": "nattos-server/app Tâm luxury/components/unifiedreportinghub.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:778:    "path": "nattos-server/app Tâm luxury/components/warehousemanagement.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:785:    "path": "nattos-server/app Tâm luxury/constants.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:792:    "path": "nattos-server/app Tâm luxury/contexts/accountingcontext.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:799:    "path": "nattos-server/app Tâm luxury/contexts/mappingcontext.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:806:    "path": "nattos-server/app Tâm luxury/core/dictionary/services/dictionaryservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:813:    "path": "nattos-server/app Tâm luxury/core/ingestion/ingestionservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:820:    "path": "nattos-server/app Tâm luxury/core/nauion/nauion-engine.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:827:    "path": "nattos-server/app Tâm luxury/core/processing/ai/aicoreprocessor.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:834:    "path": "nattos-server/app Tâm luxury/core/signals/types.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:841:    "path": "nattos-server/app Tâm luxury/core/SmartLinkengine.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:848:    "path": "nattos-server/app Tâm luxury/finance-service/application/handlers/invoice-handler.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:855:    "path": "nattos-server/app Tâm luxury/finance-service/infrastructure/messaging/dead-letter.handler.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:862:    "path": "nattos-server/app Tâm luxury/finance-service/infrastructure/messaging/retry.policy.na",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:869:    "path": "nattos-server/app Tâm luxury/hooks/useSSE.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:876:    "path": "nattos-server/app Tâm luxury/hooks/useauthority.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:883:    "path": "nattos-server/app Tâm luxury/hooks/userealtimesync.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:890:    "path": "nattos-server/app Tâm luxury/hooks/usesmartmapping.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:897:    "path": "nattos-server/app Tâm luxury/hooks/usesupplierclassification.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:904:    "path": "nattos-server/app Tâm luxury/index.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:911:    "path": "nattos-server/app Tâm luxury/manifestations/overlays/quantumcontainer.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:918:    "path": "nattos-server/app Tâm luxury/nauion/ui-runtime.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:925:    "path": "nattos-server/app Tâm luxury/neuro-link/context/quantumuicontext.tsx",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:932:    "path": "nattos-server/app Tâm luxury/sale-terminal/config.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:939:    "path": "nattos-server/app Tâm luxury/sale-terminal/main.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:946:    "path": "nattos-server/app Tâm luxury/sale-terminal/session.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:953:    "path": "nattos-server/app Tâm luxury/services/aiengine.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:960:    "path": "nattos-server/app Tâm luxury/services/approval/approvalworkflowservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:967:    "path": "nattos-server/app Tâm luxury/services/authservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:974:    "path": "nattos-server/app Tâm luxury/services/bankingservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:981:    "path": "nattos-server/app Tâm luxury/services/blockchainservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:988:    "path": "nattos-server/app Tâm luxury/services/calibration/calibrationengine.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:995:    "path": "nattos-server/app Tâm luxury/services/conflict/conflictresolver.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1002:    "path": "nattos-server/app Tâm luxury/services/cost/costallocationsystem.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1009:    "path": "nattos-server/app Tâm luxury/services/customsservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1016:    "path": "nattos-server/app Tâm luxury/services/customsutils.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1023:    "path": "nattos-server/app Tâm luxury/services/dictionaryapprovalservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1030:    "path": "nattos-server/app Tâm luxury/services/dictionaryservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1037:    "path": "nattos-server/app Tâm luxury/services/documentai.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1044:    "path": "nattos-server/app Tâm luxury/services/einvoiceengine.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1051:    "path": "nattos-server/app Tâm luxury/services/enterpriselinker.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1058:    "path": "nattos-server/app Tâm luxury/services/eventbridge.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1065:    "path": "nattos-server/app Tâm luxury/services/exportservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1072:    "path": "nattos-server/app Tâm luxury/services/fraudguard.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1079:    "path": "nattos-server/app Tâm luxury/services/gmailservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1086:    "path": "nattos-server/app Tâm luxury/services/heynaConnector.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1093:    "path": "nattos-server/app Tâm luxury/services/hr/application/handlers/leave-handler.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1100:    "path": "nattos-server/app Tâm luxury/services/hr/application/handlers/payroll-handler.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1107:    "path": "nattos-server/app Tâm luxury/services/hrengine.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1114:    "path": "nattos-server/app Tâm luxury/services/ingestion/aiprocessor.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1121:    "path": "nattos-server/app Tâm luxury/services/ingestion/dictionaryguard.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1128:    "path": "nattos-server/app Tâm luxury/services/ingestion/extractors.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1135:    "path": "nattos-server/app Tâm luxury/services/ingestion/idempotencymanager.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1142:    "path": "nattos-server/app Tâm luxury/services/ingestion/ingestionservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1149:    "path": "nattos-server/app Tâm luxury/services/ingestion/utils.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1156:    "path": "nattos-server/app Tâm luxury/services/learningengine.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1163:    "path": "nattos-server/app Tâm luxury/services/logisticsservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1170:    "path": "nattos-server/app Tâm luxury/services/mapping/SmartLinkmappingengine.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1177:    "path": "nattos-server/app Tâm luxury/services/modulehelpers.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1184:    "path": "nattos-server/app Tâm luxury/services/moduleregistry.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1191:    "path": "nattos-server/app Tâm luxury/services/nauionClient.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1198:    "path": "nattos-server/app Tâm luxury/services/notificationservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1205:    "path": "nattos-server/app Tâm luxury/services/offlineservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1212:    "path": "nattos-server/app Tâm luxury/services/parser/documentparserlayer.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1219:    "path": "nattos-server/app Tâm luxury/services/paymentservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1226:    "path": "nattos-server/app Tâm luxury/services/personnelengine.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1233:    "path": "nattos-server/app Tâm luxury/services/productionengine.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1240:    "path": "nattos-server/app Tâm luxury/services/productionsalesflow.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1247:    "path": "nattos-server/app Tâm luxury/services/productionservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1254:    "path": "nattos-server/app Tâm luxury/services/quantumbufferservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1261:    "path": "nattos-server/app Tâm luxury/services/quantumengine.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1268:    "path": "nattos-server/app Tâm luxury/services/rbacengine.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1275:    "path": "nattos-server/app Tâm luxury/services/realtimenotificationservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1282:    "path": "nattos-server/app Tâm luxury/services/recoveryengine.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1289:    "path": "nattos-server/app Tâm luxury/services/salescore.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1296:    "path": "nattos-server/app Tâm luxury/services/scoring/contextscoringengine.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1303:    "path": "nattos-server/app Tâm luxury/services/security.service.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1310:    "path": "nattos-server/app Tâm luxury/services/sellerengine.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1317:    "path": "nattos-server/app Tâm luxury/services/SmartLinkengine.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1324:    "path": "nattos-server/app Tâm luxury/services/staging/eventstaginglayer.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1331:    "path": "nattos-server/app Tâm luxury/services/supplier/supplierengine.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1338:    "path": "nattos-server/app Tâm luxury/services/taskrouter.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1345:    "path": "nattos-server/app Tâm luxury/services/taxreportservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1352:    "path": "nattos-server/app Tâm luxury/services/threatdetectionservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1359:    "path": "nattos-server/app Tâm luxury/services/warehouseservice.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1366:    "path": "nattos-server/app Tâm luxury/superdictionary.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1373:    "path": "nattos-server/app Tâm luxury/types.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1380:    "path": "nattos-server/app Tâm luxury/utils/supplierclassifier.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1387:    "path": "nattos-server/app Tâm luxury/utils/supplierimporthelper.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1394:    "path": "nattos-server/app Tâm luxury/vite.config.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1401:    "path": "nattos-server/app Tâm luxury/wiring/domain-flow.wiring.ts",
+docs/runtime/TS_CLEANUP_INVENTORY_20260424.na:1408:    "path": "nattos-server/engine-registry.ts",
+docs/runtime/imac_junk_scan_latest.na:232:### 37. /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/.DS_Store
+docs/runtime/imac_junk_scan_latest.na:238:### 38. /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/NaUion-Server/.DS_Store
+docs/runtime/imac_junk_scan_latest.na:262:### 42. /Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/NaUion-Server/.DS_Store
+docs/runtime/imac_junk_scan_latest.na:424:### 69. /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/server.log
+docs/runtime/imac_junk_scan_latest.na:430:### 70. /Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/nattos-server/server.log
+docs/runtime/imac_junk_scan_latest.json:376:      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/.DS_Store",
+docs/runtime/imac_junk_scan_latest.json:386:      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/NaUion-Server/.DS_Store",
+
+$seal: scan_only_no_commit

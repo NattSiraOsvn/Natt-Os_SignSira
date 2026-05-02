@@ -1,0 +1,887 @@
+$nauion: NATT_NELL_HARDWARE_PROOF-v0.1
+$role: HARDWARE_SUBSTRATE_PROOF_SCAN
+$owner: NaUion-Server
+$boundary:
+  NaUion-Server: NHA_MINH
+  nattos-server: CLIENT_TAM_LUXURY_LOCAL_DEPLOY
+$scan_time: 2026-05-01 23:54:50
+$repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+$principle:
+  - phan cung Natt Nell hien tai = machine + filesystem + network/port + local runtime + client edge + I-O substrate
+  - khong tinh KNX/GIRA/Daikin/Villa/Homestech
+  - scan only, khong stage, khong commit
+
+════════════════════════════════════════════════════════════
+HW_1_MACHINE_NODE
+May vat ly dang chay Natt Nell
+════════════════════════════════════════════════════════════
+HOSTNAME=iMac-cua-THIEN.lan
+USER=thien
+PWD=/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+UNAME=Darwin iMac-cua-THIEN.lan 25.4.0 Darwin Kernel Version 25.4.0: Thu Mar 19 19:27:54 PDT 2026; root:xnu-12377.101.15~1/RELEASE_X86_64 x86_64
+MAC_MODEL=iMac20,2
+CPU_BRAND=Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz
+CPU_CORES=16
+MEM_BYTES=34359738368
+
+════════════════════════════════════════════════════════════
+HW_2_FILESYSTEM_STORAGE_NODE
+O dia / filesystem / repo / audit snapshots la vat mang ground truth
+════════════════════════════════════════════════════════════
+REPO_ROOT=/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+GIT_BRANCH=main
+GIT_HEAD=88db385d
+GIT_REMOTE=git@github.com:NattSiraOsvn/Natt-Os_SignSira.git
+DISK_ROOT_STATUS:
+Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on
+/dev/disk1s1   1.8Ti   372Gi   1.4Ti    21%    1.7M   15G    0%   /System/Volumes/Data
+
+TOP_LEVEL_DIRS:
+EXISTS | src
+EXISTS | docs
+EXISTS | tools
+EXISTS | NaUion-Server
+EXISTS | nattos-server
+EXISTS | .nattos-twin
+EXISTS | audit
+EXISTS | database
+EXISTS | packages
+
+GROUND_TRUTH_FILE_COUNTS:
+ANC_FILES=93
+NA_FILES=461
+PHIEU_FILES=117
+SI_FILES=69
+KKBT_FILES=22
+SIRA_FILES=192
+
+════════════════════════════════════════════════════════════
+HW_3_LOCAL_RUNTIME_PROCESS_PORT_NODE
+Process / localhost / port la nut runtime vat ly
+════════════════════════════════════════════════════════════
+LISTEN_PORTS:
+node      83676 thien   12u  IPv4 0x9a7558f28195cf2c      0t0  TCP 127.0.0.1:3001 (LISTEN)
+
+NODE_PROCESSES:
+thien            52470   1.1  0.0 67849740   1148 s000  S+   11:54PM   0:00.07 find src docs tools NaUion-Server nattos-server .nattos-twin audit -path */node_modules/* -prune -o -path */.git/* -prune -o -type f ( -name *.si -o -name *.na -o -name *.anc -o -name *.phieu -o -name *.kkbt -o -name *.sira -o -name *.ts -o -name *.tsx -o -name *.md -o -name *.json -o -name *.sh -o -name *.html -o -name *.js ) -print0
+root             83718   0.0  0.1 70079312  43208 s003  S     8:45PM   0:00.27 node /tmp/sira_proxy80.js
+root             83717   0.0  0.0 34414492    628 s003  Ss+   8:45PM   0:00.00 sudo node /tmp/sira_proxy80.js
+root             83716   0.0  0.0 67936768   4076   ??  S     8:45PM   0:00.02 sudo node /tmp/sira_proxy80.js
+thien            83676   0.0  0.2 70282176  52832   ??  S     8:43PM   0:00.39 node server.js
+thien            83662   0.0  0.2 70027916  56948   ??  Ss    8:43PM   0:00.34 npm run start   
+
+HTTP_CHECKS:
+200 | http://127.0.0.1:3001/api/health
+200 | http://127.0.0.1:3001/
+200 | http://apps.sira/
+200 | http://tam.sira/
+
+HOSTS_CHECK:
+10:127.0.0.1 apps.sira tam.sira
+
+════════════════════════════════════════════════════════════
+HW_4_CLIENT_EDGE_BOUNDARY_NODE
+nattos-server = CLIENT edge; NaUion-Server = NHA_MINH
+════════════════════════════════════════════════════════════
+--- docs/runtime/SERVER_ROLE_BOUNDARY_v1.na
+9:1. `nattos-server` = CLIENT.
+14:2. `NaUion-Server` = NHÀ MÌNH.
+22:- Nếu nói về `nattos-server`, phải gọi rõ là CLIENT.
+23:- Nếu nói về `NaUion-Server`, phải gọi rõ là NHÀ MÌNH.
+--- NaUion-Server/ROLE_HOME.na
+1:# ROLE_HOME
+3:`NaUion-Server` được đánh dấu là NHÀ MÌNH.
+11:- Khi nhắc `NaUion-Server`, gọi là NHÀ MÌNH.
+--- nattos-server/ROLE_CLIENT.na
+1:# ROLE_CLIENT
+3:`nattos-server` được đánh dấu là CLIENT.
+12:- Khi nhắc `nattos-server`, gọi là CLIENT.
+--- src/thienbang.si
+19:  "NHA_MINH":               "Nhà Mình (ss20260427) — TOÀN BỘ code repo natt-os_verANC thuộc NaUion-Server domain (Server NHÀ ROOT/CORE của NATT-OS). Bao gồm: src/, packages/, docs/, tools/, NaUion-Server/ folder, scripts/, database/, mọi root files. Cán cân Obikeeper áp dụng: đo migration TS→Nauion, ép kernel mới phủ. NGOẠI TRỪ DUY NHẤT folder nattos-server/ là Svr_Khach.",
+20:  "SVR_KHACH":              "Server Khách (ss20260427) — Server phục vụ khách hàng Tâm Luxury, nằm tại folder nattos-server/ trong repo natt-os_verANC. Là EXCEPTION DUY NHẤT khỏi domain Nha_Minh. 2 phân khu canonical: 'app tâm luxury' (source relay logic, tên có space) + 'apps/tam-luxury' (UI khách cuối, tên có hyphen). TS legacy 99% là WHITE-LIST đúng intent client server, KHÔNG tính vào migration metric.",
+1367:  "NHA_MINH":               "Nhà Mình (ss20260427) — TOÀN BỘ code repo natt-os_verANC thuộc NaUion-Server domain (Server NHÀ ROOT/CORE của NATT-OS). Bao gồm: src/, packages/, docs/, tools/, NaUion-Server/ folder, scripts/, database/, mọi root files. Cán cân Obikeeper áp dụng: đo migration TS→Nauion, ép kernel mới phủ. NGOẠI TRỪ DUY NHẤT folder nattos-server/ là Svr_Khach.",
+1368:  "SVR_KHACH":              "Server Khách (ss20260427) — Server phục vụ khách hàng Tâm Luxury, nằm tại folder nattos-server/ trong repo natt-os_verANC. Là EXCEPTION DUY NHẤT khỏi domain Nha_Minh. 2 phân khu canonical: 'app tâm luxury' (source relay logic, tên có space) + 'apps/tam-luxury' (UI khách cuối, tên có hyphen). TS legacy 99% là WHITE-LIST đúng intent client server, KHÔNG tính vào migration metric.",
+2815:  - File runtime production trong nattos-server/
+2921:==RULE_NHA_MINH_SAI_LA_SUA==
+3468:DEFINITION: Path canonical Bối Sirawat làm UI: NaUion-Server/nauion/nauion-v10/. Tiếp tục lineage v4→v5→v6→v7→v8→v9→v10. Sub: adapter/ (Mock listener) + shader/ (lock variants) + index.html + ui-spec-v10.na. KHÔNG đụng nattos-server/apps/tam-luxury (khách Tâm Luxury).
+
+CLIENT_RUNTIME_FILES:
+nattos-server/archive/nattos-ui/nattos-mapping.html
+nattos-server/archive/nattos-ui/adapter.js
+nattos-server/archive/nattos-ui/gia-vang-admin.html
+nattos-server/archive/nattos-ui/NaUion-v10a .html
+nattos-server/archive/nattos-ui/index.html
+nattos-server/archive/nattos-ui/styles.css
+nattos-server/archive/nattos-ui/FlowView.js
+nattos-server/archive/nattos-ui/butterfly.js
+nattos-server/archive/nattos-ui/store.js
+nattos-server/archive/nattos-ui/render-kim-pass.css
+nattos-server/archive/nattos-ui/NaUion-v10b.html
+nattos-server/archive/nattos-ui/AuditList.js
+nattos-server/archive/nattos-ui/IntelligencePanel.js
+nattos-server/archive/nattos-ui/resonance.protocol.js
+nattos-server/archive/nattos-ui/nasira-7states.html
+nattos-server/archive/nattos-ui/nauion-v10.html
+nattos-server/archive/nattos-ui/nauion-engine.js
+nattos-server/archive/nattos-ui/vision.html
+nattos-server/archive/nattos-ui/security-overlay.js
+nattos-server/archive/nattos-ui/app.js
+nattos-server/server.js
+nattos-server/package.json
+nattos-server/apps/tam-luxury-source/nattos-smart-get-data.js
+nattos-server/apps/tam-luxury-source/index.html
+nattos-server/apps/tam-luxury-source/nattos-sandbox.js
+nattos-server/apps/tam-luxury-source/nattos-loss-thresholds.js
+nattos-server/apps/tam-luxury-source/nattos-payment.js
+nattos-server/apps/tam-luxury-source/nattos-data.js
+nattos-server/apps/tam-luxury-source/nattos-doc-engine.js
+nattos-server/apps/tam-luxury-source/index.css
+nattos-server/apps/tam-luxury-source/nattos-fx-advanced.css
+nattos-server/apps/tam-luxury-source/nattos-responsive.css
+nattos-server/apps/tam-luxury-source/nattos-tokens.css
+nattos-server/apps/tam-luxury-source/package.json
+nattos-server/apps/tam-luxury-source/nattos-chromatic.js
+nattos-server/apps/tam-luxury-source/nattos-ui-theme.css
+nattos-server/apps/tam-luxury-source/nattos-eod-engine.js
+nattos-server/apps/tam-luxury-source/nattos-sandbox.css
+nattos-server/apps/tam-luxury-source/nattos-glass.css
+nattos-server/apps/tam-luxury-source/nattos-fx.js
+nattos-server/apps/tam-luxury-source/sw.js
+nattos-server/apps/tam-luxury/warehouse-ops.html
+nattos-server/apps/tam-luxury/tamluxury-v4.html
+nattos-server/apps/tam-luxury/hr-admin.html
+nattos-server/apps/tam-luxury/index3.html
+nattos-server/apps/tam-luxury/nattos-audit.html
+nattos-server/apps/tam-luxury/kris-email-hub.html
+nattos-server/apps/tam-luxury/index2.html
+nattos-server/apps/tam-luxury/index.html
+nattos-server/apps/tam-luxury/warehouse-full.html
+nattos-server/apps/tam-luxury/hr-manager.html
+nattos-server/apps/tam-luxury/nattos-loss-thresholds.js
+nattos-server/apps/tam-luxury/hr-dashboard.html
+nattos-server/apps/tam-luxury/loss-thresholds.html
+nattos-server/apps/tam-luxury/nattos-production.html
+nattos-server/apps/tam-luxury/production-wallboard.html
+nattos-server/apps/tam-luxury/nattos-payment.js
+nattos-server/apps/tam-luxury/showroom-sales.html
+nattos-server/apps/tam-luxury/tamluxury-v2.html
+nattos-server/apps/tam-luxury/render-kim-pass.css
+nattos-server/apps/tam-luxury/indexb.html
+nattos-server/apps/tam-luxury/order-flow.html
+nattos-server/apps/tam-luxury/table.html
+nattos-server/apps/tam-luxury/attendance.html
+nattos-server/apps/tam-luxury/indexc.html
+nattos-server/apps/tam-luxury/nattos-data.js
+nattos-server/apps/tam-luxury/nattos-galaxy.js
+nattos-server/apps/tam-luxury/tamluxury-v3.html
+nattos-server/apps/tam-luxury/app-psychology.html
+nattos-server/apps/tam-luxury/personal-profile.html
+nattos-server/apps/tam-luxury/index4.html
+nattos-server/apps/tam-luxury/dashboard.html
+nattos-server/apps/tam-luxury/chat-rooms.html
+nattos-server/apps/tam-luxury/nattos-galaxy.css
+nattos-server/apps/tam-luxury/nattos-tokens.css
+nattos-server/apps/tam-luxury/tam-luxury-reposide-v2.5.html
+nattos-server/apps/tam-luxury/surveillance.html
+nattos-server/apps/tam-luxury/indexa.html
+nattos-server/apps/tam-luxury/personal-profile-v2.html
+nattos-server/apps/tam-luxury/daily-work-app.html
+nattos-server/apps/tam-luxury/nattos-ui-theme.css
+nattos-server/apps/tam-luxury/cfo-dashboard.html
+nattos-server/apps/tam-luxury/heyna-client.js
+nattos-server/apps/tam-luxury/nattos-eod-engine.js
+nattos-server/apps/tam-luxury/indexf.html
+nattos-server/apps/tam-luxury/nattos-glass.css
+nattos-server/apps/tam-luxury/nattos-fx.js
+nattos-server/apps/tam-luxury/master-dashboard.html
+nattos-server/apps/tam-luxury/ktt-approval.html
+nattos-server/apps/tam-luxury/index-1.html
+nattos-server/apps/tam-luxury/operations-terminal.html
+nattos-server/apps/tam-luxury/pricing-engine.html
+
+════════════════════════════════════════════════════════════
+HW_5_NETWORK_TRANSPORT_NODE
+Local network / HeyNa / EventSource / SmartLink la duong truyen tin hieu
+════════════════════════════════════════════════════════════
+HEYNA_FILES=415
+src/cells/render-stack-cell/contract.si:42:không claim mạch heyna đã wire
+src/cells/render-stack-cell/cell.anc:38:không wire mạch heyna khi chưa có contract riêng
+src/cells/render-stack-cell/smartlink/index.ts:2:export const render_stack_cellSmartLinkPort = { wire: () => {} };
+src/cells/render-stack-cell/render-instruction.contract.si:18:  transport: "pending — chua wire Mạch HeyNa"
+src/cells/render-stack-cell/index.ts:5:export * from './smartlink';
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:58:  "Mạch HeyNa wired"
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:2: * HEYNA RECEIVER ENGINE — v0.1 (PILOT)
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:4: * @status: pilot — nhận render instruction từ Mạch HeyNa (transport layer)
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:6: * Lắng nghe tín hiệu từ Mạch HeyNa và chuyển đổi thành render instruction
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:11:export type HeynaEventType = 'render' | 'layout' | 'navigate' | 'interaction' | 'pulse';
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:13:export interface HeynaEvent {
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:14:  type: HeynaEventType;
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:20:export class HeynaReceiverEngine {
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:21:  private listeners: Map<HeynaEventType, ((event: HeynaEvent) => void)[]> = new Map();
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:22:  private eventLog: HeynaEvent[] = [];
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:35:    this.on('*' as HeynaEventType, (event: HeynaEvent) => {
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:41:   * Kết nối đến Mạch HeyNa (mô phỏng)
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:45:    console.log('[HeynaReceiver] Connected to Mạch HeyNa');
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:50:      source: 'heyna-receiver',
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:61:    console.log('[HeynaReceiver] Disconnected from Mạch HeyNa');
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:65:   * Nhận sự kiện từ Mạch HeyNa (được gọi bởi transport layer)
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:67:  receive(event: HeynaEvent): void {
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:69:      console.warn('[HeynaReceiver] Cannot receive event — not connected');
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:73:    console.log(`[HeynaReceiver] Received: ${event.type} from ${event.source}`);
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:82:    const wildcardListeners = this.listeners.get('*' as HeynaEventType) || [];
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:91:  on(type: HeynaEventType, listener: (event: HeynaEvent) => void): void {
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:100:  emit(event: HeynaEvent): void {
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:105:   * Chuyển đổi HeynaEvent thành RenderInstruction
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:107:  parseRenderInstruction(event: HeynaEvent): RenderInstruction | null {
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:114:        console.error('[HeynaReceiver] Invalid render instruction payload');
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:119:      console.error('[HeynaReceiver] Failed to parse render instruction:', err);
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:127:  getEventLog(): HeynaEvent[] {
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:2: * HEYNA MOCK TRANSPORT — v0.1 (PILOT)
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:4: * @status: pilot — mô phỏng Mạch HeyNa transport để test render pipeline
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:6: * Giả lập việc gửi render instruction qua Mạch HeyNa
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:9:import { HeynaReceiverEngine, HeynaEvent, HeynaEventType } from './heyna-receiver.engine';
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:11:export class HeynaMockTransport {
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:12:  private receiver: HeynaReceiverEngine;
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:16:  constructor(receiver: HeynaReceiverEngine) {
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:21:   * Bắt đầu mô phỏng transport — gửi sự kiện pulse định kỳ
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:29:        source: 'heyna-mock-transport',
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:50:   * Gửi một sự kiện qua transport
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:52:  send(event: HeynaEvent): void {
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:65:      source: 'heyna-mock-transport',
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:77:      source: 'heyna-mock-transport',
+src/cells/render-stack-cell/domain/heyna-mock-transport.sira:89:      source: 'heyna-mock-transport',
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:2: * HEYNA MOCK TRANSPORT — v0.1 (PILOT)
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:4: * @status: pilot — mô phỏng Mạch HeyNa transport để test render pipeline
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:6: * Giả lập việc gửi render instruction qua Mạch HeyNa
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:9:import { HeynaReceiverEngine, HeynaEvent, HeynaEventType } from './heyna-receiver.engine';
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:11:export class HeynaMockTransport {
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:12:  private receiver: HeynaReceiverEngine;
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:16:  constructor(receiver: HeynaReceiverEngine) {
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:21:   * Bắt đầu mô phỏng transport — gửi sự kiện pulse định kỳ
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:29:        source: 'heyna-mock-transport',
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:50:   * Gửi một sự kiện qua transport
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:52:  send(event: HeynaEvent): void {
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:65:      source: 'heyna-mock-transport',
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:77:      source: 'heyna-mock-transport',
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:89:      source: 'heyna-mock-transport',
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:2: * HEYNA RECEIVER ENGINE — v0.1 (PILOT)
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:4: * @status: pilot — nhận render instruction từ Mạch HeyNa (transport layer)
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:6: * Lắng nghe tín hiệu từ Mạch HeyNa và chuyển đổi thành render instruction
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:11:export type HeynaEventType = 'render' | 'layout' | 'navigate' | 'interaction' | 'pulse';
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:13:export interface HeynaEvent {
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:14:  type: HeynaEventType;
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:20:export class HeynaReceiverEngine {
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:21:  private listeners: Map<HeynaEventType, ((event: HeynaEvent) => void)[]> = new Map();
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:22:  private eventLog: HeynaEvent[] = [];
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:35:    this.on('*' as HeynaEventType, (event: HeynaEvent) => {
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:41:   * Kết nối đến Mạch HeyNa (mô phỏng)
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:45:    console.log('[HeynaReceiver] Connected to Mạch HeyNa');
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:50:      source: 'heyna-receiver',
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:61:    console.log('[HeynaReceiver] Disconnected from Mạch HeyNa');
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:65:   * Nhận sự kiện từ Mạch HeyNa (được gọi bởi transport layer)
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:67:  receive(event: HeynaEvent): void {
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:69:      console.warn('[HeynaReceiver] Cannot receive event — not connected');
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:73:    console.log(`[HeynaReceiver] Received: ${event.type} from ${event.source}`);
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:82:    const wildcardListeners = this.listeners.get('*' as HeynaEventType) || [];
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:91:  on(type: HeynaEventType, listener: (event: HeynaEvent) => void): void {
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:100:  emit(event: HeynaEvent): void {
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:105:   * Chuyển đổi HeynaEvent thành RenderInstruction
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:107:  parseRenderInstruction(event: HeynaEvent): RenderInstruction | null {
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:114:        console.error('[HeynaReceiver] Invalid render instruction payload');
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:119:      console.error('[HeynaReceiver] Failed to parse render instruction:', err);
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:127:  getEventLog(): HeynaEvent[] {
+src/cells/render-stack-cell/domain/render-stack.engine.sira:4: * @status: pilot — chưa wire Mạch HeyNa, chưa siraSign
+src/cells/render-stack-cell/domain/render-stack.engine.ts:4: * @status: pilot — chưa wire Mạch HeyNa, chưa siraSign
+src/cells/render-stack-cell/render-stack.cell.anc:14:    "nhan render_instruction tu Mạch HeyNa",
+src/cells/render-stack-cell/render-stack.cell.anc:33:  smartlink: "pending — chua wire Mạch HeyNa"
+src/cells/cells.cell.anc:8:    "smartlink": "event-bus",
+src/cells/render-stack-cell_cipher.audit.log:28:      original:  'pending — chưa wire Mạch HeyNa'
+src/cells/render-stack-cell_cipher.audit.log:29:      ciphered:  'pending — chua wire Mạch HeyNa'
+src/cells/business/casting-cell/casting-cell.cell.anc:8:  "smartlink": {
+src/cells/business/casting-cell/index.ts:6:export * from './ports/casting-smartlink.port';
+src/cells/business/casting-cell/infrastructure/casting.engine.ts:3: * ADAPT: subscribe CASTING_REQUEST từ SmartLink hiện có.
+src/cells/business/casting-cell/infrastructure/casting.engine.ts:10:export interface ISmartLinkPort {
+src/cells/business/casting-cell/infrastructure/casting.engine.ts:21:    private readonly smartLink: ISmartLinkPort,
+src/cells/business/casting-cell/infrastructure/casting.engine.ts:27:    // ADAPT: subscribe qua SmartLink hiện có
+src/cells/business/casting-cell/infrastructure/casting.engine.ts:28:    this.smartLink.subscribe('CASTING_REQUEST', async (payload) => {
+src/cells/business/casting-cell/infrastructure/casting.engine.ts:37:    this.smartLink.emit(event.eventType, event);
+src/cells/business/casting-cell/ports/casting-smartlink.port.ts:2:export class CastingSmartLinkPort {}
+src/cells/business/casting-cell/ports/casting-smartlink.port.sira:1:import { forgeSmartLinkPort } from '@/satellites/port-forge';
+src/cells/business/casting-cell/ports/casting-smartlink.port.sira:3:export const CastingSmartLinkPort = forgeSmartLinkPort({
+src/cells/business/casting-cell/domain/casting.boundary.policy.na:11:    'SmartLink-cell',
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:6:import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:35:  isLossExceeded: boolean;
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:62:    const isLossExceeded = lossPct > CASTING_LOSS_PCT;
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:65:    if (isLossExceeded) {
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:97:    return { orderId: job.orderId, castWeight, lossGram, lossPct, isLossExceeded, auditRef };
+src/cells/business/casting-cell/domain/services/casting.wiring.ts:3: * Wire engine → SmartLinkPort — Điều 9 Hiến Pháp
+src/cells/business/casting-cell/domain/services/casting.wiring.ts:4: * nattos.sh: grep SmartLinkPort in domain/services/ → WIRED
+src/cells/business/casting-cell/domain/services/casting.wiring.ts:6:import { CastingSmartLinkPort } from '../../ports/casting-smartlink.port';
+src/cells/business/casting-cell/domain/services/casting.wiring.ts:8:export { CastingSmartLinkPort };
+src/cells/business/casting-cell/domain/services/casting.wiring.ts:11:export const wireCastingSmartLinkPort = CastingSmartLinkPort;
+src/cells/business/casting-cell/domain/services/casting.seed.ts:5:import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
+src/cells/business/casting-cell/domain/services/index.ts:5:export * from '../../ports/casting-smartlink.port';
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:2:// KHÔNG import SmartLink hay EventBus (R06)
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:20:  lastAuditPassed: boolean;
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/warehouse-cell/warehouse.service.ts:4:import { StockStatus, SmartLinkEnvelope, Movement, StockReservation, Warehouse, WarehouseLocation } from '../../shared-kernel/shared.types';
+src/cells/business/warehouse-cell/warehouse.service.ts:153:  async handleIntent(envelope: SmartLinkEnvelope) {
+src/cells/business/warehouse-cell/warehouse-cell.cell.anc:1:{"cellId":"warehouse-cell","cellName":"Warehouse Cell","version":"1.0.0","status":"ACTIVE","zone":"business","components":{"identity":"warehouse-cell@1.0.0","capability":["inbound","outbound","zone-transfer","stock-query"],"boundary":"security-cell.boundary.si","trace":"WarehouseMovement log","confidence":1.0,"smartLink":"finance-cell, inventory-cell, supplier-cell, production-cell"}}
+src/cells/business/warehouse-cell/index.ts:13://     → INGEST_LIVE      → WarehouseSmartLinkPort → inventory-cell + finance-cell
+src/cells/business/warehouse-cell/index.ts:24:import { WarehouseSmartLinkPort }        from './ports/warehouse-smartlink.port';
+src/cells/business/warehouse-cell/index.ts:35:  WarehouseSmartLinkPort.notifyStockUpdated(sku, delta, updated.qty);
+src/cells/business/warehouse-cell/index.ts:40:    WarehouseSmartLinkPort.notifyStockAlert(sku, updated.qty, minQty);
+src/cells/business/warehouse-cell/index.ts:76:    WarehouseSmartLinkPort.notifyNhapKhoDone(p.orderId, maHang, p.goldWeightGram ?? 0);
+src/cells/business/warehouse-cell/index.ts:77:    WarehouseSmartLinkPort.notifyGoodsReceived(batchId, [maHang]);
+src/cells/business/warehouse-cell/index.ts:106:    WarehouseSmartLinkPort.notifyXuatKhoDone(p.orderId, maHang, 0);
+src/cells/business/warehouse-cell/index.ts:107:    WarehouseSmartLinkPort.notifyGoodsDispatched(batchId, p.orderId ?? '');
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:1:// warehouse-cell/ports/warehouse-SmartLink.port.ts
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:4:import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:70:export const WarehouseSmartLinkPort = {
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:95:    WarehouseSmartLinkPort.emit({ type: 'INGEST_LIVE',       payload: { batchId, rows, count: rows.length }, timestamp: Date.now() }),
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:97:    WarehouseSmartLinkPort.emit({ type: 'INGEST_PROCESSING', payload: { batchId, rows, count: rows.length }, timestamp: Date.now() }),
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:99:    WarehouseSmartLinkPort.emit({ type: 'INGEST_PENDING',    payload: { batchId, reason }, timestamp: Date.now() }),
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:101:    WarehouseSmartLinkPort.emit({ type: 'STOCK_UPDATED',     payload: { sku, delta, newQuantity: qty }, timestamp: Date.now() }),
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:103:    WarehouseSmartLinkPort.emit({ type: 'STOCK_ALERT',       payload: { sku, qty, minQty }, timestamp: Date.now() }),
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:105:    WarehouseSmartLinkPort.emit({ type: 'GOODS_RECEIVED',    payload: { shipmentId, items }, timestamp: Date.now() }),
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:107:    WarehouseSmartLinkPort.emit({ type: 'GOODS_DISpatched',  payload: { shipmentId, orderId }, timestamp: Date.now() }),
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:109:    WarehouseSmartLinkPort.emit({ type: 'NHAP_KHO_DONE',     payload: { orderId, maHang, weight }, timestamp: Date.now() }),
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:111:    WarehouseSmartLinkPort.emit({ type: 'XUAT_KHO_DONE',     payload: { orderId, maHang, weight }, timestamp: Date.now() }),
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:113:    WarehouseSmartLinkPort.emit({ type: 'CAPACITY_ALERT',    payload: { warehouseId, pct }, timestamp: Date.now() }),
+src/cells/business/warehouse-cell/ports/warehouse-cell.contract.ts:8:export type WarehouseBusinessEventType = typeof WAREHOUSE_BUSINESS_EVENTS[keyof typeof WAREHOUSE_BUSINESS_EVENTS];
+src/cells/business/warehouse-cell/domain/types/warehouse.types.ts:369:  GATE_passED:        'WAREHOUSE.GATE_passED',
+src/cells/business/warehouse-cell/domain/services/warehouse.confidence.ts:4: * NOTE: Không import SmartLink/EventBus (R06)
+src/cells/business/warehouse-cell/domain/services/warehouse.confidence.ts:16:export function assessWarehouseConfidence(params: {
+src/cells/business/warehouse-cell/domain/services/accountability.engine.ts:158:   * Addresses the "chi uyen single-account" risk pattern.
+src/cells/business/warehouse-cell/domain/services/logistics.engine.ts:3:import{WarehouseSmartLinkPort}from"../../ports/warehouse-smartlink.port";
+src/cells/business/warehouse-cell/domain/services/logistics.engine.ts:11:    _transfers.set(o.id,o);WarehouseSmartLinkPort.notifyGoodsDispatched(o.id,from);EventBus.emit("GoodsDispatched",{transferId:o.id,from,items:o.items,ts:Date.now()});return o;
+src/cells/business/warehouse-cell/domain/services/logistics.engine.ts:16:    _transfers.set(id,t);WarehouseSmartLinkPort.notifyGoodsDispatched(id,from);EventBus.emit("GoodsDispatched",{transferId:id,from,ts:Date.now()});return t;
+src/cells/business/warehouse-cell/domain/services/logistics.engine.ts:25:    WarehouseSmartLinkPort.notifyGoodsReceived(id,t.items.map(i=>i.itemId));
+src/cells/business/warehouse-cell/domain/services/warehouse-gate.engine.ts:91:// ─── Order Lifecycle — tracks which gates have been passed ───
+src/cells/business/warehouse-cell/domain/services/warehouse-gate.engine.ts:99:  gatesPassed:     Map<number, GatePassRecord>;
+src/cells/business/warehouse-cell/domain/services/warehouse-gate.engine.ts:109:  passedAt:        number;
+src/cells/business/warehouse-cell/domain/services/warehouse-gate.engine.ts:143:      gatesPassed: new Map(),
+src/cells/business/warehouse-cell/domain/services/warehouse-gate.engine.ts:162:   * Returns true if gate passed, false if blocked.
+src/cells/business/warehouse-cell/domain/services/warehouse-gate.engine.ts:170:  ): { passed: boolean; missing: string[]; order: OrderLifecycle | null } {
+src/cells/business/warehouse-cell/domain/services/warehouse-gate.engine.ts:173:      return { passed: false, missing: ['ORDER_NOT_FOUND'], order: null };
+
+════════════════════════════════════════════════════════════
+HW_6_IO_SUBSTRATE_NODE
+I-O substrate: file/data di vao he qua processor/normalizer/healing
+════════════════════════════════════════════════════════════
+METABOLISM_FILES=34
+PROCESSORS:
+src/metabolism/processors/archive.processor.ts
+src/metabolism/processors/base.processor.ts
+src/metabolism/processors/csv.processor.ts
+src/metabolism/processors/excel.processor.ts
+src/metabolism/processors/image.processor.ts
+src/metabolism/processors/index.ts
+src/metabolism/processors/json.processor.ts
+src/metabolism/processors/pdf-parse.ts
+src/metabolism/processors/pdf.processor.ts
+src/metabolism/processors/threed-model.processor.ts
+src/metabolism/processors/video.processor.ts
+NORMALIZERS:
+src/metabolism/normalizers/data-cleanser.ts
+src/metabolism/normalizers/field-mapper.ts
+src/metabolism/normalizers/index.ts
+src/metabolism/normalizers/jewelry-schema.ts
+src/metabolism/normalizers/schema-detector.ts
+HEALING:
+src/metabolism/healing/anomaly-detector.ts
+src/metabolism/healing/archive-bridge.ts
+src/metabolism/healing/auto-optimizer.ts
+src/metabolism/healing/index.ts
+src/metabolism/healing/self-healing-logger.ts
+
+IO_KEYWORD_EVIDENCE:
+src/metabolism/normalizers/schema-detector.ts:1:import { ProcessorResult } from "../types"
+src/metabolism/normalizers/schema-detector.ts:4:  detect(result: ProcessorResult): string {
+src/metabolism/plugins/plugin-manager.ts:9:import { PluginMetadata, PluginRegistry, pluginRegistry } from './plugin-registry';
+src/metabolism/plugins/plugin-manager.ts:10:import { PluginVerifier, pluginVerifier } from './plugin-verifier';
+src/metabolism/plugins/plugin-manager.ts:11:import { EventBus } from '@/core/events/event-bus';
+src/metabolism/plugins/plugin-registry.ts:11:  processor?:  string;   // processor type nếu có
+src/metabolism/plugins/plugin-verifier.ts:6:import { PluginMetadata } from './plugin-registry';
+src/metabolism/plugins/plugin-verifier.ts:22:    'design-3d-cell',
+src/metabolism/types.ts:1:export type ProcessorType =
+src/metabolism/types.ts:2:  | "csv" | "excel" | "json" | "pdf"
+src/metabolism/types.ts:3:  | "image" | "video" | "3d-model" | "archive"
+src/metabolism/types.ts:5:export interface ProcessorResult {
+src/metabolism/types.ts:7:  processorType: ProcessorType
+src/metabolism/types.ts:8:  sourceFile: string
+src/metabolism/types.ts:15:export interface NormalizerResult {
+src/metabolism/types.ts:24:  type: "DataIngested" | "DataNormalized" | "DataAnomaly" | "ArchiveBridged" | "ProcessorError"
+src/metabolism/types.ts:26:  processorType?: ProcessorType
+src/metabolism/processors/pdf-parse.ts:2:export class PdfParse {}
+src/metabolism/processors/video.processor.ts:2:import { BaseProcessor } from "./base.processor"
+src/metabolism/processors/video.processor.ts:3:import { ProcessorResult } from "../types"
+src/metabolism/processors/video.processor.ts:4:export class VideoProcessor extends BaseProcessor {
+src/metabolism/processors/video.processor.ts:5:  readonly type = "video" as const
+src/metabolism/processors/video.processor.ts:6:  canProcess(filePath: string): boolean { return /\.(mp4|mov|avi|mkv|wmv|flv|webm|m4v)$/i.test(filePath) }
+src/metabolism/processors/video.processor.ts:7:  async process(filePath: string): Promise<ProcessorResult> {
+src/metabolism/processors/video.processor.ts:9:      const fs = await import("fs/promises"); const path = await import("path")
+src/metabolism/processors/video.processor.ts:10:      const stat = await fs.stat(filePath); const ext = path.extname(filePath).toLowerCase()
+src/metabolism/processors/video.processor.ts:12:      const fh = await fs.open(filePath, "r"); await fh.read(buf, 0, buf.length, 0); await fh.close()
+src/metabolism/processors/video.processor.ts:13:      const meta: Record<string, unknown> = { file: filePath, fileName: path.basename(filePath), format: ext.replace(".", ""), sizeBytes: stat.size, sizeGB: Math.round(stat.size / 1073741824 * 100) / 100, modifiedAt: stat.mtime.toISOString() }
+src/metabolism/processors/video.processor.ts:19:      return this.result(filePath, [meta])
+src/metabolism/processors/video.processor.ts:20:    } catch (e) { return this.result(filePath, [], [`Video error: ${e}`]) }
+src/metabolism/processors/json.processor.ts:1:import { BaseProcessor } from "./base.processor"
+src/metabolism/processors/json.processor.ts:2:import { ProcessorResult } from "../types"
+src/metabolism/processors/json.processor.ts:4:export class JsonProcessor extends BaseProcessor {
+src/metabolism/processors/json.processor.ts:5:  readonly type = "json" as const
+src/metabolism/processors/json.processor.ts:7:  canProcess(filePath: string): boolean {
+src/metabolism/processors/json.processor.ts:8:    return filePath.toLowerCase().endsWith(".json")
+src/metabolism/processors/json.processor.ts:11:  async process(filePath: string): Promise<ProcessorResult> {
+src/metabolism/processors/json.processor.ts:13:      const fs = await import("fs/promises")
+src/metabolism/processors/json.processor.ts:14:      const content = await fs.readFile(filePath, "utf-8")
+src/metabolism/processors/json.processor.ts:15:      const parsed = JSON.parse(content)
+src/metabolism/processors/json.processor.ts:17:      return this.result(filePath, data)
+src/metabolism/processors/json.processor.ts:19:      return this.result(filePath, [], [`Parse error: ${e}`])
+src/metabolism/processors/threed-model.processor.ts:2:import { BaseProcessor } from "./base.processor"
+src/metabolism/processors/threed-model.processor.ts:3:import { ProcessorResult } from "../types"
+src/metabolism/processors/threed-model.processor.ts:4:export class ThreeDModelProcessor extends BaseProcessor {
+src/metabolism/processors/threed-model.processor.ts:5:  readonly type = "3d-model" as const
+src/metabolism/processors/threed-model.processor.ts:6:  canProcess(filePath: string): boolean { return /\.(stl|obj|3dm|step|stp|iges|igs)$/i.test(filePath) }
+src/metabolism/processors/threed-model.processor.ts:7:  async process(filePath: string): Promise<ProcessorResult> {
+src/metabolism/processors/threed-model.processor.ts:9:      const fs = await import("fs/promises"); const path = await import("path")
+src/metabolism/processors/threed-model.processor.ts:10:      const stat = await fs.stat(filePath); const ext = path.extname(filePath).toLowerCase()
+src/metabolism/processors/threed-model.processor.ts:11:      const meta: Record<string, unknown> = { file: filePath, fileName: path.basename(filePath), format: ext.replace(".", ""), sizeBytes: stat.size, role: "sku-dna" }
+src/metabolism/processors/threed-model.processor.ts:13:      const fh = await fs.open(filePath, "r"); await fh.read(headerBuf, 0, headerBuf.length, 0); await fh.close()
+src/metabolism/processors/threed-model.processor.ts:16:          const content = await fs.readFile(filePath, "utf-8"); const fc = (content.match(/facet normal/g) || []).length
+src/metabolism/processors/threed-model.processor.ts:20:        const content = await fs.readFile(filePath, "utf-8"); let v=0, f=0
+src/metabolism/processors/threed-model.processor.ts:24:        const content = await fs.readFile(filePath, "utf-8"); meta.entityCount = (content.match(/^#\d+/gm) || []).length; meta.status = "parsed"
+src/metabolism/processors/threed-model.processor.ts:26:      const skuMatch = path.basename(filePath).match(/(TLXR[\-_]?\d+|SP[\-_]?\d+|SKU[\-_]?\d+)/i)
+src/metabolism/processors/threed-model.processor.ts:28:      return this.result(filePath, [meta])
+src/metabolism/processors/threed-model.processor.ts:29:    } catch (e) { return this.result(filePath, [], [`3D error: ${e}`]) }
+src/metabolism/processors/image.processor.ts:2:import { BaseProcessor } from "./base.processor"
+src/metabolism/processors/image.processor.ts:3:import { ProcessorResult } from "../types"
+src/metabolism/processors/image.processor.ts:4:export class ImageProcessor extends BaseProcessor {
+src/metabolism/processors/image.processor.ts:5:  readonly type = "image" as const
+src/metabolism/processors/image.processor.ts:6:  canProcess(filePath: string): boolean { return /\.(jpg|jpeg|png|webp|gif|bmp|tiff?)$/i.test(filePath) }
+src/metabolism/processors/image.processor.ts:7:  async process(filePath: string): Promise<ProcessorResult> {
+src/metabolism/processors/image.processor.ts:9:      const fs = await import("fs/promises"); const path = await import("path")
+src/metabolism/processors/image.processor.ts:10:      const stat = await fs.stat(filePath); const ext = path.extname(filePath).toLowerCase()
+src/metabolism/processors/image.processor.ts:12:      const fh = await fs.open(filePath, "r"); await fh.read(buf, 0, buf.length, 0); await fh.close()
+src/metabolism/processors/image.processor.ts:13:      const meta: Record<string, unknown> = { file: filePath, fileName: path.basename(filePath), format: ext.replace(".", ""), sizeBytes: stat.size, modifiedAt: stat.mtime.toISOString() }
+src/metabolism/processors/image.processor.ts:18:      const skuMatch = path.basename(filePath).match(/(TLXR[\-_]?\d+|SP[\-_]?\d+|SKU[\-_]?\d+)/i)
+src/metabolism/processors/image.processor.ts:20:      return this.result(filePath, [meta])
+src/metabolism/processors/image.processor.ts:21:    } catch (e) { return this.result(filePath, [], [`Image error: ${e}`]) }
+src/metabolism/processors/csv.processor.ts:1:import { BaseProcessor } from "./base.processor"
+src/metabolism/processors/csv.processor.ts:2:import { ProcessorResult } from "../types"
+src/metabolism/processors/csv.processor.ts:4:export class CsvProcessor extends BaseProcessor {
+src/metabolism/processors/csv.processor.ts:5:  readonly type = "csv" as const
+src/metabolism/processors/csv.processor.ts:7:  canProcess(filePath: string): boolean {
+src/metabolism/processors/csv.processor.ts:8:    return filePath.toLowerCase().endsWith(".csv")
+src/metabolism/processors/csv.processor.ts:11:  async process(filePath: string): Promise<ProcessorResult> {
+src/metabolism/processors/csv.processor.ts:13:      const fs = await import("fs/promises")
+src/metabolism/processors/csv.processor.ts:14:      const content = await fs.readFile(filePath, "utf-8")
+src/metabolism/processors/csv.processor.ts:16:      if (lines.length === 0) return this.result(filePath, [], ["Empty file"])
+src/metabolism/processors/csv.processor.ts:22:      return this.result(filePath, data)
+src/metabolism/processors/csv.processor.ts:24:      return this.result(filePath, [], [`Read error: ${e}`])
+src/metabolism/processors/excel.processor.ts:2:import { BaseProcessor } from "./base.processor"
+src/metabolism/processors/excel.processor.ts:3:import { ProcessorResult } from "../types"
+src/metabolism/processors/excel.processor.ts:4:export class ExcelProcessor extends BaseProcessor {
+src/metabolism/processors/excel.processor.ts:5:  readonly type = "excel" as const
+src/metabolism/processors/excel.processor.ts:6:  canProcess(filePath: string): boolean { return /\.(xlsx|xls)$/i.test(filePath) }
+src/metabolism/processors/excel.processor.ts:7:  async process(filePath: string): Promise<ProcessorResult> {
+src/metabolism/processors/excel.processor.ts:10:        const XLSX = await import("xlsx")
+src/metabolism/processors/excel.processor.ts:11:        const workbook = XLSX.readFile(filePath)
+src/metabolism/processors/excel.processor.ts:14:          const rows = XLSX.utils.sheet_to_json<Record<string, unknown>>(workbook.Sheets[sheetName])
+src/metabolism/processors/excel.processor.ts:17:        return this.result(filePath, allData)
+src/metabolism/processors/excel.processor.ts:19:        const fs = await import("fs/promises")
+src/metabolism/processors/excel.processor.ts:20:        const stat = await fs.stat(filePath)
+src/metabolism/processors/excel.processor.ts:21:        const buf = Buffer.alloc(4); const fh = await fs.open(filePath, "r"); await fh.read(buf, 0, 4, 0); await fh.close()
+src/metabolism/processors/excel.processor.ts:23:        return this.result(filePath, [{ file: filePath, format: isZip ? "xlsx" : "xls-legacy", sizeBytes: stat.size, status: "metadata-only", hint: "npm install xlsx" }])
+src/metabolism/processors/excel.processor.ts:25:    } catch (e) { return this.result(filePath, [], [`Excel error: ${e}`]) }
+src/metabolism/processors/archive.processor.ts:2:import { BaseProcessor } from "./base.processor"
+src/metabolism/processors/archive.processor.ts:3:import { ProcessorResult } from "../types"
+src/metabolism/processors/archive.processor.ts:5:export class ArchiveProcessor extends BaseProcessor {
+src/metabolism/processors/archive.processor.ts:6:  readonly type = "csv" as const
+src/metabolism/processors/archive.processor.ts:7:  canProcess(filePath: string): boolean {
+src/metabolism/processors/archive.processor.ts:8:    return /\.(zip|rar|7z|tar|gz|tgz)$/i.test(filePath)
+src/metabolism/processors/archive.processor.ts:10:  async process(filePath: string): Promise<ProcessorResult> {
+src/metabolism/processors/archive.processor.ts:12:      const fs = await import("fs/promises")
+src/metabolism/processors/archive.processor.ts:13:      const path = await import("path")
+src/metabolism/processors/archive.processor.ts:14:      const stat = await fs.stat(filePath)
+src/metabolism/processors/archive.processor.ts:15:      const ext = path.extname(filePath).toLowerCase()
+src/metabolism/processors/archive.processor.ts:17:      const fh = await fs.open(filePath, "r")
+src/metabolism/processors/archive.processor.ts:21:        file: filePath, fileName: path.basename(filePath), format: ext.replace(".", ""),
+src/metabolism/processors/archive.processor.ts:25:      if (buf[0] === 0x50 && buf[1] === 0x4B) { meta.archiveType = "zip"; meta.status = "parsed"; }
+src/metabolism/processors/archive.processor.ts:26:      else if (buf[0] === 0x52 && buf[1] === 0x61 && buf[2] === 0x72) { meta.archiveType = "rar"; meta.status = "metadata-only"; }
+src/metabolism/processors/archive.processor.ts:27:      else { meta.archiveType = ext.replace(".", ""); meta.status = "metadata-only"; }
+src/metabolism/processors/archive.processor.ts:28:      return this.result(filePath, [meta])
+src/metabolism/processors/archive.processor.ts:29:    } catch (e) { return this.result(filePath, [], [`Archive error: ${e}`]) }
+src/metabolism/processors/base.processor.ts:1:import { ProcessorResult, ProcessorType } from "../types"
+src/metabolism/processors/base.processor.ts:3:export abstract class BaseProcessor {
+src/metabolism/processors/base.processor.ts:4:  abstract readonly type: ProcessorType
+src/metabolism/processors/base.processor.ts:6:  abstract canProcess(filePath: string): boolean
+src/metabolism/processors/base.processor.ts:7:  abstract process(filePath: string): Promise<ProcessorResult>
+src/metabolism/processors/base.processor.ts:10:    sourceFile: string,
+src/metabolism/processors/base.processor.ts:13:  ): ProcessorResult {
+src/metabolism/processors/base.processor.ts:16:      processorType: this.type,
+src/metabolism/processors/base.processor.ts:17:      sourceFile,
+src/metabolism/processors/index.ts:1:export * from "./base.processor"
+src/metabolism/processors/index.ts:2:export * from "./csv.processor"
+src/metabolism/processors/index.ts:3:export * from "./json.processor"
+src/metabolism/processors/index.ts:4:export * from "./excel.processor"
+src/metabolism/processors/index.ts:5:export * from "./image.processor"
+src/metabolism/processors/index.ts:6:export * from "./video.processor"
+src/metabolism/processors/index.ts:7:export * from "./threed-model.processor"
+src/metabolism/processors/index.ts:8:export * from "./pdf.processor"
+src/metabolism/processors/index.ts:9:export * from "./archive.processor"
+src/metabolism/processors/pdf.processor.ts:4:import { BaseProcessor } from "./base.processor"
+src/metabolism/processors/pdf.processor.ts:5:import { ProcessorResult } from "../types"
+src/metabolism/processors/pdf.processor.ts:6:export class PdfProcessor extends BaseProcessor {
+src/metabolism/processors/pdf.processor.ts:7:  readonly type = "pdf" as const
+src/metabolism/processors/pdf.processor.ts:8:  canProcess(filePath: string): boolean { return filePath.toLowerCase().endsWith(".pdf") }
+src/metabolism/processors/pdf.processor.ts:9:  async process(filePath: string): Promise<ProcessorResult> {
+src/metabolism/processors/pdf.processor.ts:11:      const fs = await import("fs/promises"); const stat = await fs.stat(filePath)
+src/metabolism/processors/pdf.processor.ts:12:      const buf = Buffer.alloc(1024); const fh = await fs.open(filePath, "r"); await fh.read(buf, 0, 1024, 0); await fh.close()
+src/metabolism/processors/pdf.processor.ts:14:      if (!header.startsWith("%PDF")) return this.result(filePath, [], ["Not a valid PDF"])
+src/metabolism/processors/pdf.processor.ts:15:      const version = header.match(/%PDF-(\d\.\d)/)?.[1] ?? "unknown"
+src/metabolism/processors/pdf.processor.ts:17:        const pdfParse = (await import("pdf-parse")).default
+src/metabolism/processors/pdf.processor.ts:18:        const rawBuf = await fs.readFile(filePath); const parsed = await pdfParse(rawBuf)
+src/metabolism/processors/pdf.processor.ts:20:        return this.result(filePath, [{ file: filePath, pdfVersion: version, pages: parsed.numpages, docType, textLength: text.length, status: "parsed" }])
+src/metabolism/processors/pdf.processor.ts:22:        return this.result(filePath, [{ file: filePath, pdfVersion: version, sizeBytes: stat.size, status: "metadata-only", hint: "npm install pdf-parse" }])
+src/metabolism/processors/pdf.processor.ts:24:    } catch (e) { return this.result(filePath, [], [`PDF error: ${e}`]) }
+src/metabolism/healing/anomaly-detector.ts:17:import { EventBus } from '@/core/events/event-bus';
+src/metabolism/healing/archive-bridge.ts:1:import { MetabolismEvent } from "../types"
+src/metabolism/healing/archive-bridge.ts:3:export interface ArchiveEntry {
+src/metabolism/healing/archive-bridge.ts:10:export class ArchiveBridge {
+src/metabolism/healing/archive-bridge.ts:11:  private queue: ArchiveEntry[] = []
+src/metabolism/healing/archive-bridge.ts:19:    const entry: ArchiveEntry = {
+src/metabolism/healing/archive-bridge.ts:28:      type: "ArchiveBridged",
+src/metabolism/healing/archive-bridge.ts:29:      source: "archive-bridge",
+src/metabolism/healing/archive-bridge.ts:34:    console.info(`[archive-bridge] ${physicalPath} (${size}) → ${cellTarget}`)
+src/metabolism/healing/archive-bridge.ts:37:  getQueue(): ArchiveEntry[] {
+src/metabolism/healing/auto-optimizer.ts:1:import { ProcessorResult } from "../types"
+src/metabolism/healing/auto-optimizer.ts:4:  optimize(results: ProcessorResult[]): ProcessorResult[] {
+src/metabolism/healing/auto-optimizer.ts:7:        console.info(`[metabolism/optimizer] Large dataset ${r.sourceFile} (${r.data.length} rows) — chunking recommended`)
+src/metabolism/healing/index.ts:1:export * from "./self-healing-logger"
+src/metabolism/healing/index.ts:3:export * from "./archive-bridge"
+src/metabolism/healing/self-healing-logger.ts:1:export interface HealingLog {
+src/metabolism/healing/self-healing-logger.ts:3:  file: string
+src/metabolism/healing/self-healing-logger.ts:9:export class SelfHealingLogger {
+src/metabolism/healing/self-healing-logger.ts:10:  private logs: HealingLog[] = []
+src/metabolism/healing/self-healing-logger.ts:12:  log(file: string, issue: string, action: string): void {
+src/metabolism/healing/self-healing-logger.ts:15:      file,
+src/metabolism/healing/self-healing-logger.ts:20:    console.warn(`[metabolism/healing] ${file} — ${issue} → ${action}`)
+src/metabolism/healing/self-healing-logger.ts:23:  getRecent(n = 20): HealingLog[] {
+src/metabolism/index.ts:1:import { CsvProcessor } from "./processors/csv.processor"
+src/metabolism/index.ts:2:import { JsonProcessor } from "./processors/json.processor"
+src/metabolism/index.ts:3:import { ExcelProcessor } from "./processors/excel.processor"
+src/metabolism/index.ts:4:import { PdfProcessor } from "./processors/pdf.processor"
+src/metabolism/index.ts:5:import { ImageProcessor } from "./processors/image.processor"
+src/metabolism/index.ts:6:import { VideoProcessor } from "./processors/video.processor"
+src/metabolism/index.ts:7:import { ThreeDModelProcessor } from "./processors/threed-model.processor"
+src/metabolism/index.ts:8:import { ArchiveProcessor } from "./processors/archive.processor"
+src/metabolism/index.ts:9:import { BaseProcessor } from "./processors/base.processor"
+src/metabolism/index.ts:10:import { SchemaDetector } from "./normalizers/schema-detector"
+src/metabolism/index.ts:11:import { DataCleanser } from "./normalizers/data-cleanser"
+src/metabolism/index.ts:12:import { FieldMapper } from "./normalizers/field-mapper"
+src/metabolism/index.ts:13:import { JewelrySchema } from "./normalizers/jewelry-schema"
+src/metabolism/index.ts:14:import { SelfHealingLogger } from "./healing/self-healing-logger"
+src/metabolism/index.ts:15:import { AutoOptimizer } from "./healing/auto-optimizer"
+src/metabolism/index.ts:16:import { ArchiveBridge } from "./healing/archive-bridge"
+src/metabolism/index.ts:17:import { ProcessorResult, MetabolismEvent } from "./types"
+src/metabolism/index.ts:18:import { EventBus } from "@/core/events/event-bus"
+src/metabolism/index.ts:21:export * from "./processors"
+src/metabolism/index.ts:22:export * from "./normalizers"
+src/metabolism/index.ts:23:export * from "./healing"
+src/metabolism/index.ts:26:  private processors: BaseProcessor[]
+src/metabolism/index.ts:31:  private logger = new SelfHealingLogger()
+src/metabolism/index.ts:33:  readonly archiveBridge = new ArchiveBridge()
+src/metabolism/index.ts:36:    this.processors = [
+src/metabolism/index.ts:37:      new CsvProcessor(), new JsonProcessor(), new ExcelProcessor(), new PdfProcessor(),
+src/metabolism/index.ts:38:      new ImageProcessor(), new VideoProcessor(), new ThreeDModelProcessor(), new ArchiveProcessor(),
+src/metabolism/index.ts:40:    this.archiveBridge.onEvent((event) => {
+src/metabolism/index.ts:45:  async ingest(filePath: string): Promise<ProcessorResult> {
+src/metabolism/index.ts:46:    const processor = this.processors.find(p => p.canProcess(filePath))
+src/metabolism/index.ts:47:    if (!processor) {
+src/metabolism/index.ts:48:      this.logger.log(filePath, "No processor found", "skip")
+src/metabolism/index.ts:49:      this.publishEvent({ type: "ProcessorError", source: "metabolism-layer", payload: { file: filePath, error: "No processor found" }, timestamp: Date.now() })
+src/metabolism/index.ts:50:      return { success: false, processorType: "json", sourceFile: filePath, recordCount: 0, data: [], errors: [`No processor for: ${filePath}`], processedAt: Date.now() }
+src/metabolism/index.ts:52:    const raw = await processor.process(filePath)
+src/metabolism/index.ts:54:      this.logger.log(filePath, raw.errors.join(", "), "logged")
+src/metabolism/index.ts:55:      this.publishEvent({ type: "ProcessorError", source: "metabolism-layer", processorType: raw.processorType, payload: { file: filePath, errors: raw.errors }, timestamp: Date.now() })
+src/metabolism/index.ts:58:    if (raw.processorType === "csv" || raw.processorType === "json" || raw.processorType === "excel") {
+src/metabolism/index.ts:60:      this.publishEvent({ type: "DataNormalized", source: "metabolism-layer", processorType: raw.processorType, payload: { file: filePath, schema, recordCount: mapped.length }, timestamp: Date.now() })
+src/metabolism/index.ts:63:    this.publishEvent({ type: "DataIngested", source: "metabolism-layer", processorType: raw.processorType, cellTarget: this.routeToCell(raw), payload: { file: filePath, recordCount: raw.recordCount }, timestamp: Date.now() })
+src/metabolism/index.ts:67:  async batchIngest(filePaths: string[]): Promise<ProcessorResult[]> {
+src/metabolism/index.ts:68:    const results: ProcessorResult[] = []; for (const fp of filePaths) results.push(await this.ingest(fp))
+src/metabolism/index.ts:72:  private routeToCell(result: ProcessorResult): string {
+src/metabolism/index.ts:74:    switch (result.processorType) {
+src/metabolism/index.ts:75:      case "3d-model": return "design-3d-cell"
+src/metabolism/index.ts:76:      case "image": return data?.category === "warranty-doc" ? "warranty-cell" : data?.category === "product-photo" ? "inventory-cell" : "media-cell"
+src/metabolism/index.ts:77:      case "video": return "media-cell"
+src/metabolism/index.ts:78:      case "pdf": return data?.docType === "warranty-certificate" ? "warranty-cell" : data?.docType === "invoice" ? "finance-cell" : "audit-cell"
+
+════════════════════════════════════════════════════════════
+HW_7_RESOURCE_PRESSURE_NODE
+Tai vat ly: capacity / queue / backpressure / frame budget / threshold
+════════════════════════════════════════════════════════════
+src/cells/render-stack-cell/contract.si:28:input phải đến từ grammar / sample / pilot đã được validator xác nhận.
+src/cells/render-stack-cell/contract.si:43:không claim siraSign frame validation đã wire
+src/cells/render-stack-cell/cell.anc:36:không kéo framework ngoài
+src/cells/render-stack-cell/cell.anc:39:không wire siraSign frame validation khi chưa có contract riêng
+src/cells/render-stack-cell/render-instruction.contract.si:8:    frame_id: "ULID — duy nhat mau frame",
+src/cells/render-stack-cell/render-instruction.contract.si:11:    motion_budget: "motion_budget — frame_budget, allocated, remaining",
+src/cells/render-stack-cell/render-instruction.contract.si:12:    degrade_level: "NONE | LIGHT | MEDIUM | HEAVY",
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:57:  "siraSign frame validation: wired",
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:97:console.log("rules=no cross-cell import; no framework; no production claim; layer m; direction nam; obitan n=2");
+src/cells/render-stack-cell/validators/validate-render-instruction.sira:9:    "frame_id không rỗng, đúng format ULID",
+src/cells/render-stack-cell/validators/validate-render-instruction.sira:12:    "motion_budget.frame_budget > 0",
+src/cells/render-stack-cell/validators/validate-render-instruction.sira:13:    "motion_budget.allocated <= motion_budget.frame_budget",
+src/cells/render-stack-cell/validators/validate-render-instruction.sira:14:    "degrade_level ∈ {NONE, LIGHT, MEDIUM, HEAVY}",
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:113:      if (!instruction.frame_id || !instruction.signals) {
+src/cells/render-stack-cell/domain/render-instruction.types.ts:23:  params: Record<string, unknown>;
+src/cells/render-stack-cell/domain/render-instruction.types.ts:25:  degrade_to: SurfaceSignal | null;
+src/cells/render-stack-cell/domain/render-instruction.types.ts:35:  frame_budget: number;
+src/cells/render-stack-cell/domain/render-instruction.types.ts:36:  allocated: number;
+src/cells/render-stack-cell/domain/render-instruction.types.ts:37:  remaining: number;
+src/cells/render-stack-cell/domain/render-instruction.types.ts:47:  frame_id: string;
+src/cells/render-stack-cell/domain/render-instruction.types.ts:50:  motion_budget: MotionBudget;
+src/cells/render-stack-cell/domain/render-instruction.types.ts:51:  degrade_level: 'NONE' | 'LIGHT' | 'MEDIUM' | 'HEAVY';
+src/cells/render-stack-cell/domain/heyna-receiver.engine.sira:113:      if (!instruction.frame_id || !instruction.signals) {
+src/cells/render-stack-cell/domain/render-stack.engine.sira:18:  private frameCount = 0;
+src/cells/render-stack-cell/domain/render-stack.engine.sira:25:    this.frameCount++;
+src/cells/render-stack-cell/domain/render-stack.engine.sira:26:    EventBus.emit('cell.metric', { cell: 'render-stack-cell', metric: 'frame.rendered', value: 1, confidence: 0.95, source: 'render-stack-cell', ts: Date.now() });
+src/cells/render-stack-cell/domain/render-stack.engine.sira:29:    container.className = 'natt-render-frame';
+src/cells/render-stack-cell/domain/render-stack.engine.sira:30:    container.setAttribute('data-frame-id', instruction.frame_id);
+src/cells/render-stack-cell/domain/render-stack.engine.sira:31:    container.setAttribute('data-degrade-level', instruction.degrade_level);
+src/cells/render-stack-cell/domain/render-stack.engine.sira:33:    // Áp dụng degrade level
+src/cells/render-stack-cell/domain/render-stack.engine.sira:34:    if (instruction.degrade_level === 'HEAVY') {
+src/cells/render-stack-cell/domain/render-stack.engine.sira:37:    } else if (instruction.degrade_level === 'MEDIUM') {
+src/cells/render-stack-cell/domain/render-stack.engine.sira:105:    // Vị trí từ params
+src/cells/render-stack-cell/domain/render-stack.engine.sira:106:    if (signal.params.position) {
+src/cells/render-stack-cell/domain/render-stack.engine.sira:107:      const pos = signal.params.position as string;
+src/cells/render-stack-cell/domain/render-stack.engine.sira:127:    requestAnimationFrame(() => {
+src/cells/render-stack-cell/domain/render-stack.engine.sira:159:    if (el && signal.params.from && signal.params.to) {
+src/cells/render-stack-cell/domain/render-stack.engine.sira:160:      const from = signal.params.from as string;
+src/cells/render-stack-cell/domain/render-stack.engine.sira:161:      const to = signal.params.to as string;
+src/cells/render-stack-cell/domain/render-stack.engine.sira:162:      const easing = (signal.params.easing as string) || 'ease-in-out';
+src/cells/render-stack-cell/domain/render-stack.engine.sira:183:    if (el && signal.params.from_scale && signal.params.to_scale) {
+src/cells/render-stack-cell/domain/render-stack.engine.sira:184:      const fromScale = signal.params.from_scale;
+src/cells/render-stack-cell/domain/render-stack.engine.sira:185:      const toScale = signal.params.to_scale;
+src/cells/render-stack-cell/domain/render-stack.engine.sira:198:    if (el && signal.params.to_color) {
+src/cells/render-stack-cell/domain/render-stack.engine.sira:199:      const color = signal.params.to_color as string;
+src/cells/render-stack-cell/domain/render-stack.engine.sira:212:      const freq = (signal.params.frequency as number) || 1;
+src/cells/render-stack-cell/domain/render-stack.engine.sira:213:      const amp = (signal.params.amplitude as number) || 0.2;
+src/cells/render-stack-cell/domain/render-stack.engine.sira:227:      const cycle = (signal.params.cycle_ms as number) || 4000;
+src/cells/render-stack-cell/domain/render-stack.engine.sira:267:    const container = el.closest('.natt-render-frame') as HTMLElement;
+src/cells/render-stack-cell/domain/render-stack.engine.sira:269:      let state = this.states.get(container.getAttribute('data-frame-id') || '');
+src/cells/render-stack-cell/domain/render-stack.engine.sira:272:        this.states.set(container.getAttribute('data-frame-id') || '', state);
+src/cells/render-stack-cell/domain/render-instruction.types.sira:23:  params: Record<string, unknown>;
+src/cells/render-stack-cell/domain/render-instruction.types.sira:25:  degrade_to: SurfaceSignal | null;
+src/cells/render-stack-cell/domain/render-instruction.types.sira:35:  frame_budget: number;
+src/cells/render-stack-cell/domain/render-instruction.types.sira:36:  allocated: number;
+src/cells/render-stack-cell/domain/render-instruction.types.sira:37:  remaining: number;
+src/cells/render-stack-cell/domain/render-instruction.types.sira:47:  frame_id: string;
+src/cells/render-stack-cell/domain/render-instruction.types.sira:50:  motion_budget: MotionBudget;
+src/cells/render-stack-cell/domain/render-instruction.types.sira:51:  degrade_level: 'NONE' | 'LIGHT' | 'MEDIUM' | 'HEAVY';
+src/cells/render-stack-cell/domain/render-stack.engine.ts:17:  private frameCount = 0;
+src/cells/render-stack-cell/domain/render-stack.engine.ts:24:    this.frameCount++;
+src/cells/render-stack-cell/domain/render-stack.engine.ts:27:    container.className = 'natt-render-frame';
+src/cells/render-stack-cell/domain/render-stack.engine.ts:28:    container.setAttribute('data-frame-id', instruction.frame_id);
+src/cells/render-stack-cell/domain/render-stack.engine.ts:29:    container.setAttribute('data-degrade-level', instruction.degrade_level);
+src/cells/render-stack-cell/domain/render-stack.engine.ts:31:    // Áp dụng degrade level
+src/cells/render-stack-cell/domain/render-stack.engine.ts:32:    if (instruction.degrade_level === 'HEAVY') {
+src/cells/render-stack-cell/domain/render-stack.engine.ts:35:    } else if (instruction.degrade_level === 'MEDIUM') {
+src/cells/render-stack-cell/domain/render-stack.engine.ts:103:    // Vị trí từ params
+src/cells/render-stack-cell/domain/render-stack.engine.ts:104:    if (signal.params.position) {
+src/cells/render-stack-cell/domain/render-stack.engine.ts:105:      const pos = signal.params.position as string;
+src/cells/render-stack-cell/domain/render-stack.engine.ts:125:    requestAnimationFrame(() => {
+src/cells/render-stack-cell/domain/render-stack.engine.ts:157:    if (el && signal.params.from && signal.params.to) {
+src/cells/render-stack-cell/domain/render-stack.engine.ts:158:      const from = signal.params.from as string;
+src/cells/render-stack-cell/domain/render-stack.engine.ts:159:      const to = signal.params.to as string;
+src/cells/render-stack-cell/domain/render-stack.engine.ts:160:      const easing = (signal.params.easing as string) || 'ease-in-out';
+src/cells/render-stack-cell/domain/render-stack.engine.ts:181:    if (el && signal.params.from_scale && signal.params.to_scale) {
+src/cells/render-stack-cell/domain/render-stack.engine.ts:182:      const fromScale = signal.params.from_scale;
+src/cells/render-stack-cell/domain/render-stack.engine.ts:183:      const toScale = signal.params.to_scale;
+src/cells/render-stack-cell/domain/render-stack.engine.ts:196:    if (el && signal.params.to_color) {
+src/cells/render-stack-cell/domain/render-stack.engine.ts:197:      const color = signal.params.to_color as string;
+src/cells/render-stack-cell/domain/render-stack.engine.ts:210:      const freq = (signal.params.frequency as number) || 1;
+src/cells/render-stack-cell/domain/render-stack.engine.ts:211:      const amp = (signal.params.amplitude as number) || 0.2;
+src/cells/render-stack-cell/domain/render-stack.engine.ts:225:      const cycle = (signal.params.cycle_ms as number) || 4000;
+src/cells/render-stack-cell/domain/render-stack.engine.ts:265:    const container = el.closest('.natt-render-frame') as HTMLElement;
+src/cells/render-stack-cell/domain/render-stack.engine.ts:267:      let state = this.states.get(container.getAttribute('data-frame-id') || '');
+src/cells/render-stack-cell/domain/render-stack.engine.ts:270:        this.states.set(container.getAttribute('data-frame-id') || '', state);
+src/cells/render-stack-cell/render-stack.cell.anc:16:    "tuan thu motion_budget & degrade_policy",
+src/cells/render-stack-cell/render-stack.cell.anc:17:    "tra frame da render"
+src/cells/render-stack-cell/render-stack.cell.anc:25:      "import framework ngoai",
+src/cells/render-stack-cell_cipher.audit.log:16:      original:  'ULID — duy nhất mỗi frame'
+src/cells/render-stack-cell_cipher.audit.log:17:      ciphered:  'ULID — duy nhat mau frame'
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:24:  sapWeightGram: number;   // trọng lượng sáp
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:25:  requestedGoldGram: number;
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:33:  lossGram: number;
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:59:    const lossGram = job.requestedGoldGram * (CASTING_LOSS_PCT / 100);
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:60:    const castWeight = job.requestedGoldGram - lossGram;
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:68:        lossGram, lossPct, threshold: CASTING_LOSS_PCT,
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:94:      castWeight, lossGram, auditRef,
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:97:    return { orderId: job.orderId, castWeight, lossGram, lossPct, isLossExceeded, auditRef };
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:15:  status:    'HEALTHY' | 'DEGRADED' | 'CRITICAL';
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:18:export function calculateCastingConfidence(params: {
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:24:    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:26:    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:36:    status:    total >= 80 ? 'HEALTHY' : total >= 50 ? 'DEGRADED' : 'CRITICAL',
+src/cells/business/warehouse-cell/warehouse.service.ts:22:      this.stockMap.set(p.id, { total: p.stock, available: p.stock, reserved: 0, lowStockThreshold: 2 });
+src/cells/business/warehouse-cell/warehouse.service.ts:159:        const stock = this.stockMap.get(item_id) || { total: 0, available: 0, reserved: 0, lowStockThreshold: 0 };
+src/cells/business/warehouse-cell/index.ts:64:      'trong luong': p.goldWeightGram ?? 0,
+src/cells/business/warehouse-cell/index.ts:76:    WarehouseSmartLinkPort.notifyNhapKhoDone(p.orderId, maHang, p.goldWeightGram ?? 0);
+src/cells/business/warehouse-cell/index.ts:148:  confirmRow:  (...args: Parameters<typeof warehouseIngestHandler.confirmRow>) =>
+src/cells/business/warehouse-cell/index.ts:150:  rejectRow:   (...args: Parameters<typeof warehouseIngestHandler.rejectRow>) =>
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:63:      this.bus.emit('AUDIT.WEIGHT_ANOMALY', {
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:23:  | 'CAPACITY_ALERT';    // → production-cell
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:48:    'CAPACITY_ALERT':    'production-cell',
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:67:  'CAPACITY_ALERT':    'WAREHOUSE.CAPACITY_ALERT',
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:112:  notifyCapacityAlert:    (warehouseId: string, pct: number) =>
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:113:    WarehouseSmartLinkPort.emit({ type: 'CAPACITY_ALERT',    payload: { warehouseId, pct }, timestamp: Date.now() }),
+src/cells/business/warehouse-cell/domain/value-objects/warehouse-category.registry.ts:144:    minStockAlert: 100,        // gram
+src/cells/business/warehouse-cell/domain/types/warehouse.types.ts:137:export const CHENH_LECH_THRESHOLDS = {
+src/cells/business/warehouse-cell/domain/engines/warehouse-qa.engine.ts:42:  capacity: number;
+src/cells/business/warehouse-cell/domain/engines/warehouse-qa.engine.ts:63:      id: 'IT-001', sku: 'GOLD-18K-01', name: 'vang thau 18K', type: 'vang', warehouseId: 'W-HCM-01', quantity: 1250.45, unit: 'GRAM', cost: 4200000, purity: '75%', location: 'SAFE-A1', status: 'sen sang', lastCountDate: '21/01/2025', minThreshold: 2000, insuranceStatus: 'chua co', internalCertId: 'TL-G-25001', qrUrl: 'https://api.qrserver.com/v1/create-qr-code/?data=GOLD-18K-01' 
+src/cells/business/warehouse-cell/domain/engines/warehouse-qa.engine.ts:66:      id: 'IT-004', sku: 'NNU-HALO-01', name: 'nhan nu Halo Diamond 18K', type: 'thanh pham', warehouseId: 'W-HCM-01', quantity: 50, unit: 'PIECE', cost: 45000000, certType: CertType.INTERNAL, internalCertId: 'TL-F-25004', location: 'DISPLAY-04', status: 'sen sang', lastCountDate: '21/01/2025', minThreshold: 10, insuranceStatus: 'con han'
+src/cells/business/warehouse-cell/domain/engines/warehouse-qa.engine.ts:69:      id: 'IT-005', sku: 'NNA-ROLEX-01', name: 'nhan Nam Rolex Custom', type: 'thanh pham', warehouseId: 'W-HCM-01', quantity: 12, unit: 'PIECE', cost: 58000000, certType: CertType.INTERNAL, internalCertId: 'TL-F-25005', location: 'DISPLAY-05', status: 'sen sang', lastCountDate: '21/01/2025', minThreshold: 5, insuranceStatus: 'con han'
+src/cells/business/warehouse-cell/domain/engines/warehouse-qa.engine.ts:72:      id: 'IT-006', sku: 'NNU-HALO-01', name: 'nhan nu Halo Diamond 18K', type: 'thanh pham', warehouseId: 'W-HN-01', quantity: 5, unit: 'PIECE', cost: 45000000, certType: CertType.INTERNAL, internalCertId: 'TL-F-25006', location: 'HN-A1', status: 'sen sang', lastCountDate: '21/01/2025', minThreshold: 15, insuranceStatus: 'con han'
+src/cells/business/warehouse-cell/domain/engines/warehouse-qa.engine.ts:136:        capacity: 100000, // items
+src/cells/business/warehouse-cell/domain/engines/warehouse-qa.engine.ts:143:        capacity: 40000,
+src/cells/business/warehouse-cell/domain/services/tam-luxury-warehouse.types.ts:70:  haoHut: number;          // gram
+src/cells/business/warehouse-cell/domain/services/warehouse-domain.service.ts:15:  minThreshold: number;
+src/cells/business/warehouse-cell/domain/services/warehouse-domain.service.ts:67:        minThreshold: i.minThreshold,
+src/cells/business/warehouse-cell/domain/services/warehouse.confidence.ts:16:export function assessWarehouseConfidence(params: {
+src/cells/business/warehouse-cell/domain/services/warehouse.confidence.ts:23:  const { totalPhoi, phoiThieuCT, totalPhieu, phieuKhopSoCai, totalSoCaiEntries } = params;
+src/cells/business/warehouse-cell/domain/services/accountability.engine.ts:161:    thresholdPercent: number = 0.5
+src/cells/business/warehouse-cell/domain/services/accountability.engine.ts:185:      if (ratio >= thresholdPercent) {
+src/cells/business/warehouse-cell/domain/services/weight-variance.engine.ts:28:  CHENH_LECH_THRESHOLDS,
+src/cells/business/warehouse-cell/domain/services/weight-variance.engine.ts:67:   * Computes hao hụt thực tế and raises alerts if threshold exceeded.
+src/cells/business/warehouse-cell/domain/services/weight-variance.engine.ts:83:    // Get threshold for this công đoạn
+src/cells/business/warehouse-cell/domain/services/weight-variance.engine.ts:84:    const thresholds = HAO_HUT_CHUAN[congDoan];
+src/cells/business/warehouse-cell/domain/services/weight-variance.engine.ts:85:    const nguong = thresholds ? thresholds.max * tlTruocCongDoan : 0;
+src/cells/business/warehouse-cell/domain/services/weight-variance.engine.ts:132:        nguong: CHENH_LECH_THRESHOLDS.CANH_BAO,
+src/cells/business/warehouse-cell/domain/services/weight-variance.engine.ts:158:        nguong: CHENH_LECH_THRESHOLDS.CANH_BAO,
+src/cells/business/warehouse-cell/domain/services/weight-variance.engine.ts:234:        nguong: CHENH_LECH_THRESHOLDS.CANH_BAO,
+src/cells/business/warehouse-cell/domain/services/weight-variance.engine.ts:287:    if (abs < CHENH_LECH_THRESHOLDS.DAT_CHUAN) return 'XANH';
+src/cells/business/warehouse-cell/domain/services/weight-variance.engine.ts:288:    if (abs < CHENH_LECH_THRESHOLDS.CANH_BAO) return 'VANG';
+src/cells/business/warehouse-cell/domain/services/warehouse-production.engine.ts:124:    tongHaoHutGram: number;
+src/cells/business/warehouse-cell/domain/services/warehouse-production.engine.ts:131:      tongHaoHutGram: _soCai.reduce((s, e) => s + e.haoHut, 0),
+src/cells/business/warehouse-cell/domain/services/warehouse-intelligence.engine.ts:19:  understocked: string[]; // qty < min threshold
+src/cells/business/warehouse-cell/domain/services/warehouse-intelligence.engine.ts:27:    minThreshold = 5,
+src/cells/business/warehouse-cell/domain/services/warehouse-intelligence.engine.ts:34:      understocked: snapshots.filter(i => i.qty < minThreshold).map(i => i.itemCode),
+src/cells/business/warehouse-cell/domain/services/intent-detector.engine.ts:61:  SO_LUONG:   /^\d+([.,]\d+)?\s*(cái|chiếc|cai|chiec|g|gram|kg|chỉ|chi|lượng|luong)?$/i,
+src/cells/business/warehouse-cell/domain/services/intent-detector.engine.ts:62:  TRONG_LUONG:/\b\d+([.,]\d+)?\s*(g|gram|kg|chỉ|chi|lượng|luong|mg)\b/i,
+src/cells/business/warehouse-cell/domain/services/intent-detector.engine.ts:77:  const getBigrams = (s: string) => {
+src/cells/business/warehouse-cell/domain/services/intent-detector.engine.ts:83:  const bg1 = getBigrams(a.toLowerCase());
+src/cells/business/warehouse-cell/domain/services/intent-detector.engine.ts:84:  const bg2 = getBigrams(b.toLowerCase());
+src/cells/business/warehouse-cell/domain/services/intent-detector.engine.ts:145:  if (/trong|trong|luong|luong|gram|kg|gold|vang|vang/.test(normKey)) {
+src/cells/business/warehouse-cell/domain/entities/warehouse.entity.ts:11:  | 'LOW_STOCK'     // Sắp hết — dưới minThreshold
+src/cells/business/warehouse-cell/domain/entities/warehouse.entity.ts:28:  minThreshold: number;          // Ngưỡng cảnh báo tồn kho
+src/cells/business/warehouse-cell/domain/entities/warehouse.entity.ts:58:  readonly minThreshold: number;
+src/cells/business/warehouse-cell/domain/entities/warehouse.entity.ts:78:    this.minThreshold = props.minThreshold;
+src/cells/business/warehouse-cell/domain/entities/warehouse.entity.ts:160:    if (this._quantity <= this.minThreshold) { this._status = 'LOW_STOCK'; return; }
+src/cells/business/warehouse-cell/domain/entities/warehouse.entity.ts:178:    return this._quantity <= this.minThreshold && this._quantity > 0;
+src/cells/business/warehouse-cell/domain/entities/warehouse.entity.ts:199:      minThreshold: this.minThreshold,
+src/cells/business/shared-contracts-cell/domain/services/shared-contracts.confidence.ts:15:  status:    'HEALTHY' | 'DEGRADED' | 'CRITICAL';
+src/cells/business/shared-contracts-cell/domain/services/shared-contracts.confidence.ts:18:export function calculateSharedContractsConfidence(params: {
+src/cells/business/shared-contracts-cell/domain/services/shared-contracts.confidence.ts:24:    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
+src/cells/business/shared-contracts-cell/domain/services/shared-contracts.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/shared-contracts-cell/domain/services/shared-contracts.confidence.ts:26:    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+src/cells/business/shared-contracts-cell/domain/services/shared-contracts.confidence.ts:36:    status:    total >= 80 ? 'HEALTHY' : total >= 50 ? 'DEGRADED' : 'CRITICAL',
+src/cells/business/shared-contracts-cell/domain/services/shared-contracts.engine.ts:29:  daysRemaining: number;
+src/cells/business/shared-contracts-cell/domain/services/shared-contracts.engine.ts:38:    const daysRemaining = Math.floor((endDate - now) / 86400000);
+src/cells/business/shared-contracts-cell/domain/services/shared-contracts.engine.ts:76:    return { contractId: id, status, riskFlags, paymentRatio, daysRemaining, confidence: 0.85 };
+src/cells/business/constants-cell/domain/services/constants.confidence.ts:15:  status:    'HEALTHY' | 'DEGRADED' | 'CRITICAL';
+src/cells/business/constants-cell/domain/services/constants.confidence.ts:18:export function calculateConstantsConfidence(params: {
+src/cells/business/constants-cell/domain/services/constants.confidence.ts:24:    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
+src/cells/business/constants-cell/domain/services/constants.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/constants-cell/domain/services/constants.confidence.ts:26:    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+src/cells/business/constants-cell/domain/services/constants.confidence.ts:36:    status:    total >= 80 ? 'HEALTHY' : total >= 50 ? 'DEGRADED' : 'CRITICAL',
+src/cells/business/bom3dprd-cell/data-point3-d.tsx:4:import { motion } from 'framer-motion';
+src/cells/business/bom3dprd-cell/application/bom3dprd.usecase.ts:6:  params: Record<string, unknown>
+src/cells/business/bom3dprd-cell/application/bom3dprd.usecase.ts:10:  return { success: true, data: params };
+src/cells/business/bom3dprd-cell/application/bom3dprd.usecase.ts:14:  params: Record<string, unknown>
+src/cells/business/bom3dprd-cell/application/bom3dprd.usecase.ts:18:  return { success: true, data: params };
+src/cells/business/bom3dprd-cell/domain/engines/bom3dprd.engine.ts:24:  goldWeightGram?:  number;
+src/cells/business/bom3dprd-cell/domain/services/bom3dprd.confidence.ts:15:  status:    'HEALTHY' | 'DEGRADED' | 'CRITICAL';
+src/cells/business/bom3dprd-cell/domain/services/bom3dprd.confidence.ts:18:export function calculateBom3dprdConfidence(params: {
+src/cells/business/bom3dprd-cell/domain/services/bom3dprd.confidence.ts:24:    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
+src/cells/business/bom3dprd-cell/domain/services/bom3dprd.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/bom3dprd-cell/domain/services/bom3dprd.confidence.ts:26:    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+src/cells/business/bom3dprd-cell/domain/services/bom3dprd.confidence.ts:36:    status:    total >= 80 ? 'HEALTHY' : total >= 50 ? 'DEGRADED' : 'CRITICAL',
+src/cells/business/noi-vu-cell/domain/services/noi-vu.confidence.ts:15:  status:    'HEALTHY' | 'DEGRADED' | 'CRITICAL';
+src/cells/business/noi-vu-cell/domain/services/noi-vu.confidence.ts:18:export function calculateNoiVuConfidence(params: {
+src/cells/business/noi-vu-cell/domain/services/noi-vu.confidence.ts:24:    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
+src/cells/business/noi-vu-cell/domain/services/noi-vu.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/noi-vu-cell/domain/services/noi-vu.confidence.ts:26:    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+src/cells/business/noi-vu-cell/domain/services/noi-vu.confidence.ts:36:    status:    total >= 80 ? 'HEALTHY' : total >= 50 ? 'DEGRADED' : 'CRITICAL',
+src/cells/business/analytics-cell/application/analytics.usecase.ts:6:  params: Record<string, unknown>
+src/cells/business/analytics-cell/application/analytics.usecase.ts:10:  return { success: true, data: params };
+src/cells/business/analytics-cell/application/analytics.usecase.ts:14:  params: Record<string, unknown>
+src/cells/business/analytics-cell/application/analytics.usecase.ts:18:  return { success: true, data: params };
+src/cells/business/analytics-cell/ports/analytics-smartlink.port.ts:5:  type: "REPORT_ready" | "ANOMALY_DETECTED" | "INSIGHT_PUBLISHED" | "FORECAST_UPDATED";
+src/cells/business/analytics-cell/ports/analytics-smartlink.port.ts:73:  notifyAnomalyDetected: (entityId: string, score: number): void =>
+src/cells/business/analytics-cell/ports/analytics-smartlink.port.ts:74:    AnalyticsSmartLinkPort.emit({ type: "ANOMALY_DETECTED", payload: { entityId: entityId, score: score }, timestamp: Date.now() }),
+src/cells/business/analytics-cell/ports/analytics-smartlink.port.ts:84:    "ANOMALY_DETECTED": "compliance-cell",
+src/cells/business/analytics-cell/domain/services/analytics.confidence.ts:15:  status:    'HEALTHY' | 'DEGRADED' | 'CRITICAL';
+src/cells/business/analytics-cell/domain/services/analytics.confidence.ts:18:export function calculateAnalyticsConfidence(params: {
+src/cells/business/analytics-cell/domain/services/analytics.confidence.ts:24:    { name: 'data_presence',  weight: 0.4, score: params.hasActiveData   ? 100 : 0 },
+src/cells/business/analytics-cell/domain/services/analytics.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/analytics-cell/domain/services/analytics.confidence.ts:26:    { name: 'engine_healthy', weight: 0.2, score: params.engineHealthy   ? 100 : 0 },
+src/cells/business/analytics-cell/domain/services/analytics.confidence.ts:36:    status:    total >= 80 ? 'HEALTHY' : total >= 50 ? 'DEGRADED' : 'CRITICAL',
+src/cells/business/prdmaterials-cell/domain/prdmaterials.entity.ts:47:  const allocatedItems: LapItem[] = items.map(i => ({
+src/cells/business/prdmaterials-cell/domain/prdmaterials.entity.ts:56:    items: allocatedItems,
+src/cells/business/prdmaterials-cell/domain/prdmaterials.trace.logger.ts:3:  | 'GOLD_ALLOCATED' | 'PHIEU_FETCHED';
+src/cells/business/prdmaterials-cell/domain/services/prdmaterials.confidence.ts:9:export function assessPrdMaterialsConfidence(params: {
+src/cells/business/prdmaterials-cell/domain/services/prdmaterials.confidence.ts:14:  const { totalLaps, lapsWithGoldAllocation, pendingLaps } = params;
+src/cells/business/prdmaterials-cell/domain/services/prdmaterials.engine.ts:46:    waxWeight:   p.sapWeightGram ?? 2.0,  // mặc định 2g nếu chưa có dữ liệu sáp
+src/cells/business/prdmaterials-cell/domain/services/prdmaterials.engine.ts:51:  const gold24K  = (p.sapWeightGram ?? 2.0) * 7;  // tỷ lệ vàng/sáp ≈ 7x
+src/cells/business/prdmaterials-cell/domain/services/prdmaterials.engine.ts:115:    const threshold = GOLD_LOSS_PCT[tuoi] ?? GOLD_LOSS_PCT['default'];
+src/cells/business/prdmaterials-cell/domain/services/prdmaterials.engine.ts:118:    if (lossPct > threshold) {
+src/cells/business/prdmaterials-cell/domain/services/prdmaterials.engine.ts:128:        orderId, lapId: lap.lapId, lossGold, lossPct, threshold, stage: 'CASTING',
+src/cells/business/production-cell/index.ts:3:export * from './domain/value-objects/loss-thresholds';
+src/cells/business/production-cell/application/use-cases/report-material-loss.ts:3:const THRESHOLDS:Record<string,number>={CASTING:0.03,FILING:0.02,POLISHING:0.01,SETTING:0.005,QUALITY_REJECT:0.02,OTHER:0.01};
+
+════════════════════════════════════════════════════════════
+HARDWARE_PROOF_COUNTS
+════════════════════════════════════════════════════════════
+MACHINE_NODE=1
+LISTEN_PORT_MATCHES=1
+CLIENT_EDGE_FILES=317
+AUDIT_STORAGE_FILES=304
+METABOLISM_FILES=34
+IO_SUBSTRATE_EVIDENCE_FILES=1302
+NETWORK_TRANSPORT_EVIDENCE_FILES=1147
+RESOURCE_PRESSURE_EVIDENCE_FILES=630
+
+════════════════════════════════════════════════════════════
+HARDWARE_PICTURE
+════════════════════════════════════════════════════════════
+iMac / local machine
+  ↓
+filesystem / repo verANC / audit snapshots
+  ↓
+local runtime / process / localhost / port
+  ↓
+nattos-server = CLIENT edge
+  ↓
+I-O processors / normalizers / healing
+  ↓
+EventBus / HeyNa / SmartLink
+  ↓
+NaUion-Server = NHA_MINH
+  ↓
+Nauion Kernel / NattCell / SiraSign / .kkbt
+
+$exclude:
+  - KNX
+  - GIRA
+  - Daikin
+  - Villa H smart-home hardware
+
+$verdict_rule:
+  - Neu machine, filesystem, runtime port, client edge, I-O, network, resource pressure co evidence thi hardware substrate cua Natt Nell da hien huu.
+  - Day la phan cung theo hinh hai Natt Nell hien tai, khong phai driver OS co dien.
+
+$seal: scan_only_no_stage_no_commit

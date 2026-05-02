@@ -7,7 +7,7 @@
 **Thay thế:** v2.1 + v2.2 + v2.3 + v2.4 + use-contextual-ui.ts — đây là bản duy nhất cần đọc  
 **Tổng sections:** 27 + §8.5 UIMode (mới từ hook)
 
----
+---Đọc Update 1/5/2026- By @natt sirawat 
 
 ## MỤC LỤC
 
@@ -1498,3 +1498,361 @@ Anti-replay payload:
 
 **Natt sirawat – Phan Thanh Thương – Gatekeeper**  
 *Ngày ban hành: 2026-04-10 | Thay thế v2.1–v2.4 | Hiệu lực ngay lập tức*
+ =========================================================================
+ Update 01:36' ngày 1 Tháng 5 Năm 2026 
+ By @Natt Sirawat
+2.x Material Depth Language — Water / Glass / Inox Interpretation
+### 2.x Material Depth Language — Water / Glass / Inox Interpretation
+
+> Mục tiêu: tăng chiều sâu thị giác cho panel và card mà không rơi vào cảm giác "game UI".
+> Đây không phải mô phỏng vật lý 1:1, mà là bản dịch ngôn ngữ vật liệu sang UI.
+
+#### 2.x.1 Từ điển vật liệu bắt buộc
+
+| Thuật ngữ | Nghĩa trong UI |
+|---|---|
+| Transparency | Độ trong tổng thể của panel |
+| Opacity | Mức đục của lớp nền / lớp mist |
+| Transmission | Mức ánh sáng đi xuyên qua lớp glass |
+| Translucency | Độ mờ xuyên sáng của lớp trong |
+| Refraction | Cảm giác khúc xạ nhẹ ở mép và lớp sâu |
+| IOR (conceptual) | Hệ số cảm nhận kính/nước, không dùng như renderer vật lý thật |
+| Specular | Vệt sáng sắc trên mép và mặt panel |
+| Reflection | Phản chiếu môi trường / gradient / ánh nền |
+| Glossiness | Độ bóng cao của kính và inox |
+| Roughness | Độ nhám thấp để giữ bề mặt sạch, sang |
+| Fresnel | Mép sáng hơn theo góc nhìn, trung tâm trong hơn |
+| Caustics | Ánh loang rất nhẹ trong lớp sâu |
+| Surface Tension | Mép bo có lực, không bẹt, không bubble |
+| Ripple / Turbulence | Gợn / nhiễu cực nhẹ để tạo sự sống |
+| Mist Layer | Lớp sương mờ trong lòng panel để tăng depth |
+
+#### 2.x.2 Quy tắc bất biến
+
+- Không được dùng glass phẳng 1 lớp cho panel chính.
+- Mọi panel quan trọng phải có tối thiểu **3 lớp cảm nhận vật liệu**:
+  1. **Outer metallic shell** — viền inox / kim loại mảnh.
+  2. **Translucent glass layer** — lớp kính chính.
+  3. **Mist / inner veil layer** — lớp mờ nhẹ phía trong.
+- Fresnel rim phải tinh tế, không dùng glow dày kiểu game.
+- Caustics chỉ được dùng cực nhẹ ở Experience Layer.
+- Không dùng góc bo quá tròn; tránh cảm giác bubble / playful.
+- Roughness về cảm nhận phải thấp: bề mặt sạch, highlight gọn, phản xạ sang.
+
+#### 2.x.3 Material Stack chuẩn
+
+| Lớp | Vai trò | Hiệu ứng |
+|---|---|---|
+| Outer Shell | Viền kim loại / inox | thin border, metallic gradient, specular edge |
+| Glass Body | Thân panel | blur + transmission + translucency |
+| Mist Core | Lõi chiều sâu | soft inner fog, low opacity veil |
+| Fresnel Rim | Mép đổi theo góc | radial/edge light |
+| Caustic Accent | Ánh loang nhẹ | overlay rất mỏng, không animation mạnh |
+
+#### 2.x.4 Cấm tuyệt đối
+
+- Panel quá tròn như mobile-game card.
+- Glow dày và tím xanh quá mạnh.
+- Reflection quá gắt làm mất chữ.
+- Ripple / turbulence mạnh gây cảm giác sci-fi toy.
+16.x Visual Techniques Library — Material Depth Extension
+### 16.x Visual Techniques Library — Material Depth Extension
+
+#### 16.x.1 CSS tokens bổ sung
+
+```css
+:root {
+  --glass-transparency: rgba(18, 24, 40, 0.56);
+  --glass-depth: rgba(10, 14, 24, 0.84);
+  --glass-mist: rgba(255, 255, 255, 0.035);
+
+  --metal-edge-light: rgba(255,255,255,0.10);
+  --metal-edge-dark: rgba(255,255,255,0.04);
+  --metal-inox-sheen: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.16) 0%,
+    rgba(255,255,255,0.05) 18%,
+    rgba(255,255,255,0.02) 100%
+  );
+
+  --fresnel-rim: radial-gradient(
+    circle at 50% 0%,
+    rgba(255,255,255,0.12) 0%,
+    transparent 46%
+  );
+
+  --caustic-overlay: radial-gradient(
+    ellipse at 20% 12%,
+    rgba(255,255,255,0.05) 0%,
+    transparent 30%
+  );
+}
+16.x.2 Panel vật liệu chuẩn
+.material-panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid rgba(180,170,255,0.22);
+  background:
+    linear-gradient(180deg, var(--glass-transparency) 0%, var(--glass-depth) 100%);
+  backdrop-filter: blur(14px) saturate(128%);
+  -webkit-backdrop-filter: blur(14px) saturate(128%);
+  box-shadow:
+    0 24px 60px rgba(0,0,0,0.42),
+    0 0 0 1px rgba(255,255,255,0.025) inset;
+}
+
+.material-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    var(--metal-inox-sheen),
+    var(--fresnel-rim),
+    linear-gradient(180deg, rgba(255,255,255,0.03), transparent 28%);
+}
+
+.material-panel::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 16px;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, var(--glass-mist), transparent 40%),
+    var(--caustic-overlay);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+16.x.3 Mapping ngôn ngữ vật liệu → UI behavior
+Transparency / Transmission → điều khiển lớp nền glass.
+Specular / Reflection → điều khiển mép sáng và sheen inox.
+Fresnel → điều khiển rim light ở cạnh trên / cạnh nhìn.
+Caustics → chỉ là lớp ánh loang mỏng, không dùng như hiệu ứng chính.
+Surface Tension → dùng để định nghĩa góc bo có lực, hạn chế bo tròn quá mức.
+Ripple / Turbulence → chỉ dùng ở background hoặc hero media layer, cường độ thấp.
+
+---
+
+## Chỗ nên áp ngay cho màn nhà mình
+Em chốt 3 rule để triển khai sau này:
+
+### **Rule A — card sản phẩm**
+- ưu tiên **specular + inox edge**
+- blur thấp hơn panel dashboard
+- bo góc vừa, không bubble
+
+### **Rule B — hero/video layer**
+- có **mist + fresnel + grain**
+- caustics cực nhẹ
+- clip nằm sau 2 lớp overlay
+
+### **Rule C — panel tổng**
+- luôn có **outer shell + glass body + mist core**
+- không dùng panel 1 lớp nữa
+x Utility 01 — Transparency Tuner
+### 8.x Utility 01 — Transparency Tuner
+
+> Tiện ích đầu tiên của UI: cửa sổ xổ xuống cho phép điều chỉnh độ trong suốt của các nút cơ bản theo thời gian thực.
+
+#### 8.x.1 Mục tiêu
+- Cho phép Gatekeeper / designer / operator tinh chỉnh nhanh độ trong suốt của button mà không phải sửa CSS tay.
+- Dùng để cân giữa: readability / luxury / material depth.
+- Chỉ điều chỉnh **theme tokens**, không sửa business logic.
+
+#### 8.x.2 Vị trí
+- Đặt tại Topbar hoặc ActionDock.
+- Icon gợi ý: `◫` hoặc `◧`.
+- Click → mở **dropdown / popover**, không dùng modal full-screen.
+
+#### 8.x.3 Phạm vi điều chỉnh
+Dropdown này chỉ điều chỉnh nhóm nút nền tảng:
+
+| Nhóm | Mô tả |
+|---|---|
+| Base Button | nút mặc định |
+| Primary Button | nút chính / CTA |
+| Ghost Button | nút viền mảnh / nền rất nhẹ |
+| Hover Layer | mức trong suốt khi hover |
+| Border Alpha | độ nổi của viền nút |
+
+#### 8.x.4 Ràng buộc hiến pháp
+- Không được dùng `localStorage`.
+- Không được sửa style inline từng nút một cách tùy tiện.
+- Chỉ được update qua **CSS custom properties** hoặc theme state hợp lệ.
+- Nếu có EventBus thì phải emit event:
+  `ui.material.alpha.changed`
+- Utility chỉ đổi **appearance**, không tự điều khiển render loop.
+
+#### 8.x.5 UX chuẩn
+- Click icon → xổ xuống panel nhỏ.
+- Có preview ngay trong panel:
+  - Base
+  - Primary
+  - Ghost
+- Có nút:
+  - `Reset`
+  - `Apply`
+- Có thể dùng slider hoặc input số.
+- Khoảng chỉnh khuyến nghị:
+  - **0.08 → 0.72**
+
+#### 8.x.6 Giá trị mặc định
+| Token | Default |
+|---|---|
+| `--btn-base-alpha` | `0.12` |
+| `--btn-primary-alpha` | `0.18` |
+| `--btn-ghost-alpha` | `0.04` |
+| `--btn-hover-alpha` | `0.10` |
+| `--btn-border-alpha` | `0.22` |
+16.x Utility CSS — Button Transparency Tokens
+### 16.x Utility CSS — Button Transparency Tokens
+
+```css
+:root {
+  --btn-base-alpha: 0.12;
+  --btn-primary-alpha: 0.18;
+  --btn-ghost-alpha: 0.04;
+  --btn-hover-alpha: 0.10;
+  --btn-border-alpha: 0.22;
+}
+
+.btn-base {
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,var(--btn-base-alpha)),
+    rgba(255,255,255,calc(var(--btn-base-alpha) * 0.55))
+  );
+  border: 1px solid rgba(255,255,255,var(--btn-border-alpha));
+}
+
+.btn-primary {
+  background: linear-gradient(
+    180deg,
+    rgba(200,146,42,var(--btn-primary-alpha)),
+    rgba(200,146,42,calc(var(--btn-primary-alpha) * 0.62))
+  );
+  border: 1px solid rgba(255,255,255,calc(var(--btn-border-alpha) * 0.85));
+}
+
+.btn-ghost {
+  background: rgba(255,255,255,var(--btn-ghost-alpha));
+  border: 1px solid rgba(255,255,255,calc(var(--btn-border-alpha) * 0.72));
+}
+
+.btn-base:hover,
+.btn-primary:hover,
+.btn-ghost:hover {
+  box-shadow:
+    0 10px 22px rgba(0,0,0,.24),
+    0 0 0 1px rgba(255,255,255,.03) inset;
+  background-blend-mode: screen;
+}
+
+---
+
+### **16.x.1 Dropdown / Popover UI**
+```md id="h2lm6i"
+### 16.x.1 Dropdown / Popover UI
+
+```html
+<div class="utility-popover" id="transparencyTuner">
+  <div class="utility-title">Transparency Tuner</div>
+
+  <label>Base Button</label>
+  <input type="range" min="0.08" max="0.72" step="0.01" data-token="--btn-base-alpha" value="0.12">
+
+  <label>Primary Button</label>
+  <input type="range" min="0.08" max="0.72" step="0.01" data-token="--btn-primary-alpha" value="0.18">
+
+  <label>Ghost Button</label>
+  <input type="range" min="0.00" max="0.28" step="0.01" data-token="--btn-ghost-alpha" value="0.04">
+
+  <label>Hover Layer</label>
+  <input type="range" min="0.04" max="0.32" step="0.01" data-token="--btn-hover-alpha" value="0.10">
+
+  <label>Border Alpha</label>
+  <input type="range" min="0.08" max="0.42" step="0.01" data-token="--btn-border-alpha" value="0.22">
+
+  <div class="utility-preview">
+    <button class="btn-base">Base</button>
+    <button class="btn-primary">Primary</button>
+    <button class="btn-ghost">Ghost</button>
+  </div>
+
+  <div class="utility-actions">
+    <button class="btn-ghost" id="alphaReset">Reset</button>
+    <button class="btn-primary" id="alphaApply">Apply</button>
+  </div>
+</div>
+
+---
+
+### **16.x.2 Logic chuẩn**
+```md id="f3rvyz"
+### 16.x.2 Logic chuẩn
+
+```ts
+const DEFAULT_ALPHA = {
+  '--btn-base-alpha': '0.12',
+  '--btn-primary-alpha': '0.18',
+  '--btn-ghost-alpha': '0.04',
+  '--btn-hover-alpha': '0.10',
+  '--btn-border-alpha': '0.22',
+};
+
+function applyAlphaToken(token: string, value: string) {
+  document.documentElement.style.setProperty(token, value);
+  EventBus.emit('ui.material.alpha.changed', { token, value });
+}
+
+document.querySelectorAll('#transparencyTuner input[type="range"]').forEach((input) => {
+  input.addEventListener('input', (e) => {
+    const el = e.currentTarget as HTMLInputElement;
+    const token = el.dataset.token!;
+    applyAlphaToken(token, el.value);
+  });
+});
+
+document.getElementById('alphaReset')?.addEventListener('click', () => {
+  Object.entries(DEFAULT_ALPHA).forEach(([token, value]) => {
+    document.documentElement.style.setProperty(token, value);
+  });
+  EventBus.emit('ui.material.alpha.reset', DEFAULT_ALPHA);
+});
+
+---
+
+## Ghi chú để đúng style nhà mình
+Em chốt luôn 3 rule:
+
+### Rule 1
+**Button không được đặc quá.**  
+Phải nhìn thấy:
+- lớp kính
+- lớp mist
+- viền kim loại mảnh
+
+### Rule 2
+**Primary vẫn phải nổi hơn Base**, nhưng nổi bằng:
+- kim loại
+- specular
+- border
+- không phải chỉ bằng màu đặc
+
+### Rule 3
+**Ghost button phải gần như “thở” trên nền**, không được biến mất.
+
+---
+
+## Mức em khuyên cho showroom / vision
+Cho màn `vision.html`, em khuyên set mặc định:
+
+```css id="r0uh8f"
+--btn-base-alpha: 0.10;
+--btn-primary-alpha: 0.20;
+--btn-ghost-alpha: 0.03;
+--btn-hover-alpha: 0.08;
+--btn-border-alpha: 0.24;
+
+

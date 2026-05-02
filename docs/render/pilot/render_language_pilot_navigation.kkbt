@@ -1,0 +1,28 @@
+$nauion: RENDER_SURFACE_KKBT-v0.1
+$role: RENDER_NATIVE_SURFACE
+$owner: docs/render
+$source_rule: docs/render/spec_render_language_v0.2_candidate.na
+$source_html_retired:
+  path: docs/render/pilot/render_language_pilot_navigation.kkbt
+  status: migrated_out_of_active_surface
+$native_surface:
+  path: docs/render/pilot/render_language_pilot_navigation.kkbt
+  source_na: none
+  state_or_surface: navigation
+  extension: .kkbt
+  status: native_render_surface
+$boundary:
+  NaUion-Server: NHA_MINH
+  nattos-server: CLIENT_TAM_LUXURY_LOCAL_DEPLOY
+$render_language_contract:
+  language_produces_instruction: true
+  stack_executes_instruction: true
+  render_not_transport: true
+  color_expresses_state_not_logic: true
+  pi_tagging_mandatory: true
+  html_not_active_surface: true
+$substrate_note:
+  sentence: KKBT pilot da duoc rut khoi active surface; .kkbt la be mat render native trong docs/render/pilot.
+$seal:
+  sentence: Render language dung .kkbt surface; HTML khong con la active pilot.
+  sign: Phan Thanh Thuong / Natt Sirawat

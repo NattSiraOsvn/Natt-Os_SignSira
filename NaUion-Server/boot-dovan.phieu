@@ -59,7 +59,7 @@ $audit_pointer:
   count_events: 1
 
 $resolver_pointer:
-  cell: NaUion-Server/NELL_PRIMITIVE_RUNTIME_CELL.anc
+  cell: NaUion-Server/NELL_PRIMITIVE_RUNTIME_CELL_BANG_v0.2.anc
   state: ready_to_receive
 
 $dict_pointer:

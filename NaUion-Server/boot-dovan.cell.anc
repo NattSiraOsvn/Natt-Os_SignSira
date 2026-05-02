@@ -159,12 +159,12 @@ $cell_anatomy:
   spec_law: NaUion-Server/BOOT_DOVAN_BOOT_RULE.si
   presence_law: NaUion-Server/BOOT_DOVAN_ANC_PRESENCE_RULE_v1.si
   primitive_dict: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
-  runtime_resolver_cell: NaUion-Server/NELL_PRIMITIVE_RUNTIME_CELL.anc
+  runtime_resolver_cell: NaUion-Server/NELL_PRIMITIVE_RUNTIME_CELL_BANG_v0.2.anc
   render_surface: NaUion-Server/boot-dovan.cell.kkbt
   audit_event: NaUion-Server/BOOT_DOVAN_BOOT_AUDIT_EVENT_v0.1.na
   runtime_state: NaUion-Server/boot-dovan.phieu
   validator: NaUion-Server/BOOT_DOVAN_VALIDATE.sira
-  boot_sequence: NaUion-Server/BOOT_DOVAN.boot.si
+  boot_sequence: NaUion-Server/BOOT_DOVAN_BANG.boot.si
   khai_cell_binding: src/cells/kernel/khai-cell/
   observation_binding: src/cells/kernel/observation-cell/
 

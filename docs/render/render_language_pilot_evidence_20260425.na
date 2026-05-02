@@ -1,28 +1,28 @@
 # render language pilot evidence — 20260425
 
-status: pilot-html-bundle-15-validated
+status: pilot-kkbt-bundle-15-validated
 created_at: 2026-04-25T07:23:43.122100+00:00
 repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
 ---
 
-## 1. html pilot bundle
+## 1. kkbt pilot bundle
 
-- docs/render/pilot/render_language_pilot_nha.html
-- docs/render/pilot/render_language_pilot_gan.html
-- docs/render/pilot/render_language_pilot_neo.html
-- docs/render/pilot/render_language_pilot_boc.html
-- docs/render/pilot/render_language_pilot_ganh.html
-- docs/render/pilot/render_language_pilot_nhuong.html
-- docs/render/pilot/render_language_pilot_tha.html
-- docs/render/pilot/render_language_pilot_khiem.html
-- docs/render/pilot/render_language_pilot_dinh.html
-- docs/render/pilot/render_language_pilot_tinh.html
-- docs/render/pilot/render_language_pilot_bien.html
-- docs/render/pilot/render_language_pilot_xet.html
-- docs/render/pilot/render_language_pilot_chot.html
-- docs/render/pilot/render_language_pilot_giu.html
-- docs/render/pilot/render_language_pilot_ve.html
+- docs/render/pilot/render_language_pilot_nha.kkbt
+- docs/render/pilot/render_language_pilot_gan.kkbt
+- docs/render/pilot/render_language_pilot_neo.kkbt
+- docs/render/pilot/render_language_pilot_boc.kkbt
+- docs/render/pilot/render_language_pilot_ganh.kkbt
+- docs/render/pilot/render_language_pilot_nhuong.kkbt
+- docs/render/pilot/render_language_pilot_tha.kkbt
+- docs/render/pilot/render_language_pilot_khiem.kkbt
+- docs/render/pilot/render_language_pilot_dinh.kkbt
+- docs/render/pilot/render_language_pilot_tinh.kkbt
+- docs/render/pilot/render_language_pilot_bien.kkbt
+- docs/render/pilot/render_language_pilot_xet.kkbt
+- docs/render/pilot/render_language_pilot_chot.kkbt
+- docs/render/pilot/render_language_pilot_giu.kkbt
+- docs/render/pilot/render_language_pilot_ve.kkbt
 
 ## 2. source samples
 
@@ -48,7 +48,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
 ## 4. scope
 
-html pilot bundle covers all 15 states and is validator-confirmed.
+kkbt pilot bundle covers all 15 states and is validator-confirmed.
 this is not production renderer.
 this does not wire Mạch HeyNa.
 this does not wire siraSign frame validation.

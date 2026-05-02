@@ -1,0 +1,52 @@
+$nauion: NELL_PRIMITIVE_WORDS_VALIDATE-v0.1
+$role: SCANNER_RULE
+$owner: NaUion-Server
+$status: CANONICAL_CANDIDATE
+
+$source:
+  - src/thienbang.si
+  - NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
+
+$validate_targets:
+  - NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
+
+$must_have_fields:
+  - key
+  - tuCu
+  - tuDich
+  - tuNell
+  - nghia
+  - vi
+  - carrier
+  - polarity
+
+$must_have_groups:
+  - read_write
+  - search_extract
+  - proof_guard
+  - runtime_state
+  - event_fabric
+  - boundary
+  - report_proof
+  - render_surface
+  - data_io
+  - opsec
+  - git_state
+  - system_container_file_lifecycle
+
+$must_have_rules:
+  - dictionary_first
+  - lowercase_surface
+  - polarity_cipher_aware
+  - Từ điển gốc phải có dấu
+
+$fail_condition:
+  - thiếu block start/end
+  - thiếu cột tuDich
+  - thiếu cột tuNell
+  - nghĩa tiếng Việt bị ép không dấu trong từ điển gốc
+  - carrier bị nhận nhầm là semantic chính
+
+$seal:
+  sentence: Scanner này kiểm primitive words sau khi dictionary first đã materialize đủ 12 nhóm primitive.
+  sign: Phan Thanh Thương / Natt Sirawat

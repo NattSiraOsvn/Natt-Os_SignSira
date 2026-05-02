@@ -1,0 +1,93 @@
+GROUP | KEY | tuDich | tuNell
+---|---|---|---
+read_write | ECHO_LINE | vang | vang
+read_write | OPEN_BODY | mở | mo
+read_write | WRITE_BODY | ghi | ghi
+read_write | APPEND_BODY | nối | noi
+read_write | COPY_BODY | sao | sao
+read_write | MOVE_BODY | dời | doi
+read_write | REMOVE_BODY | gỡ | go
+read_write | TRUNCATE_BODY | trống | trong
+search_extract | FIND_ARTIFACT | mò | mo
+search_extract | MATCH_EVIDENCE | soi | soi
+search_extract | EXTRACT_FIELD | rút | rut
+search_extract | SHAPE_LINE | nắn | nan
+search_extract | FILTER_SIGNAL | lọc | loc
+search_extract | COUNT_EVIDENCE | đếm | dem
+search_extract | ORDER_EVIDENCE | xếp | xep
+search_extract | DEDUPE_EVIDENCE | khử | khu
+proof_guard | HASH_EVIDENCE | ấn | an
+proof_guard | SIGN_EVIDENCE | ký | ky
+proof_guard | VALIDATE_RULE | kiểm | kiem
+proof_guard | BLOCK_VIOLATION | chặn | chan
+proof_guard | ALLOW_PASS | qua | qua
+proof_guard | SEAL_STATE | khóa | khoa
+proof_guard | UNLOCK_STATE | mở khóa | mokhoa
+proof_guard | QUARANTINE_ARTIFACT | cách ly | cachly
+runtime_state | WRITE_MEMORY | nhớ | nho
+runtime_state | WRITE_RUNTIME_STATE | phiếu | phieu
+runtime_state | HEARTBEAT | thở | tho
+runtime_state | WAKE_CELL | tỉnh | tinh
+runtime_state | SUSPEND_CELL | ngủ | ngu
+runtime_state | STOP_CELL | chết | chet
+runtime_state | RESURRECT_CELL | hồi | hoi
+runtime_state | MIGRATE_BODY | dời thân | doithan
+event_fabric | CALL_CAPABILITY | gọi | goi
+event_fabric | LISTEN_EVENT | nghe | nghe
+event_fabric | EMIT_EVENT | phát | phat
+event_fabric | RECEIVE_EVENT | nhận | nhan
+event_fabric | TRACE_EVENT | truy | truy
+event_fabric | ANCHOR_STATE | neo | neo
+event_fabric | SYNC_STATE | đồng bộ | dongbo
+boundary | SET_BOUNDARY | biên | bien
+boundary | SET_ROLE | vai | vai
+boundary | SET_PERMISSION | quyền | quyen
+boundary | SET_LIMIT | hạn | han
+boundary | OPEN_PORT | cửa | cua
+boundary | CLOSE_PORT | đóng cửa | dongcua
+boundary | SET_HOME | nhà | nha
+boundary | SET_CLIENT | khách | khach
+report_proof | SUMMARIZE | kết | ket
+report_proof | REASON | luận | luan
+report_proof | PROVE | chứng | chung
+report_proof | CITE | dẫn | dan
+report_proof | COMPOSE_REPORT | lập | lap
+report_proof | EXPORT_REPORT | xuất | xuat
+render_surface | RENDER_SURFACE | hiện | hien
+render_surface | HIDE_SURFACE | ẩn | an
+render_surface | BLUR_SURFACE | mờ | mo
+render_surface | FROST_SURFACE | đục | duc
+render_surface | BRIGHTEN_SURFACE | sáng | sang
+render_surface | DARKEN_SURFACE | tối | toi
+data_io | LOAD_DATA | nạp | nap
+data_io | INGEST_DATA | nhập | nhap
+data_io | DUMP_DATA | xả | xa
+data_io | READ_DATA | đọc | doc
+data_io | NORMALIZE_DATA | chuẩn | chuan
+data_io | PARSE_DATA | giải | giai
+opsec | REDACT_TRACE | che vết | chevet
+opsec | HASH_TRACE | băm vết | bamvet
+opsec | CUT_EXPOSURE | cắt lộ | catlo
+opsec | HIDE_TOPOLOGY | giấu tuyến | giautuyen
+opsec | METRIC_ONLY | chỉ số | chiso
+opsec | CLAIM_BOUNDARY | khóa claim | khoaclaim
+git_state | SEE_BRANCH | nhìn nhánh | nhinnhanh
+git_state | CHECK_WORKTREE | soát sân | soatsan
+git_state | STAGE_ARTIFACT | gắn | gan
+git_state | UNSTAGE_ARTIFACT | tháo | thao
+git_state | COMMIT_STATE | chốt | chot
+git_state | PUSH_STATE | đẩy | day
+git_state | FETCH_STATE | kéo | keo
+git_state | PICK_COMMIT | bứng | bung
+system_container_file_lifecycle | MAKE_CONTAINER | dựng | dung
+system_container_file_lifecycle | ENSURE_CONTAINER | dựng chắc | dungchac
+system_container_file_lifecycle | TOUCH_ARTIFACT | chạm | cham
+system_container_file_lifecycle | EMPTY_ARTIFACT | trống | trong
+system_container_file_lifecycle | COPY_ARTIFACT | sao | sao
+system_container_file_lifecycle | MOVE_ARTIFACT | dời | doi
+system_container_file_lifecycle | REMOVE_ARTIFACT | gỡ | go
+system_container_file_lifecycle | RESTORE_ARTIFACT | hồi | hoi
+system_container_file_lifecycle | BACKUP_ARTIFACT | giữ bản | giuban
+system_container_file_lifecycle | CHECK_ARTIFACT_EXISTS | xét có | xetco
+system_container_file_lifecycle | LIST_CONTAINER | bày | bay
+system_container_file_lifecycle | SEAL_LIFECYCLE | khóa vòng | khoavong

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Tâm Luxury V2.6 · Physics + Camera Render</title>
+<style>
+:root{
+  --bg:#020208; --bg2:#050713;
+  --gold:#F5E2C0; --amber:#FFBE50; --gold2:#EDB88A; --gold3:#c8922a;
+  --ice:#B8E8FF; --mint:#8FFFD4; --lav:#C8C0FF;
+
+  --presence:.5; --probability:.5;
+  --aura:.62; --identity:.86; --form:.92; --coherence:.92;
+  --elastic:.5; --stretch:.5; --scatter:.5;
+  --auraBlur:48px; --auraScale:1; --identitySat:1.2; --identityContrast:1.1; --formAlpha:1;
+
+  --projScale:1;
+  --perspectiveDepth:900px;
+  --lensCompression:.5;
+  --dofBlur:0px;
+  --focusGlow:.5;
+  --zLift:0px;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  background:
+    radial-gradient(ellipse 120% 80% at 50% 120%, rgba(200,146,42,.06), transparent 55%),
+    linear-gradient(180deg,var(--bg2),var(--bg));
+  color:rgba(238,225,200,.9);
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+  overflow:hidden;
+}
+#app{position:relative;height:100vh;display:grid;grid-template-columns:370px 1fr 405px;gap:22px;padding:24px}
+.panel{
+  position:relative;z-index:10;border:1px solid rgba(245,226,192,.13);
+  background:rgba(6,6,18,.62);backdrop-filter:blur(24px) saturate(150%);
+  -webkit-backdrop-filter:blur(24px) saturate(150%);
+  box-shadow:0 32px 90px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.08);
+  border-radius:24px;padding:18px;overflow:auto;
+}
+h1,h2{margin:0 0 14px} h1{font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+h2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(238,225,200,.55)}
+.row{margin:13px 0} label{display:flex;justify-content:space-between;gap:12px;font-size:12px;color:rgba(238,225,200,.74);margin-bottom:6px}
+input[type=range]{width:100%;accent-color:#c8922a}
+.code{background:rgba(0,0,0,.32);border:1px solid rgba(245,226,192,.08);border-radius:14px;padding:12px;line-height:1.55;font-size:12px;color:rgba(238,225,200,.82)}
+.stage{
+  position:relative;min-width:0;overflow:hidden;border-radius:34px;border:1px solid rgba(245,226,192,.12);
+  background:
+    radial-gradient(ellipse 90% 20% at 50% 30%, rgba(255,190,80,.16), transparent 64%),
+    radial-gradient(ellipse 70% 60% at 50% 55%, rgba(184,232,255,.08), transparent 52%),
+    rgba(2,2,8,.52);
+  box-shadow:0 36px 110px rgba(0,0,0,.65), inset 0 1px 0 rgba(255,255,255,.07);
+  perspective:var(--perspectiveDepth);
+}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(245,226,192,.014) 1px, transparent 1px),linear-gradient(90deg, rgba(245,226,192,.014) 1px, transparent 1px);background-size:44px 44px;opacity:.78}
+.horizon{
+  position:absolute;left:8%;right:8%;top:27%;height:2px;
+  background:linear-gradient(90deg,transparent,rgba(245,226,192,.24),rgba(255,190,80,.82),rgba(245,226,192,.24),transparent);
+  box-shadow:0 0 26px rgba(255,190,80,.26),0 0 90px rgba(255,190,80,.18);
+}
+.camera-plane{
+  position:absolute;inset:8%;
+  transform-style:preserve-3d;
+  transform:
+    translateZ(var(--zLift))
+    rotateX(calc((.5 - var(--lensCompression)) * 8deg))
+    scale(var(--projScale));
+  transition:filter .08s linear;
+  filter:blur(var(--dofBlur));
+}
+.fieldFog{
+  position:absolute;inset:-20%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255,190,80,.11), transparent 30%),
+    radial-gradient(circle at 42% 52%, rgba(184,232,255,.09), transparent 26%),
+    radial-gradient(circle at 61% 43%, rgba(200,192,255,.07), transparent 24%);
+  filter:blur(calc(40px + var(--scatter) * 42px));
+  opacity:calc(.25 + var(--probability) * .42);
+}
+.entity{
+  position:absolute;left:50%;top:54%;width:min(48vw,560px);aspect-ratio:1/1;
+  transform:
+    translate(-50%,-50%)
+    scale(calc((.80 + var(--presence) * .28) * var(--projScale)))
+    rotate(calc((var(--stretch) - .5) * 7deg));
+  isolation:isolate;
+}
+.entity-aura{position:absolute;inset:-20%;border-radius:50%;z-index:1;opacity:calc(.08 + var(--aura) * .78);transform:scale(var(--auraScale))}
+.entity-aura::before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 50% 50%,rgba(255,190,80,.40) 0%,rgba(255,190,80,.17) 18%,rgba(184,232,255,.08) 38%,rgba(200,192,255,.05) 52%,transparent 72%);filter:blur(var(--auraBlur)) saturate(180%)}
+.entity-aura::after{content:"";position:absolute;inset:12%;border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(255,190,80,.18) 0deg 2deg,transparent 2deg 12deg,rgba(245,226,192,.12) 12deg 13deg,transparent 13deg 23deg);filter:blur(calc(10px + var(--scatter) * 18px));opacity:.55;-webkit-mask:radial-gradient(circle,transparent 34%,#000 42%,transparent 72%);mask:radial-gradient(circle,transparent 34%,#000 42%,transparent 72%)}
+.entity-identity{position:absolute;inset:12%;border-radius:50%;z-index:2;opacity:calc(.18 + var(--identity) * .82);filter:saturate(var(--identitySat)) contrast(var(--identityContrast))}
+.entity-identity::before{
+  content:"";position:absolute;inset:0;border-radius:50%;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255,255,255,.42), rgba(245,226,192,.12) 18%, transparent 33%),
+    repeating-conic-gradient(from 12deg, rgba(245,226,192,.32) 0deg 1.6deg, transparent 1.6deg 7deg, rgba(237,184,138,.22) 7deg 8.2deg, transparent 8.2deg 15deg),
+    radial-gradient(circle at 56% 58%, var(--gold) 0%, var(--gold2) 20%, var(--gold3) 48%, rgba(18,14,18,.98) 100%);
+  box-shadow:0 0 48px rgba(255,190,80,.20), inset -24px -34px 50px rgba(0,0,0,.44), inset 14px 18px 32px rgba(255,255,255,.10);
+}
+.entity-form{position:absolute;inset:0;border-radius:50%;z-index:3;opacity:var(--formAlpha)}
+.orbit,.petal,.ring,.spark{position:absolute;pointer-events:none}
+.orbit{inset:4%;border-radius:50%;border:1px solid rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.12);transform-origin:center}
+.o1{transform:rotate(calc(18deg + var(--elastic) * 6deg)) scale(1.08,.72)}
+.o2{transform:rotate(calc(72deg - var(--elastic) * 5deg)) scale(1.08,.72)}
+.o3{transform:rotate(calc(126deg + var(--elastic) * 4deg)) scale(1.08,.72)}
+.o4{transform:rotate(calc(162deg - var(--elastic) * 4deg)) scale(1.08,.72)}
+.petal{inset:9%;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:radial-gradient(circle at 48% 46%,rgba(255,255,255,.15),rgba(255,255,255,.04) 18%,rgba(4,6,18,.18) 56%,rgba(4,6,18,.08) 72%,transparent 100%);box-shadow:0 0 28px rgba(255,255,255,.07), inset 0 1px 0 rgba(255,255,255,.20)}
+.p1{transform:rotate(8deg) scale(calc(1.02 + var(--stretch) * .06), calc(.58 + var(--stretch) * .11))}
+.p2{transform:rotate(54deg) scale(calc(1.02 + var(--stretch) * .05), calc(.58 + var(--stretch) * .11))}
+.p3{transform:rotate(100deg) scale(calc(1.02 + var(--stretch) * .06), calc(.58 + var(--stretch) * .11))}
+.p4{transform:rotate(146deg) scale(calc(1.02 + var(--stretch) * .05), calc(.58 + var(--stretch) * .11))}
+.ring{inset:18%;border-radius:50%;border:1px solid rgba(245,226,192,.24);box-shadow:0 0 0 calc(10px + var(--presence) * 12px) rgba(255,190,80,.018), inset 0 0 0 1px rgba(255,255,255,.06)}
+.spark{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px var(--gold),0 0 28px var(--amber)}
+.s1{top:18%;left:50%}.s2{top:50%;right:12%}.s3{bottom:18%;left:50%}.s4{top:50%;left:12%}
+.metric{display:grid;grid-template-columns:1fr auto;gap:8px;padding:8px 0;border-bottom:1px solid rgba(245,226,192,.07);font-size:12px}
+.metric b{color:var(--gold)} .badge{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid rgba(245,226,192,.16);background:rgba(255,255,255,.04);color:var(--gold)}
+.state{margin-top:14px;padding:14px;border-radius:16px;background:rgba(0,0,0,.34);border:1px solid rgba(245,226,192,.10)} .warn{color:#FFBE50}.good{color:#8FFFD4}.bad{color:#FF8F8F}
+</style>
+</head>
+<body>
+<div id="app">
+  <aside class="panel">
+    <h1>Physics + Camera Render</h1>
+    <h2>Tích · ngưỡng · đàn hồi · tiêu cự</h2>
+    <div class="row"><label>F · form scalar <b id="vF"></b></label><input id="F" type="range" min="0" max="1" step="0.001" value="0.92"></div>
+    <div class="row"><label>i · identity magnitude <b id="vi"></b></label><input id="i" type="range" min="0" max="1" step="0.001" value="0.86"></div>
+    <div class="row"><label>a · aura magnitude <b id="va"></b></label><input id="a" type="range" min="0" max="1" step="0.001" value="0.62"></div>
+    <div class="row"><label>c · color coherence <b id="vc"></b></label><input id="c" type="range" min="0" max="1" step="0.001" value="0.92"></div>
+    <div class="row"><label>T · threshold <b id="vT"></b></label><input id="T" type="range" min="0.05" max="0.95" step="0.001" value="0.36"></div>
+
+    <h2>Đàn hồi</h2>
+    <div class="row"><label>kₛ · stiffness <b id="vKs"></b></label><input id="Ks" type="range" min="0.02" max="0.80" step="0.001" value="0.18"></div>
+    <div class="row"><label>d · damping <b id="vD"></b></label><input id="D" type="range" min="0.01" max="0.60" step="0.001" value="0.16"></div>
+    <div class="row"><label>m · mass <b id="vM"></b></label><input id="M" type="range" min="0.40" max="4.00" step="0.001" value="1.20"></div>
+
+    <h2>Camera</h2>
+    <div class="row"><label>f · focal length mm <b id="vFocal"></b></label><input id="focal" type="range" min="18" max="135" step="0.1" value="58"></div>
+    <div class="row"><label>N · aperture number <b id="vAperture"></b></label><input id="aperture" type="range" min="1.2" max="16" step="0.1" value="2.8"></div>
+    <div class="row"><label>Z · object distance <b id="vZ"></b></label><input id="Z" type="range" min="0.8" max="12" step="0.01" value="3.2"></div>
+    <div class="row"><label>Zf · focus distance <b id="vZf"></b></label><input id="Zf" type="range" min="0.8" max="12" step="0.01" value="3.4"></div>
+
+    <div class="code">
+      P = F × i × a × c<br>
+      R = P / T<br>
+      Pr = sigmoid(β × ln(R))<br>
+      x¨ = (kₛ(target − x) − d·x˙) / m<br>
+      u = fX/Z ; v = fY/Z<br>
+      apertureDiameter = f/N<br>
+      dofBlur ∝ |Z−Zf| × f² / (N × Z × Zf)
+    </div>
+  </aside>
+
+  <main class="stage">
+    <div class="grid"></div>
+    <div class="horizon"></div>
+    <div class="camera-plane">
+      <div class="fieldFog"></div>
+      <div class="entity">
+        <div class="entity-aura"></div>
+        <div class="entity-identity"></div>
+        <div class="entity-form">
+          <div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit o3"></div><div class="orbit o4"></div>
+          <div class="petal p1"></div><div class="petal p2"></div><div class="petal p3"></div><div class="petal p4"></div>
+          <div class="ring"></div>
+          <div class="spark s1"></div><div class="spark s2"></div><div class="spark s3"></div><div class="spark s4"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <aside class="panel">
+    <h1>Computed Result</h1>
+    <div class="metric"><span>P</span><b id="mP"></b></div>
+    <div class="metric"><span>R = P/T</span><b id="mR"></b></div>
+    <div class="metric"><span>ln(R)</span><b id="mLogR"></b></div>
+    <div class="metric"><span>Pr</span><b id="mPr"></b></div>
+    <div class="metric"><span>a_min</span><b id="mAmin"></b></div>
+    <div class="metric"><span>elastic x</span><b id="mX"></b></div>
+    <div class="metric"><span>velocity</span><b id="mV"></b></div>
+    <div class="metric"><span>gray band</span><b id="mGray"></b></div>
+    <h2 style="margin-top:18px">Camera result</h2>
+    <div class="metric"><span>projection scale f/Z</span><b id="mProj"></b></div>
+    <div class="metric"><span>aperture diameter f/N</span><b id="mApertureD"></b></div>
+    <div class="metric"><span>DOF blur px</span><b id="mDof"></b></div>
+    <div class="metric"><span>lens compression</span><b id="mCompression"></b></div>
+    <div class="state">
+      <span class="badge" id="stateBadge">STATE</span>
+      <div id="stateText" style="margin-top:10px;line-height:1.55"></div>
+    </div>
+  </aside>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const ids = ["F","i","a","c","T","Ks","D","M","focal","aperture","Z","Zf"];
+let x = 0.15, v = 0, last = performance.now();
+
+function clamp(n,min=0,max=1){ return Math.min(max, Math.max(min,n)); }
+function sigmoid(z){ return 1 / (1 + Math.exp(-z)); }
+function num(id){ return parseFloat($(id).value); }
+function fmt(n,d=3){ return Number.isFinite(n) ? n.toFixed(d) : "∞"; }
+
+function compute(){
+  const F=num("F"), i=num("i"), a=num("a"), c=num("c"), T=num("T");
+  const Ks=num("Ks"), D=num("D"), M=num("M");
+  const f=num("focal"), N=num("aperture"), Z=num("Z"), Zf=num("Zf");
+
+  const P=F*i*a*c;
+  const R=P/T;
+  const logR=Math.log(Math.max(R,1e-9));
+  const Pr=sigmoid(8*logR);
+  const amin=(F*i*c)>1e-9 ? T/(F*i*c) : Infinity;
+  const gray=Math.abs(logR)<=0.12;
+
+  const fMeters=f/1000;
+  const apertureDiameter=f/N;
+  const proj=(f/58)*(3.2/Z);
+  const lensCompression=clamp((f-18)/(135-18),0,1);
+  const dofRaw=Math.abs(Z-Zf)*(f*f)/(N*Z*Zf);
+  const dofPx=clamp(dofRaw/170,0,18);
+  const perspectiveDepth=600 + (1-lensCompression)*650;
+
+  return {F,i,a,c,T,Ks,D,M,f,N,Z,Zf,P,R,logR,Pr,amin,gray,apertureDiameter,proj,lensCompression,dofRaw,dofPx,perspectiveDepth};
+}
+
+function classify(o){
+  if(o.c<=0.035) return ["SPECTRAL_DECOHERENCE","bad","Lệch phổ gần hoàn toàn: dot màu gần 0, tăng aura cũng không cứu được tích."];
+  if(o.P<o.T && o.F*o.i>.70 && o.a<.32) return ["RESIDUAL_FORM","warn","Định dạng và bản sắc còn, nhưng aura thiếu nên tích chưa qua ngưỡng."];
+  if(o.gray) return ["GRAY_THRESHOLD","warn","P đang sát T. Đây là vùng xám toán học, không phải lỗi màu đơn thuần."];
+  if(o.R>=1.65 && o.c>=.75) return ["FULL_RESONANCE","good","Tích vượt ngưỡng mạnh và đồng pha màu cao."];
+  if(o.R>=1 && o.a<.55 && o.i>.72) return ["CONDENSED_IDENTITY","good","Aura co lại nhưng bản sắc đủ mạnh nên vật thể cô đặc."];
+  if(o.R>=1) return ["VISIBLE","good","P đã vượt ngưỡng T."];
+  return ["BELOW_THRESHOLD","bad","P chưa đủ qua ngưỡng."];
+}
+
+function update(dt){
+  const o=compute();
+  const accel=(o.Ks*(o.Pr-x)-o.D*v)/o.M;
+  v += accel*dt*60;
+  x += v*dt*60;
+  x=clamp(x,0,1);
+
+  const stretch=clamp(Math.abs(v)*1.7,0,1);
+  const elastic=clamp((x*(1-o.D))+stretch*.35,0,1);
+  const identityDensity=clamp(o.i*(1+Math.max(0,o.R-1)*.28),0,1.45);
+  const auraBlur=22+72*o.a*(1-x+.18);
+  const auraScale=.82+o.a*o.c*(1-x)*.52;
+  const scatter=clamp(o.a*(1-o.c)+(1-o.Pr)*.22 + o.dofPx/40,0,1);
+
+  const root=document.documentElement;
+  root.style.setProperty("--form",o.F);
+  root.style.setProperty("--identity",o.i);
+  root.style.setProperty("--aura",o.a);
+  root.style.setProperty("--coherence",o.c);
+  root.style.setProperty("--presence",x);
+  root.style.setProperty("--probability",o.Pr);
+  root.style.setProperty("--elastic",elastic);
+  root.style.setProperty("--stretch",stretch);
+  root.style.setProperty("--scatter",scatter);
+  root.style.setProperty("--auraBlur",`${auraBlur.toFixed(2)}px`);
+  root.style.setProperty("--auraScale",auraScale.toFixed(4));
+  root.style.setProperty("--identitySat",(1.05+identityDensity*.75).toFixed(3));
+  root.style.setProperty("--identityContrast",(1.02+identityDensity*.34).toFixed(3));
+  root.style.setProperty("--formAlpha",clamp(.35+o.F*.65*(.75+x*.25),0,1).toFixed(3));
+  root.style.setProperty("--projScale",o.proj.toFixed(4));
+  root.style.setProperty("--perspectiveDepth",`${o.perspectiveDepth.toFixed(1)}px`);
+  root.style.setProperty("--lensCompression",o.lensCompression.toFixed(4));
+  root.style.setProperty("--dofBlur",`${o.dofPx.toFixed(2)}px`);
+  root.style.setProperty("--focusGlow",clamp(1-o.dofPx/18,0,1).toFixed(3));
+  root.style.setProperty("--zLift",`${((o.Zf-o.Z)*18).toFixed(2)}px`);
+
+  $("vF").textContent=fmt(o.F); $("vi").textContent=fmt(o.i); $("va").textContent=fmt(o.a); $("vc").textContent=fmt(o.c); $("vT").textContent=fmt(o.T);
+  $("vKs").textContent=fmt(o.Ks); $("vD").textContent=fmt(o.D); $("vM").textContent=fmt(o.M);
+  $("vFocal").textContent=fmt(o.f,1); $("vAperture").textContent=fmt(o.N,1); $("vZ").textContent=fmt(o.Z,2); $("vZf").textContent=fmt(o.Zf,2);
+
+  $("mP").textContent=fmt(o.P,6); $("mR").textContent=fmt(o.R,3); $("mLogR").textContent=fmt(o.logR,3); $("mPr").textContent=fmt(o.Pr,3); $("mAmin").textContent=fmt(o.amin,3);
+  $("mX").textContent=fmt(x,3); $("mV").textContent=fmt(v,3); $("mGray").textContent=o.gray?"YES":"NO";
+  $("mProj").textContent=fmt(o.proj,3); $("mApertureD").textContent=`${fmt(o.apertureDiameter,2)} mm`; $("mDof").textContent=`${fmt(o.dofPx,2)} px`; $("mCompression").textContent=fmt(o.lensCompression,3);
+
+  const [state,cls,text]=classify(o);
+  $("stateBadge").textContent=state;
+  $("stateBadge").className=`badge ${cls}`;
+  $("stateText").textContent=text;
+}
+function loop(now){ const dt=Math.min(.05,(now-last)/1000); last=now; update(dt); requestAnimationFrame(loop); }
+ids.forEach(id=>$(id).addEventListener("input",()=>update(.016)));
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

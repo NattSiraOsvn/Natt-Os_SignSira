@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tâm Luxury · V2.6 Depth Fix</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+:root{
+  --n-bg:#020208;
+  --n-bg2:#050713;
+  --n-bg3:#08101c;
+  --n-g1:#F5E2C0;
+  --n-g2:#EDB88A;
+  --n-g3:#c8922a;
+  --n-amber:#FFBE50;
+  --n-mint:#8FFFD4;
+  --n-ice:#B8E8FF;
+  --n-lav:#C8C0FF;
+  --n-t:rgba(238,225,200,.90);
+  --n-t2:rgba(238,225,200,.56);
+  --n-t3:rgba(238,225,200,.24);
+  --n-b:rgba(245,226,192,.08);
+  --n-b2:rgba(245,226,192,.16);
+  --n-b3:rgba(245,226,192,.28);
+  --wg:rgba(255,255,255,.06);
+  --wg2:rgba(255,255,255,.03);
+  --shadow-deep:0 30px 90px rgba(0,0,0,.70), inset 0 1px 0 rgba(255,255,255,.08);
+  --glass-1:rgba(6,6,18,.34);
+  --glass-2:rgba(6,6,18,.46);
+  --glass-3:rgba(6,6,18,.68);
+  --blur-1:blur(14px) saturate(135%);
+  --blur-2:blur(24px) saturate(150%);
+  --blur-3:blur(40px) saturate(165%);
+  --blur-4:blur(60px) saturate(180%);
+  --mono:'JetBrains Mono', monospace;
+  --sans:'Be Vietnam Pro', sans-serif;
+  --grotesk:'Space Grotesk', sans-serif;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  overflow:hidden;
+  background:var(--n-bg);
+  color:var(--n-t);
+  font-family:var(--sans);
+}
+button{font:inherit}
+#app{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse 140% 90% at 50% 130%, rgba(200,146,42,.04) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(184,232,255,.06) 0%, transparent 44%),
+    linear-gradient(180deg, var(--n-bg2), var(--n-bg));
+}
+/* depth layers */
+.depth-layer{position:absolute; inset:0; pointer-events:none}
+.field-base{
+  background:
+    radial-gradient(ellipse 130% 80% at 50% 125%, rgba(200,146,42,.08), transparent 54%),
+    radial-gradient(ellipse 80% 72% at 16% 20%, rgba(16,28,62,.42), transparent 55%),
+    radial-gradient(ellipse 72% 65% at 85% 82%, rgba(10,22,48,.44), transparent 53%),
+    linear-gradient(180deg, #04060e 0%, #020208 100%);
+}
+.field-grid{
+  background-image:
+    linear-gradient(rgba(245,226,192,.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,226,192,.012) 1px, transparent 1px);
+  background-size:44px 44px;
+  opacity:.65;
+}
+.field-horizon{
+  background:
+    radial-gradient(ellipse 75% 16% at 50% 22%, rgba(255,190,80,.22) 0%, rgba(255,190,80,.09) 24%, transparent 62%),
+    radial-gradient(ellipse 42% 12% at 50% 26%, rgba(245,226,192,.18) 0%, transparent 68%);
+  filter: blur(22px);
+  opacity:.95;
+}
+.field-blue-well{
+  background:
+    radial-gradient(circle at 30% 52%, rgba(40,72,130,.20) 0%, rgba(40,72,130,.10) 16%, transparent 40%),
+    radial-gradient(circle at 72% 42%, rgba(60,104,180,.16) 0%, rgba(60,104,180,.08) 18%, transparent 42%);
+  filter: blur(44px);
+  opacity:.9;
+}
+.field-depth-fog{
+  background:
+    radial-gradient(circle at 50% 52%, rgba(255,255,255,.04), transparent 28%),
+    radial-gradient(circle at 50% 56%, rgba(255,190,80,.07), transparent 38%),
+    radial-gradient(circle at 22% 60%, rgba(143,255,212,.06), transparent 28%),
+    radial-gradient(circle at 82% 24%, rgba(200,192,255,.05), transparent 22%);
+  filter: blur(70px);
+  opacity:.82;
+}
+.field-refract{
+  inset:-12%;
+  background:
+    radial-gradient(ellipse 18% 26% at 50% 50%, rgba(255,255,255,.10) 0%, rgba(255,255,255,.02) 38%, transparent 74%),
+    radial-gradient(ellipse 13% 20% at 42% 50%, rgba(255,190,80,.08) 0%, transparent 78%),
+    radial-gradient(ellipse 13% 20% at 58% 50%, rgba(184,232,255,.07) 0%, transparent 75%);
+  filter: blur(54px);
+  opacity:.55;
+}
+.field-vignette{
+  background:radial-gradient(ellipse 120% 100% at 50% 50%, transparent 52%, rgba(0,0,0,.36) 86%, rgba(0,0,0,.58) 100%);
+}
+.app-shell{position:relative; z-index:2; display:grid; grid-template-columns:96px 1fr; height:100%; padding:22px; gap:18px}
+.left-rail{
+  position:relative;
+  border:1px solid var(--n-b2);
+  background:linear-gradient(180deg, rgba(16,22,48,.42), rgba(6,6,18,.52));
+  backdrop-filter:var(--blur-3);
+  -webkit-backdrop-filter:var(--blur-3);
+  border-radius:28px;
+  box-shadow:var(--shadow-deep), inset 0 0 42px rgba(255,255,255,.02);
+  padding:16px 10px;
+  display:flex; flex-direction:column; gap:12px; align-items:center;
+}
+.rail-brand{
+  width:54px;height:54px;border-radius:18px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg, rgba(245,226,192,.10), rgba(245,226,192,.03));
+  border:1px solid rgba(245,226,192,.22);
+  color:var(--n-g1); font:700 24px var(--grotesk);
+  box-shadow:0 0 26px rgba(255,190,80,.10), inset 0 1px 0 rgba(255,255,255,.12);
+}
+.rail-item{
+  width:100%; min-height:88px; border-radius:22px; position:relative;
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  border:1px solid rgba(245,226,192,.10);
+  backdrop-filter:var(--blur-2); -webkit-backdrop-filter:var(--blur-2);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 10px 30px rgba(0,0,0,.28);
+  display:flex; align-items:center; justify-content:center; text-align:center;
+  padding:12px 8px; color:var(--n-t2); font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+}
+.rail-item.active{
+  background:linear-gradient(180deg, rgba(255,190,80,.18), rgba(255,190,80,.07));
+  border-color:rgba(255,190,80,.28);
+  color:var(--n-g1);
+  box-shadow:0 0 28px rgba(255,190,80,.18), inset 0 1px 0 rgba(255,255,255,.10);
+}
+.main-stage{position:relative; display:grid; grid-template-rows:auto 1fr; gap:18px; min-width:0}
+.header-two-lane{
+  position:relative;
+  border-radius:28px;
+  overflow:hidden;
+  padding:18px 22px 16px;
+  background:linear-gradient(180deg, rgba(8,16,28,.50), rgba(6,6,18,.58));
+  border:1px solid var(--n-b2);
+  backdrop-filter:var(--blur-3); -webkit-backdrop-filter:var(--blur-3);
+  box-shadow:var(--shadow-deep);
+}
+.header-two-lane::before{
+  content:""; position:absolute; left:6%; right:6%; top:0; height:2px;
+  background:linear-gradient(90deg, transparent, rgba(245,226,192,.52), rgba(255,190,80,.78), rgba(245,226,192,.52), transparent);
+  filter: blur(.2px);
+}
+.header-lane{display:flex; align-items:center; justify-content:space-between; gap:16px; position:relative}
+.header-lane + .header-lane{margin-top:14px; padding-top:12px}
+.header-lane + .header-lane::before{content:""; position:absolute; left:0; right:0; top:0; height:1px; background:linear-gradient(90deg, transparent, rgba(245,226,192,.08), transparent)}
+.header-title{font:600 14px var(--mono); letter-spacing:.24em; color:var(--n-t2); text-transform:uppercase}
+.chips{display:flex; gap:10px; flex-wrap:wrap}
+.chip{
+  padding:9px 16px; border-radius:999px;
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border:1px solid rgba(245,226,192,.10);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.10), 0 10px 24px rgba(0,0,0,.24);
+  font:700 12px var(--mono); letter-spacing:.12em; color:var(--n-t);
+}
+.chip.dot::before{content:""; display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--n-mint); margin-right:8px; box-shadow:0 0 10px var(--n-mint)}
+.node-badge{display:flex; align-items:center; gap:12px}
+.node-pill{padding:10px 18px; border-radius:999px; border:1px solid rgba(245,226,192,.14); background:rgba(255,255,255,.04); font:700 12px var(--mono); letter-spacing:.14em; color:var(--n-t)}
+.node-mark{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg, rgba(255,190,80,.92), rgba(200,146,42,.92));color:#161109;font:800 18px var(--grotesk); box-shadow:0 0 28px rgba(255,190,80,.24)}
+.stage-body{position:relative; min-height:0; display:grid; grid-template-columns: 1.18fr .82fr; gap:18px}
+.workplace, .utility-column{min-height:0; position:relative}
+.scene-card{
+  position:relative; overflow:hidden;
+  border-radius:34px; border:1px solid var(--n-b2);
+  background:linear-gradient(180deg, rgba(6,6,18,.56), rgba(6,6,18,.72));
+  backdrop-filter:var(--blur-3); -webkit-backdrop-filter:var(--blur-3);
+  box-shadow:var(--shadow-deep);
+}
+.workplace > .scene-card{height:100%; padding:34px 34px 24px}
+.eyebrow{font:700 14px var(--mono); letter-spacing:.28em; text-transform:uppercase; color:var(--n-g2)}
+.hero-title{margin:14px 0 18px; font:800 clamp(72px, 8vw, 118px)/.93 var(--grotesk); letter-spacing:-.05em; color:#fff; text-shadow:0 3px 26px rgba(255,255,255,.12)}
+.hero-copy{max-width:760px; font-size:32px; line-height:1.48; color:var(--n-t); text-wrap:balance}
+.action-row{display:flex; gap:14px; flex-wrap:wrap; margin-top:32px}
+.btn{
+  border:none; border-radius:999px; padding:16px 24px; cursor:pointer;
+  font:700 14px var(--mono); letter-spacing:.16em; text-transform:uppercase;
+}
+.btn-primary{background:linear-gradient(135deg, var(--n-amber), var(--n-g3)); color:#1b150a; box-shadow:0 0 28px rgba(255,190,80,.20)}
+.btn-ghost{background:rgba(255,255,255,.04); color:var(--n-t); border:1px solid rgba(245,226,192,.12); box-shadow: inset 0 1px 0 rgba(255,255,255,.08)}
+.workplace-ghosts{position:absolute; inset:auto 24px 20px 24px; display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; opacity:.78}
+.ghost-card{min-height:110px; border-radius:22px; background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); border:1px solid rgba(245,226,192,.09); backdrop-filter:var(--blur-2); -webkit-backdrop-filter:var(--blur-2); box-shadow: inset 0 1px 0 rgba(255,255,255,.08)}
+.utility-column{display:grid; grid-template-rows: .92fr 1.08fr; gap:18px}
+.metrics-card{padding:24px}
+.section-title{font:800 26px var(--grotesk); letter-spacing:.10em; text-transform:uppercase; color:#eef0f6}
+.section-sub{margin-top:6px; color:var(--n-t2); font-size:16px}
+.metrics-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:14px; margin-top:22px}
+.metric{min-height:140px; border-radius:22px; padding:18px 18px 16px; background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); border:1px solid rgba(245,226,192,.10); box-shadow: inset 0 1px 0 rgba(255,255,255,.08)}
+.metric .k{font:700 12px var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--n-t3)}
+.metric .v{margin-top:16px; font:800 54px/.9 var(--grotesk); color:#fff}
+.metric .d{margin-top:10px; color:var(--n-t2); font-size:16px; line-height:1.36}
+.runtime-dock{
+  position:absolute; right:26px; bottom:26px; z-index:6;
+  width:300px; border-radius:20px; padding:16px 16px 14px;
+  background:linear-gradient(180deg, rgba(15,8,30,.88), rgba(6,6,18,.90));
+  border:1px solid rgba(145,84,255,.36);
+  backdrop-filter:var(--blur-3); -webkit-backdrop-filter:var(--blur-3);
+  box-shadow:0 18px 48px rgba(0,0,0,.45), 0 0 30px rgba(145,84,255,.10), inset 0 1px 0 rgba(255,255,255,.08);
+}
+.runtime-title{font:800 14px var(--mono); letter-spacing:.08em; color:#d8a5ff; text-transform:uppercase}
+.runtime-path{margin-top:4px; color:#fff; font-size:14px}
+.runtime-actions{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+.runtime-actions button{border:1px solid rgba(245,226,192,.12); background:#fff; color:#161616; font:700 14px var(--mono); border-radius:8px; padding:8px 10px}
+.runtime-status{margin-top:12px; border-radius:10px; background:#030304; padding:10px 12px; color:#fff; font-weight:700}
+.multitask-rail{
+  position:absolute; left:122px; right:26px; bottom:20px; z-index:5;
+  display:flex; gap:10px; align-items:flex-end;
+}
+.task-capsule{
+  width:88px; height:62px; border-radius:18px; flex:0 0 auto;
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border:1px solid rgba(245,226,192,.14);
+  backdrop-filter:var(--blur-2); -webkit-backdrop-filter:var(--blur-2);
+  box-shadow:0 14px 30px rgba(0,0,0,.26), inset 0 1px 0 rgba(255,255,255,.08);
+  overflow:hidden; position:relative;
+}
+.task-capsule::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,190,80,.12), transparent 56%)}
+.task-capsule.active{transform:translateY(-6px); box-shadow:0 18px 36px rgba(0,0,0,.36), 0 0 20px rgba(255,190,80,.12)}
+.task-thumb{position:absolute; inset:8px; border-radius:12px; background:
+  radial-gradient(circle at 68% 28%, rgba(255,190,80,.28), transparent 32%),
+  radial-gradient(circle at 34% 38%, rgba(184,232,255,.12), transparent 30%),
+  linear-gradient(180deg, rgba(6,10,26,.92), rgba(6,6,18,.98));
+  border:1px solid rgba(245,226,192,.10)
+}
+/* V2.6 TRUE MECHANISM LAYERS
+   Blur is NOT a layer. Blur is a mechanism applied inside a layer.
+   A real layer must have its own geometry, identity, opacity threshold and material behavior.
+*/
+.entity-core{
+  position:absolute;
+  left:50%;
+  top:56%;
+  transform:translate(-6%,-50%);
+  width:min(36vw, 540px);
+  aspect-ratio:1/1;
+  z-index:4;
+  pointer-events:none;
+  isolation:isolate;
+
+  /* threshold controls */
+  --phase-aura:.92;
+  --phase-identity:.96;
+  --phase-form:1;
+  --aura-blur:68px;
+  --identity-blur:.6px;
+  --form-blur:0px;
+}
+
+/* LAYER 01 — AURA / HÀO QUANG
+   Đây là trường cộng hưởng, không phải hình dạng.
+   Nó tan trước, co giãn mạnh nhất, dùng blur rộng nhất. */
+.entity-aura{
+  position:absolute;
+  inset:-18%;
+  border-radius:50%;
+  z-index:1;
+  opacity:var(--phase-aura);
+}
+.entity-aura::before,
+.entity-aura::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+}
+.entity-aura::before{
+  background:
+    radial-gradient(circle at 50% 50%,
+      rgba(255,190,80,.34) 0%,
+      rgba(255,190,80,.18) 18%,
+      rgba(184,232,255,.08) 38%,
+      rgba(200,192,255,.05) 52%,
+      transparent 72%),
+    radial-gradient(circle at 42% 48%, rgba(245,226,192,.20), transparent 30%);
+  filter:blur(var(--aura-blur)) saturate(175%);
+}
+.entity-aura::after{
+  inset:12%;
+  background:
+    repeating-conic-gradient(from 0deg,
+      rgba(255,190,80,.18) 0deg 2deg,
+      transparent 2deg 13deg,
+      rgba(245,226,192,.10) 13deg 14deg,
+      transparent 14deg 24deg);
+  filter:blur(18px);
+  opacity:.48;
+  -webkit-mask:radial-gradient(circle, transparent 34%, #000 42%, transparent 72%);
+          mask:radial-gradient(circle, transparent 34%, #000 42%, transparent 72%);
+}
+
+/* LAYER 02 — IDENTITY / BẢN SẮC
+   Đây là chất riêng: bước màu, vật liệu, mật độ sáng.
+   Khi aura giảm, identity phải rõ/sắc hơn chứ không nhạt đi. */
+.entity-identity{
+  position:absolute;
+  inset:11%;
+  z-index:2;
+  border-radius:50%;
+  opacity:var(--phase-identity);
+  filter:blur(var(--identity-blur)) saturate(155%) contrast(1.14);
+}
+.entity-identity::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 34% 30%, rgba(255,255,255,.34) 0%, rgba(245,226,192,.10) 18%, transparent 32%),
+    repeating-conic-gradient(from 12deg,
+      rgba(245,226,192,.32) 0deg 1.6deg,
+      transparent 1.6deg 7deg,
+      rgba(237,184,138,.22) 7deg 8.2deg,
+      transparent 8.2deg 15deg),
+    radial-gradient(circle at 56% 58%,
+      var(--n-g1) 0%,
+      var(--n-g2) 20%,
+      var(--n-g3) 48%,
+      rgba(18,14,18,.98) 100%);
+  box-shadow:
+    0 0 42px rgba(255,190,80,.18),
+    inset -22px -30px 46px rgba(0,0,0,.36),
+    inset 12px 16px 30px rgba(255,255,255,.09);
+}
+.entity-identity::after{
+  content:"";
+  position:absolute;
+  inset:21%;
+  border-radius:50%;
+  background:
+    repeating-conic-gradient(from 0deg,
+      rgba(14,10,12,.00) 0deg 6deg,
+      rgba(255,190,80,.40) 6deg 7deg,
+      rgba(245,226,192,.22) 7deg 8deg,
+      transparent 8deg 16deg);
+  -webkit-mask:radial-gradient(circle, transparent 46%, #000 49%, #000 67%, transparent 70%);
+          mask:radial-gradient(circle, transparent 46%, #000 49%, #000 67%, transparent 70%);
+  opacity:.88;
+}
+
+/* LAYER 03 — FORM / ĐỊNH DẠNG
+   Đây là silhouette bất biến. Không dùng blur để tạo sự tồn tại.
+   Aura có giảm thì form vẫn giữ hình. */
+.entity-form{
+  position:absolute;
+  inset:0;
+  z-index:3;
+  border-radius:50%;
+  opacity:var(--phase-form);
+  filter:blur(var(--form-blur));
+}
+.form-petal,
+.form-orbit,
+.form-ring,
+.form-spark{
+  position:absolute;
+  pointer-events:none;
+}
+.form-petal{
+  inset:9%;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.25);
+  background:
+    radial-gradient(circle at 48% 46%, rgba(255,255,255,.16), rgba(255,255,255,.04) 18%, rgba(4,6,18,.18) 56%, rgba(4,6,18,.08) 72%, transparent 100%);
+  box-shadow:
+    0 0 28px rgba(255,255,255,.07),
+    inset 0 1px 0 rgba(255,255,255,.22),
+    inset 0 -16px 34px rgba(0,0,0,.22);
+}
+.form-petal.p1{transform:rotate(8deg) scale(1.02,.64)}
+.form-petal.p2{transform:rotate(54deg) scale(1.02,.64)}
+.form-petal.p3{transform:rotate(100deg) scale(1.02,.64)}
+.form-petal.p4{transform:rotate(146deg) scale(1.02,.64)}
+.form-orbit{
+  inset:4%;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
+}
+.form-orbit.o1{transform:rotate(18deg) scale(1.08,.72)}
+.form-orbit.o2{transform:rotate(72deg) scale(1.08,.72)}
+.form-orbit.o3{transform:rotate(126deg) scale(1.08,.72)}
+.form-orbit.o4{transform:rotate(162deg) scale(1.08,.72)}
+.form-ring{
+  inset:18%;
+  border-radius:50%;
+  border:1px solid rgba(245,226,192,.24);
+  box-shadow:
+    0 0 0 16px rgba(255,190,80,.018),
+    inset 0 0 0 1px rgba(255,255,255,.06);
+}
+.form-spark{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--n-g1);
+  box-shadow:0 0 18px var(--n-g1), 0 0 28px var(--n-amber);
+}
+.form-spark.s1{top:18%; left:50%}
+.form-spark.s2{top:50%; right:12%}
+.form-spark.s3{bottom:18%; left:50%}
+.form-spark.s4{top:50%; left:12%}
+
+/* Mechanism states.
+   Full: aura mở rộng.
+   Condensed: aura giảm, identity sắc hơn.
+   Residual: aura tàn, form vẫn còn. */
+.entity-core[data-phase="full"]{
+  --phase-aura:.92;
+  --phase-identity:.94;
+  --phase-form:1;
+  --aura-blur:68px;
+  --identity-blur:.8px;
+}
+.entity-core[data-phase="condensed"]{
+  --phase-aura:.52;
+  --phase-identity:1;
+  --phase-form:1;
+  --aura-blur:42px;
+  --identity-blur:.2px;
+}
+.entity-core[data-phase="residual"]{
+  --phase-aura:.18;
+  --phase-identity:.88;
+  --phase-form:.96;
+  --aura-blur:26px;
+  --identity-blur:0px;
+}
+
+/* Task capsules also get real layers, not one blur blob. */
+.task-capsule{
+  width:96px;
+  height:68px;
+  border-radius:20px;
+  flex:0 0 auto;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(180deg, rgba(6,8,18,.74), rgba(4,4,12,.94));
+  border:1px solid rgba(245,226,192,.14);
+  backdrop-filter:var(--blur-2);
+  -webkit-backdrop-filter:var(--blur-2);
+  box-shadow:
+    0 14px 30px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.08);
+}
+.task-capsule.active{
+  transform:translateY(-6px);
+  box-shadow:
+    0 18px 36px rgba(0,0,0,.40),
+    0 0 20px rgba(255,190,80,.12),
+    inset 0 1px 0 rgba(255,255,255,.10);
+}
+.task-aura,
+.task-identity,
+.task-form{
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+}
+.task-aura{
+  background:
+    radial-gradient(circle at 72% 30%, rgba(255,190,80,.22), transparent 38%),
+    radial-gradient(circle at 24% 44%, rgba(184,232,255,.12), transparent 34%);
+  filter:blur(16px);
+  opacity:.84;
+}
+.task-identity{
+  inset:10px;
+  background:
+    radial-gradient(circle at 66% 28%, rgba(255,190,80,.34), transparent 36%),
+    radial-gradient(circle at 32% 42%, rgba(32,54,104,.48), transparent 34%),
+    linear-gradient(180deg, rgba(8,12,30,.96), rgba(4,4,12,.98));
+  border-radius:14px;
+  filter:saturate(150%) contrast(1.08);
+}
+.task-form{
+  inset:10px;
+  border:1px solid rgba(245,226,192,.12);
+  border-radius:14px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
+}
+.task-form::before{
+  content:"";
+  position:absolute;
+  left:10px;
+  right:10px;
+  bottom:10px;
+  height:3px;
+  border-radius:999px;
+  background:linear-gradient(90deg, rgba(245,226,192,.10), rgba(255,190,80,.42), rgba(245,226,192,.10));
+}
+
+@media (max-width:1400px){
+  .hero-copy{font-size:24px}
+  .metric .v{font-size:44px}
+  .core-bloom{width:min(34vw,460px)}
+}
+@media (max-width:1200px){
+  .stage-body{grid-template-columns:1fr}
+  .utility-column{grid-template-rows:auto auto}
+  .runtime-dock{position:fixed; right:18px; bottom:18px}
+  .multitask-rail{left:18px; right:18px}
+  .core-bloom{opacity:.75; right:0; left:auto; top:50%; transform:translate(6%,-50%)}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const state = {
+  currentScreen: 'showroom-visio',
+  tasks: ['showroom-visio','collections','vip-flow','custom-order','lookbook'],
+};
+
+function renderAppFrame(){
+  document.getElementById('app').innerHTML = `
+    <div class="depth-layer field-base"></div>
+    <div class="depth-layer field-grid"></div>
+    <div class="depth-layer field-horizon"></div>
+    <div class="depth-layer field-blue-well"></div>
+    <div class="depth-layer field-depth-fog"></div>
+    <div class="depth-layer field-refract"></div>
+    <div class="depth-layer field-vignette"></div>
+    <div class="app-shell">
+      <aside class="left-rail" id="left-rail"></aside>
+      <main class="main-stage">
+        <section class="header-two-lane" id="header-root"></section>
+        <section class="stage-body">
+          <section class="workplace" id="screen-root"></section>
+          <section class="utility-column" id="column-root"></section>
+        </section>
+      </main>
+    </div>
+    <div class="multitask-rail" id="multitask-root"></div>
+    <div class="runtime-dock" id="utility-root"></div>
+  `;
+}
+
+function renderLeftRail(){
+  const items = [
+    ['Showroom', true],
+    ['Collections', false],
+    ['VIP', false],
+    ['Custom', false],
+    ['Appointments', false],
+    ['Lookbook', false],
+  ];
+  document.getElementById('left-rail').innerHTML = `
+    <div class="rail-brand">TL</div>
+    ${items.map(([label, active]) => `<div class="rail-item ${active ? 'active' : ''}">${label}</div>`).join('')}
+  `;
+}
+
+function renderHeaderTwoLane(){
+  document.getElementById('header-root').innerHTML = `
+    <div class="header-lane">
+      <div class="header-title">Tâm Luxury · Live Showroom Command</div>
+      <div class="chips">
+        <div class="chip dot">Wired</div>
+        <div class="chip">TSC 0</div>
+        <div class="chip">L4 Live</div>
+      </div>
+    </div>
+    <div class="header-lane">
+      <div class="chips">
+        <div class="chip">Header 2 lane</div>
+        <div class="chip">Workplace</div>
+        <div class="chip">Utility</div>
+        <div class="chip">Multitask Living</div>
+      </div>
+      <div class="node-badge">
+        <div class="node-pill">Showroom Node</div>
+        <div class="node-mark">TL</div>
+      </div>
+    </div>
+  `;
+}
+
+function renderShowroomVisioScreen(){
+  document.getElementById('screen-root').innerHTML = `
+    <article class="scene-card">
+      <div class="eyebrow">Curated Front Showroom</div>
+      <div class="hero-title">SHOWROOM</div>
+      <div class="hero-copy">
+        Màn khách trước cho Tâm Luxury. Trục hiển thị ưu tiên cảm xúc, hình ảnh sản phẩm, lịch tư vấn và nhóm sưu tập. Giữ black glass, amber horizon, core bloom và trường thu cảm nhiều lớp — sâu nhờ đồng pha, không ép giảm blur.
+      </div>
+      <div class="action-row">
+        <button class="btn btn-primary">Xem bộ sưu tập</button>
+        <button class="btn btn-ghost">Đặt lịch tư vấn</button>
+        <button class="btn btn-ghost">Thiết kế riêng</button>
+      </div>
+      <div class="workplace-ghosts">
+        <div class="ghost-card"></div>
+        <div class="ghost-card"></div>
+        <div class="ghost-card"></div>
+      </div>
+    </article>
+    <div class="entity-core" data-phase="full" aria-hidden="true">
+      <div class="entity-aura"></div>
+      <div class="entity-identity"></div>
+      <div class="entity-form">
+        <div class="form-orbit o1"></div>
+        <div class="form-orbit o2"></div>
+        <div class="form-orbit o3"></div>
+        <div class="form-orbit o4"></div>
+        <div class="form-petal p1"></div>
+        <div class="form-petal p2"></div>
+        <div class="form-petal p3"></div>
+        <div class="form-petal p4"></div>
+        <div class="form-ring"></div>
+        <div class="form-spark s1"></div>
+        <div class="form-spark s2"></div>
+        <div class="form-spark s3"></div>
+        <div class="form-spark s4"></div>
+      </div>
+    </div>
+  `;
+}
+
+function renderRightColumn(){
+  document.getElementById('column-root').innerHTML = `
+    <article class="scene-card metrics-card">
+      <div class="section-title">Featured Collection</div>
+      <div class="section-sub">Astra Noctis · nucleus of light</div>
+      <div class="metrics-grid">
+        <div class="metric"><div class="k">Display Ready</div><div class="v">98%</div><div class="d">Không gian trưng bày sẵn sàng</div></div>
+        <div class="metric"><div class="k">VIP Appointments</div><div class="v">12</div><div class="d">Lịch riêng trong ngày</div></div>
+        <div class="metric"><div class="k">Featured Pieces</div><div class="v">24</div><div class="d">Mẫu đang highlight</div></div>
+        <div class="metric"><div class="k">Client Flow</div><div class="v">36</div><div class="d">Khách đang quan tâm</div></div>
+      </div>
+    </article>
+    <article class="scene-card metrics-card">
+      <div class="section-title">VIP Appointments</div>
+      <div class="section-sub">Đặt lịch riêng · private preview</div>
+      <div class="metrics-grid" style="grid-template-columns:1fr 1fr">
+        <div class="metric"><div class="k">10:30</div><div class="v" style="font-size:28px;margin-top:22px">Ms. Thanh Hà</div><div class="d">Private consultation · bộ sưu tập diamond line</div></div>
+        <div class="metric"><div class="k">11:30</div><div class="v" style="font-size:28px;margin-top:22px">Mr. Quang Minh</div><div class="d">Collection fitting · showroom front</div></div>
+      </div>
+    </article>
+  `;
+}
+
+function mountUtilities(){
+  document.getElementById('utility-root').innerHTML = `
+    <div class="runtime-title">NATT DOMAIN RUNTIME</div>
+    <div class="runtime-path">archive/nattos-ui/vision.html</div>
+    <div class="runtime-actions">
+      <button>HEALTH</button>
+      <button>EMIT</button>
+      <button>AUDIT</button>
+    </div>
+    <div class="runtime-status">attached</div>
+  `;
+}
+
+function mountMultitaskRail(){
+  document.getElementById('multitask-root').innerHTML = state.tasks.map((task, i) => `
+    <div class="task-capsule ${i===0 ? 'active' : ''}" title="${task}">
+      <div class="task-aura"></div>
+      <div class="task-identity"></div>
+      <div class="task-form"></div>
+    </div>
+  `).join('');
+}
+
+function bootV26(){
+  renderAppFrame();
+  renderLeftRail();
+  renderHeaderTwoLane();
+  renderShowroomVisioScreen();
+  renderRightColumn();
+  mountUtilities();
+  mountMultitaskRail();
+  cycleEntityPhase();
+}
+
+function cycleEntityPhase(){
+  const entity = document.querySelector('.entity-core');
+  if(!entity) return;
+  const phases = ['full','condensed','residual','condensed'];
+  let i = 0;
+  setInterval(() => {
+    i = (i + 1) % phases.length;
+    entity.dataset.phase = phases[i];
+  }, 4200);
+}
+bootV26();
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+$nauion: NELL_PRIMITIVE_TEST-v0.1
+$role: PRIMITIVE_TRANSLITERATION_TEST
+$owner: NaUion-Server
+$status: TEST_ONLY
+
+$primitive:
+  key: ECHO_LINE
+  tuCu: echo/printf
+  nghia: phat dong hoac tin hieu ra mat hien
+  vi: he vang mot dong ra surface de nguoi doc thay
+  carrier: printf
+  semantic: vang
+
+$rule:
+  - key dung dang dictionary may doc
+  - tuCu giu carrier ngoai
+  - nghia la tieng Viet khong dau cho may
+  - vi la dien giai noi he
+
+$seal:
+  sentence: carrier duoc muon; primitive semantic thuoc Natt Nell

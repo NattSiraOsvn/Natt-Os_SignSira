@@ -9,10 +9,10 @@ $boundary:
 
 $event:
   type: BOOT_DOVAN.BOOT_SEQUENCE_MATERIALIZED
-  boot_sequence: NaUion-Server/BOOT_DOVAN.boot.si
+  boot_sequence: NaUion-Server/BOOT_DOVAN_BANG.boot.si
   cell_passport: NaUion-Server/boot-dovan.cell.anc
   cell_render: NaUion-Server/boot-dovan.cell.kkbt
-  cell_runtime_resolver: NaUion-Server/NELL_PRIMITIVE_RUNTIME_CELL.anc
+  cell_runtime_resolver: NaUion-Server/NELL_PRIMITIVE_RUNTIME_CELL_BANG_v0.2.anc
   primitive_dict: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
   validator: NaUion-Server/BOOT_DOVAN_VALIDATE.sira
   presence_rule: NaUion-Server/BOOT_DOVAN_ANC_PRESENCE_RULE_v1.si
@@ -61,3 +61,10 @@ $discipline:
 $seal:
   sentence: Audit event ghi nhận Boot Đo Ván chuỗi 10 step đã materialize và cell boot-dovan đến trạng thái thở dưới persona.
   sign: Phan Thanh Thương / Natt Sirawat
+
+$resolution_2026-05-02T06:16:08:
+  primitive_key: ECHO_LINE
+  tuNell: vang
+  polarity: NORMAL
+  timestamp: 2026-05-02T06:16:08
+  cell_id: boot-dovan

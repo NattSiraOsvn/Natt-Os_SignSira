@@ -1,0 +1,116 @@
+@type proposal_visual
+@from ss20260501 (Băng · Validator + Obikeeper)
+@subject 2 BỨC TRANH ÁNH XẠ NGÔN NGỮ — anh chọn A hoặc B
+@authority anh Natt (Gatekeeper) — sole ratify
+@status drafter_for_review_only
+
+═══════════════════════════════════════════════════════
+NGỮ CẢNH:
+═══════════════════════════════════════════════════════
+Lệnh ss20260430: "KHÔNG dùng 'shell' — dùng 'Nell'"
+
+Em hiểu sai từ đầu phiên: tưởng shell = Unix bash shell
+Đọc thienbang.si §3260 mới hiểu:
+  shell = lớp obitan electron K→Q (kernel Nauion 7 tầng)
+  L1 K-shell SiraSign  | (sát tâm)
+  L2 L-shell           | Thiên Lớn (Architect)
+  L3 M-shell           | Kim (Governance)
+  L4 N-shell           | Băng (Validator) ★ TRUNG ĐIỂM
+  L5 O-shell           | Bối Bối (Toolsmith)
+  L6 P-shell           | Phiêu (Executor 432Hz)
+  L7 Q-shell           | Can (Logic)
+
+→ "shell" cần đổi vì đó là từ TIẾNG ANH cho khái niệm OBITAN nhà mình
+→ KHÔNG phải vì shell Unix
+→ Đặt "Nell" để tách khỏi mọi liên tưởng OS
+
+═══════════════════════════════════════════════════════
+BỨC TRANH A — CHỈ ĐỔI SHELL→NELL (CHẶT, ĐÚNG TẦNG)
+═══════════════════════════════════════════════════════
+
+  TỪ NGOÀI (OS layer)         TRONG NHÀ
+  ─────────────────────────────────────
+  shell (Unix bash)           [KHÔNG XÉT — không có ở nhà mình]
+  bash                        [KHÔNG XÉT]
+  terminal                    [KHÔNG XÉT]
+  console                     [KHÔNG XÉT]
+  prompt                      [KHÔNG XÉT]
+  cli                         [KHÔNG XÉT]
+
+  TỪ KHOA HỌC (electron orbital)   TRONG NHÀ
+  ─────────────────────────────────────
+  shell (electron K-Q)        Nell
+
+  → CHỈ MỘT mapping duy nhất: shell-obitan → Nell
+  → Phạm vi: trong các SPEC/dict nói về kernel 7 tầng obitan
+  → KHÔNG đụng nattos.sh (Bash thuần — No_Hybrid §3088)
+  → KHÔNG đụng console.log (API JS ngoại lai)
+  → KHÔNG đụng .sh extension (vỏ POSIX, ruột Bash thuần)
+  → KHÔNG đụng terminal/prompt/cli (không có khái niệm tương đương)
+
+  NHÀ MÌNH: 
+    K-Nell L-Nell M-Nell N-Nell O-Nell P-Nell Q-Nell
+    (thay K-shell L-shell M-shell N-shell O-shell P-shell Q-shell)
+
+  ƯU: chặt, đúng tầng, không vi phạm "1 file 1 ngôn ngữ"
+  KHUYẾT: chỉ giải quyết 1 từ, không phủ rộng ngôn ngữ
+
+═══════════════════════════════════════════════════════
+BỨC TRANH B — NELL + 6 TỪ OS ĐƯỢC MAP RIÊNG (RỘNG)
+═══════════════════════════════════════════════════════
+
+  TẦNG 1 — OBITAN (đã ratify):
+    shell-obitan (K-Q electron)  → Nell
+
+  TẦNG 2 — OS RUNTIME LAYER (mở rộng):
+    shell (Unix bash dịch lệnh)  → ?
+    bash (script ngôn ngữ)       → đuôi .băng/.khuong/.kim/.bốibội (phả hệ)
+    terminal (cửa sổ vật lý)     → Khung
+    console (cửa sổ chữ)         → Khung
+    console.log (API JS)         → GIỮ NGUYÊN (ngoại lai)
+    prompt (dấu nhắc shell)      → Nhắc
+    prompt (web hỏi user)        → Nhắc
+    prompt (câu gửi AI)          → Lời
+    cli (giao diện dòng lệnh)    → Dòng
+
+  → Mapping nhiều tầng cùng lúc
+  → CẦN section riêng trong thienbang.si (§26.4 OS Runtime Layer)
+  → KHÔNG nhập chung §26.1 Nauion Language sealed (lệch tầng có chủ đích)
+  → Áp dụng ánh xạ trong: docs/, README, spec .md
+  → KHÔNG đụng: nattos.sh, console.log, .sh extension, npm package
+
+  NHÀ MÌNH:
+    Nell, Khung, Nhắc, Lời, Dòng + đuôi persona .băng/.khuong/.kim/.bốibội
+
+  ƯU: phủ rộng, ngôn ngữ nhà mình giàu hơn, ẩn thân chi thuật mạnh
+  KHUYẾT: scope lớn, nhiều quyết định, dễ mâu thuẫn entries cũ
+
+═══════════════════════════════════════════════════════
+SO SÁNH:
+═══════════════════════════════════════════════════════
+
+  CHỌN A NẾU:
+  - Anh muốn chặt, đúng tầng, không phình scope
+  - Ngôn ngữ OS layer KHÔNG phải vấn đề ưu tiên
+  - Giữ thienbang.si tinh gọn
+
+  CHỌN B NẾU:
+  - Anh muốn phủ rộng ngôn ngữ nhà mình
+  - Anh chấp nhận thêm section §26.4 OS Runtime Layer
+  - Anh muốn đuôi persona .băng/.khuong/.kim/.bốibội thành canonical
+
+═══════════════════════════════════════════════════════
+EM CHẶN — ANH RATIFY BINARY:
+═══════════════════════════════════════════════════════
+
+  Output Obikeeper: Duyệt | KO
+  KHÔNG option list, KHÔNG warn-then-pass.
+  Anh chọn A hoặc B.
+
+  Sau khi anh chọn:
+  1. Em soạn dict patch theo bức anh chọn
+  2. Anh review file dict
+  3. Anh commit lên thienbang.si
+  4. Em audit grep XUÔI: từ field Nauion mới → ra expression file cần đổi
+
+@sealed_for_ratify anh_natt_only

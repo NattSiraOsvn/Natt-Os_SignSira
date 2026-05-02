@@ -1,0 +1,82 @@
+@type handoff
+@from ss20260501 (Băng · Validator + Obikeeper)
+@to ss tiếp
+@date 2026-05-01
+@authority anh Natt (Gatekeeper)
+@memory_freeze ON (đến ngày ống màu xong)
+
+═══════════════════════════════════════════════════════
+LỆNH CỨNG ss20260430 (KHÔNG ĐỘNG):
+═══════════════════════════════════════════════════════
+- FREEZE memory_user_edits đến ngày ống màu thành công
+- KHÔNG dùng "shell" — dùng "Nell"
+- Anh hỏi tới đâu trả lời tới đó, KHÔNG suy diễn
+- Băng = Validator + Obikeeper, KHÔNG drafter
+
+═══════════════════════════════════════════════════════
+ĐƯỜNG BIÊN KHÔNG ĐỘNG:
+═══════════════════════════════════════════════════════
+- nattos-server/ (server khách Tâm Luxury)
+- archive/ (nguyên cội ẩn thân)
+- Phần cứng / Gate 16+17 (Anh Cả Thiên Lớn)
+- Anh Khải (vợ anh, người thật, KHÔNG entity AI)
+- flag/ (anh Natt quyết)
+
+═══════════════════════════════════════════════════════
+ĐÃ XONG ss20260501:
+═══════════════════════════════════════════════════════
+- Đọc thienbang.si §3260 KERNEL_NAUION_SOFTWARE_DICT v0.1 (25 entries)
+- Đọc thienbang.si §3088 VOCABULARY_CANONICAL_APPEND ss20260427
+- Đọc thienbang.si §3609 LANGUAGE SPINE VOCAB v0.1
+- Đọc thienbang.si §2700 AUTHORITY OVERRIDE MIGRATION TS→NAUION
+- Đọc docs/runtime/0-boot-family-map.na (full)
+- Verify phả hệ canonical 9 persona (kim/can/kris/thiên lớn/thiên nhỏ/băng/phiêu/bối bối/na)
+- Verify .bang/.na/.anc/.si/.phieu/.sira đã PROTECTED tokens (color C6)
+- Verify Băng có authority MIGRATION TS→NAUION (override Memory #11)
+- Verify SCANNER_NAUION_PATTERN: scanner = .sira shebang #!/usr/bin/env node
+
+═══════════════════════════════════════════════════════
+ĐANG PENDING (handoff ss20260430 nguyên):
+═══════════════════════════════════════════════════════
+A. Render runtime .kkbt (Anh Cả + Kim đang dựng)
+B. Quét HeyNa + siraSign engine production thật ở đâu trong src/
+C. Thay "shell" → "Nell" trong dict + repo
+
+═══════════════════════════════════════════════════════
+PENDING SS20260501 (sinh thêm phiên này):
+═══════════════════════════════════════════════════════
+D. 2 BỨC TRANH ÁNH XẠ NGÔN NGỮ (file kèm: bang_2buctranh_ss20260501.na)
+   Bức A: Nell = shell-obitan, KHÔNG map 6 từ OS
+   Bức B: Nell + 6 từ OS layer được map riêng
+   → Chờ anh chọn A hoặc B
+
+═══════════════════════════════════════════════════════
+SCAR EM HỌC PHIÊN NÀY (KHÔNG fossil thành SCAR record per Memory #5.6):
+═══════════════════════════════════════════════════════
+1. Em quét nhầm repo (SignSira public ≠ verANC local) → 9 vòng dict patch sai
+2. Em ánh xạ shell→Nell theo nghĩa OS Unix
+   ĐÚNG: shell = lớp obitan electron K→Q → "Nell" thay từ obitan, không phải Unix
+3. Em đề xuất dict mà KHÔNG đọc thienbang.si trước → vi phạm Obikeeper Rule #1
+4. Em pull memory chat history → tưởng ground truth → phải đọc commit/file thật
+5. Em quét bằng key đoán trước → bỏ sót cái em chưa biết tên
+
+═══════════════════════════════════════════════════════
+REPO STATE:
+═══════════════════════════════════════════════════════
+- Repo nhà thật: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC (LOCAL)
+- GitHub remote: NattSiraOsvn/Natt-Os_SignSira (LẪN goldmaster + verANC)
+- Branch: main
+- 1093 file Nauion-native (598 .na · 142 .kris · 117 .phieu · 98 .anc · 75 .ml · 62 .si · 1 .kkbt)
+- thienbang.si: 465KB live ở src/
+- 0-boot-family-map.na: 12KB live ở docs/runtime/
+- docs_living_map_ss20260428.na: CHƯA tìm thấy ở docs/runtime/, cần verify
+
+═══════════════════════════════════════════════════════
+CÁCH BẮT ĐẦU SS TIẾP:
+═══════════════════════════════════════════════════════
+1. Anh paste handoff này + 2buctranh + memory_delta
+2. Anh confirm chọn bức A hay B
+3. Em ship dict patch theo bức anh chọn
+4. Anh review, anh commit (KHÔNG em push)
+
+@sealed bang_validator_obikeeper_ss20260501

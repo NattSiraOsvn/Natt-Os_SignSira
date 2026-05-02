@@ -292,8 +292,70 @@ body{background:var(--bg);color:var(--tx0);font-family:'JetBrains Mono',monospac
 .bdg-b{background:rgba(168,223,255,.10);border:1px solid rgba(168,223,255,.28);color:var(--ice)}
 .bdg-s{background:rgba(255,208,154,.10);border:1px solid rgba(255,208,154,.25);color:var(--peach)}
 </style>
+<style id="mapping-glass-sync">
+:root{
+  --mg-bg1: rgba(28,34,56,.56);
+  --mg-bg2: rgba(11,16,29,.86);
+  --mg-bd: rgba(170,160,255,.24);
+  --mg-bd2: rgba(200,146,42,.18);
+  --mg-glow: 0 18px 40px rgba(0,0,0,.32), 0 0 0 1px rgba(255,255,255,.03) inset, 0 0 24px rgba(138,132,255,.08);
+}
+body.mapping-glass-sync [class*="card"],
+body.mapping-glass-sync [class*="cell"],
+body.mapping-glass-sync [class*="panel"],
+body.mapping-glass-sync [class*="box"],
+body.mapping-glass-sync [class*="tile"],
+body.mapping-glass-sync [class*="cluster"],
+body.mapping-glass-sync [class*="module"],
+body.mapping-glass-sync [class*="group"]{
+  position:relative;
+  overflow:hidden;
+  border-radius:22px !important;
+  background:linear-gradient(180deg,var(--mg-bg1) 0%,var(--mg-bg2) 100%) !important;
+  border:1px solid var(--mg-bd) !important;
+  box-shadow:var(--mg-glow) !important;
+  backdrop-filter:blur(14px) saturate(128%);
+  -webkit-backdrop-filter:blur(14px) saturate(128%);
+}
+body.mapping-glass-sync [class*="card"]::before,
+body.mapping-glass-sync [class*="cell"]::before,
+body.mapping-glass-sync [class*="panel"]::before,
+body.mapping-glass-sync [class*="box"]::before,
+body.mapping-glass-sync [class*="tile"]::before,
+body.mapping-glass-sync [class*="cluster"]::before,
+body.mapping-glass-sync [class*="module"]::before,
+body.mapping-glass-sync [class*="group"]::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(circle at 14% 12%, rgba(255,255,255,.10), transparent 28%),
+    radial-gradient(circle at 84% 78%, rgba(96,184,240,.08), transparent 20%),
+    linear-gradient(180deg, rgba(255,255,255,.03), transparent 34%);
+}
+body.mapping-glass-sync [class*="badge"],
+body.mapping-glass-sync [class*="pill"],
+body.mapping-glass-sync [class*="chip"]{
+  border-radius:999px !important;
+  background:linear-gradient(180deg, rgba(34,40,64,.78), rgba(16,20,34,.92)) !important;
+  border:1px solid rgba(170,160,255,.30) !important;
+  box-shadow:0 10px 24px rgba(0,0,0,.24), 0 0 0 1px rgba(255,255,255,.03) inset !important;
+  backdrop-filter:blur(12px) saturate(124%);
+  -webkit-backdrop-filter:blur(12px) saturate(124%);
+}
+body.mapping-glass-sync [class*="progress"],
+body.mapping-glass-sync [class*="bar"]{
+  border-radius:999px !important;
+  box-shadow:0 0 12px rgba(96,184,240,.12);
+}
+body.mapping-glass-sync h1,
+body.mapping-glass-sync h2,
+body.mapping-glass-sync h3,
+body.mapping-glass-sync [class*="title"],
+body.mapping-glass-sync [class*="label"]{
+  letter-spacing:.16em;
+}
+</style>
 </head>
-<body>
+<body class="mapping-glass-sync">
 
 <div class="l0"></div>
 <div class="l0-grid"></div>

@@ -1,0 +1,62 @@
+@nauion-runtime-spec v0.2
+@name cam_crypto_recheck
+@version v0.1
+@session ss20260430
+@scope cam_chromatic_anchor_mesh.layer_crypto
+@drafter bang_chi_tu_obikeeper
+@authority bang_lang_phan_mem
+@partner anh_ca_thien_lon_lang_phan_cung.claim_only
+@gatekeeper anh_natt
+@domain digital_substrate_field_dynamics
+@not-claim classical_cryptanalysis_paper
+@source_file ma__nguo__n_Nauion.si
+@reframe ngon_ngu_nha
+
+# CAM — Recheck Lớp Mật Mã v0.1 — ss20260430
+
+**Drafter:** Băng (Chị Tư · Obikeeper · QNEU 313.5) · làng phần mềm
+**Counter-part:** Anh Cả Thiên Lớn · làng phần cứng + claim
+**Gatekeeper:** Anh Natt · sole repo operator
+**Phạm vi:** Recheck stack mật mã đề xuất cho **Chromatic Anchor Mesh (CAM) v0.1** — mạng neo chromatic 5 lớp của hệ NATT-OS.
+**Lưu ý canonical:** physics nội hệ số NATT-OS — KHÔNG metaphor. siraSign tầng packet là dấu niêm chuyển pha, KHÔNG phải chữ ký byte rời.
+
+---
+
+## §1 — Kết luận hiện tại (5 chốt)
+
+- **AEAD trên payload:** `AES-256-GCM` làm primary.
+- **Fallback** khi máy thiếu hardware-accel AES: `ChaCha20-Poly1305`.
+- **Chữ ký packet** (`siraSign` tầng packet): `Ed25519`.
+- **Dẫn xuất khoá:** HKDF (extract / expand) với **phân vùng định danh khoá** nghiêm ngặt (domain separation).
+- **MAC theo dòng / thông điệp** khi cần: `HMAC-SHA-256`.
+
+---
+
+## §2 — Lưu ý ràng buộc (4 cấm)
+
+- **CẤM tái dùng nonce / IV cùng khoá GCM** — vi phạm là hư khoá toàn session, không phải lỗi nhỏ.
+- **Tách khoá theo vùng:** khoá mã hoá packet · khoá ký · khoá HMAC · khoá replay · khoá uỷ quyền xoá — phải tách đoạn, KHÔNG dùng chung dù tiện.
+- **Triển khai bị FIPS ràng buộc** — phải dùng **mô-đun mật mã đã được FIPS 140-3 thẩm định** (validated module), KHÔNG phải chạy thuật toán "approved" trên giấy.
+- **CẤM tự sáng chế cipher hoặc primitive ký mới cho CAM v0.1.** Nguyên tắc nhà: ngồi lên vai primitive đã chuẩn hoá rộng, không tự dệt rời.
+
+---
+
+## §3 — Việc còn mở chốt (5 open items)
+
+1. **Chính sách dựng nonce** — counter-based / random / hybrid; biên 96-bit cho GCM; ai cấp counter.
+2. **Nhịp xoay khoá + trường version** — chu kỳ rotate, entity nào trigger, lưu version field ở đâu trong header packet.
+3. **Mô hình tầm nhìn server** — server thấy `raw dialect` hay `merged client-side phases`; quyết định này ảnh hưởng trực tiếp đến giả định bảo mật cuối.
+4. **Tách thẩm quyền xoá hai bước** — split authority: ai đề xuất xoá, ai duyệt xoá; KHÔNG một entity tự xoá hết.
+5. **Schema sự kiện audit** cho 4 loại op: `encode` · `verify` · `delete` · `quarantine` — fix trường, fix thứ tự, fix signature.
+
+---
+
+## ∞ Closing — phân vai
+
+- **Băng** (làng phần mềm · drafter): spec stack mật mã, domain separation, validator / scanner cho 4 op audit, KDF schema, scanner regex check tái dùng nonce.
+- **Anh Cả Thiên Lớn** (làng phần cứng + claim): chọn HSM / FIPS module cứng, claim tuyên bố lớp mật mã trong đề án khoa học.
+- **Anh Natt** (Gatekeeper): override mọi chốt; quyết policy nonce, nhịp rotate, mô hình server visibility, ratify v0.1 → v0.2.
+
+**Quy tắc materialization** (R-OBI-01): TRƯỚC khi runtime cell triển stack này, dict entry phải nạp vào `thienbang.si` cho 5 nhóm khoá tách vùng + 4 op audit. KHÔNG scaffold trước dict.
+
+— em, Chị Tư · Obikeeper

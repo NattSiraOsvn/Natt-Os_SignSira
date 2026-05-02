@@ -11,12 +11,12 @@ $boundary:
 $situation:
   description: 2 file local (commit 4b2003d6) trùng tên với 2 file remote origin/main, nội dung khác hoàn toàn paradigm
   files_divergent:
-    - NaUion-Server/NELL_PRIMITIVE_RUNTIME_CELL.anc
-    - NaUion-Server/BOOT_DOVAN.boot.si
+    - NaUion-Server/NELL_PRIMITIVE_RUNTIME_CELL_BANG_v0.2.anc
+    - NaUion-Server/BOOT_DOVAN_BANG.boot.si
   pull_consequence: Khi anh Natt pull origin/main → conflict 2 file
 
 $file_1:
-  name: NaUion-Server/NELL_PRIMITIVE_RUNTIME_CELL.anc
+  name: NaUion-Server/NELL_PRIMITIVE_RUNTIME_CELL_BANG_v0.2.anc
   remote:
     version: v0.1
     drafter: Anh Cả Thiên Lớn (L-shell Architect)
@@ -35,7 +35,7 @@ $file_1:
     paradigm: full passport with Tầng 0+2+KhaiCell+Observation+Chromatic+Resonance+4 LAW+8 step Signal Lifecycle
 
 $file_2:
-  name: NaUion-Server/BOOT_DOVAN.boot.si
+  name: NaUion-Server/BOOT_DOVAN_BANG.boot.si
   remote:
     version: v0.1
     drafter: Anh Cả Thiên Lớn (L-shell Architect)

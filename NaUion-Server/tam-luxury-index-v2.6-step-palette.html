@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="vi" data-natt-screen="showroom" data-color-source="nattos-ui-theme.css|nattos-tokens.css|nattos-galaxy.css" data-truong-thu-cam="active">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Tâm Luxury · V2.6 Step Palette Living Command</title>
+  <style>
+    :root{
+      /* pulled from tam-luxury/nattos-ui-theme.css + nattos-tokens.css */
+      --ink:#020208;
+      --ink-2:#050713;
+      --ink-3:#08101c;
+      --glass:rgba(6,8,18,.72);
+      --glass-2:rgba(245,226,192,.075);
+      --line:rgba(245,226,192,.16);
+      --line-2:rgba(245,226,192,.34);
+      --line-hot:rgba(255,190,80,.50);
+      --text:#fff8eb;
+      --muted:rgba(245,226,192,.72);
+      --faint:rgba(245,226,192,.43);
+      --gold-1:#F5E2C0;
+      --gold-2:#EDB88A;
+      --gold-3:#c8922a;
+      --amber:#FFBE50;
+      --amber-2:#F5E2C0;
+      --amber-hot:#ff9a1f;
+      --amber-soft:rgba(255,190,80,.30);
+      --violet:#C8C0FF;
+      --cyan:#8FFFD4;
+      --ice:#B8E8FF;
+      --danger:#FF5050;
+      --ok:#8FFFD4;
+      --r:28px;
+      --rail:132px;
+      --top:108px;
+      --utility-w:332px;
+      --phase:1;
+      --mx:50%;
+      --my:48%;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:var(--ink);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow:hidden}
+    button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+    body{letter-spacing:.01em}
+
+    #app-shell{position:fixed;inset:0;overflow:hidden;background:#020208;isolation:isolate}
+    #screen-root{position:absolute;inset:0;z-index:20}
+    #utility-root{position:absolute;right:22px;bottom:92px;width:var(--utility-w);z-index:80;pointer-events:none}
+    #multitask-root{position:absolute;left:calc(var(--rail) + 34px);right:26px;bottom:20px;z-index:70;pointer-events:none}
+
+    .depth-field{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:
+      radial-gradient(1600px 920px at 70% 48%, rgba(5,10,30,.88), transparent 72%),
+      radial-gradient(980px 620px at 84% 18%, rgba(200,192,255,.22), transparent 56%),
+      radial-gradient(1120px 720px at 14% 24%, rgba(7,28,48,.72), transparent 60%),
+      radial-gradient(920px 620px at 78% 63%, rgba(200,146,42,.26), transparent 58%),
+      linear-gradient(118deg,#020208 0%,#050713 34%,#08101c 62%,#020208 100%);filter:saturate(1.22) contrast(1.08)}
+    .layer-noise{position:absolute;inset:-40px;opacity:.18;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+    .field-blue-well{position:absolute;inset:-9% -6% -4% -12%;opacity:.72;filter:blur(34px) saturate(1.26);background:
+      radial-gradient(ellipse 62% 82% at 18% 50%, rgba(10,28,60,.62), transparent 68%),
+      radial-gradient(ellipse 46% 70% at 92% 40%, rgba(184,232,255,.16), transparent 60%),
+      linear-gradient(90deg, rgba(2,2,8,.70), transparent 38%, rgba(2,2,8,.34));mix-blend-mode:screen}
+    .field-amber-drift{position:absolute;left:7%;right:-8%;top:31%;height:52%;opacity:.78;filter:blur(54px) saturate(1.34);background:
+      radial-gradient(ellipse 52% 62% at 74% 46%, rgba(255,190,80,.56), transparent 62%),
+      radial-gradient(ellipse 36% 48% at 58% 58%, rgba(237,184,138,.38), transparent 64%),
+      linear-gradient(92deg, transparent 0%, rgba(200,146,42,.14) 23%, rgba(255,190,80,.42) 58%, rgba(245,226,192,.16) 78%, transparent 100%);transform:skewY(-4deg)}
+    .amber-horizon{position:absolute;left:7%;right:1%;top:41%;height:40%;filter:blur(38px) saturate(1.42);opacity:.96;background:
+      radial-gradient(ellipse at 74% 47%, rgba(255,190,80,.64), transparent 38%),
+      radial-gradient(ellipse at 58% 56%, rgba(245,226,192,.25), transparent 38%),
+      linear-gradient(90deg, transparent 0%, rgba(200,146,42,.10) 15%, rgba(255,190,80,.47) 55%, rgba(245,226,192,.22) 76%, transparent 100%);transform:skewY(-4deg)}
+    .scatter-fog{position:absolute;inset:-18%;opacity:.86;filter:blur(48px) saturate(1.35);background:
+      radial-gradient(circle at var(--mx) var(--my), rgba(245,226,192,.22), transparent 20%),
+      radial-gradient(circle at 78% 70%, rgba(143,255,212,.22), transparent 18%),
+      radial-gradient(circle at 36% 78%, rgba(200,192,255,.19), transparent 21%),
+      radial-gradient(circle at 62% 30%, rgba(255,190,80,.20), transparent 18%);animation:fogBreath 13s ease-in-out infinite alternate}
+    .refract-field{position:absolute;inset:-4%;opacity:.54;filter:blur(5px);background:
+      linear-gradient(108deg, transparent 0 31%, rgba(245,226,192,.085) 32%, transparent 33% 55%, rgba(184,232,255,.055) 56%, transparent 57% 72%, rgba(255,190,80,.07) 73%, transparent 74%),
+      linear-gradient(72deg, transparent 0 22%, rgba(255,255,255,.07) 23%, transparent 24% 86%, rgba(245,226,192,.045) 87%, transparent 88%);mix-blend-mode:screen}
+    .micro-glints{position:absolute;inset:0;opacity:.42;background:
+      radial-gradient(circle at 72% 35%, rgba(245,226,192,.32) 0 1px, transparent 2px),
+      radial-gradient(circle at 78% 48%, rgba(255,190,80,.35) 0 1px, transparent 2px),
+      radial-gradient(circle at 63% 62%, rgba(143,255,212,.22) 0 1px, transparent 2px),
+      radial-gradient(circle at 88% 31%, rgba(200,192,255,.2) 0 1px, transparent 2px);background-size:180px 180px,220px 220px,260px 260px,310px 310px;filter:blur(.2px);mix-blend-mode:screen}
+    .glass-sheets{position:absolute;inset:0;opacity:.60;background:
+      linear-gradient(105deg, transparent 0 34%, rgba(245,226,192,.08) 35%, transparent 36% 61%, rgba(184,232,255,.055) 62%, transparent 63%),
+      linear-gradient(180deg, rgba(245,226,192,.07), transparent 20% 70%, rgba(255,190,80,.045));mask-image:linear-gradient(90deg,transparent 0%,#000 10%,#000 91%,transparent)}
+    .glass-sheets:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.06),transparent 16%,transparent 82%,rgba(245,226,192,.05));filter:blur(1px)}
+    .distant-grid{position:absolute;inset:0;opacity:.32;background-image:linear-gradient(rgba(245,226,192,.095) 1px,transparent 1px),linear-gradient(90deg,rgba(245,226,192,.08) 1px,transparent 1px);background-size:72px 72px;transform:perspective(900px) rotateX(64deg) translateY(160px) scale(1.3);transform-origin:50% 100%;filter:blur(.35px)}
+    .field-vignette{position:absolute;inset:-1px;background:radial-gradient(ellipse at 62% 48%, transparent 0 42%, rgba(0,0,0,.42) 75%, rgba(0,0,0,.74) 100%);opacity:.92}
+
+    .core-bloom{position:absolute;right:8.8%;top:15.5%;width:min(45vw,710px);aspect-ratio:1;border-radius:50%;z-index:18;pointer-events:none;filter:drop-shadow(0 0 54px rgba(255,190,80,.44)) drop-shadow(0 0 94px rgba(143,255,212,.14)) saturate(1.18);transform:translateZ(0)}
+    .core-bloom:before{content:"";position:absolute;inset:13%;border-radius:50%;background:
+      radial-gradient(circle at 50% 47%, rgba(255,250,225,1) 0 6%, rgba(245,226,192,.98) 11%, rgba(255,190,80,.86) 22%, rgba(200,146,42,.45) 42%, transparent 66%);box-shadow:0 0 70px rgba(255,190,80,.70),0 0 120px rgba(237,184,138,.32), inset 0 0 64px rgba(255,255,255,.25);animation:nucleusBreath 5.8s ease-in-out infinite alternate}
+    .core-bloom:after{content:"";position:absolute;inset:0;border-radius:50%;background:
+      repeating-conic-gradient(from 0deg, rgba(245,226,192,.62) 0 1.2deg, transparent 1.35deg 4.8deg),
+      radial-gradient(circle, transparent 0 34%, rgba(245,226,192,.28) 35%, transparent 36% 51%, rgba(143,255,212,.14) 52%, transparent 53% 64%, rgba(200,192,255,.14) 65%, transparent 66%);mask-image:radial-gradient(circle,#000 0 68%,transparent 80%);animation:orbitSpin 38s linear infinite}
+    .orbital{position:absolute;inset:6%;border-radius:50%;border:1px solid rgba(245,226,192,.34);box-shadow:inset 0 0 38px rgba(245,226,192,.12),0 0 32px rgba(255,190,80,.28);transform:rotateX(66deg) rotateZ(18deg)}
+    .orbital.o2{inset:3%;transform:rotateX(66deg) rotateZ(78deg);border-color:rgba(184,232,255,.24);box-shadow:0 0 34px rgba(184,232,255,.12),inset 0 0 26px rgba(255,255,255,.08)}
+    .orbital.o3{inset:9%;transform:rotateY(66deg) rotateZ(-26deg);border-color:rgba(143,255,212,.25);box-shadow:0 0 34px rgba(143,255,212,.12),inset 0 0 26px rgba(255,255,255,.08)}
+    .core-code{position:absolute;inset:19%;border-radius:50%;font:800 11px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.16em;color:rgba(255,190,80,.82);text-align:center;display:flex;align-items:center;justify-content:center;mix-blend-mode:screen;text-shadow:0 0 12px rgba(255,190,80,.62);animation:codePulse 7s ease-in-out infinite alternate}.core-code span{display:block;max-width:80%;opacity:.9}
+
+    .screen{position:absolute;inset:0;z-index:2;padding:26px 22px 92px calc(var(--rail) + 34px)}
+    .left-rail{position:absolute;left:18px;top:34px;bottom:34px;width:calc(var(--rail) - 38px);z-index:45;border:1px solid rgba(245,226,192,.22);border-radius:30px;background:linear-gradient(180deg,rgba(20,24,45,.84),rgba(3,5,14,.66));box-shadow:inset 0 1px 0 rgba(245,226,192,.16),0 30px 80px rgba(0,0,0,.52),0 0 42px rgba(200,146,42,.10);backdrop-filter:blur(28px) saturate(1.25)}
+    .rail-logo{height:60px;margin:16px 18px 18px;border:1px solid rgba(255,255,255,.12);border-radius:18px;display:grid;place-items:center;color:#f8d98f;font-weight:900;letter-spacing:.2em;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.02))}
+    .rail-btn{width:calc(100% - 24px);margin:8px 12px;padding:14px 4px;border-radius:22px;border:1px solid transparent;display:flex;flex-direction:column;gap:9px;align-items:center;color:var(--muted);background:rgba(255,255,255,.028);text-transform:uppercase;letter-spacing:.18em;font-size:11px;transition:.28s ease}.rail-btn i{width:32px;height:32px;border-radius:12px;border:1px solid rgba(255,255,255,.1);display:grid;place-items:center;background:rgba(255,255,255,.04);font-style:normal}.rail-btn.active,.rail-btn:hover{color:var(--text);border-color:rgba(242,189,69,.24);background:linear-gradient(180deg,rgba(242,189,69,.13),rgba(255,255,255,.04));box-shadow:0 0 32px rgba(242,189,69,.12)}
+
+    .scene-main{height:100%;position:relative;z-index:30;display:flex;flex-direction:column;gap:22px}
+    .header-two-lane{min-height:104px;border:1px solid rgba(245,226,192,.22);border-radius:28px;background:linear-gradient(180deg,rgba(18,22,42,.82),rgba(4,7,18,.58));backdrop-filter:blur(32px) saturate(1.32);box-shadow:inset 0 1px 0 rgba(245,226,192,.16),0 34px 90px rgba(0,0,0,.38),0 0 34px rgba(255,190,80,.08);overflow:hidden}.h-lane{height:52px;display:flex;align-items:center;padding:0 28px;gap:14px}.h-lane:first-child{border-bottom:1px solid rgba(255,255,255,.06)}.identity{flex:1;color:var(--faint);letter-spacing:.32em;text-transform:uppercase;font-size:12px;font-weight:800}.screen-title{font-weight:900;letter-spacing:.16em;text-transform:uppercase}.chip{height:34px;padding:0 16px;border-radius:999px;border:1px solid rgba(245,226,192,.25);background:linear-gradient(180deg,rgba(245,226,192,.12),rgba(255,190,80,.035));box-shadow:inset 0 1px 0 rgba(245,226,192,.18),0 0 18px rgba(255,190,80,.08);display:flex;align-items:center;gap:8px;font-weight:900;font-size:12px;letter-spacing:.18em}.dot{width:9px;height:9px;border-radius:999px;background:var(--ok);box-shadow:0 0 14px currentColor}.chip.amber .dot{background:var(--amber)}.chip.violet .dot{background:var(--violet)}.node-pill{margin-left:auto;height:38px;padding:0 18px;border-radius:999px;border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;background:rgba(255,255,255,.05);font-weight:900;letter-spacing:.22em;font-size:12px}.badge{width:46px;height:46px;border-radius:16px;background:linear-gradient(135deg,#ffd56f,#c78a17);color:#211401;display:grid;place-items:center;font-weight:950;box-shadow:0 12px 26px rgba(242,189,69,.26)}.lane-link{padding:10px 14px;border-radius:14px;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:800}.lane-link.active,.lane-link:hover{color:var(--text);background:rgba(242,189,69,.12)}
+
+    .scene-workplace{position:relative;flex:1;min-height:0;border:1px solid rgba(245,226,192,.18);border-radius:34px;background:linear-gradient(135deg,rgba(0,0,0,.78),rgba(3,7,18,.66) 44%,rgba(9,14,30,.48));backdrop-filter:blur(28px) saturate(1.22);overflow:hidden;box-shadow:inset 0 1px 0 rgba(245,226,192,.12),0 48px 125px rgba(0,0,0,.58),0 0 58px rgba(200,146,42,.08)}
+    .scene-workplace:before{content:"";position:absolute;inset:-1px;background:radial-gradient(720px 300px at 68% 43%,rgba(255,190,80,.17),transparent 61%),radial-gradient(540px 250px at 89% 28%,rgba(184,232,255,.08),transparent 62%),linear-gradient(90deg,transparent 0%,rgba(245,226,192,.075) 69%,transparent 70%);pointer-events:none}
+    .scene-workplace:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(245,226,192,.055),transparent 18%,transparent 82%,rgba(255,190,80,.04));pointer-events:none;mix-blend-mode:screen}.work-grid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(420px,1.08fr) minmax(390px,.92fr);height:100%;gap:30px;padding:44px 38px}.hero-block{display:flex;flex-direction:column;justify-content:center;min-width:0}.eyebrow{color:#ffd981;text-transform:uppercase;letter-spacing:.42em;font-weight:900;font-size:12px}.hero-title{font-size:clamp(54px,6.4vw,118px);line-height:.88;margin:22px 0 24px;font-weight:950;letter-spacing:.018em}.hero-copy{max-width:760px;color:rgba(246,243,234,.72);font-size:18px;line-height:1.72;font-weight:600}.actions{display:flex;gap:14px;margin-top:78px}.action-btn{height:54px;padding:0 24px;border-radius:18px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.06);font-weight:950;letter-spacing:.16em;font-size:12px;text-transform:uppercase;box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}.action-btn.primary{background:linear-gradient(135deg,#ffd66d,#d5961d);color:#211401;border-color:rgba(255,214,109,.5)}
+    .insight-column{display:flex;flex-direction:column;justify-content:center;gap:18px;min-width:0}.glass-card{border:1px solid rgba(245,226,192,.22);border-radius:28px;background:linear-gradient(180deg,rgba(20,24,42,.84),rgba(7,10,22,.64));box-shadow:inset 0 1px 0 rgba(245,226,192,.14),0 28px 72px rgba(0,0,0,.42),0 0 34px rgba(255,190,80,.08);backdrop-filter:blur(30px) saturate(1.28);position:relative;overflow:hidden}.glass-card:before{content:"";position:absolute;inset:0;background:radial-gradient(460px 210px at 30% 0%,rgba(245,226,192,.12),transparent 62%),linear-gradient(90deg,rgba(255,190,80,.035),transparent 42%);pointer-events:none}.card-inner{position:relative;z-index:1;padding:24px}.card-head{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;margin-bottom:16px}.card-title{font-size:24px;font-weight:950;letter-spacing:.14em;text-transform:uppercase}.card-sub{color:var(--muted);font-weight:700}.card-pill{padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.055);color:var(--muted);letter-spacing:.18em;text-transform:uppercase;font-weight:900;font-size:11px}.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.metric{min-height:126px;border:1px solid rgba(255,255,255,.085);border-radius:18px;background:rgba(255,255,255,.038);padding:18px}.metric-label{font-size:11px;color:var(--faint);letter-spacing:.24em;text-transform:uppercase;font-weight:900}.metric-value{font-size:36px;font-weight:950;margin:12px 0 4px}.metric-note{color:var(--muted);font-size:14px;font-weight:700}.flow-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.step{min-height:116px;border-radius:18px;border:1px solid rgba(255,255,255,.085);background:rgba(255,255,255,.036);padding:16px}.step b{display:block;color:#f7d281;font-size:20px;letter-spacing:.14em;text-transform:uppercase}.step span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:10px}
+
+    .utility-runtime{pointer-events:auto;border:1px solid rgba(200,192,255,.78);border-radius:20px;background:linear-gradient(180deg,rgba(18,12,36,.94),rgba(3,4,12,.88));box-shadow:0 0 42px rgba(200,192,255,.32),0 0 26px rgba(255,190,80,.12),inset 0 1px 0 rgba(245,226,192,.16);backdrop-filter:blur(30px) saturate(1.28);padding:16px}.utility-title{font:900 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.14em;color:#dfb0ff;text-transform:uppercase}.utility-path{font:800 11px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;color:rgba(255,255,255,.72);margin:7px 0 10px;word-break:break-all}.utility-actions{display:flex;gap:8px}.util-btn{background:#fff;color:#0b0b0f;border-radius:4px;padding:6px 9px;font:950 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace}.utility-status{margin-top:10px;border-radius:9px;background:#010103;padding:10px 12px;color:#fff;font-weight:900}.utility-log{height:74px;margin-top:10px;border:1px solid rgba(255,255,255,.08);border-radius:10px;background:rgba(0,0,0,.32);padding:9px;font:700 10px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace;color:rgba(255,255,255,.6);overflow:hidden}.pulse-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#93ffdf;box-shadow:0 0 15px #93ffdf;margin-right:7px}
+
+    .living-rail{pointer-events:auto;display:flex;align-items:center;gap:10px;min-height:58px;padding:10px 12px;border:1px solid rgba(245,226,192,.18);border-radius:22px;background:linear-gradient(180deg,rgba(20,24,42,.72),rgba(5,8,18,.56));backdrop-filter:blur(30px) saturate(1.22);box-shadow:0 26px 70px rgba(0,0,0,.46),0 0 32px rgba(255,190,80,.08),inset 0 1px 0 rgba(245,226,192,.12)}.task-cap{height:38px;padding:0 14px;border-radius:15px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);display:flex;align-items:center;gap:8px;color:var(--muted);font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:.13em}.task-cap.active{color:var(--text);border-color:rgba(242,189,69,.32);background:rgba(242,189,69,.12)}.task-light{width:7px;height:7px;border-radius:99px;background:var(--amber);box-shadow:0 0 12px var(--amber)}.rail-spacer{flex:1}.mini-state{color:var(--faint);font:800 10px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase}
+    .drawer{position:absolute;right:22px;top:146px;width:300px;z-index:82;border:1px solid rgba(255,255,255,.12);border-radius:22px;background:rgba(9,12,24,.72);backdrop-filter:blur(22px);box-shadow:0 26px 70px rgba(0,0,0,.36);overflow:hidden;display:none}.drawer.open{display:block}.drawer h3{margin:0;padding:16px 16px 10px;font-size:13px;text-transform:uppercase;letter-spacing:.18em}.queue-row{display:flex;justify-content:space-between;padding:12px 16px;border-top:1px solid rgba(255,255,255,.07);font-size:13px;color:var(--muted)}.queue-row b{color:var(--text)}
+    .screen.collections .hero-title,.screen.vip .hero-title,.screen.custom .hero-title,.screen.appointments .hero-title,.screen.lookbook .hero-title{font-size:clamp(46px,5.2vw,88px)}
+    .screen.collections .core-bloom{right:2%;opacity:.68}.screen.vip .core-bloom{right:16%;top:23%;opacity:.62}.screen.custom .core-bloom{right:8%;top:12%;opacity:.75}.screen.appointments .core-bloom{right:4%;top:22%;opacity:.6}.screen.lookbook .core-bloom{right:8%;top:18%;opacity:.72}
+
+    @keyframes orbitSpin{to{transform:rotate(360deg)}}
+    @keyframes fogBreath{0%{transform:scale(1) translate3d(-1%,0,0);opacity:.52}100%{transform:scale(1.06) translate3d(1.5%,-1%,0);opacity:.72}}
+    @keyframes nucleusBreath{0%{transform:scale(.98);filter:saturate(.92)}100%{transform:scale(1.035);filter:saturate(1.18)}}
+    @keyframes codePulse{0%{opacity:.38;transform:scale(.98)}100%{opacity:.78;transform:scale(1.01)}}
+    @media(max-width:1180px){:root{--rail:108px;--utility-w:296px}.work-grid{grid-template-columns:1fr;overflow:auto}.insight-column{justify-content:flex-start}.core-bloom{opacity:.42;right:-8%;top:20%;width:560px}.hero-title{font-size:68px}}
+    @media(max-width:820px){:root{--rail:0}.left-rail{display:none}.screen{padding:16px 14px 100px}.work-grid{padding:28px 22px}.header-two-lane{min-height:auto}.h-lane{height:auto;min-height:52px;flex-wrap:wrap;padding:13px 18px}.identity{flex-basis:100%}.hero-title{font-size:48px}.actions{margin-top:36px;flex-wrap:wrap}.metric-grid,.flow-steps{grid-template-columns:1fr}.core-bloom{right:-32%;top:24%;width:520px}.utility-runtime{display:none}#multitask-root{left:14px;right:14px}.living-rail{overflow:auto}}
+
+
+    /* ────────────────────────────────────────────────────────────────
+       V2.6 STEP PALETTE OVERRIDE
+       Source of truth pulled directly from:
+       - nattos-ui-theme.css: --n-bg, --n-g1, --n-g2, --n-g3, --n-amber
+       - nattos-tokens.css: glass blur/bg/text/border tokens
+       - nattos-galaxy.css: nebula/scan/grid step positions
+       Note: không pha màu tự do. Mọi lớp lấy bước gốc rồi tăng alpha/viền.
+    ───────────────────────────────────────────────────────────────── */
+    :root{
+      /* original NaUion / Tâm Luxury palette steps */
+      --n-bg:#020208;
+      --n-bg-1:#050713;
+      --n-bg-2:#08101c;
+      --n-g1:#F5E2C0;
+      --n-g2:#EDB88A;
+      --n-g3:#c8922a;
+      --n-amber:#FFBE50;
+      --n-mint:#8FFFD4;
+      --n-ice:#B8E8FF;
+      --n-lav:#C8C0FF;
+      --n-peach:#FFD4A8;
+      --n-green:#50E0A0;
+
+      /* original text / border / glass steps, strengthened for V2.6 */
+      --n-b:rgba(245,226,192,.07);
+      --n-b2:rgba(245,226,192,.16);
+      --n-b3:rgba(245,226,192,.30);
+      --v26-b1:rgba(245,226,192,.18);
+      --v26-b2:rgba(245,226,192,.34);
+      --v26-b3:rgba(245,226,192,.52);
+      --v26-gold-05:rgba(245,226,192,.05);
+      --v26-gold-08:rgba(245,226,192,.08);
+      --v26-gold-12:rgba(245,226,192,.12);
+      --v26-gold-18:rgba(245,226,192,.18);
+      --v26-gold-24:rgba(245,226,192,.24);
+      --v26-gold-32:rgba(245,226,192,.32);
+      --v26-gold-46:rgba(245,226,192,.46);
+      --v26-amber-06:rgba(200,146,42,.06);
+      --v26-amber-09:rgba(200,146,42,.09);
+      --v26-amber-13:rgba(200,120,30,.13);
+      --v26-amber-22:rgba(200,146,42,.22);
+      --v26-amber-36:rgba(255,190,80,.36);
+      --v26-amber-54:rgba(255,190,80,.54);
+      --v26-amber-72:rgba(255,190,80,.72);
+      --v26-blue-06:rgba(50,140,200,.06);
+      --v26-blue-18:rgba(184,232,255,.18);
+      --v26-violet-07:rgba(80,50,160,.07);
+      --v26-deep-violet:rgba(20,10,50,.55);
+      --v26-deep-blue:rgba(5,20,45,.45);
+      --v26-deep-indigo:rgba(10,5,30,.40);
+      --v26-text:rgba(238,225,200,.92);
+      --v26-text-2:rgba(238,225,200,.62);
+      --v26-text-3:rgba(238,225,200,.34);
+
+      --glass:rgba(2,2,8,.78);
+      --glass-strong:rgba(2,2,8,.88);
+      --glass-clear:rgba(6,6,18,.32);
+      --line:var(--v26-b2);
+      --line-2:var(--v26-b3);
+      --line-hot:rgba(255,190,80,.64);
+      --text:var(--v26-text);
+      --muted:var(--v26-text-2);
+      --faint:var(--v26-text-3);
+      --gold-1:var(--n-g1);
+      --gold-2:var(--n-g2);
+      --gold-3:var(--n-g3);
+      --amber:var(--n-amber);
+      --amber-hot:var(--n-amber);
+      --amber-soft:var(--v26-amber-36);
+      --cyan:var(--n-mint);
+      --ice:var(--n-ice);
+      --violet:var(--n-lav);
+    }
+
+    /* original step positions restored: 50/45/55/40 from theme + galaxy */
+    .depth-field{
+      background:
+        radial-gradient(ellipse 130% 70% at 5% 10%, var(--v26-deep-violet) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 100% at 95% 90%, var(--v26-deep-blue) 0%, transparent 45%),
+        radial-gradient(ellipse 50% 50% at 50% -10%, var(--v26-deep-indigo) 0%, transparent 45%),
+        radial-gradient(ellipse 85% 55% at 10% 20%, var(--v26-amber-13) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 60% at 90% 78%, var(--v26-amber-09) 0%, transparent 50%),
+        radial-gradient(ellipse 55% 45% at 50% 50%, var(--v26-violet-07) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 55% at 78% 15%, var(--v26-blue-06) 0%, transparent 50%),
+        linear-gradient(118deg, var(--n-bg) 0%, var(--n-bg-1) 34%, var(--n-bg-2) 62%, var(--n-bg) 100%) !important;
+      filter:saturate(1.48) contrast(1.18) brightness(1.10) !important;
+    }
+
+    .field-blue-well{
+      opacity:.92 !important;
+      filter:blur(30px) saturate(1.54) brightness(1.12) !important;
+      background:
+        radial-gradient(ellipse 80% 100% at 12% 52%, var(--v26-deep-blue) 0%, transparent 45%),
+        radial-gradient(ellipse 50% 55% at 82% 15%, var(--v26-blue-18) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(2,2,8,.92) 0%, rgba(5,7,19,.46) 42%, rgba(2,2,8,.72) 100%) !important;
+      mix-blend-mode:screen;
+    }
+
+    .field-amber-drift{
+      opacity:1 !important;
+      filter:blur(44px) saturate(1.72) brightness(1.18) !important;
+      background:
+        radial-gradient(ellipse 70% 60% at 90% 78%, var(--v26-amber-54) 0%, transparent 50%),
+        radial-gradient(ellipse 75% 30% at 25% 90%, var(--v26-amber-36) 0%, transparent 50%),
+        linear-gradient(90deg, transparent 5%, var(--v26-amber-22) 34%, var(--v26-amber-72) 55%, var(--v26-gold-32) 72%, transparent 95%) !important;
+    }
+
+    .amber-horizon{
+      opacity:1 !important;
+      filter:blur(28px) saturate(1.82) brightness(1.20) !important;
+      background:
+        linear-gradient(90deg, transparent 5%, var(--v26-gold-12) 22%, var(--n-g3) 44%, var(--n-amber) 55%, var(--n-g2) 68%, var(--v26-gold-18) 82%, transparent 95%),
+        linear-gradient(to bottom, transparent 0%, var(--v26-amber-06) 40%, var(--v26-amber-36) 52%, var(--v26-amber-06) 64%, transparent 100%) !important;
+      box-shadow:0 0 70px rgba(255,190,80,.34), 0 0 140px rgba(200,146,42,.18);
+    }
+
+    .scatter-fog{
+      opacity:.95 !important;
+      filter:blur(42px) saturate(1.56) brightness(1.08) !important;
+      background:
+        radial-gradient(circle at var(--mx) var(--my), var(--v26-gold-24) 0%, transparent 20%),
+        radial-gradient(circle at 78% 70%, rgba(143,255,212,.22) 0%, transparent 18%),
+        radial-gradient(circle at 36% 78%, rgba(200,192,255,.20) 0%, transparent 21%),
+        radial-gradient(circle at 62% 30%, var(--v26-amber-22) 0%, transparent 18%) !important;
+    }
+
+    .refract-field{
+      opacity:.78 !important;
+      filter:blur(3px) saturate(1.35) !important;
+      background:
+        linear-gradient(108deg, transparent 0 31%, var(--v26-gold-12) 32%, transparent 33% 55%, rgba(184,232,255,.08) 56%, transparent 57% 72%, var(--v26-amber-09) 73%, transparent 74%),
+        linear-gradient(72deg, transparent 0 22%, rgba(255,255,255,.10) 23%, transparent 24% 86%, var(--v26-gold-08) 87%, transparent 88%) !important;
+    }
+
+    .glass-sheets{
+      opacity:.82 !important;
+      background:
+        linear-gradient(105deg, transparent 0 34%, var(--v26-gold-12) 35%, transparent 36% 61%, rgba(184,232,255,.08) 62%, transparent 63%),
+        linear-gradient(180deg, var(--v26-gold-08), transparent 20% 70%, var(--v26-amber-06)) !important;
+    }
+
+    .distant-grid{
+      opacity:.44 !important;
+      background-image:
+        linear-gradient(rgba(200,146,42,.026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,146,42,.026) 1px, transparent 1px) !important;
+      background-size:44px 44px !important;
+    }
+
+    .core-bloom{
+      filter:drop-shadow(0 0 60px rgba(255,190,80,.62)) drop-shadow(0 0 118px rgba(200,146,42,.34)) drop-shadow(0 0 70px rgba(143,255,212,.16)) saturate(1.45) brightness(1.12) !important;
+    }
+    .core-bloom:before{
+      background:
+        radial-gradient(circle at 50% 47%, #fffdf2 0 5%, var(--n-g1) 10%, var(--n-amber) 20%, var(--n-g2) 31%, var(--n-g3) 44%, transparent 66%) !important;
+      box-shadow:0 0 82px rgba(255,190,80,.82),0 0 148px rgba(237,184,138,.44),inset 0 0 76px rgba(255,255,255,.34) !important;
+    }
+    .core-bloom:after{
+      background:
+        repeating-conic-gradient(from 0deg, var(--v26-gold-46) 0 1.2deg, transparent 1.35deg 4.8deg),
+        radial-gradient(circle, transparent 0 34%, var(--v26-gold-32) 35%, transparent 36% 51%, rgba(143,255,212,.18) 52%, transparent 53% 64%, rgba(200,192,255,.18) 65%, transparent 66%) !important;
+    }
+
+    .left-rail,.header-two-lane,.scene-workplace,.glass-card,.utility-runtime,.drawer,.task-pill{
+      border-color:var(--v26-b2) !important;
+      box-shadow:inset 0 1px 0 var(--v26-gold-18),0 30px 88px rgba(0,0,0,.64),0 0 42px rgba(200,146,42,.16) !important;
+      backdrop-filter:blur(30px) saturate(1.72) brightness(1.08) !important;
+      -webkit-backdrop-filter:blur(30px) saturate(1.72) brightness(1.08) !important;
+    }
+
+    .h-lane,.rail-btn,.lane-link,.chip,.node-pill,.badge,.action-btn,.util-btn,.drawer-row,.metric{
+      border-color:var(--v26-b1) !important;
+    }
+    .rail-btn.active,.lane-link.active,.action-btn.primary,.util-btn:hover,.task-pill.active{
+      border-color:var(--v26-b3) !important;
+      box-shadow:0 0 26px rgba(255,190,80,.24), inset 0 1px 0 var(--v26-gold-24) !important;
+    }
+    .hero-title,.screen-title,.metric-value,.card-title,.identity{
+      color:var(--n-g1) !important;
+      text-shadow:0 0 18px rgba(245,226,192,.24),0 0 34px rgba(255,190,80,.16) !important;
+    }
+    .eyebrow,.chip.amber,.card-pill,.node-pill,.core-code{
+      color:var(--n-g2) !important;
+      text-shadow:0 0 16px rgba(237,184,138,.38) !important;
+    }
+    .hero-copy,.card-sub,.metric-note,.flow-text,.task-sub{color:var(--v26-text-2) !important}
+
+  </style>
+</head>
+<body>
+  <div id="app-shell">
+    <div class="depth-field" aria-hidden="true">
+      <div class="layer-noise"></div>
+      <div class="field-blue-well"></div>
+      <div class="field-amber-drift"></div>
+      <div class="amber-horizon"></div>
+      <div class="scatter-fog"></div>
+      <div class="refract-field"></div>
+      <div class="micro-glints"></div>
+      <div class="glass-sheets"></div>
+      <div class="distant-grid"></div>
+      <div class="field-vignette"></div>
+    </div>
+    <div id="screen-root"></div>
+    <div id="utility-root"></div>
+    <div id="multitask-root"></div>
+    <aside id="batch-drawer" class="drawer" aria-label="Batch sync inspector"></aside>
+  </div>
+
+  <script>
+    const APP_STATE = {
+      screen: "showroom",
+      path: "tam-luxury/index.html",
+      reposide: "tam-luxury-reposide-v2.5.html",
+      live: true,
+      batch: [
+        ["index.html", "master", "attached"],
+        ["tam-luxury-reposide-v2.5.html", "batch sync", "watching"],
+        ["showroom-sales.html", "sales scene", "mapped"],
+        ["order-flow.html", "client flow", "queued"],
+        ["cfo-dashboard.html", "finance lens", "standby"]
+      ],
+      logs: []
+    };
+
+    const SCENES = {
+      showroom: {
+        cls:"showroom", icon:"✦", label:"SHOWROOM", identity:"TÂM LUXURY · LIVE SHOWROOM COMMAND", node:"SHOWROOM NODE", title:"SHOWROOM",
+        eyebrow:"CURATED FRONT SHOWROOM", subtitle:"Màn khách trước cho Tâm Luxury. Trục hiển thị ưu tiên cảm xúc, hình ảnh sản phẩm, lịch tư vấn và nhóm sưu tập. Giữ midnight, metal/inox, glass nhiều lớp và không lộ nội bộ vận hành.",
+        actions:["Xem bộ sưu tập","Đặt lịch tư vấn","Thiết kế riêng"],
+        cardTitle:"Featured Collection", cardSub:"Astra Noctis · nucleus of light",
+        metrics:[["Display Ready","98%","Không gian trưng bày sẵn sàng"],["VIP Appointments","12","Lịch riêng trong ngày"],["Featured Pieces","24","Mẫu đang highlight"],["Client Flow","36","Khách đang quan tâm"]],
+        steps:[["Khám phá","Khách xem hồ sơ tập và render sản phẩm"],["Tư vấn","Lọc giải thích chất liệu, form và option"],["Chọn thiết kế","Khách chốt mẫu sẵn hoặc yêu cầu tuỳ biến"],["Giao nhận","Chuyển sang luồng nội bộ sau khi khóa đơn"]]
+      },
+      collections:{cls:"collections",icon:"◇",label:"COLLECTIONS",identity:"TÂM LUXURY · COLLECTION FIELD",node:"CURATION NODE",title:"COLLECTIONS",eyebrow:"AMBER ARCHIVE",subtitle:"Không gian nhóm sản phẩm. Mỗi bộ sưu tập là một trường riêng: nhẫn, bông tai, vòng tay, mặt dây và mẫu thiết kế riêng theo yêu cầu.",actions:["Mở archive","Ghim bộ mới","So sánh mẫu"],cardTitle:"Collection Matrix",cardSub:"Nhóm sản phẩm · phân tầng visual",metrics:[["Active Sets","08","Bộ đang mở"],["New Render","31","Ảnh/clip chờ duyệt"],["Diamond Focus","74%","Mẫu kim cương ưu tiên"],["Hold Items","09","Mẫu giữ cho khách VIP"]],steps:[["Chọn nhóm","NNA/NNU/BT/MD/VC"],["Lọc profile","Giá, chất liệu, style"],["So hình","Đặt cạnh để khách chọn"],["Khóa mẫu","Đưa sang tư vấn"]]},
+      vip:{cls:"vip",icon:"◈",label:"VIP",identity:"TÂM LUXURY · PRIVATE CLIENT FIELD",node:"VIP NODE",title:"VIP FLOW",eyebrow:"PRIVATE PREVIEW",subtitle:"Màn riêng cho khách lịch hẹn. Giữ nhịp nhẹ, ít nút, ưu tiên thông tin người tư vấn, nhu cầu khách và vật phẩm đang đề xuất.",actions:["Mở lịch hôm nay","Chuẩn bị phòng","Gửi preview"],cardTitle:"VIP Appointments",cardSub:"Private consultation",metrics:[["Today","12","Lịch riêng"],["Ready Room","05","Phòng/chỗ đã chuẩn bị"],["Follow-up","18","Khách cần nhắc lại"],["Deposit","07","Khách đã đặt cọc"]],steps:[["Nhận lịch","Xác nhận slot"],["Chuẩn bị","Mẫu, size, ánh sáng"],["Tư vấn","Ghi nhận nhu cầu"],["Chốt","Đặt cọc hoặc hẹn lại"]]},
+      custom:{cls:"custom",icon:"◎",label:"CUSTOM",identity:"TÂM LUXURY · CUSTOM DESIGN FIELD",node:"DESIGN NODE",title:"CUSTOM DESIGN",eyebrow:"MADE TO ORDER",subtitle:"Luồng thiết kế riêng. Từ brief khách, phác thảo, render 3D, chọn kim cương, duyệt giá đến chuyển sản xuất.",actions:["Tạo brief","Mở render","Chuyển sản xuất"],cardTitle:"Design Queue",cardSub:"Custom order · 3D and stone lock",metrics:[["Briefs","17","Yêu cầu đang mở"],["3D Render","11","Mẫu đang dựng"],["Stone Lock","26","Viên đã giữ"],["Production","08","Đơn chờ xưởng"]],steps:[["Brief","Ghi gu và ngân sách"],["Render","Lên hình cho khách"],["Duyệt","Khóa đá và giá"],["Xưởng","Đẩy lệnh sản xuất"]]},
+      appointments:{cls:"appointments",icon:"◐",label:"APPOINTMENTS",identity:"TÂM LUXURY · APPOINTMENT FIELD",node:"SCHEDULE NODE",title:"APPOINTMENTS",eyebrow:"CALENDAR COMMAND",subtitle:"Màn điều phối lịch. Tập trung slot tư vấn, nhân sự showroom, phòng tiếp khách và trạng thái follow-up sau buổi gặp.",actions:["Tạo lịch","Gán tư vấn","Nhắc khách"],cardTitle:"Today Timeline",cardSub:"Showroom schedule",metrics:[["Slots","22","Tổng slot hôm nay"],["Confirmed","16","Đã xác nhận"],["Pending","04","Đang chờ"],["Late Risk","02","Cần xử lý"]],steps:[["Slot","Đặt khung giờ"],["Staff","Gán người phụ trách"],["Room","Chuẩn bị vị trí"],["Aftercare","Nhắc sau tư vấn"]]},
+      lookbook:{cls:"lookbook",icon:"▣",label:"LOOKBOOK",identity:"TÂM LUXURY · LOOKBOOK DISPLAY",node:"VISUAL NODE",title:"LOOKBOOK",eyebrow:"VISUAL FRONT",subtitle:"Màn trình diễn hình ảnh sản phẩm cho khách. Ưu tiên ảnh lớn, trạng thái mẫu, câu chuyện bộ sưu tập và cảm giác thương hiệu.",actions:["Phát trình chiếu","Ghim mẫu","Xuất preview"],cardTitle:"Visual Deck",cardSub:"Product story · showroom display",metrics:[["Slides","46","Khung hình khả dụng"],["Hero Pieces","14","Mẫu chính"],["Client Saves","33","Khách đã lưu"],["Exported","09","Bộ đã gửi"]],steps:[["Ảnh lớn","Hiện hero visual"],["Câu chuyện","Mô tả chất liệu"],["Biến thể","Màu, size, đá"],["Gửi khách","Xuất preview"]]}
+    };
+
+    function bootV26(){
+      renderShowroomVisioScreen();
+      mountUtilities();
+      mountMultitaskRail();
+      mountBatchDrawer();
+      wireRuntimeSignals();
+    }
+
+    function renderAppFrame(scene){
+      const root = document.getElementById("screen-root");
+      root.innerHTML = `
+        <section class="screen ${scene.cls}" data-scene="${APP_STATE.screen}">
+          ${renderCoreBloom(scene)}
+          ${renderLeftRail()}
+          <main class="scene-main">
+            ${renderHeaderTwoLane(scene)}
+            ${renderWorkplace(scene)}
+          </main>
+        </section>`;
+      bindSceneActions();
+    }
+
+    function renderShowroomVisioScreen(){APP_STATE.screen="showroom";renderAppFrame(SCENES.showroom);syncSceneState("showroom-visio")}
+    function renderCollectionsScreen(){APP_STATE.screen="collections";renderAppFrame(SCENES.collections);syncSceneState("collections-field")}
+    function renderVipScreen(){APP_STATE.screen="vip";renderAppFrame(SCENES.vip);syncSceneState("vip-flow")}
+    function renderCustomDesignScreen(){APP_STATE.screen="custom";renderAppFrame(SCENES.custom);syncSceneState("custom-design")}
+    function renderAppointmentsScreen(){APP_STATE.screen="appointments";renderAppFrame(SCENES.appointments);syncSceneState("appointments")}
+    function renderLookbookScreen(){APP_STATE.screen="lookbook";renderAppFrame(SCENES.lookbook);syncSceneState("lookbook")}
+
+    function renderLeftRail(){
+      return `<aside class="left-rail">
+        <div class="rail-logo">TL</div>
+        ${Object.entries(SCENES).map(([key,s])=>`<button class="rail-btn ${APP_STATE.screen===key?'active':''}" data-screen="${key}"><i>${s.icon}</i><span>${s.label}</span></button>`).join("")}
+      </aside>`;
+    }
+
+    function renderHeaderTwoLane(scene){
+      return `<header class="header-two-lane">
+        <div class="h-lane">
+          <div class="identity">${scene.identity}</div>
+          <div class="chip"><span class="dot"></span>WIRED</div>
+          <div class="chip amber"><span class="dot"></span>TSC 0</div>
+          <div class="chip violet"><span class="dot"></span>L4 LIVE</div>
+          <div class="node-pill">${scene.node}</div>
+          <div class="badge">TL</div>
+        </div>
+        <div class="h-lane">
+          <div class="screen-title">${scene.title}</div>
+          ${Object.entries(SCENES).map(([key,s])=>`<button class="lane-link ${APP_STATE.screen===key?'active':''}" data-screen="${key}">${s.label}</button>`).join("")}
+          <button class="lane-link" data-drawer="batch">BATCH SYNC</button>
+        </div>
+      </header>`;
+    }
+
+    function renderWorkplace(scene){
+      return `<section class="scene-workplace">
+        <div class="work-grid">
+          <div class="hero-block">
+            <div class="eyebrow">${scene.eyebrow}</div>
+            <h1 class="hero-title">${scene.title}</h1>
+            <p class="hero-copy">${scene.subtitle}</p>
+            <div class="actions">${scene.actions.map((a,i)=>`<button class="action-btn ${i===0?'primary':''}" data-action="${a}">${a}</button>`).join("")}</div>
+          </div>
+          <div class="insight-column">
+            ${renderMetricsCard(scene)}
+            ${renderFlowCard(scene)}
+          </div>
+        </div>
+      </section>`;
+    }
+
+    function renderMetricsCard(scene){
+      return `<article class="glass-card"><div class="card-inner">
+        <div class="card-head"><div><div class="card-title">${scene.cardTitle}</div><div class="card-sub">${scene.cardSub}</div></div><div class="card-pill">CURATED</div></div>
+        <div class="metric-grid">${scene.metrics.map(m=>`<div class="metric"><div class="metric-label">${m[0]}</div><div class="metric-value">${m[1]}</div><div class="metric-note">${m[2]}</div></div>`).join("")}</div>
+      </div></article>`;
+    }
+
+    function renderFlowCard(scene){
+      return `<article class="glass-card"><div class="card-inner">
+        <div class="card-head"><div><div class="card-title">Operating Flow</div><div class="card-sub">Trường thu cảm · đồng pha · tán xạ</div></div><div class="card-pill">LIVE</div></div>
+        <div class="flow-steps">${scene.steps.map(s=>`<div class="step"><b>${s[0]}</b><span>${s[1]}</span></div>`).join("")}</div>
+      </div></article>`;
+    }
+
+    function renderCoreBloom(scene){
+      return `<div class="core-bloom" aria-hidden="true">
+        <div class="orbital o1"></div><div class="orbital o2"></div><div class="orbital o3"></div>
+        <div class="core-code"><span>FIELD · ${scene.label} · PHASE LOCK · SCATTER · RESONANCE</span></div>
+      </div>`;
+    }
+
+    function mountUtilities(){
+      const dock = document.getElementById("utility-root");
+      dock.innerHTML = `<section class="utility-runtime">
+        <div class="utility-title"><span class="pulse-dot"></span>NATT DOMAIN RUNTIME</div>
+        <div class="utility-path" id="utility-path">${APP_STATE.path}</div>
+        <div class="utility-actions">
+          <button class="util-btn" data-util="health">HEALTH</button>
+          <button class="util-btn" data-util="emit">EMIT</button>
+          <button class="util-btn" data-util="audit">AUDIT</button>
+        </div>
+        <div class="utility-status" id="utility-status">attached · ${APP_STATE.screen}</div>
+        <div class="utility-log" id="utility-log">boot: V2.6 shell attached<br>reposide: ${APP_STATE.reposide}<br>field: waiting signal</div>
+      </section>`;
+      bindUtilityActions();
+    }
+
+    function mountMultitaskRail(){
+      const rail = document.getElementById("multitask-root");
+      rail.innerHTML = `<div class="living-rail">
+        ${Object.entries(SCENES).map(([key,s])=>`<button class="task-cap ${APP_STATE.screen===key?'active':''}" data-screen="${key}"><span class="task-light"></span>${s.label}</button>`).join("")}
+        <div class="rail-spacer"></div><div class="mini-state" id="mini-state">phase lock · batch attached</div>
+      </div>`;
+      bindSceneActions();
+    }
+
+    function mountBatchDrawer(){
+      const drawer = document.getElementById("batch-drawer");
+      drawer.innerHTML = `<h3>Reposide Batch Sync</h3>${APP_STATE.batch.map(b=>`<div class="queue-row"><span>${b[0]}<br><small>${b[1]}</small></span><b>${b[2]}</b></div>`).join("")}`;
+    }
+
+    function bindSceneActions(){
+      document.querySelectorAll("[data-screen]").forEach(btn=>{
+        btn.onclick = () => switchScreen(btn.dataset.screen);
+      });
+      document.querySelectorAll("[data-drawer='batch']").forEach(btn=>{
+        btn.onclick = () => document.getElementById("batch-drawer").classList.toggle("open");
+      });
+      document.querySelectorAll("[data-action]").forEach(btn=>{
+        btn.onclick = () => pushLog(`action: ${btn.dataset.action}`);
+      });
+    }
+
+    function bindUtilityActions(){
+      document.querySelectorAll("[data-util]").forEach(btn=>{
+        btn.onclick = () => {
+          const mode = btn.dataset.util.toUpperCase();
+          pushLog(`${mode}: ${new Date().toLocaleTimeString('vi-VN')}`);
+          if(mode === "AUDIT") document.getElementById("batch-drawer").classList.add("open");
+        };
+      });
+    }
+
+    function switchScreen(screen){
+      const map = {
+        showroom: renderShowroomVisioScreen,
+        collections: renderCollectionsScreen,
+        vip: renderVipScreen,
+        custom: renderCustomDesignScreen,
+        appointments: renderAppointmentsScreen,
+        lookbook: renderLookbookScreen
+      };
+      (map[screen] || renderShowroomVisioScreen)();
+      mountMultitaskRail();
+      document.getElementById("batch-drawer").classList.remove("open");
+    }
+
+    function syncSceneState(name){
+      document.documentElement.dataset.nattScreen = APP_STATE.screen;
+      const status = document.getElementById("utility-status");
+      const mini = document.getElementById("mini-state");
+      if(status) status.textContent = `attached · ${name}`;
+      if(mini) mini.textContent = `screen · ${name} · utility persistent`;
+      pushLog(`screen: ${name}`);
+    }
+
+    function pushLog(line){
+      APP_STATE.logs.unshift(line);
+      APP_STATE.logs = APP_STATE.logs.slice(0,5);
+      const log = document.getElementById("utility-log");
+      if(log) log.innerHTML = APP_STATE.logs.map(x=>escapeHtml(x)).join("<br>");
+    }
+
+    function wireRuntimeSignals(){
+      window.addEventListener("mousemove", e=>{
+        document.documentElement.style.setProperty("--mx", `${Math.round(e.clientX / window.innerWidth * 100)}%`);
+        document.documentElement.style.setProperty("--my", `${Math.round(e.clientY / window.innerHeight * 100)}%`);
+      }, {passive:true});
+      window.addEventListener("keydown", e=>{
+        const order = Object.keys(SCENES);
+        const i = order.indexOf(APP_STATE.screen);
+        if(e.key === "ArrowRight") switchScreen(order[(i+1)%order.length]);
+        if(e.key === "ArrowLeft") switchScreen(order[(i-1+order.length)%order.length]);
+        if(e.key.toLowerCase() === "b") document.getElementById("batch-drawer").classList.toggle("open");
+      });
+      setInterval(()=>pushLog(`heartbeat: ${APP_STATE.screen} · ${new Date().toLocaleTimeString('vi-VN')}`), 9000);
+    }
+
+    function escapeHtml(s){return String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+
+    bootV26();
+  </script>
+</body>
+</html>

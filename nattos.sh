@@ -1,4 +1,61 @@
 #!/usr/bin/env bash
+
+# ═══════════════════════════════════════════════════════════════
+# NELL EXEC MODE v0.1 — cell boot-dovan thực thi primitive_key
+# Author: Băng — Validator + Obikeeper
+# Usage:  bash nattos.sh --exec=ECHO_LINE
+#         bash nattos.sh --exec=FIND_ARTIFACT
+#         bash nattos.sh --exec=VALIDATE_RULE
+# ═══════════════════════════════════════════════════════════════
+if [[ "$1" =~ ^--exec=(.+)$ ]]; then
+  KEY=$(echo "${BASH_REMATCH[1]}" | tr '[:lower:]' '[:upper:]')
+  ROOT_NS=$(pwd)
+  DICT="$ROOT_NS/NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si"
+  AUDIT="$ROOT_NS/NaUion-Server/BOOT_DOVAN_BOOT_AUDIT_EVENT_v0.1.na"
+
+  echo "─── cell boot-dovan nghe primitive_key: $KEY ───"
+
+  if [[ ! -f "$DICT" ]]; then
+    echo "  ✗ DICT MISSING: $DICT"
+    exit 1
+  fi
+
+  TUDICH=$(grep -A2 "key: $KEY\$" "$DICT" | grep tuDich | head -1 | sed 's/.*tuDich: //' | xargs)
+  TUNELL=$(grep -A3 "key: $KEY\$" "$DICT" | grep tuNell | head -1 | sed 's/.*tuNell: //' | xargs)
+  CARRIER=$(grep -A6 "key: $KEY\$" "$DICT" | grep carrier | head -1 | sed 's/.*carrier: //' | xargs)
+  POLARITY=$(grep -A7 "key: $KEY\$" "$DICT" | grep polarity | head -1 | sed 's/.*polarity: //' | xargs)
+
+  if [[ -z "$TUNELL" ]]; then
+    echo "  ✗ KEY '$KEY' không có trong dict 12 bảng"
+    exit 1
+  fi
+
+  echo "  ✓ mò    → tuDich:  $TUDICH"
+  echo "  ✓ soi   → tuNell:  $TUNELL"
+  echo "  ✓ rút   → carrier: $CARRIER"
+  echo "  ✓ kiểm  → polarity: $POLARITY"
+
+  TS_NOW=$(date '+%Y-%m-%dT%H:%M:%S')
+  if [[ -f "$AUDIT" ]]; then
+    {
+      echo ""
+      echo "\$resolution_${TS_NOW}:"
+      echo "  primitive_key: $KEY"
+      echo "  tuNell: $TUNELL"
+      echo "  polarity: $POLARITY"
+      echo "  timestamp: $TS_NOW"
+      echo "  cell_id: boot-dovan"
+    } >> "$AUDIT"
+    echo "  ✓ nhớ   → audit ghi vào BOOT_DOVAN_BOOT_AUDIT_EVENT_v0.1.na"
+  else
+    echo "  ⚠ AUDIT MISSING — không ghi được"
+  fi
+
+  echo "  ✓ vang  → $TUNELL"
+  echo "─── cell boot-dovan đã khóa resolution ───"
+  exit 0
+fi
+
 # ═══════════════════════════════════════════════════════════════
 # natt-os SmartAudit v7.1
 # Author: Băng — Ground Truth Validator (QNEU 313.5)
