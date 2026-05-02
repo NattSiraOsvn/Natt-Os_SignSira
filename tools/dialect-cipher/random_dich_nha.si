@@ -1,0 +1,71 @@
+# random_dich_nha.si — hàm thi triển ngôn ngữ nhà
+# Dùng: python3 tools/dialect-cipher/random_dich_nha.si [--count N]
+# Mặc định count=5: random N file trong nhà có Việt có dấu, áp mỏ cipher, in trước/sau
+# Đuôi .si = thi triển canonical (không phải spec, không phải data)
+
+import sys, json, random, re
+from pathlib import Path
+ROOT = Path(__file__).resolve().parents[2]
+
+# Parse arg
+COUNT = 5
+if len(sys.argv) > 1 and sys.argv[1] == "--count" and len(sys.argv) > 2:
+    COUNT = int(sys.argv[2])
+
+# Load mỏ
+sys.path.insert(0, str(ROOT / "tools/dialect-cipher"))
+from importlib.util import spec_from_file_location, module_from_spec
+spec = spec_from_file_location("dt", ROOT / "tools/dialect-cipher/dialect_cipher_translator.py")
+dt = module_from_spec(spec); spec.loader.exec_module(dt)
+
+vi_to_cipher = dt.load_dictionary(str(ROOT / "tools/dialect-cipher/dialect_cipher_dictionary.csv"))
+with open(ROOT / "src/governance/registry/protected_tokens_v0_1.na", encoding='utf-8') as f:
+    protected_set = set(json.load(f).get("protected_tokens", []))
+
+# Quét toàn nhà tìm file CÓ Việt có dấu — extension được dùng nhà mình
+TARGET_EXT = {'.na', '.si', '.kkbt', '.phieu', '.anc', '.md', '.bang', '.kris', '.ml'}
+SKIP = {'_deprecated', '__pycache__', 'node_modules', '.git', 'archive'}
+VI_DIACRITICS = re.compile(r'[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]', re.IGNORECASE)
+
+candidates = []
+for p in (ROOT / "src").rglob("*"):
+    if not p.is_file(): continue
+    if p.suffix.lower() not in TARGET_EXT: continue
+    if any(s in p.parts for s in SKIP): continue
+    try:
+        text = p.read_text(encoding='utf-8', errors='ignore')
+        if VI_DIACRITICS.search(text):
+            candidates.append(p)
+    except: pass
+
+print(f"═══ TỔNG FILE NHÀ CÓ VIỆT CÓ DẤU: {len(candidates)} ═══")
+print(f"═══ RANDOM {COUNT} FILE — CIPHER QUA MỎ ═══\n")
+
+random.shuffle(candidates)
+ok = 0
+for i, p in enumerate(candidates[:COUNT], 1):
+    rel = p.relative_to(ROOT)
+    text = p.read_text(encoding='utf-8', errors='ignore')
+    
+    # Lấy 1 dòng Việt đầu tiên trong file
+    sample_line = ""
+    for line in text.split('\n'):
+        if VI_DIACRITICS.search(line) and len(line.strip()) > 10:
+            sample_line = line.strip()[:120]
+            break
+    
+    if not sample_line:
+        continue
+    
+    audit = []
+    ciphered, changed = dt.cipher_string(sample_line, vi_to_cipher, protected_set, audit)
+    audit_type = audit[0]["type"] if audit else "no_change"
+    
+    print(f"[{i}] {rel}")
+    print(f"    origin:  {sample_line}")
+    print(f"    cipher:  {ciphered[:120]}")
+    print(f"    type:    {audit_type} | changed: {changed}")
+    print()
+    if changed: ok += 1
+
+print(f"═══ KẾT QUẢ: {ok}/{COUNT} cipher PASS ═══")
