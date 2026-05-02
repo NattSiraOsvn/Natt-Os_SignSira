@@ -1,0 +1,73 @@
+$nauion: PHIEU-v1.0
+ten: chromatic_tool_audit_evidence
+owner: Phan Thanh Thương
+created: 2026-05-02 21:01:48
+rule: log_file_bi_ignore_khong_force_add
+tracked_tool: tools/nhap_chromatic_toan_he.sira
+
+--- log: tools/dialect-cipher/test-vectors.log
+exists: True
+size: 799
+tail:
+=== Test Vector 1 ===
+Input:    Người ta nói chuyện lâu rồi
+Expected: POLARITY=NORMAL ngui[C2:RN_UOI_UI] ta[C0:R_KEEP] nau[C1:RN_OI_AU] chuyen[C5:R_TONE_ONLY] lau[C0:R_KEEP] rau[C2:RN_OI_AU]
+Actual:   POLARITY=NORMAL ngui[C2:RN_UOI_UI] ta[C0:R_KEEP] nau[C1:RN_OI_AU] chuyen[C5:R_TONE_ONLY] lau[C0:R_KEEP] rau[C2:RN_OI_AU]
+Result:   PASS
+
+=== Test Vector 2 ===
+Input:    Ở quê em thích ăn xôi lắm
+Expected: POLARITY=NORMAL o[C3:R_TONE_ONLY] que[C0:R_KEEP] em[C0:R_KEEP] thich[C1:R_TONE_ONLY] en[C0:RN_AN_EN] xau[C0:RN_OI_AU] lam[C1:R_TONE_ONLY]
+Actual:   POLARITY=NORMAL o[C3:R_TONE_ONLY] que[C0:R_KEEP] em[C0:R_KEEP] thich[C1:R_TONE_ONLY] en[C0:RN_AN_EN] xau[C0:RN_OI_AU] lam[C1:R_TONE_ONLY]
+Result:   PASS
+
+=== SUMMARY ===
+Test Vector 1: PASS
+Test Vector 2: PASS
+Overall: ALL PASS
+
+--- log: tools/dialect-cipher/dialect_cipher_batch.audit.log
+exists: True
+size: 4185
+tail:
+  .sira
+  Anh Khải
+  Boundary
+  Băng
+  Bối Bối
+  Bối Bội
+  Can
+  Chị Tư
+  Cán Cân
+  Decision
+  EventBus
+  Gatekeeper
+  Ground-Truth
+  HeyNa
+  IDENTITY_SHAPE_HASH
+  KhaiCell
+  Kim
+  NATT-CELL
+  NATT-OS
+  NATTOS
+  Nahere
+  Nat
+  Natt
+  Next-Signal
+  Obikeeper
+  SPEC_CHROMATIC_ANCHOR_MESH
+  SPEC_DIALECT_COLOR_CIPHER
+  SPEC_FINANCE_FLOW
+  SPEC_NAUION_MAIN
+  SPEC_NEN
+  Scope
+  Sirawat-From
+  Sirawat-To
+  SmartLink
+  Thiên Lớn
+  Whao
+  Whau
+  gay
+  lech
+  siraSign
+

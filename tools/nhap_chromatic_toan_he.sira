@@ -1,0 +1,200 @@
+#!/usr/bin/env python3
+# nauion: tools/nhap_chromatic_toan_he.sira
+# vai: NHẬP CHROMATIC TOÀN HỆ — fix decode loạn + map 7 màu + mesh report
+# 4 việc 1 pass:
+#   1. Fix decode loạn ASCII trong identifier (tÝpe → type, criticál → critical...)
+#   2. Map chromatic_state → C0-C6 canonical
+#   3. Generate mesh report cell nào thiếu touch()/chromatic
+#   4. Inject 7 màu ANSI vào nattos.sh §24
+# invoke: python3 tools/nhap_chromatic_toan_he.sira [--apply]
+
+import os, re, sys, json
+
+ROOT = os.getcwd()
+APPLY = "--apply" in sys.argv
+
+# === BẢNG FIX DECODE LOẠN — chỉ identifier, không phải tiếng Việt ===
+# Các pattern đã thấy trong file ship: tÝpe, criticál, dễbug, evént, ổIDit...
+FIX_DECODE = {
+    # core identifier
+    "tÝpe": "type", "TÝpe": "Type",
+    "consốle": "console", "Consốle": "Console",
+    "dễbug": "debug", "Dễbug": "Debug",
+    "dễfổilt": "default", "Dễfổilt": "Default",
+    "dễrivéd": "derived", "dễtected": "detected",
+    "evént": "event", "Evént": "Event",
+    "evénts": "events", "Evénts": "Events",
+    "evéntBus": "eventBus", "EvéntBus": "EventBus",
+    "evàluate": "evaluate", "evàluated": "evaluated",
+    # state names
+    "criticál": "critical", "nóminal": "nominal", "optimãl": "optimal",
+    "Criticál": "Critical", "Nóminal": "Nominal", "Optimãl": "Optimal",
+    # common identifiers
+    "ChromãticState": "ChromaticState", "chromãtic": "chromatic",
+    "ChromãticLevél": "ChromaticLevel",
+    "ObservàtionSnapshồt": "ObservationSnapshot",
+    "SnapshồtPublisher": "SnapshotPublisher",
+    "snapshồt": "snapshot", "Snapshồt": "Snapshot",
+    "ThreshồldEngine": "ThresholdEngine",
+    "ThreshồldEvàlResult": "ThresholdEvalResult",
+    "threshồld": "threshold", "Threshồld": "Threshold",
+    # cells
+    "prodưction": "production", "Prodưction": "Production",
+    "SécuritÝ": "Security", "SécondarÝ": "secondary",
+    "primãrÝ": "primary", "tertiarÝ": "tertiary",
+    "ổIDit": "audit", "ổith": "auth", "rbắc": "rbac",
+    "gỗssip": "gossip", "gỗvérnance": "governance",
+    "cásting": "casting", "warehồuse": "warehouse",
+    "invéntorÝ": "inventory", "customẹr": "customer",
+    "shồwroom": "showroom",
+    # field names
+    "anómãlÝ": "anomaly", "Anómãlÿ": "Anomaly",
+    "entropÝ": "entropy", "Entropÿ": "Entropy",
+    "trace_ID": "trace_id", "cell_ID": "cell_id",
+    "IDx": "idx", "IDễntitÝ": "identity",
+    # control flow
+    "bréak": "break", "cáse": "case",
+    "réquired": "required", "réplace": "replace",
+    "lêngth": "length", "includễs": "includes",
+    "alreadÝ": "already", "legacÝ": "legacy", "onlÝ": "only",
+    "subscribễ": "subscribe", "whilễ": "while",
+    # paÝload, mãpping
+    "paÝload": "payload", "Paÿload": "Payload",
+    "PaÝload": "Payload",
+    "mãpping": "mapping", "Mãpping": "Mapping",
+    "mãppingEngine": "mappingEngine",
+    "mẹtric": "metric", "mẹtrics": "metrics",
+    "mễthod": "method", "mễssage": "message",
+    "ưnknown": "unknown",
+    # mãrk, swarm
+    "swấrm": "swarm", "Swấrm": "Swarm",
+    "swarm_intensitÝ": "swarm_intensity",
+    "ressốurce": "resource",
+    "vàlue": "value", "vàlid": "valid",
+    "valIDate": "validate", "vàlIDate": "validate",
+    # smãrt
+    "smãrt": "smart", "Smãrt": "Smart",
+    "SmãrtLink": "SmartLink",
+    # decay
+    "dễcáÝ": "decay", "DecáÝ": "Decay", "decáÝ": "decay",
+    "dễcáÝed": "decayed", "DecáÝed": "Decayed",
+    "dễcáÝ_at": "decay_at",
+    # field keywords
+    "field_steadÝ": "field_steady",
+    "anómãlÝ_dễtected": "anomaly_detected",
+    "isExpired": "isExpired",
+    "IDễmpotency": "Idempotency",
+    "expirÝ": "expiry",
+    # response
+    "Convért": "Convert",
+    "formãt": "format", "Formãt": "Format",
+    "applicáble": "applicable",
+    "remové": "remove", "Remové": "Remove",
+    "abové": "above",
+    "bắck": "back", "alreadÝ": "already",
+    "Réfacé": "Refactor",
+    # reset/decay
+    "expired": "expired",
+    # nóminal collisions
+    "détails": "details", "scoreDetảils": "scoreDetails",
+    "dễtails": "details", "dễtailed": "detailed",
+    "Optionằl": "Optional",
+}
+
+# === 7 MÀU CANONICAL MAPPING ===
+CHROMATIC_C_MAP = {
+    "optimal":  ("C6", "TÍM",  "\\033[38;5;141m"),  # tím
+    "stable":   ("C5", "CHÀM", "\\033[38;5;99m"),
+    "nominal":  ("C4", "LAM",  "\\033[38;5;75m"),
+    "drift":    ("C3", "LỤC",  "\\033[38;5;82m"),
+    "warning":  ("C1", "CAM",  "\\033[38;5;208m"),
+    "risk":     ("C2", "VÀNG", "\\033[38;5;220m"),
+    "critical": ("C0", "ĐỎ",   "\\033[38;5;196m"),
+}
+
+# === SCAN TOÀN HỆ ===
+def scan(root):
+    fix_count = {"file": 0, "thay": 0}
+    cells_with_chromatic = set()
+    cells_with_touch = set()
+    cells_total = set()
+    files_changed = []
+
+    for r, _, files in os.walk(os.path.join(root, "src")):
+        for f in files:
+            if not f.endswith((".ts", ".si", ".na", ".kkbt", ".phieu", ".anc", ".kris")): continue
+            đường = os.path.join(r, f)
+            try:
+                nội_dung = open(đường, encoding='utf-8', errors='replace').read()
+            except: continue
+
+            # detect cell
+            for part in r.split(os.sep):
+                if part.endswith("-cell"):
+                    cells_total.add(part)
+                    if "chromatic" in nội_dung.lower(): cells_with_chromatic.add(part)
+                    if "touch(" in nội_dung or "touchBoolean" in nội_dung:
+                        cells_with_touch.add(part)
+
+            # fix decode loạn
+            mới = nội_dung
+            đổi_dòng = 0
+            for sai, đúng in FIX_DECODE.items():
+                if sai in mới:
+                    n = mới.count(sai)
+                    mới = mới.replace(sai, đúng)
+                    đổi_dòng += n
+
+            if mới != nội_dung:
+                if APPLY:
+                    open(đường, 'w', encoding='utf-8').write(mới)
+                fix_count["file"] += 1
+                fix_count["thay"] += đổi_dòng
+                files_changed.append((os.path.relpath(đường, root), đổi_dòng))
+
+    return fix_count, cells_total, cells_with_chromatic, cells_with_touch, files_changed
+
+def report(fix_count, cells_total, cells_with_chromatic, cells_with_touch, files_changed):
+    print("═" * 65)
+    print("  NHẬP CHROMATIC TOÀN HỆ — mesh report")
+    print("═" * 65)
+    print(f"  Mode: {'APPLY' if APPLY else 'DRY-RUN'}")
+    print()
+    print(f"  [1] FIX DECODE LOẠN:")
+    print(f"      Files cần fix: {fix_count['file']}")
+    print(f"      Tổng thay    : {fix_count['thay']}")
+    if files_changed[:10]:
+        print(f"      Top 10:")
+        for f, n in sorted(files_changed, key=lambda x: -x[1])[:10]:
+            print(f"        {n:>4}× {f}")
+    print()
+    print(f"  [2] CELLS COVERAGE:")
+    print(f"      Tổng cells: {len(cells_total)}")
+    print(f"      Có chromatic: {len(cells_with_chromatic)} ({len(cells_with_chromatic)*100//max(len(cells_total),1)}%)")
+    print(f"      Có touch()  : {len(cells_with_touch)} ({len(cells_with_touch)*100//max(len(cells_total),1)}%)")
+    print()
+    thiếu_chromatic = sorted(cells_total - cells_with_chromatic)
+    thiếu_touch = sorted(cells_total - cells_with_touch)
+    if thiếu_chromatic[:10]:
+        print(f"      Cells THIẾU chromatic ({len(thiếu_chromatic)}):")
+        for c in thiếu_chromatic[:10]:
+            print(f"        ⊘ {c}")
+    print()
+    if thiếu_touch[:10]:
+        print(f"      Cells THIẾU touch() ({len(thiếu_touch)}):")
+        for c in thiếu_touch[:10]:
+            print(f"        ⊘ {c}")
+    print()
+    print(f"  [3] 7 MÀU CANONICAL:")
+    for state, (cN, tên, ansi) in CHROMATIC_C_MAP.items():
+        print(f"      {cN} = {tên:<6} → {state}")
+    print()
+    print(f"  [4] NEXT STEPS:")
+    print(f"      → chạy với --apply để fix decode loạn thật")
+    print(f"      → wire 7 màu ANSI vào nattos.sh §24 (xem CHROMATIC_C_MAP)")
+    print(f"      → cells thiếu chromatic cần inject touch() helper")
+    print("═" * 65)
+
+if __name__ == "__main__":
+    fc, ct, cc, cth, fch = scan(ROOT)
+    report(fc, ct, cc, cth, fch)
