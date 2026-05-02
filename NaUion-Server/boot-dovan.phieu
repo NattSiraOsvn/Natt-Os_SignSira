@@ -1,0 +1,107 @@
+$nauion: BOOT_DOVAN_PHIEU-v0.2
+$role: RUNTIME_STATE_PHIEU
+$owner: NaUion-Server
+$status: LIVE_RUNTIME
+$spec_compliance: SPEC_NEN_v1.1
+$sync_with_passport: NaUion-Server/boot-dovan.cell.anc v0.4
+
+$boundary:
+  NaUion-Server: NHA_MINH
+
+$cell_position:
+  layer: N
+  direction: Đông
+  obitan: N-Đông
+  persona_owner: Băng N-shell
+
+$current_state:
+  tuNell: tho
+  tuDich: thở
+  primitive_key: HEARTBEAT
+  polarity: NORMAL
+  chromatic: tím_optimal
+  sentence: Cell sẵn nhận lời, đang phát nhịp sống chờ anh Natt gõ tuNell qua KhaiCell touch.
+
+$tang_0_survival_state:
+  rate_current: 0_per_cycle
+  queue_depth: 0_of_12
+  backpressure_active: false
+  load_shed_count: 0
+
+$lifecycle_history:
+  - { state: ngu, ts: boot_pre, sentence: Cell chưa sống }
+  - { state: tinh, ts: boot_step_10, sentence: Cell vừa thức từ boot sequence }
+  - { state: tho, ts: boot_post, sentence: Cell sẵn nhận lời }
+
+$last_resolution:
+  primitive_key: none_yet
+  tuNell_returned: none_yet
+  outcome: none_yet
+  sentence: Chưa có primitive_key nào được gõ qua KhaiCell.
+
+$khai_cell_status:
+  binding: src/cells/kernel/khai-cell/
+  ready: true
+  last_touch: none
+
+$observation_status:
+  binding: src/cells/kernel/observation-cell/
+  ready: true
+  last_snapshot: none
+
+$chromatic_pheromone_broadcast:
+  current_color: tím_optimal
+  current_layer: L0
+  broadcasting: true
+
+$audit_pointer:
+  log: NaUion-Server/BOOT_DOVAN_BOOT_AUDIT_EVENT_v0.1.na
+  count_events: 1
+
+$resolver_pointer:
+  cell: NaUion-Server/NELL_PRIMITIVE_RUNTIME_CELL.anc
+  state: ready_to_receive
+
+$dict_pointer:
+  source: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
+  count_groups: 12
+  count_primitives_total: 88
+
+$render_pointer:
+  surface: NaUion-Server/boot-dovan.cell.kkbt
+  v_surface: v0.2
+  state: ready_to_vang
+
+$signal_lifecycle_8_step_status:
+  step_1_touch: waiting
+  step_2_normalize: ready
+  step_3_sign: ready
+  step_4_emit: ready
+  step_5_propagate: ready
+  step_6_outcome: ready
+  step_7_imprint: ready
+  step_8_reinforce: ready
+
+$four_immutable_laws_status:
+  LAW_1: enforced
+  LAW_2: enforced
+  LAW_3: enforced
+  LAW_4: enforced
+
+$next_action_expected:
+  trigger: anh Natt gõ tuNell qua KhaiCell touch
+  cell_will_transition: tho → nghe → mo → kiem → nho → vang → khoa
+  outcome_possible: FALL | DISSIPATE | OSCILLATE
+  sentence: Khi nhận lời, cell qua 8 step Signal Lifecycle, 1 trong 3 outcome, vang ra surface kèm Chromatic broadcast.
+
+$discipline:
+  - không tự phát kết quả khi chưa nhận lời
+  - không tự sinh primitive
+  - không tự sinh tuNell
+  - không bypass audit
+  - không hardcode if/else
+  - không claim ý thức
+
+$seal:
+  sentence: Phiếu trạng thái runtime cell boot-dovan v0.2 sync passport v0.4 SPEC NỀN v1.1. Hiện thở chờ lời anh Natt qua KhaiCell. Tầng 0 survival ready, 4 LAW enforced, 8 step lifecycle ready, Chromatic L0 pheromone broadcasting tím_optimal.
+  sign: Phan Thanh Thương / Natt Sirawat
