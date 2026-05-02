@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+# ═══════════════════════════════════════════════════════════════
+# tools/githooks/commit-msg
+# Sirawat Commit Signature Gate — enforce SPEC v0.1
+# Source: docs/internal/SIRAWAT_COMMIT_SIGNATURE_POLICY_v0_1.na
+# Ratified: ss20260429 by Anh Natt
+# Y/N confirm hardcode: ss20260502
+# ═══════════════════════════════════════════════════════════════
+
+MSG_FILE="$1"
+MSG=$(grep -v "^#" "$MSG_FILE")
+SUBJECT=$(echo "$MSG" | head -1)
+
+# ── Skip merge/revert/fixup ──
+if [[ "$SUBJECT" =~ ^(Merge|Revert|fixup!|squash!) ]]; then
+  exit 0
+fi
+
+# ── 1. Validate subject: type(scope): message ──
+ALLOWED="feat|fix|docs|chore|refactor|test|build|ci|perf|security|audit|review|ratify|spec|doctrine|strategy|memory|proposal"
+if ! echo "$SUBJECT" | grep -qE "^($ALLOWED)\([^)]+\): .+"; then
+  echo "" >&2
+  echo "❌ SIRAWAT GATE — invalid subject" >&2
+  echo "   Got:      $SUBJECT" >&2
+  echo "   Required: type(scope): message" >&2
+  echo "   Types:    $ALLOWED" >&2
+  echo "   Spec:     docs/internal/SIRAWAT_COMMIT_SIGNATURE_POLICY_v0_1.na" >&2
+  exit 1
+fi
+
+# ── 2. Validate 7 required body fields ──
+FIELDS=("Sirawat-From:" "Sirawat-To:" "Scope:" "Ground-Truth:" "Decision:" "Boundary:" "Next-Signal:")
+MISSING=()
+for F in "${FIELDS[@]}"; do
+  echo "$MSG" | grep -q "$F" || MISSING+=("$F")
+done
+
+if [[ ${#MISSING[@]} -gt 0 ]]; then
+  echo "" >&2
+  echo "❌ SIRAWAT GATE — missing body fields:" >&2
+  for F in "${MISSING[@]}"; do echo "   - $F" >&2; done
+  echo "   Spec: docs/internal/SIRAWAT_COMMIT_SIGNATURE_POLICY_v0_1.na" >&2
+  exit 1
+fi
+
+# ── 3. Y/N confirm ──
+echo "" >&2
+echo "════════ SIRAWAT GATE — XÁC NHẬN COMMIT ════════" >&2
+echo "Subject: $SUBJECT" >&2
+echo "" >&2
+git diff --cached --stat | tail -15 >&2
+echo "═════════════════════════════════════════════════" >&2
+
+if [ -e /dev/tty ]; then
+  exec < /dev/tty
+  read -p "Xác nhận commit? [y/N] " ANS
+  exec <&-
+  if [[ "$ANS" != "y" && "$ANS" != "Y" ]]; then
+    echo "❌ Đã huỷ commit (trả lời: '$ANS')" >&2
+    exit 1
+  fi
+else
+  echo "⚠️  No tty — skip Y/N prompt (non-interactive)" >&2
+fi
+
+echo "✅ SIRAWAT GATE PASS" >&2
+exit 0
