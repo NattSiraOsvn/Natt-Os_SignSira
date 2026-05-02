@@ -1,0 +1,7 @@
+: PHIEU-v1.0
+ten: owner_hash_prefix_rule
+owner: Phan Thanh Thương
+rule: hash_la_tien_to_di_theo_ten_chu_so_huu
+format: Phan Thanh Thương::<hash>
+forbidden: fake_hash, mock_hash, assistant_signature_hash
+commit_policy: khong_ky_ten_ai_khong_co_authored_by
