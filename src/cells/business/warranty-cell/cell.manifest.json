@@ -12,6 +12,6 @@
       "events_emitted": ["warranty.claim.submitted","warranty.claim.approved","warranty.claim.rejected","warranty.repair.started","warranty.repair.completed","warranty.item.returned"],
       "events_consumed": ["order.completed","inventory.item.maintenance"]
     },
-    "lifecycle": { "implemented_by": "Băng", "approved_by": "Anh Natt (Gatekeeper)" }
+    "lifecycle": { "implemented_by": "Phan Thanh Thương", "approved_by": "Anh Natt (Gatekeeper)" }
   }
 }

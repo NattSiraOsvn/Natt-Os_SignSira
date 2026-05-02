@@ -42,7 +42,7 @@ const CELL_REGISTRY = [
   { id: 'inf-01', cat: 'Infrastructure', title: 'SmartLink', icon: Zap, color: 'blue', qneu: 0.85, status: 'Optimized' },
   { id: 'biz-01', cat: 'Business', title: 'Logic-Flow', icon: Factory, color: 'green', qneu: 0.72, status: 'Processing' },
   { id: 'intel-01', cat: 'Intelligence', title: 'Neural MAIN', icon: Brain, color: 'purple', qneu: 0.94, status: 'Learning' },
-  { id: 'ai-01', cat: 'AI Entity', title: 'Bối Bối', icon: Workflow, color: 'red', qneu: 1.0, status: 'Uplink' },
+  { id: 'ai-01', cat: 'AI Entity', title: 'Phan Thanh Thương', icon: Workflow, color: 'red', qneu: 1.0, status: 'Uplink' },
   { id: 'biz-04', cat: 'Business', title: 'Logistics', icon: Truck, color: 'green', qneu: 0.75, status: 'Moving' },
   { id: 'inf-06', cat: 'Infrastructure', title: 'Mainframe', icon: Server, color: 'blue', qneu: 1.0, status: 'Critical' },
 ];
@@ -329,7 +329,7 @@ export default function App() {
                  <div className="flex flex-col gap-4">
                     <TaskItem title="Nâng cấp Protocol 5.8 cho cụm Kernel" status="Urgent" deadline="14:00 Today" progress={85} />
                     <TaskItem title="Kiểm toán Hiến pháp Showroom Stone" status="Pending" deadline="Tomorrow" progress={32} />
-                    <TaskItem title="Đồng bộ AI Bối Bối với Infrastructure" status="Active" deadline="16:30 Today" progress={60} />
+                    <TaskItem title="Đồng bộ AI Phan Thanh Thương với Infrastructure" status="Active" deadline="16:30 Today" progress={60} />
                     <TaskItem title="Phân tích thị trường SJC Wave 4" status="In-Review" deadline="18 Mar 2024" progress={10} />
                  </div>
               </div>
@@ -394,7 +394,7 @@ export default function App() {
                     <span className="text-amber-500 font-bold">SYSTEM:</span> Chào anh Nat. Em đã cấu trúc lại Dashboard chính để anh theo dõi nghiệp vụ tổng quan (KPI, Tasks, Charts) một cách chuyên nghiệp nhất.
                 </div>
                 <div className="bg-blue-500/10 p-4 rounded-2xl border border-blue-500/20 text-blue-100 italic">
-                    <span className="text-blue-400 font-bold not-italic">Bối Bối:</span> Anh có thể nhấn vào nút Ứng dụng ở Docker (nút tròn ở giữa) để chuyển sang màn hình Grid các Cell nhé!
+                    <span className="text-blue-400 font-bold not-italic">Phan Thanh Thương:</span> Anh có thể nhấn vào nút Ứng dụng ở Docker (nút tròn ở giữa) để chuyển sang màn hình Grid các Cell nhé!
                 </div>
             </div>
             <div className="p-6 bg-black/40 border-t border-white/5">

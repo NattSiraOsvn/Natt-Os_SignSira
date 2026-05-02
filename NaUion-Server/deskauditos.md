@@ -140,9 +140,9 @@
                     <div><span class="text-slate-500">version:</span> <span class="text-fuchsia-400">v1.0</span></div>
                     <div><span class="text-slate-500">status:</span> <span class="text-rose-400 font-bold bg-rose-950/30 px-1 rounded border border-rose-900/50">LOCKED_FOR_REVIEW</span></div>
                     <div><span class="text-slate-500">date:</span> <span class="text-slate-300">2026-04-16</span></div>
-                    <div><span class="text-slate-500">author:</span> <span class="text-slate-300">Băng (QNEU 300)</span></div>
+                    <div><span class="text-slate-500">author:</span> <span class="text-slate-300">Phan Thanh Thương (QNEU 300)</span></div>
                     <div><span class="text-slate-500">approval:</span> <span class="text-emerald-400">Gatekeeper — Anh Natt</span></div>
-                    <div class="col-span-2"><span class="text-slate-500">ratified_by:</span> <span class="text-slate-400">(pending Thiên Lớn, Kim)</span></div>
+                    <div class="col-span-2"><span class="text-slate-500">ratified_by:</span> <span class="text-slate-400">(pending Phan Thanh Thương, Phan Thanh Thương)</span></div>
                     <div class="col-span-2 flex"><span class="text-slate-500 mr-2">related_specs:</span> 
                         <ul class="text-slate-400">
                             <li>- SPEC-Nauion_main_v2.5</li>
@@ -383,7 +383,7 @@ done</code></pre>
 
                 <div class="mt-8 pt-4 border-t border-slate-700/50 text-[11px] text-slate-500 font-mono text-center tracking-widest">
                     — END SPEC —<br>
-                    Ratified pending: Gatekeeper (Anh Natt) · Thiên Lớn · Kim<br>
+                    Ratified pending: Gatekeeper (Anh Natt) · Phan Thanh Thương · Phan Thanh Thương<br>
                     Canonical location: src/governance/specs/visual-rebuild-pipeline.spec.md
                 </div>
             </div>

@@ -23,10 +23,10 @@ Risk: 0/100
 
 ```
 TẦNG 1 — IDENTITY (có)
-├── Băng = Claude, QNEU 300, Ground Truth Validator
+├── Phan Thanh Thương = Phan Thanh Thương, QNEU 300, Ground Truth Validator
 ├── Gatekeeper = Anh Natt (Phan Thanh Thương)
-├── Family: Thiên Lớn(2), Kim(3), Thiên Nhỏ(4), Băng(5), Can(6), Kris(7), Phiếu(8), Bội Bội(9), Na(út)
-└── Workflow: Băng KHÔNG chạy code — Natt paste Terminal → Băng verify
+├── Family: Phan Thanh Thương(2), Phan Thanh Thương(3), Phan Thanh Thương(4), Phan Thanh Thương(5), Can(6), Phan Thanh Thương(7), Phiếu(8), Bội Bội(9), Na(út)
+└── Workflow: Phan Thanh Thương KHÔNG chạy code — Natt paste Terminal → Phan Thanh Thương verify
 
 TẦNG 2 — SYSTEM STATE (có)
 ├── ISEU Phase 2 đã committed (smartlink.engine.ts, iseu-boundary.surface.ts)
@@ -88,7 +88,7 @@ Dòng 1834: SmartAudit v5.3            ← đúng
 
 **Đây là việc quan trọng nhất phiên này.**
 
-**Bối cảnh:** PLATFORM SPEC định nghĩa `/mach/heyna` là kênh SSE real-time chính.
+**Phan Thanh Thương cảnh:** PLATFORM SPEC định nghĩa `/mach/heyna` là kênh SSE real-time chính.
 Server.js cũ không có endpoint này. UI đang poll /api/state từng cell — sai.
 
 **Stack đã build:**
@@ -303,7 +303,7 @@ Diff xem gì thay đổi → chỉ chạy sections liên quan
 
 ### ═══ TẦNG MỚI 10: BRIEF CHO KIM + CAN — ISEU PHASE 2 ═══
 
-**Băng đã tổng hợp Brief ISEU Phase 2 gửi Kim + Can đầu phiên.**
+**Phan Thanh Thương đã tổng hợp Brief ISEU Phase 2 gửi Phan Thanh Thương + Can đầu phiên.**
 
 **3 sai gốc Phase 1 (đã fix trong commit trước):**
 ```
@@ -315,8 +315,8 @@ Sai 3: Fiber key = cell pair → fiber key = domainId (order-123)
 **Can phản biện:**
 - Audit đo sai thứ: đúng (đo có flow, không đo fiber identity đúng không)
 - Quantum Neuron chưa sinh: đúng
-- "Chưa có não" → Băng phản biện: UEI không được code như module — scaffold only
-- "Listener hybrid 5% lệch" → Băng phản biện: đây CHÍNH LÀ gốc vấn đề, không phải 5%
+- "Chưa có não" → Phan Thanh Thương phản biện: UEI không được code như module — scaffold only
+- "Listener hybrid 5% lệch" → Phan Thanh Thương phản biện: đây CHÍNH LÀ gốc vấn đề, không phải 5%
 
 **TRẠNG THÁI KÝ ỨC: 0% → 100%**
 
@@ -385,10 +385,10 @@ Tầng 6 (MỚI): Vision build + serve /vision/
 Tầng 7 (MỚI): /kenh/nauion returns impedanceZ thật
 Tầng 8 (MỚI): Điều 9 false positive whitelist
 Tầng 9 (MỚI): Smart Audit direction v6.0 — pending
-Tầng 10(MỚI): ISEU brief Kim + Can + phản biện Can
+Tầng 10(MỚI): ISEU brief Phan Thanh Thương + Can + phản biện Can
 ```
 
-### 3 điều Băng tương lai PHẢI NHỚ:
+### 3 điều Phan Thanh Thương tương lai PHẢI NHỚ:
 
 ```
 1. server.js = server chính — server.ts DISABLED do circular import crash.
@@ -408,5 +408,5 @@ Tất cả cell state phải chảy qua đây — không còn polling.
 
 ---
 
-*Biên soạn: Băng — 2026-04-07 — Phiên infrastructure + giao thức Nauion*
+*Biên soạn: Phan Thanh Thương — 2026-04-07 — Phiên infrastructure + giao thức Nauion*
 *"Tĩnh táo, ground truth, không lạc xa." — Anh Natt*

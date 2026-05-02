@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tâm Luxury · Kris Email Hub</title>
+<title>Tâm Luxury · Phan Thanh Thương Email Hub</title>
 <link rel="stylesheet" href="nattos-ui-theme.css">
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -110,7 +110,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
 
 <div class="login" id="ls">
   <div class="lbox">
-    <div class="lname">TÂM LUXURY</div><div class="lsub">Kris Email Hub · Finance Mail</div>
+    <div class="lname">TÂM LUXURY</div><div class="lsub">Phan Thanh Thương Email Hub · Finance Mail</div>
     <div class="lf"><label>Mã NV</label><input id="lc" value="TLXR005"></div>
     <div class="lf"><label>Họ Tên</label><input id="ln" value="Nguyễn KTT"></div>
     <div class="lf"><label>Email Cty</label><input id="le" value="kt@tamluxury.vn" placeholder="email@tamluxury.vn"></div>
@@ -159,7 +159,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
       <div class="ed-empty">
         <div style="font-size:36px">📧</div>
         <div style="font-family:var(--mono);font-size:11px;letter-spacing:.2em">CHỌN EMAIL ĐỂ XEM</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:4px">Kris sẽ tự động phân tích và đề xuất hành động</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:4px">Phan Thanh Thương sẽ tự động phân tích và đề xuất hành động</div>
       </div>
     </div>
 
@@ -171,8 +171,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
       </div>
       <div class="kp-body" id="krisPanel">
         <div style="color:var(--text3);font-size:11px;padding:10px 0">
-          Chọn email để Kris phân tích và bóc tách dữ liệu.<br><br>
-          Kris có thể nhận dạng:<br>
+          Chọn email để Phan Thanh Thương phân tích và bóc tách dữ liệu.<br><br>
+          Phan Thanh Thương có thể nhận dạng:<br>
           • Sao kê ngân hàng → Xác nhận thanh toán<br>
           • Hóa đơn VAT → Ghi sổ tự động<br>
           • Tờ khai HQ → Update logistics<br>
@@ -180,11 +180,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
           • Email NCC → Theo dõi đơn hàng
         </div>
 
-        <!-- UPLOAD ZONE trong Kris panel -->
+        <!-- UPLOAD ZONE trong Phan Thanh Thương panel -->
         <div class="upload-zone" onclick="document.getElementById('krisFileInput').click()">
           <div style="font-size:20px;margin-bottom:4px">📎</div>
           <div style="font-size:10px;color:var(--text3)">Upload file đính kèm từ email<br>PDF sao kê, hóa đơn, tờ khai HQ...</div>
-          <input type="file" id="krisFileInput" multiple accept=".pdf,.jpg,.png,.xlsx" style="display:none" onchange="handleKrisFile(this)">
+          <input type="file" id="krisFileInput" multiple accept=".pdf,.jpg,.png,.xlsx" style="display:none" onchange="handlePhan Thanh ThươngFile(this)">
         </div>
         <div id="krisFileList" style="margin-top:8px"></div>
       </div>
@@ -198,7 +198,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
 // KRIS DOCUMENT CLASSIFIER (local pattern matching)
 // LỆNH GATEKEEPER #001 — zero external API
 // ══════════════════════════════════════════════════════
-const KrisEngine = {
+const Phan Thanh ThươngEngine = {
   // Classify email subject + body
   classify(subject='', body='') {
     const s = (subject+' '+body).toUpperCase()
@@ -327,8 +327,8 @@ const MOCK_EMAILS = [
    body:`TK: 108002580xxx\nNgân Hàng: Vietinbank - Chi Nhánh HCM\n\nGIAO DỊCH MỚI NHẤT:\n+ Credit: 34,650,000 VND\n  Từ: NGUYEN THI MAI\n  Nội dung: CHUYEN KHOAN MANG NHA HANG TU TAM LUXURY\n  Ref: TL-CT26-889\n  Thời gian: 23/03/2026 08:47:22\n\nSố dư hiện tại: 16,052,400,000 VND`,
    attach:['sao-ke-23032026.pdf'],category:'BANK_STATEMENT'},
 
-  {id:'e002',from:'customs@logistics.vn',fromName:'Cục HQ TP.HCM',subject:'Tờ Khai HQ — Lô Kim Cương — Luồng Vàng',date:'23/03 08:30',unread:true,priority:'CAO',
-   body:`Số TK: 24032345678\nHàng hóa: Kim Cương Đã Gia Công (GIA Certified)\nHS Code: 7102.31\nXuất xứ: Bỉ (BEL)\nGiá trị CIF: $245,000\nLuồng: VÀNG\nYêu cầu bổ sung: C/O Form E\nHạn nộp bổ sung: 25/03/2026`,
+  {id:'e002',from:'customs@logistics.vn',fromName:'Cục HQ TP.HCM',subject:'Tờ Khai HQ — Lô Phan Thanh Thương Cương — Luồng Vàng',date:'23/03 08:30',unread:true,priority:'CAO',
+   body:`Số TK: 24032345678\nHàng hóa: Phan Thanh Thương Cương Đã Gia Công (GIA Certified)\nHS Code: 7102.31\nXuất xứ: Bỉ (BEL)\nGiá trị CIF: $245,000\nLuồng: VÀNG\nYêu cầu bổ sung: C/O Form E\nHạn nộp bổ sung: 25/03/2026`,
    attach:['tk-240323.pdf','packing-list.pdf'],category:'CUSTOMS'},
 
   {id:'e003',from:'invoice@worldgems.hk',fromName:'World Gems HK',subject:'Invoice #WG-2026-0451 — Diamond Lot TL-032',date:'22/03 16:45',unread:false,priority:'CAO',
@@ -343,7 +343,7 @@ const MOCK_EMAILS = [
    body:`Dear Tam Luxury Team,\n\nQuotation for Diamond Parcel Z240323:\n- Round 5-6mm VVS1-VS1: $850/pc (50 pcs)\n- Round 6-7mm VVS2: $2,200/pc (20 pcs)\n- Total: $86,500\n\nValidity: 7 days\nDelivery: 10-14 working days`,
    attach:['quotation-Z240323.xlsx'],category:'QUOTATION'},
 
-  {id:'e006',from:'contract@phanlocdiamond.com',fromName:'Phan Lộc Diamond',subject:'Hợp Đồng Cung Ứng Kim Cương 2026 — Ký Lại',date:'21/03 10:30',unread:false,priority:'TRUNG BÌNH',
+  {id:'e006',from:'contract@phanlocdiamond.com',fromName:'Phan Lộc Diamond',subject:'Hợp Đồng Cung Ứng Phan Thanh Thương Cương 2026 — Ký Lại',date:'21/03 10:30',unread:false,priority:'TRUNG BÌNH',
    body:`Kính gửi: Tâm Luxury\n\nHợp đồng số: HD-PLD-2026-001\nBên A: CTCP Tâm Luxury — MST: 0315xxxxxx\nBên B: CTCP Phan Lộc Diamond — MST: 0301234567\n\nGiá trị hợp đồng: 5,000,000,000 VND/năm\nThời hạn: 01/04/2026 — 31/03/2027\nKý ngày: 01/04/2026`,
    attach:['HD-PLD-2026-001-draft.pdf'],category:'CONTRACT'},
 
@@ -387,7 +387,7 @@ function doLogin(){
   document.getElementById('connStatus').textContent='· '+emails.length+' email đã đồng bộ';
   renderCatFilters();
   renderInbox();
-  setTimeout(()=>toast(`✅ Kris Email Hub kết nối: ${email}`,'success'),600);
+  setTimeout(()=>toast(`✅ Phan Thanh Thương Email Hub kết nối: ${email}`,'success'),600);
 }
 function doLogout(){user=null;document.getElementById('app').style.display='none';document.getElementById('ls').style.display='flex';document.getElementById('wm').innerHTML='';}
 
@@ -468,18 +468,18 @@ function renderEmailDetail(e){
     <div class="ed-actions">
       <button class="btn btn-ghost" onclick="replyEmail()">↩ Trả Lời</button>
       <button class="btn btn-ghost" onclick="forwardEmail()">↗ Chuyển Tiếp</button>
-      <button class="btn btn-primary" onclick="krisAction()">🤖 Kris Xử Lý</button>
+      <button class="btn btn-primary" onclick="krisAction()">🤖 Phan Thanh Thương Xử Lý</button>
     </div>`;
 }
 
 function krisAnalyze(e){
   const kp=document.getElementById('krisPanel');
   // Show processing
-  kp.innerHTML=`<div class="processing"><div class="spin"></div><span>Kris đang phân tích...</span></div>`;
+  kp.innerHTML=`<div class="processing"><div class="spin"></div><span>Phan Thanh Thương đang phân tích...</span></div>`;
   setTimeout(()=>{
-    const cls=KrisEngine.classify(e.subject, e.body);
-    const extracted=KrisEngine.extract(cls.type, e.subject, e.body);
-    const actions=KrisEngine.actions(cls.type, extracted);
+    const cls=Phan Thanh ThươngEngine.classify(e.subject, e.body);
+    const extracted=Phan Thanh ThươngEngine.extract(cls.type, e.subject, e.body);
+    const actions=Phan Thanh ThươngEngine.actions(cls.type, extracted);
     const extractedEntries=Object.entries(extracted).filter(([k,v])=>v&&v!=='null'&&v!=='—');
 
     kp.innerHTML=`
@@ -508,8 +508,8 @@ function krisAnalyze(e){
         <div class="as-title">📎 Upload File Đính Kèm</div>
         <div class="upload-zone" onclick="document.getElementById('krisFileInput').click()">
           <div style="font-size:14px;margin-bottom:3px">📁</div>
-          <div style="font-size:10px;color:var(--text3)">Upload file từ email này để Kris parse</div>
-          <input type="file" id="krisFileInput" multiple accept=".pdf,.jpg,.png,.xlsx" style="display:none" onchange="handleKrisFile(this)">
+          <div style="font-size:10px;color:var(--text3)">Upload file từ email này để Phan Thanh Thương parse</div>
+          <input type="file" id="krisFileInput" multiple accept=".pdf,.jpg,.png,.xlsx" style="display:none" onchange="handlePhan Thanh ThươngFile(this)">
         </div>
         <div id="krisFileList" style="margin-top:6px"></div>
       </div>`;
@@ -533,14 +533,14 @@ function executeAction(type, label){
 }
 
 function krisParseAttach(filename){
-  toast(`⏳ Kris đang parse: ${filename}...`,'info');
+  toast(`⏳ Phan Thanh Thương đang parse: ${filename}...`,'info');
   setTimeout(()=>toast(`✓ Đã parse ${filename} — Dữ liệu cập nhật`,'success'),1500);
 }
 
 function krisAction(){
   if(!selectedEmail)return;
-  const cls=KrisEngine.classify(selectedEmail.subject,selectedEmail.body);
-  toast(`🤖 Kris đang xử lý ${cls.label}...`,'info');
+  const cls=Phan Thanh ThươngEngine.classify(selectedEmail.subject,selectedEmail.body);
+  toast(`🤖 Phan Thanh Thương đang xử lý ${cls.label}...`,'info');
   setTimeout(()=>toast(`✓ ${cls.label} đã được xử lý và ghi vào hệ thống`,'success'),2000);
 }
 
@@ -555,18 +555,18 @@ function syncEmails(){
 function handleBulkUpload(input){
   const files=Array.from(input.files);
   files.forEach(f=>{
-    const cls=KrisEngine.classify(f.name,'');
+    const cls=Phan Thanh ThươngEngine.classify(f.name,'');
     toast(`📎 ${f.name} → ${cls.label} (${cls.priority})`,'info');
   });
   input.value='';
 }
 
-function handleKrisFile(input){
+function handlePhan Thanh ThươngFile(input){
   const files=Array.from(input.files);
   const list=document.getElementById('krisFileList');
   if(!list)return;
   files.forEach(f=>{
-    const cls=KrisEngine.classify(f.name,'');
+    const cls=Phan Thanh ThươngEngine.classify(f.name,'');
     const div=document.createElement('div');
     div.style.cssText='display:flex;align-items:center;gap:6px;padding:5px 8px;background:var(--bg3);border:1px solid var(--border);border-radius:3px;margin-bottom:4px;font-size:10px';
     div.innerHTML=`<span>${cls.icon}</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${f.name}</span><span style="color:${cls.color};font-family:var(--mono);font-size:8px">${cls.label}</span>`;
@@ -574,7 +574,7 @@ function handleKrisFile(input){
     setTimeout(()=>{div.querySelector('span:last-child').textContent='✓ PARSED';div.querySelector('span:last-child').style.color='var(--green)';},1200);
   });
   input.value='';
-  toast(`⏳ Kris đang parse ${files.length} file...`,'info');
+  toast(`⏳ Phan Thanh Thương đang parse ${files.length} file...`,'info');
 }
 
 function replyEmail(){toast('Tính năng Reply — tích hợp Gmail API khi deploy','info');}

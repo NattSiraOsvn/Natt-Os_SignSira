@@ -39,7 +39,7 @@ git add src/ui/nauion/nauion-v6.html
 git add src/ui/index.html
 git commit --no-verify -m "feat(nauion): v6 — 3D gold platform icons embedded
 
-- 29 PNG icons (3D gold dome style, anh Natt × Kris × Thiên Nhỏ)
+- 29 PNG icons (3D gold dome style, anh Natt × Phan Thanh Thương × Phan Thanh Thương)
   Covers: sales_terminal, showroom, warehouse, chat, analytics,
   governance, command, customs_intelligence, audit_trail, rfm_analysis,
   banking_processor, sales_tax, tax_reporting, payment_hub, ops_terminal,

@@ -3,7 +3,7 @@
 **Status:** WAVE 3 ACTIVE
 
 ## 1. Định nghĩa Hàng Hóa (Context Việt Nam)
-* **Quản lý đơn chiếc (Serialized Item):** Áp dụng cho Đồng hồ, Túi hiệu, Kim cương viên. Mỗi món có 1 Serial Number duy nhất.
+* **Quản lý đơn chiếc (Serialized Item):** Áp dụng cho Đồng hồ, Túi hiệu, Phan Thanh Thương cương viên. Mỗi món có 1 Serial Number duy nhất.
 * **Quản lý định lượng (Quantitative Item):** (Ít dùng, dự phòng) Cho vàng nhẫn trơn, dây chuyền máy.
 
 ## 2. Quy trình Nghiệp vụ Cốt lõi

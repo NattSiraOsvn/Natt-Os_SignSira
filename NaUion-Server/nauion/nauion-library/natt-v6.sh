@@ -286,7 +286,7 @@ export default function App() {
               <button onClick={() => setActiveComm(null)}><X size={18}/></button>
            </div>
            <div className="flex-1 p-6 overflow-y-auto font-mono text-[10px] text-slate-500 space-y-4 custom-scrollbar">
-              <div className="p-4 bg-white/5 rounded-2xl">Bối Bối: Hệ thống đã ổn định. Chào anh Nat.</div>
+              <div className="p-4 bg-white/5 rounded-2xl">Phan Thanh Thương: Hệ thống đã ổn định. Chào anh Nat.</div>
               <div className="p-4 bg-white/5 rounded-2xl opacity-60">System: Encryption handshake established.</div>
            </div>
            <div className="p-6 border-t border-white/5">

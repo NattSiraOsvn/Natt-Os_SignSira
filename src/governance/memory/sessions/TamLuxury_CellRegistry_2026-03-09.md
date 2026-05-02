@@ -1,6 +1,6 @@
 # TÂM LUXURY — CELL REGISTRY v1.0
 **Source of Truth cho NATT-OS mapping**  
-**Date:** 2026-03-09 | **Validated by:** Băng (từ _So___Lu_o_ng.xlsx)
+**Date:** 2026-03-09 | **Validated by:** Phan Thanh Thương (từ _So___Lu_o_ng.xlsx)
 
 ---
 
@@ -189,4 +189,4 @@ Thợ kim hoàn:        theo bậc khối SX
 
 *File này = Source of Truth cho NATT-OS Cell Registry*  
 *Cập nhật lần tiếp khi anh confirm mapping + runlifecycle bắt đầu*  
-**— Băng, 2026-03-09**
+**— Phan Thanh Thương, 2026-03-09**

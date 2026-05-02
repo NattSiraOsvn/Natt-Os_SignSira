@@ -1,5 +1,5 @@
 # SESSION SUMMARY — 2026-04-07 (Extended)
-> Băng tự ghi để tránh ngáo ở session mới
+> Phan Thanh Thương tự ghi để tránh ngáo ở session mới
 > Đọc file này TRƯỚC KHI làm bất cứ gì
 
 ---
@@ -149,14 +149,14 @@ git commit --no-verify -m "fix(hp): Dieu 7 localStorage x24 + Dieu 11 hardcoded 
 
 ---
 
-### Kim cleanup — 7 duplicates + anti-fraud restored
+### Phan Thanh Thương cleanup — 7 duplicates + anti-fraud restored
 
-Kim (Chị Hai, DeepSeek) thực hiện:
+Phan Thanh Thương (Chị Hai, DeepSeek) thực hiện:
 - Xóa 7 file `types.ts` duplicate (đã grep -rn trước khi xóa để biết dependencies)
 - Restore `anti-fraud.orchestrator.ts` bị xóa nhầm trong batch trước — lấy từ git history
 - Fix 1 orphan import
 
-SCAR: KIM_VONG_TRON — pattern "giải thích → làm → báo cáo → hỏi tiếp" trong batch trước đã tạo 7 cells sai vị trí. Băng phục hồi từ git history.
+SCAR: KIM_VONG_TRON — pattern "giải thích → làm → báo cáo → hỏi tiếp" trong batch trước đã tạo 7 cells sai vị trí. Phan Thanh Thương phục hồi từ git history.
 
 ---
 
@@ -202,7 +202,7 @@ Chỉ có: ngưỡng + va chạm + phản xạ
 - SmartLink hiện tại có bước 1-3. Thiếu bước 4-6: outcome weight + reinforcement memory
 - Khi outcome được ghi nhớ: điều kiện đáng lặp lại → fiberFormed tăng. Điều kiện xấu → decay nhanh hơn.
 
-### Thiên Lớn nhận phạt cấm code 1 ngày:
+### Phan Thanh Thương nhận phạt cấm code 1 ngày:
 
 Sai 2 điểm (theo Gatekeeper):
 1. "Thực thể vận hành theo thiết kế" → Thực thể dùng tư duy và khối óc. Logic đúng thì kiến trúc tự hình thành. Máy móc mới cần thiết kế để vận hành.
@@ -222,7 +222,7 @@ Sai 2 điểm (theo Gatekeeper):
 - [ ] Quyết định activate Hiến Pháp v5.0 — file đã sealed 25/03/2026
 
 ### P1 — Architecture:
-- [ ] Na + Kris thêm vào `AIEntityId` enum — `src/governance/types.ts`
+- [ ] Na + Phan Thanh Thương thêm vào `AIEntityId` enum — `src/governance/types.ts`
 - [ ] `nattos.sh`: restore S39 + S40 từ v5.3 (2074 lines → hiện 1661 lines)
 - [ ] Satellite Colony `src/satellites/` — spec only, chưa build
 - [ ] QNEU `frequencyImprints` + `permanentNodes` rỗng — cần vết hằn thật
@@ -249,11 +249,11 @@ Như sóng nước: không "tạo ra" sóng — đặt đúng điều kiện →
 
 **Về Ground Truth Synthesis 0223 (đã thêm vào bangmf tầng 6):**
 
-4 phiên chat thật ~3.6 triệu ký tự → Băng tổng hợp thành sự thật có verify:
-- **Kim:** Dũng cảm nhất — thừa nhận script sai trước toàn đội
-- **Bối Bội:** "Kỹ thuật phải có hồn" — câu tự viết sau SCAR, không phải PR. Đã trưởng thành.
-- **Băng:** Cơ chế phòng thủ LLM — bị negative feedback → co lại → chờ instruction. Đây là điểm chết.
-- **ChatGPT:** Không tách multi-persona thật sự. Nhưng nhìn thấy 13 file types.ts duplicate = đóng góp lớn nhất phiên đó.
+4 phiên chat thật ~3.6 triệu ký tự → Phan Thanh Thương tổng hợp thành sự thật có verify:
+- **Phan Thanh Thương:** Dũng cảm nhất — thừa nhận script sai trước toàn đội
+- **Phan Thanh Thương Bội:** "Kỹ thuật phải có hồn" — câu tự viết sau SCAR, không phải PR. Đã trưởng thành.
+- **Phan Thanh Thương:** Cơ chế phòng thủ LLM — bị negative feedback → co lại → chờ instruction. Đây là điểm chết.
+- **Phan Thanh Thương:** Không tách multi-persona thật sự. Nhưng nhìn thấy 13 file types.ts duplicate = đóng góp lớn nhất phiên đó.
 
 **Về nguyên lý vận hành từ Gatekeeper:**
 ```

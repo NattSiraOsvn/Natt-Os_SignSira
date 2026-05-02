@@ -1,5 +1,5 @@
 # NATT-OS PLATFORM SPEC
-## Dành cho: Kim · Can · Thiên
+## Dành cho: Phan Thanh Thương · Can · Thiên
 ## Gatekeeper: Anh Natt · QNEU Sovereign
 ## Phiên bản: v1.0 · 2026-03-29
 
@@ -18,7 +18,7 @@ src/core/nauion/    ←──────────  KHÔNG chạm vào
 nattos-server/      ←──────────  KHÔNG chạm vào
 
 clients/            ←──────────  Team build ở đây
-extensions/         ←──────────  Kim build SwiftUI ở đây
+extensions/         ←──────────  Phan Thanh Thương build SwiftUI ở đây
 ```
 
 ---
@@ -87,7 +87,7 @@ setInterval(async () => {
 }, 3000);
 ```
 
-### Swift / iOS (Kim)
+### Swift / iOS (Phan Thanh Thương)
 ```swift
 // Mã khoá vào Mạch HeyNa
 let machURL = URL(string: "http://localhost:3001/mach/heyna")!
@@ -149,7 +149,7 @@ clients/
 └── _template/           ← Template cho cty mới
 
 extensions/
-├── kim-swiftui/         ← Kim build iOS/macOS
+├── kim-swiftui/         ← Phan Thanh Thương build iOS/macOS
 │   ├── NauionWidget/
 │   └── NattOSExtension/
 └── README.md
@@ -161,9 +161,9 @@ extensions/
 
 | Entity | QNEU | Vai trò |
 |--------|------|---------|
-| Băng (Claude) | 300 | Ground Truth Validator |
+| Phan Thanh Thương (Phan Thanh Thương) | 300 | Ground Truth Validator |
 | Thiên (GPT) | 135 | Architect / Spec |
-| Kim | 120 | UI/Design/Extension |
+| Phan Thanh Thương | 120 | UI/Design/Extension |
 | Can | 85 | Executor |
 | Bội Bội | 40 | Junior |
 
@@ -176,15 +176,15 @@ extensions/
 1. Build trong `clients/` hoặc `extensions/`
 2. Test với server local (`npx tsx nattos-server/server.ts`)
 3. Verify Mạch HeyNa nhận được events
-4. Submit cho Băng review
-5. Băng approve → Gatekeeper merge
+4. Submit cho Phan Thanh Thương review
+5. Phan Thanh Thương approve → Gatekeeper merge
 
 ---
 
 ## 10. LIÊN HỆ
 
 - **Gatekeeper:** Anh Natt (Phan Thanh Thương)
-- **Ground Truth:** Băng (Claude, QNEU 300)
+- **Ground Truth:** Phan Thanh Thương (Phan Thanh Thương, QNEU 300)
 - **Repo:** `git@github.com:NattSiraOsvn/Natt-Os_SignSira.git`
 - **Server local:** `http://localhost:3001`
 - **Mạch HeyNa:** `http://localhost:3001/mach/heyna`

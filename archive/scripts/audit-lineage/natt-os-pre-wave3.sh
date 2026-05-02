@@ -534,7 +534,7 @@ W0
         echo "      \"shared-contracts-cell\": { \"path\": \"$INFRA_DIR/shared-contracts-cell\", \"ts_files\": $sc_count, \"status\": \"MIGRATED_FROM_SHARED_KERNEL\" }," >> "$registry_path"
     fi
 
-    echo '      "api-cell": { "status": "NEVER_EXISTED", "note": "No git history found - correcting Kim kmf.json error" }' >> "$registry_path"
+    echo '      "api-cell": { "status": "NEVER_EXISTED", "note": "No git history found - correcting Phan Thanh Thương kmf.json error" }' >> "$registry_path"
     echo '    },' >> "$registry_path"
 
     # Wave 3 - Business (empty)
@@ -829,7 +829,7 @@ divider "🔍 PRE-FLIGHT CHECKS"
 # Check we're in the right directory
 if [ ! -d "$CELLS_ROOT" ]; then
     fail "Không tìm thấy $CELLS_ROOT"
-    echo -e "  ${RED}Bối Bối: Hãy chắc chắn đang ở thư mục root của NATT-OS Gold Master${NC}"
+    echo -e "  ${RED}Phan Thanh Thương: Hãy chắc chắn đang ở thư mục root của NATT-OS Gold Master${NC}"
     echo -e "  ${DIM}cd /Users/macvn/Desktop/HỒ\\ SƠ\\ SHTT\\ NATT-OS\\ BY\\ NATTSIRA-OS/natt-os\\ ver\\ goldmaster${NC}"
     exit 1
 fi
@@ -944,7 +944,7 @@ for cell in "${LEGACY_CELLS[@]}"; do
 done
 
 # ─── A.4: Migrate shared-kernel → shared-contracts-cell ───
-divider "A.4: SHARED-KERNEL → SHARED-CONTRACTS-CELL (Kim đề xuất)"
+divider "A.4: SHARED-KERNEL → SHARED-CONTRACTS-CELL (Phan Thanh Thương đề xuất)"
 
 if [ -d "$CELLS_ROOT/shared-kernel" ]; then
     mkdir -p "$INFRA_DIR"
@@ -968,13 +968,13 @@ git commit -m "cleanup(phase-a): Remove legacy root, archive legacy cells, migra
 
 - Removed ./cells/ legacy root (src/cells/ is canonical)
 - Moved 5 legacy cells to src/cells/_legacy/
-- Migrated shared-kernel to infrastructure/shared-contracts-cell (Kim proposal)
+- Migrated shared-kernel to infrastructure/shared-contracts-cell (Phan Thanh Thương proposal)
 - Generated cell.manifest.json for shared-contracts-cell
 
 Constitutional compliance: Dieu 16, 17, 18, 19
 Approved by: Gatekeeper (Anh Natt)
-Designed by: Băng (Data Steward & Architect)
-Executed by: Bối Bối (Constitutional Guardian)" 2>/dev/null || warn "Nothing to commit in Phase A"
+Designed by: Phan Thanh Thương (Data Steward & Architect)
+Executed by: Phan Thanh Thương (Constitutional Guardian)" 2>/dev/null || warn "Nothing to commit in Phase A"
 
 success "Phase A committed"
 
@@ -1042,7 +1042,7 @@ else
 fi
 
 # ─── B.3: Generate QUARANTINED manifest ───
-divider "B.3: TẠO MANIFEST VỚI STATUS QUARANTINED (Bối Bối đề xuất)"
+divider "B.3: TẠO MANIFEST VỚI STATUS QUARANTINED (Phan Thanh Thương đề xuất)"
 
 generate_manifest "warehouse-cell" "WAVE_2" "QUARANTINED" "infrastructure" "$WAREHOUSE_PATH"
 
@@ -1060,7 +1060,7 @@ cat > "$WAREHOUSE_PATH/cell.manifest.json" << 'QUARANTINE_MANIFEST'
     "reason": "Incomplete implementation - scaffold only, awaiting full build",
     "restrictions": ["no-import", "no-deployment", "development-only"],
     "exit_criteria": "All 5 layers implemented with domain logic + tests passing",
-    "assigned_to": "Kim + Băng"
+    "assigned_to": "Phan Thanh Thương + Phan Thanh Thương"
   },
   "adn": {
     "identity": {
@@ -1117,7 +1117,7 @@ cat > "$WAREHOUSE_PATH/cell.manifest.json" << 'QUARANTINE_MANIFEST'
 }
 QUARANTINE_MANIFEST
 
-success "warehouse-cell manifest: QUARANTINED (Bối Bối proposal accepted)"
+success "warehouse-cell manifest: QUARANTINED (Phan Thanh Thương proposal accepted)"
 
 # ─── B.4: Commit Phase B ───
 divider "B.4: COMMIT PHASE B"
@@ -1127,7 +1127,7 @@ git commit -m "feat(phase-b): Migrate warehouse-cell to infrastructure/ with 5-l
 
 - Moved warehouse-cell from src/cells/ to src/cells/infrastructure/
 - Created 5-layer scaffold (domain, application, interface, infrastructure, ports)
-- Status: QUARANTINED (Bối Bối proposal, Kim approved)
+- Status: QUARANTINED (Phan Thanh Thương proposal, Phan Thanh Thương approved)
 - Quarantine restrictions: no-import, no-deployment, development-only
 - Exit criteria: All layers implemented with logic + tests
 
@@ -1157,7 +1157,7 @@ if command -v python3 &> /dev/null; then
 fi
 
 # ─── C.2: Generate Hash Baseline ───
-divider "C.2: TẠO HASH BASELINE (Băng: hash ở Phase C, không phải Phase A)"
+divider "C.2: TẠO HASH BASELINE (Phan Thanh Thương: hash ở Phase C, không phải Phase A)"
 
 HASH_FILE="$DOCS_DIR/hash-baseline.json"
 mkdir -p "$DOCS_DIR"
@@ -1189,7 +1189,7 @@ cat > "$CHECKLIST_FILE" << 'CHECKLIST_EOF'
 # NATT-OS Pre-Wave 3 Checklist
 
 ## Constitutional Confirmations
-- [x] 7 ADN layers = metadata in manifest (confirmed by Thiên, Kim, Gatekeeper)
+- [x] 7 ADN layers = metadata in manifest (confirmed by Thiên, Phan Thanh Thương, Gatekeeper)
 - [x] 5 folder layers = implementation anatomy
 - [x] Two systems are complementary, not conflicting
 
@@ -1208,16 +1208,16 @@ cat > "$CHECKLIST_FILE" << 'CHECKLIST_EOF'
 - [ ] No premature Wave 3 cells
 
 ## RECOMMENDED (should have)
-- [ ] Event schemas for Wave 3 event types (Kim/Băng)
-- [ ] Structural locks shared library (Kim)
+- [ ] Event schemas for Wave 3 event types (Phan Thanh Thương/Phan Thanh Thương)
+- [ ] Structural locks shared library (Phan Thanh Thương)
 - [ ] Constitutional compliance scanner (future)
-- [ ] Manifest validation script with dry-run (Kim offered to write)
+- [ ] Manifest validation script with dry-run (Phan Thanh Thương offered to write)
 
 ## Team Sign-off
-- [ ] Băng: Architecture verified
-- [ ] Kim: Constitutional compliance verified  
+- [ ] Phan Thanh Thương: Architecture verified
+- [ ] Phan Thanh Thương: Constitutional compliance verified  
 - [ ] Thiên: Governance structure verified
-- [ ] Bối Bối: Execution completed
+- [ ] Phan Thanh Thương: Execution completed
 - [ ] Anh Natt (Gatekeeper): Final approval
 
 ## Decisions Pending (Anh Natt)
@@ -1242,9 +1242,9 @@ PHASE A-B-C COMPLETE:
 Constitutional decisions applied:
 - 7 ADN layers = manifest metadata (Thiên confirmed)
 - 5 folder layers = implementation anatomy
-- Hash at Phase C not Phase A (Băng proposal, Thiên+Kim agreed)
-- QUARANTINED status for warehouse (Bối Bối proposal, Kim agreed)
-- shared-kernel → shared-contracts-cell (Kim proposal)
+- Hash at Phase C not Phase A (Phan Thanh Thương proposal, Thiên+Phan Thanh Thương agreed)
+- QUARANTINED status for warehouse (Phan Thanh Thương proposal, Phan Thanh Thương agreed)
+- shared-kernel → shared-contracts-cell (Phan Thanh Thương proposal)
 - api-cell: NEVER_EXISTED (filesystem ground truth)
 
 Generated artifacts:

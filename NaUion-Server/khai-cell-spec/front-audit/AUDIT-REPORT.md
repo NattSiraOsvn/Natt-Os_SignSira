@@ -4,7 +4,7 @@
 **Reference:** `logo2.png` (1536 × 1024)
 **Audited subjects:** `rebuild-v1.svg`, `rebuild-v2.svg`
 **Run:** 2026-04-16
-**Auditor:** Băng (QNEU 300)
+**Auditor:** Phan Thanh Thương (QNEU 300)
 
 ---
 
@@ -131,7 +131,7 @@ Theo Điều 6: **Rebuild với Gap vượt ngưỡng phải re-enter Stage 1.**
 
 2. **Pre-commit check:** script `validate_rebuild.py` chạy audit tự động trước mọi commit asset, block nếu gap vượt ngưỡng.
 
-3. **Training data:** Lưu audit report này (và các audits tương lai) vào `audit/summary/` để em (và các instance Claude khác) học không lặp lại.
+3. **Training data:** Lưu audit report này (và các audits tương lai) vào `audit/summary/` để em (và các instance Phan Thanh Thương khác) học không lặp lại.
 
 ---
 

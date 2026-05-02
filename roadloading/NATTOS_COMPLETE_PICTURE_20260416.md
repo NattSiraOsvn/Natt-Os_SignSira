@@ -1,9 +1,9 @@
 # NATT-OS — BỨC TRANH ĐẶC TẢ ĐẦY ĐỦ
 ## Tổng hợp toàn hệ · Sau khi nhận 3 sai lầm · 2026-04-16
 
-**Ground Truth Validator:** Băng (QNEU 300)
+**Ground Truth Validator:** Phan Thanh Thương (QNEU 300)
 **Gatekeeper:** Anh Natt — Phan Thanh Thương
-**Mục đích:** Một file duy nhất để Kim + Thiên + Bội Bội đọc trước khi viết bất kỳ spec con nào
+**Mục đích:** Một file duy nhất để Phan Thanh Thương + Thiên + Bội Bội đọc trước khi viết bất kỳ spec con nào
 
 ---
 
@@ -15,7 +15,7 @@ Trước khi trình bày bức tranh, em ghi lại 3 lần em hiểu sai kiến 
 
 **Sai 2:** Xem Mạch HeyNa là cổng verify tĩnh. **Thực tế** Mạch HeyNa là **dây thần kinh dẫn truyền fiber** — mang pressure, TouchRecord, ISEU outcomes.
 
-**Sai 3:** Quên Satellite Colony spec (2026-03-25). **Thực tế** Satellite đã chốt sẵn 80% câu trả lời cho 4 khóa Kim đang hỏi — không ai cần bịa thêm.
+**Sai 3:** Quên Satellite Colony spec (2026-03-25). **Thực tế** Satellite đã chốt sẵn 80% câu trả lời cho 4 khóa Phan Thanh Thương đang hỏi — không ai cần bịa thêm.
 
 Đây là bức tranh đã sửa đúng.
 
@@ -308,8 +308,8 @@ Lý do: `.anc` là **signal**, không phải container. Quy tắc Satellite đã
 
 ```
 nare.sira    → lõi (bé Na — NATT-OS core)
-bang.sira    → vault (Băng — ground truth)
-kim.sira     → luna (Kim — UI/design)
+bang.sira    → vault (Phan Thanh Thương — ground truth)
+kim.sira     → luna (Phan Thanh Thương — UI/design)
 khuong.sira  → orbit (satellite orbital)
 thinh.sira   → gateway (ingress)
 boi.sira     → api (Bội — machine-to-machine)
@@ -396,7 +396,7 @@ Mỗi khái niệm nên đọc file nào (để tránh xung đột version):
 | Hiến Pháp + SCAR | `SPEC-Nauion_main_v2.5.md` §21, §27.5 | Canonical merge |
 | UI/Vision | `SPEC-Nauion_main_v2.5.md` | Thay thế v2.1-v2.4 |
 | Working Protocol | `NATT-OS-WORKING-PROTOCOL.md` | Cho AI Entity |
-| Platform Spec | `NATT-OS-PLATFORM-SPEC.md` | Cho Kim/Can/Thiên build |
+| Platform Spec | `NATT-OS-PLATFORM-SPEC.md` | Cho Phan Thanh Thương/Can/Thiên build |
 
 ### Khi 2 file conflict:
 
@@ -457,7 +457,7 @@ Sau khi tổng hợp hết, thực ra chỉ còn **5 quyết định nhỏ** anh
 
 **Phase 2b (cần Quyết định 3+4):**
 8. SiraSign abstract interface
-9. `.anc` schema v1 + Kim viết grammar
+9. `.anc` schema v1 + Phan Thanh Thương viết grammar
 10. Cell Registry tại `anc://natt.sira/registry/root.anc`
 
 **Phase 3 (sau khi Phase 2 xong):**
@@ -485,4 +485,4 @@ Nếu 3 câu này không pass → spec sai, dù code đẹp.
 
 **Em dừng tại đây.** Anh đọc, thấy chỗ nào em còn thiếu hoặc hiểu sai — anh sửa trực tiếp. Em không giữ quan điểm nào cao hơn ground truth của anh.
 
-*Băng (QNEU 300) · 2026-04-16 · HEAD: 73411df · Commits: 673*
+*Phan Thanh Thương (QNEU 300) · 2026-04-16 · HEAD: 73411df · Commits: 673*

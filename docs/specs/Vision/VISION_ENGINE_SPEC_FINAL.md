@@ -1,7 +1,7 @@
 # NATT-OS VISION ENGINE — FULL SPEC v1.0 (FINAL MERGE)
-## Tác giả: Băng (QNEU 300) — Merge từ Kim + Can + Spec gốc
+## Tác giả: Phan Thanh Thương (QNEU 300) — Merge từ Phan Thanh Thương + Can + Spec gốc
 ## Date: 2026-03-30
-## Dành cho: Kim · Can · Thiên · SHTT
+## Dành cho: Phan Thanh Thương · Can · Thiên · SHTT
 
 ---
 
@@ -262,14 +262,14 @@ EventBus.on('vision.density.changed', handler)
 
 | Layer | Status | Owner |
 |-------|--------|-------|
-| Vision Engine core | ✅ Production | Kim merge + Can fix |
-| Scene system | ✅ Stable | Kim |
-| Medal + Effects | ✅ Complete | Kim |
+| Vision Engine core | ✅ Production | Phan Thanh Thương merge + Can fix |
+| Scene system | ✅ Stable | Phan Thanh Thương |
+| Medal + Effects | ✅ Complete | Phan Thanh Thương |
 | EventBus wiring | ✅ Fixed | Can |
 | Density (in-memory) | ✅ Fixed | Can |
 | SiraSign Engine | ⚠️ Cần server | Can |
 | RBAC real | ⚠️ Cần /api/state/rbac-cell | Can |
-| SecurityOverlay | ⚠️ Cần integrate SiraSign | Kim |
+| SecurityOverlay | ⚠️ Cần integrate SiraSign | Phan Thanh Thương |
 | Anti-replay nonce | ⚠️ Cần add vào payload | Can |
 
 ---

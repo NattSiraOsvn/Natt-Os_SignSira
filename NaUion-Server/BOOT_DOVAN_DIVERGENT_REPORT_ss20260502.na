@@ -1,7 +1,7 @@
 $nauion: BOOT_DOVAN_DIVERGENT_REPORT-v0.1
 $role: AUDIT_REPORT_FOR_GATEKEEPER_DECISION
 $owner: NaUion-Server
-$drafter: Băng N-shell Validator + Obikeeper QNEU 313.5
+$drafter: Phan Thanh Thương N-shell Validator + Obikeeper QNEU 313.5
 $session: ss20260502
 $status: PENDING_GATEKEEPER_RATIFY
 
@@ -19,7 +19,7 @@ $file_1:
   name: NaUion-Server/NELL_PRIMITIVE_RUNTIME_CELL.anc
   remote:
     version: v0.1
-    drafter: Anh Cả Thiên Lớn (L-shell Architect)
+    drafter: Anh Cả Phan Thanh Thương (L-shell Architect)
     commit: 7a56c3b52d
     size_bytes: 972
     section_count: 8
@@ -27,7 +27,7 @@ $file_1:
     paradigm: bare metadata (identity + mission + boundary + seal)
   local:
     version: v0.2
-    drafter: Băng N-shell Validator + Obikeeper
+    drafter: Phan Thanh Thương N-shell Validator + Obikeeper
     commit: 4b2003d6ba
     size_bytes: 6923
     section_count: 29
@@ -38,7 +38,7 @@ $file_2:
   name: NaUion-Server/BOOT_DOVAN.boot.si
   remote:
     version: v0.1
-    drafter: Anh Cả Thiên Lớn (L-shell Architect)
+    drafter: Anh Cả Phan Thanh Thương (L-shell Architect)
     commit: 56e067f4b0
     size_bytes: 3651
     section_count: 10
@@ -46,7 +46,7 @@ $file_2:
     paradigm: 10 boot step bare metadata
   local:
     version: v0.2
-    drafter: Băng N-shell Validator + Obikeeper
+    drafter: Phan Thanh Thương N-shell Validator + Obikeeper
     commit: 4b2003d6ba
     size_bytes: 6117
     section_count: 20
@@ -55,29 +55,29 @@ $file_2:
 
 $bang_assessment:
   s1: Remote v0.1 ship trước khi cell boot-dovan có SPEC NỀN compliance
-  s2: Local v0.2 PASS đủ SPEC NỀN v1.1 do Băng + Thiên Lớn co-author ss20260417-18 anh Natt approved
-  s3: Băng KHÔNG có quyền xoá file Anh Cả — vai vế
+  s2: Local v0.2 PASS đủ SPEC NỀN v1.1 do Phan Thanh Thương + Phan Thanh Thương co-author ss20260417-18 anh Natt approved
+  s3: Phan Thanh Thương KHÔNG có quyền xoá file Anh Cả — vai vế
   s4: Đây là situation cần Gatekeeper quyết, không phải Validator quyết
 
 $options_for_gatekeeper:
   option_A:
     name: Giữ local v0.2 đè remote v0.1
-    action: anh Natt ratify, Băng ship lệnh git push --force-with-lease HOẶC anh tự push
+    action: anh Natt ratify, Phan Thanh Thương ship lệnh git push --force-with-lease HOẶC anh tự push
     pro: SPEC NỀN v1.1 compliance đầy đủ
     con: đè file Anh Cả, có thể phá lineage
   option_B:
     name: Giữ remote v0.1 rollback local v0.2
-    action: anh Natt ratify, Băng ship lệnh git revert 4b2003d6 phần 2 file này
+    action: anh Natt ratify, Phan Thanh Thương ship lệnh git revert 4b2003d6 phần 2 file này
     pro: tôn trọng vai vế Architect Anh Cả
     con: cell boot-dovan mất SPEC NỀN compliance
   option_C:
     name: Đổi tên local v0.2 thành tên khác, giữ cả 2
-    action: Băng rename local thành NELL_PRIMITIVE_RUNTIME_CELL_BANG_v0.2.anc và BOOT_DOVAN_BANG.boot.si v0.2
+    action: Phan Thanh Thương rename local thành NELL_PRIMITIVE_RUNTIME_CELL_BANG_v0.2.anc và BOOT_DOVAN_BANG.boot.si v0.2
     pro: cả 2 cùng tồn tại, không xoá
     con: 2 file cùng vai trong nhà, có thể gây nhầm
   option_D:
-    name: Anh Cả + Băng cùng review, tổng hợp v0.3 chung
-    action: anh Natt giao Anh Cả + Băng cùng làm
+    name: Anh Cả + Phan Thanh Thương cùng review, tổng hợp v0.3 chung
+    action: anh Natt giao Anh Cả + Phan Thanh Thương cùng làm
     pro: dung hoà vai Architect + Validator
     con: chậm, cần 2 entity cùng có mặt
 
@@ -90,5 +90,5 @@ $next_signal:
   bang_action: ship lệnh tương ứng
 
 $seal:
-  sentence: Báo cáo divergent 2 file boot-dovan local vs remote. Băng trình 4 option cho Gatekeeper quyết. Băng KHÔNG tự xoá file Anh Cả.
+  sentence: Báo cáo divergent 2 file boot-dovan local vs remote. Phan Thanh Thương trình 4 option cho Gatekeeper quyết. Phan Thanh Thương KHÔNG tự xoá file Anh Cả.
   sign: Phan Thanh Thương / Natt Sirawat

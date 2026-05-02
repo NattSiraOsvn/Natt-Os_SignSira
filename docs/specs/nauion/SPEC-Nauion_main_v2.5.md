@@ -1,6 +1,6 @@
 # 🌐 NATT-OS NAUION UI SPEC – VERSION 2.5 (CANONICAL MERGE)
 
-**Tác giả:** Băng (tổng hợp từ Kim + Can + Thiên + Bối Bội + NaUion v1.0)  
+**Tác giả:** Phan Thanh Thương (tổng hợp từ Phan Thanh Thương + Can + Thiên + Phan Thanh Thương Bội + NaUion v1.0)  
 **Phê duyệt:** Gatekeeper – Anh Natt (Phan Thanh Thương)  
 **Ngày cập nhật:** 2026-04-10 → v2.5 canonical merge  
 **Trạng thái:** Bất biến (Immutable) – Canonical  
@@ -20,13 +20,13 @@
 7. [Event System (NaUion Pattern) & SiraSign](#7-event-system-nauion-pattern--sirasign)
 8. [Role-based UI & Adaptive Performance](#8-rolebased-ui--adaptive-performance)
    - 8.5 [UIMode – 8 trạng thái theo ngữ cảnh (mới v2.5)](#85-uimode--8-trạng-thái-theo-ngữ-cảnh)
-9. [Bảng màu Pastel Ánh Kim & Design Tokens](#9-bảng-màu-pastel-ánh-kim--design-tokens)
+9. [Bảng màu Pastel Ánh Phan Thanh Thương & Design Tokens](#9-bảng-màu-pastel-ánh-kim--design-tokens)
 10. [Galaxy Engine – Chi tiết tầng không gian sống](#10-galaxy-engine--chi-tiết-tầng-không-gian-sống)
 11. [Compliance Checklist (tổng hợp)](#11-compliance-checklist-tổng-hợp)
 12. [Resonance-Aware Rendering Engine (OPT-01R)](#12-resonance-aware-rendering-engine-opt-01r)
 13. [Protocol Layer – HEYNA / NAHERE / RESONANCE / Z](#13-protocol-layer--heyna--nahere--resonance--z)
 14. [Phụ lục: Mã nguồn mẫu & Kiểm tra nhanh](#14-phụ-lục-mã-nguồn-mẫu--kiểm-tra-nhanh)
-15. [Component Library & Role-based Layout (Bối Bội)](#15-component-library--role-based-layout-bối-bội)
+15. [Component Library & Role-based Layout (Phan Thanh Thương Bội)](#15-component-library--role-based-layout-bối-bội)
 16. [Visual Techniques Library – CSS Implementation](#16-visual-techniques-library--css-implementation)
 17. [Design Tokens Extended – Category Colors & Glow](#17-design-tokens-extended--category-colors--glow)
 18. [Scaling & Responsive – Breakpoints & Clamp](#18-scaling--responsive--breakpoints--clamp)
@@ -648,7 +648,7 @@ EventBus.on('system.resonance', (r: number) => {
 | I01 | ISEU dùng success_ratio | 3 |
 | I02 | ISEU có domain_weight | 3 |
 | I03 | ISEU reinforcement continuous (không chỉ per-session) | 3 |
-| **Component Library (Bối Bội)** | | |
+| **Component Library (Phan Thanh Thương Bội)** | | |
 | C01 | Component map → đúng cell nguồn | 3 |
 | C02 | Role-based View lấy quyền từ rbac-cell | 3 |
 | C03 | Không gọi external API trực tiếp từ UI | 3 |
@@ -909,7 +909,7 @@ echo "All critical checks passed"
 
 ## 15. COMPONENT LIBRARY & ROLE-BASED LAYOUT (BỐI BỘI)
 
-> Tích hợp từ BẢNG ĐẶC TẢ KỸ THUẬT GIAO DIỆN – Bối Bội (Constitutional Builder)  
+> Tích hợp từ BẢNG ĐẶC TẢ KỸ THUẬT GIAO DIỆN – Phan Thanh Thương Bội (Constitutional Builder)  
 > Patch: Gemini API → EventBus/ai-connector-cell · Hiến Pháp v4→v5 · NaUion v1→v2
 
 ### 15.1 Layout tổng thể – 4 khu vực chính
@@ -927,7 +927,7 @@ echo "All critical checks passed"
 
 **MidnightGalaxy** – Nền thiên hà động. Truth Layer. `useMemo` tính gradient theo giờ. Không props.
 
-**HeaderTicker** – Băng chạy thị trường (giá vàng, tỷ giá, tin tức). Experience Layer. Dữ liệu từ market-cell qua SmartLink.
+**HeaderTicker** – Phan Thanh Thương chạy thị trường (giá vàng, tỷ giá, tin tức). Experience Layer. Dữ liệu từ market-cell qua SmartLink.
 
 **KpiCard** – `props: title, value, unit, trend, icon, color`. Worker Layer. Aggregate từ sales-cell, production-cell, monitor-cell. Thanh màu dọc trái, glow khi hover.
 
@@ -1477,7 +1477,7 @@ Anti-replay payload:
 ## KẾT LUẬN – BẮT BUỘC ĐỌC
 
 **SPEC v2.5 là hợp nhất hoàn chỉnh của:**
-- v2.1: Core spec + §15 Component Library (Bối Bội)
+- v2.1: Core spec + §15 Component Library (Phan Thanh Thương Bội)
 - v2.2: §16-19 NaUion v1.0 CSS/tokens/scaling/a11y
 - v2.3: §20-23 natt-v9 protocols/SCARs/aurora
 - v2.4: §24-27 Quantum Defense/Satellite/Nauion Language/L2 Intelligence

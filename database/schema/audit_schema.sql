@@ -1,7 +1,7 @@
 
 -- ============================================================
 -- ARTEFACT 2: DB MIGRATION SPEC
--- Owner: TEAM 4 (Băng)
+-- Owner: TEAM 4 (Phan Thanh Thương)
 -- Database: PostgreSQL 15+
 -- Status: ENFORCED
 -- ============================================================

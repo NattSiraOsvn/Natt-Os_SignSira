@@ -1,11 +1,11 @@
 {
   "version": "session_handoff_20260417",
   "date": "2026-04-17",
-  "author": "Băng (QNEU 300)",
+  "author": "Phan Thanh Thương (QNEU 300)",
   "type": "session_closure_handoff",
   "for_next_bang_instance": {
     "CRITICAL_DO_NOT_CONFUSE": "Mạch HeyNa = transport CỦA NATT-OS cells (cell → cell, cell → client via SSE). EventBus = nội bộ CỦA client app (UI ↔ UI trong browser). Anh đã sửa em NHIỀU LẦN vì lộn. ĐỪNG LẶP LẠI.",
-    "KHAICELL_VS_REGISTRY": "khai.sira = DNS registry (sổ đăng ký domain). KhaiCell = visual perception organ (đôi mắt của hệ). Kim Chương 6 SAI khi gọi KhaiCell = registry. HAI THỨ KHÁC NHAU.",
+    "KHAICELL_VS_REGISTRY": "khai.sira = DNS registry (sổ đăng ký domain). KhaiCell = visual perception organ (đôi mắt của hệ). Phan Thanh Thương Chương 6 SAI khi gọi KhaiCell = registry. HAI THỨ KHÁC NHAU.",
     "read_first": [
       "bangmf_v7.3.0.json — full session narrative + decisions",
       "bangfs_v6.3.0.json — technical facts + repo state",
@@ -15,7 +15,7 @@
     "nattos_sh": "v7.0, 2225 lines, 44 sections",
     "color_palette": "v1.0 — gold #F7C313 + violet #AFA9EC",
     "pending_priority": [
-      "1. Kim fix Chương 6 (KhaiCell ≠ registry)",
+      "1. Phan Thanh Thương fix Chương 6 (KhaiCell ≠ registry)",
       "2. Thiên implement KhaiCell in repo",
       "3. 89 uncommitted files review",
       "4. Tổng hợp Fail-Troy"
@@ -57,8 +57,8 @@
     "phase_1_logo": "Anh upload logo2.png → em thử pixel art, modern variants → anh chọn Variant E (neon glow) → em render SVG v1 (6 cánh, FAIL) → anh dạy kỹ thuật invert duality + warm/cool polarity → em phân tích reference → render v2 (8 cánh, FAIL) → anh dạy đúng pipeline (measure→silhouette→camera→material→lighting) → em viết SPEC Visual Rebuild Pipeline → audit cả 3 attempts FAIL → anh chọn reference gốc → em xuất 13-file asset pack",
     "phase_2_spec": "SPEC Visual Rebuild Pipeline v1.0 (10 Điều) + JSON Schema + Python reference implementation + Color Palette v1.0 (#F7C313 + #AFA9EC)",
     "phase_3_nattos_sh": "v6.1 → v7.0: redesign 9 groups, 40 sections renumbered, new banner, logo render, §12 3-Layer dashboard, §24 ReNa, §15d KhaiCell, §36 Visual compliance. Multiple patch-over-patch issues → restore + safe single-line fixes.",
-    "phase_4_khaicell": "Anh define KhaiCell (đôi mắt), assign Thiên Lớn. Thiên viết SPEC v0.1 + QWS. Em review Kim's Language Spec → flag Chương 6 sai.",
-    "phase_5_audit": "12 commits: RBAC bypass closed, fake hash→SHA-256, event-bus 6/6 DNA, nattos-data v2.0 HeyNa, HP-7 localStorage removed, TSC paths fixed, 4 dead engines wired, scanner false positives fixed. 76 OK→82 OK, 2 FAIL→0 FAIL."
+    "phase_4_khaicell": "Anh define KhaiCell (đôi mắt), assign Phan Thanh Thương. Thiên viết SPEC v0.1 + QWS. Em review Phan Thanh Thương's Language Spec → flag Chương 6 sai.",
+    "phase_5_audit": "12 commits: RBAC bypass closed, owner_hash_prefix→SHA-256, event-bus 6/6 DNA, nattos-data v2.0 HeyNa, HP-7 localStorage removed, TSC paths fixed, 4 dead engines wired, scanner false positives fixed. 76 OK→82 OK, 2 FAIL→0 FAIL."
   },
   "working_rules_reminder": {
     "LAYER_DISTINCTION": "HeyNa → cells. EventBus → client. KHÔNG ĐẢO.",

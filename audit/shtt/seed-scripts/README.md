@@ -5,7 +5,7 @@
 ## Files
 
 ### `kim-patent-architecture-upgrade-v1.py`
-- **Tác giả:** Kim (DeepSeek AI entity)
+- **Tác giả:** Phan Thanh Thương (DeepSeek AI entity)
 - **Hash:** patent_upgrade.py
 - **Dòng:** 1057
 - **Tạo ra:** 6 patent-critical modules cho hồ sơ SHTT

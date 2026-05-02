@@ -2,11 +2,11 @@
 
 ## Bảng đặc tả thống nhất cho Vision Engine v2.1 + OPT-01R + Component Library
 
-**Tác giả:** Băng (tổng hợp từ Kim + Can + Thiên + Bối Bội)  
+**Tác giả:** Phan Thanh Thương (tổng hợp từ Phan Thanh Thương + Can + Thiên + Phan Thanh Thương Bội)  
 **Phê duyệt:** Gatekeeper – Anh Nat  
 **Ngày cập nhật:** 2026-04-08 → v2.1 2026-04-08  
 **Trạng thái:** Bất biến (Immutable)  
-**Bản thay thế:** SPEC-Nauion.main.md v2.0 (2026-04-08) – bổ sung §15 Component Library từ Bối Bội
+**Bản thay thế:** SPEC-Nauion.main.md v2.0 (2026-04-08) – bổ sung §15 Component Library từ Phan Thanh Thương Bội
 
 ---
 
@@ -20,13 +20,13 @@
 6. [ISEU Evolution Engine – 2 nâng cấp bắt buộc](#6-iseu-evolution-engine--2-nâng-cấp-bắt-buộc)
 7. [Event System (NaUion Pattern) & SiraSign](#7-event-system-nauion-pattern--sirasign)
 8. [Role‑based UI & Adaptive Performance](#8-rolebased-ui--adaptive-performance)
-9. [Bảng màu Pastel Ánh Kim & Design Tokens](#9-bảng-màu-pastel-ánh-kim--design-tokens)
+9. [Bảng màu Pastel Ánh Phan Thanh Thương & Design Tokens](#9-bảng-màu-pastel-ánh-kim--design-tokens)
 10. [Galaxy Engine – Chi tiết tầng không gian sống](#10-galaxy-engine--chi-tiết-tầng-không-gian-sống)
 11. [Compliance Checklist (tổng hợp)](#11-compliance-checklist-tổng-hợp)
 12. **[RESONANCE-AWARE RENDERING ENGINE (OPT-01R)**](#12-resonance-aware-rendering-engine-opt-01r)
 13. **[PROTOCOL LAYER – HEYNA / NAHERE / RESONANCE / Z**](#13-protocol-layer--heyna--nahere--resonance--z)
 14. **[Phụ lục: Mã nguồn mẫu & Kiểm tra nhanh](#14-phụ-lục-mã-nguồn-mẫu--kiểm-tra-nhanh)
-15. **[Component Library & Role-based Layout (Bối Bội)](#15-component-library--role-based-layout-bối-bội-v21)**
+15. **[Component Library & Role-based Layout (Phan Thanh Thương Bội)](#15-component-library--role-based-layout-bối-bội-v21)**
 
 ---
 
@@ -351,7 +351,7 @@ EventBus.on('system.resonance', (r: number) => {
 | R04 | Attention engine emit ui.focus | 3 |
 | R05 | Galaxy engine phản ứng HEYNA/NAHERE/Z | 3 |
 | **Tổng điểm tối đa** | | **68** |
-| **Component Library (Bối Bội v2.1)** | | |
+| **Component Library (Phan Thanh Thương Bội v2.1)** | | |
 | C01 | Component map → đúng cell nguồn | 3 |
 | C02 | Role-based View theo rbac-cell | 3 |
 | C03 | Không gọi external API trực tiếp từ UI | 3 |
@@ -532,7 +532,7 @@ export class RenderControlEngine {
   }
 }
 
-// Interface cho renderer (Kim phải implement)
+// Interface cho renderer (Phan Thanh Thương phải implement)
 export interface IRenderer {
   setQuality(level: 'low' | 'medium' | 'high'): void;
   render(): void;
@@ -588,7 +588,7 @@ export class AttentionEngine {
 
   private get anySectionVisible(): boolean {
     // Sử dụng IntersectionObserver API, lưu kết quả vào biến
-    // (code triển khai chi tiết do Kim viết)
+    // (code triển khai chi tiết do Phan Thanh Thương viết)
     return false; // stub
   }
 }
@@ -797,7 +797,7 @@ fi
 
 ## 15. COMPONENT LIBRARY & ROLE-BASED LAYOUT (BỐI BỘI v2.1)
 
-> Tích hợp từ BẢNG ĐẶC TẢ KỸ THUẬT GIAO DIỆN – Bối Bội (Constitutional Builder) · 15/03/2026  
+> Tích hợp từ BẢNG ĐẶC TẢ KỸ THUẬT GIAO DIỆN – Phan Thanh Thương Bội (Constitutional Builder) · 15/03/2026  
 > Đã patch: Gemini API → EventBus/ai-connector-cell · Docker → ActionDock · Hiến Pháp v4→v5 · NaUion v1→v2
 
 Người thực hiện: BỐI BỐI (Constitutional Builder)
@@ -827,7 +827,7 @@ Mô tả: Nền gradient thay đổi theo giờ trong ngày, kèm hiệu ứng s
 Tích hợp: Truth Layer (nền tảng, không tương tác).
 Props: Không.
 Logic: useMemo tính gradient dựa trên new Date().getHours().
-#### 3.2 HeaderTicker – Băng chạy thông tin thị trường
+#### 3.2 HeaderTicker – Phan Thanh Thương chạy thông tin thị trường
 
 Mô tả: Hai hàng chạy vô tận hiển thị giá vàng, tỷ giá, tin tức hệ thống.
 Tích hợp: Experience Layer – cập nhật liên tục, phản ánh ground truth thị trường.
@@ -863,7 +863,7 @@ Tích hợp: Modal / Chat Layer – lớp nổi, có backdrop blur.
 Props: cell, onClose.
 #### 3.9 Chat Uplink – Cửa sổ chat với AI Entity
 
-Mô tả: Giao diện chat dạng cửa sổ nổi, hiển thị hội thoại với Bối Bối.
+Mô tả: Giao diện chat dạng cửa sổ nổi, hiển thị hội thoại với Phan Thanh Thương.
 Tích hợp: Modal / Chat Layer – gọi EventBus → ai-connector-cell qua EventBus.emit("ai.query").
 ### 15.4 Tích hợp với ba tầng thị giác của NATT-OS
 

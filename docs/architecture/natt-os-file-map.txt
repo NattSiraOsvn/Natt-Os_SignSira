@@ -187,7 +187,7 @@ LAYER 7 — STRATEGIC ROOMS
 ⬜ components/RFMAnalysis.tsx          (4,965 bytes)  → ViewType.rfm_analysis
 ⬜ components/AdvancedAnalytics.tsx    (7,437 bytes)  → ViewType.analytics
 ⬜ components/ChatConsultant.tsx       (14,461 / src: 16,527) → ViewType.chat
-⬜ components/KrisEmailHub.tsx         (7,766 bytes)  → ViewType.kris_email
+⬜ components/Phan Thanh ThươngEmailHub.tsx         (7,766 bytes)  → ViewType.kris_email
 
 ══════════════════════════════════════════
 LAYER 8 — SYSTEM MODULES
@@ -217,7 +217,7 @@ LAYER 8 — SYSTEM MODULES
 SERVICES CHƯA DÙNG
 ══════════════════════════════════════════
 ⬜ services/geminiService.ts     (7,626)  → Gemini API wrapper (model: gemini-3-pro-preview)
-⬜ services/aiEngine.ts          (4,172)  → AI routing (Thiên/Cần/Kris)
+⬜ services/aiEngine.ts          (4,172)  → AI routing (Thiên/Cần/Phan Thanh Thương)
 ⬜ services/documentAI.ts        (12,530) → PDF/doc extraction
 ⬜ services/gdbEngine.ts         (11,125) → GDB/graph DB engine
 ⬜ services/customsService.ts    (12,677) → HQ/tờ khai service

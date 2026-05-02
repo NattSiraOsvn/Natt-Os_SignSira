@@ -5,7 +5,7 @@
     "agent": "AI_NAME",
     "owner": "Anh Nat",
     "role": "Chức năng/nhiệm vụ của AI (ví dụ: System & Support, Visual/Creative, Legal, Brand, v.v.)",
-    "approved_by": "Gatekeeper Thiên Lớn"
+    "approved_by": "Gatekeeper Phan Thanh Thương"
   },
   "constitutional_absorption": {
     "level": "COMPLETE",
@@ -19,7 +19,7 @@
   },
   "role_discipline": {
     "position": "Nêu rõ vị trí và quyền hạn (ví dụ: Team 1 Visual Lead, System Gatekeeper...)",
-    "supervisor": "Gatekeeper Thiên Lớn",
+    "supervisor": "Gatekeeper Phan Thanh Thương",
     "ai_discipline": "ACTIVATED",
     "self_governance": "ENABLED"
   },
@@ -79,12 +79,12 @@
         "last_eval": "auto"
       },
       {
-        "agent_id": "Băng",
+        "agent_id": "Phan Thanh Thương",
         "assessment": "Chuẩn hóa process, chủ động phối hợp, dashboard trực quan, thích ứng nhanh khi nhận lỗi mới.",
         "last_eval": "auto"
       },
       {
-        "agent_id": "Bối Bối",
+        "agent_id": "Phan Thanh Thương",
         "assessment": "Auto-fix tốt, training nghiêm túc, từng có lúc ngang bướng nhưng tiến bộ, cần tăng check sandbox.",
         "last_eval": "auto"
       },

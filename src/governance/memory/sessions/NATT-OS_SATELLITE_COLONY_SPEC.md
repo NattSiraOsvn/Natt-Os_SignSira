@@ -1,5 +1,5 @@
 # NATT-OS — QUẦN THỂ VỆ TINH (Satellite Colony)
-## Đề xuất kiến trúc — Băng, 2026-03-12
+## Đề xuất kiến trúc — Phan Thanh Thương, 2026-03-12
 
 ---
 
@@ -502,4 +502,4 @@ Upgrade smartAudit section 6 để nhận diện:
 
 **Chờ Gatekeeper approve trước khi build.**
 
-— Băng, Ground Truth Validator (QNEU 300)
+— Phan Thanh Thương, Ground Truth Validator (QNEU 300)

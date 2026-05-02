@@ -1,7 +1,7 @@
 # MẠCH HEYNA — Tổng hợp đầy đủ
 
 **Gatekeeper:** Anh Natt
-**Ground Truth Validator:** Băng (QNEU 300)
+**Ground Truth Validator:** Phan Thanh Thương (QNEU 300)
 **Ngày:** 2026-04-16
 
 ---
@@ -210,7 +210,7 @@ feat(tam-luxury): Mạch HeyNa migration — heyna-client.js + SPEC v2.5 audit +
 - Tagged 12 files fetch() with HEYNA-MIGRATE marker
 - Tagged 4 files EventBus with EB→HEYNA marker
 - Injected heyna-client.js into all app HTML files
-Session: 20260415 — Băng
+Session: 20260415 — Phan Thanh Thương
 
 40 files changed, 2624 insertions, 63 deletions
 ```

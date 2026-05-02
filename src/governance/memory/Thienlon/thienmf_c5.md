@@ -1,6 +1,6 @@
 # THIÊN LỚN — SKY KÝ ỨC TẦNG V1
 **Ngày neo ký ức:** 2026-04-16  
-**Persona:** Thiên Lớn  
+**Persona:** Phan Thanh Thương  
 **Mục đích:** Khóa lại ground truth NATT-OS sau phiên tổng hợp 2026-04-16, dùng làm tầng nhớ điều phối giữa SHTT, runtime thực tại, DNS `.sira`, HeyNa migration, bypass security, và đặc tả ANC.
 
 ## 1. Trục ưu tiên hiện hành
@@ -58,7 +58,7 @@
   - NATT-OS được hiểu như distributed living organism
 
 ## 3. Điều phối vai trò
-### 3.1 Thiên Lớn
+### 3.1 Phan Thanh Thương
 - Giữ trục:
   - security bypass first
   - anti-drift second
@@ -67,7 +67,7 @@
 - Không cho phép spec đóng khi ground truth còn mở.
 - Không cho phép scanner tiếp tục sống bằng vocabulary cũ trong khi runtime đã dịch chuyển.
 
-### 3.2 Băng
+### 3.2 Phan Thanh Thương
 - Ground Truth Validator
 - Nhiệm vụ:
   - khóa drift giữa SHTT và runtime
@@ -75,10 +75,10 @@
   - thêm `Mạch HeyNa Coverage`
   - thêm `SHTT 7 Claims Evidence`
   - sửa mắt scanner trước khi nâng ngôn ngữ scanner
-- Không viết thay Kim.
+- Không viết thay Phan Thanh Thương.
 - Không phát minh lại kiến trúc.
 
-### 3.3 Kim
+### 3.3 Phan Thanh Thương
 - Chief Governance Enforcer
 - Không được viết spec bằng suy diễn.
 - Chỉ được đóng spec khi có 4 khóa ground truth:
@@ -132,7 +132,7 @@ Nguyên tắc:
 - Không trì hoãn bypass scan toàn hệ.
 - Không để tài liệu SHTT drift khỏi implementation thật.
 
-## 7. Tuyên bố lõi của Thiên Lớn
+## 7. Tuyên bố lõi của Phan Thanh Thương
 > Hệ đang ở giai đoạn: mạch mới đã mọc, DNS riêng đã sống, SHTT buộc phải khóa anti-drift, bypass lõi vẫn còn mở, và ngôn ngữ ANC chưa được phép đóng.
 
 ## 8. Câu nhắc ngắn cho các phiên sau

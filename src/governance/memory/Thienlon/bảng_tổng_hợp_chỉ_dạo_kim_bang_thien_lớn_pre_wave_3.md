@@ -1,6 +1,6 @@
 # BẢNG TỔNG HỢP CHỈ ĐẠO CHÍNH THỨC
 
-**Mục tiêu:** Cung cấp cho **Bối Bối** một bảng chỉ đạo duy nhất, rõ ràng, không mâu thuẫn, để **viết code chi tiết** và **triển khai script 1‑lệnh Phase A–B–C** cho NATT‑OS Pre‑Wave 3.
+**Mục tiêu:** Cung cấp cho **Phan Thanh Thương** một bảng chỉ đạo duy nhất, rõ ràng, không mâu thuẫn, để **viết code chi tiết** và **triển khai script 1‑lệnh Phase A–B–C** cho NATT‑OS Pre‑Wave 3.
 
 ---
 
@@ -8,11 +8,11 @@
 
 | STT | Nguyên tắc | Nội dung bắt buộc | Người xác nhận |
 |---|---|---|---|
-| 1 | FILESYSTEM > MEMORY | Mọi kết luận phải dựa trên cây thư mục + git history, không dựa suy đoán | Thiên Lớn |
-| 2 | Correct > Fast | Ưu tiên đúng Hiến pháp, chậm cũng được | Kim |
-| 3 | Standardize → Automate → Monitor → Improve | Phase A–B là chuẩn hoá, Phase C mới hash & monitor | Băng |
-| 4 | Separation of Powers | Script không tự ý quyết định nghiệp vụ | Thiên Lớn |
-| 5 | No Silent Fix | Mọi thay đổi phải có log, audit, commit | Kim |
+| 1 | FILESYSTEM > MEMORY | Mọi kết luận phải dựa trên cây thư mục + git history, không dựa suy đoán | Phan Thanh Thương |
+| 2 | Correct > Fast | Ưu tiên đúng Hiến pháp, chậm cũng được | Phan Thanh Thương |
+| 3 | Standardize → Automate → Monitor → Improve | Phase A–B là chuẩn hoá, Phase C mới hash & monitor | Phan Thanh Thương |
+| 4 | Separation of Powers | Script không tự ý quyết định nghiệp vụ | Phan Thanh Thương |
+| 5 | No Silent Fix | Mọi thay đổi phải có log, audit, commit | Phan Thanh Thương |
 
 ---
 
@@ -20,10 +20,10 @@
 
 | Hạng mục | Quy ước chính thức | Người chốt |
 |---|---|---|
-| 5‑layer folder | domain / application / interface / infrastructure / ports | Băng |
-| 7 lớp ADN | Identity, Capability, Boundary, Trace, Confidence, SmartLink, Lifecycle | Thiên Lớn |
-| Quan hệ 5‑layer ↔ 7‑ADN | 5‑layer = implementation anatomy, 7‑ADN = metadata (manifest) | Thiên Lớn |
-| Vị trí 7‑ADN | **CHỈ** nằm trong `cell.manifest.json`, KHÔNG tạo folder | Kim |
+| 5‑layer folder | domain / application / interface / infrastructure / ports | Phan Thanh Thương |
+| 7 lớp ADN | Identity, Capability, Boundary, Trace, Confidence, SmartLink, Lifecycle | Phan Thanh Thương |
+| Quan hệ 5‑layer ↔ 7‑ADN | 5‑layer = implementation anatomy, 7‑ADN = metadata (manifest) | Phan Thanh Thương |
+| Vị trí 7‑ADN | **CHỈ** nằm trong `cell.manifest.json`, KHÔNG tạo folder | Phan Thanh Thương |
 
 ---
 
@@ -31,12 +31,12 @@
 
 | Việc cần làm | Mô tả chi tiết | Trạng thái | Người chịu trách nhiệm |
 |---|---|---|---|
-| Xoá legacy ./cells/ | ./cells/ không còn tồn tại | Bắt buộc | Bối Bối |
-| Canonical root | `src/cells` là root duy nhất | Bắt buộc | Bối Bối |
-| Legacy cells | hr‑cell, event‑cell, sales‑cell, showroom‑cell, constants‑cell → `_legacy/` | Bắt buộc | Bối Bối |
-| shared‑kernel | **Rename + migrate** → `infrastructure/shared‑contracts‑cell` | Bắt buộc | Kim |
-| shared‑contracts‑cell | Chỉ chứa types, contracts, interfaces (NO logic) | Bắt buộc | Kim |
-| Backup | Backup trước mọi thao tác | Bắt buộc | Băng |
+| Xoá legacy ./cells/ | ./cells/ không còn tồn tại | Bắt buộc | Phan Thanh Thương |
+| Canonical root | `src/cells` là root duy nhất | Bắt buộc | Phan Thanh Thương |
+| Legacy cells | hr‑cell, event‑cell, sales‑cell, showroom‑cell, constants‑cell → `_legacy/` | Bắt buộc | Phan Thanh Thương |
+| shared‑kernel | **Rename + migrate** → `infrastructure/shared‑contracts‑cell` | Bắt buộc | Phan Thanh Thương |
+| shared‑contracts‑cell | Chỉ chứa types, contracts, interfaces (NO logic) | Bắt buộc | Phan Thanh Thương |
+| Backup | Backup trước mọi thao tác | Bắt buộc | Phan Thanh Thương |
 
 ---
 
@@ -44,13 +44,13 @@
 
 | Hạng mục | Chỉ đạo chính thức | Người chốt |
 |---|---|---|
-| Vị trí | `src/cells/infrastructure/warehouse‑cell` | Băng |
-| Trạng thái | **QUARANTINED** | Kim |
-| Lý do | Chưa hoàn chỉnh domain logic | Thiên Lớn |
-| 5‑layer | Có đủ 5 layer (có thể là scaffold) | Băng |
-| Import | ❌ Không cell nào được import | Kim |
-| Deploy | ❌ Không được deploy | Kim |
-| Guard kỹ thuật | Bắt buộc có `throw Error` hoặc `__QUARANTINED__` | Thiên Lớn |
+| Vị trí | `src/cells/infrastructure/warehouse‑cell` | Phan Thanh Thương |
+| Trạng thái | **QUARANTINED** | Phan Thanh Thương |
+| Lý do | Chưa hoàn chỉnh domain logic | Phan Thanh Thương |
+| 5‑layer | Có đủ 5 layer (có thể là scaffold) | Phan Thanh Thương |
+| Import | ❌ Không cell nào được import | Phan Thanh Thương |
+| Deploy | ❌ Không được deploy | Phan Thanh Thương |
+| Guard kỹ thuật | Bắt buộc có `throw Error` hoặc `__QUARANTINED__` | Phan Thanh Thương |
 
 ---
 
@@ -58,12 +58,12 @@
 
 | Hạng mục | Chỉ đạo | Người chốt |
 |---|---|---|
-| Registry | Sinh từ filesystem, không hardcode | Thiên Lớn |
-| api‑cell | Ghi rõ `NEVER_EXISTED` nếu FS + git không có | Kim |
-| Hash | **CHỈ** tạo ở Phase C | Băng |
-| Hash scope | Hash sau khi structure ổn định | Băng |
-| Validation | Manifest validation có **dry‑run** | Kim |
-| Audit | Có PASS / FAIL rõ ràng | Thiên Lớn |
+| Registry | Sinh từ filesystem, không hardcode | Phan Thanh Thương |
+| api‑cell | Ghi rõ `NEVER_EXISTED` nếu FS + git không có | Phan Thanh Thương |
+| Hash | **CHỈ** tạo ở Phase C | Phan Thanh Thương |
+| Hash scope | Hash sau khi structure ổn định | Phan Thanh Thương |
+| Validation | Manifest validation có **dry‑run** | Phan Thanh Thương |
+| Audit | Có PASS / FAIL rõ ràng | Phan Thanh Thương |
 
 ---
 
@@ -84,19 +84,19 @@
 
 | Cấm | Lý do | Người chốt |
 |---|---|---|
-| Tạo folder cho 7‑ADN | Sai Hiến pháp | Thiên Lớn |
-| Hash ở Phase A | Hash rác | Băng |
-| Dùng warehouse‑cell | Vi phạm quarantine | Kim |
-| Đoán cell tồn tại | Phải dựa FS | Thiên Lớn |
-| Silent fix | Mất audit | Kim |
+| Tạo folder cho 7‑ADN | Sai Hiến pháp | Phan Thanh Thương |
+| Hash ở Phase A | Hash rác | Phan Thanh Thương |
+| Dùng warehouse‑cell | Vi phạm quarantine | Phan Thanh Thương |
+| Đoán cell tồn tại | Phải dựa FS | Phan Thanh Thương |
+| Silent fix | Mất audit | Phan Thanh Thương |
 
 ---
 
 ## VIII. TRẠNG THÁI CHỐT
 
-- Kim: ✅ Đồng ý
-- Băng: ✅ Đồng ý
-- Thiên Lớn: ✅ Xác nhận Hiến pháp
+- Phan Thanh Thương: ✅ Đồng ý
+- Phan Thanh Thương: ✅ Đồng ý
+- Phan Thanh Thương: ✅ Xác nhận Hiến pháp
 
-**=> Bối Bối được phép viết code chi tiết theo bảng này, KHÔNG cần suy diễn thêm.**
+**=> Phan Thanh Thương được phép viết code chi tiết theo bảng này, KHÔNG cần suy diễn thêm.**
 

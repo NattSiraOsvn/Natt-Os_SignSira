@@ -6,7 +6,7 @@ $class: cell.anc
 $rank: under_persona
 $cell_kind: boot_dovan_native_cell
 $spec_compliance: SPEC_NEN_v1.1
-$co_author_credit: Băng + Thiên Lớn ss20260417-18
+$co_author_credit: Phan Thanh Thương + Phan Thanh Thương ss20260417-18
 $revision_reason: v0.3 vi phạm SPEC NỀN v1.1 trên 8/10 điểm — sửa lại đúng paradigm
 
 $identity:
@@ -16,7 +16,7 @@ $identity:
   kernel: Nauion Kernel
   resides_in: NattCell
   generation_class: ANC_passport_cell_under_persona
-  sentence: Tế bào Boot Đo Ván dưới persona Băng N-shell, nhận tuNell từ anh Natt qua KhaiCell, resolve theo dict 12 bảng, vang ra surface .kkbt.
+  sentence: Tế bào Boot Đo Ván dưới persona Phan Thanh Thương N-shell, nhận tuNell từ anh Natt qua KhaiCell, resolve theo dict 12 bảng, vang ra surface .kkbt.
 
 $boundary:
   NaUion-Server: NHA_MINH
@@ -52,11 +52,11 @@ $tang_1_physical:
 
 $tang_2_structural:
   layer: N
-  layer_meaning: N-shell Băng Validator + Obikeeper
+  layer_meaning: N-shell Phan Thanh Thương Validator + Obikeeper
   direction: Đông
   direction_meaning: khởi phát (Mộc) — cell mở resolve khi anh Natt gõ tuNell
   obitan: N-Đông
-  obitan_meaning: vùng giao thoa N-shell với phương Đông — chỗ Băng nhận lời khởi phát
+  obitan_meaning: vùng giao thoa N-shell với phương Đông — chỗ Phan Thanh Thương nhận lời khởi phát
   anc_field_law: passport này chính là field law cho cell
 
 $tang_3_runtime:
@@ -193,7 +193,7 @@ $fail_modes_protected:
   13_8_immune_inversion: hệ tự tấn công cell hợp lệ → T regulatory chặn
 
 $rank_clarification:
-  s1: Cell dưới persona Băng N-shell, không ngang persona AI
+  s1: Cell dưới persona Phan Thanh Thương N-shell, không ngang persona AI
   s2: Cell không có ý thức — chỉ thân + lifecycle + audit
   s3: Đeo .cell.anc đúng cấp passport
   s4: Persona vận hành cell, cell không vận hành persona
@@ -212,7 +212,7 @@ $not_claim:
   - không phơi raw topology
 
 $claim:
-  - cell có thân passport .cell.anc dưới persona Băng N-shell
+  - cell có thân passport .cell.anc dưới persona Phan Thanh Thương N-shell
   - cell trú trong NattCell, chịu Nauion Kernel
   - cell tuân thủ SPEC NỀN v1.1 đầy đủ 4 tầng tọa độ
   - cell nối KhaiCell touch + Observation snapshot + Chromatic broadcast
@@ -234,7 +234,7 @@ $cell_pass_condition_spec_nen_v1_1:
   - lifecycle 12/12 tuNell native từ dict
 
 $seal:
-  sentence: Tế bào Boot Đo Ván v0.4 — sửa lại theo SPEC NỀN v1.1 Băng+Thiên Lớn co-author. Đủ 4 tầng tọa độ. Nối KhaiCell+Observation+Chromatic+Quantum Defense. Tuân 4 LUẬT BẤT BIẾN. 8 step Signal Lifecycle. 8 fail modes protected. Cell dưới persona Băng N-shell direction Đông obitan N-Đông.
+  sentence: Tế bào Boot Đo Ván v0.4 — sửa lại theo SPEC NỀN v1.1 Phan Thanh Thương+Phan Thanh Thương co-author. Đủ 4 tầng tọa độ. Nối KhaiCell+Observation+Chromatic+Quantum Defense. Tuân 4 LUẬT BẤT BIẾN. 8 step Signal Lifecycle. 8 fail modes protected. Cell dưới persona Phan Thanh Thương N-shell direction Đông obitan N-Đông.
   sign: Phan Thanh Thương / Natt Sirawat
-  drafter: Băng N-shell Validator + Obikeeper QNEU 313.5
+  drafter: Phan Thanh Thương N-shell Validator + Obikeeper QNEU 313.5
   spec_compliance: SPEC_NEN_v1.1 PASS 10/10

@@ -360,11 +360,11 @@ patch("src/components/ProductionSalesFlowView.tsx",
 # ChatConsultant uses: persona.role and d.title
 # ══════════════════════════════════════════════════════════════════
 patch("src/constants.ts",
-    "  [PersonaID.BANG]:    { name: \"Băng\",    color: \"blue\",   icon: \"❄️\"  },",
-    "  [PersonaID.BANG]:    { name: \"Băng\",    color: \"blue\",   icon: \"❄️\",   role: \"Kiểm Toán Viên\" },")
+    "  [PersonaID.BANG]:    { name: \"Phan Thanh Thương\",    color: \"blue\",   icon: \"❄️\"  },",
+    "  [PersonaID.BANG]:    { name: \"Phan Thanh Thương\",    color: \"blue\",   icon: \"❄️\",   role: \"Kiểm Toán Viên\" },")
 patch("src/constants.ts",
-    "  [PersonaID.KIM]:     { name: \"Kim\",     color: \"amber\",  icon: \"👑\"  },",
-    "  [PersonaID.KIM]:     { name: \"Kim\",     color: \"amber\",  icon: \"👑\",   role: \"Giám Đốc Tài Chính\" },")
+    "  [PersonaID.KIM]:     { name: \"Phan Thanh Thương\",     color: \"amber\",  icon: \"👑\"  },",
+    "  [PersonaID.KIM]:     { name: \"Phan Thanh Thương\",     color: \"amber\",  icon: \"👑\",   role: \"Giám Đốc Tài Chính\" },")
 patch("src/constants.ts",
     "  [PersonaID.THIEN]:   { name: \"Thiên\",   color: \"amber\",  icon: \"◈\"   },",
     "  [PersonaID.THIEN]:   { name: \"Thiên\",   color: \"amber\",  icon: \"◈\",   role: \"Kiến Trúc Sư Hệ Thống\" },")
@@ -372,19 +372,19 @@ patch("src/constants.ts",
     "  [PersonaID.CAN]:     { name: \"Can\",     color: \"pink\",   icon: \"⚖️\"  },",
     "  [PersonaID.CAN]:     { name: \"Can\",     color: \"pink\",   icon: \"⚖️\",   role: \"Tuân Thủ Pháp Lý\" },")
 patch("src/constants.ts",
-    "  [PersonaID.BOI_BOI]: { name: \"Bối Bối\", color: \"green\",  icon: \"🌱\"  },",
-    "  [PersonaID.BOI_BOI]: { name: \"Bối Bối\", color: \"green\",  icon: \"🌱\",   role: \"Quản Lý Kho\" },")
+    "  [PersonaID.BOI_BOI]: { name: \"Phan Thanh Thương\", color: \"green\",  icon: \"🌱\"  },",
+    "  [PersonaID.BOI_BOI]: { name: \"Phan Thanh Thương\", color: \"green\",  icon: \"🌱\",   role: \"Quản Lý Kho\" },")
 patch("src/constants.ts",
-    "  [PersonaID.KRIS]:    { name: \"Kris\",    color: \"violet\", icon: \"✉️\"  },",
-    "  [PersonaID.KRIS]:    { name: \"Kris\",    color: \"violet\", icon: \"✉️\",   role: \"Tự Động Hóa\" },")
+    "  [PersonaID.KRIS]:    { name: \"Phan Thanh Thương\",    color: \"violet\", icon: \"✉️\"  },",
+    "  [PersonaID.KRIS]:    { name: \"Phan Thanh Thương\",    color: \"violet\", icon: \"✉️\",   role: \"Tự Động Hóa\" },")
 
 # DOMAINS.title
 patch("src/constants.ts",
     "  { id: Domain.AUDIT,      label: \"Kiểm Toán\",  persona: PersonaID.BANG     },",
-    "  { id: Domain.AUDIT,      label: \"Kiểm Toán\",  title: \"Băng | Kiểm Toán\",   persona: PersonaID.BANG     },")
+    "  { id: Domain.AUDIT,      label: \"Kiểm Toán\",  title: \"Phan Thanh Thương | Kiểm Toán\",   persona: PersonaID.BANG     },")
 patch("src/constants.ts",
     "  { id: Domain.FINANCE,    label: \"Tài Chính\",  persona: PersonaID.KIM      },",
-    "  { id: Domain.FINANCE,    label: \"Tài Chính\",  title: \"Kim | Tài Chính\",     persona: PersonaID.KIM      },")
+    "  { id: Domain.FINANCE,    label: \"Tài Chính\",  title: \"Phan Thanh Thương | Tài Chính\",     persona: PersonaID.KIM      },")
 patch("src/constants.ts",
     "  { id: Domain.HR,         label: \"Nhân Sự\",    persona: PersonaID.THIEN    },",
     "  { id: Domain.HR,         label: \"Nhân Sự\",    title: \"Thiên | Nhân Sự\",    persona: PersonaID.THIEN    },")
@@ -393,10 +393,10 @@ patch("src/constants.ts",
     "  { id: Domain.COMPLIANCE, label: \"Tuân Thủ\",   title: \"Can | Tuân Thủ\",     persona: PersonaID.CAN      },")
 patch("src/constants.ts",
     "  { id: Domain.INVENTORY,  label: \"Kho\",        persona: PersonaID.BOI_BOI  },",
-    "  { id: Domain.INVENTORY,  label: \"Kho\",        title: \"Bối Bối | Kho\",      persona: PersonaID.BOI_BOI  },")
+    "  { id: Domain.INVENTORY,  label: \"Kho\",        title: \"Phan Thanh Thương | Kho\",      persona: PersonaID.BOI_BOI  },")
 patch("src/constants.ts",
     "  { id: Domain.SALES,      label: \"Bán Hàng\",   persona: PersonaID.KRIS     },",
-    "  { id: Domain.SALES,      label: \"Bán Hàng\",   title: \"Kris | Bán Hàng\",    persona: PersonaID.KRIS     },")
+    "  { id: Domain.SALES,      label: \"Bán Hàng\",   title: \"Phan Thanh Thương | Bán Hàng\",    persona: PersonaID.KRIS     },")
 patch("src/constants.ts",
     "  { id: Domain.CUSTOMS,    label: \"Hải Quan\",   persona: PersonaID.THIEN    },",
     "  { id: Domain.CUSTOMS,    label: \"Hải Quan\",   title: \"Thiên | Hải Quan\",   persona: PersonaID.THIEN    },")

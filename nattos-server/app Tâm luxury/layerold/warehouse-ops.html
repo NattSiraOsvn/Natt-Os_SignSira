@@ -119,11 +119,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
         <div style="background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:16px">
           <div style="font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--text3);text-transform:uppercase;margin-bottom:14px">Top Xuất Nhiều Nhất</div>
-          ${[['Vàng 18K thỏi','48.2 chỉ'],['Nhẫn nữ 18K','24 cái'],['Kim cương 5ly','18 viên'],['Lắc tennis','12 cái'],['Vàng 24K thỏi','8.5 chỉ']].map((r,i)=>`<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px"><span style="color:var(--text3)">${i+1}. ${r[0]}</span><span style="font-family:var(--mono);color:var(--gold2)">${r[1]}</span></div>`).join('')}
+          ${[['Vàng 18K thỏi','48.2 chỉ'],['Nhẫn nữ 18K','24 cái'],['Phan Thanh Thương cương 5ly','18 viên'],['Lắc tennis','12 cái'],['Vàng 24K thỏi','8.5 chỉ']].map((r,i)=>`<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px"><span style="color:var(--text3)">${i+1}. ${r[0]}</span><span style="font-family:var(--mono);color:var(--gold2)">${r[1]}</span></div>`).join('')}
         </div>
         <div style="background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:16px">
           <div style="font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--text3);text-transform:uppercase;margin-bottom:14px">Cảnh Báo Tồn Thấp</div>
-          ${[['Kim cương 1ct GIA','2 viên','CRITICAL'],['Vàng 24K','1.2 chỉ','WARN'],['Đá ruby 5ly','3 viên','WARN']].map(r=>`<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px;align-items:center"><span>${r[0]}</span><span style="display:flex;gap:8px;align-items:center"><span style="font-family:var(--mono);color:var(--amber)">${r[1]}</span><span class="badge ${r[2]==='CRITICAL'?'br':'ba'}">${r[2]}</span></span></div>`).join('')}
+          ${[['Phan Thanh Thương cương 1ct GIA','2 viên','CRITICAL'],['Vàng 24K','1.2 chỉ','WARN'],['Đá ruby 5ly','3 viên','WARN']].map(r=>`<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px;align-items:center"><span>${r[0]}</span><span style="display:flex;gap:8px;align-items:center"><span style="font-family:var(--mono);color:var(--amber)">${r[1]}</span><span class="badge ${r[2]==='CRITICAL'?'br':'ba'}">${r[2]}</span></span></div>`).join('')}
         </div>
       </div>
     </div>
@@ -133,7 +133,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
   <div class="modal">
     <div class="mh"><span class="title" id="mTitle">Nhập Kho</span><button onclick="closeM()">×</button></div>
     <div class="mb">
-      <div class="form-field"><label>SKU / Hàng Hóa</label><select id="fSku"><option>Vàng 18K thỏi</option><option>Vàng 24K thỏi</option><option>Vàng trắng 18K</option><option>Kim cương tấm</option><option>Kim cương chủ GIA</option><option>Đá Moissanite</option><option>Nhẫn thành phẩm 18K</option><option>Lắc thành phẩm</option></select></div>
+      <div class="form-field"><label>SKU / Hàng Hóa</label><select id="fSku"><option>Vàng 18K thỏi</option><option>Vàng 24K thỏi</option><option>Vàng trắng 18K</option><option>Phan Thanh Thương cương tấm</option><option>Phan Thanh Thương cương chủ GIA</option><option>Đá Moissanite</option><option>Nhẫn thành phẩm 18K</option><option>Lắc thành phẩm</option></select></div>
       <div class="form-field"><label>Số Lượng</label><input type="number" id="fQty" placeholder="0" min="0"></div>
       <div class="form-field"><label>Đơn Vị</label><select id="fUnit"><option>chỉ</option><option>gram</option><option>viên</option><option>cái</option><option>lô</option></select></div>
       <div class="form-field"><label>Mã Đơn / Nguồn</label><input id="fRef" placeholder="TL-2026-xxxx hoặc NCC"></div>
@@ -147,7 +147,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
 </div>
 <div class="tw" id="tw"></div>
 <script>
-const SKUS=[{id:'v18k',name:'Vàng 18K thỏi',qty:185.4,unit:'chỉ',min:50,color:'var(--gold2)'},{id:'v24k',name:'Vàng 24K thỏi',qty:42.8,unit:'chỉ',min:20,color:'var(--gold)'},{id:'vt18k',name:'Vàng Trắng 18K',qty:68.2,unit:'chỉ',min:30,color:'var(--blue)'},{id:'kctam',name:'Kim cương tấm',qty:240,unit:'viên',min:100,color:'var(--blue)'},{id:'kcgia',name:'Kim cương GIA',qty:18,unit:'viên',min:10,color:'var(--amber)'},{id:'moiss',name:'Moissanite VVS1',qty:85,unit:'viên',min:30,color:'var(--green)'},{id:'nhan18k',name:'Nhẫn TP 18K',qty:34,unit:'cái',min:10,color:'var(--purple)'},{id:'lac18k',name:'Lắc TP 18K',qty:22,unit:'cái',min:8,color:'var(--text2)'}];
+const SKUS=[{id:'v18k',name:'Vàng 18K thỏi',qty:185.4,unit:'chỉ',min:50,color:'var(--gold2)'},{id:'v24k',name:'Vàng 24K thỏi',qty:42.8,unit:'chỉ',min:20,color:'var(--gold)'},{id:'vt18k',name:'Vàng Trắng 18K',qty:68.2,unit:'chỉ',min:30,color:'var(--blue)'},{id:'kctam',name:'Phan Thanh Thương cương tấm',qty:240,unit:'viên',min:100,color:'var(--blue)'},{id:'kcgia',name:'Phan Thanh Thương cương GIA',qty:18,unit:'viên',min:10,color:'var(--amber)'},{id:'moiss',name:'Moissanite VVS1',qty:85,unit:'viên',min:30,color:'var(--green)'},{id:'nhan18k',name:'Nhẫn TP 18K',qty:34,unit:'cái',min:10,color:'var(--purple)'},{id:'lac18k',name:'Lắc TP 18K',qty:22,unit:'cái',min:8,color:'var(--text2)'}];
 const TXN=[];let user=null,txnType='in',inCount=0,outCount=0;
 function doLogin(){
   const code=document.getElementById('lc').value.trim()||'TLXR060';

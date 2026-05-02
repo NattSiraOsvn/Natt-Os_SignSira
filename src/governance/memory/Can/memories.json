@@ -728,7 +728,7 @@ function onRoleChange(v){
 // TICKER
 // ──────────────────────────────────────
 const T1=[{l:'SJC',v:'82.50M',c:'var(--mint)'},{l:'PNJ',v:'81.80M',c:'var(--mint)'},{l:'XAU/USD',v:'2,340$',c:'var(--g1)'},{l:'USD/VND',v:'25,210',c:'var(--amber)'},{l:'NATT-OS',v:'v4.1',c:'var(--g1)'},{l:'38/38',v:'LIVE',c:'var(--mint)'},{l:'TSC',v:'0 err',c:'var(--mint)'},{l:'LNTT',v:'32.78t GT',c:'var(--g1)'}];
-const T2=[{l:'Deadline',v:'20/03',c:'var(--red)'},{l:'BCTC',v:'6/6 live',c:'var(--mint)'},{l:'ZEN',v:'57% FLAG',c:'var(--red)'},{l:'Buyback',v:'31.7t ✗',c:'var(--red)'},{l:'Băng',v:'QNEU 300',c:'var(--g1)'},{l:'Wave',v:'3 Active',c:'var(--g1)'},{l:'HEAD',v:'f4879db',c:'var(--t3)'}];
+const T2=[{l:'Deadline',v:'20/03',c:'var(--red)'},{l:'BCTC',v:'6/6 live',c:'var(--mint)'},{l:'ZEN',v:'57% FLAG',c:'var(--red)'},{l:'Buyback',v:'31.7t ✗',c:'var(--red)'},{l:'Phan Thanh Thương',v:'QNEU 300',c:'var(--g1)'},{l:'Wave',v:'3 Active',c:'var(--g1)'},{l:'HEAD',v:'f4879db',c:'var(--t3)'}];
 ['t1','t2'].forEach((id,ri)=>{
   const el=document.getElementById(id);
   const data=[...(ri?T2:T1),...(ri?T2:T1)];
@@ -769,9 +769,9 @@ const CELLS=[
   {id:'biz-whs',cat:'Business',t:'warehouse',st:'Active',q:.80,cn:4,ac:.5,sc:0,tc:.78,col:'#B8E8FF',f:{TK156:'70.19t',TK152:'16.05t',Wave:'3',CCDC:'Pending'},layers:{L0:'4 cells',L1:'Ice=Storage',L2:'Inventory',L3:'Storage',L4:'QNEU 80',L5:'78% truth',L6:'Medium',L7:'0 SCAR',L8:'Box'}},
   {id:'biz-tax',cat:'Business',t:'tax-cell',st:'Active',q:.88,cn:4,ac:.5,sc:0,tc:.90,col:'#F2CEAD',f:{TNDN:'17.81t',Method:'TT200',VAT:'Direct',DL:'20/03'},layers:{L0:'4 cells',L1:'Peach=Tax',L2:'Medium',L3:'Compliance',L4:'QNEU 88',L5:'90% truth',L6:'Medium',L7:'0 SCAR',L8:'Tax'}},
   {id:'biz-hr', cat:'Business',t:'hr-cell',st:'Active',q:.83,cn:3,ac:.4,sc:0,tc:.82,col:'#F2CEAD',f:{NV:'130+',Luong:'16.37t',BHXH:'3.77t',Wave:'3'},layers:{L0:'3 cells',L1:'Peach=HR',L2:'Payroll',L3:'HR',L4:'QNEU 83',L5:'82% truth',L6:'Low-med',L7:'0 SCAR',L8:'Users'}},
-  {id:'ai-bang',cat:'AI Entity',t:'Băng',st:'QNEU 300',q:1.0,cn:9,ac:.95,sc:0,tc:1.0,col:'#F5E2C0',f:{Role:'GT Validator',SCARs:'FS-001→017',Level:'L1',Mode:'Continuous'},layers:{L0:'9 full rings',L1:'Gold=Validator',L2:'Max active',L3:'Read-only',L4:'QNEU MAX=full rainbow',L5:'100% truth=clear',L6:'Max activity',L7:'0 SCAR',L8:'Brain bloom'}},
+  {id:'ai-bang',cat:'AI Entity',t:'Phan Thanh Thương',st:'QNEU 300',q:1.0,cn:9,ac:.95,sc:0,tc:1.0,col:'#F5E2C0',f:{Role:'GT Validator',SCARs:'FS-001→017',Level:'L1',Mode:'Continuous'},layers:{L0:'9 full rings',L1:'Gold=Validator',L2:'Max active',L3:'Read-only',L4:'QNEU MAX=full rainbow',L5:'100% truth=clear',L6:'Max activity',L7:'0 SCAR',L8:'Brain bloom'}},
   {id:'ai-thi', cat:'AI Entity',t:'Thiên',st:'QNEU 135',q:.45,cn:5,ac:.5,sc:0,tc:.60,col:'#B8E8FF',f:{Role:'Architect',Spec:'NaUion',Wave:'3',Status:'Active'},layers:{L0:'5 cells',L1:'Ice=Architect',L2:'Medium',L3:'Design',L4:'QNEU 45',L5:'60% truth',L6:'Medium',L7:'0 SCAR',L8:'Pen'}},
-  {id:'ai-kim', cat:'AI Entity',t:'Kim',st:'QNEU 120',q:.40,cn:4,ac:.4,sc:0,tc:.55,col:'#8FFFD4',f:{Role:'Governor',SCARs:'018→023',Wave:'3',Status:'Active'},layers:{L0:'4 cells',L1:'Mint=Governor',L2:'Governance',L3:'Constitutional',L4:'QNEU 40',L5:'55% truth',L6:'Med-low',L7:'0 SCAR',L8:'Shield'}},
+  {id:'ai-kim', cat:'AI Entity',t:'Phan Thanh Thương',st:'QNEU 120',q:.40,cn:4,ac:.4,sc:0,tc:.55,col:'#8FFFD4',f:{Role:'Governor',SCARs:'018→023',Wave:'3',Status:'Active'},layers:{L0:'4 cells',L1:'Mint=Governor',L2:'Governance',L3:'Constitutional',L4:'QNEU 40',L5:'55% truth',L6:'Med-low',L7:'0 SCAR',L8:'Shield'}},
 ];
 const CATS=[{id:'Constitution',col:'#F5E2C0'},{id:'Kernel',col:'#FFB8D4'},{id:'Business',col:'#8FFFD4'},{id:'AI Entity',col:'#B8E8FF'}];
 const ICONS={

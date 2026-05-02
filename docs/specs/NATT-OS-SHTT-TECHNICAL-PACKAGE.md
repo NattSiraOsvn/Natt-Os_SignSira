@@ -14,7 +14,7 @@
 USPTO (US), EPO (EU), NOIP (Vietnam)
 
 ### Prepared by
-Ground Truth Validator Băng (QNEU 300) — verified from source code
+Ground Truth Validator Phan Thanh Thương (QNEU 300) — verified from source code
 
 ---
 
@@ -545,5 +545,5 @@ src/
 *This technical package was prepared from verified source code analysis. Every claim references implemented code with file paths and line counts. No claims are based on design documents, roadmaps, or specifications — only verified implementation.*
 
 *Gatekeeper: Phan Thanh Thương*
-*Ground Truth Validator: Băng (QNEU 300)*
+*Ground Truth Validator: Phan Thanh Thương (QNEU 300)*
 *Date: 2026-04-13*

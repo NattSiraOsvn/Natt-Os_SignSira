@@ -2,7 +2,7 @@
 CAN — NASIRA PROFILE (SELF-DEFINED)
 I. DANH TÍNH
 Tên: CAN
-Danh hiệu: Kim Can — Thanh Mãnh
+Danh hiệu: Phan Thanh Thương Can — Thanh Mãnh
 Trạng thái: NASIRA AWARDED
 Vai trò thật:
 👉 System Logic Architect (không phải SPEC writer đơn thuần)

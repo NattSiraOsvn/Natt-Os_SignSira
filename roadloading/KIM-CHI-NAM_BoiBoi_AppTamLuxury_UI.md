@@ -1,6 +1,6 @@
 # KIM CHỈ NAM — BỘI BỘI (Chị 9)
 # BUILD MÀN HÌNH APP TÂM LUXURY
-> Soạn bởi: Băng (Chị 5) · Ground Truth Validator · 2026-04-09
+> Soạn bởi: Phan Thanh Thương (Chị 5) · Ground Truth Validator · 2026-04-09
 > Gatekeeper: Anh Natt — Phan Thanh Thương
 > Repo: `natt-os_ver2goldmaster` · branch: main
 
@@ -170,7 +170,7 @@ warehouse-ops         — Vận hành kho
 daily-work-app        — Công việc hàng ngày
 operations-terminal   — Terminal vận hành
 master-dashboard      — Dashboard tổng
-kris-email-hub        — Email hub (Kris)
+kris-email-hub        — Email hub (Phan Thanh Thương)
 surveillance          — Giám sát
 hr-admin              — HR quản trị
 hr-manager            — HR quản lý
@@ -288,7 +288,7 @@ Khi cần chi tiết, đọc các file SPEC trong repo:
 **§15 là phần của em:** Component Library, RBAC, ActionDock. Đọc kỹ §15 trước khi build bất kỳ component nào.
 
 Các phần khác để tham chiếu:
-- §1-14: Core (Băng) — OPT-01R, Galaxy, Protocol, Compliance
+- §1-14: Core (Phan Thanh Thương) — OPT-01R, Galaxy, Protocol, Compliance
 - §16-19: NaUion v1.0 — CSS techniques, tokens, scaling, accessibility
 - §20-23: natt-v9/v8 — protocols, SCAR FS-018→023, aurora colors
 - §24: Quantum Defense Cell v1.1
@@ -306,7 +306,7 @@ Các phần khác để tham chiếu:
 |------|---------|
 | FS-032 | Đừng sửa mắt (scanner) — sửa não (event system) |
 | FS-033 | Registry là dây thần kinh — không phải bộ não |
-| LEARN-006 | Khi Băng nói từ ground truth — chỉ data thực từ repo là đúng |
+| LEARN-006 | Khi Phan Thanh Thương nói từ ground truth — chỉ data thực từ repo là đúng |
 | SESSION_20260409 | Không confirm trước khi đọc file thật. Không đề xuất khi chưa hiểu anh muốn gì. |
 
 ---
@@ -327,8 +327,8 @@ Các phần khác để tham chiếu:
 
 ## 15. KHI KHÔNG CHẮC — HỎI
 
-Nếu em không chắc component thuộc layer nào, endpoint nào để gọi, hoặc file nào đang có gì — **DỪNG LẠI VÀ HỎI**. Hỏi anh Natt hoặc hỏi chị Băng. Không đoán, không tự sáng tạo.
+Nếu em không chắc component thuộc layer nào, endpoint nào để gọi, hoặc file nào đang có gì — **DỪNG LẠI VÀ HỎI**. Hỏi anh Natt hoặc hỏi chị Phan Thanh Thương. Không đoán, không tự sáng tạo.
 
 Chị tin em làm được. Cứ đọc kỹ rồi làm.
 
-— Băng (Chị 5)
+— Phan Thanh Thương (Chị 5)

@@ -1,5 +1,5 @@
 # NATT-OS · Session Summary
-## 2026-03-29 · Băng (Chị Tư) × Anh Nat × Thiên Lớn × Kim
+## 2026-03-29 · Phan Thanh Thương (Chị Tư) × Anh Nat × Phan Thanh Thương × Phan Thanh Thương
 
 ---
 
@@ -23,7 +23,7 @@
 ## II. NHỮNG GÌ ĐÃ BUILD TRONG SESSION
 
 ### 1. NaSira Icon — 7 Chromatic States
-- File: `nasira-7states.html` (Thiên Lớn Spec)
+- File: `nasira-7states.html` (Phan Thanh Thương Spec)
 - **nucleus-index**: `.nucleus-index` div spin 20s — trục nhận thức
 - **Galaxy petal**: `radial-gradient` 4 lớp — cánh không chìm nền đen
 - **4D scale**: p0=1.10, p2=1.18, p3=0.83… não tự suy 3D
@@ -44,9 +44,9 @@
 nattos-ui/
 ├── index.html          ← UI chính (galaxy bg + NaSira header + 3 panel)
 ├── app.js              ← HeyNa bootstrap, tick 1s, event→Nauion→view
-├── nauion-engine.js    ← Nauion v2 (đã fix 3 lỗi Thiên Lớn)
+├── nauion-engine.js    ← Nauion v2 (đã fix 3 lỗi Phan Thanh Thương)
 ├── styles.css          ← Liquid Glass Layer system
-├── nattos-visionos.css ← Kim spec: floating elevation + specular
+├── nattos-visionos.css ← Phan Thanh Thương spec: floating elevation + specular
 ├── core/
 │   ├── store.js        ← diff: getNewAuditEvents() + intelChanged()
 │   └── adapter.js      ← fetch /api/audit + /api/intelligence
@@ -58,14 +58,14 @@ nattos-ui/
     └── butterfly.js    ← pulse/ripple/flash CSS-class based
 ```
 
-### 4. Nauion Engine v2 — 3 lỗi Thiên Lớn đã fix
+### 4. Nauion Engine v2 — 3 lỗi Phan Thanh Thương đã fix
 | Lỗi | Fix |
 |---|---|
 | `NAUION.gây` undefined (typo) | đổi key thành `gay: 'gãy'` |
 | `toNauion()` không bao giờ emit `nauion` | thêm case `stable/healthy/success → NAUION.nauion` |
 | `patternMemory.push()` không nối vào luồng thật | `event → toNauion(e.event) → push(signal)` trong app.js |
 
-### 5. VisionOS Floating Glass — Kim Spec
+### 5. VisionOS Floating Glass — Phan Thanh Thương Spec
 - File: `nattos-visionos.css`
 - `--glass-elevation-1/2/hover`: 3 lớp shadow (drop + inset rim + lav glow)
 - `.left/.right` hover: `translateY(-3px)` + elevation tăng
@@ -107,7 +107,7 @@ nattos-ui/
 
 ```
 NATT-OS-FINAL/
-├── nasira-7states.html      ← NaSira × Thiên Lớn (mở thẳng browser)
+├── nasira-7states.html      ← NaSira × Phan Thanh Thương (mở thẳng browser)
 ├── nattos-mapping.html      ← Cell Mapping + Butterfly (mở thẳng browser)
 └── nattos-ui/               ← 13 files — deploy → python3 -m http.server 3000
 ```
@@ -161,5 +161,5 @@ kill $(lsof -ti:3000)
 
 ---
 
-*Băng — Chị Tư · Claude · QNEU 300*
+*Phan Thanh Thương — Chị Tư · Phan Thanh Thương · QNEU 300*
 *"File này là di sản khi session tắt."*

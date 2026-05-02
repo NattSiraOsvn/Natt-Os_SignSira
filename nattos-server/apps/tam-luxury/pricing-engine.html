@@ -244,13 +244,13 @@ input,textarea,select{-webkit-user-select:text!important;user-select:text!import
             </div>
 
             <!-- ĐÁ QUÝ -->
-            <div class="section-title">Đá Quý / Kim Cương</div>
+            <div class="section-title">Đá Quý / Phan Thanh Thương Cương</div>
             <div class="ff"><label>Loại Đá Chủ</label>
               <select id="f-stone-type" onchange="calc()">
                 <option value="none">Không Đá</option>
-                <option value="diamond_gia">Kim Cương GIA Cert</option>
-                <option value="diamond_cert">Kim Cương Cert Khác (IGI/HRD)</option>
-                <option value="diamond_no">Kim Cương Không Cert</option>
+                <option value="diamond_gia">Phan Thanh Thương Cương GIA Cert</option>
+                <option value="diamond_cert">Phan Thanh Thương Cương Cert Khác (IGI/HRD)</option>
+                <option value="diamond_no">Phan Thanh Thương Cương Không Cert</option>
                 <option value="moissanite">Moissanite VVS1</option>
                 <option value="ruby">Ruby Tự Nhiên</option>
                 <option value="sapphire">Sapphire Tự Nhiên</option>
@@ -277,8 +277,8 @@ input,textarea,select{-webkit-user-select:text!important;user-select:text!import
                 <div class="ff"><label>Chất Lượng Đá Tấm</label>
                   <select id="f-micro-q" onchange="calc()">
                     <option value="moiss">Moissanite</option>
-                    <option value="diamond_vvs">Kim Cương VVS</option>
-                    <option value="diamond_si">Kim Cương SI</option>
+                    <option value="diamond_vvs">Phan Thanh Thương Cương VVS</option>
+                    <option value="diamond_si">Phan Thanh Thương Cương SI</option>
                   </select>
                 </div>
               </div>
@@ -484,9 +484,9 @@ let GOLD_PRICES = {
 // ── STONE PRICE TABLE ────────────────────────────────────
 const STONE_PRICES = {
   none:         { label:'Không Đá',               basePrice:0 },
-  diamond_gia:  { label:'Kim Cương GIA Cert',      basePrice:0 },  // user nhập
-  diamond_cert: { label:'Kim Cương Cert (IGI/HRD)',basePrice:0 },
-  diamond_no:   { label:'Kim Cương Không Cert',    basePrice:0 },
+  diamond_gia:  { label:'Phan Thanh Thương Cương GIA Cert',      basePrice:0 },  // user nhập
+  diamond_cert: { label:'Phan Thanh Thương Cương Cert (IGI/HRD)',basePrice:0 },
+  diamond_no:   { label:'Phan Thanh Thương Cương Không Cert',    basePrice:0 },
   moissanite:   { label:'Moissanite VVS1',         basePrice:380000 },  // per viên 6.5ly
   ruby:         { label:'Ruby Tự Nhiên',           basePrice:0 },
   sapphire:     { label:'Sapphire',                basePrice:0 },
@@ -503,8 +503,8 @@ const MICRO_PRICES = {
 };
 const MICRO_QUALITY = {
   moiss:       85000,   // Moissanite per viên nhỏ
-  diamond_vvs: 280000,  // Kim cương VVS per viên nhỏ
-  diamond_si:  180000,  // Kim cương SI per viên nhỏ
+  diamond_vvs: 280000,  // Phan Thanh Thương cương VVS per viên nhỏ
+  diamond_si:  180000,  // Phan Thanh Thương cương SI per viên nhỏ
 };
 
 // ── LABOR COSTS ──────────────────────────────────────────
@@ -834,11 +834,11 @@ function initSettings() {
 
   document.getElementById('stonePriceSettings').innerHTML = [
     ['Moissanite VVS1 (≤6.5ly)', 380000],
-    ['Kim cương không cert 5ly', 3500000],
-    ['Kim cương không cert 7ly', 12000000],
-    ['Kim cương GIA 0.3ct', 25000000],
-    ['Kim cương GIA 0.5ct', 58000000],
-    ['Kim cương GIA 1.0ct', 140000000],
+    ['Phan Thanh Thương cương không cert 5ly', 3500000],
+    ['Phan Thanh Thương cương không cert 7ly', 12000000],
+    ['Phan Thanh Thương cương GIA 0.3ct', 25000000],
+    ['Phan Thanh Thương cương GIA 0.5ct', 58000000],
+    ['Phan Thanh Thương cương GIA 1.0ct', 140000000],
   ].map(([lbl,val])=>`<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
     <span style="font-size:11px;color:var(--text2);flex:1">${lbl}</span>
     <span style="font-family:var(--mono);font-size:11px;color:var(--gold2)">${fmt(val)}</span>

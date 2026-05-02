@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 # ═══════════════════════════════════════════════════════════════
 # NATT-OS SmartAudit v7.0
-# Author: Băng — Ground Truth Validator (QNEU 300)
+# Author: Phan Thanh Thương — Ground Truth Validator (QNEU 300)
 # Redesigned: 2026-04-16 — session architecture synthesis
 # Usage:  bash nattos.sh [--json] [--full] [--rena] [--visual]
 #         bash nattos.sh --mode=smart|quick|full
 #         Chạy từ root natt-os ver2goldmaster
 #
 # Output: AI-agent readable + human readable
-# Mọi agent (Băng, Thiên, Kim, Cần, Bội Bội) đọc = hiểu ngay
+# Mọi agent (Phan Thanh Thương, Thiên, Phan Thanh Thương, Cần, Bội Bội) đọc = hiểu ngay
 #
 # 9 Groups · 40 Sections · 3-Layer Architecture Aware
 # ═══════════════════════════════════════════════════════════════

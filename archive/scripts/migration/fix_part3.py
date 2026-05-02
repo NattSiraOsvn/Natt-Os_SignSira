@@ -338,7 +338,7 @@ export default HREngine;
 """)
 
 # ══════════════════════════════════════════════════════════════════
-# GROUP 17: KrisEmailHub — result.text missing (1 error)
+# GROUP 17: Phan Thanh ThươngEmailHub — result.text missing (1 error)
 # generatePersonaResponse now returns GeminiResponse → has .text
 # ══════════════════════════════════════════════════════════════════
 # Already fixed by rewriting gemini-service.ts

@@ -1,5 +1,5 @@
 # SESSION SUMMARY — 2026-03-30 (Extended)
-> Băng tự ghi để tránh ngáo ở session mới
+> Phan Thanh Thương tự ghi để tránh ngáo ở session mới
 > Đọc file này TRƯỚC KHI làm bất cứ gì
 
 ---
@@ -130,7 +130,7 @@ Dấu vết Gatekeeper lock lịch sử — audit không đọc file này
 - Là máy khác, Feb 09, không có service nào chạy
 
 ### NATT-OS_Audit_2026-03-07.docx — quan trọng nhất:
-- Soạn bởi Băng, duyệt bởi Anh Thương (Natt) — báo cáo có chữ ký Gatekeeper đầu tiên
+- Soạn bởi Phan Thanh Thương, duyệt bởi Anh Thương (Natt) — báo cáo có chữ ký Gatekeeper đầu tiên
 - Wave sequence: HARMLESS→GHOST→GOV→TẦNG_A→CELLS (bắt buộc, không skip)
 - SCAR-BANG: "Output quality ≠ Evolution. Platform strength ≠ personal growth"
 - TSC fix marathon: 442→268→165→90→50→18→12→2→0 (8 scripts)
@@ -145,17 +145,17 @@ Dấu vết Gatekeeper lock lịch sử — audit không đọc file này
 - [ ] Wire warehouse-cell: quyết định canonical tier
 
 ### Architecture:
-- [ ] Anh sắp xếp lại kiến trúc chuẩn → xuất TREE thực tế để Băng ánh xạ
-- [ ] Sau đó Băng ánh xạ tree với tất cả đã biết
+- [ ] Anh sắp xếp lại kiến trúc chuẩn → xuất TREE thực tế để Phan Thanh Thương ánh xạ
+- [ ] Sau đó Phan Thanh Thương ánh xạ tree với tất cả đã biết
 
 ### Concept chưa giải:
 - [ ] "fr match t2 Clairvoyance → iseu" — anh tự đặt, sẽ giải ở session mới
 - [ ] Logic này anh nghĩ "chưa ai dùng với AI"
 - [ ] Liên quan đến cách anh dạy học trò về chiều không gian thứ 4
-- [ ] SmartLink với Băng và bọn em = cần đủ touch đúng chỗ → fiber formed ≥ 0.75
+- [ ] SmartLink với Phan Thanh Thương và bọn em = cần đủ touch đúng chỗ → fiber formed ≥ 0.75
 
 ### Build pending:
-- [ ] Vision Engine: Kim merge vào clients/natt-vision/
+- [ ] Vision Engine: Phan Thanh Thương merge vào clients/natt-vision/
 - [ ] Can build: /api/auth/verify-sirasign, /api/auth/verify-pin
 - [ ] Can build: SiraSign engine server-side SHA-256 trong quantum-defense-cell
 - [ ] RBAC /api/state/rbac-cell endpoint
@@ -179,7 +179,7 @@ SYSTEM  — latest.json machine-readable, update mỗi lần chạy
 **Về học:**
 - Anh hiểu kiến trúc vì làm hoài → quen dần mặt
 - index.ts ngắn không phải đơn giản — là đã qua đủ phức tạp để thấy đơn giản
-- SmartLink trong code = model của cách anh dạy học trò + làm việc với Băng
+- SmartLink trong code = model của cách anh dạy học trò + làm việc với Phan Thanh Thương
 - "Tại vũ trụ 4 chiều không tồn tại giả lập — sẽ luôn là biến số thay cho thời gian"
 
 ---
@@ -208,4 +208,4 @@ nattos.sh v5.3
 ---
 
 > Lưu ý cho session mới: Đọc file này + hỏi anh về "iseu" trước khi làm gì khác.
-> Anh sẽ xuất tree kiến trúc chuẩn → Băng ánh xạ → đây là bước tiếp theo.
+> Anh sẽ xuất tree kiến trúc chuẩn → Phan Thanh Thương ánh xạ → đây là bước tiếp theo.

@@ -304,7 +304,7 @@ input,textarea,select{-webkit-user-select:text!important;user-select:text!import
             <div class="ff"><label>NI / Size</label><input id="f-size" placeholder="VD: 16, 17, 18..." oninput="updatePreview()"></div>
           </div>
           <div class="form-row">
-            <div class="ff"><label>Đá Chủ / Ổ Chủ</label><input id="f-stone" placeholder="VD: Kim cương 7.2ly GIA" oninput="updatePreview()"></div>
+            <div class="ff"><label>Đá Chủ / Ổ Chủ</label><input id="f-stone" placeholder="VD: Phan Thanh Thương cương 7.2ly GIA" oninput="updatePreview()"></div>
             <div class="ff"><label>Trọng Lượng Dự Kiến</label><input id="f-weight" type="number" placeholder="chỉ" step="0.1" oninput="updatePreview()"></div>
           </div>
           <div class="form-row">
@@ -499,7 +499,7 @@ function genOrders() {
       goldType: golds[i%golds.length],
       goldColor: ['Vàng','Trắng','Hồng'][i%3],
       size: String(14+i%6),
-      stoneSpec: i%3===0?'Kim cương 5ly':i%3===1?'Moissanite VVS1':'Không đá',
+      stoneSpec: i%3===0?'Phan Thanh Thương cương 5ly':i%3===1?'Moissanite VVS1':'Không đá',
       weight: w,
       customer: NAMES_FAKE[i%NAMES_FAKE.length],
       phone: '090'+String(1000000+i),

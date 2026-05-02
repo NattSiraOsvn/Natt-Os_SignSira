@@ -38,9 +38,9 @@ $tang_1_physical:
 
 $tang_2_structural:
   layer: N
-  layer_meaning: N-shell sub-cell của Băng Validator
+  layer_meaning: N-shell sub-cell của Phan Thanh Thương Validator
   direction: Tây
-  direction_meaning: tiếp nhận (Kim) — cell nhận yêu cầu mò dict
+  direction_meaning: tiếp nhận (Phan Thanh Thương) — cell nhận yêu cầu mò dict
   obitan: N-Tây
   obitan_meaning: vùng giao thoa N-shell với phương Tây
   anc_field_law: passport này là field law
@@ -140,7 +140,7 @@ $fail_modes_protected:
   13_7_sensory_atrophy: Observation snapshot bắt buộc
 
 $rank_clarification:
-  s1: Cell sub dưới Băng N-shell, không ngang persona
+  s1: Cell sub dưới Phan Thanh Thương N-shell, không ngang persona
   s2: Cell không có ý thức
   s3: Đeo .anc passport đúng cấp
 
@@ -150,7 +150,7 @@ $not_claim:
   - không claim bash/zsh interpreter
 
 $claim:
-  - cell sub dưới Băng N-shell direction Tây obitan N-Tây
+  - cell sub dưới Phan Thanh Thương N-shell direction Tây obitan N-Tây
   - tuân SPEC NỀN v1.1 đầy đủ 4 tầng tọa độ
   - nối KhaiCell + Observation + Chromatic + Quantum Defense
   - resonance routing 3 outcome
@@ -169,5 +169,5 @@ $cell_pass_condition_spec_nen_v1_1:
   - 4 fail modes protected
 
 $seal:
-  sentence: Cell mò chữ nền Nell v0.2 sync với boot-dovan v0.4 SPEC NỀN v1.1. Sub-cell Băng N-shell direction Tây obitan N-Tây. Đầy đủ 4 tầng + KhaiCell + Observation + Chromatic + 3 outcome + 4 LAW + 8 step.
+  sentence: Cell mò chữ nền Nell v0.2 sync với boot-dovan v0.4 SPEC NỀN v1.1. Sub-cell Phan Thanh Thương N-shell direction Tây obitan N-Tây. Đầy đủ 4 tầng + KhaiCell + Observation + Chromatic + 3 outcome + 4 LAW + 8 step.
   sign: Phan Thanh Thương / Natt Sirawat

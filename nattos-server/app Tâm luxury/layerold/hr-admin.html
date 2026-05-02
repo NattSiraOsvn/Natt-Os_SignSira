@@ -303,7 +303,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
   <div class="modal">
     <div class="mhdr"><span class="mtitle">🎯 Đăng Vị Trí Tuyển Dụng</span><button class="mclose" onclick="closeM('jobModal')">×</button></div>
     <div class="mbody">
-      <div class="fg cols2"><div class="ff"><label>Vị Trí *</label><input id="j-title" placeholder="VD: Thợ Kim Hoàn"></div><div class="ff"><label>Phòng Ban</label><select id="j-dept"><option>Khối Sản Xuất</option><option>Khối Kinh Doanh</option><option>Khối Vận Hành</option></select></div></div>
+      <div class="fg cols2"><div class="ff"><label>Vị Trí *</label><input id="j-title" placeholder="VD: Thợ Phan Thanh Thương Hoàn"></div><div class="ff"><label>Phòng Ban</label><select id="j-dept"><option>Khối Sản Xuất</option><option>Khối Kinh Doanh</option><option>Khối Vận Hành</option></select></div></div>
       <div class="fg cols3"><div class="ff"><label>Số Lượng</label><input type="number" id="j-qty" value="1" min="1"></div><div class="ff"><label>Lương Từ</label><input type="number" id="j-sal-min" placeholder="0"></div><div class="ff"><label>Lương Đến</label><input type="number" id="j-sal-max" placeholder="0"></div></div>
       <div class="fg cols2"><div class="ff"><label>Loại HĐ</label><select id="j-contract"><option>HĐLĐ 12T</option><option>Thử Việc 2T</option><option>Part-time</option><option>CTV</option></select></div><div class="ff"><label>Deadline Nộp CV</label><input type="date" id="j-deadline"></div></div>
       <div class="fg"><div class="ff"><label>Yêu Cầu</label><textarea id="j-req" rows="3" placeholder="Kinh nghiệm, kỹ năng..."></textarea></div></div>
@@ -317,15 +317,15 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
 // ══════════════════════════════ DATA ══════════════════════════════
 const RECRUIT_STAGES=[{id:'new',name:'CV Mới',color:'var(--blue)'},{id:'screen',name:'Sàng Lọc',color:'var(--amber)'},{id:'interview',name:'Phỏng Vấn',color:'var(--purple)'},{id:'offer',name:'Đã Offer',color:'var(--green)'},{id:'onboard',name:'Onboarding',color:'var(--gold2)'}];
 let candidates=[
-  {id:1,name:'Nguyễn Văn Thợ',pos:'Thợ Kim Hoàn',stage:'new',date:'20/03',src:'JobStreet'},
+  {id:1,name:'Nguyễn Văn Thợ',pos:'Thợ Phan Thanh Thương Hoàn',stage:'new',date:'20/03',src:'JobStreet'},
   {id:2,name:'Trần Thị Bích',pos:'Sale Online',stage:'screen',date:'19/03',src:'Facebook'},
   {id:3,name:'Lê Văn Dũng',pos:'Thợ Đúc',stage:'interview',date:'22/03',src:'Zalo'},
   {id:4,name:'Phạm Minh Khoa',pos:'Thủ Kho',stage:'offer',date:'18/03',src:'Referral'},
   {id:5,name:'Hoàng Thị Lan',pos:'Kế Toán',stage:'onboard',date:'15/03',src:'JobStreet'},
-  {id:6,name:'Vũ Văn Nam',pos:'Thợ Kim Hoàn',stage:'new',date:'21/03',src:'LinkedIn'},
+  {id:6,name:'Vũ Văn Nam',pos:'Thợ Phan Thanh Thương Hoàn',stage:'new',date:'21/03',src:'LinkedIn'},
 ];
 let jobs=[
-  {id:1,title:'Thợ Kim Hoàn Tổ Hột',dept:'Khối Sản Xuất',qty:2,salMin:12000000,salMax:18000000,contract:'HĐLĐ 12T',deadline:'30/03/2026',req:'Kinh nghiệm 2+ năm gắn đá'},
+  {id:1,title:'Thợ Phan Thanh Thương Hoàn Tổ Hột',dept:'Khối Sản Xuất',qty:2,salMin:12000000,salMax:18000000,contract:'HĐLĐ 12T',deadline:'30/03/2026',req:'Kinh nghiệm 2+ năm gắn đá'},
   {id:2,title:'Sale Online',dept:'Khối Kinh Doanh',qty:3,salMin:8000000,salMax:12000000,contract:'Thử Việc 2T',deadline:'25/03/2026',req:'Kỹ năng Zalo/Facebook'},
 ];
 let tasks=[
@@ -334,7 +334,7 @@ let tasks=[
   {id:3,title:'Xử lý đơn xin nghỉ phép — Hoàng Thị Thu (3 ngày)',cat:'Hồ Sơ NV',prio:'high',due:'24/03',assign:'HR Admin',done:false},
   {id:4,title:'Chuẩn bị hồ sơ quyết toán thuế TNCN 2025',cat:'Thuế TNCN',prio:'high',due:'31/03',assign:'KT+HR',done:false},
   {id:5,title:'Cập nhật thông tin ngân hàng 5 NV mới',cat:'Hồ Sơ NV',prio:'normal',due:'25/03',assign:'HR Admin',done:false},
-  {id:6,title:'Phỏng vấn 2 ứng viên Thợ Kim Hoàn',cat:'Tuyển Dụng',prio:'normal',due:'24/03',assign:'Trưởng HR',done:false},
+  {id:6,title:'Phỏng vấn 2 ứng viên Thợ Phan Thanh Thương Hoàn',cat:'Tuyển Dụng',prio:'normal',due:'24/03',assign:'Trưởng HR',done:false},
   {id:7,title:'Nhắc nhở 8 NV chưa nộp bảng kê phụ cấp',cat:'Lương Thưởng',prio:'normal',due:'25/03',assign:'HR Admin',done:true},
   {id:8,title:'Kiểm tra sổ BHXH 3 NV mới vào',cat:'BHXH/BHYT',prio:'normal',due:'28/03',assign:'HR Admin',done:false},
 ];

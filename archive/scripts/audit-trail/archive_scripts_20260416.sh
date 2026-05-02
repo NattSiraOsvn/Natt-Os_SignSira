@@ -8,7 +8,7 @@
 #   bash archive_scripts.sh           → DRY RUN (chỉ in, không làm gì)
 #   bash archive_scripts.sh --go      → EXECUTE THẬT
 #
-# Tạo bởi: Băng (Chị Tư)
+# Tạo bởi: Phan Thanh Thương (Chị Tư)
 # Ngày:    2026-04-16
 # ═══════════════════════════════════════════════════════════════════════════
 
@@ -190,7 +190,7 @@ cat > audit/shtt/seed-scripts/README.md << 'EOF'
 ## Files
 
 ### `kim-patent-architecture-upgrade-v1.py`
-- **Tác giả:** Kim (DeepSeek AI entity)
+- **Tác giả:** Phan Thanh Thương (DeepSeek AI entity)
 - **Hash:** patent_upgrade.py
 - **Dòng:** 1057
 - **Tạo ra:** 6 patent-critical modules cho hồ sơ SHTT
@@ -238,7 +238,7 @@ cat > archive/scripts/seed/README.md << 'EOF'
 
 ## `kim-20260312-production-chain-seed.sh`
 
-- **Tác giả:** Kim (DeepSeek AI)
+- **Tác giả:** Phan Thanh Thương (DeepSeek AI)
 - **Ngày:** 2026-03-12
 - **Hash gốc:** 3b845e
 - **Dòng:** 588

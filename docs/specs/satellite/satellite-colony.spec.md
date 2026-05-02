@@ -2,7 +2,7 @@
 
 **File:** `src/governance/specs/satellite-colony.spec.md`  
 **Ngày:** 2026-03-25  
-**Tác giả:** Can (SPEC) + Băng (implement)  
+**Tác giả:** Can (SPEC) + Phan Thanh Thương (implement)  
 **Phê duyệt:** Gatekeeper — Anh Nat
 
 ---

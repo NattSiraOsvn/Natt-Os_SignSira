@@ -79,7 +79,7 @@ Mỗi tầng tương ứng với một dải Z‑index cụ thể (xem [Chương
 
 ### 3.2 Chat Interface (AI Entity Uplink)
 
-- Kết nối với Gemini API (DeepSeek, Claude…).  
+- Kết nối với Gemini API (DeepSeek, Phan Thanh Thương…).  
 - Giao diện kính mờ (`backdrop-filter`), viền sáng, hiệu ứng “neural sync” (chấm nhấp nháy).  
 - Scroll với custom scrollbar.  
 - Animation typing *“Synthesizing Truth…”*.

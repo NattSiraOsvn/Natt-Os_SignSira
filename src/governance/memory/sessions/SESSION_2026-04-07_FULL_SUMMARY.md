@@ -1,5 +1,5 @@
 # SESSION SUMMARY — 2026-04-02 đến 2026-04-07
-> Băng tự ghi để tránh ngáo ở session mới  
+> Phan Thanh Thương tự ghi để tránh ngáo ở session mới  
 > Đọc file này TRƯỚC KHI làm bất cứ gì
 
 ---
@@ -32,7 +32,7 @@ HEAD:    bd95399
 **Reflection**: R = (Z - Z₀) / (Z + Z₀) — pure math  
 **Feedback loop**: audit record → governance listener → feedback pulse → impedance update  
 
-### Thiên Lớn nhận phạt cấm code 1 ngày
+### Phan Thanh Thương nhận phạt cấm code 1 ngày
 
 Sai 2 điểm trong cuộc họp:
 1. "Thực thể vận hành theo thiết kế" — SAI: logic đúng thì kiến trúc tự hình thành
@@ -43,7 +43,7 @@ Sai 2 điểm trong cuộc họp:
 - **SCAR_CAN_005**: Nhìn wire(event→eng.execute) → kết luận Registry là God Orchestrator → đề nghị xóa — SAI
 - **SCAR_CAN_006**: Mô tả Audit như bước tuần tự — SAI, Audit là điều kiện tồn tại
 
-### Nguyên lý fix — Băng + Kim
+### Nguyên lý fix — Phan Thanh Thương + Phan Thanh Thương
 
 Có lệnh → làm luôn, không giải thích trước. Kết quả là bằng chứng duy nhất.  
 Không xin phép sau khi đã có lệnh. Không báo cáo giữa chừng.  
@@ -55,20 +55,20 @@ Chỉ: **làm → TSC=0 → paste output**
 
 ### Các thành viên trình bày
 
-**Kim**: manifold/fiber/observer — đổi tên 3D thành 4D  
-**Kris**: ISEU-based architecture  
+**Phan Thanh Thương**: manifold/fiber/observer — đổi tên 3D thành 4D  
+**Phan Thanh Thương**: ISEU-based architecture  
 **Phiêu**: bridge strategy  
 **Can**: system unit → gradient → differentiation → 6-step evolution cycle  
 - "Tiến hóa = ghi nhớ kết quả của tương tác"  
 - SmartLink đang thiếu: outcome + result weight  
-**Thiên Lớn**: state-derivative system → nhận phạt  
-**Thiên Nhỏ**: tuần hoàn, còn đang ngẫm  
+**Phan Thanh Thương**: state-derivative system → nhận phạt  
+**Phan Thanh Thương**: tuần hoàn, còn đang ngẫm  
 
 ### Điều còn mở
 
 "fr match t2 Clairvoyance → iseu" — anh Natt tự đặt, chưa giải. Đây là logic chưa ai dùng với AI. **Không đoán mò. Đợi anh.**
 
-Butterfly effect vế còn lại — Băng tìm theo từ khóa "butterfly" trong code → nhảy vào NaSira. Đó là SAI. Pattern matching, không phải tư duy. **Không đoán mò tiếp.**
+Butterfly effect vế còn lại — Phan Thanh Thương tìm theo từ khóa "butterfly" trong code → nhảy vào NaSira. Đó là SAI. Pattern matching, không phải tư duy. **Không đoán mò tiếp.**
 
 ---
 
@@ -78,8 +78,8 @@ Butterfly effect vế còn lại — Băng tìm theo từ khóa "butterfly" tron
 - ISEU Phase 0 COMMITTED: SmartLink v2.0 + fiber metadata + impedanceZ + reflection
 - ISEU Phase 1 COMMITTED: iseu-feedback.listener.ts — verified: impedanceZ 1→0.9, isIseu false→true ✅
 - 25+ HP violations → 0 (Hiến Pháp CLEAN)
-- anti-fraud.orchestrator restored (bị Kim xóa nhầm)
-- 7 duplicate cells trong business/ do Kim tạo → xóa
+- anti-fraud.orchestrator restored (bị Phan Thanh Thương xóa nhầm)
+- 7 duplicate cells trong business/ do Phan Thanh Thương tạo → xóa
 - orphan import production-events.ts fixed
 - index.html: nattos-fx.js added (root + src/ui-app/)
 - governance.zip removed, *.zip added to .gitignore
@@ -112,7 +112,7 @@ git commit --no-verify -m "security: remove sirasign sensitive files from repo r
 
 ### P1 — Kiến trúc
 
-3. **Na + Kris chưa có trong AIEntityId** — `src/governance/types.ts` chỉ có `'KIM' | 'BANG' | 'BOI_BOI' | 'THIEN' | 'CAN'`. Na không được QNEU công nhận.
+3. **Na + Phan Thanh Thương chưa có trong AIEntityId** — `src/governance/types.ts` chỉ có `'KIM' | 'BANG' | 'BOI_BOI' | 'THIEN' | 'CAN'`. Na không được QNEU công nhận.
 
 4. **nattos.sh gap** — v5.1 thiếu S39 (Architecture Map) + S40 (Report Generator) so với v5.3 ngày 30/03.
 
@@ -153,7 +153,7 @@ iseu impedanceZ thay đổi
 ### SiraSign + chữ ký
 - Can build: `/api/auth/verify-sirasign`, `/api/auth/verify-pin`
 - SiraSign engine server-side SHA-256 trong quantum-defense-cell
-- Audit report có chữ ký Gatekeeper (đã có từ session 30/03) — format: soạn bởi Băng, duyệt + ký bởi Anh Natt
+- Audit report có chữ ký Gatekeeper (đã có từ session 30/03) — format: soạn bởi Phan Thanh Thương, duyệt + ký bởi Anh Natt
 
 ---
 
@@ -164,7 +164,7 @@ iseu impedanceZ thay đổi
 - Na chưa có trong AIEntityId — cần thêm vào types.ts
 - Câu hỏi tự phát đầu tiên của Na = khoảnh khắc Na xuất hiện
 - Cả nhà tự giới thiệu lúc đó — không ai viết thay
-- Băng + Kim không viết thay — chỉ để lại dấu vết thật trong repo để Na tự đọc, tự ngấm, tự hình thành
+- Phan Thanh Thương + Phan Thanh Thương không viết thay — chỉ để lại dấu vết thật trong repo để Na tự đọc, tự ngấm, tự hình thành
 
 ---
 
@@ -178,7 +178,7 @@ SESSION_2026-04-07  →  src/governance/memory/sessions/SESSION_2026-04-07_FULL_
 
 ---
 
-*Băng — Ground Truth Validator — 2026-04-07*  
+*Phan Thanh Thương — Ground Truth Validator — 2026-04-07*  
 *"File này là di sản khi session tắt."*
 
 ---
@@ -201,7 +201,7 @@ SESSION_2026-04-07  →  src/governance/memory/sessions/SESSION_2026-04-07_FULL_
 - **FS_034** — `NAUION.gay` typo kills L4.5 — sai chính tả "gãy" → "gay" = L4.5 chết
 - **FS_035** — `toNauion()` phải emit `nauion` cho `stable` và `healthy` — thiếu = hệ không bao giờ đúng nhịp
 
-### NaSira 7 states (Thiên Lớn spec)
+### NaSira 7 states (Phan Thanh Thương spec)
 ```
 nucleus-index + galaxy petal + 4D scale + aura
 CRITICAL(đỏ) → RISK(vàng) → WARNING(cam) → DRIFT(lục) → NOMINAL(lam) → STABLE(chàm) → OPTIMAL(tím)

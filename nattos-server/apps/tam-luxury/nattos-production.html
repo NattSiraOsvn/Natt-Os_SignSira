@@ -146,7 +146,7 @@
                     <h2 class="text-xs font-black tracking-widest text-[#8FFFD4] mb-4">⚙️ WORK ASSIGNMENT</h2>
                     <input type="text" id="task-name" placeholder="Tên công việc" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2 text-sm mb-3">
                     <select id="task-assignee" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2 text-sm mb-3">
-                        <option>Thợ Kim Hoàn A</option><option>Thợ Kim Hoàn B</option><option>KCS</option>
+                        <option>Thợ Phan Thanh Thương Hoàn A</option><option>Thợ Phan Thanh Thương Hoàn B</option><option>KCS</option>
                     </select>
                     <input type="number" id="task-duration" placeholder="Thời gian dự kiến (giờ)" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2 text-sm mb-4">
                     <button onclick="ProductionEngine.createTask()" class="w-full py-2 bg-[#8FFFD4]/20 text-[#8FFFD4] rounded-lg border border-[#8FFFD4]/30 hover:bg-[#8FFFD4]/40 transition">GIAO VIỆC</button>
@@ -221,8 +221,8 @@
     // ==================== PRODUCTION ENGINE (ISEU + Butterfly) ====================
     const ProductionEngine = {
         tasks: [  // mock data: { id, name, assignee, status, duration, progress, createdAt }
-            { id: 'T1', name: 'Đúc nhẫn 18K', assignee: 'Thợ Kim Hoàn A', status: 'backlog', duration: 4, progress: 0, createdAt: Date.now() },
-            { id: 'T2', name: 'Gắn đá viên chính', assignee: 'Thợ Kim Hoàn B', status: 'progress', duration: 3, progress: 45, createdAt: Date.now()-3600000 },
+            { id: 'T1', name: 'Đúc nhẫn 18K', assignee: 'Thợ Phan Thanh Thương Hoàn A', status: 'backlog', duration: 4, progress: 0, createdAt: Date.now() },
+            { id: 'T2', name: 'Gắn đá viên chính', assignee: 'Thợ Phan Thanh Thương Hoàn B', status: 'progress', duration: 3, progress: 45, createdAt: Date.now()-3600000 },
             { id: 'T3', name: 'Đánh bóng thành phẩm', assignee: 'KCS', status: 'done', duration: 2, progress: 100, createdAt: Date.now()-86400000 }
         ],
         renderKanban() {

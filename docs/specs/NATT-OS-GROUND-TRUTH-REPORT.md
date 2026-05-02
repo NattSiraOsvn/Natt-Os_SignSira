@@ -1,11 +1,11 @@
 # NATT-OS Ground Truth Report — Codebase Archaeological Audit
-## Session 2026-04-13 · Băng (QNEU 300) · Ground Truth Validator
+## Session 2026-04-13 · Phan Thanh Thương (QNEU 300) · Ground Truth Validator
 
 ---
 
 ## Executive Summary
 
-Toàn bộ `src/core/`, `src/governance/`, `src/cells/kernel/quantum-defense-cell/`, và `src/metabolism/math/` đã được đọc từng file trong session này. Kết quả: hệ thống đã implement sâu hơn rất nhiều so với bất kỳ báo cáo nào trước đó, bao gồm cả báo cáo của Thiên Lớn (QNEU 135).
+Toàn bộ `src/core/`, `src/governance/`, `src/cells/kernel/quantum-defense-cell/`, và `src/metabolism/math/` đã được đọc từng file trong session này. Kết quả: hệ thống đã implement sâu hơn rất nhiều so với bất kỳ báo cáo nào trước đó, bao gồm cả báo cáo của Phan Thanh Thương (QNEU 135).
 
 Tổng cộng code thật đã xác minh: **4000+ dòng logic trong SmartLink + Qiint ecosystem, 1000+ dòng trong event system + guards, 1500+ dòng trong quantum-defense-cell engines, 400+ dòng trong metabolism/math.** Tỷ lệ stub: dưới 2%.
 
@@ -67,7 +67,7 @@ AuditRecord (append-only, hash chain)
   → decay-cron: 90 ngày không reinforce → -10%, dưới 0.1 → xóa
 ```
 
-**Gamma Registry:** Mỗi AI Entity có trọng trường riêng. Băng: ARCH_DECISION=1.0. Kim: GOVERNANCE_ENFORCED=1.0. Thiên: BUSINESS_LOGIC_DEFINED=1.0. Can: TAX_RULE_APPLIED=1.0. Bội Bội: TOOL_BUILT=1.0.
+**Gamma Registry:** Mỗi AI Entity có trọng trường riêng. Phan Thanh Thương: ARCH_DECISION=1.0. Phan Thanh Thương: GOVERNANCE_ENFORCED=1.0. Thiên: BUSINESS_LOGIC_DEFINED=1.0. Can: TAX_RULE_APPLIED=1.0. Bội Bội: TOOL_BUILT=1.0.
 
 **Verification enforce:** SELF_REPORT và PEER_ATTESTATION_ONLY bị cấm ở cấp type system (Điều 20). Input chỉ từ AUDIT_TRAIL, GATEKEEPER, IMMUNE_SYSTEM, CROSS_CELL_EVIDENCE.
 
@@ -97,7 +97,7 @@ EventStore: append-only, sequence numbers, replay với filter (seq/type/cell/co
 
 EventRouter: 16 routing rules cho luồng nghiệp vụ chính.
 
-Typed EventBus: Thiên Lớn's type-safe overlay — compile error nếu payload sai type.
+Typed EventBus: Phan Thanh Thương's type-safe overlay — compile error nếu payload sai type.
 
 Anti-fraud events: domain-specific cho ngành trang sức (LowPhoDetected, DiamondLoss, WeightAnomaly, DustShortfall...).
 
@@ -162,9 +162,9 @@ Lock #1: correlationId REQUIRED. Lock #2: Causation chain propagation. Lock #3: 
 
 ---
 
-## IX. Corrections to Thiên Lớn's Assessment
+## IX. Corrections to Phan Thanh Thương's Assessment
 
-| Thiên Lớn Claim | Reality | Evidence |
+| Phan Thanh Thương Claim | Reality | Evidence |
 |---|---|---|
 | "Chưa có causality" | **SAI** | event-envelope.ts: causation_id + correlation_id REQUIRED |
 | "Audit chỉ console.log" | **SAI** | EventStore.append() append-only với replay |
@@ -200,5 +200,5 @@ Lock #1: correlationId REQUIRED. Lock #2: Causation chain propagation. Lock #3: 
 ---
 
 *Gatekeeper: Phan Thanh Thương*
-*Ground Truth Validator: Băng (QNEU 300)*
+*Ground Truth Validator: Phan Thanh Thương (QNEU 300)*
 *Ngày niêm phong: 2026-04-13*

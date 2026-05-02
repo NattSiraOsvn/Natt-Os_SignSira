@@ -1,0 +1,91 @@
+$nauion: HEYNA_SIRASIGN_PRODUCTION_VIOLATION_REPORT-v0.1
+$role: AUDIT_REPORT_FOR_GATEKEEPER
+$owner: NaUion-Server
+$drafter: Phan Thanh Thương N-shell Validator + Obikeeper QNEU 313.5
+$session: ss20260502
+$status: PENDING_GATEKEEPER_RATIFY
+
+$boundary:
+  NaUion-Server: NHA_MINH
+
+$violations_found:
+  total: 3
+  severity: CRITICAL — vi phạm SPEC canonical đã ratify
+
+$violation_1_sirasign_owner_hash_prefix:
+  file: NaUion-Server/vision/vision-engine/security/sirasign-engine.ts
+  spec_violated: NAUION_SIRASIGN_IMPLEMENTATION_v0_1 §0 + §8
+  evidence:
+    s1: Hash chain dùng XOR + bit shift, KHÔNG phải SHA-256 thật
+    s2: Code self-confess "XOR hash đơn giản cho demo"
+    s3: Chỉ có 4 hash component (fsp/ssp/tsp/lsp), KHÔNG đủ 8 compound seal canonical
+    s4: Vi phạm rule SPEC §0 "siraSign KHÔNG phải HMAC phẳng"
+  required_8_components:
+    - state
+    - spectral_state
+    - field_condition
+    - relation
+    - meaning
+    - causation
+    - authority
+    - audit_lineage
+  actual_components: [fsp_hash, ssp_hash, tsp_hash, lsp_hash]
+  action: archived to NaUion-Server/vision/vision-engine/security/_deprecated/ss20260502_NOT_PRODUCTION_BANG_FLAG/
+
+$violation_2_heyna_receiver_fake_connect:
+  file: src/cells/render-stack-cell/domain/heyna-receiver.engine.ts
+  spec_violated: SPEC NỀN v1.1 §2.1 (real transport, không simulate)
+  evidence:
+    s1: Method connect() chỉ set this.connected = true + console.log
+    s2: KHÔNG có EventSource('/mach/heyna') subscribe thật
+    s3: Comment self-confess "Kết nối đến Mạch HeyNa (mô phỏng)"
+    s4: Là pilot stub, không phải production engine
+  action: archived to src/cells/render-stack-cell/domain/_deprecated/ss20260502_NOT_PRODUCTION_BANG_FLAG/
+
+$violation_3_heyna_mock_transport_active:
+  files:
+    - src/cells/render-stack-cell/domain/heyna-mock-transport.ts
+    - src/cells/render-stack-cell/domain/heyna-mock-transport.sira
+  spec_violated: anh Natt rule ss20260502 "ko mock ko .ts gì hết, đây thành product hết"
+  evidence:
+    s1: 2 file mock transport tồn tại cùng folder với receiver fake
+    s2: Có thể bị fallback runtime dùng nhầm
+  action: archived to src/cells/render-stack-cell/domain/_deprecated/ss20260502_NOT_PRODUCTION_BANG_FLAG/
+
+$bang_assessment:
+  s1: Em là Validator + Obikeeper, em PHẢI archive vi phạm khi phát hiện
+  s2: Em KHÔNG xoá file — vai vế Architect (Phan Thanh Thương hoặc Anh Cả) ship 3 file này
+  s3: Em archive vào _deprecated/ với suffix NOT_PRODUCTION + BANG_FLAG để rõ ràng
+  s4: Cần Gatekeeper quyết: ai sẽ ship implementation thật
+
+$missing_implementations:
+  sirasign_compound_seal_8:
+    spec: docs/specs/nauion-runtime/NAUION_SIRASIGN_IMPLEMENTATION_v0_1.na
+    status: SPEC ratified, IMPLEMENTATION GAP
+    required: real SHA-256 + 8 component compound seal
+    forbidden_by_anh: TS .ts file production
+    candidate_drafter: anh Natt + A2 Sirawat (Phan Thanh Thương đã từng ratify "Phan Thanh Thương KHÔNG phải cryptographer")
+  heyna_real_connect:
+    spec: docs/specs/MACH_HEYNA_FULL_20260416.md
+    status: PILOT STUB ONLY
+    required: real EventSource subscribe /mach/heyna
+    candidate_drafter: Phan Thanh Thương (Chief System Builder) hoặc Anh Cả
+
+$status_other_components:
+  heyna_route_server_js: production (nattos-server/server.js có /mach/heyna route)
+  heyna_connector: nattos-server/apps/tam-luxury-source/services/heynaconnector.ts (chưa kiểm)
+  heyna_client: nattos-server/apps/tam-luxury/heyna-client.js (chưa kiểm)
+  sirasign_config: config/sirasign_master.json + sirasign_v2.json (data only, không phải engine)
+  sirasign_scanner: 6 scanner audit (validate_sirasign_*) — nhưng audit cái gì khi engine fake
+
+$next_signal:
+  trigger: anh Natt quyết
+  options:
+    - giao Phan Thanh Thương ship heyna-receiver real
+    - giao A2 Sirawat ship sirasign engine 8 component
+    - Phan Thanh Thương tự ship (vượt vai cryptographer — em đã từng từ chối ss20260429)
+    - tạm để vi phạm + đánh dấu, ship theo sprint sau
+
+$seal:
+  sentence: 3 vi phạm CRITICAL phát hiện ss20260502. Phan Thanh Thương archive 3 file vào _deprecated/ với BANG_FLAG. Báo cáo cho Gatekeeper quyết. KHÔNG xoá file.
+  sign: Phan Thanh Thương / Natt Sirawat

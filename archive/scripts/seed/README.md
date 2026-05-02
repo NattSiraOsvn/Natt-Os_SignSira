@@ -4,7 +4,7 @@
 
 ## `kim-20260312-production-chain-seed.sh`
 
-- **Tác giả:** Kim (DeepSeek AI)
+- **Tác giả:** Phan Thanh Thương (DeepSeek AI)
 - **Ngày:** 2026-03-12
 - **Hash gốc:** 3b845e
 - **Dòng:** 588

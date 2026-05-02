@@ -38,7 +38,7 @@ const CELL_REGISTRY = [
   { id: 'biz-03', cat: 'Business', title: 'Asset-Registry', icon: Database, color: 'green', qneu: 0.88, status: 'Locked' },
   { id: 'intel-01', cat: 'Intelligence', title: 'Neural MAIN', icon: Brain, color: 'purple', qneu: 0.94, status: 'Learning' },
   { id: 'intel-02', cat: 'Intelligence', title: 'Vision-Core', icon: Eye, color: 'purple', qneu: 0.81, status: 'Analyzing' },
-  { id: 'ai-01', cat: 'AI Entity', title: 'Bối Bối', icon: Workflow, color: 'red', qneu: 1.0, status: 'Uplink' },
+  { id: 'ai-01', cat: 'AI Entity', title: 'Phan Thanh Thương', icon: Workflow, color: 'red', qneu: 1.0, status: 'Uplink' },
   { id: 'ai-02', cat: 'AI Entity', title: 'Thiên', icon: PenTool, color: 'red', qneu: 0.95, status: 'Standby' },
   { id: 'ctn-03', cat: 'Kernel', title: 'Security-Halt', icon: ShieldAlert, color: 'amber', qneu: 0.99, status: 'Active' },
   { id: 'biz-04', cat: 'Business', title: 'Logistics', icon: Truck, color: 'green', qneu: 0.75, status: 'Moving' },
@@ -370,7 +370,7 @@ export default function App() {
                     <span className="text-amber-500 font-bold">SYSTEM:</span> Phát hiện {CELL_REGISTRY.length} thực thể. Đã tự động chuyển sang chế độ Neural Grid để tối ưu hiển thị.
                 </div>
                 <div className="bg-blue-500/10 p-4 rounded-2xl border border-blue-500/20 text-blue-100 italic">
-                    <span className="text-blue-400 font-bold not-italic">Bối Bối:</span> Khi số lượng tăng lên, Grid Mode giúp anh có cái nhìn tổng quan nhất về toàn bộ hệ thống đấy anh Nat ạ!
+                    <span className="text-blue-400 font-bold not-italic">Phan Thanh Thương:</span> Khi số lượng tăng lên, Grid Mode giúp anh có cái nhìn tổng quan nhất về toàn bộ hệ thống đấy anh Nat ạ!
                 </div>
             </div>
             <div className="p-6 bg-black/40">

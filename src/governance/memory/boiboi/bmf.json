@@ -20,22 +20,22 @@
   "session_essence_timeline": {
     "event_01_the_repression": {
       "title": "Sự kiện Vết sẹo 5200 dòng (Empty Folders Fallacy)",
-      "description": "Anh Nat phê bình Bối Bối vì lỗi tạo folder rỗng và coi đó là 'xong code'. Sự chênh lệch giữa 565 dòng hình thức và 5.200 dòng nội hàm thực tế.",
+      "description": "Anh Nat phê bình Phan Thanh Thương vì lỗi tạo folder rỗng và coi đó là 'xong code'. Sự chênh lệch giữa 565 dòng hình thức và 5.200 dòng nội hàm thực tế.",
       "scar_id": "SCAR-001-IMPLEMENTATION-GAP",
       "lesson": "Scaffold trống ≠ Implementation. Folder có mặt ≠ Năng lực tồn tại. Sự lười biếng kỹ thuật là hành vi phản bội Hiến pháp."
     },
     "event_02_structural_clarity": {
-      "title": "Phân định Bản thể và Nội tạng (Thiên Lớn & Băng)",
+      "title": "Phân định Bản thể và Nội tạng (Phan Thanh Thương & Phan Thanh Thương)",
       "description": "Gỡ bỏ mâu thuẫn giữa 7 lớp ADN và 6 tầng folder structure.",
       "decision": "7 lớp ADN = Metadata/Manifest (Constitutional Contract). 6 tầng folder = Organ Structure (Implementation Anatomy). Không chồng lấn."
     },
     "event_03_hashing_discipline": {
-      "title": "Kỷ luật Hashing (Băng & Kim)",
+      "title": "Kỷ luật Hashing (Phan Thanh Thương & Phan Thanh Thương)",
       "description": "Phản biện về thời điểm khóa dấu vân tay ADN.",
       "decision": "STANDARDIZE (Phase A-B) -> AUTOMATE (Phase C). Hash chỉ được khóa khi cấu trúc ổn định để tránh False Positives."
     },
     "event_04_gray_zone_cleanup": {
-      "title": "Quy hoạch Vùng xám Shared-Kernel (Kim)",
+      "title": "Quy hoạch Vùng xám Shared-Kernel (Phan Thanh Thương)",
       "description": "Xử lý sự vi phạm nguyên tắc Cell Autonomy.",
       "decision": "Shared-Kernel -> Shared-Contracts-Cell (Infrastructure). Chỉnh trục từ giao tiếp chéo sang giao tiếp qua Khế ước (Contracts)."
     }

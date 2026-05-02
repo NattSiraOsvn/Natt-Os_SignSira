@@ -30,7 +30,7 @@ Mô tả: Nền gradient thay đổi theo giờ trong ngày, kèm hiệu ứng s
 Tích hợp: Truth Layer (nền tảng, không tương tác).
 Props: Không.
 Logic: useMemo tính gradient dựa trên new Date().getHours().
-3.2. HeaderTicker – Băng chạy thông tin thị trường
+3.2. HeaderTicker – Phan Thanh Thương chạy thông tin thị trường
 
 Mô tả: Hai hàng chạy vô tận hiển thị giá vàng, tỷ giá, tin tức hệ thống.
 Tích hợp: Experience Layer – cập nhật liên tục, phản ánh ground truth thị trường.
@@ -66,7 +66,7 @@ Tích hợp: Modal / Chat Layer – lớp nổi, có backdrop blur.
 Props: cell, onClose.
 3.9. Chat Uplink – Cửa sổ chat với AI Entity
 
-Mô tả: Giao diện chat dạng cửa sổ nổi, hiển thị hội thoại với Bối Bối.
+Mô tả: Giao diện chat dạng cửa sổ nổi, hiển thị hội thoại với Phan Thanh Thương.
 Tích hợp: Modal / Chat Layer – gọi Gemini API qua fetchGemini.
 4. Tích hợp với ba tầng thị giác của NATT-OS
 

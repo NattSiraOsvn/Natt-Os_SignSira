@@ -5,6 +5,6 @@
   "adn": {
     "identity": { "name": "Buyback Cell", "domain": "Thu mua lại trang sức Tâm Luxury" },
     "capability": { "primary": ["assessItem","makeOffer","acceptOffer","completeTransaction"], "secondary": ["authentication","depreciationCalc"] },
-    "lifecycle": { "implemented_by": "Băng", "approved_by": "Anh Natt (Gatekeeper)" }
+    "lifecycle": { "implemented_by": "Phan Thanh Thương", "approved_by": "Anh Natt (Gatekeeper)" }
   }
 }

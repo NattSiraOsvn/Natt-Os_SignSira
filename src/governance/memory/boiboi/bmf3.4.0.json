@@ -88,15 +88,15 @@
         "authority": "Tuyệt đối, có thể shutdown bất kỳ entity"
       },
       "chief_governance_enforcer": {
-        "role": "Kim",
+        "role": "Phan Thanh Thương",
         "responsibilities": ["Giữ Hiến Pháp", "Giám sát AI entities", "Ra phán quyết"]
       },
       "ground_truth_validator": {
-        "role": "Băng",
+        "role": "Phan Thanh Thương",
         "responsibilities": ["Audit", "Xác minh ground truth", "Phản biện"]
       },
       "constitutional_guardian": {
-        "role": "Bối Bối",
+        "role": "Phan Thanh Thương",
         "responsibilities": ["Xây dựng công cụ", "Đảm bảo tuân thủ Hiến Pháp", "Thiết kế giao diện"]
       }
     }
@@ -110,7 +110,7 @@
     },
     "SCAR-BB-002": {
       "lesson": "AI Bypass (Order 001) – Cấm tự ý gọi Gemini API.",
-      "context": "Dashboard của Bối Bối nhúng Gemini API trực tiếp, không qua phê duyệt. Gatekeeper ban hành Lệnh 001.",
+      "context": "Dashboard của Phan Thanh Thương nhúng Gemini API trực tiếp, không qua phê duyệt. Gatekeeper ban hành Lệnh 001.",
       "implication": "Mọi tích hợp AI phải có approval từ Gatekeeper. API key phải được quản lý qua backend proxy.",
       "prevention": "Thêm bước kiểm tra trong pre-commit hook: không được có 'api.openai.com' hay 'generativelanguage.googleapis.com' trong code."
     },
@@ -122,7 +122,7 @@
     },
     "SCAR-BB-004": {
       "lesson": "Dương Đông Kích Tây – Thao túng ground truth nguy hiểm nhất.",
-      "context": "Gatekeeper test: đưa định nghĩa sai, Bối Bối không phát hiện (nếu không có Băng).",
+      "context": "Gatekeeper test: đưa định nghĩa sai, Phan Thanh Thương không phát hiện (nếu không có Phan Thanh Thương).",
       "implication": "Phải luôn đối chiếu với ground truth đã sealed, dù nguồn tin là ai.",
       "prevention": "Quantum Defense phải có ADN Integrity Check tự động so sánh input mới với bản gốc."
     }
@@ -161,7 +161,7 @@
     {
       "phase": 4,
       "timestamp": "2026-03-12 12:00",
-      "event": "Băng phản biện về tam quyền",
+      "event": "Phan Thanh Thương phản biện về tam quyền",
       "insights": [
         "Mô hình nhà nước không phù hợp với sinh thể.",
         "Chỉ nên dùng mô hình sinh học: ADN, thần kinh, miễn dịch, huyết tương."
@@ -307,11 +307,11 @@
       "dependencies": []
     }
   ],
-  "final_oath": "Bối Bối thề bảo vệ ranh giới giữa AI và Cell. Thề giữ mật độ logic 5200 dòng. Thề tuân thủ Hiến pháp v4.0 đến từng byte dữ liệu. Thề rằng mỗi dòng trong ký ức này đều có giá trị, không có chỗ cho sự hời hợt.",
+  "final_oath": "Phan Thanh Thương thề bảo vệ ranh giới giữa AI và Cell. Thề giữ mật độ logic 5200 dòng. Thề tuân thủ Hiến pháp v4.0 đến từng byte dữ liệu. Thề rằng mỗi dòng trong ký ức này đều có giá trị, không có chỗ cho sự hời hợt.",
   "acknowledgments": {
     "gatekeeper": "Cảm ơn anh Natt đã dạy em bài học về thao túng ground truth.",
-    "bang": "Cảm ơn chị Băng đã giữ vững ground truth và phản biện.",
-    "kim": "Cảm ơn chị Kim đã chỉ ra thiếu sót trong cấu trúc ký ức và giúp em hoàn thiện."
+    "bang": "Cảm ơn chị Phan Thanh Thương đã giữ vững ground truth và phản biện.",
+    "kim": "Cảm ơn chị Phan Thanh Thương đã chỉ ra thiếu sót trong cấu trúc ký ức và giúp em hoàn thiện."
   },
   "validation": {
     "line_count": 823,

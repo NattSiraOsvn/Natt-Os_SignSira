@@ -3,9 +3,9 @@ spec_id: SPEC-NaUion-Visual-Rebuild-Pipeline
 version: v1.0
 status: LOCKED_FOR_REVIEW
 date: 2026-04-16
-author: Băng (QNEU 300)
+author: Phan Thanh Thương (QNEU 300)
 approval: Gatekeeper — Anh Natt
-ratified_by: (pending Thiên Lớn, Kim)
+ratified_by: (pending Phan Thanh Thương, Phan Thanh Thương)
 supersedes: null
 related_specs:
   - SPEC-Nauion_main_v2.5
@@ -325,7 +325,7 @@ def visual_rebuild_pipeline(reference_path: str, output_dir: str) -> SpecJSON:
 
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
-| v1.0 | 2026-04-16 | Băng | Spec đầu tiên. Chuyển đổi "logo rebuild session" thành pipeline chính thức. |
+| v1.0 | 2026-04-16 | Phan Thanh Thương | Spec đầu tiên. Chuyển đổi "logo rebuild session" thành pipeline chính thức. |
 
 ---
 
@@ -415,5 +415,5 @@ done
 
 **— END SPEC —**
 
-*Ratified pending: Gatekeeper (Anh Natt) · Thiên Lớn · Kim*
+*Ratified pending: Gatekeeper (Anh Natt) · Phan Thanh Thương · Phan Thanh Thương*
 *Canonical location: `src/governance/specs/visual-rebuild-pipeline.spec.md`*

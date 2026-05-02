@@ -458,7 +458,7 @@ input,textarea,select{-webkit-user-select:text!important;user-select:text!import
             <div class="ff"><label>Tỷ Giá NK (₫/USD)</label><input type="number" id="lc-rate" placeholder="25400" value="25400" oninput="calcLandedCost()"></div>
             <div class="ff"><label>HS Code</label>
               <select id="lc-hs" onchange="calcLandedCost()">
-                <option value="7102">7102 — Kim Cương</option>
+                <option value="7102">7102 — Phan Thanh Thương Cương</option>
                 <option value="7108">7108 — Vàng Nguyên Liệu</option>
                 <option value="7113">7113 — Trang Sức</option>
                 <option value="7116">7116 — Đá Quý Chế Tác</option>
@@ -576,14 +576,14 @@ input,textarea,select{-webkit-user-select:text!important;user-select:text!import
         <div class="ff"><label>Ngày Khai</label><input type="date" id="dk-date"></div>
       </div>
       <div class="fg cols2">
-        <div class="ff"><label>Hàng Hóa</label><input id="dk-goods" placeholder="Kim cương thô, Vàng..."></div>
+        <div class="ff"><label>Hàng Hóa</label><input id="dk-goods" placeholder="Phan Thanh Thương cương thô, Vàng..."></div>
         <div class="ff"><label>Mã HS</label>
           <select id="dk-hs">
-            <option value="7102.10">7102.10 — Kim Cương Thô</option>
-            <option value="7102.31">7102.31 — Kim Cương Đã Gia Công</option>
+            <option value="7102.10">7102.10 — Phan Thanh Thương Cương Thô</option>
+            <option value="7102.31">7102.31 — Phan Thanh Thương Cương Đã Gia Công</option>
             <option value="7108.12">7108.12 — Vàng Dạng Thô</option>
             <option value="7108.13">7108.13 — Vàng Bán Thành Phẩm</option>
-            <option value="7113.19">7113.19 — Đồ Kim Hoàn Vàng</option>
+            <option value="7113.19">7113.19 — Đồ Phan Thanh Thương Hoàn Vàng</option>
             <option value="7116.20">7116.20 — Đá Quý Chế Tác</option>
           </select>
         </div>
@@ -609,7 +609,7 @@ input,textarea,select{-webkit-user-select:text!important;user-select:text!import
       <div class="fg">
         <div class="ff"><label>Chứng Từ Kèm Theo</label>
           <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">
-            ${['Invoice','Packing List','B/L / AWB','C/O','Kimberley Cert','Giấy phép NHNN','GIA Certificate','Hợp đồng NK'].map(d=>`<label style="display:flex;align-items:center;gap:4px;font-size:11px;cursor:pointer"><input type="checkbox" class="dk-doc" value="${d}" style="cursor:pointer"> ${d}</label>`).join('')}
+            ${['Invoice','Packing List','B/L / AWB','C/O','Phan Thanh Thươngberley Cert','Giấy phép NHNN','GIA Certificate','Hợp đồng NK'].map(d=>`<label style="display:flex;align-items:center;gap:4px;font-size:11px;cursor:pointer"><input type="checkbox" class="dk-doc" value="${d}" style="cursor:pointer"> ${d}</label>`).join('')}
           </div>
         </div>
       </div>
@@ -639,9 +639,9 @@ let items = [
   {id:'IT-002',sku:'GOLD-18K-TRANG',name:'Vàng 18K Trắng',cat:'VÀNG / NVL',warehouseId:'W-HCM-01',qty:68.2,unit:'chỉ',cost:3780000,location:'KÉT A1',status:'SẴN SÀNG',minThreshold:30,insuranceStatus:'CÒN HẠN',supplier:'SJC'},
   {id:'IT-003',sku:'GOLD-24K',name:'Vàng 24K SJC',cat:'VÀNG / NVL',warehouseId:'W-HCM-01',qty:42.8,unit:'chỉ',cost:8250000,location:'KÉT A2',status:'SẴN SÀNG',minThreshold:20,insuranceStatus:'CÒN HẠN',supplier:'SJC'},
   // KIM CƯƠNG
-  {id:'IT-010',sku:'DIA-GIA-5LY',name:'Kim Cương GIA 5ly',cat:'KIM CƯƠNG',warehouseId:'W-HCM-01',qty:24,unit:'viên',cost:8500000,location:'KÉT B1',status:'SẴN SÀNG',minThreshold:10,insuranceStatus:'CÒN HẠN',supplier:'Phan Lộc Diamond'},
-  {id:'IT-011',sku:'DIA-GIA-7LY',name:'Kim Cương GIA 7.2ly',cat:'KIM CƯƠNG',warehouseId:'W-HCM-01',qty:8,unit:'viên',cost:25000000,location:'KÉT B1',status:'SẴN SÀNG',minThreshold:5,insuranceStatus:'CÒN HẠN',supplier:'Phan Lộc Diamond'},
-  {id:'IT-012',sku:'DIA-GIA-1CT',name:'Kim Cương GIA ≥1ct',cat:'KIM CƯƠNG',warehouseId:'W-HCM-01',qty:2,unit:'viên',cost:140000000,location:'KÉT B1-VIP',status:'CẢNH BÁO',minThreshold:3,insuranceStatus:'CÒN HẠN',supplier:'Phan Lộc Diamond'},
+  {id:'IT-010',sku:'DIA-GIA-5LY',name:'Phan Thanh Thương Cương GIA 5ly',cat:'KIM CƯƠNG',warehouseId:'W-HCM-01',qty:24,unit:'viên',cost:8500000,location:'KÉT B1',status:'SẴN SÀNG',minThreshold:10,insuranceStatus:'CÒN HẠN',supplier:'Phan Lộc Diamond'},
+  {id:'IT-011',sku:'DIA-GIA-7LY',name:'Phan Thanh Thương Cương GIA 7.2ly',cat:'KIM CƯƠNG',warehouseId:'W-HCM-01',qty:8,unit:'viên',cost:25000000,location:'KÉT B1',status:'SẴN SÀNG',minThreshold:5,insuranceStatus:'CÒN HẠN',supplier:'Phan Lộc Diamond'},
+  {id:'IT-012',sku:'DIA-GIA-1CT',name:'Phan Thanh Thương Cương GIA ≥1ct',cat:'KIM CƯƠNG',warehouseId:'W-HCM-01',qty:2,unit:'viên',cost:140000000,location:'KÉT B1-VIP',status:'CẢNH BÁO',minThreshold:3,insuranceStatus:'CÒN HẠN',supplier:'Phan Lộc Diamond'},
   {id:'IT-013',sku:'MOISS-VVS1',name:'Moissanite VVS1 ≤6.5ly',cat:'KIM CƯƠNG',warehouseId:'W-HCM-01',qty:85,unit:'viên',cost:380000,location:'KỆ C1',status:'SẴN SÀNG',minThreshold:30,insuranceStatus:'CHƯA CÓ',supplier:'Gems VN'},
   // THÀNH PHẨM
   {id:'IT-020',sku:'NNU-HALO-01',name:'Nhẫn Nữ Halo Diamond 18K',cat:'THÀNH PHẨM',warehouseId:'W-HCM-01',qty:12,unit:'cái',cost:38000000,location:'TỦ TRƯNG BÀY 01',status:'SẴN SÀNG',minThreshold:3,insuranceStatus:'CÒN HẠN',supplier:'Xưởng TL'},
@@ -666,7 +666,7 @@ let items = [
 const txnHistory = [];
 const transfers = [];
 const declarations = [
-  {no:'24012345678',goods:'Kim Cương Đã Gia Công (GIA)',origin:'Bỉ (BEL)',hs:'7102.31',value:245000,stream:'GREEN',status:'THÔNG QUAN',docs:['Invoice','C/O','GIA Certificate']},
+  {no:'24012345678',goods:'Phan Thanh Thương Cương Đã Gia Công (GIA)',origin:'Bỉ (BEL)',hs:'7102.31',value:245000,stream:'GREEN',status:'THÔNG QUAN',docs:['Invoice','C/O','GIA Certificate']},
   {no:'24011234567',goods:'Vàng Bán Thành Phẩm 18K',origin:'Thái Lan (THA)',hs:'7108.13',value:180000,stream:'YELLOW',status:'CHỜ KIỂM',docs:['Invoice','Packing List','Giấy phép NHNN']},
   {no:'24009876543',goods:'Trang Sức Thành Phẩm',origin:'Nhật (JPN)',hs:'7113.19',value:82000,stream:'GREEN',status:'THÔNG QUAN',docs:['Invoice','C/O','Packing List']},
 ];
@@ -906,7 +906,7 @@ function submitTxn(){
 function renderTxnHistory(){
   const all=[...txnHistory.slice(0,20),...[
     {time:'23/03 09:00',type:'IN',wh:'HCM-MAIN',goods:'Vàng 18K Vàng',qty:120,unit:'chỉ',price:3720000,ref:'HD-2026-0892',nv:'TLXR060'},
-    {time:'22/03 14:30',type:'OUT',wh:'HCM-MAIN',goods:'Kim Cương GIA 5ly',qty:3,unit:'viên',price:0,ref:'TL-20260015',nv:'TLXR060'},
+    {time:'22/03 14:30',type:'OUT',wh:'HCM-MAIN',goods:'Phan Thanh Thương Cương GIA 5ly',qty:3,unit:'viên',price:0,ref:'TL-20260015',nv:'TLXR060'},
     {time:'21/03 08:00',type:'IN',wh:'HN-BRANCH',goods:'Nhẫn Nữ Halo 18K',qty:5,unit:'cái',price:38000000,ref:'ĐCHN-001',nv:'TLXR061'},
   ]];
   document.getElementById('txnCount').textContent=all.length+' giao dịch';
@@ -951,7 +951,7 @@ function submitTransfer(){
 function renderTransferList(){
   const all=[...transfers,...[
     {id:'CHKHO-240315',goods:'Vàng 18K Vàng',sku:'GOLD-18K-VANG',qty:50,unit:'chỉ',from:'HCM-MAIN',to:'HN-BRANCH',method:'Nhất Tín Express',date:'15/03/2026',status:'COMPLETED',by:'TLXR060'},
-    {id:'CHKHO-240318',goods:'Kim Cương Tấm VVS1',sku:'DIA-TAM',qty:100,unit:'viên',from:'HCM-MAIN',to:'HN-BRANCH',method:'Viettel Post Bảo Hiểm',date:'18/03/2026',status:'TRANSIT',by:'TLXR060'},
+    {id:'CHKHO-240318',goods:'Phan Thanh Thương Cương Tấm VVS1',sku:'DIA-TAM',qty:100,unit:'viên',from:'HCM-MAIN',to:'HN-BRANCH',method:'Viettel Post Bảo Hiểm',date:'18/03/2026',status:'TRANSIT',by:'TLXR060'},
   ]];
   document.getElementById('transferList').innerHTML=all.map(t=>`<tr>
     <td style="font-family:var(--mono);font-size:10px;color:var(--gold)">${t.id}</td>
@@ -1054,7 +1054,7 @@ function showCompliance(idx){
   const d=declarations[idx];
   const hs=d.hs;
   const checks=[];
-  if(hs.startsWith('7102'))checks.push({ok:d.docs.some(x=>x.includes('GIA')||x.includes('Kimberley')),label:'Kimberley Process Certificate',note:'Bắt buộc cho kim cương'});
+  if(hs.startsWith('7102'))checks.push({ok:d.docs.some(x=>x.includes('GIA')||x.includes('Phan Thanh Thươngberley')),label:'Phan Thanh Thươngberley Process Certificate',note:'Bắt buộc cho kim cương'});
   if(hs.startsWith('7108'))checks.push({ok:d.docs.includes('Giấy phép NHNN'),label:'Hạn Ngạch NHNN',note:'NK vàng nguyên liệu cần phép SBV'});
   checks.push({ok:d.docs.includes('Invoice'),label:'Commercial Invoice',note:'Bắt buộc mọi lô hàng'});
   checks.push({ok:d.docs.includes('Packing List')||d.goods.length>10,label:'Packing List',note:'Bắt buộc cho hàng nhiều kiện'});
@@ -1096,9 +1096,9 @@ function handleImportFiles(input){
 // LANDED COST CALCULATOR
 // ══════════════════════════════════════════════════════
 const HS_TARIFFS = {
-  '7102': {name:'Kim Cương',import:0,vat:10,note:'Miễn thuế NK (Kimberley)'},
+  '7102': {name:'Phan Thanh Thương Cương',import:0,vat:10,note:'Miễn thuế NK (Phan Thanh Thươngberley)'},
   '7108': {name:'Vàng Nguyên Liệu',import:0,vat:10,note:'Miễn thuế NK — cần hạn ngạch NHNN'},
-  '7113': {name:'Trang Sức Kim Loại Quý',import:10,vat:10,note:'Thuế NK 10% — FTA có thể 0-5%'},
+  '7113': {name:'Trang Sức Phan Thanh Thương Loại Quý',import:10,vat:10,note:'Thuế NK 10% — FTA có thể 0-5%'},
   '7116': {name:'Đá Quý Chế Tác',import:5,vat:10,note:'Thuế NK 5%'},
 };
 const CO_DISCOUNT = {none:0, form_e:0.5, form_d:0.5, form_ak:0.3};

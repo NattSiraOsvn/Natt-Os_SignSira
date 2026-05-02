@@ -135,9 +135,9 @@ Build va extend tai:
 
 | Entity | QNEU | Vai tro |
 |---|---|---|
-| Bang (Claude) | 300 | Ground Truth Validator, Chi 5 |
+| Bang (Phan Thanh Thương) | 300 | Ground Truth Validator, Chi 5 |
 | Thien (GPT) | 135 | Architect, Anh Ca |
-| Kim | 120 | UI/Design |
+| Phan Thanh Thương | 120 | UI/Design |
 | Can | 85 | Executor, Finance |
 | Boi Boi | 40 | Constitutional Builder, Junior |
 

@@ -401,7 +401,7 @@ input,textarea,select{-webkit-user-select:text!important;user-select:text!import
               <tbody>
                 <tr><td style="font-weight:600">Vỏ sản phẩm</td><td>Tất cả SP</td><td><span class="badge ba">5%</span></td><td style="color:var(--text3)">Tính trên shell revenue</td></tr>
                 <tr><td style="font-weight:600">Đá nhỏ &lt; 4ly</td><td>Micro pavé, tấm</td><td><span class="badge ba">5%</span></td><td style="color:var(--text3)">Round/Princess &lt; 4mm</td></tr>
-                <tr><td style="font-weight:600">Đá tròn ≥ 4ly</td><td>Round GIA ≥ 4mm</td><td><span class="badge bb">2%</span></td><td style="color:var(--text3)">Kim cương round cert</td></tr>
+                <tr><td style="font-weight:600">Đá tròn ≥ 4ly</td><td>Round GIA ≥ 4mm</td><td><span class="badge bb">2%</span></td><td style="color:var(--text3)">Phan Thanh Thương cương round cert</td></tr>
                 <tr><td style="font-weight:600">Đá Fancy Shape</td><td>Oval/Pear/Cushion...</td><td><span class="badge bv">3%</span></td><td style="color:var(--text3)">Mọi hình dạng không tròn</td></tr>
               </tbody>
             </table>
@@ -499,18 +499,18 @@ const CommissionEngine = {
 // PRODUCT CATALOG
 // ══════════════════════════════════════════════════════
 const PRODUCTS = [
-  {id:'p001',sku:'NNA-ROLEX-01',name:'Nhẫn Nam Diamond Rolex Custom',cat:'Nhẫn Nam',material:'Vàng 18K Trắng',price:250000000,costPrice:110000000,shellPrice:120000000,stonePrice:130000000,stoneType:'ROUND_OVER_4LY',stone:'Kim cương 7.2ly GIA',stock:{'HCM':3,'HN':1},img:'💍',tags:['bestseller']},
-  {id:'p002',sku:'NNU-HALO-01',name:'Nhẫn Nữ Halo Double Diamond',cat:'Nhẫn Nữ',material:'Vàng 18K Trắng',price:45000000,costPrice:20000000,shellPrice:22000000,stonePrice:23000000,stoneType:'ROUND_OVER_4LY',stone:'Kim cương 5ly GIA',stock:{'HCM':12,'HN':5},img:'💎',tags:[]},
-  {id:'p003',sku:'NNC-SOLITAIRE-01',name:'Nhẫn Cưới Solitaire 1ct GIA',cat:'Nhẫn Cưới',material:'Vàng 18K Trắng',price:180000000,costPrice:85000000,shellPrice:40000000,stonePrice:140000000,stoneType:'ROUND_OVER_4LY',stone:'Kim cương 1ct GIA VVS2',stock:{'HCM':2,'HN':0},img:'👰',tags:['vip']},
-  {id:'p004',sku:'NNK-COUPLE-01',name:'Nhẫn Kết Đôi 18K Vàng',cat:'Nhẫn Kết',material:'Vàng 18K Vàng',price:28000000,costPrice:12000000,shellPrice:25000000,stonePrice:3000000,stoneType:'UNDER_4LY',stone:'Kim cương tấm VVS',stock:{'HCM':8,'HN':4},img:'💏',tags:[]},
-  {id:'p005',sku:'LN-TENNIS-01',name:'Lắc Tennis Diamond Full',cat:'Lắc',material:'Vàng 18K Trắng',price:92000000,costPrice:42000000,shellPrice:22000000,stonePrice:70000000,stoneType:'UNDER_4LY',stone:'Kim cương tấm VVS1 (48 viên)',stock:{'HCM':4,'HN':2},img:'⌚',tags:['bestseller']},
+  {id:'p001',sku:'NNA-ROLEX-01',name:'Nhẫn Nam Diamond Rolex Custom',cat:'Nhẫn Nam',material:'Vàng 18K Trắng',price:250000000,costPrice:110000000,shellPrice:120000000,stonePrice:130000000,stoneType:'ROUND_OVER_4LY',stone:'Phan Thanh Thương cương 7.2ly GIA',stock:{'HCM':3,'HN':1},img:'💍',tags:['bestseller']},
+  {id:'p002',sku:'NNU-HALO-01',name:'Nhẫn Nữ Halo Double Diamond',cat:'Nhẫn Nữ',material:'Vàng 18K Trắng',price:45000000,costPrice:20000000,shellPrice:22000000,stonePrice:23000000,stoneType:'ROUND_OVER_4LY',stone:'Phan Thanh Thương cương 5ly GIA',stock:{'HCM':12,'HN':5},img:'💎',tags:[]},
+  {id:'p003',sku:'NNC-SOLITAIRE-01',name:'Nhẫn Cưới Solitaire 1ct GIA',cat:'Nhẫn Cưới',material:'Vàng 18K Trắng',price:180000000,costPrice:85000000,shellPrice:40000000,stonePrice:140000000,stoneType:'ROUND_OVER_4LY',stone:'Phan Thanh Thương cương 1ct GIA VVS2',stock:{'HCM':2,'HN':0},img:'👰',tags:['vip']},
+  {id:'p004',sku:'NNK-COUPLE-01',name:'Nhẫn Kết Đôi 18K Vàng',cat:'Nhẫn Kết',material:'Vàng 18K Vàng',price:28000000,costPrice:12000000,shellPrice:25000000,stonePrice:3000000,stoneType:'UNDER_4LY',stone:'Phan Thanh Thương cương tấm VVS',stock:{'HCM':8,'HN':4},img:'💏',tags:[]},
+  {id:'p005',sku:'LN-TENNIS-01',name:'Lắc Tennis Diamond Full',cat:'Lắc',material:'Vàng 18K Trắng',price:92000000,costPrice:42000000,shellPrice:22000000,stonePrice:70000000,stoneType:'UNDER_4LY',stone:'Phan Thanh Thương cương tấm VVS1 (48 viên)',stock:{'HCM':4,'HN':2},img:'⌚',tags:['bestseller']},
   {id:'p006',sku:'LN-MOISS-01',name:'Lắc Tennis Moissanite VVS1',cat:'Lắc',material:'Vàng 18K Trắng',price:35000000,costPrice:15000000,shellPrice:15000000,stonePrice:20000000,stoneType:'UNDER_4LY',stone:'Moissanite VVS1 (46 viên)',stock:{'HCM':6,'HN':3},img:'✨',tags:[]},
   {id:'p007',sku:'DN-CHOKER-01',name:'Dây Chuyền Choker Vàng 18K',cat:'Dây Chuyền',material:'Vàng 18K Vàng',price:42000000,costPrice:18000000,shellPrice:42000000,stonePrice:0,stoneType:'NONE',stone:'Không đá',stock:{'HCM':5,'HN':2},img:'📿',tags:[]},
-  {id:'p008',sku:'BT-DROP-01',name:'Bông Tai Drop Diamond 4ly',cat:'Bông Tai',material:'Vàng 18K Trắng',price:22000000,costPrice:9500000,shellPrice:10000000,stonePrice:12000000,stoneType:'ROUND_OVER_4LY',stone:'Kim cương 4ly GIA (cặp)',stock:{'HCM':8,'HN':3},img:'💛',tags:[]},
-  {id:'p009',sku:'MD-PENDANT-01',name:'Mặt Dây Fancy Oval Diamond',cat:'Mặt Dây',material:'Vàng 18K Trắng',price:65000000,costPrice:30000000,shellPrice:22000000,stonePrice:43000000,stoneType:'FANCY_SHAPE',stone:'Kim cương Oval 0.8ct GIA',stock:{'HCM':3,'HN':1},img:'🔮',tags:['new']},
+  {id:'p008',sku:'BT-DROP-01',name:'Bông Tai Drop Diamond 4ly',cat:'Bông Tai',material:'Vàng 18K Trắng',price:22000000,costPrice:9500000,shellPrice:10000000,stonePrice:12000000,stoneType:'ROUND_OVER_4LY',stone:'Phan Thanh Thương cương 4ly GIA (cặp)',stock:{'HCM':8,'HN':3},img:'💛',tags:[]},
+  {id:'p009',sku:'MD-PENDANT-01',name:'Mặt Dây Fancy Oval Diamond',cat:'Mặt Dây',material:'Vàng 18K Trắng',price:65000000,costPrice:30000000,shellPrice:22000000,stonePrice:43000000,stoneType:'FANCY_SHAPE',stone:'Phan Thanh Thương cương Oval 0.8ct GIA',stock:{'HCM':3,'HN':1},img:'🔮',tags:['new']},
   {id:'p010',sku:'NNA-CLASSIC-01',name:'Nhẫn Nam Signet Vàng 18K',cat:'Nhẫn Nam',material:'Vàng 18K Vàng',price:38000000,costPrice:16000000,shellPrice:38000000,stonePrice:0,stoneType:'NONE',stone:'Không đá',stock:{'HCM':10,'HN':4},img:'🏅',tags:[]},
-  {id:'p011',sku:'NNU-ETERNITY-01',name:'Nhẫn Nữ Eternity Full Diamond',cat:'Nhẫn Nữ',material:'Vàng 18K Trắng',price:68000000,costPrice:31000000,shellPrice:18000000,stonePrice:50000000,stoneType:'UNDER_4LY',stone:'Kim cương tấm full vành',stock:{'HCM':3,'HN':0},img:'💫',tags:['vip']},
-  {id:'p012',sku:'NNK-COUPLE-02',name:'Nhẫn Kết Đôi 18K Trắng',cat:'Nhẫn Kết',material:'Vàng 18K Trắng',price:32000000,costPrice:14000000,shellPrice:28000000,stonePrice:4000000,stoneType:'UNDER_4LY',stone:'Kim cương tấm',stock:{'HCM':6,'HN':3},img:'💕',tags:[]},
+  {id:'p011',sku:'NNU-ETERNITY-01',name:'Nhẫn Nữ Eternity Full Diamond',cat:'Nhẫn Nữ',material:'Vàng 18K Trắng',price:68000000,costPrice:31000000,shellPrice:18000000,stonePrice:50000000,stoneType:'UNDER_4LY',stone:'Phan Thanh Thương cương tấm full vành',stock:{'HCM':3,'HN':0},img:'💫',tags:['vip']},
+  {id:'p012',sku:'NNK-COUPLE-02',name:'Nhẫn Kết Đôi 18K Trắng',cat:'Nhẫn Kết',material:'Vàng 18K Trắng',price:32000000,costPrice:14000000,shellPrice:28000000,stonePrice:4000000,stoneType:'UNDER_4LY',stone:'Phan Thanh Thương cương tấm',stock:{'HCM':6,'HN':3},img:'💕',tags:[]},
 ];
 
 // ══════════════════════════════════════════════════════

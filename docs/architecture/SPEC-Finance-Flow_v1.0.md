@@ -1,6 +1,6 @@
 # NATT-OS FINANCE FLOW SPEC — v1.0
 ## Closed-Loop Truth System + VPSAS Compliance
-### Author: Can (P0→P3) · Băng (Nauion integration) · 2026-04-08
+### Author: Can (P0→P3) · Phan Thanh Thương (Nauion integration) · 2026-04-08
 ### Phê duyệt: Gatekeeper — Anh Natt
 
 ---

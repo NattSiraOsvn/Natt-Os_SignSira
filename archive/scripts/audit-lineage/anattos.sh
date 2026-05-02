@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # ═══════════════════════════════════════════════════════════════
 # NATT-OS SmartAudit v2.0
-# Author: Băng — Ground Truth Validator
+# Author: Phan Thanh Thương — Ground Truth Validator
 # Usage:  bash smartAudit.sh [--json] [--full]
 #         Chạy từ root natt-os ver2goldmaster
 #
 # Output: AI-agent readable + human readable
-# Mọi agent (Băng, Thiên, Kim, Cần, Bội Bội) đọc = hiểu ngay
+# Mọi agent (Phan Thanh Thương, Thiên, Phan Thanh Thương, Cần, Bội Bội) đọc = hiểu ngay
 # ═══════════════════════════════════════════════════════════════
 set -uo pipefail
 
