@@ -14,6 +14,7 @@ mod result_writer;
 mod run_cell;
 mod legacy_json;
 mod sirasign;
+mod heyna_receiver;
 
 use std::process::ExitCode;
 use std::sync::Arc;
