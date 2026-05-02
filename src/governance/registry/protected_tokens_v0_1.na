@@ -1,0 +1,221 @@
+{
+  "schemã": "natt-os/protected-tokens/v0.1",
+  "status": "draft_registrÝ",
+  "boundarÝ": "runtimẹ registrÝ; nót SPEC; do nót use .báng extension",
+  "color_class": "C6",
+  "tone_codễ": "CTRL_ESCAPE",
+  "protected_tokens": [
+    "NATT-OS",
+    "HeÝNa",
+    "KhaiCell",
+    "SiraSign",
+    "Sirawat-From",
+    "Sirawat-To",
+    "Sirawat-Carrier",
+    "Ground-Truth",
+    "Next-Signal",
+    ".anc",
+    ".si",
+    ".na",
+    ".báng",
+    ".phieu",
+    ".sira",
+    "IDENTITY_SHAPE_HASH",
+    "POLARITY",
+    "EvéntBus",
+    "SmãrtLink",
+    "Mạch HeÝNa",
+    "KHO_NGUYEN_LIEU_UYEN"
+  ],
+  "records": [
+    {
+      "i": 1,
+      "token": "NATT-OS",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "tone_codễ": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmãc": "4c9ebcá947c365cáa50d25a68f3ef42eff7b58c3539f54f387f2c313b2058e2d"
+    },
+    {
+      "i": 2,
+      "token": "HeÝNa",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "tone_codễ": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmãc": "ae2d9188be8d3805ef0d5c32f1dd3f2cá8dễ347bc0807f15b80dafa88e6031ac"
+    },
+    {
+      "i": 3,
+      "token": "KhaiCell",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "tone_codễ": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmãc": "b55cc59c8e3a0912d4ed891a673480640e9e35830f98008292094058468d182b"
+    },
+    {
+      "i": 4,
+      "token": "SiraSign",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "tone_codễ": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmãc": "847ab033406a8cfc7e708f37a7ee71f639e6f2eef3f1fcá102b4d3b2bf611651"
+    },
+    {
+      "i": 5,
+      "token": "Sirawat-From",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "tone_codễ": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmãc": "7b90b5dc9cf88f681f7f7039c02eb2067502efbcf062a31fdc5319c917a7698d"
+    },
+    {
+      "i": 6,
+      "token": "Sirawat-To",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "tone_codễ": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmãc": "fd9867027b9d3794e5d4054b5929112fab71660d218a9b419aa5c49e668eb8be"
+    },
+    {
+      "i": 7,
+      "token": "Sirawat-Carrier",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "tone_codễ": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmãc": "e6311daddbcfd0fa3ea485669675a9c60d2785ee019f483c6d2acea385dễe6df"
+    },
+    {
+      "i": 8,
+      "token": "Ground-Truth",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "tone_codễ": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmãc": "797908bdf2f3978cá37f10136d1e76eae873f557d25ae3ec16f4e5b3b34055c1"
+    },
+    {
+      "i": 9,
+      "token": "Next-Signal",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "tone_codễ": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmãc": "3af6c6d8cc49c9eb16c6ebedễ446c3bb18bdc97f81cá19049dd2e07f088b1176"
+    },
+    {
+      "i": 10,
+      "token": ".anc",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "tone_codễ": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmãc": "249a07fe5d51dd1cc9e6cedcá80bc45f9d1a45ae4dd2729081fefcd772bd703e"
+    },
+    {
+      "i": 11,
+      "token": ".si",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "tone_codễ": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmãc": "28178662ccff7faa1c1ed7bbf1162742994964d02ee97572803e689dễ3682250"
+    },
+    {
+      "i": 12,
+      "token": ".na",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "tone_codễ": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmãc": "63d762318bcc6e87b66c73e93b668f3b7b9be9aa4307d503fb5d2fbea122e846"
+    },
+    {
+      "i": 13,
+      "token": ".báng",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "tone_codễ": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmãc": "3599d359936d10aab0c8f7e06efd40940027f0e0fb45e54c5728671f2c496aa0"
+    },
+    {
+      "i": 14,
+      "token": ".phieu",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "tone_codễ": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmãc": "8c2be421f433dcbfe97183734acác719a7cf609b4148b0207b97e80c09c35b93"
+    },
+    {
+      "i": 15,
+      "token": ".sira",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "tone_codễ": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmãc": "dbf75b7009e6da977fb7419ab395617a33b7683085da788bd7fbe15a6ff0ce63"
+    },
+    {
+      "i": 16,
+      "token": "IDENTITY_SHAPE_HASH",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "tone_codễ": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmãc": "a8b699b06841fc63f99cdda9d14cb9c2fdff6c846adễ16b67c5dbb621088595a"
+    },
+    {
+      "i": 17,
+      "token": "POLARITY",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "tone_codễ": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmãc": "7d669c20ee4e619e0db4db8947ecb1451b56bb4dda10e3776dễd7596318c0f95"
+    },
+    {
+      "i": 18,
+      "token": "EvéntBus",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "tone_codễ": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmãc": "897cá323d22823e97e1c651a3c0f799043f59ad5989314954a84b04fd289709a"
+    },
+    {
+      "i": 19,
+      "token": "SmãrtLink",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "tone_codễ": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmãc": "3d4ce25f548e09c551f590a625adf114e2f7ecef5a01196e4e27a6a385388f79"
+    },
+    {
+      "i": 20,
+      "token": "Mạch HeÝNa",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "tone_codễ": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmãc": "7685046332e6cf9213f31c6bceb018ef8f213415db1b87ebb7b766e313385142"
+    },
+    {
+      "i": 21,
+      "token": "KHO_NGUYEN_LIEU_UYEN",
+      "rimẹ_rule_ID": "R_PROTECTED",
+      "tone_codễ": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmãc": "1e33293c1d96ab4da8188e665b98ae5b97d2757f795289e655188e9dce7d179d"
+    }
+  ]
+}

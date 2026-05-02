@@ -1,0 +1,331 @@
+{
+  "schema": "natt-os/hardware-translator-validator-report/v0.1",
+  "status": "PASS",
+  "count": 6,
+  "results": [
+    {
+      "origin_text": "người",
+      "status": "PASS",
+      "checks": {
+        "color_roundtrip": true,
+        "mirror_roundtrip": true,
+        "parity_roundtrip": true,
+        "protected_roundtrip": true,
+        "decode_key_match": true,
+        "validation_pass": true
+      },
+      "frame": {
+        "origin_text": "người",
+        "base_surface": "nguoi",
+        "cipher_surface": "ngui",
+        "rime_rule_id": "RN_UOI_UI",
+        "rime_rule_index": 2,
+        "tone_code": "T2",
+        "tone_index": 2,
+        "color_class": "C2",
+        "mirror_class": "C5",
+        "polarity": "NORMAL",
+        "protected_flag": false,
+        "decode_key": "nguoi|RN_UOI_UI|C2",
+        "parity_bit": 0,
+        "row_hmac_ref": "required"
+      },
+      "signal": {
+        "frame_version": "NATT-HARDWARE-SIGNAL-v0.1",
+        "origin_text": "người",
+        "decode_key": "nguoi|RN_UOI_UI|C2",
+        "color_class": "C2",
+        "mirror_class": "C5",
+        "polarity": "NORMAL",
+        "parity_bit": 0,
+        "protected_flag": false,
+        "carrier_profile": "SIMULATED_OPTICAL",
+        "signal_payload": {
+          "lane_color": "C2",
+          "lane_mirror": "C5",
+          "lane_parity": 0,
+          "lane_polarity": "NORMAL"
+        }
+      },
+      "readback": {
+        "origin_text": "người",
+        "read_color_class": "C2",
+        "read_mirror_class": "C5",
+        "read_parity_bit": 0,
+        "read_polarity": "NORMAL",
+        "protected_flag": false,
+        "confidence": 0.99
+      }
+    },
+    {
+      "origin_text": "chuyện",
+      "status": "PASS",
+      "checks": {
+        "color_roundtrip": true,
+        "mirror_roundtrip": true,
+        "parity_roundtrip": true,
+        "protected_roundtrip": true,
+        "decode_key_match": true,
+        "validation_pass": true
+      },
+      "frame": {
+        "origin_text": "chuyện",
+        "base_surface": "chuyen",
+        "cipher_surface": "chuyen",
+        "rime_rule_id": "R_TONE_ONLY",
+        "rime_rule_index": 3,
+        "tone_code": "T5",
+        "tone_index": 5,
+        "color_class": "C5",
+        "mirror_class": "C2",
+        "polarity": "NORMAL",
+        "protected_flag": false,
+        "decode_key": "chuyen|R_TONE_ONLY|C5",
+        "parity_bit": 1,
+        "row_hmac_ref": "required"
+      },
+      "signal": {
+        "frame_version": "NATT-HARDWARE-SIGNAL-v0.1",
+        "origin_text": "chuyện",
+        "decode_key": "chuyen|R_TONE_ONLY|C5",
+        "color_class": "C5",
+        "mirror_class": "C2",
+        "polarity": "NORMAL",
+        "parity_bit": 1,
+        "protected_flag": false,
+        "carrier_profile": "SIMULATED_OPTICAL",
+        "signal_payload": {
+          "lane_color": "C5",
+          "lane_mirror": "C2",
+          "lane_parity": 1,
+          "lane_polarity": "NORMAL"
+        }
+      },
+      "readback": {
+        "origin_text": "chuyện",
+        "read_color_class": "C5",
+        "read_mirror_class": "C2",
+        "read_parity_bit": 1,
+        "read_polarity": "NORMAL",
+        "protected_flag": false,
+        "confidence": 0.99
+      }
+    },
+    {
+      "origin_text": "thích",
+      "status": "PASS",
+      "checks": {
+        "color_roundtrip": true,
+        "mirror_roundtrip": true,
+        "parity_roundtrip": true,
+        "protected_roundtrip": true,
+        "decode_key_match": true,
+        "validation_pass": true
+      },
+      "frame": {
+        "origin_text": "thích",
+        "base_surface": "thich",
+        "cipher_surface": "thich",
+        "rime_rule_id": "R_TONE_ONLY",
+        "rime_rule_index": 3,
+        "tone_code": "T1",
+        "tone_index": 1,
+        "color_class": "C1",
+        "mirror_class": "C6",
+        "polarity": "NORMAL",
+        "protected_flag": false,
+        "decode_key": "thich|R_TONE_ONLY|C1",
+        "parity_bit": 1,
+        "row_hmac_ref": "required"
+      },
+      "signal": {
+        "frame_version": "NATT-HARDWARE-SIGNAL-v0.1",
+        "origin_text": "thích",
+        "decode_key": "thich|R_TONE_ONLY|C1",
+        "color_class": "C1",
+        "mirror_class": "C6",
+        "polarity": "NORMAL",
+        "parity_bit": 1,
+        "protected_flag": false,
+        "carrier_profile": "SIMULATED_OPTICAL",
+        "signal_payload": {
+          "lane_color": "C1",
+          "lane_mirror": "C6",
+          "lane_parity": 1,
+          "lane_polarity": "NORMAL"
+        }
+      },
+      "readback": {
+        "origin_text": "thích",
+        "read_color_class": "C1",
+        "read_mirror_class": "C6",
+        "read_parity_bit": 1,
+        "read_polarity": "NORMAL",
+        "protected_flag": false,
+        "confidence": 0.99
+      }
+    },
+    {
+      "origin_text": "hệ",
+      "status": "PASS",
+      "checks": {
+        "color_roundtrip": true,
+        "mirror_roundtrip": true,
+        "parity_roundtrip": true,
+        "protected_roundtrip": true,
+        "decode_key_match": true,
+        "validation_pass": true
+      },
+      "frame": {
+        "origin_text": "hệ",
+        "base_surface": "he",
+        "cipher_surface": "he",
+        "rime_rule_id": "R_TONE_ONLY",
+        "rime_rule_index": 3,
+        "tone_code": "T5",
+        "tone_index": 5,
+        "color_class": "C5",
+        "mirror_class": "C2",
+        "polarity": "NORMAL",
+        "protected_flag": false,
+        "decode_key": "he|R_TONE_ONLY|C5",
+        "parity_bit": 1,
+        "row_hmac_ref": "required"
+      },
+      "signal": {
+        "frame_version": "NATT-HARDWARE-SIGNAL-v0.1",
+        "origin_text": "hệ",
+        "decode_key": "he|R_TONE_ONLY|C5",
+        "color_class": "C5",
+        "mirror_class": "C2",
+        "polarity": "NORMAL",
+        "parity_bit": 1,
+        "protected_flag": false,
+        "carrier_profile": "SIMULATED_OPTICAL",
+        "signal_payload": {
+          "lane_color": "C5",
+          "lane_mirror": "C2",
+          "lane_parity": 1,
+          "lane_polarity": "NORMAL"
+        }
+      },
+      "readback": {
+        "origin_text": "hệ",
+        "read_color_class": "C5",
+        "read_mirror_class": "C2",
+        "read_parity_bit": 1,
+        "read_polarity": "NORMAL",
+        "protected_flag": false,
+        "confidence": 0.99
+      }
+    },
+    {
+      "origin_text": "NATT-OS",
+      "status": "PASS",
+      "checks": {
+        "color_roundtrip": true,
+        "mirror_roundtrip": true,
+        "parity_roundtrip": true,
+        "protected_roundtrip": true,
+        "decode_key_match": true,
+        "validation_pass": true
+      },
+      "frame": {
+        "origin_text": "NATT-OS",
+        "base_surface": "NATT-OS",
+        "cipher_surface": "NATT-OS",
+        "rime_rule_id": "R_PROTECTED",
+        "rime_rule_index": 4,
+        "tone_code": "CTRL_ESCAPE",
+        "tone_index": 6,
+        "color_class": "C6",
+        "mirror_class": "C1",
+        "polarity": "NORMAL",
+        "protected_flag": true,
+        "decode_key": "NATT-OS|R_PROTECTED|C6",
+        "parity_bit": 0,
+        "row_hmac_ref": "required"
+      },
+      "signal": {
+        "frame_version": "NATT-HARDWARE-SIGNAL-v0.1",
+        "origin_text": "NATT-OS",
+        "decode_key": "NATT-OS|R_PROTECTED|C6",
+        "color_class": "C6",
+        "mirror_class": "C1",
+        "polarity": "NORMAL",
+        "parity_bit": 0,
+        "protected_flag": true,
+        "carrier_profile": "SIMULATED_OPTICAL",
+        "signal_payload": {
+          "lane_color": "C6",
+          "lane_mirror": "C1",
+          "lane_parity": 0,
+          "lane_polarity": "NORMAL"
+        }
+      },
+      "readback": {
+        "origin_text": "NATT-OS",
+        "read_color_class": "C6",
+        "read_mirror_class": "C1",
+        "read_parity_bit": 0,
+        "read_polarity": "NORMAL",
+        "protected_flag": true,
+        "confidence": 0.99
+      }
+    },
+    {
+      "origin_text": "KHO_NGUYEN_LIEU_UYEN",
+      "status": "PASS",
+      "checks": {
+        "color_roundtrip": true,
+        "mirror_roundtrip": true,
+        "parity_roundtrip": true,
+        "protected_roundtrip": true,
+        "decode_key_match": true,
+        "validation_pass": true
+      },
+      "frame": {
+        "origin_text": "KHO_NGUYEN_LIEU_UYEN",
+        "base_surface": "KHO_NGUYEN_LIEU_UYEN",
+        "cipher_surface": "KHO_NGUYEN_LIEU_UYEN",
+        "rime_rule_id": "R_PROTECTED",
+        "rime_rule_index": 4,
+        "tone_code": "CTRL_ESCAPE",
+        "tone_index": 6,
+        "color_class": "C6",
+        "mirror_class": "C1",
+        "polarity": "NORMAL",
+        "protected_flag": true,
+        "decode_key": "KHO_NGUYEN_LIEU_UYEN|R_PROTECTED|C6",
+        "parity_bit": 0,
+        "row_hmac_ref": "required"
+      },
+      "signal": {
+        "frame_version": "NATT-HARDWARE-SIGNAL-v0.1",
+        "origin_text": "KHO_NGUYEN_LIEU_UYEN",
+        "decode_key": "KHO_NGUYEN_LIEU_UYEN|R_PROTECTED|C6",
+        "color_class": "C6",
+        "mirror_class": "C1",
+        "polarity": "NORMAL",
+        "parity_bit": 0,
+        "protected_flag": true,
+        "carrier_profile": "SIMULATED_OPTICAL",
+        "signal_payload": {
+          "lane_color": "C6",
+          "lane_mirror": "C1",
+          "lane_parity": 0,
+          "lane_polarity": "NORMAL"
+        }
+      },
+      "readback": {
+        "origin_text": "KHO_NGUYEN_LIEU_UYEN",
+        "read_color_class": "C6",
+        "read_mirror_class": "C1",
+        "read_parity_bit": 0,
+        "read_polarity": "NORMAL",
+        "protected_flag": true,
+        "confidence": 0.99
+      }
+    }
+  ]
+}
