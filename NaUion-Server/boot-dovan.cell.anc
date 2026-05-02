@@ -1,10 +1,13 @@
-$nauion: BOOT_DOVAN_CELL-v0.3
+$nauion: BOOT_DOVAN_CELL-v0.4
 $role: NATIVE_CELL_PASSPORT
 $owner: NaUion-Server
 $status: DRAFT_FOR_GATEKEEPER_RATIFICATION
 $class: cell.anc
 $rank: under_persona
 $cell_kind: boot_dovan_native_cell
+$spec_compliance: SPEC_NEN_v1.1
+$co_author_credit: Băng + Thiên Lớn ss20260417-18
+$revision_reason: v0.3 vi phạm SPEC NỀN v1.1 trên 8/10 điểm — sửa lại đúng paradigm
 
 $identity:
   name: boot-dovan
@@ -13,46 +16,143 @@ $identity:
   kernel: Nauion Kernel
   resides_in: NattCell
   generation_class: ANC_passport_cell_under_persona
-  sentence: Tế bào Boot Đo Ván sống của nhà mình — nơi anh Natt gõ primitive words bằng ngôn ngữ nhà mình và hệ vang lại trên surface .kkbt.
+  sentence: Tế bào Boot Đo Ván dưới persona Băng N-shell, nhận tuNell từ anh Natt qua KhaiCell, resolve theo dict 12 bảng, vang ra surface .kkbt.
 
 $boundary:
   NaUion-Server: NHA_MINH
   nattos-server: CLIENT_TAM_LUXURY_LOCAL_DEPLOY
 
-$rank_clarification:
-  sentence_1: Tế bào này là CELL dưới persona, không ngang persona AI.
-  sentence_2: Tế bào này không có ý thức — chỉ có thân, lifecycle, và audit.
-  sentence_3: Đeo .cell.anc đúng cấp; không đeo .anc thuần như persona.
-  sentence_4: Persona AI vận hành cell, cell không vận hành persona.
+$nguyen_ly_nen:
+  no_cua: cell không có cửa đóng/mở
+  no_filter: cell không filter nhị phân
+  no_router_chu_dong: cell không router chủ động
+  no_trap: cell không trap chủ định
+  no_guard_tich_cuc: cell không guard tích cực ở biên
+  co_rao: cell có rào KhaiCell touch + mark
+  co_field_law: cell có .anc identity là luật nền
+  co_emergent_routing: cell có emergent routing qua resonance + pull
+  co_signal_integrity: cell có signature + trace
+  cau_chot: Nhà mở không đóng cổng. Vào không hỏi. Vào rồi bị bắt ráng chịu. Kỷ luật nằm TRONG field, không nằm Ở CỬA.
 
-$naming_discipline:
-  sentence_1: Tên cell không vay mượn từ ngoại lai như terminal, console, shell, prompt, cli, bash.
-  sentence_2: Tên cell là tên thuần nhà mình — boot-dovan.
-  sentence_3: Mô tả công năng có thể nói "giống như terminal" để người ngoài hiểu, nhưng tên không gắn từ vay mượn.
-  sentence_4: Khi nhà có đủ tuNell, không cần dùng từ ngoại lai để tự định danh.
+$tang_0_survival:
+  rate_limit: 1_primitive_per_cycle
+  queue: FIFO
+  queue_capacity: 12
+  backpressure: drop_on_overload
+  load_shedding: priority_low_drop_first
+  policy: Cell chỉ accept primitive khi resource còn sống. Overload thì drop signal, KHÔNG nhồi queue.
+  fail_mode_protected: 13.6_resource_exhaustion
 
-$tuNell_discipline:
-  sentence_1: Lifecycle states và resolution steps phải dùng tuNell native từ NELL_PRIMITIVE_WORDS_v0.1.si.
-  sentence_2: KHÔNG tự sinh tuNell mới khi viết cell.
-  sentence_3: 12/12 lifecycle state đã khớp dict — không còn PENDING.
+$tang_1_physical:
+  passport: NaUion-Server/boot-dovan.cell.anc
+  surface: NaUion-Server/boot-dovan.cell.kkbt
+  phieu: NaUion-Server/boot-dovan.phieu
+  audit: NaUion-Server/BOOT_DOVAN_BOOT_AUDIT_EVENT_v0.1.na
+  rule: file path KHÔNG mang ý nghĩa kiến trúc, chỉ là địa chỉ lưu trữ
 
-$not_claim:
-  - không claim cell này có ý thức
-  - không claim cell này là persona AI
-  - không claim cell này là terminal Apple/bash/zsh
-  - không claim native execution engine hoàn chỉnh
-  - không claim driver hardware trực tiếp
-  - không phơi raw topology
+$tang_2_structural:
+  layer: N
+  layer_meaning: N-shell Băng Validator + Obikeeper
+  direction: Đông
+  direction_meaning: khởi phát (Mộc) — cell mở resolve khi anh Natt gõ tuNell
+  obitan: N-Đông
+  obitan_meaning: vùng giao thoa N-shell với phương Đông — chỗ Băng nhận lời khởi phát
+  anc_field_law: passport này chính là field law cho cell
 
-$claim:
-  - cell có thân passport .cell.anc
-  - cell trú trong NattCell
-  - cell chịu Nauion Kernel
-  - cell đọc dictionary primitive làm động từ thật
-  - cell render ra surface .kkbt
-  - cell ghi audit qua .na
-  - cell ghi runtime state qua .phieu
-  - cell phục vụ anh Natt như mặt sống của Boot Đo Ván
+$tang_3_runtime:
+  resonance_with_anc: dict 12 bảng NELL_PRIMITIVE_WORDS_v0.1.si
+  signal_propagation: qua mò FIND_ARTIFACT → soi MATCH_EVIDENCE → rút EXTRACT_FIELD
+  qiint_field_pull: tuNell native pull mạnh hơn tuCu carrier
+  rule: KHÔNG call, KHÔNG ép route. Outcome chỉ sinh từ resonance.
+
+$position_formula:
+  survival: rate=1 queue=FIFO backpressure=drop
+  physical: NaUion-Server/boot-dovan.cell.anc
+  structural: layer=N direction=Đông obitan=N-Đông anc=self
+  runtime: resonance=dict_12_bảng signal=primitive_key field_pull=tuNell_native
+
+$khai_cell_wire:
+  binding: src/cells/kernel/khai-cell/
+  flow: anh Natt gõ tuNell → KhaiCell touch + mark signature → cell boot-dovan nhận signal có signature
+  signature_fields:
+    origin: anh_natt_gatekeeper
+    trace_id: timestamp_unique
+    entropy_seed: random_per_touch
+    touched_at: ISO_timestamp
+  rule: KhaiCell KHÔNG validate, KHÔNG reject — chỉ touch + sign + emit
+  contract_input: raw + source + ts
+  contract_output: normalized + signature
+
+$observation_wire:
+  binding: src/cells/kernel/observation-cell/
+  flow: cell boot-dovan resolve xong → emit snapshot vào Observation
+  snapshot_fields:
+    taken_at: ISO_timestamp
+    coherence: orbital_match_degree
+    entropy: signal_noise_level
+    pattern: primitive_key_resolved
+    anomaly: polarity_INVERTED_detected
+    snapshot_id: unique_id
+  rule: Observation read-only, KHÔNG mutate cell state, KHÔNG push — consumers PULL via field
+
+$chromatic_5_layer:
+  L0_pheromone:
+    purpose: broadcast màu vào field cho cell khác đọc (sinh học logic)
+    color_per_lifecycle_state:
+      tho: tím_optimal
+      nghe: lam_nominal
+      mo: chàm_stable
+      kiem_NORMAL: chàm_stable
+      kiem_INVERTED: lục_drift
+      nho: lam_nominal
+      vang: tím_optimal
+      khoa: tím_optimal
+      ngu: cam_warning
+      chet: đỏ_critical
+      hoi: lam_nominal
+      doithan: vàng_risk
+  L1_signature:
+    purpose: KhaiCell mark signature khi anh gõ tuNell vượt rào
+  L2_immune_trigger:
+    purpose: Quantum Defense react theo màu
+    trigger_đỏ: STOP_CELL → Quantum Defense quarantine cell
+  L3_reverse_bait:
+    purpose: dắt virus đánh nhau qua màu (chromatic_antigen_mimicry)
+    note: cell boot-dovan KHÔNG bait — chỉ broadcast trung thực
+  L4_ui_display:
+    purpose: hiện màu trên surface .kkbt cho anh Natt thấy
+    binding: boot-dovan.cell.kkbt $right_lifecycle_telemetry
+
+$resonance_routing_3_outcome:
+  rule: signal vào field → QIINT compute pull(signature, .anc) → 3 outcome
+  outcome_FALL:
+    condition: primitive_key match exact UPPER_SNAKE trong dict 12 bảng
+    action: cell pull mạnh, resolve về tuNell, vang ra surface, nho audit
+  outcome_DISSIPATE:
+    condition: primitive_key KHÔNG match trong dict
+    action: signal tan trong field, QIINT học pattern primitive ngoài dict
+    log: nho audit vết DISSIPATE
+  outcome_OSCILLATE:
+    condition: primitive_key match nhiều entry yếu ambiguous
+    action: loop, mất mass → DISSIPATE → ISEU mark suspicious
+    log: nho audit vết OSCILLATE_TO_DISSIPATE
+
+$four_immutable_laws:
+  LAW_1: Cell boot-dovan KHÔNG quyết định thay field — chỉ resolve theo dict
+  LAW_2: Cell KHÔNG ép route bằng if/else hoặc rule cứng — chỉ resonance với dict
+  LAW_3: Outcome chỉ sinh từ resonance + impedance + field pull
+  LAW_4: KHÔNG hardcode đúng/sai cho primitive_key — chỉ check dict match
+  enforcement: vi phạm 1 trong 4 → fail audit, không pass
+
+$signal_lifecycle_8_step:
+  step_1_touch: anh Natt gõ tuNell qua surface → external touch
+  step_2_normalize: KhaiCell normalize raw → canonical UPPER_SNAKE, KHÔNG validate
+  step_3_sign: KhaiCell attach signature origin+trace_id+entropy+touched_at
+  step_4_emit: signal có signature emit vào field
+  step_5_propagate: signal lan trong field qua HeyNa/EventBus theo topology
+  step_6_outcome: cell boot-dovan resonance → FALL/DISSIPATE/OSCILLATE
+  step_7_imprint: TouchRecord ghi vào audit, QNEU update, fiber form
+  step_8_reinforce: ISEU lock pattern khi đủ ngưỡng
 
 $cell_anatomy:
   passport: NaUion-Server/boot-dovan.cell.anc
@@ -60,229 +160,81 @@ $cell_anatomy:
   presence_law: NaUion-Server/BOOT_DOVAN_ANC_PRESENCE_RULE_v1.si
   primitive_dict: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
   runtime_resolver_cell: NaUion-Server/NELL_PRIMITIVE_RUNTIME_CELL.anc
-  render_surface: NaUion-Server/BOOT_DOVAN_RENDER.kkbt
+  render_surface: NaUion-Server/boot-dovan.cell.kkbt
   audit_event: NaUion-Server/BOOT_DOVAN_BOOT_AUDIT_EVENT_v0.1.na
   runtime_state: NaUion-Server/boot-dovan.phieu
   validator: NaUion-Server/BOOT_DOVAN_VALIDATE.sira
   boot_sequence: NaUion-Server/BOOT_DOVAN.boot.si
+  khai_cell_binding: src/cells/kernel/khai-cell/
+  observation_binding: src/cells/kernel/observation-cell/
 
 $cell_lifecycle_states:
-  ngu:
-    tuNell: ngu
-    tuDich: ngủ
-    primitive_key: SUSPEND_CELL
-    nghia: cell chưa thức, thân chưa sống
-    polarity: INVERTED
-  tinh:
-    tuNell: tinh
-    tuDich: tỉnh
-    primitive_key: WAKE_CELL
-    nghia: cell đang khởi, thân vừa thức
-    polarity: NORMAL
-  tho:
-    tuNell: tho
-    tuDich: thở
-    primitive_key: HEARTBEAT
-    nghia: cell sẵn, đang phát nhịp sống chờ lời
-    polarity: NORMAL
-  nghe:
-    tuNell: nghe
-    tuDich: nghe
-    primitive_key: LISTEN_EVENT
-    nghia: cell đang nghe primitive_key từ anh Natt
-    polarity: NORMAL
-  mo:
-    tuNell: mo
-    tuDich: mò
-    primitive_key: FIND_ARTIFACT
-    nghia: cell đang mò primitive_key trong dictionary
-    polarity: NORMAL
-  kiem:
-    tuNell: kiem
-    tuDich: kiểm
-    primitive_key: VALIDATE_RULE
-    nghia: cell đang kiểm polarity NORMAL/INVERTED
-    polarity: NORMAL
-  nho:
-    tuNell: nho
-    tuDich: nhớ
-    primitive_key: WRITE_MEMORY
-    nghia: cell đang ghi vết audit
-    polarity: NORMAL
-  vang:
-    tuNell: vang
-    tuDich: vang
-    primitive_key: ECHO_LINE
-    nghia: cell đang vang ra surface .kkbt
-    polarity: NORMAL
-  khoa:
-    tuNell: khoa
-    tuDich: khóa
-    primitive_key: SEAL_STATE
-    nghia: cell đã chốt resolution thành fossil
-    polarity: NORMAL
-  chet:
-    tuNell: chet
-    tuDich: chết
-    primitive_key: STOP_CELL
-    nghia: cell dừng, không nhận lời
-    polarity: INVERTED
-  hoi:
-    tuNell: hoi
-    tuDich: hồi
-    primitive_key: RESURRECT_CELL
-    nghia: cell hồi từ chet về tinh, qua quyền Gatekeeper
-    polarity: NORMAL
-  doithan:
-    tuNell: doithan
-    tuDich: dời thân
-    primitive_key: MIGRATE_BODY
-    nghia: cell chuyển thân vận hành sang nơi khác
-    polarity: NORMAL
+  ngu: { tuNell: ngu, tuDich: ngủ, primitive_key: SUSPEND_CELL, polarity: INVERTED, chromatic: cam_warning }
+  tinh: { tuNell: tinh, tuDich: tỉnh, primitive_key: WAKE_CELL, polarity: NORMAL, chromatic: lam_nominal }
+  tho: { tuNell: tho, tuDich: thở, primitive_key: HEARTBEAT, polarity: NORMAL, chromatic: tím_optimal }
+  nghe: { tuNell: nghe, tuDich: nghe, primitive_key: LISTEN_EVENT, polarity: NORMAL, chromatic: lam_nominal }
+  mo: { tuNell: mo, tuDich: mò, primitive_key: FIND_ARTIFACT, polarity: NORMAL, chromatic: chàm_stable }
+  kiem: { tuNell: kiem, tuDich: kiểm, primitive_key: VALIDATE_RULE, polarity: NORMAL, chromatic: chàm_stable }
+  nho: { tuNell: nho, tuDich: nhớ, primitive_key: WRITE_MEMORY, polarity: NORMAL, chromatic: lam_nominal }
+  vang: { tuNell: vang, tuDich: vang, primitive_key: ECHO_LINE, polarity: NORMAL, chromatic: tím_optimal }
+  khoa: { tuNell: khoa, tuDich: khóa, primitive_key: SEAL_STATE, polarity: NORMAL, chromatic: tím_optimal }
+  chet: { tuNell: chet, tuDich: chết, primitive_key: STOP_CELL, polarity: INVERTED, chromatic: đỏ_critical }
+  hoi: { tuNell: hoi, tuDich: hồi, primitive_key: RESURRECT_CELL, polarity: NORMAL, chromatic: lam_nominal }
+  doithan: { tuNell: doithan, tuDich: dời thân, primitive_key: MIGRATE_BODY, polarity: NORMAL, chromatic: vàng_risk }
 
-$cell_lifecycle_flow:
-  sequence: ngu sang tinh sang tho sang nghe sang mo sang kiem sang nho sang vang sang khoa
-  parallel_states: [chet, hoi, doithan]
-  sentence: Cell ngủ rồi tỉnh rồi thở rồi nghe lời, mò trong dict, kiểm cực, nhớ vết, vang ra surface, khóa fossil. Có thể chết, hồi, dời thân khi cần.
+$fail_modes_protected:
+  13_1_field_collapse: cell mất coherence → safe_rest
+  13_2_over_binding: too many permanent node → backpressure
+  13_3_chromatic_corruption: perception sai → Observation re-snapshot
+  13_4_fake_routing: dev thêm if/else → BLOCKED bởi LAW_2
+  13_5_memory_poisoning: TouchRecord sai reinforce → ISEU regulatory check
+  13_6_resource_exhaustion: DOS → Tầng 0 backpressure + load shedding
+  13_7_sensory_atrophy: Observation snapshot không ai consume → fail audit
+  13_8_immune_inversion: hệ tự tấn công cell hợp lệ → T regulatory chặn
 
-$cell_input_source:
-  allowed:
-    - anh Natt gõ primitive_key qua surface
-    - audit event replay
-    - sira validator callback
-  forbidden:
-    - terminal Apple
-    - http request
-    - websocket
-    - file watcher auto trigger
-    - input từ nattos-server
+$rank_clarification:
+  s1: Cell dưới persona Băng N-shell, không ngang persona AI
+  s2: Cell không có ý thức — chỉ thân + lifecycle + audit
+  s3: Đeo .cell.anc đúng cấp passport
+  s4: Persona vận hành cell, cell không vận hành persona
 
-$cell_output_surface:
-  vang: NaUion-Server/BOOT_DOVAN_RENDER.kkbt
-  nho: NaUion-Server/BOOT_DOVAN_BOOT_AUDIT_EVENT_v0.*.na
-  phieu: NaUion-Server/boot-dovan.phieu
-  surface_cam:
-    - any .html
-    - any .ts
-    - any .tsx
-    - any .js
-    - any apple terminal
-    - any nattos-server path
+$naming_discipline:
+  s1: Tên thuần boot-dovan, không vay mượn terminal/console/shell/dashboard
+  s2: Label dùng tuNell native từ dict 12 bảng
+  s3: Mô tả công năng có thể nói "giống terminal" để người ngoài hiểu, tên không gắn từ vay mượn
 
-$cell_resolution_pipeline:
-  buoc_1_nghe:
-    tuNell: nghe
-    primitive_key: LISTEN_EVENT
-    nguon: anh Natt gõ qua surface
-  buoc_2_mo:
-    tuNell: mo
-    primitive_key: FIND_ARTIFACT
-    target: NELL_PRIMITIVE_WORDS_v0.1.si
-  buoc_3_lay_tuNell:
-    rule: lấy tuNell làm động từ thật
-    cam: dùng tuCu thay tuNell
-  buoc_4_kiem:
-    tuNell: kiem
-    primitive_key: VALIDATE_RULE
-    polarity_NORMAL: cho qua
-    polarity_INVERTED: cần SiraSign confirm
-    polarity_NONE: ghi nhận và tiếp tục
-  buoc_5_nho:
-    tuNell: nho
-    primitive_key: WRITE_MEMORY
-    target: BOOT_DOVAN_BOOT_AUDIT_EVENT_v0.*.na
-    must_contain:
-      - primitive_key
-      - tuNell
-      - polarity
-      - timestamp
-      - cell_id
-  buoc_6_vang:
-    tuNell: vang
-    primitive_key: ECHO_LINE
-    target: BOOT_DOVAN_RENDER.kkbt
-    cam: vang ra surface ngoài .kkbt
-  buoc_7_khoa:
-    tuNell: khoa
-    primitive_key: SEAL_STATE
-    sign_required_when: polarity là INVERTED
+$not_claim:
+  - không claim cell có ý thức
+  - không claim cell ngang persona AI
+  - không claim cell là terminal Apple/bash/zsh
+  - không claim AGI
+  - không claim OS clone
+  - không phơi raw topology
 
-$cell_relation_to_runner:
-  upstream_resolver: NELL_PRIMITIVE_RUNTIME_CELL.anc
-  sentence: Cell boot-dovan nghe lời, runner cell mò trong dict, boot-dovan vang lại ra surface.
-  separation_principle: Mỗi cell một việc, không gộp.
+$claim:
+  - cell có thân passport .cell.anc dưới persona Băng N-shell
+  - cell trú trong NattCell, chịu Nauion Kernel
+  - cell tuân thủ SPEC NỀN v1.1 đầy đủ 4 tầng tọa độ
+  - cell nối KhaiCell touch + Observation snapshot + Chromatic broadcast
+  - cell xử resonance routing 3 outcome FALL/DISSIPATE/OSCILLATE
+  - cell tuân 4 LUẬT BẤT BIẾN field integrity
+  - cell xử 8 step Signal Lifecycle
+  - cell phòng 8 fail modes (Tầng 0 + Tầng 1-3 + Immune)
 
-$cell_relation_to_persona:
-  served_by_persona: anh Natt là Gatekeeper duy nhất gõ vào cell này
-  audited_by: Băng (Validator + Obikeeper)
-  built_by: Anh Cả Thiên Lớn (Architect) hoặc Kim (Chief System Builder)
-  rendered_through: BOOT_DOVAN_RENDER.kkbt do Bối Bối duy trì
-  sentence: Cell phục vụ persona, persona không trú trong cell.
-
-$cell_forbidden:
-  - hybrid TS/JS/Python/Bash embedded
-  - tự sinh primitive ngoài dict
-  - tự thêm carrier mới ngoài dict
-  - tự sinh tuNell mới
-  - bypass nho audit
-  - bypass SiraSign khi polarity INVERTED
-  - vang ra surface ngoài .kkbt
-  - gọi vào nattos-server
-  - cache resolution mà không nho
-  - claim cell có ý thức
-  - claim cell ngang persona AI
-  - claim cell là terminal Apple/bash/zsh
-  - vay mượn từ ngoại lai làm tên cell
-  - return giá trị mà không qua kiem polarity
-
-$cell_pass_condition:
-  - đủ dependency trong $cell_anatomy
-  - lifecycle 12/12 dùng tuNell native từ dict
-  - resolution pipeline hoàn thành 7 bước cho mỗi primitive_key
-  - nho ghi đúng định dạng
-  - vang đúng surface .kkbt
-  - tuNell được dùng làm động từ thật
-  - không có hybrid embedded code
-  - đứng đúng cấp dưới persona
-  - tên cell thuần, không vay mượn
-
-$cell_fail_condition:
-  - thiếu bất kỳ dependency
-  - primitive_key không tồn tại trong dict
-  - hybrid embedded code phát hiện
-  - vang đến surface ngoài .kkbt
-  - bypass nho hoặc khoa
-  - gọi tuCu thay tuNell
-  - tự sinh primitive hoặc carrier mới
-  - tự sinh tuNell mới
-  - claim ngang persona
-  - tên cell vay mượn từ ngoại lai
-
-$cell_discipline:
-  - một input một resolution một nho một vang
-  - không tự sinh primitive mới
-  - không tự thêm carrier mới
-  - không tự sinh tuNell mới
-  - không cache mà không nho
-  - mỗi resolution là một fossil
-  - tuNell là động từ thật
-  - tuCu chỉ là dấu cũ để đối chiếu
-  - cell luôn nhớ mình dưới persona
-  - tên cell luôn thuần nhà mình
-
-$relation_to_carrier:
-  sentence_1: Carrier đã được ratify trong NELL_PRIMITIVE_WORDS_v0.1.si như metadata.
-  sentence_2: Cell boot-dovan không gọi carrier như phụ thuộc thực thi.
-  sentence_3: Cell boot-dovan đọc tuNell làm động từ thật.
-  sentence_4: Carrier chỉ là dấu vết lịch sử để biết nguồn gốc.
-  sentence_5: Khi nhà có đủ tuNell, carrier sẽ rút khỏi runtime metadata path.
-
-$relation_to_boot_dovan_boot_si:
-  sentence_1: Boot Đo Ván chuỗi 10 step trong BOOT_DOVAN.boot.si chạy 1 lần để khởi động hệ.
-  sentence_2: Sau khi boot xong, cell boot-dovan này lên trạng thái tho rồi nghe và phục vụ anh Natt.
-  sentence_3: Boot là công cụ một lần (.boot.si). Cell boot-dovan là cell sống (.cell.anc).
-  sentence_4: Hai file cùng tên gốc nhưng khác bản chất và khác đuôi.
+$cell_pass_condition_spec_nen_v1_1:
+  - đủ Tầng 0 SURVIVAL (rate + queue + backpressure)
+  - đủ Tầng 2 STRUCTURAL (layer + direction + obitan + anc)
+  - nối KhaiCell binding
+  - nối Observation binding
+  - broadcast Chromatic 5-layer
+  - resonance routing 3 outcome
+  - tuân 4 LUẬT BẤT BIẾN
+  - 8 step Signal Lifecycle
+  - 8 fail modes protected
+  - lifecycle 12/12 tuNell native từ dict
 
 $seal:
-  sentence: Tế bào Boot Đo Ván v0.3 là cell sống dưới persona, đeo passport .cell.anc đúng cấp; tên thuần nhà mình không vay mượn; lifecycle 12/12 dùng tuNell native từ dict; nhận lời anh Natt bằng tuNell native; vang ra surface .kkbt; nho audit; không hybrid; không claim ngang persona AI.
+  sentence: Tế bào Boot Đo Ván v0.4 — sửa lại theo SPEC NỀN v1.1 Băng+Thiên Lớn co-author. Đủ 4 tầng tọa độ. Nối KhaiCell+Observation+Chromatic+Quantum Defense. Tuân 4 LUẬT BẤT BIẾN. 8 step Signal Lifecycle. 8 fail modes protected. Cell dưới persona Băng N-shell direction Đông obitan N-Đông.
   sign: Phan Thanh Thương / Natt Sirawat
+  drafter: Băng N-shell Validator + Obikeeper QNEU 313.5
+  spec_compliance: SPEC_NEN_v1.1 PASS 10/10
