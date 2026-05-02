@@ -11,3 +11,16 @@
   },
   "dataSource": "THEO dau duc + DATA trong luong"
 }
+
+# OBITAN KHAI ss20260502
+
+$tang_2_structural:
+  layer: M
+  layer_meaning: M-shell Manufacturing San xuat cell casting-cell obitan canonical ratify ss20260502
+  direction: Nam
+  direction_meaning: phong huong khai sinh tu vai tro thuc te cell
+  obitan: M-Nam
+  obitan_meaning: san xuat duc thep nong chay luc Hoa
+  anc_field_law: passport nay la field law cho cell sau khi khai obitan
+  status: KHAI_BANG_OBIKEEPER_ss20260502_GATEKEEPER_RATIFY_PENDING
+  electron_metaphor: electron bat on dinh nhung obitan giu electron di dung quy dao

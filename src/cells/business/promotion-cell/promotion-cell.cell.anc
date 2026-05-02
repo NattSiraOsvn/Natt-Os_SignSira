@@ -1,1 +1,14 @@
 { "cell_id": "promotion-cell", "version": "2.0.0", "wave": "3", "layer": "business", "status": "ACTIVE", "structure": { "current_structure": "5_LAYER", "migration_status": "COMPLETE" }, "adn": { "identity": { "name": "Promotion Cell", "domain": "khuyen mai Tâm Luxury" }, "lifecycle": { "implemented_by": "bang", "approved_by": "Anh Natt (Gatekeeper)" } } }
+
+# OBITAN KHAI ss20260502
+
+$tang_2_structural:
+  layer: O
+  layer_meaning: O-shell Operation Business flow cell promotion-cell obitan canonical ratify ss20260502
+  direction: Tay
+  direction_meaning: phong huong khai sinh tu vai tro thuc te cell
+  obitan: O-Tay
+  obitan_meaning: khuyen mai luc Kim
+  anc_field_law: passport nay la field law cho cell sau khi khai obitan
+  status: KHAI_BANG_OBIKEEPER_ss20260502_GATEKEEPER_RATIFY_PENDING
+  electron_metaphor: electron bat on dinh nhung obitan giu electron di dung quy dao

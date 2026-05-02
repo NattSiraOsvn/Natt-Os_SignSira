@@ -15,3 +15,16 @@
     "smartlink": true
   }
 }
+
+# OBITAN KHAI ss20260502
+
+$tang_2_structural:
+  layer: L3
+  layer_meaning: L3 Infrastructure inter-colony cell shared-contracts-cell obitan canonical ratify ss20260502
+  direction: Lien-Colony
+  direction_meaning: phong huong khai sinh tu vai tro thuc te cell
+  obitan: L3-Inter
+  obitan_meaning: contracts inter-colony
+  anc_field_law: passport nay la field law cho cell sau khi khai obitan
+  status: KHAI_BANG_OBIKEEPER_ss20260502_GATEKEEPER_RATIFY_PENDING
+  electron_metaphor: electron bat on dinh nhung obitan giu electron di dung quy dao

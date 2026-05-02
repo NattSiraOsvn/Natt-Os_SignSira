@@ -13,3 +13,16 @@
     "smartLink": "supplier-cell, warehouse-cell, finance-cell, logistics-cell, audit-cell"
   }
 }
+
+# OBITAN KHAI ss20260502
+
+$tang_2_structural:
+  layer: O
+  layer_meaning: O-shell Operation Business flow cell customs-cell obitan canonical ratify ss20260502
+  direction: Tay
+  direction_meaning: phong huong khai sinh tu vai tro thuc te cell
+  obitan: O-Tay
+  obitan_meaning: hai quan luc Kim
+  anc_field_law: passport nay la field law cho cell sau khi khai obitan
+  status: KHAI_BANG_OBIKEEPER_ss20260502_GATEKEEPER_RATIFY_PENDING
+  electron_metaphor: electron bat on dinh nhung obitan giu electron di dung quy dao

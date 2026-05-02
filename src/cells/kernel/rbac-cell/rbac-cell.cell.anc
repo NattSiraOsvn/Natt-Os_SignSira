@@ -14,3 +14,16 @@
   "constitutional_state": "STATE_1",
   "approved_by": "GATEKEEPER"
 }
+
+# OBITAN KHAI ss20260502
+
+$tang_2_structural:
+  layer: K
+  layer_meaning: K-shell Kernel xu ly loi cell rbac-cell obitan canonical ratify ss20260502
+  direction: Tam
+  direction_meaning: phong huong khai sinh tu vai tro thuc te cell
+  obitan: K-Tam
+  obitan_meaning: kernel xu ly loi phan quyen vai ve trung tam
+  anc_field_law: passport nay la field law cho cell sau khi khai obitan
+  status: KHAI_BANG_OBIKEEPER_ss20260502_GATEKEEPER_RATIFY_PENDING
+  electron_metaphor: electron bat on dinh nhung obitan giu electron di dung quy dao

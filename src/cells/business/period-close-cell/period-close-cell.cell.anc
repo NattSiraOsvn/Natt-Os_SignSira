@@ -52,3 +52,16 @@
   "createdAt": "2026-03-11T14:30:00+07:00",
   "updatedAt": "2026-03-11T14:30:00+07:00"
 }
+
+# OBITAN KHAI ss20260502
+
+$tang_2_structural:
+  layer: O
+  layer_meaning: O-shell Operation Business flow cell period-close-cell obitan canonical ratify ss20260502
+  direction: Tay
+  direction_meaning: phong huong khai sinh tu vai tro thuc te cell
+  obitan: O-Tay
+  obitan_meaning: chot ky tai chinh luc Kim
+  anc_field_law: passport nay la field law cho cell sau khi khai obitan
+  status: KHAI_BANG_OBIKEEPER_ss20260502_GATEKEEPER_RATIFY_PENDING
+  electron_metaphor: electron bat on dinh nhung obitan giu electron di dung quy dao

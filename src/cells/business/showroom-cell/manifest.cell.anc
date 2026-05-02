@@ -9,3 +9,16 @@
     "intents": ["ShowroomQuery", "ShowroomGetProduct", "ShowroomSearch"]
   }
 }
+
+# OBITAN KHAI ss20260502
+
+$tang_2_structural:
+  layer: P
+  layer_meaning: P-shell People Resource Asset cell showroom-cell obitan canonical ratify ss20260502
+  direction: Dong Nam
+  direction_meaning: phong huong khai sinh tu vai tro thuc te cell
+  obitan: P-DN
+  obitan_meaning: showroom asset Moc-Hoa
+  anc_field_law: passport nay la field law cho cell sau khi khai obitan
+  status: KHAI_BANG_OBIKEEPER_ss20260502_GATEKEEPER_RATIFY_PENDING
+  electron_metaphor: electron bat on dinh nhung obitan giu electron di dung quy dao

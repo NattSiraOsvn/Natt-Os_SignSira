@@ -1,1 +1,14 @@
 {"cell_id":"finance-cell","version":"1.0.0","category":"business","status":"ACTIVE","description":"ke toan tong hop TT200: 4 so, nhat ky chung, thue GTGT truc tiep, canh bao margin 87%","source":"V2 taxReportService.ts + eInvoiceEngine.ts + TaxCell Ultimate v6.0 concepts","components":{"identity":true,"capability":true,"boundary":true,"trace":true,"confidence":true,"smartlink":true}}
+
+# OBITAN KHAI ss20260502
+
+$tang_2_structural:
+  layer: O
+  layer_meaning: O-shell Operation Business flow cell finance-cell obitan canonical ratify ss20260502
+  direction: Tay
+  direction_meaning: phong huong khai sinh tu vai tro thuc te cell
+  obitan: O-Tay
+  obitan_meaning: tai chinh tong hop luc Kim
+  anc_field_law: passport nay la field law cho cell sau khi khai obitan
+  status: KHAI_BANG_OBIKEEPER_ss20260502_GATEKEEPER_RATIFY_PENDING
+  electron_metaphor: electron bat on dinh nhung obitan giu electron di dung quy dao

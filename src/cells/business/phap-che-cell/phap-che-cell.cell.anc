@@ -1,1 +1,14 @@
 {"cellId":"phap-che-cell","cellName":"phap che Cell","version":"1.0.0","status":"ACTIVE","zone":"business","components":{"identity":"phap-che-cell@1.0.0","capability":["contract-create","contract-approve","legal-alert","compliance-check"],"boundary":"security-cell.boundary.si","trace":"Contract + LegalAlert log","confidence":1.0,"smartLink":"supplier-cell, finance-cell, audit-cell, hr-cell"}}
+
+# OBITAN KHAI ss20260502
+
+$tang_2_structural:
+  layer: Q
+  layer_meaning: Q-shell Quality Compliance Comms cell phap-che-cell obitan canonical ratify ss20260502
+  direction: Tay Bac
+  direction_meaning: phong huong khai sinh tu vai tro thuc te cell
+  obitan: Q-TB
+  obitan_meaning: phap che Kim-Thuy
+  anc_field_law: passport nay la field law cho cell sau khi khai obitan
+  status: KHAI_BANG_OBIKEEPER_ss20260502_GATEKEEPER_RATIFY_PENDING
+  electron_metaphor: electron bat on dinh nhung obitan giu electron di dung quy dao
