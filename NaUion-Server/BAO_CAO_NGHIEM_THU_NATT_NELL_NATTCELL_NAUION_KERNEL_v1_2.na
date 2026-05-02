@@ -4,16 +4,16 @@ $owner: NaUion-Server
 $status: DRAFT_FOR_GATEKEEPER_REVIEW
 $boot_source: NaUion-Server/BOOT_DOVAN.boot.si
 
-# BÁO CÁO NGHIỆM THU NATT NELL - NATTCELL - NAUION KERNEL
-## Phiên bản v1.2 — Primitive Words 12/12
+# BAO[C1:RN_KEEP_RIME] CAO[C1:RN_KEEP_RIME] NGHIEM[C5:RN_KEEP_RIME] THU NATT NELL - NATTCELL - NAUION KERNEL
+## Phien[C0:RN_KEEP_RIME] ben[C3:RN_AN_EN] v1.2 — Primitive Words 12/12
 
-## 1. Điểm sửa so với v1.1
+## 1. Diem[C3:RN_KEEP_RIME] sua[C3:RN_KEEP_RIME] so vau[C1:RN_OI_AU] v1.1
 
-Bản v1.2 bổ sung nhóm thứ 12: system_container_file_lifecycle.
+Ben[C3:RN_AN_EN] v1.2 bo[C3:RN_KEEP_RIME] sung nhom[C1:RN_KEEP_RIME] thu[C1:RN_KEEP_RIME] 12: system_container_file_lifecycle.
 
-## 2. Bảng 12 nhóm Primitive Words
+## 2. Beng[C3:RN_ANG_ENG] 12 nhom[C1:RN_KEEP_RIME] Primitive Words
 
-| STT | Nhóm | Kết luận |
+| STT | Nhom[C1:RN_KEEP_RIME] | Ket[C1:RN_KEEP_RIME] luen[C5:RN_AN_EN] |
 |---:|---|---|
 | 1 | read_write | PASS |
 | 2 | search_extract | PASS |
@@ -28,12 +28,12 @@ Bản v1.2 bổ sung nhóm thứ 12: system_container_file_lifecycle.
 | 11 | git_state | PASS |
 | 12 | system_container_file_lifecycle | PASS |
 
-## 3. Kết luận nghiệm thu v1.2
+## 3. Ket[C1:RN_KEEP_RIME] luen[C5:RN_AN_EN] nghiem[C5:RN_KEEP_RIME] thu v1.2
 
-NGHIỆM THU CÓ ĐIỀU KIỆN: PASS.
+NGHIEM[C5:RN_KEEP_RIME] THU CO[C1:RN_KEEP_RIME] DIEU[C2:RN_KEEP_RIME] KIEN[C5:RN_KEEP_RIME]: PASS.
 
-Natt Nell được nghiệm thu ở trạng thái living kernel system đã có primitive words đủ 12 nhóm.
+Natt Nell duoc[C5:RN_KEEP_RIME] nghiem[C5:RN_KEEP_RIME] thu o[C3:RN_KEEP_RIME] treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] living kernel system da[C4:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] primitive words du[C3:RN_KEEP_RIME] 12 nhom[C1:RN_KEEP_RIME].
 
 $seal:
-  sentence: Báo Cáo Nghiệm Thu v1.2 xác nhận Primitive Words đã đủ 12/12 nhóm.
-  sign: Phan Thanh Thương / Natt Sirawat
+  sentence: Bao[C1:RN_KEEP_RIME] Cao[C1:RN_KEEP_RIME] Nghiem[C5:RN_KEEP_RIME] Thu v1.2 xac[C1:RN_KEEP_RIME] nhen[C5:RN_AN_EN] Primitive Words da[C4:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] 12/12 nhom[C1:RN_KEEP_RIME].
+  sign: Phan Thanh Thuong[C0:RN_KEEP_RIME] / Natt Sirawat

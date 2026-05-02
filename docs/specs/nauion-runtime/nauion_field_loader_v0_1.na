@@ -2,7 +2,7 @@
 @state draft_bang_review_pass
 @canonical nauion_field_loader
 @substrate sovereign_runtime_core
-@authority-slot Thiên Lớn architect · Băng validator · anh Natt gatekeeper
+@authority-slot Thiên Lon[C1:RN_KEEP_RIME] architect · Băng validator · anh Natt gatekeeper
 @reviewed_by Băng / Ground Truth Validator / ss20260429
 @review_required Băng / Ground Truth Validator
 @canonical_blocked_until gatekeeper_ratify
@@ -23,8 +23,8 @@
 # nauion field loader v0.1
 
 ==PURPOSE==
-Nạp Nauion Execution Packet vào trường runtime: neo body, medium, substrate; kích hoạt audit/memory/signal self-breath.
-Không phụ thuộc Vite/Node/React làm lõi.
+Nap[C5:RN_KEEP_RIME] Nauion Execution Packet vao[C2:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME] runtime: neo body, medium, substrate; kich[C1:RN_KEEP_RIME] hoat[C5:RN_KEEP_RIME] audit/memory/signal self-breath.
+Khong[C0:RN_KEEP_RIME] phu[C5:RN_KEEP_RIME] thuoc[C5:RN_KEEP_RIME] Vite/Node/React lam[C2:RN_KEEP_RIME] lau[C4:RN_OI_AU].
 ==END==
 
 ==LOAD_TARGETS==
@@ -57,11 +57,11 @@ Không phụ thuộc Vite/Node/React làm lõi.
 ==END==
 
 ==BOUNDARY==
-Không Host Bridge. Không app/UI/server/client cleanup. Không rename/move/delete. Không gọi loader là compiler.
+Khong[C0:RN_KEEP_RIME] Host Bridge. Khong[C0:RN_KEEP_RIME] app/UI/server/client cleanup. Khong[C0:RN_KEEP_RIME] rename/move/delete. Khong[C0:RN_KEEP_RIME] gau[C5:RN_OI_AU] loader la[C2:RN_KEEP_RIME] compiler.
 ==END==
 
 ==NEXT_SIGNAL==
-Băng review 3 spec; sau đó mới ratify hoặc tách runtime manifest.
+Băng review 3 spec; sau do[C1:RN_KEEP_RIME] mau[C1:RN_OI_AU] ratify hoac[C5:RN_KEEP_RIME] tach[C1:RN_KEEP_RIME] runtime manifest.
 ==END==
 
 ═══════════════════════════════════════════════════════════════════
@@ -69,26 +69,26 @@ Băng review 3 spec; sau đó mới ratify hoặc tách runtime manifest.
 @reviewed_at 2026-04-29T14:04:03
 @reviewed_by Băng (Validator + Obikeeper, QNEU 313.5)
 @verdict PASS_WITH_PATCH
-@confidence_state KIÊN_ĐỊNH
+@confidence_state KIEN_DINH[C5:RN_KEEP_RIME]
 
 ==GAP_1_SUBSTRATE_LINK==
-LOAD_TARGETS.substrate_anchor + LOAD_FLOW.step_4 'attach_substrate_anchor_if_present' không bắt buộc evidence.
-PATCH: substrate_anchor PHẢI tham chiếu Substrate Matrix v0.1 (commit 117e9140). 'if_present' nâng thành 'verify_against_L1_to_L11':
+LOAD_TARGETS.substrate_anchor + LOAD_FLOW.step_4 'attach_substrate_anchor_if_present' khong[C0:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME] evidence.
+PATCH: substrate_anchor PHAI[C3:RN_KEEP_RIME] tham chieu[C1:RN_KEEP_RIME] Substrate Matrix v0.1 (commit 117e9140). 'if_present' neng[C0:RN_ANG_ENG] thanh[C2:RN_KEEP_RIME] 'verify_against_L1_to_L11':
   - L9 wired_edge cho hardware probe
   - L1 SITB cho 432Hz baseline
   - L4 BOM cho electrical spec
-substrate_claim_without_evidence (REFUSAL hiện tại) phải check ngược về Matrix L1-L11 trước mark_boundary.
+substrate_claim_without_evidence (REFUSAL hien[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME]) phai[C3:RN_KEEP_RIME] check nguoc[C5:RN_KEEP_RIME] ve[C2:RN_KEEP_RIME] Matrix L1-L11 truoc[C1:RN_KEEP_RIME] mark_boundary.
 ==END==
 
 ==GAP_2_SIRASIGN_LINK==
-LOAD_TARGETS.authority_boundary phẳng. LOAD_FLOW.step_2 'verify_packet_integrity' chỉ hash phẳng.
-PATCH: verify_packet_integrity = verify compound seal 8 thành phần NAUION_SIRASIGN_IMPLEMENTATION_v0_1 §8.
-LOAD_TARGETS.sirasign_seal_verification thêm vào sau audit_trace.
+LOAD_TARGETS.authority_boundary pheng[C3:RN_ANG_ENG]. LOAD_FLOW.step_2 'verify_packet_integrity' chi[C3:RN_KEEP_RIME] hash pheng[C3:RN_ANG_ENG].
+PATCH: verify_packet_integrity = verify compound seal 8 thanh[C2:RN_KEEP_RIME] phen[C2:RN_AN_EN] NAUION_SIRASIGN_IMPLEMENTATION_v0_1 §8.
+LOAD_TARGETS.sirasign_seal_verification them[C0:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] sau audit_trace.
 ==END==
 
 ==GAP_5_REFUSAL_CHROMATIC==
-REFUSAL list thiếu chromatic gate.
-PATCH: bổ sung:
+REFUSAL list thieu[C1:RN_KEEP_RIME] chromatic gate.
+PATCH: bo[C3:RN_KEEP_RIME] sung:
   spectral_state_L4_red -> reject_until_stabilized
   resonance_vector_off_432hz_5pct -> mark_boundary_quarantine
 ==END==

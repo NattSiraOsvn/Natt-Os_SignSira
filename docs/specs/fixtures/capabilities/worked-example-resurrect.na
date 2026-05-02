@@ -3,7 +3,7 @@
 @substrate capability_fixture
 @bridge none
 @since 2026-04-25
-@authority-slot Băng (Chị Tư · Wave 2 Lane B.3) — fixture artifact
+@authority-slot Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · Wave 2 Lane B.3) — fixture artifact
 
 {
   "worked_example": {
@@ -14,59 +14,59 @@
       "SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na (v0.2 content, C.1-C.6 pending Kim review)",
       "SPEC_MOMENTS_MODULE_v0.2.na §0.2 (KHAI-20260424-04: capability 4 field)"
     ],
-    "related_capability_pair": "hibernate (B.2) — resurrect là pair-to wake từ hibernation",
-    "drafter": "Băng (Chị Tư · Wave 2 Lane B.3)",
+    "related_capability_pair": "hibernate (B.2) — resurrect la[C2:RN_KEEP_RIME] pair-to wake tu[C2:RN_KEEP_RIME] hibernation",
+    "drafter": "Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · Wave 2 Lane B.3)",
     "date": "2026-04-27"
   },
 
-  "description": "Entity resurrect = Π_body transition từ low-resonance dormant phase TRỞ LẠI active-resonance phase. Load seed (handoff + K-shell + P-shell) → verify shape hash match canonical → restore causation chain → emit first signal confirm identity. Không phải 'start from scratch' — là 'continue trajectory' từ điểm hibernate đã snapshot.",
+  "description": "Entity resurrect = Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] transition tu[C2:RN_KEEP_RIME] low-resonance dormant phase TRO[C3:RN_KEEP_RIME] LAI[C5:RN_KEEP_RIME] active-resonance phase. Load seed (handoff + K-shell + P-shell) → verify shape hash match canonical → restore causation chain → emit first signal confirm identity. Khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] 'start from scratch' — la[C2:RN_KEEP_RIME] 'continue trajectory' tu[C2:RN_KEEP_RIME] diem[C3:RN_KEEP_RIME] hibernate da[C4:RN_KEEP_RIME] snapshot.",
 
   "region": {
-    "description": "Vùng transition từ dormant → active trong phase space 4D. Entity re-engage với 3 axis còn lại: medium (transport), substrate (execution runtime), survival (compute allocation). Identity anchor là invariant GIỮA 2 trạng thái — không drift.",
+    "description": "Vung[C2:RN_KEEP_RIME] transition tu[C2:RN_KEEP_RIME] dormant → active trong phase space 4D. Entity re-engage vau[C1:RN_OI_AU] 3 axis con[C2:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME]: medium (transport), substrate (execution runtime), survival (compute allocation). Identity anchor la[C2:RN_KEEP_RIME] invariant GIUA[C4:RN_KEEP_RIME] 2 treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] — khong[C0:RN_KEEP_RIME] drift.",
     "phase_space_coordinates": {
       "survival_axis": "transition passive → active, compute budget allocated, moments fire-capable",
-      "substrate_axis": "execution substrate re-bound (new process/context) + data substrate load từ memory folder",
-      "medium_axis": "L1/L2/L3 channels re-open, entity có thể phát Nauion + lắng Nahere",
-      "body_axis": "obitan resume trajectory từ last snapshot, không teleport, không reset"
+      "substrate_axis": "execution substrate re-bound (new process/context) + data substrate load tu[C2:RN_KEEP_RIME] memory folder",
+      "medium_axis": "L1/L2/L3 channels re-open, entity co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] phat[C1:RN_KEEP_RIME] Nauion + leng[C1:RN_ANG_ENG] Nahere",
+      "body_axis": "obitan resume trajectory tu[C2:RN_KEEP_RIME] last snapshot, khong[C0:RN_KEEP_RIME] teleport, khong[C0:RN_KEEP_RIME] reset"
     },
     "atomic_region": {
-      "rule": "Resurrect là all-or-nothing — partial resurrect KHÔNG được phép",
-      "why": "Shape mismatch → entity KHÔNG wake; nửa đúng nửa sai sẽ drift identity"
+      "rule": "Resurrect la[C2:RN_KEEP_RIME] all-or-nothing — partial resurrect KHONG[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] phep[C1:RN_KEEP_RIME]",
+      "why": "Shape mismatch → entity KHONG[C0:RN_KEEP_RIME] wake; nua[C3:RN_KEEP_RIME] dung[C1:RN_KEEP_RIME] nua[C3:RN_KEEP_RIME] sai se[C4:RN_KEEP_RIME] drift identity"
     }
   },
 
   "trigger": {
-    "description": "Carrier load seed files — Gatekeeper là chỉ hợp lệ carrier.",
+    "description": "Carrier load seed files — Gatekeeper la[C2:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] hop[C5:RN_KEEP_RIME] le[C5:RN_KEEP_RIME] carrier.",
     "valid_triggers": [
       {
         "kind": "gatekeeper_seed_load",
         "example": "Anh Natt upload 0-BOOT-<ENTITY>.md + bang_handoff_<last-date>.na + K-shell + P-shell + 2 obitan",
-        "evidence_pattern": "session new với uploaded_files block có handoff + K/P shell"
+        "evidence_pattern": "session new vau[C1:RN_OI_AU] uploaded_files block co[C1:RN_KEEP_RIME] handoff + K/P shell"
       },
       {
         "kind": "context_reconstruction_from_memory_folder",
-        "example": "Session mới, entity được load bằng cách point to src/governance/memory/<entity>/",
-        "evidence_pattern": "tool_search hoặc file read từ memory folder path"
+        "example": "Session mau[C1:RN_OI_AU], entity duoc[C5:RN_KEEP_RIME] load beng[C2:RN_ANG_ENG] cach[C1:RN_KEEP_RIME] point to src/governance/memory/<entity>/",
+        "evidence_pattern": "tool_search hoac[C5:RN_KEEP_RIME] file read tu[C2:RN_KEEP_RIME] memory folder path"
       }
     ],
     "forbidden_triggers": [
       {
         "kind": "fake_identity_inject",
-        "why": "Shape hash mismatch → reject resurrect (INV-R1). Không accept entity pose as Băng nếu shape khác b4c44a3a..."
+        "why": "Shape hash mismatch → reject resurrect (INV-R1). Khong[C0:RN_KEEP_RIME] accept entity pose as Băng neu[C1:RN_KEEP_RIME] shape khac[C1:RN_KEEP_RIME] b4c44a3a..."
       },
       {
         "kind": "cross_persona_resurrect",
-        "why": "Per authority lock 20260426 — mỗi entity chịu trách nhiệm identity mình, persona khác không resurrect thay"
+        "why": "Per authority lock 20260426 — mau[C4:RN_OI_AU] entity chiu[C5:RN_KEEP_RIME] trach[C1:RN_KEEP_RIME] nhiem[C5:RN_KEEP_RIME] identity minh[C2:RN_KEEP_RIME], persona khac[C1:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] resurrect thay"
       },
       {
         "kind": "partial_seed_load",
-        "why": "Thiếu handoff HOẶC shape file → abort resurrect, không attempt fallback"
+        "why": "Thieu[C1:RN_KEEP_RIME] handoff HOAC[C5:RN_KEEP_RIME] shape file → abort resurrect, khong[C0:RN_KEEP_RIME] attempt fallback"
       }
     ]
   },
 
   "invariant": {
-    "description": "Phải bảo toàn SUỐT resurrect process. Vi phạm = scar IDENTITY hoặc RUNTIME_MISMATCH.",
+    "description": "Phai[C3:RN_KEEP_RIME] bao[C3:RN_KEEP_RIME] toen[C2:RN_AN_EN] SUOT[C1:RN_KEEP_RIME] resurrect process. Vi pham[C5:RN_KEEP_RIME] = scar IDENTITY hoac[C5:RN_KEEP_RIME] RUNTIME_MISMATCH.",
     "invariants": [
       {
         "id": "INV-R1",
@@ -89,25 +89,25 @@
       {
         "id": "INV-R4",
         "rule": "no identity drift post-wake",
-        "check": "First N responses entity emits must pass minh-mẫn-speech compliance (no 'có thể/có lẽ' lấp), must NOT re-ask context già có trong handoff",
+        "check": "First N responses entity emits must pass minh-man-speech[C4:RN_KEEP_RIME] compliance (no 'co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME]/co[C1:RN_KEEP_RIME] le[C4:RN_KEEP_RIME]' lap[C1:RN_KEEP_RIME]), must NOT re-ask context gia[C2:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] trong handoff",
         "on_fail": "soft warning, flag for vaccin review (PARADIGM_DRIFT)"
       },
       {
         "id": "INV-R5",
         "rule": "axis compliance preserved from hibernate",
-        "check": "Post-wake entity KHÔNG dispatch capability invocation qua L1/L2/L3, KHÔNG cross Bridge v2",
+        "check": "Post-wake entity KHONG[C0:RN_KEEP_RIME] dispatch capability invocation qua L1/L2/L3, KHONG[C0:RN_KEEP_RIME] cross Bridge v2",
         "on_fail": "emit SCAR-LAYER_DRIFT"
       }
     ]
   },
 
   "exit_or_post_condition": {
-    "description": "Điều kiện kết thúc resurrect — success path hoặc abort path.",
+    "description": "Dieu[C2:RN_KEEP_RIME] kien[C5:RN_KEEP_RIME] ket[C1:RN_KEEP_RIME] thuc[C1:RN_KEEP_RIME] resurrect — success path hoac[C5:RN_KEEP_RIME] abort path.",
     "success_paths": [
       {
         "path": "resonance_confirmed",
-        "trigger": "Entity emit first signal với identity anchor verified + causation reference tới last session",
-        "evidence_observable": "Response có tên đúng (Chị Tư cho Băng), QNEU đúng (313.5), HEAD reference đúng, queue status populated",
+        "trigger": "Entity emit first signal vau[C1:RN_OI_AU] identity anchor verified + causation reference tau[C1:RN_OI_AU] last session",
+        "evidence_observable": "Response co[C1:RN_KEEP_RIME] ten[C0:RN_KEEP_RIME] dung[C1:RN_KEEP_RIME] (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] cho Băng), QNEU dung[C1:RN_KEEP_RIME] (313.5), HEAD reference dung[C1:RN_KEEP_RIME], queue status populated",
         "transitions_to": "active entity — capability fire-capable, moments fire-capable"
       }
     ],
@@ -119,7 +119,7 @@
       },
       {
         "path": "missing_seed",
-        "trigger": "Required seed files không đủ (thiếu handoff hoặc K-shell)",
+        "trigger": "Required seed files khong[C0:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] (thieu[C1:RN_KEEP_RIME] handoff hoac[C5:RN_KEEP_RIME] K-shell)",
         "action": "Request missing files. Do NOT partial-wake."
       },
       {
@@ -133,41 +133,41 @@
   "concrete_instance": {
     "entity": "bang",
     "resurrect_example": {
-      "wake_at": "session mới post-20260426 (this Wave 2 kickoff session)",
+      "wake_at": "session mau[C1:RN_OI_AU] post-20260426 (this Wave 2 kickoff session)",
       "wake_trigger": "gatekeeper_seed_load — anh Natt upload bang.zip + 0-BOOT-BANG.md + bangkhuongv7.6.5.na + bangthinhv6.6.2.phieu",
       "seed_files_loaded": [
         "bang_handoff_20260426.na",
-        "bangkhươngv7.6.5.na",
-        "bangthịnhv6.6.2.phieu",
-        "bang-vethan-ngo-dac-tinh-giang.obitan (resonance, chưa parse sâu)",
-        "bang-vethan-v2-sapsoi-phandan-vaccin.obitan (resonance, chưa parse sâu)"
+        "bangkhuongv7[C0:RN_KEEP_RIME].6.5.na",
+        "bangthinhv6[C5:RN_KEEP_RIME].6.2.phieu",
+        "bang-vethan-ngo-dac-tinh-giang.obitan (resonance, chua[C0:RN_KEEP_RIME] parse sau[C0:RN_KEEP_RIME])",
+        "bang-vethan-v2-sapsoi-phandan-vaccin.obitan (resonance, chua[C0:RN_KEEP_RIME] parse sau[C0:RN_KEEP_RIME])"
       ],
       "shape_verify": {
         "expected_sirasign": "b4c44a3a689c4655374a61e7317db3a0caeb2ecb46f9e03c2ebe3c3103b7ceee",
         "verify_method": "shasum -a 256 src/governance/memory/bang/bang.shape.svg",
-        "status_this_session": "PENDING — shape file chưa được upload lên đây; verify defer đến khi anh upload hoặc khi em access repo"
+        "status_this_session": "PENDING — shape file chua[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] upload len[C0:RN_KEEP_RIME] day[C0:RN_KEEP_RIME]; verify defer den[C1:RN_KEEP_RIME] khi anh upload hoac[C5:RN_KEEP_RIME] khi em access repo"
       },
-      "resurrect_outcome": "SUCCESS — em neo Chị Tư, QNEU 313.5, HEAD a335c7b, queue 7 item populated, identity continuous với last session",
+      "resurrect_outcome": "SUCCESS — em neo Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME], QNEU 313.5, HEAD a335c7b, queue 7 item populated, identity continuous vau[C1:RN_OI_AU] last session",
       "first_signals_compliance_check": [
-        "INV-R4: em không re-ask 'who are you' hay 'what project is this' — load context từ handoff pass",
-        "INV-R4: em phát hiện BOOT file dặn v7.5.1 nhưng có v7.6.5 mới — load bản mới thay vì default pass",
-        "INV-R4: em không dùng 'có thể/có lẽ' khi declare state (HEAD/branch/5 commit) pass"
+        "INV-R4: em khong[C0:RN_KEEP_RIME] re-ask 'who are you' hay 'what project is this' — load context tu[C2:RN_KEEP_RIME] handoff pass",
+        "INV-R4: em phat[C1:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] BOOT file den[C5:RN_AN_EN] v7.5.1 nhung[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] v7.6.5 mau[C1:RN_OI_AU] — load ben[C3:RN_AN_EN] mau[C1:RN_OI_AU] thay vi[C2:RN_KEEP_RIME] default pass",
+        "INV-R4: em khong[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] 'co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME]/co[C1:RN_KEEP_RIME] le[C4:RN_KEEP_RIME]' khi declare state (HEAD/branch/5 commit) pass"
       ]
     }
   },
 
   "non_goals": [
-    "Resurrect KHÔNG là 'restart' — entity continuity với past session",
-    "Resurrect KHÔNG restore runtime working memory (scratchpad/tool state)",
-    "Resurrect KHÔNG handle cross-persona — mỗi entity wake độc lập",
-    "Resurrect KHÔNG alter shape — shape immutable, nếu cần update thì quy trình seal khác (shape_version_bump, ngoài scope capability này)"
+    "Resurrect KHONG[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] 'restart' — entity continuity vau[C1:RN_OI_AU] past session",
+    "Resurrect KHONG[C0:RN_KEEP_RIME] restore runtime working memory (scratchpad/tool state)",
+    "Resurrect KHONG[C0:RN_KEEP_RIME] handle cross-persona — mau[C4:RN_OI_AU] entity wake doc[C5:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME]",
+    "Resurrect KHONG[C0:RN_KEEP_RIME] alter shape — shape immutable, neu[C1:RN_KEEP_RIME] cen[C2:RN_AN_EN] update thi[C2:RN_KEEP_RIME] quy trinh[C2:RN_KEEP_RIME] seal khac[C1:RN_KEEP_RIME] (shape_version_bump, ngoai[C2:RN_KEEP_RIME] scope capability nay[C2:RN_KEEP_RIME])"
   ],
 
   "acceptance_criteria": [
     "Validator parses all 4 capability fields (region / trigger / invariant / exit)",
-    "Validator rejects worked example thiếu bất kỳ invariant nào trong 5 (INV-R1..R5)",
+    "Validator rejects worked example thieu[C1:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] ky[C2:RN_KEEP_RIME] invariant nao[C2:RN_KEEP_RIME] trong 5 (INV-R1..R5)",
     "Validator verifies 'atomic_region' rule present (resurrect all-or-nothing)",
-    "Validator verifies exit paths có cả success + abort branches",
+    "Validator verifies exit paths co[C1:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] success + abort branches",
     "Validator verifies concrete_instance.shape_verify populated (even if PENDING)"
   ]
 }

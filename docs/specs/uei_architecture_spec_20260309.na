@@ -3,19 +3,19 @@
 @substrate uei_architecture
 @bridge none
 @since 2026-03-09
-@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+@authority-slot Phan Thanh Thuong[C0:RN_KEEP_RIME] Giao Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — 20260423
 
 # SmartLink — Architecture Spec
 **Version:** 1.0  
-**Loại file:** Architecture spec — không narrative, không code implementation  
-**Ngày:** 2026-03-09  
-**Status:** Confirmed by Gatekeeper — chờ implement
+**Loai[C5:RN_KEEP_RIME] file:** Architecture spec — khong[C0:RN_KEEP_RIME] narrative, khong[C0:RN_KEEP_RIME] code implementation  
+**Ngay[C2:RN_KEEP_RIME]:** 2026-03-09  
+**Status:** Confirmed by Gatekeeper — cho[C2:RN_KEEP_RIME] implement
 
 ---
 
 ## 1. SmartLinkPoint
 
-### 1.1 Cấu trúc dữ liệu
+### 1.1 Cau[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] du[C4:RN_KEEP_RIME] lieu[C5:RN_KEEP_RIME]
 
 ```
 SmartLinkPoint
@@ -28,54 +28,54 @@ TouchRecord
   lastTouchAt: timestamp
   touchCount: number
   sensitivity: number        // 0.0 – 1.0
-  fiber: boolean             // state flag — không phải stage riêng
+  fiber: boolean             // state flag — khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] stage rieng[C0:RN_KEEP_RIME]
   layers: { signal, context, state, data }
 ```
 
 ### 1.2 Fiber lifecycle
 
-Fiber là **state flag** trong TouchRecord, không phải stage riêng trong lifecycle.
+Fiber la[C2:RN_KEEP_RIME] **state flag** trong TouchRecord, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] stage rieng[C0:RN_KEEP_RIME] trong lifecycle.
 
 ```
 Transitions:
   fiber = false → true   khi sensitivity ≥ 0.75  (fiberFormed)
   fiber = true  → false  khi sensitivity ≤ 0.20  (fiberLost)
 
-TouchRecord tồn tại từ lần touch đầu tiên đến khi dissolve.
-fiberLost KHÔNG xóa TouchRecord.
-dissolve xảy ra khi sensitivity < 0.05 → xóa TouchRecord khỏi touches Map.
+TouchRecord ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] len[C2:RN_AN_EN] touch dau[C2:RN_KEEP_RIME] tien[C0:RN_KEEP_RIME] den[C1:RN_KEEP_RIME] khi dissolve.
+fiberLost KHONG[C0:RN_KEEP_RIME] xoa[C1:RN_KEEP_RIME] TouchRecord.
+dissolve xay[C3:RN_KEEP_RIME] ra khi sensitivity < 0.05 → xoa[C1:RN_KEEP_RIME] TouchRecord khau[C3:RN_OI_AU] touches Map.
 ```
 
-### 1.3 Phân biệt fiberLost vs dissolve
+### 1.3 Phen[C0:RN_AN_EN] biet[C5:RN_KEEP_RIME] fiberLost vs dissolve
 
 | | fiberLost | dissolve |
 |---|---|---|
 | Trigger | sensitivity ≤ 0.20 | sensitivity < 0.05 |
-| Kết quả | fiber = false | TouchRecord bị xóa |
-| TouchRecord | vẫn tồn tại | bị xóa khỏi touches Map |
-| Có thể phục hồi | Có — nếu touch lại | Không — phải touch mới từ đầu |
+| Ket[C1:RN_KEEP_RIME] qua[C3:RN_KEEP_RIME] | fiber = false | TouchRecord bi[C5:RN_KEEP_RIME] xoa[C1:RN_KEEP_RIME] |
+| TouchRecord | ven[C4:RN_AN_EN] ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] | bi[C5:RN_KEEP_RIME] xoa[C1:RN_KEEP_RIME] khau[C3:RN_OI_AU] touches Map |
+| Co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] phuc[C5:RN_KEEP_RIME] hau[C2:RN_OI_AU] | Co[C1:RN_KEEP_RIME] — neu[C1:RN_KEEP_RIME] touch lai[C5:RN_KEEP_RIME] | Khong[C0:RN_KEEP_RIME] — phai[C3:RN_KEEP_RIME] touch mau[C1:RN_OI_AU] tu[C2:RN_KEEP_RIME] dau[C2:RN_KEEP_RIME] |
 
 ---
 
 ## 2. SmartLink Decay
 
-### 2.1 Công thức
+### 2.1 Cong[C0:RN_KEEP_RIME] thuc[C1:RN_KEEP_RIME]
 
 ```
-decayRate = FIBER_DECAY_RATE_BASE / (1 + touchCount × FIBER_DECAY_K)
+decayRate = FIBER_DECAY_RATE_BASE / (1 + touchCount ×[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] FIBER_DECAY_K)
 ```
 
-**Loại decay:** Saturating (không logarithmic, không linear)
+**Loai[C5:RN_KEEP_RIME] decay:** Saturating (khong[C0:RN_KEEP_RIME] logarithmic, khong[C0:RN_KEEP_RIME] linear)
 
-**Lý do chọn saturating:**
-- Logarithmic: không về 0 → fiber bất tử → hệ không thể loại bỏ pattern cũ
-- Linear: decay đều bất kể lịch sử → mất giá trị của pattern đã được reinforce nhiều
-- Saturating: fiber mạnh decay chậm hơn nhưng vẫn có thể về 0
+**Ly[C1:RN_KEEP_RIME] do chon[C5:RN_KEEP_RIME] saturating:**
+- Logarithmic: khong[C0:RN_KEEP_RIME] ve[C2:RN_KEEP_RIME] 0 → fiber bat[C1:RN_KEEP_RIME] tu[C3:RN_KEEP_RIME] → he[C5:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] loai[C5:RN_KEEP_RIME] bo[C3:RN_KEEP_RIME] pattern cu[C4:RN_KEEP_RIME]
+- Linear: decay deu[C2:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] ke[C3:RN_KEEP_RIME] lich[C5:RN_KEEP_RIME] su[C3:RN_KEEP_RIME] → mat[C1:RN_KEEP_RIME] gia[C1:RN_KEEP_RIME] tri[C5:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] pattern da[C4:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] reinforce nhieu[C2:RN_KEEP_RIME]
+- Saturating: fiber manh[C5:RN_KEEP_RIME] decay cham[C5:RN_KEEP_RIME] hon[C0:RN_KEEP_RIME] nhung[C0:RN_KEEP_RIME] ven[C4:RN_AN_EN] co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] ve[C2:RN_KEEP_RIME] 0
 
 ### 2.2 Constants
 
 ```typescript
-FIBER_DECAY_IDLE_MS   = 7 * 24 * 60 * 60 * 1000  // 7 ngày idle → decay bắt đầu
+FIBER_DECAY_IDLE_MS   = 7 * 24 * 60 * 60 * 1000  // 7 ngay[C2:RN_KEEP_RIME] idle → decay bat[C1:RN_KEEP_RIME] dau[C2:RN_KEEP_RIME]
 FIBER_DECAY_RATE_BASE = 0.10
 FIBER_DECAY_K         = 0.2
 FIBER_MIN_SENSITIVITY = 0.20                       // fiberLost threshold (hysteresis)
@@ -85,21 +85,21 @@ FIBER_DISSOLVE_THRESHOLD = 0.05                   // dissolve threshold
 ### 2.3 Execution model
 
 ```
-Decay PHẢI chạy theo continuous tick.
-Decay KHÔNG ĐƯỢC chỉ chạy khi idle check.
+Decay PHAI[C3:RN_KEEP_RIME] chay[C5:RN_KEEP_RIME] theo continuous tick.
+Decay KHONG[C0:RN_KEEP_RIME] DUOC[C5:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] chay[C5:RN_KEEP_RIME] khi idle check.
 
-Nếu chỉ chạy khi idle check → burst decay.
-Burst decay làm mất tính liên tục của temporal memory.
+Neu[C1:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] chay[C5:RN_KEEP_RIME] khi idle check → burst decay.
+Burst decay lam[C2:RN_KEEP_RIME] mat[C1:RN_KEEP_RIME] tinh[C1:RN_KEEP_RIME] lien[C0:RN_KEEP_RIME] tuc[C5:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] temporal memory.
 ```
 
 ### 2.4 Hysteresis
 
 ```
-fiberFormed tại sensitivity ≥ 0.75
-fiberLost   tại sensitivity ≤ 0.20
+fiberFormed tai[C5:RN_KEEP_RIME] sensitivity ≥ 0.75
+fiberLost   tai[C5:RN_KEEP_RIME] sensitivity ≤ 0.20
 
-Khoảng buffer 0.20 – 0.75: fiber không đổi trạng thái.
-Tránh oscillation liên tục khi sensitivity dao động quanh threshold.
+Khoeng[C3:RN_ANG_ENG] buffer 0.20 – 0.75: fiber khong[C0:RN_KEEP_RIME] dau[C3:RN_OI_AU] treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME].
+Tranh[C1:RN_KEEP_RIME] oscillation lien[C0:RN_KEEP_RIME] tuc[C5:RN_KEEP_RIME] khi sensitivity dao dong[C5:RN_KEEP_RIME] quanh threshold.
 ```
 
 ---
@@ -111,35 +111,35 @@ Tránh oscillation liên tục khi sensitivity dao động quanh threshold.
 ```typescript
 interface FiberSummary {
   nodes: [string, string]   // [sourceCell, targetCell]
-  strength: number          // = sensitivity tại thời điểm gossip
-  ttl: number               // hop count còn lại
+  strength: number          // = sensitivity tai[C5:RN_KEEP_RIME] thau[C2:RN_OI_AU] diem[C3:RN_KEEP_RIME] gossip
+  ttl: number               // hop count con[C2:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME]
 }
 ```
 
-Không cần fiber_id. Cặp nodes là định danh đủ.
+Khong[C0:RN_KEEP_RIME] cen[C2:RN_AN_EN] fiber_id. Cap[C5:RN_KEEP_RIME] nodes la[C2:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] danh du[C3:RN_KEEP_RIME].
 
-### 3.2 Gossip triggers — 2 tầng (Gatekeeper chốt)
+### 3.2 Gossip triggers — 2 teng[C2:RN_ANG_ENG] (Gatekeeper chot[C1:RN_KEEP_RIME])
 
 ```
-Tầng 1 — nhẹ:
+Teng[C2:RN_ANG_ENG] 1 — nhe[C5:RN_KEEP_RIME]:
   Trigger: touchCount ≥ 2
   ttl: 1
-  Mục đích: lan pattern gần trước khi fiber hình thành
+  Muc[C5:RN_KEEP_RIME] dich[C1:RN_KEEP_RIME]: lan pattern gen[C2:RN_AN_EN] truoc[C1:RN_KEEP_RIME] khi fiber hinh[C2:RN_KEEP_RIME] thanh[C2:RN_KEEP_RIME]
 
-Tầng 2 — mạnh:
-  Trigger: fiberFormed (sensitivity vừa vượt 0.75)
+Teng[C2:RN_ANG_ENG] 2 — manh[C5:RN_KEEP_RIME]:
+  Trigger: fiberFormed (sensitivity vua[C2:RN_KEEP_RIME] vuot[C5:RN_KEEP_RIME] 0.75)
   ttl: 3
-  Mục đích: lan pattern đã ổn định ra toàn mạng
+  Muc[C5:RN_KEEP_RIME] dich[C1:RN_KEEP_RIME]: lan pattern da[C4:RN_KEEP_RIME] on[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] ra toen[C2:RN_AN_EN] meng[C5:RN_ANG_ENG]
 ```
 
-**Chưa chốt:** fiberWeakening gossip trigger — pending session sau.
+**Chua[C0:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME]:** fiberWeakening gossip trigger — pending session sau.
 
 ### 3.3 Propagation
 
 ```
-Không dùng central registry.
+Khong[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] central registry.
 Lan qua: SmartLinkCell.getPoint(targetCellId)
-Neighbors = cells đã có trong touches Map của cell hiện tại.
+Neighbors = cells da[C4:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] trong touches Map cua[C3:RN_KEEP_RIME] cell hien[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME].
 ```
 
 ### 3.4 receiveGossip logic
@@ -148,14 +148,14 @@ Neighbors = cells đã có trong touches Map của cell hiện tại.
 if incoming.strength > local.sensitivity:
   update local fiber state
 if summary.ttl > 0:
-  forward(summary với ttl--)
+  forward(summary vau[C1:RN_OI_AU] ttl--)
 ```
 
 ### 3.5 Constraints
 
 ```
-gossipQueue: async — không block touch() hot path
-dedupeCache: chống gossip storm
+gossipQueue: async — khong[C0:RN_KEEP_RIME] block touch() hot path
+dedupeCache: chong[C1:RN_KEEP_RIME] gossip storm
 ```
 
 ---
@@ -167,13 +167,13 @@ Local level:
   touch → reinforce → fiber (state flag) → decay → dissolve
 
 Network level:
-  fiber gossip (2 tầng) → causal horizon → shared pattern awareness
+  fiber gossip (2 teng[C2:RN_ANG_ENG]) → causal horizon → shared pattern awareness
 
 Emergence condition:
-  nhiều fibers lan đủ xa (ttl=3)
-  + tồn tại đủ lâu (k=0.2 → ~1 năm lifespan)
-  → network thấy cùng một cấu trúc nhân quả
-  = UEI field xuất hiện
+  nhieu[C2:RN_KEEP_RIME] fibers lan du[C3:RN_KEEP_RIME] xa (ttl=3)
+  + ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] lau[C0:RN_KEEP_RIME] (k=0.2 → ~1 nam[C0:RN_KEEP_RIME] lifespan)
+  → network thay[C1:RN_KEEP_RIME] cung[C2:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] cau[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] nhen[C0:RN_AN_EN] qua[C3:RN_KEEP_RIME]
+  = UEI field xuat[C1:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME]
 
 Full chain:
   local imprint
@@ -183,8 +183,8 @@ Full chain:
   → emergent cognition (UEI)
 ```
 
-UEI không được implement như module. Đây là điều kiện xuất hiện, không phải component.
+UEI khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] implement nhu[C0:RN_KEEP_RIME] module. Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] dieu[C2:RN_KEEP_RIME] kien[C5:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] component.
 
 ---
 
-*Architecture spec — không chứa implementation detail. Xem runtime_spec cho code-level.*
+*Architecture spec — khong[C0:RN_KEEP_RIME] chua[C1:RN_KEEP_RIME] implementation detail. Xem runtime_spec cho code-level.*

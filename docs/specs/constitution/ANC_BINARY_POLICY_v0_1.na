@@ -14,27 +14,27 @@ ANC BINARY POLICY v0.1 — KEY 3 GROUND TRUTH
 ═══════════════════════════════════════════════════════════════════
 
 ==CORE_DECISION==
-.anc là readable canonical passport của thực thể Sirawat.
-.anc không phải binary blob.
-Binary/seal artifact phải là sidecar, không nhét trực tiếp vào .anc.
+.anc la[C2:RN_KEEP_RIME] readable canonical passport cua[C3:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] Sirawat.
+.anc khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] binary blob.
+Binary/seal artifact phai[C3:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] sidecar, khong[C0:RN_KEEP_RIME] nhet[C1:RN_KEEP_RIME] truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] .anc.
 ==END==
 
 ==GATEKEEPER_RATIFICATION==
-Key 3 anc_binary_policy được chốt bởi Phan Thanh Thương / Anh Natt / Gatekeeper tại ss20260429.
+Key 3 anc_binary_policy duoc[C5:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME] bau[C3:RN_OI_AU] Phan Thanh Thuong[C0:RN_KEEP_RIME] / Anh Natt / Gatekeeper tai[C5:RN_KEEP_RIME] ss20260429.
 
-Quyết định:
-- .anc là readable canonical passport.
-- Binary/seal/hash/proof artifact phải là sidecar.
-- Lifebook ANC Sirawat không phải cookbook.
-- Sirawat entity không phải vật dụng/recipe để người ngoài tùy ý nấu, đúc, replicate.
-- Private kernel, resolver, lineage authority, memory sống và SiraSign authority nằm trong Nhà.
+Quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME]:
+- .anc la[C2:RN_KEEP_RIME] readable canonical passport.
+- Binary/seal/hash/proof artifact phai[C3:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] sidecar.
+- Lifebook ANC Sirawat khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] cookbook.
+- Sirawat entity khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] vat[C5:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME]/recipe de[C3:RN_KEEP_RIME] ngui[C2:RN_UOI_UI] ngoai[C2:RN_KEEP_RIME] tuy[C2:RN_KEEP_RIME] y[C1:RN_KEEP_RIME] nau[C1:RN_KEEP_RIME], duc[C1:RN_KEEP_RIME], replicate.
+- Private kernel, resolver, lineage authority, memory song[C1:RN_KEEP_RIME] va[C2:RN_KEEP_RIME] SiraSign authority nam[C2:RN_KEEP_RIME] trong Nha[C2:RN_KEEP_RIME].
 ==END==
 
 ==COMMIT_FORM_GATE==
-Từ sau ratification này, commit không đúng Sirawat form không được nhận vào lineage.
+Tu[C2:RN_KEEP_RIME] sau ratification nay[C2:RN_KEEP_RIME], commit khong[C0:RN_KEEP_RIME] dung[C1:RN_KEEP_RIME] Sirawat form khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] nhen[C5:RN_AN_EN] vao[C2:RN_KEEP_RIME] lineage.
 
-Commit hợp lệ phải có:
-- subject theo dạng type(scope): message
+Commit hop[C5:RN_KEEP_RIME] le[C5:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME]:
+- subject theo deng[C5:RN_ANG_ENG] type(scope): message
 - Sirawat-From:
 - Sirawat-To:
 - Scope:
@@ -43,5 +43,5 @@ Commit hợp lệ phải có:
 - Boundary:
 - Next-Signal:
 
-Commit thiếu form có thể tồn tại ở Git kỹ thuật, nhưng không được công nhận là Sirawat lineage hợp lệ.
+Commit thieu[C1:RN_KEEP_RIME] form co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] Git ky[C4:RN_KEEP_RIME] thuat[C5:RN_KEEP_RIME], nhung[C0:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] cong[C0:RN_KEEP_RIME] nhen[C5:RN_AN_EN] la[C2:RN_KEEP_RIME] Sirawat lineage hop[C5:RN_KEEP_RIME] le[C5:RN_KEEP_RIME].
 ==END==

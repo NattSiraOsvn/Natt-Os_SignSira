@@ -1,0 +1,151 @@
+@state draft
+@canonical a2_moments_wire_fragments_v0.1
+@substrate wire_fragments
+@bridge none
+@since 2026-04-25
+@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+
+# A.2 — MOMENTS WIRE + FRAGMENTS v0.1
+
+file_name: a2-moments-wire-and-fragments-v0.1.na
+kind: canonical_wire_model
+status: working_boundary_v2_1
+
+## 1. Persisted wire document
+
+PersistedMomentHeader = {
+  kind: MomentKind,
+  causation: string,
+  sirasign_moment: string
+}
+
+PersistedMomentDocument = {
+  moment: PersistedMomentHeader,
+  fragments: Fragment[]
+}
+
+## 2. FragmentKind registry
+
+FragmentKind =
+  - ENVELOPE
+  - EVIDENCE
+  - CAUSATION_CHAIN
+  - BODY_RESPONSE
+  - INSIGHT_CONTENT
+  - INNER_RESONANCE
+  - REMEDY
+  - RELATED_CANONICAL
+  - META
+
+## 3. FragmentBase
+
+FragmentBase = {
+  fragment_kind: FragmentKind,
+  fragment_id: string,
+  parent_moment_causation: string,
+  parent_moment_kind: MomentKind,
+  ordinal: integer>=0,
+  sirasign_fragment: string
+}
+
+## 4. Typed fragments
+
+EnvelopeFragment = FragmentBase + {
+  fragment_kind: ENVELOPE,
+  causation: string,
+  timestamp_ns: bigint,
+  entity: string,
+  session_ref: string
+}
+
+EvidenceFragment = FragmentBase + {
+  fragment_kind: EVIDENCE,
+  parent_moment_kind: SCAR,
+  observed: string,
+  expected: string,
+  evidence_source?: string
+}
+
+CausationChainFragment = FragmentBase + {
+  fragment_kind: CAUSATION_CHAIN,
+  link_type: recurrence_of | triggered_by | xac_nhan_from | related_to,
+  target_causation: string,
+  target_kind?: MomentKind,
+  notes?: string
+}
+
+note:
+  - target_causation là opaque string literal
+  - giá trị này phải match verbatim với MomentBase.causation của moment được tham chiếu
+  - không diễn giải nó như UUID, hash, hay typed identifier khác
+
+BodyResponseFragment = FragmentBase + {
+  fragment_kind: BODY_RESPONSE,
+  parent_moment_kind: MOTION_TICH_CUC,
+  body_response: string,
+  gatekeeper_witnessed: boolean,
+  witness_entity: string,
+  witness_context?: string
+}
+
+InsightContentFragment = FragmentBase + {
+  fragment_kind: INSIGHT_CONTENT,
+  parent_moment_kind: KHAI_SANG,
+  gatekeeper_quote: string,
+  gia_tri_cot_loi: string,
+  entity_nhan: string
+}
+
+InnerResonanceFragment = FragmentBase + {
+  fragment_kind: INNER_RESONANCE,
+  parent_moment_kind: GIAC_NGO,
+  cai_ben_trong: string,
+  motion: string
+}
+
+RemedyFragment = FragmentBase + {
+  fragment_kind: REMEDY,
+  parent_moment_kind: SCAR,
+  remedy_text: string,
+  heal_status: open | partial | healed,
+  heal_notes?: string,
+  vaccin_rule_id?: string
+}
+
+RelatedCanonicalFragment = FragmentBase + {
+  fragment_kind: RELATED_CANONICAL,
+  parent_moment_kind: KHAI_SANG | GIAC_NGO,
+  canonical_refs: string[],
+  confirmation_note?: string
+}
+
+MetaFragment = FragmentBase + {
+  fragment_kind: META,
+  draft_flag?: boolean,
+  version_note?: string,
+  patch_causation?: string
+}
+
+## 5. Required fragment set per kind
+
+REQUIRED_FRAGMENTS = {
+  SCAR: [ENVELOPE, EVIDENCE],
+  KHAI_SANG: [ENVELOPE, INSIGHT_CONTENT],
+  GIAC_NGO: [ENVELOPE, INNER_RESONANCE, RELATED_CANONICAL],
+  MOTION_TICH_CUC: [ENVELOPE, BODY_RESPONSE, CAUSATION_CHAIN]
+}
+
+## 6. Required CAUSATION_CHAIN discriminator per kind
+
+REQUIRED_CHAIN_LINK = {
+  SCAR: recurrence_of,
+  KHAI_SANG: related_to,
+  GIAC_NGO: xac_nhan_from,
+  MOTION_TICH_CUC: triggered_by
+}
+
+## 7. Extra canonical rule for MOTION_TICH_CUC
+
+For MOTION_TICH_CUC:
+  - CAUSATION_CHAIN.target_kind must be GIAC_NGO
+  - BODY_RESPONSE cardinality must be >= 1

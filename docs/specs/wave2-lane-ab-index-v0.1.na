@@ -3,7 +3,7 @@
 @substrate wave2_lane_index
 @bridge none
 @since 2026-04-25
-@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+@authority-slot Phan Thanh Thuong[C0:RN_KEEP_RIME] Giao Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — 20260423
 
 # WAVE 2 LANE A+B — FULL .na EXPORT v0.1
 
@@ -15,10 +15,10 @@ scope:
 status: scaffold-ready
 lane_c: blocked
 note:
-  - Đây là bộ `.na` canonical/scaffold để merge theo hệ đuôi mới.
-  - Không có lớp `.ts` trong bundle này.
-  - Không tự seal các policy còn mở.
-  - Path storage canonical vẫn `PENDING_GATEKEEPER_NEO`.
+  - Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] bo[C5:RN_KEEP_RIME] `.na` canonical/scaffold de[C3:RN_KEEP_RIME] merge theo he[C5:RN_KEEP_RIME] dui[C0:RN_UOI_UI] mau[C1:RN_OI_AU].
+  - Khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] lop[C1:RN_KEEP_RIME] `.ts` trong bundle nay[C2:RN_KEEP_RIME].
+  - Khong[C0:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] seal cac[C1:RN_KEEP_RIME] policy con[C2:RN_KEEP_RIME] mo[C3:RN_KEEP_RIME].
+  - Path storage canonical ven[C4:RN_AN_EN] `PENDING_GATEKEEPER_NEO`.
 
 files:
   - a2-moments-domain-model-v0.1.na
@@ -42,7 +42,7 @@ merge_order:
 
 adopted_review_fixes:
   - CapabilityInvariant.on_fail = optional at type-level
-  - MOTION_TICH_CUC dùng `triggered_by_giac_causation`, không dùng `context_moment`
-  - tách `witness_entity` và `witness_context`
-  - hibernate không hard-ban abort_paths ở level canonical scaffold
+  - MOTION_TICH_CUC dung[C2:RN_KEEP_RIME] `triggered_by_giac_causation`, khong[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] `context_moment`
+  - tach[C1:RN_KEEP_RIME] `witness_entity` va[C2:RN_KEEP_RIME] `witness_context`
+  - hibernate khong[C0:RN_KEEP_RIME] hard-ban abort_paths o[C3:RN_KEEP_RIME] level canonical scaffold
   - storage path canonicalization → PENDING_GATEKEEPER_NEO (recognized at scaffold level, not sealed in current draft)

@@ -6,7 +6,7 @@ $spec_compliance: SPEC_NEN_v1.1
 
 $boot:
   name: BOOT_DOVAN
-  title: Boot Đo Ván
+  title: Boot Do[C0:RN_KEEP_RIME] Ven[C1:RN_AN_EN]
   system: Natt Nell
   cell_target: boot-dovan
   kernel: Nauion Kernel
@@ -16,120 +16,120 @@ $boundary:
   NaUion-Server: NHA_MINH
 
 $nguyen_ly_nen:
-  no_cua: boot không có cửa, signal vào KhaiCell touch tự do
-  no_filter: boot không filter pre-execution
-  co_rao: mỗi step phải qua KhaiCell sign
-  co_field_law: mỗi step neo .anc identity
-  cau_chot: Kỷ luật nằm TRONG field, không nằm Ở CỬA.
+  no_cua: boot khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME], signal vao[C2:RN_KEEP_RIME] KhaiCell touch tu[C5:RN_KEEP_RIME] do
+  no_filter: boot khong[C0:RN_KEEP_RIME] filter pre-execution
+  co_rao: mau[C4:RN_OI_AU] step phai[C3:RN_KEEP_RIME] qua KhaiCell sign
+  co_field_law: mau[C4:RN_OI_AU] step neo .anc identity
+  cau_chot: Ky[C3:RN_KEEP_RIME] luat[C5:RN_KEEP_RIME] nam[C2:RN_KEEP_RIME] TRONG field, khong[C0:RN_KEEP_RIME] nam[C2:RN_KEEP_RIME] O[C3:RN_KEEP_RIME] CUA[C3:RN_KEEP_RIME].
 
 $tang_0_survival_pre_boot:
   rate_limit_check: required
   queue_capacity_check: required
   backpressure_check: required
   abort_if: resource_exhaustion
-  rule: KHÔNG bắt đầu boot nếu Tầng 0 không sẵn
+  rule: KHONG[C0:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] dau[C2:RN_KEEP_RIME] boot neu[C1:RN_KEEP_RIME] Teng[C2:RN_ANG_ENG] 0 khong[C0:RN_KEEP_RIME] sen[C4:RN_AN_EN]
 
 $boot_order:
   - step: 01_dictionary
-    primitive: nạp
+    primitive: nap[C5:RN_KEEP_RIME]
     artifact: src/thienbang.si
     khai_cell_touch: required
     observation_snapshot: required
-    chromatic_expected: tím_optimal
+    chromatic_expected: tim_optimal[C1:RN_KEEP_RIME]
     law_enforced: [LAW_1, LAW_2, LAW_3, LAW_4]
   - step: 02_primitive_words
-    primitive: dựng
+    primitive: dung[C5:RN_KEEP_RIME]
     artifact: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
     khai_cell_touch: required
     observation_snapshot: required
-    chromatic_expected: tím_optimal
+    chromatic_expected: tim_optimal[C1:RN_KEEP_RIME]
     law_enforced: [LAW_1, LAW_2, LAW_3, LAW_4]
   - step: 03_anc_definition
-    primitive: nạp
+    primitive: nap[C5:RN_KEEP_RIME]
     artifact: NaUion-Server/ANC_GENERATION_DEFINITION_v1.si
     khai_cell_touch: required
     observation_snapshot: required
     chromatic_expected: lam_nominal
     law_enforced: [LAW_1, LAW_4]
   - step: 04_entity_map
-    primitive: ánh_xạ
+    primitive: anh_xa[C1:RN_KEEP_RIME]
     artifact: NaUion-Server/NATT_NELL_ENTITY_MAP_v1.na
     khai_cell_touch: required
     observation_snapshot: required
     chromatic_expected: lam_nominal
     law_enforced: [LAW_1, LAW_4]
   - step: 05_presence_rule
-    primitive: kiểm
+    primitive: kiem[C3:RN_KEEP_RIME]
     artifact: NaUion-Server/BOOT_DOVAN_ANC_PRESENCE_RULE_v1.si
     khai_cell_touch: required
     observation_snapshot: required
-    chromatic_expected: chàm_stable
+    chromatic_expected: cham_stable[C2:RN_KEEP_RIME]
     law_enforced: [LAW_1, LAW_2, LAW_3]
   - step: 06_boot_rule
-    primitive: kiểm
+    primitive: kiem[C3:RN_KEEP_RIME]
     artifact: NaUion-Server/BOOT_DOVAN_BOOT_RULE.si
     khai_cell_touch: required
     observation_snapshot: required
-    chromatic_expected: chàm_stable
+    chromatic_expected: cham_stable[C2:RN_KEEP_RIME]
     law_enforced: [LAW_1, LAW_2, LAW_3, LAW_4]
   - step: 07_render_surface
-    primitive: hiện
+    primitive: hien[C5:RN_KEEP_RIME]
     artifact: NaUion-Server/boot-dovan.cell.kkbt
     khai_cell_touch: required
     observation_snapshot: required
-    chromatic_expected: tím_optimal
+    chromatic_expected: tim_optimal[C1:RN_KEEP_RIME]
     law_enforced: [LAW_1, LAW_2]
   - step: 08_validate_boot
-    primitive: kiểm
+    primitive: kiem[C3:RN_KEEP_RIME]
     artifact: NaUion-Server/BOOT_DOVAN_VALIDATE.sira
     khai_cell_touch: required
     observation_snapshot: required
-    chromatic_expected: chàm_stable
+    chromatic_expected: cham_stable[C2:RN_KEEP_RIME]
     law_enforced: [LAW_1, LAW_2, LAW_3, LAW_4]
   - step: 09_audit_event
-    primitive: nhớ
+    primitive: nho[C1:RN_KEEP_RIME]
     artifact: NaUion-Server/BOOT_DOVAN_BOOT_AUDIT_EVENT_v0.1.na
     khai_cell_touch: required
     observation_snapshot: required
     chromatic_expected: lam_nominal
     law_enforced: [LAW_1, LAW_2, LAW_3, LAW_4]
   - step: 10_cell_wake
-    primitive: tỉnh
+    primitive: tinh[C3:RN_KEEP_RIME]
     artifact: NaUion-Server/boot-dovan.cell.anc
     khai_cell_touch: required
     observation_snapshot: required
-    chromatic_expected: tím_optimal
+    chromatic_expected: tim_optimal[C1:RN_KEEP_RIME]
     law_enforced: [LAW_1, LAW_2, LAW_3, LAW_4]
     lifecycle_transition: ngu → tinh → tho → nghe
 
 $signal_lifecycle_8_step_per_step:
-  step_1_touch: KhaiCell touch tại mỗi boot step
+  step_1_touch: KhaiCell touch tai[C5:RN_KEEP_RIME] mau[C4:RN_OI_AU] boot step
   step_2_normalize: artifact path normalize canonical
   step_3_sign: KhaiCell attach signature origin+trace_id+entropy+touched_at
-  step_4_emit: signal có signature emit vào field
+  step_4_emit: signal co[C1:RN_KEEP_RIME] signature emit vao[C2:RN_KEEP_RIME] field
   step_5_propagate: signal lan qua HeyNa/EventBus
-  step_6_outcome: resonance với .anc → FALL/DISSIPATE/OSCILLATE
+  step_6_outcome: resonance vau[C1:RN_OI_AU] .anc → FALL/DISSIPATE/OSCILLATE
   step_7_imprint: TouchRecord ghi audit, QNEU update
   step_8_reinforce: ISEU lock pattern khi boot xong
 
 $four_immutable_laws:
-  LAW_1: Boot KHÔNG quyết định thay field — chỉ load artifact theo order
-  LAW_2: Boot KHÔNG ép route bằng if/else — fail step → abort, không skip
-  LAW_3: Outcome step chỉ sinh từ resonance với artifact .anc
-  LAW_4: KHÔNG hardcode đúng/sai cho artifact — chỉ check resonance
+  LAW_1: Boot KHONG[C0:RN_KEEP_RIME] quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] thay field — chi[C3:RN_KEEP_RIME] load artifact theo order
+  LAW_2: Boot KHONG[C0:RN_KEEP_RIME] ep[C1:RN_KEEP_RIME] route beng[C2:RN_ANG_ENG] if/else — fail step → abort, khong[C0:RN_KEEP_RIME] skip
+  LAW_3: Outcome step chi[C3:RN_KEEP_RIME] sinh tu[C2:RN_KEEP_RIME] resonance vau[C1:RN_OI_AU] artifact .anc
+  LAW_4: KHONG[C0:RN_KEEP_RIME] hardcode dung[C1:RN_KEEP_RIME]/sai cho artifact — chi[C3:RN_KEEP_RIME] check resonance
 
 $resonance_routing_3_outcome_per_step:
   FALL: artifact match .anc → step pass, propagate next step
   DISSIPATE: artifact missing/corrupt → step fail, abort boot
-  OSCILLATE: artifact ambiguous → loop, mất mass → DISSIPATE → ISEU mark
+  OSCILLATE: artifact ambiguous → loop, mat[C1:RN_KEEP_RIME] mass → DISSIPATE → ISEU mark
 
 $chromatic_5_layer_broadcast:
-  per_step: mỗi step broadcast màu lifecycle vào L0 pheromone
-  L0_pheromone: cell khác đọc trạng thái boot
-  L1_signature: KhaiCell mark mỗi step
-  L2_immune_trigger: Quantum Defense react nếu chromatic chuyển đỏ_critical
-  L3_reverse_bait: KHÔNG dùng trong boot
-  L4_ui_display: hiện trên kkbt $right_lifecycle_telemetry
+  per_step: mau[C4:RN_OI_AU] step broadcast mau[C2:RN_KEEP_RIME] lifecycle vao[C2:RN_KEEP_RIME] L0 pheromone
+  L0_pheromone: cell khac[C1:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] boot
+  L1_signature: KhaiCell mark mau[C4:RN_OI_AU] step
+  L2_immune_trigger: Quantum Defense react neu[C1:RN_KEEP_RIME] chromatic chuyen[C3:RN_KEEP_RIME] do_critical[C3:RN_KEEP_RIME]
+  L3_reverse_bait: KHONG[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] trong boot
+  L4_ui_display: hien[C5:RN_KEEP_RIME] tren[C0:RN_KEEP_RIME] kkbt $right_lifecycle_telemetry
 
 $khai_cell_wire:
   binding: src/cells/kernel/khai-cell/
@@ -141,27 +141,27 @@ $observation_wire:
   per_step_snapshot: required
 
 $boot_pass_condition:
-  - Tầng 0 SURVIVAL ready
-  - 10/10 step có khai_cell_touch + observation_snapshot
+  - Teng[C2:RN_ANG_ENG] 0 SURVIVAL ready
+  - 10/10 step co[C1:RN_KEEP_RIME] khai_cell_touch + observation_snapshot
   - 10/10 step chromatic match expected
-  - 10/10 step law_enforced kiểm
-  - cell boot-dovan đến trạng thái tho
-  - 4 LAW không vi phạm
-  - 8 step Signal Lifecycle đầy đủ
+  - 10/10 step law_enforced kiem[C3:RN_KEEP_RIME]
+  - cell boot-dovan den[C1:RN_KEEP_RIME] treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] tho
+  - 4 LAW khong[C0:RN_KEEP_RIME] vi pham[C5:RN_KEEP_RIME]
+  - 8 step Signal Lifecycle day[C2:RN_KEEP_RIME] du[C3:RN_KEEP_RIME]
 
 $boot_fail_condition:
-  - Tầng 0 SURVIVAL không ready → abort pre-boot
+  - Teng[C2:RN_ANG_ENG] 0 SURVIVAL khong[C0:RN_KEEP_RIME] ready → abort pre-boot
   - Step DISSIPATE → abort
-  - Step OSCILLATE quá ngưỡng → abort
-  - Vi phạm bất kỳ LAW → abort
-  - Cell không đến tho → fail
+  - Step OSCILLATE qua[C1:RN_KEEP_RIME] nguong[C4:RN_KEEP_RIME] → abort
+  - Vi pham[C5:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] ky[C2:RN_KEEP_RIME] LAW → abort
+  - Cell khong[C0:RN_KEEP_RIME] den[C1:RN_KEEP_RIME] tho → fail
 
 $fail_modes_protected:
-  13_4_fake_routing: LAW_2 chặn dev thêm if/else
-  13_6_resource_exhaustion: Tầng 0 pre-check
-  13_7_sensory_atrophy: Observation snapshot bắt buộc mỗi step
-  13_8_immune_inversion: T regulatory check chromatic không tự đổi đỏ
+  13_4_fake_routing: LAW_2 chen[C5:RN_AN_EN] dev them[C0:RN_KEEP_RIME] if/else
+  13_6_resource_exhaustion: Teng[C2:RN_ANG_ENG] 0 pre-check
+  13_7_sensory_atrophy: Observation snapshot bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME] mau[C4:RN_OI_AU] step
+  13_8_immune_inversion: T regulatory check chromatic khong[C0:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] dau[C3:RN_OI_AU] do[C3:RN_KEEP_RIME]
 
 $seal:
-  sentence: Boot Đo Ván chuỗi 10 step v0.2 sync passport v0.4 SPEC NỀN v1.1. Mỗi step có KhaiCell touch + Observation snapshot + Chromatic broadcast + 4 LAW enforced + 8 step Signal Lifecycle. Tầng 0 SURVIVAL pre-check. 3 outcome resonance routing.
-  sign: Phan Thanh Thương / Natt Sirawat
+  sentence: Boot Do[C0:RN_KEEP_RIME] Ven[C1:RN_AN_EN] chui[C4:RN_UOI_UI] 10 step v0.2 sync passport v0.4 SPEC NEN[C2:RN_KEEP_RIME] v1.1. Mau[C4:RN_OI_AU] step co[C1:RN_KEEP_RIME] KhaiCell touch + Observation snapshot + Chromatic broadcast + 4 LAW enforced + 8 step Signal Lifecycle. Teng[C2:RN_ANG_ENG] 0 SURVIVAL pre-check. 3 outcome resonance routing.
+  sign: Phan Thanh Thuong[C0:RN_KEEP_RIME] / Natt Sirawat

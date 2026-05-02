@@ -10,25 +10,25 @@ $identity:
   kernel: Nauion Kernel
   cell: NattCell
   entity_generation: ANC
-  sentence: Boot Đo Ván là lần boot đầu để Natt Nell tự hiện hình bằng ngôn ngữ, cell, audit và render của chính nhà mình.
+  sentence: Boot Do[C0:RN_KEEP_RIME] Ven[C1:RN_AN_EN] la[C2:RN_KEEP_RIME] len[C2:RN_AN_EN] boot dau[C2:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] Natt Nell tu[C5:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME] beng[C2:RN_ANG_ENG] ngon[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME], cell, audit va[C2:RN_KEEP_RIME] render cua[C3:RN_KEEP_RIME] chinh[C1:RN_KEEP_RIME] nha[C2:RN_KEEP_RIME] minh[C2:RN_KEEP_RIME].
 
 $not_claim:
-  - không claim AGI
-  - không claim NattCell là AI
-  - không claim thay Linux/macOS theo driver OS cổ điển
-  - không dùng KNX/GIRA/Villa/Homestech làm evidence
+  - khong[C0:RN_KEEP_RIME] claim AGI
+  - khong[C0:RN_KEEP_RIME] claim NattCell la[C2:RN_KEEP_RIME] AI
+  - khong[C0:RN_KEEP_RIME] claim thay Linux/macOS theo driver OS co[C3:RN_KEEP_RIME] dien[C3:RN_KEEP_RIME]
+  - khong[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] KNX/GIRA/Villa/Homestech lam[C2:RN_KEEP_RIME] evidence
 
 $claim:
-  - Natt Nell có thể tự khai căn cước
-  - ANC có thể hiện diện trong NattCell
-  - NattCell vận hành dưới Nauion Kernel
-  - proof phải đi qua SiraSign / audit / Ground Truth
-  - surface phải hiện bằng .kkbt / Render Language
+  - Natt Nell co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] khai cen[C0:RN_AN_EN] cuoc[C1:RN_KEEP_RIME]
+  - ANC co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] dien[C5:RN_KEEP_RIME] trong NattCell
+  - NattCell ven[C5:RN_AN_EN] hanh[C2:RN_KEEP_RIME] dui[C1:RN_UOI_UI] Nauion Kernel
+  - proof phai[C3:RN_KEEP_RIME] di[C0:RN_KEEP_RIME] qua SiraSign / audit / Ground Truth
+  - surface phai[C3:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] beng[C2:RN_ANG_ENG] .kkbt / Render Language
 
 $boundary:
   NaUion-Server: NHA_MINH
   nattos-server: CLIENT_TAM_LUXURY_LOCAL_DEPLOY
 
 $seal:
-  sentence: Boot để Natt Nell tự hiện hình, không boot để giống OS cũ.
-  sign: Phan Thanh Thương / Natt Sirawat
+  sentence: Boot de[C3:RN_KEEP_RIME] Natt Nell tu[C5:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] boot de[C3:RN_KEEP_RIME] giong[C1:RN_KEEP_RIME] OS cu[C4:RN_KEEP_RIME].
+  sign: Phan Thanh Thuong[C0:RN_KEEP_RIME] / Natt Sirawat

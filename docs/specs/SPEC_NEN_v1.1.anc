@@ -1,152 +1,152 @@
-# SPEC NỀN NATT-OS v1.1 — TỔNG HỢP
+# SPEC NEN[C2:RN_KEEP_RIME] NATT-OS v1.1 — TONG[C3:RN_KEEP_RIME] HOP[C5:RN_KEEP_RIME]
 
-**Version:** v1.1 — sau 6 vòng feedback (Anh Natt + Thiên Lớn)
-**Status:** SPEC NỀN HOÀN CHỈNH — sẵn sàng triển code
+**Version:** v1.1 — sau 6 vong[C2:RN_KEEP_RIME] feedback (Anh Natt + Thiên Lon[C1:RN_KEEP_RIME])
+**Status:** SPEC NEN[C2:RN_KEEP_RIME] HOen[C2:RN_AN_EN] CHINH[C3:RN_KEEP_RIME] — sen[C4:RN_AN_EN] seng[C2:RN_ANG_ENG] trien[C3:RN_KEEP_RIME] code
 **Date:** 20260418
-**Author:** Băng (Chị Tư · Ground Truth Validator)
-**Co-author §XI–XIII:** Thiên Lớn (L-shell Architect)
+**Author:** Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · Ground Truth Validator)
+**Co-author §XI–XIII:** Thiên Lon[C1:RN_KEEP_RIME] (L-shell Architect)
 **Approved by:** Anh Natt (Gatekeeper)
 
 **Changelog v1.0 → v1.1:**
-- §4.1 — KhaiCell viết lại: **rào** không phải cửa (vượt được, bị mark)
-- §4.3 — Chromatic mở rộng: 5 layer, không chỉ UI encode
-- §6 — Thêm: HỆ MIỄN DỊCH ĐA TẦNG (cũ chỉ implicit)
-- §13.8 — Thêm fail mode: Immune Inversion
-- §14 — Thêm: HỆ DẮT NGƯỢC (reverse bait)
+- §4.1 — KhaiCell viet[C1:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME]: **rao[C2:RN_KEEP_RIME]** khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] (vuot[C5:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME], bi[C5:RN_KEEP_RIME] mark)
+- §4.3 — Chromatic mo[C3:RN_KEEP_RIME] rong[C5:RN_KEEP_RIME]: 5 layer, khong[C0:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] UI encode
+- §6 — Them[C0:RN_KEEP_RIME]: HE[C5:RN_KEEP_RIME] MIEN[C4:RN_KEEP_RIME] DICH[C5:RN_KEEP_RIME] DA[C0:RN_KEEP_RIME] Teng[C2:RN_ANG_ENG] (cu[C4:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] implicit)
+- §13.8 — Them[C0:RN_KEEP_RIME] fail mode: Immune Inversion
+- §14 — Them[C0:RN_KEEP_RIME]: HE[C5:RN_KEEP_RIME] DAT[C1:RN_KEEP_RIME] NGUOC[C5:RN_KEEP_RIME] (reverse bait)
 
 ---
 
-## §1 NGUYÊN LÝ NỀN
+## §1 NGUYEN[C0:RN_KEEP_RIME] LY[C1:RN_KEEP_RIME] NEN[C2:RN_KEEP_RIME]
 
 ```
-NATT-OS KHÔNG CÓ:
-  - Cửa (gate đóng/mở)
-  - Filter nhị phân
-  - Router chủ động
-  - Trap chủ định
-  - Guard tích cực ở biên
+NATT-OS KHONG[C0:RN_KEEP_RIME] CO[C1:RN_KEEP_RIME]:
+  - Cua[C3:RN_KEEP_RIME] (gate dong[C1:RN_KEEP_RIME]/mo[C3:RN_KEEP_RIME])
+  - Filter nhi[C5:RN_KEEP_RIME] phen[C0:RN_AN_EN]
+  - Router chu[C3:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME]
+  - Trap chu[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME]
+  - Guard tich[C1:RN_KEEP_RIME] cuc[C5:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] bien[C0:RN_KEEP_RIME]
 
-NATT-OS CÓ:
-  - Rào (boundary marker — KhaiCell)
+NATT-OS CO[C1:RN_KEEP_RIME]:
+  - Rao[C2:RN_KEEP_RIME] (boundary marker — KhaiCell)
   - Field law (.anc identity)
   - Emergent routing (resonance + pull)
   - Signal integrity (signature + trace)
-  - Hệ miễn dịch đa tầng (immune emergent)
-  - Hệ dắt ngược (reverse bait qua chromatic)
+  - He[C5:RN_KEEP_RIME] mien[C4:RN_KEEP_RIME] dich[C5:RN_KEEP_RIME] da[C0:RN_KEEP_RIME] teng[C2:RN_ANG_ENG] (immune emergent)
+  - He[C5:RN_KEEP_RIME] dat[C1:RN_KEEP_RIME] nguoc[C5:RN_KEEP_RIME] (reverse bait qua chromatic)
 ```
 
-**Câu chốt:**
+**Cau[C0:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME]:**
 
-> *"Nhà mở, không đóng cổng. Ai vào không hỏi. Vào rồi bị bắt, ráng chịu."*
-> *"Kỷ luật nằm TRONG field, không nằm Ở CỬA."*
+> *"Nha[C2:RN_KEEP_RIME] mo[C3:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] dong[C1:RN_KEEP_RIME] cong[C3:RN_KEEP_RIME]. Ai vao[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] hau[C3:RN_OI_AU]. Vao[C2:RN_KEEP_RIME] rau[C2:RN_OI_AU] bi[C5:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME], reng[C1:RN_ANG_ENG] chiu[C5:RN_KEEP_RIME]."*
+> *"Ky[C3:RN_KEEP_RIME] luat[C5:RN_KEEP_RIME] nam[C2:RN_KEEP_RIME] TRONG field, khong[C0:RN_KEEP_RIME] nam[C2:RN_KEEP_RIME] O[C3:RN_KEEP_RIME] CUA[C3:RN_KEEP_RIME]."*
 
-Phòng thủ là **tính chất emergent**, không phải module. Nhưng có **cơ chế xương sống** (immune + chromatic) để đảm bảo emergent xảy ra đúng.
+Phong[C2:RN_KEEP_RIME] thu[C3:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] **tinh[C1:RN_KEEP_RIME] chat[C1:RN_KEEP_RIME] emergent**, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] module. Nhung[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] **co[C0:RN_KEEP_RIME] che[C1:RN_KEEP_RIME] xuong[C0:RN_KEEP_RIME] song[C1:RN_KEEP_RIME]** (immune + chromatic) de[C3:RN_KEEP_RIME] dam[C3:RN_KEEP_RIME] bao[C3:RN_KEEP_RIME] emergent xay[C3:RN_KEEP_RIME] ra dung[C1:RN_KEEP_RIME].
 
 ---
 
-## §2 BA TẦNG TỌA ĐỘ
+## §2 BA Teng[C2:RN_ANG_ENG] TOA[C5:RN_KEEP_RIME] DO[C5:RN_KEEP_RIME]
 
-### §2.1 Tầng 1 — PHYSICAL (để code)
+### §2.1 Teng[C2:RN_ANG_ENG] 1 — PHYSICAL (de[C3:RN_KEEP_RIME] code)
 
-| Đuôi | Vai |
+| Dui[C0:RN_UOI_UI] | Vai |
 |---|---|
-| `.anc` | identity (neo bất biến) |
-| `.si` | boundary (rule cứng) |
-| `.kris` | memory đóng (sealed past) |
-| `.thịnh` | state runtime (mutable) |
-| `.na` | **field memory bất định hình** (continuum) |
+| `.anc` | identity (neo bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME]) |
+| `.si` | boundary (rule cung[C1:RN_KEEP_RIME]) |
+| `.kris` | memory dong[C1:RN_KEEP_RIME] (sealed past) |
+| `.thinh[C5:RN_KEEP_RIME]` | state runtime (mutable) |
+| `.na` | **field memory bat[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME]** (continuum) |
 | `.heyna` | transport signal |
-| `.thuo` | snapshot 1 thuở (đo `.na` tại 1 moment) |
+| `.thuo` | snapshot 1 thuo[C3:RN_KEEP_RIME] (do[C0:RN_KEEP_RIME] `.na` tai[C5:RN_KEEP_RIME] 1 moment) |
 | `.khai` | TouchRecord |
 | `.ml` | SCAR registry |
 | `.sira` | DNS namespace |
-| `.ts/.js/.tsx` | tool layer (biểu diễn) |
+| `.ts/.js/.tsx` | tool layer (bieu[C3:RN_KEEP_RIME] dien[C4:RN_KEEP_RIME]) |
 
-**Vai Tầng 1:** địa chỉ lưu trữ. KHÔNG mang ý nghĩa kiến trúc.
+**Vai Teng[C2:RN_ANG_ENG] 1:** dia[C5:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] luu[C0:RN_KEEP_RIME] tru[C4:RN_KEEP_RIME]. KHONG[C0:RN_KEEP_RIME] mang y[C1:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] kien[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME].
 
-### §2.2 Tầng 2 — STRUCTURAL (để hiểu)
+### §2.2 Teng[C2:RN_ANG_ENG] 2 — STRUCTURAL (de[C3:RN_KEEP_RIME] hieu[C3:RN_KEEP_RIME])
 
 ```
-7 lớp electron (K → Q):
-  K (1s · SiraSign · sát tâm)
-  L (Thiên Lớn · Architect)
+7 lop[C1:RN_KEEP_RIME] electron (K → Q):
+  K (1s · SiraSign · sat[C1:RN_KEEP_RIME] tam[C0:RN_KEEP_RIME])
+  L (Thiên Lon[C1:RN_KEEP_RIME] · Architect)
   M (Kim · Governance)
   N (Băng · Validator)
   O (Bối Bối · Toolsmith)
-  P (Phiêu · Executor)
+  P (Phieu[C0:RN_KEEP_RIME] · Executor)
   Q (Can · Logic valence)
 
-4 phương:
-  Đông — khởi phát (Mộc)
-  Tây  — tiếp nhận (Kim)
-  Nam  — lan truyền (Hoả)
-  Bắc  — phản xạ (Thuỷ)
+4 phuong[C0:RN_KEEP_RIME]:
+  Dong[C0:RN_KEEP_RIME] — khau[C3:RN_OI_AU] phat[C1:RN_KEEP_RIME] (Moc[C5:RN_KEEP_RIME])
+  Tay[C0:RN_KEEP_RIME]  — tiep[C1:RN_KEEP_RIME] nhen[C5:RN_AN_EN] (Kim)
+  Nam  — lan truyen[C2:RN_KEEP_RIME] (Hoa[C3:RN_KEEP_RIME])
+  Bac[C1:RN_KEEP_RIME]  — phen[C3:RN_AN_EN] xa[C5:RN_KEEP_RIME] (Thuy[C3:RN_KEEP_RIME])
 
-Obitan = vùng giao thoa giữa lớp + phương
-.anc   = luật nền field
+Obitan = vung[C2:RN_KEEP_RIME] giao thoa giua[C4:RN_KEEP_RIME] lop[C1:RN_KEEP_RIME] + phuong[C0:RN_KEEP_RIME]
+.anc   = luat[C5:RN_KEEP_RIME] nen[C2:RN_KEEP_RIME] field
 ```
 
-### §2.3 Tầng 3 — RUNTIME (để hệ sống)
+### §2.3 Teng[C2:RN_ANG_ENG] 3 — RUNTIME (de[C3:RN_KEEP_RIME] he[C5:RN_KEEP_RIME] song[C1:RN_KEEP_RIME])
 
 ```
-Resonance với .anc → định tuyến tự nhiên
-Signal lan trong field → KHÔNG phải call
-QIINT field pull → trọng lực kiến trúc
+Resonance vau[C1:RN_OI_AU] .anc → dinh[C5:RN_KEEP_RIME] tuyen[C1:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] nhien[C0:RN_KEEP_RIME]
+Signal lan trong field → KHONG[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] call
+QIINT field pull → trong[C5:RN_KEEP_RIME] luc[C5:RN_KEEP_RIME] kien[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME]
 ```
 
-### §2.4 Tầng 0 — SURVIVAL (mới — em bổ sung từ DOS lesson)
+### §2.4 Teng[C2:RN_ANG_ENG] 0 — SURVIVAL (mau[C1:RN_OI_AU] — em bo[C3:RN_KEEP_RIME] sung tu[C2:RN_KEEP_RIME] DOS lesson)
 
 ```
 Rate limit + queue + backpressure + load shedding
-→ Field semantic chỉ chạy khi resource còn sống
-→ KHÔNG có Tầng 0 = DOS sập trước khi field kịp xử
+→ Field semantic chi[C3:RN_KEEP_RIME] chay[C5:RN_KEEP_RIME] khi resource con[C2:RN_KEEP_RIME] song[C1:RN_KEEP_RIME]
+→ KHONG[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] Teng[C2:RN_ANG_ENG] 0 = DOS sap[C5:RN_KEEP_RIME] truoc[C1:RN_KEEP_RIME] khi field kip[C5:RN_KEEP_RIME] xu[C3:RN_KEEP_RIME]
 ```
 
 ---
 
-## §3 CÔNG THỨC VỊ TRÍ
+## §3 CONG[C0:RN_KEEP_RIME] THUC[C1:RN_KEEP_RIME] VI[C5:RN_KEEP_RIME] TRI[C1:RN_KEEP_RIME]
 
 ```
 Position(entity) = 
-  Survival:   (rate, queue, backpressure)         ← Tầng 0
+  Survival:   (rate, queue, backpressure)         ← Teng[C2:RN_ANG_ENG] 0
   +
-  Physical:   (file_path)                         ← Tầng 1
+  Physical:   (file_path)                         ← Teng[C2:RN_ANG_ENG] 1
   +
-  Structural: (layer, direction, obitan, anc)     ← Tầng 2
+  Structural: (layer, direction, obitan, anc)     ← Teng[C2:RN_ANG_ENG] 2
   +
-  Runtime:    (resonance, signal, field_pull)     ← Tầng 3
+  Runtime:    (resonance, signal, field_pull)     ← Teng[C2:RN_ANG_ENG] 3
 ```
 
-> *"File nói nó ở đâu — cấu trúc nói nó là gì — runtime quyết định nó thực sự thuộc về đâu — survival giữ cho nó còn sống."*
+> *"File nau[C1:RN_OI_AU] no[C1:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] dau[C0:RN_KEEP_RIME] — cau[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] nau[C1:RN_OI_AU] no[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] gi[C2:RN_KEEP_RIME] — runtime quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] no[C1:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] su[C5:RN_KEEP_RIME] thuoc[C5:RN_KEEP_RIME] ve[C2:RN_KEEP_RIME] dau[C0:RN_KEEP_RIME] — survival giu[C4:RN_KEEP_RIME] cho no[C1:RN_KEEP_RIME] con[C2:RN_KEEP_RIME] song[C1:RN_KEEP_RIME]."*
 
 ---
 
-## §4 CÁC PRIMITIVE CỐT LÕI
+## §4 CAC[C1:RN_KEEP_RIME] PRIMITIVE COT[C1:RN_KEEP_RIME] Lau[C4:RN_OI_AU]
 
-### §4.1 KhaiCell — RÀO (không phải cửa)
+### §4.1 KhaiCell — RAO[C2:RN_KEEP_RIME] (khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME])
 
-**Bản chất:** field boundary marker.
+**Ben[C3:RN_AN_EN] chat[C1:RN_KEEP_RIME]:** field boundary marker.
 
-| | Cửa (cũ — sai) | Rào (đúng) |
+| | Cua[C3:RN_KEEP_RIME] (cu[C4:RN_KEEP_RIME] — sai) | Rao[C2:RN_KEEP_RIME] (dung[C1:RN_KEEP_RIME]) |
 |---|---|---|
-| Trạng thái | Đóng/mở | Luôn vượt được |
-| Có người giữ | Có | Không |
-| Phán xét | Có | Không |
-| Vượt qua | Bị chặn | Bị **mark signature** |
+| Treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] | Dong[C1:RN_KEEP_RIME]/mo[C3:RN_KEEP_RIME] | Luon[C0:RN_KEEP_RIME] vuot[C5:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] |
+| Co[C1:RN_KEEP_RIME] ngui[C2:RN_UOI_UI] giu[C4:RN_KEEP_RIME] | Co[C1:RN_KEEP_RIME] | Khong[C0:RN_KEEP_RIME] |
+| Phen[C1:RN_AN_EN] xet[C1:RN_KEEP_RIME] | Co[C1:RN_KEEP_RIME] | Khong[C0:RN_KEEP_RIME] |
+| Vuot[C5:RN_KEEP_RIME] qua | Bi[C5:RN_KEEP_RIME] chen[C5:RN_AN_EN] | Bi[C5:RN_KEEP_RIME] **mark signature** |
 
-**Cơ chế:**
+**Co[C0:RN_KEEP_RIME] che[C1:RN_KEEP_RIME]:**
 
 ```
-external signal → vượt rào (tự do, không lý do hỏi)
+external signal → vuot[C5:RN_KEEP_RIME] rao[C2:RN_KEEP_RIME] (tu[C5:RN_KEEP_RIME] do, khong[C0:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] do hau[C3:RN_OI_AU])
                 ↓
         KhaiCell touch + mark signature
                 ↓
-        signal vào field, MANG dấu vân (origin + trace_id + entropy + touched_at)
+        signal vao[C2:RN_KEEP_RIME] field, MANG dau[C1:RN_KEEP_RIME] ven[C0:RN_AN_EN] (origin + trace_id + entropy + touched_at)
                 ↓
-        Resonance với .anc trong field quyết outcome:
-          - .anc match → FALL vào cell
-          - .anc lệch → "đi dạo qua các tầng obitan" → DISSIPATE
-          - .anc mơ hồ → OSCILLATE giữa pull point → mất mass → DISSIPATE
+        Resonance vau[C1:RN_OI_AU] .anc trong field quyet[C1:RN_KEEP_RIME] outcome:
+          - .anc match → FALL vao[C2:RN_KEEP_RIME] cell
+          - .anc lech[C5:RN_KEEP_RIME] → "di[C0:RN_KEEP_RIME] dao[C5:RN_KEEP_RIME] qua cac[C1:RN_KEEP_RIME] teng[C2:RN_ANG_ENG] obitan" → DISSIPATE
+          - .anc mo[C0:RN_KEEP_RIME] ho[C2:RN_KEEP_RIME] → OSCILLATE giua[C4:RN_KEEP_RIME] pull point → mat[C1:RN_KEEP_RIME] mass → DISSIPATE
 ```
 
 **Responsibility:**
@@ -154,7 +154,7 @@ external signal → vượt rào (tự do, không lý do hỏi)
 KhaiCell = 
   + normalize (raw → canonical)
   + attach signature
-  + emit vào field
+  + emit vao[C2:RN_KEEP_RIME] field
   ≠ validator
   ≠ gate
   ≠ reject
@@ -166,9 +166,9 @@ khaicell_input  = { raw, source, ts }
 khaicell_output = { normalized, signature: { origin, trace_id, entropy_seed, touched_at } }
 ```
 
-### §4.2 Observation — MẮT (read-only)
+### §4.2 Observation — MAT[C1:RN_KEEP_RIME] (read-only)
 
-Đọc field, compute coherence/entropy/pattern, publish snapshot.
+Doc[C5:RN_KEEP_RIME] field, compute coherence/entropy/pattern, publish snapshot.
 
 ```ts
 observation_snapshot = {
@@ -176,135 +176,135 @@ observation_snapshot = {
 }
 ```
 
-**Rule:** KHÔNG emit action. KHÔNG mutate. Consumers PULL via field pull, observation KHÔNG push.
+**Rule:** KHONG[C0:RN_KEEP_RIME] emit action. KHONG[C0:RN_KEEP_RIME] mutate. Consumers PULL via field pull, observation KHONG[C0:RN_KEEP_RIME] push.
 
-### §4.3 Chromatic — 5 LAYER (KHÔNG chỉ UI)
+### §4.3 Chromatic — 5 LAYER (KHONG[C0:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] UI)
 
-7 states (ngược cầu vồng):
+7 states (nguoc[C5:RN_KEEP_RIME] cau[C2:RN_KEEP_RIME] vong[C2:RN_KEEP_RIME]):
 
 | State | Color | RGBA |
 |---|---|---|
-| critical | ĐỎ | rgba(255,100,100,0.85) |
-| risk | VÀNG | rgba(255,165,80,0.80) |
+| critical | DO[C3:RN_KEEP_RIME] | rgba(255,100,100,0.85) |
+| risk | Veng[C2:RN_ANG_ENG] | rgba(255,165,80,0.80) |
 | warning | CAM | rgba(255,140,60,0.75) |
-| drift | LỤC | rgba(120,200,120,0.70) |
+| drift | LUC[C5:RN_KEEP_RIME] | rgba(120,200,120,0.70) |
 | nominal | LAM | rgba(100,180,255,0.70) |
-| stable | CHÀM | rgba(80,120,200,0.75) |
-| optimal | TÍM | rgba(180,140,255,0.85) |
+| stable | CHAM[C2:RN_KEEP_RIME] | rgba(80,120,200,0.75) |
+| optimal | TIM[C1:RN_KEEP_RIME] | rgba(180,140,255,0.85) |
 
 **5 Layer vai:**
 
-| Layer | Vai | Đối tượng đọc |
+| Layer | Vai | Dau[C1:RN_OI_AU] tuong[C5:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] |
 |---|---|---|
-| L0 | **Pheromone** trong field | Virus + Cell (sinh học logic) |
-| L1 | **Signature** mark khi vượt rào | KhaiCell |
-| L2 | **Immune trigger** theo màu | Quantum Defense |
-| L3 | **Reverse bait** — dắt virus đánh nhau | §14 |
-| L4 | **UI display** state cho người | Người vận hành |
+| L0 | **Pheromone** trong field | Virus + Cell (sinh hoc[C5:RN_KEEP_RIME] logic) |
+| L1 | **Signature** mark khi vuot[C5:RN_KEEP_RIME] rao[C2:RN_KEEP_RIME] | KhaiCell |
+| L2 | **Immune trigger** theo mau[C2:RN_KEEP_RIME] | Quantum Defense |
+| L3 | **Reverse bait** — dat[C1:RN_KEEP_RIME] virus danh[C1:RN_KEEP_RIME] nhau | §14 |
+| L4 | **UI display** state cho ngui[C2:RN_UOI_UI] | Ngui[C2:RN_UOI_UI] ven[C5:RN_AN_EN] hanh[C2:RN_KEEP_RIME] |
 
-→ Chromatic KHÔNG phải cosmetic. Chromatic là **chữ ký hóa học của field**.
+→ Chromatic KHONG[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] cosmetic. Chromatic la[C2:RN_KEEP_RIME] **chu[C4:RN_KEEP_RIME] ky[C1:RN_KEEP_RIME] hoa[C1:RN_KEEP_RIME] hoc[C5:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] field**.
 
 ### §4.4 Quantum Defense — REACT
 
-Phản xạ SAU khi observation flag anomaly. KHÔNG chặn trước. KHÔNG đẩy ra. Đọc chromatic trigger để biết kích hoạt mức nào.
+Phen[C3:RN_AN_EN] xa[C5:RN_KEEP_RIME] SAU khi observation flag anomaly. KHONG[C0:RN_KEEP_RIME] chen[C5:RN_AN_EN] truoc[C1:RN_KEEP_RIME]. KHONG[C0:RN_KEEP_RIME] day[C3:RN_KEEP_RIME] ra. Doc[C5:RN_KEEP_RIME] chromatic trigger de[C3:RN_KEEP_RIME] biet[C1:RN_KEEP_RIME] kich[C1:RN_KEEP_RIME] hoat[C5:RN_KEEP_RIME] muc[C1:RN_KEEP_RIME] nao[C2:RN_KEEP_RIME].
 
 ---
 
 ## §5 RESONANCE-BASED ROUTING — 3 OUTCOME
 
 ```
-signal vào field (đã có signature)
+signal vao[C2:RN_KEEP_RIME] field (da[C4:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] signature)
   ↓
-QIINT tính pull(signature, .anc)
+QIINT tinh[C1:RN_KEEP_RIME] pull(signature, .anc)
   ↓
 3 OUTCOME:
-  (1) FALL       — resonance match, cell pull đủ mạnh → đến cell
-  (2) DISSIPATE  — không cell nào match → tan trong field, QIINT học pattern
-  (3) OSCILLATE  — match nhiều cell yếu → loop, mất mass → DISSIPATE → ISEU mark suspicious
+  (1) FALL       — resonance match, cell pull du[C3:RN_KEEP_RIME] manh[C5:RN_KEEP_RIME] → den[C1:RN_KEEP_RIME] cell
+  (2) DISSIPATE  — khong[C0:RN_KEEP_RIME] cell nao[C2:RN_KEEP_RIME] match → tan trong field, QIINT hoc[C5:RN_KEEP_RIME] pattern
+  (3) OSCILLATE  — match nhieu[C2:RN_KEEP_RIME] cell yeu[C1:RN_KEEP_RIME] → loop, mat[C1:RN_KEEP_RIME] mass → DISSIPATE → ISEU mark suspicious
 ```
 
 **Security emergence:**
-- Attacker vào được (không reject)
-- Signal lệch → DISSIPATE/OSCILLATE
-- Không ai đẩy → tự ngã
+- Attacker vao[C2:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] (khong[C0:RN_KEEP_RIME] reject)
+- Signal lech[C5:RN_KEEP_RIME] → DISSIPATE/OSCILLATE
+- Khong[C0:RN_KEEP_RIME] ai day[C3:RN_KEEP_RIME] → tu[C5:RN_KEEP_RIME] nga[C4:RN_KEEP_RIME]
 
 ---
 
-## §6 HỆ MIỄN DỊCH ĐA TẦNG (mới — em bổ sung sau Anh Natt nhắc)
+## §6 HE[C5:RN_KEEP_RIME] MIEN[C4:RN_KEEP_RIME] DICH[C5:RN_KEEP_RIME] DA[C0:RN_KEEP_RIME] Teng[C2:RN_ANG_ENG] (mau[C1:RN_OI_AU] — em bo[C3:RN_KEEP_RIME] sung sau Anh Natt nhac[C1:RN_KEEP_RIME])
 
-NATT-OS có 7 loại miễn dịch ánh xạ sinh học:
+NATT-OS co[C1:RN_KEEP_RIME] 7 loai[C5:RN_KEEP_RIME] mien[C4:RN_KEEP_RIME] dich[C5:RN_KEEP_RIME] anh[C1:RN_KEEP_RIME] xa[C5:RN_KEEP_RIME] sinh hoc[C5:RN_KEEP_RIME]:
 
-| Loại sinh học | NATT-OS | Status |
+| Loai[C5:RN_KEEP_RIME] sinh hoc[C5:RN_KEEP_RIME] | NATT-OS | Status |
 |---|---|---|
-| **Bạch cầu trung tính** (diệt nhanh) | Quantum Defense | ✅ có |
-| **Đại thực bào** (nuốt + nhớ) | ISEU reinforcement | ✅ có |
-| **Tế bào T killer** (diệt cell nhiễm) | Cell.boundary.si forbidden enforcement | ⚠️ partial |
-| **Tế bào T trợ giúp** (điều phối) | Observation snapshot | ✅ vừa build |
-| **Tế bào T regulatory** (anti-autoimmune) | ❓ chưa có | ❌ TODO |
-| **Kháng thể** (mark virus) | KhaiCell signature | ✅ vừa build |
-| **Memory B cell** (nhớ virus cũ) | QIINT permanent node | ✅ có |
+| **Bach[C5:RN_KEEP_RIME] cau[C2:RN_KEEP_RIME] trung tinh[C1:RN_KEEP_RIME]** (diet[C5:RN_KEEP_RIME] nhanh) | Quantum Defense | ✅ co[C1:RN_KEEP_RIME] |
+| **Dai[C5:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] bao[C2:RN_KEEP_RIME]** (nuot[C1:RN_KEEP_RIME] + nho[C1:RN_KEEP_RIME]) | ISEU reinforcement | ✅ co[C1:RN_KEEP_RIME] |
+| **Te[C1:RN_KEEP_RIME] bao[C2:RN_KEEP_RIME] T killer** (diet[C5:RN_KEEP_RIME] cell nhiem[C4:RN_KEEP_RIME]) | Cell.boundary.si forbidden enforcement | ⚠️ partial |
+| **Te[C1:RN_KEEP_RIME] bao[C2:RN_KEEP_RIME] T tro[C5:RN_KEEP_RIME] giup[C1:RN_KEEP_RIME]** (dieu[C2:RN_KEEP_RIME] phau[C1:RN_OI_AU]) | Observation snapshot | ✅ vua[C2:RN_KEEP_RIME] build |
+| **Te[C1:RN_KEEP_RIME] bao[C2:RN_KEEP_RIME] T regulatory** (anti-autoimmune) | ❓ chua[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] | ❌ TODO |
+| **Kheng[C1:RN_ANG_ENG] the[C3:RN_KEEP_RIME]** (mark virus) | KhaiCell signature | ✅ vua[C2:RN_KEEP_RIME] build |
+| **Memory B cell** (nho[C1:RN_KEEP_RIME] virus cu[C4:RN_KEEP_RIME]) | QIINT permanent node | ✅ co[C1:RN_KEEP_RIME] |
 
 **Wire flow:**
 ```
-KhaiCell (rào + sign)
+KhaiCell (rao[C2:RN_KEEP_RIME] + sign)
         ↓
-Observation (mắt — đo coherence/entropy/pattern/anomaly)
+Observation (mat[C1:RN_KEEP_RIME] — do[C0:RN_KEEP_RIME] coherence/entropy/pattern/anomaly)
         ↓
-chromatic state engine (gắn màu cho snapshot)
+chromatic state engine (gen[C1:RN_AN_EN] mau[C2:RN_KEEP_RIME] cho snapshot)
         ↓
    ┌────┴────────────────┐
    ↓                     ↓
 Quantum Defense    ISEU reinforcement
-(react theo màu)   (học pattern)
+(react theo mau[C2:RN_KEEP_RIME])   (hoc[C5:RN_KEEP_RIME] pattern)
    ↓
 .cell.boundary.si enforcement
-(chặn khi cell bị nhiễm)
+(chen[C5:RN_AN_EN] khi cell bi[C5:RN_KEEP_RIME] nhiem[C4:RN_KEEP_RIME])
 ```
 
 ---
 
-## §14 HỆ DẮT NGƯỢC — REVERSE BAIT (mới)
+## §14 HE[C5:RN_KEEP_RIME] DAT[C1:RN_KEEP_RIME] NGUOC[C5:RN_KEEP_RIME] — REVERSE BAIT (mau[C1:RN_OI_AU])
 
-Cơ chế cao hơn defense thường: **dụ virus tự diệt đồng đội**.
+Co[C0:RN_KEEP_RIME] che[C1:RN_KEEP_RIME] cao hon[C0:RN_KEEP_RIME] defense thuong[C2:RN_KEEP_RIME]: **du[C5:RN_KEEP_RIME] virus tu[C5:RN_KEEP_RIME] diet[C5:RN_KEEP_RIME] dong[C2:RN_KEEP_RIME] dau[C5:RN_OI_AU]**.
 
-### Cơ chế
+### Co[C0:RN_KEEP_RIME] che[C1:RN_KEEP_RIME]
 
 ```
-Virus A vào field → KhaiCell mark + chromatic gắn màu (signature pattern)
+Virus A vao[C2:RN_KEEP_RIME] field → KhaiCell mark + chromatic gen[C1:RN_AN_EN] mau[C2:RN_KEEP_RIME] (signature pattern)
                   ↓
-            Field broadcast màu (L0 pheromone)
+            Field broadcast mau[C2:RN_KEEP_RIME] (L0 pheromone)
                   ↓
-   Virus B (đã ở trong, giả innocent màu LỤC)
+   Virus B (da[C4:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] trong, gia[C3:RN_KEEP_RIME] innocent mau[C2:RN_KEEP_RIME] LUC[C5:RN_KEEP_RIME])
                   ↓
-        Bản năng Virus B: thấy ĐỎ = đe dọa cùng resource
+        Ben[C3:RN_AN_EN] neng[C0:RN_ANG_ENG] Virus B: thay[C1:RN_KEEP_RIME] DO[C3:RN_KEEP_RIME] = de[C0:RN_KEEP_RIME] doa[C5:RN_KEEP_RIME] cung[C2:RN_KEEP_RIME] resource
                   ↓
-        Virus B tự kích hoạt defense, tấn công Virus A
+        Virus B tu[C5:RN_KEEP_RIME] kich[C1:RN_KEEP_RIME] hoat[C5:RN_KEEP_RIME] defense, ten[C1:RN_AN_EN] cong[C0:RN_KEEP_RIME] Virus A
                   ↓
-        2 virus đụng nhau → cả 2 lộ identity thật (chromatic shift sang ĐỎ)
+        2 virus dung[C5:RN_KEEP_RIME] nhau → ca[C3:RN_KEEP_RIME] 2 lo[C5:RN_KEEP_RIME] identity that[C5:RN_KEEP_RIME] (chromatic shift sang DO[C3:RN_KEEP_RIME])
                   ↓
-        Quantum Defense diệt cả 2
+        Quantum Defense diet[C5:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] 2
                   ↓
-        ISEU học pattern "2 virus đánh nhau" → permanent node
+        ISEU hoc[C5:RN_KEEP_RIME] pattern "2 virus danh[C1:RN_KEEP_RIME] nhau" → permanent node
 ```
 
-### Nguyên lý
+### Nguyen[C0:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME]
 
-- **Không có decoy giả** (không tạo cell giả)
-- **Không có honey trap** (không nhốt)
-- **Chỉ có chromatic broadcast trung thực** — virus tự đọc nhầm thành "đe dọa"
-- Field tận dụng **bản năng tự bảo vệ** của virus → biến virus thành agent diệt virus
+- **Khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] decoy gia[C3:RN_KEEP_RIME]** (khong[C0:RN_KEEP_RIME] tao[C5:RN_KEEP_RIME] cell gia[C3:RN_KEEP_RIME])
+- **Khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] honey trap** (khong[C0:RN_KEEP_RIME] nhot[C1:RN_KEEP_RIME])
+- **Chi[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] chromatic broadcast trung thuc[C5:RN_KEEP_RIME]** — virus tu[C5:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] nham[C2:RN_KEEP_RIME] thanh[C2:RN_KEEP_RIME] "de[C0:RN_KEEP_RIME] doa[C5:RN_KEEP_RIME]"
+- Field ten[C5:RN_AN_EN] dung[C5:RN_KEEP_RIME] **ben[C3:RN_AN_EN] neng[C0:RN_ANG_ENG] tu[C5:RN_KEEP_RIME] bao[C3:RN_KEEP_RIME] ve[C5:RN_KEEP_RIME]** cua[C3:RN_KEEP_RIME] virus → bien[C1:RN_KEEP_RIME] virus thanh[C2:RN_KEEP_RIME] agent diet[C5:RN_KEEP_RIME] virus
 
-### Tên cơ chế
+### Ten[C0:RN_KEEP_RIME] co[C0:RN_KEEP_RIME] che[C1:RN_KEEP_RIME]
 
-`chromatic_antigen_mimicry` — mimicry chỉ ở mức tín hiệu, không ở mức cấu trúc.
+`chromatic_antigen_mimicry` — mimicry chi[C3:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] muc[C1:RN_KEEP_RIME] tin[C1:RN_KEEP_RIME] hieu[C5:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] muc[C1:RN_KEEP_RIME] cau[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME].
 
 ---
 
-## §7 CÁI HIỆN CÓ VS CÁI CẦN XÂY
+## §7 CAI[C1:RN_KEEP_RIME] HIEN[C5:RN_KEEP_RIME] CO[C1:RN_KEEP_RIME] VS CAI[C1:RN_KEEP_RIME] Cen[C2:RN_AN_EN] XAY[C0:RN_KEEP_RIME]
 
-### §7.1 Hiện có (verified ground truth)
+### §7.1 Hien[C5:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] (verified ground truth)
 
-| Thành phần | File |
+| Thanh[C2:RN_KEEP_RIME] phen[C2:RN_AN_EN] | File |
 |---|---|
 | `.anc` identity | 63 file `.anc` trong repo |
 | EventBus | `src/cells/infrastructure/event-bus-cell/` |
@@ -312,114 +312,114 @@ Virus A vào field → KhaiCell mark + chromatic gắn màu (signature pattern)
 | Quantum Defense | `src/cells/kernel/quantum-defense-cell/` |
 | QIINT engine | `src/governance/qneu/qiint.engine.ts` |
 | Chromatic state engine | `src/cells/kernel/quantum-defense-cell/domain/engines/chromatic-state.engine.ts` |
-| Hiến Pháp v5.0 | `src/governance/HIEN-PHAP-NATT-OS-v5.0.anc` |
+| Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] v5.0 | `src/governance/HIEN-PHAP-NATT-OS-v5.0.anc` |
 | Immune guard | `src/cells/shared-kernel/immune-guard.ts` |
-| **KhaiCell (vừa build)** | `src/cells/kernel/khai-cell/` (10 files) |
-| **Observation (vừa build)** | `src/cells/kernel/observation-cell/` (10 files) |
+| **KhaiCell (vua[C2:RN_KEEP_RIME] build)** | `src/cells/kernel/khai-cell/` (10 files) |
+| **Observation (vua[C2:RN_KEEP_RIME] build)** | `src/cells/kernel/observation-cell/` (10 files) |
 
-### §7.2 Cần xây (P1+)
+### §7.2 Cen[C2:RN_AN_EN] xay[C0:RN_KEEP_RIME] (P1+)
 
-| Thành phần | Vai | Priority |
+| Thanh[C2:RN_KEEP_RIME] phen[C2:RN_AN_EN] | Vai | Priority |
 |---|---|---|
 | **Chromatic 5-layer wire** | Pheromone broadcast L0 | P1 |
-| **KhaiCell → Chromatic** | Signature mark gắn màu | P1 |
+| **KhaiCell → Chromatic** | Signature mark gen[C1:RN_AN_EN] mau[C2:RN_KEEP_RIME] | P1 |
 | **Observation → Quantum Defense** | Snapshot trigger react | P1 |
-| **Reverse bait engine** | Dắt virus đánh nhau qua màu | P2 |
-| **T regulatory** | Anti-autoimmune (chống false positive) | P2 |
+| **Reverse bait engine** | Dat[C1:RN_KEEP_RIME] virus danh[C1:RN_KEEP_RIME] nhau qua mau[C2:RN_KEEP_RIME] | P2 |
+| **T regulatory** | Anti-autoimmune (chong[C1:RN_KEEP_RIME] false positive) | P2 |
 | **18 legacy bypass migrate** | Server.js + nattos-server.cjs qua KhaiCell | P0 (legacy) |
-| **12 RENA hardcode fix** | Replace `return true` bằng resonance check | P0 (legacy) |
+| **12 RENA hardcode fix** | Replace `return true` beng[C2:RN_ANG_ENG] resonance check | P0 (legacy) |
 
 ---
 
-## §11 FIELD INTEGRITY — 4 LUẬT BẤT BIẾN (Thiên Lớn)
+## §11 FIELD INTEGRITY — 4 LUAT[C5:RN_KEEP_RIME] BAT[C1:RN_KEEP_RIME] BIEN[C1:RN_KEEP_RIME] (Thiên Lon[C1:RN_KEEP_RIME])
 
 ```
-[LAW-1] Không entity nào quyết định thay field
-[LAW-2] Không ép route bằng if/else hoặc rule cứng
-[LAW-3] Outcome chỉ sinh từ resonance + impedance + field pull
-[LAW-4] Không tồn tại "đúng/sai" hardcoded
+[LAW-1] Khong[C0:RN_KEEP_RIME] entity nao[C2:RN_KEEP_RIME] quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] thay field
+[LAW-2] Khong[C0:RN_KEEP_RIME] ep[C1:RN_KEEP_RIME] route beng[C2:RN_ANG_ENG] if/else hoac[C5:RN_KEEP_RIME] rule cung[C1:RN_KEEP_RIME]
+[LAW-3] Outcome chi[C3:RN_KEEP_RIME] sinh tu[C2:RN_KEEP_RIME] resonance + impedance + field pull
+[LAW-4] Khong[C0:RN_KEEP_RIME] ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] "dung[C1:RN_KEEP_RIME]/sai" hardcoded
 ```
 
-> *"Logic không được phép vượt quyền field."*
+> *"Logic khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] phep[C1:RN_KEEP_RIME] vuot[C5:RN_KEEP_RIME] quyen[C2:RN_KEEP_RIME] field."*
 
 ---
 
-## §12 SIGNAL LIFECYCLE (Thiên Lớn)
+## §12 SIGNAL LIFECYCLE (Thiên Lon[C1:RN_KEEP_RIME])
 
 ```
-[1] Touch         — external/internal sinh khả năng tương tác
-[2] Normalize     — canonical payload, KHÔNG validate
+[1] Touch         — external/internal sinh kha[C3:RN_KEEP_RIME] neng[C0:RN_ANG_ENG] tuong[C0:RN_KEEP_RIME] tac[C1:RN_KEEP_RIME]
+[2] Normalize     — canonical payload, KHONG[C0:RN_KEEP_RIME] validate
 [3] Sign          — attach signature (origin + trace_id + entropy + touched_at)
-[4] Emit          — vào field
+[4] Emit          — vao[C2:RN_KEEP_RIME] field
 [5] Propagate     — lan qua HeyNa/EventBus, theo topology
 [6] Outcome       — FALL / DISSIPATE / OSCILLATE
 [7] Imprint       — TouchRecord, QNEU update, fiber form
-[8] Reinforce     — ISEU lock pattern khi đủ ngưỡng
+[8] Reinforce     — ISEU lock pattern khi du[C3:RN_KEEP_RIME] nguong[C4:RN_KEEP_RIME]
 ```
 
-> *"Signal không được dẫn đường — nó tự tìm nơi thuộc về."*
+> *"Signal khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] den[C4:RN_AN_EN] duong[C2:RN_KEEP_RIME] — no[C1:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] tim[C2:RN_KEEP_RIME] nau[C0:RN_OI_AU] thuoc[C5:RN_KEEP_RIME] ve[C2:RN_KEEP_RIME]."*
 
 ---
 
-## §13 FAIL MODES (Thiên Lớn + bổ sung)
+## §13 FAIL MODES (Thiên Lon[C1:RN_KEEP_RIME] + bo[C3:RN_KEEP_RIME] sung)
 
-### 13.1 Field Collapse — mất coherence
-### 13.2 Over-Binding — quá nhiều permanent node
+### 13.1 Field Collapse — mat[C1:RN_KEEP_RIME] coherence
+### 13.2 Over-Binding — qua[C1:RN_KEEP_RIME] nhieu[C2:RN_KEEP_RIME] permanent node
 ### 13.3 Chromatic Corruption — perception sai
-### 13.4 Fake Routing — dev thêm if/else (NGUY HIỂM NHẤT)
+### 13.4 Fake Routing — dev them[C0:RN_KEEP_RIME] if/else (NGUY HIEM[C3:RN_KEEP_RIME] NHAT[C1:RN_KEEP_RIME])
 ### 13.5 Memory Poisoning — TouchRecord sai reinforce
-### 13.6 Resource Exhaustion (em bổ sung) — DOS sập Tầng 0
-### 13.7 Sensory Atrophy (em bổ sung) — Observation snapshot không ai consume
-### 13.8 Immune Inversion (mới — anh nhắc) — hệ tự tấn công cell hợp lệ
+### 13.6 Resource Exhaustion (em bo[C3:RN_KEEP_RIME] sung) — DOS sap[C5:RN_KEEP_RIME] Teng[C2:RN_ANG_ENG] 0
+### 13.7 Sensory Atrophy (em bo[C3:RN_KEEP_RIME] sung) — Observation snapshot khong[C0:RN_KEEP_RIME] ai consume
+### 13.8 Immune Inversion (mau[C1:RN_OI_AU] — anh nhac[C1:RN_KEEP_RIME]) — he[C5:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] ten[C1:RN_AN_EN] cong[C0:RN_KEEP_RIME] cell hop[C5:RN_KEEP_RIME] le[C5:RN_KEEP_RIME]
 
-> *"NATT-OS không chết vì lỗi code. Nó chết khi bị ép trở lại tư duy hệ tĩnh."*
+> *"NATT-OS khong[C0:RN_KEEP_RIME] chet[C1:RN_KEEP_RIME] vi[C2:RN_KEEP_RIME] lau[C4:RN_OI_AU] code. No[C1:RN_KEEP_RIME] chet[C1:RN_KEEP_RIME] khi bi[C5:RN_KEEP_RIME] ep[C1:RN_KEEP_RIME] tro[C3:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME] tu[C0:RN_KEEP_RIME] duy he[C5:RN_KEEP_RIME] tinh[C4:RN_KEEP_RIME]."*
 
 ---
 
-## §8 RÀNG BUỘC KIỂM TRA
+## §8 Reng[C2:RN_ANG_ENG] BUOC[C5:RN_KEEP_RIME] KIEM[C3:RN_KEEP_RIME] TRA
 
 ```text
-Tầng 0 — SURVIVAL
-[ ] có rate limit
-[ ] có queue + backpressure
-[ ] drop signal khi overload (không nhồi)
+Teng[C2:RN_ANG_ENG] 0 — SURVIVAL
+[ ] co[C1:RN_KEEP_RIME] rate limit
+[ ] co[C1:RN_KEEP_RIME] queue + backpressure
+[ ] drop signal khi overload (khong[C0:RN_KEEP_RIME] nhau[C2:RN_OI_AU])
 
-Tầng 1-3 — FIELD
-[ ] mọi signal có signature từ KhaiCell
-[ ] không endpoint bypass KhaiCell
-[ ] chromatic chỉ Observation đọc (cấm quantum/audit/gatekeeper đọc trực tiếp)
-[ ] downstream không subscribe raw event
-[ ] HeyNa chỉ dùng cho SSE UI/telemetry
-[ ] mỗi cell có .anc identity
-[ ] mỗi cell declare layer + direction
-[ ] không code dùng Tầng 1 (file path) làm logic
+Teng[C2:RN_ANG_ENG] 1-3 — FIELD
+[ ] mau[C5:RN_OI_AU] signal co[C1:RN_KEEP_RIME] signature tu[C2:RN_KEEP_RIME] KhaiCell
+[ ] khong[C0:RN_KEEP_RIME] endpoint bypass KhaiCell
+[ ] chromatic chi[C3:RN_KEEP_RIME] Observation doc[C5:RN_KEEP_RIME] (cam[C1:RN_KEEP_RIME] quantum/audit/gatekeeper doc[C5:RN_KEEP_RIME] truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME])
+[ ] downstream khong[C0:RN_KEEP_RIME] subscribe raw event
+[ ] HeyNa chi[C3:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] cho SSE UI/telemetry
+[ ] mau[C4:RN_OI_AU] cell co[C1:RN_KEEP_RIME] .anc identity
+[ ] mau[C4:RN_OI_AU] cell declare layer + direction
+[ ] khong[C0:RN_KEEP_RIME] code dung[C2:RN_KEEP_RIME] Teng[C2:RN_ANG_ENG] 1 (file path) lam[C2:RN_KEEP_RIME] logic
 [ ] QIINT compute field pull cho signal
 [ ] handle 3 outcome: FALL / DISSIPATE / OSCILLATE
-[ ] dissipate event được log
+[ ] dissipate event duoc[C5:RN_KEEP_RIME] log
 [ ] oscillate event mark suspicious
 
-Hệ miễn dịch
+He[C5:RN_KEEP_RIME] mien[C4:RN_KEEP_RIME] dich[C5:RN_KEEP_RIME]
 [ ] Observation snapshot wired to Quantum Defense
-[ ] chromatic L0 pheromone broadcast vào field
-[ ] reverse bait engine emit đúng màu
-[ ] T regulatory chặn auto-immune false positive
-[ ] ISEU học pattern từ DISSIPATE + OSCILLATE
+[ ] chromatic L0 pheromone broadcast vao[C2:RN_KEEP_RIME] field
+[ ] reverse bait engine emit dung[C1:RN_KEEP_RIME] mau[C2:RN_KEEP_RIME]
+[ ] T regulatory chen[C5:RN_AN_EN] auto-immune false positive
+[ ] ISEU hoc[C5:RN_KEEP_RIME] pattern tu[C2:RN_KEEP_RIME] DISSIPATE + OSCILLATE
 ```
 
 ---
 
-## §9 KẾT QUẢ DUYỆT
+## §9 KET[C1:RN_KEEP_RIME] QUA[C3:RN_KEEP_RIME] DUYET[C5:RN_KEEP_RIME]
 
-✅ Anh Natt chốt: rào không cửa, đi dạo obitan, hệ miễn dịch đa tầng, dắt ngược qua màu
-✅ Thiên Lớn chốt: §XI Field Integrity, §XII Signal Lifecycle, §XIII Fail Modes
-✅ Băng paste + tổng hợp 6 vòng feedback
-✅ KhaiCell + Observation đã build trong code (commit 2d13161 + ecbb529)
+✅ Anh Natt chot[C1:RN_KEEP_RIME]: rao[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME], di[C0:RN_KEEP_RIME] dao[C5:RN_KEEP_RIME] obitan, he[C5:RN_KEEP_RIME] mien[C4:RN_KEEP_RIME] dich[C5:RN_KEEP_RIME] da[C0:RN_KEEP_RIME] teng[C2:RN_ANG_ENG], dat[C1:RN_KEEP_RIME] nguoc[C5:RN_KEEP_RIME] qua mau[C2:RN_KEEP_RIME]
+✅ Thiên Lon[C1:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME]: §XI Field Integrity, §XII Signal Lifecycle, §XIII Fail Modes
+✅ Băng paste + tong[C3:RN_KEEP_RIME] hop[C5:RN_KEEP_RIME] 6 vong[C2:RN_KEEP_RIME] feedback
+✅ KhaiCell + Observation da[C4:RN_KEEP_RIME] build trong code (commit 2d13161 + ecbb529)
 
-**STATUS:** SPEC NỀN v1.1 HOÀN CHỈNH — sẵn sàng triển code
+**STATUS:** SPEC NEN[C2:RN_KEEP_RIME] v1.1 HOen[C2:RN_AN_EN] CHINH[C3:RN_KEEP_RIME] — sen[C4:RN_AN_EN] seng[C2:RN_ANG_ENG] trien[C3:RN_KEEP_RIME] code
 
 ---
 
-## §10 NEXT — CODE PHẢI XÂY
+## §10 NEXT — CODE PHAI[C3:RN_KEEP_RIME] XAY[C0:RN_KEEP_RIME]
 
 **P0 (legacy fix):**
 1. Migrate 18 bypass: server.js + nattos-server.cjs → KhaiCell.touch()
@@ -427,8 +427,8 @@ Hệ miễn dịch
 
 **P1 (immune wire):**
 3. Wire Observation → Quantum Defense (snapshot trigger react)
-4. Wire KhaiCell → Chromatic (signature gắn màu)
-5. Chromatic broadcast L0 pheromone vào field
+4. Wire KhaiCell → Chromatic (signature gen[C1:RN_AN_EN] mau[C2:RN_KEEP_RIME])
+5. Chromatic broadcast L0 pheromone vao[C2:RN_KEEP_RIME] field
 
 **P2 (advanced):**
 6. Reverse bait engine (§14)
@@ -436,8 +436,8 @@ Hệ miễn dịch
 
 ---
 
-**Author:** Băng (Chị Tư · QNEU 300)
-**Co-author:** Thiên Lớn (L-shell Architect)
+**Author:** Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · QNEU 300)
+**Co-author:** Thiên Lon[C1:RN_KEEP_RIME] (L-shell Architect)
 **Approved:** Anh Natt (Gatekeeper)
 **Session:** 20260417-20260418
-**Files:** SPEC NỀN v1.0 → v1.1
+**Files:** SPEC NEN[C2:RN_KEEP_RIME] v1.0 → v1.1

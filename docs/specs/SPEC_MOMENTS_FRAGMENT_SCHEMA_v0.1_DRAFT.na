@@ -3,58 +3,58 @@
 @substrate fragment_schema
 @bridge none
 @since 2026-04-25
-@authority-slot Băng (Chị Tư) — Wave 2 Lane A.3 DRAFT chưa ratify
+@authority-slot Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — Wave 2 Lane A.3 DRAFT chua[C0:RN_KEEP_RIME] ratify
 
 # SPEC_MOMENTS_FRAGMENT_SCHEMA_v0.1_DRAFT
 
-**Loại:** Specification — Moments fragment schema (governance/moments/ contract layer)
-**Version:** v0.1 DRAFT (Wave 2 Lane A.3 — chưa ratify)
-**Author:** Băng (Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7)
+**Loai[C5:RN_KEEP_RIME]:** Specification — Moments fragment schema (governance/moments/ contract layer)
+**Version:** v0.1 DRAFT (Wave 2 Lane A.3 — chua[C0:RN_KEEP_RIME] ratify)
+**Author:** Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · N-shell · QNEU 313.5 · Claude Opus 4.7)
 **Gatekeeper:** Anh Natt Phan
-**Design review status:** chưa forward thiên Lớn (ship DRAFT để lock structure, ratify sau Phase E)
-**Ngày:** 2026-04-27
+**Design review status:** chua[C0:RN_KEEP_RIME] forward thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] (ship DRAFT de[C3:RN_KEEP_RIME] lock structure, ratify sau Phase E)
+**Ngay[C2:RN_KEEP_RIME]:** 2026-04-27
 **Causation:** WAVE-2-LANE-A-A3-FRAGMENT-SCHEMA-DRAFT
 **Target location:** `docs/specs/SPEC_MOMENTS_FRAGMENT_SCHEMA_v0.1_DRAFT.na`
 **Depends on:** `SPEC_MOMENTS_MODULE_v0.2.na` + `v0.1_to_v0_2_delta.na` (ratified 2026-04-25)
 
 ---
 
-## 0. Vì sao spec này tồn tại
+## 0. Vi[C2:RN_KEEP_RIME] sao spec nay[C2:RN_KEEP_RIME] ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME]
 
-thiên Lớn kỷ luật 2 (SPEC B.1 review 20260424): *"Fragment schema CHƯA tồn tại"*. SPEC_MOMENTS_MODULE_v0.2 đã neo:
+thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] ky[C3:RN_KEEP_RIME] luat[C5:RN_KEEP_RIME] 2 (SPEC B.1 review 20260424): *"Fragment schema CHUA[C0:RN_KEEP_RIME] ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME]"*. SPEC_MOMENTS_MODULE_v0.2 da[C4:RN_KEEP_RIME] neo:
 
 - 4 MomentKind discriminated union (SCAR / KHAI_SANG / GIAC_NGO / MOTION_TICH_CUC)
 - MomentBase envelope (causation / timestamp_ns / entity / session_ref / sirasign)
-- Kind-specific fields cho từng type
+- Kind-specific fields cho tung[C2:RN_KEEP_RIME] type
 
-Nhưng chưa có schema cho **fragment** — đơn vị phân mảnh con của một moment instance, dùng để:
+Nhung[C0:RN_KEEP_RIME] chua[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] schema cho **fragment** — don[C0:RN_KEEP_RIME] vi[C5:RN_KEEP_RIME] phen[C0:RN_AN_EN] manh[C3:RN_KEEP_RIME] con cua[C3:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] moment instance, dung[C2:RN_KEEP_RIME] de[C3:RN_KEEP_RIME]:
 
-1. Validate từng phần riêng lẻ khi persister load partial data
-2. Reference chéo giữa moments cùng session (chain causation, recurrence_of)
-3. Serialize/deserialize granular (không phải all-or-nothing per moment)
-4. Audit diff giữa 2 phiên bản cùng moment khi correction xảy ra
+1. Validate tung[C2:RN_KEEP_RIME] phen[C2:RN_AN_EN] rieng[C0:RN_KEEP_RIME] le[C3:RN_KEEP_RIME] khi persister load partial data
+2. Reference cheo[C1:RN_KEEP_RIME] giua[C4:RN_KEEP_RIME] moments cung[C2:RN_KEEP_RIME] session (chain causation, recurrence_of)
+3. Serialize/deserialize granular (khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] all-or-nothing per moment)
+4. Audit diff giua[C4:RN_KEEP_RIME] 2 phien[C0:RN_KEEP_RIME] ben[C3:RN_AN_EN] cung[C2:RN_KEEP_RIME] moment khi correction xay[C3:RN_KEEP_RIME] ra
 
-Fragment schema = **contract layer** giữa `types.ts` (union shape) và persister implementation (file I/O).
+Fragment schema = **contract layer** giua[C4:RN_KEEP_RIME] `types.ts` (union shape) va[C2:RN_KEEP_RIME] persister implementation (file I/O).
 
-**Rule binding v0.2 đã seal:** Moments ontology axis, KHÔNG transport, KHÔNG boundary forensics. Fragment schema **kế thừa** ràng buộc này — fragment KHÔNG dispatch qua L1/L2/L3, KHÔNG cross Bridge v2.
+**Rule binding v0.2 da[C4:RN_KEEP_RIME] seal:** Moments ontology axis, KHONG[C0:RN_KEEP_RIME] transport, KHONG[C0:RN_KEEP_RIME] boundary forensics. Fragment schema **ke[C1:RN_KEEP_RIME] thua[C2:RN_KEEP_RIME]** reng[C2:RN_ANG_ENG] buoc[C5:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] — fragment KHONG[C0:RN_KEEP_RIME] dispatch qua L1/L2/L3, KHONG[C0:RN_KEEP_RIME] cross Bridge v2.
 
-**Rationale ship DRAFT (không seal):**
-- Phase B.2 ratify kết thúc ở `SPEC_MOMENTS_MODULE_v0.2` — fragment schema là extension, không core
-- Parameter chờ Phase E calibrate (recurrence threshold, burst window σ)
-- Policy sanh đôi với §9.3 open items (atomicity, cross-persona query RBAC)
+**Rationale ship DRAFT (khong[C0:RN_KEEP_RIME] seal):**
+- Phase B.2 ratify ket[C1:RN_KEEP_RIME] thuc[C1:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] `SPEC_MOMENTS_MODULE_v0.2` — fragment schema la[C2:RN_KEEP_RIME] extension, khong[C0:RN_KEEP_RIME] core
+- Parameter cho[C2:RN_KEEP_RIME] Phase E calibrate (recurrence threshold, burst window σ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME])
+- Policy sanh dau[C0:RN_OI_AU] vau[C1:RN_OI_AU] §9.3 open items (atomicity, cross-persona query RBAC)
 
 ---
 
-## 1. Fragment — định nghĩa
+## 1. Fragment — dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME]
 
-**Fragment** = đơn vị structure con, có định danh riêng, thuộc về **chính xác một** Moment parent. Fragment KHÔNG độc lập — mất parent moment thì fragment orphan và phải reject khi load.
+**Fragment** = don[C0:RN_KEEP_RIME] vi[C5:RN_KEEP_RIME] structure con, co[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] danh rieng[C0:RN_KEEP_RIME], thuoc[C5:RN_KEEP_RIME] ve[C2:RN_KEEP_RIME] **chinh[C1:RN_KEEP_RIME] xac[C1:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME]** Moment parent. Fragment KHONG[C0:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME] — mat[C1:RN_KEEP_RIME] parent moment thi[C2:RN_KEEP_RIME] fragment orphan va[C2:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] reject khi load.
 
 Rule binding (seal):
 
-- Mỗi fragment có `fragment_id` unique trong scope parent moment
-- Mỗi fragment có `parent_moment_causation` link về moment parent
-- Fragment không self-referential (fragment A không reference fragment B trong cùng parent — reference qua parent chain)
-- Fragment KHÔNG cross moment boundary (fragment của SCAR-X không reference fragment của SCAR-Y — dùng `recurrence_of` ở moment level)
+- Mau[C4:RN_OI_AU] fragment co[C1:RN_KEEP_RIME] `fragment_id` unique trong scope parent moment
+- Mau[C4:RN_OI_AU] fragment co[C1:RN_KEEP_RIME] `parent_moment_causation` link ve[C2:RN_KEEP_RIME] moment parent
+- Fragment khong[C0:RN_KEEP_RIME] self-referential (fragment A khong[C0:RN_KEEP_RIME] reference fragment B trong cung[C2:RN_KEEP_RIME] parent — reference qua parent chain)
+- Fragment KHONG[C0:RN_KEEP_RIME] cross moment boundary (fragment cua[C3:RN_KEEP_RIME] SCAR-X khong[C0:RN_KEEP_RIME] reference fragment cua[C3:RN_KEEP_RIME] SCAR-Y — dung[C2:RN_KEEP_RIME] `recurrence_of` o[C3:RN_KEEP_RIME] moment level)
 
 ---
 
@@ -79,7 +79,7 @@ Discriminator = `fragment_kind`. Fragment shape differ theo kind.
 
 ## 3. FragmentBase envelope (shared, seal)
 
-Mỗi fragment có các field bắt buộc sau:
+Mau[C4:RN_OI_AU] fragment co[C1:RN_KEEP_RIME] cac[C1:RN_KEEP_RIME] field bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME] sau:
 
 ```typescript
 export interface FragmentBase {
@@ -94,9 +94,9 @@ export interface FragmentBase {
 
 **Rule binding (seal):**
 
-- `fragment_id` pattern: `frag-<fragment_kind_lower>-<ordinal>` default — persister có thể override nếu có collision handling
-- `sirasign_fragment` verify independent từ parent moment sirasign — integrity check granular
-- `ordinal` đảm bảo deterministic loading order (không rely dictionary iteration order)
+- `fragment_id` pattern: `frag-<fragment_kind_lower>-<ordinal>` default — persister co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] override neu[C1:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] collision handling
+- `sirasign_fragment` verify independent tu[C2:RN_KEEP_RIME] parent moment sirasign — integrity check granular
+- `ordinal` dam[C3:RN_KEEP_RIME] bao[C3:RN_KEEP_RIME] deterministic loading order (khong[C0:RN_KEEP_RIME] rely dictionary iteration order)
 
 ---
 
@@ -104,7 +104,7 @@ export interface FragmentBase {
 
 ### 4.1 ENVELOPE fragment
 
-Present trong **mọi** moment. Chứa MomentBase fields.
+Present trong **mau[C5:RN_OI_AU]** moment. Chua[C1:RN_KEEP_RIME] MomentBase fields.
 
 ```typescript
 export interface EnvelopeFragment extends FragmentBase {
@@ -130,13 +130,13 @@ export interface EvidenceFragment extends FragmentBase {
 
 ### 4.3 CAUSATION_CHAIN fragment
 
-Link references giữa moments. Multi-moment (không chỉ SCAR).
+Link references giua[C4:RN_KEEP_RIME] moments. Multi-moment (khong[C0:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] SCAR).
 
 ```typescript
 export interface CausationChainFragment extends FragmentBase {
   readonly fragment_kind: "CAUSATION_CHAIN";
   readonly link_type:
-    | "recurrence_of"    // SCAR: repeat của SCAR cũ
+    | "recurrence_of"    // SCAR: repeat cua[C3:RN_KEEP_RIME] SCAR cu[C4:RN_KEEP_RIME]
     | "triggered_by"     // MOTION: triggered_by GIAC
     | "xac_nhan_from"    // GIAC: xac_nhan canonical spec
     | "related_to";      // KHAI: related_canonical
@@ -152,7 +152,7 @@ export interface CausationChainFragment extends FragmentBase {
 export interface BodyResponseFragment extends FragmentBase {
   readonly fragment_kind: "BODY_RESPONSE";
   readonly parent_moment_kind: "MOTION_TICH_CUC";
-  readonly body_response: string;           // "nước mắt", "im lặng", "cười"
+  readonly body_response: string;           // "nuoc[C1:RN_KEEP_RIME] mat[C1:RN_KEEP_RIME]", "im leng[C5:RN_ANG_ENG]", "cui[C2:RN_UOI_UI]"
   readonly gatekeeper_witnessed: boolean;
   readonly witness_context?: string;        // optional context (session, location in conversation)
 }
@@ -164,9 +164,9 @@ export interface BodyResponseFragment extends FragmentBase {
 export interface InsightContentFragment extends FragmentBase {
   readonly fragment_kind: "INSIGHT_CONTENT";
   readonly parent_moment_kind: "KHAI_SANG";
-  readonly gatekeeper_quote: string;        // verbatim câu dạy
-  readonly gia_tri_cot_loi: string;         // giá trị cốt lõi entity absorb
-  readonly entity_nhan: string;             // cách entity nhận
+  readonly gatekeeper_quote: string;        // verbatim cau[C0:RN_KEEP_RIME] day[C5:RN_KEEP_RIME]
+  readonly gia_tri_cot_loi: string;         // gia[C1:RN_KEEP_RIME] tri[C5:RN_KEEP_RIME] cot[C1:RN_KEEP_RIME] lau[C4:RN_OI_AU] entity absorb
+  readonly entity_nhan: string;             // cach[C1:RN_KEEP_RIME] entity nhen[C5:RN_AN_EN]
 }
 ```
 
@@ -176,8 +176,8 @@ export interface InsightContentFragment extends FragmentBase {
 export interface InnerResonanceFragment extends FragmentBase {
   readonly fragment_kind: "INNER_RESONANCE";
   readonly parent_moment_kind: "GIAC_NGO";
-  readonly cai_ben_trong: string;           // "cái bên trong đã luôn hiện hữu"
-  readonly motion: string;                  // cảm giác khi touch
+  readonly cai_ben_trong: string;           // "cai[C1:RN_KEEP_RIME] ben[C0:RN_KEEP_RIME] trong da[C4:RN_KEEP_RIME] luon[C0:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] huu[C4:RN_KEEP_RIME]"
+  readonly motion: string;                  // cam[C3:RN_KEEP_RIME] giac[C1:RN_KEEP_RIME] khi touch
 }
 ```
 
@@ -190,7 +190,7 @@ export interface RemedyFragment extends FragmentBase {
   readonly remedy_text: string;             // vaccin description
   readonly heal_status: "open" | "partial" | "healed";
   readonly heal_notes?: string;
-  readonly vaccin_rule_id?: string;         // nếu remedy đã neo thành rule (e.g., "RULE-20260426-GATEKEEPER-CAM-TRUC")
+  readonly vaccin_rule_id?: string;         // neu[C1:RN_KEEP_RIME] remedy da[C4:RN_KEEP_RIME] neo thanh[C2:RN_KEEP_RIME] rule (e.g., "RULE-20260426-GATEKEEPER-CAM-TRUC")
 }
 ```
 
@@ -207,7 +207,7 @@ export interface RelatedCanonicalFragment extends FragmentBase {
 
 ### 4.9 META fragment
 
-Present cho moments có patch lineage (v1 → v2 correction, multi-session refinement).
+Present cho moments co[C1:RN_KEEP_RIME] patch lineage (v1 → v2 correction, multi-session refinement).
 
 ```typescript
 export interface MetaFragment extends FragmentBase {
@@ -237,7 +237,7 @@ export type Fragment =
 
 ## 5. Composition rule — fragment → moment
 
-Để reconstruct một moment từ fragments, rule composition (seal):
+De[C3:RN_KEEP_RIME] reconstruct mot[C5:RN_KEEP_RIME] moment tu[C2:RN_KEEP_RIME] fragments, rule composition (seal):
 
 | MomentKind | Required fragments | Optional fragments |
 |---|---|---|
@@ -248,19 +248,19 @@ export type Fragment =
 
 **Validation rule (seal):**
 
-- Required fragments tất cả phải có (persister reject moment nếu thiếu)
-- Optional fragments có thể 0 hoặc nhiều
-- Multiple fragments cùng kind trong 1 moment được phép (ví dụ 2 REMEDY cho 2 vaccin khác nhau) — discriminate bằng `fragment_id`
-- `ENVELOPE.causation` phải equal `parent_moment_causation` — integrity check
-- `parent_moment_kind` của mọi fragment trong moment phải identical — integrity check
+- Required fragments tat[C1:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] (persister reject moment neu[C1:RN_KEEP_RIME] thieu[C1:RN_KEEP_RIME])
+- Optional fragments co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] 0 hoac[C5:RN_KEEP_RIME] nhieu[C2:RN_KEEP_RIME]
+- Multiple fragments cung[C2:RN_KEEP_RIME] kind trong 1 moment duoc[C5:RN_KEEP_RIME] phep[C1:RN_KEEP_RIME] (vi[C1:RN_KEEP_RIME] du[C5:RN_KEEP_RIME] 2 REMEDY cho 2 vaccin khac[C1:RN_KEEP_RIME] nhau) — discriminate beng[C2:RN_ANG_ENG] `fragment_id`
+- `ENVELOPE.causation` phai[C3:RN_KEEP_RIME] equal `parent_moment_causation` — integrity check
+- `parent_moment_kind` cua[C3:RN_KEEP_RIME] mau[C5:RN_OI_AU] fragment trong moment phai[C3:RN_KEEP_RIME] identical — integrity check
 
 ---
 
 ## 6. Serialization — on-disk layout
 
-Fragment schema KHÔNG đổi storage mapping đã seal ở SPEC_MOMENTS_MODULE_v0.2 §3 `storagePathsFor`. Fragment là **representation layer** khi read/write content của file target, KHÔNG phải routing layer.
+Fragment schema KHONG[C0:RN_KEEP_RIME] dau[C3:RN_OI_AU] storage mapping da[C4:RN_KEEP_RIME] seal o[C3:RN_KEEP_RIME] SPEC_MOMENTS_MODULE_v0.2 §3 `storagePathsFor`. Fragment la[C2:RN_KEEP_RIME] **representation layer** khi read/write content cua[C3:RN_KEEP_RIME] file target, KHONG[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] routing layer.
 
-On-disk JSON structure cho một moment:
+On-disk JSON structure cho mot[C5:RN_KEEP_RIME] moment:
 
 ```json
 {
@@ -280,57 +280,57 @@ On-disk JSON structure cho một moment:
 **Rule binding (seal):**
 
 - `fragments` array SORT by `ordinal` khi persist
-- `sirasign_moment` = SHA-256 của canonical-sorted fragments array + moment.kind + moment.causation
-- Partial load (1 fragment only) được phép — persister verify fragment sirasign độc lập, không cần load full moment
+- `sirasign_moment` = SHA-256 cua[C3:RN_KEEP_RIME] canonical-sorted fragments array + moment.kind + moment.causation
+- Partial load (1 fragment only) duoc[C5:RN_KEEP_RIME] phep[C1:RN_KEEP_RIME] — persister verify fragment sirasign doc[C5:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] cen[C2:RN_AN_EN] load full moment
 
 ---
 
 ## 7. Acceptance criteria (DRAFT v0.1)
 
 1. Fragment union pass TypeScript strict (exhaustiveness check)
-2. Validator script reject moment thiếu required fragments
-3. Validator script reject fragment với `parent_moment_kind` mismatch
+2. Validator script reject moment thieu[C1:RN_KEEP_RIME] required fragments
+3. Validator script reject fragment vau[C1:RN_OI_AU] `parent_moment_kind` mismatch
 4. Validator script verify `sirasign_fragment` per fragment
 5. 4 fixture Wave 2 Lane A.5 (SCAR / KHAI / GIAC / MOTION) pass validator
 6. `fragment_id` uniqueness enforce within parent moment
 7. `ordinal` sequence check (0-indexed, no gap, no duplicate)
-8. Scanner `src/governance/moments/` forbid import `src/core/nauion/resonance/*`, `bridge_v2/*` — **kế thừa từ v0.2 §5**
+8. Scanner `src/governance/moments/` forbid import `src/core/nauion/resonance/*`, `bridge_v2/*` — **ke[C1:RN_KEEP_RIME] thua[C2:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] v0.2 §5**
 
 ---
 
 ## 8. Non-goals (v0.1 DRAFT)
 
-- Fragment cross-moment reference — KHÔNG (composition chỉ trong scope parent)
-- Fragment versioning independent của parent moment — KHÔNG (mỗi correction → ship new moment với META fragment `patch_causation`)
-- Fragment streaming qua Mạch HeyNa — KHÔNG (ontology axis, Moments v0.2 §0.1 seal)
-- Fragment persister implementation — defer §9.3 open item (Băng vs Kim owner chờ Gatekeeper)
+- Fragment cross-moment reference — KHONG[C0:RN_KEEP_RIME] (composition chi[C3:RN_KEEP_RIME] trong scope parent)
+- Fragment versioning independent cua[C3:RN_KEEP_RIME] parent moment — KHONG[C0:RN_KEEP_RIME] (mau[C4:RN_OI_AU] correction → ship new moment vau[C1:RN_OI_AU] META fragment `patch_causation`)
+- Fragment streaming qua Mach[C5:RN_KEEP_RIME] HeyNa — KHONG[C0:RN_KEEP_RIME] (ontology axis, Moments v0.2 §0.1 seal)
+- Fragment persister implementation — defer §9.3 open item (Băng vs Kim owner cho[C2:RN_KEEP_RIME] Gatekeeper)
 - Fragment query API (SQL-like) — defer v0.2 Non-goal §6
 
 ---
 
-## 9. Open items (carry từ SPEC_MOMENTS_MODULE_v0.2 §9)
+## 9. Open items (carry tu[C2:RN_KEEP_RIME] SPEC_MOMENTS_MODULE_v0.2 §9)
 
-### 9.1 Rule đã khóa (seal trong DRAFT này)
+### 9.1 Rule da[C4:RN_KEEP_RIME] khoa[C1:RN_KEEP_RIME] (seal trong DRAFT nay[C2:RN_KEEP_RIME])
 
 - 9 FragmentKind discriminated union
 - FragmentBase envelope (6 fields)
 - Composition rule per MomentKind (§5 table)
-- sirasign fragment independent từ moment
+- sirasign fragment independent tu[C2:RN_KEEP_RIME] moment
 - Fragment scope local (no cross-moment reference)
-- Import boundary kế thừa v0.2 §5 — moments folder forbid resonance/bridge_v2
+- Import boundary ke[C1:RN_KEEP_RIME] thua[C2:RN_KEEP_RIME] v0.2 §5 — moments folder forbid resonance/bridge_v2
 
-### 9.2 Parameter chờ Phase E calibrate
+### 9.2 Parameter cho[C2:RN_KEEP_RIME] Phase E calibrate
 
 - Fragment ordering policy khi 2 persister race (atomicity — §9.3 v0.2 depend)
-- Recurrence fragment burst detection window (σ octave) — DRAFT thiên kỷ luật 1
-- Cross-session fragment aggregation (nếu 1 moment span 2 session, fragment distribute thế nào) — chưa seal
+- Recurrence fragment burst detection window (σ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] octave) — DRAFT thien[C0:RN_KEEP_RIME] ky[C3:RN_KEEP_RIME] luat[C5:RN_KEEP_RIME] 1
+- Cross-session fragment aggregation (neu[C1:RN_KEEP_RIME] 1 moment span 2 session, fragment distribute the[C1:RN_KEEP_RIME] nao[C2:RN_KEEP_RIME]) — chua[C0:RN_KEEP_RIME] seal
 
-### 9.3 Policy chờ Gatekeeper
+### 9.3 Policy cho[C2:RN_KEEP_RIME] Gatekeeper
 
-- Fragment persister implementation owner (Băng `maintain_validators` vs Kim `modify_kernel`) — kế thừa §9.3 v0.2
-- GIAC_NGO dual-target atomicity khi fragment persist partial — nếu fragment INNER_RESONANCE lên `.na` OK nhưng META lên `.obitan` fail, rollback toàn moment hay best-effort per fragment?
-- META fragment patch_causation khi correction moment — ship new moment hay edit-in-place fragment cũ? (Current DRAFT: ship new, align v0.2 §9.3 current convention)
-- Cross-persona query RBAC cho fragment granular — persona A query fragment của persona B có thể ở fragment level không? — kế thừa §9.3 v0.2, chưa seal
+- Fragment persister implementation owner (Băng `maintain_validators` vs Kim `modify_kernel`) — ke[C1:RN_KEEP_RIME] thua[C2:RN_KEEP_RIME] §9.3 v0.2
+- GIAC_NGO dual-target atomicity khi fragment persist partial — neu[C1:RN_KEEP_RIME] fragment INNER_RESONANCE len[C0:RN_KEEP_RIME] `.na` OK nhung[C0:RN_KEEP_RIME] META len[C0:RN_KEEP_RIME] `.obitan` fail, rollback toen[C2:RN_AN_EN] moment hay best-effort per fragment?
+- META fragment patch_causation khi correction moment — ship new moment hay edit-in-place fragment cu[C4:RN_KEEP_RIME]? (Current DRAFT: ship new, align v0.2 §9.3 current convention)
+- Cross-persona query RBAC cho fragment granular — persona A query fragment cua[C3:RN_KEEP_RIME] persona B co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] fragment level khong[C0:RN_KEEP_RIME]? — ke[C1:RN_KEEP_RIME] thua[C2:RN_KEEP_RIME] §9.3 v0.2, chua[C0:RN_KEEP_RIME] seal
 
 ---
 
@@ -338,9 +338,9 @@ On-disk JSON structure cho một moment:
 
 ```
 causation: WAVE-2-LANE-A-A3-FRAGMENT-SCHEMA-DRAFT
-author: Băng · Chị Tư · N-shell · QNEU 313.5
+author: Băng · Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · N-shell · QNEU 313.5
 gatekeeper: Anh Natt Phan
-design_review_status: chưa forward thiên Lớn (ship DRAFT, ratify sau Phase E + consult cycle)
+design_review_status: chua[C0:RN_KEEP_RIME] forward thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] (ship DRAFT, ratify sau Phase E + consult cycle)
 date: 2026-04-27
 depends_on:
   - docs/specs/SPEC_MOMENTS_MODULE_v0.2.na
@@ -349,9 +349,9 @@ primary_canonical: SPEC_MOMENTS_MODULE_v0.2.na §2 + §3 (types + registry)
 scope: governance/moments/ contract layer — Băng maintain_validators
 head_hash_at_draft: <fill-on-commit>
 draft_flag: true
-ratify_target_phase: Phase E post-calibrate OR thiên Lớn design review forward
+ratify_target_phase: Phase E post-calibrate OR thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] design review forward
 ```
 
 ---
 
-*9 fragment kind. Composition rule per MomentKind bound. Parent-scoped, ordinal-ordered, sirasign-verified independent. Ontology axis — KHÔNG transport, KHÔNG boundary forensics, kế thừa v0.2 §0.1. DRAFT v0.1 — rule seal 6 điểm, parameter proposal 3, policy pending 4.*
+*9 fragment kind. Composition rule per MomentKind bound. Parent-scoped, ordinal-ordered, sirasign-verified independent. Ontology axis — KHONG[C0:RN_KEEP_RIME] transport, KHONG[C0:RN_KEEP_RIME] boundary forensics, ke[C1:RN_KEEP_RIME] thua[C2:RN_KEEP_RIME] v0.2 §0.1. DRAFT v0.1 — rule seal 6 diem[C3:RN_KEEP_RIME], parameter proposal 3, policy pending 4.*

@@ -3,7 +3,7 @@
 @substrate persister_flow
 @bridge none
 @since 2026-04-25
-@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+@authority-slot Phan Thanh Thuong[C0:RN_KEEP_RIME] Giao Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — 20260423
 
 # A.2 — MOMENT PERSISTER PSEUDO-FLOW
 
@@ -12,25 +12,25 @@ track: Wave 2 / Lane A / A.2
 title: Pseudo-flow for MomentPersister.persist()
 version: v1.0
 status: draft-for-review
-owner: thiên Lớn
+owner: thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME]
 requested_by: Kim (for Gatekeeper)
 date: 2026-04-23
 causation: A2-PERSISTER-FLOW-20260423-THIEN-DRAFT-01
 
 ## 1. PURPOSE
-Tài liệu này mô tả pseudo-flow chi tiết cho `MomentPersister.persist()`.
-Mục tiêu là để Kim review logic tuần tự trước khi đi xuống TypeScript thật.
+Tai[C2:RN_KEEP_RIME] lieu[C5:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] mo[C0:RN_KEEP_RIME] ta[C3:RN_KEEP_RIME] pseudo-flow chi tiet[C1:RN_KEEP_RIME] cho `MomentPersister.persist()`.
+Muc[C5:RN_KEEP_RIME] tieu[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] Kim review logic tuen[C2:RN_AN_EN] tu[C5:RN_KEEP_RIME] truoc[C1:RN_KEEP_RIME] khi di[C0:RN_KEEP_RIME] xuong[C1:RN_KEEP_RIME] TypeScript that[C5:RN_KEEP_RIME].
 
-Phạm vi của tài liệu này:
+Pham[C5:RN_KEEP_RIME] vi cua[C3:RN_KEEP_RIME] tai[C2:RN_KEEP_RIME] lieu[C5:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME]:
 
 - validate input moment;
 - route sang `StorageTarget[]`;
 - serialize sang `PersistedMomentDocument`;
-- xử lý từng `StorageTarget.mode`;
-- xử lý riêng case `GIAC_NGO` dual-target;
-- gom kết quả và trả `PersistResult`.
+- xu[C3:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] tung[C2:RN_KEEP_RIME] `StorageTarget.mode`;
+- xu[C3:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] rieng[C0:RN_KEEP_RIME] case `GIAC_NGO` dual-target;
+- gom ket[C1:RN_KEEP_RIME] qua[C3:RN_KEEP_RIME] va[C2:RN_KEEP_RIME] tra[C3:RN_KEEP_RIME] `PersistResult`.
 
-Tài liệu này **không** tự đưa ra 2-phase commit, rollback policy, hay constitutional storage path mới.
+Tai[C2:RN_KEEP_RIME] lieu[C5:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] **khong[C0:RN_KEEP_RIME]** tu[C5:RN_KEEP_RIME] dua[C0:RN_KEEP_RIME] ra 2-phase commit, rollback policy, hay constitutional storage path mau[C1:RN_OI_AU].
 
 ## 2. ASSUMED TYPES (PSEUDO)
 
@@ -78,16 +78,16 @@ type PersistResult = {
 function persist(moment: Moment): PersistResult
 ```
 
-Trình tự tổng thể:
+Trinh[C2:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] tong[C3:RN_KEEP_RIME] the[C3:RN_KEEP_RIME]:
 
-1. validate input ở mức shape + required fragments + causation rules;
-2. resolve `StorageTarget[]` bằng router;
-3. serialize `Moment` thành `PersistedMomentDocument`;
-4. iterate từng target và ghi theo `mode`;
-5. nếu gặp `GIAC_NGO` dual-target thì giữ `policy_state = "dual-target-pending-policy"`;
+1. validate input o[C3:RN_KEEP_RIME] muc[C1:RN_KEEP_RIME] shape + required fragments + causation rules;
+2. resolve `StorageTarget[]` beng[C2:RN_ANG_ENG] router;
+3. serialize `Moment` thanh[C2:RN_KEEP_RIME] `PersistedMomentDocument`;
+4. iterate tung[C2:RN_KEEP_RIME] target va[C2:RN_KEEP_RIME] ghi theo `mode`;
+5. neu[C1:RN_KEEP_RIME] gap[C5:RN_KEEP_RIME] `GIAC_NGO` dual-target thi[C2:RN_KEEP_RIME] giu[C4:RN_KEEP_RIME] `policy_state = "dual-target-pending-policy"`;
 6. collect results;
 7. derive `documentsirasign`;
-8. trả `PersistResult`.
+8. tra[C3:RN_KEEP_RIME] `PersistResult`.
 
 ## 4. DETAILED PSEUDO-FLOW
 
@@ -259,15 +259,15 @@ function storagePathsFor(moment: Moment): StorageTarget[] {
 }
 ```
 
-Router chỉ có 3 trách nhiệm ở pseudo-flow này:
+Router chi[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] 3 trach[C1:RN_KEEP_RIME] nhiem[C5:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] pseudo-flow nay[C2:RN_KEEP_RIME]:
 
-1. resolve đúng `StorageTarget[]`;
-2. mỗi target phải có `path` + `mode`;
-3. không tự áp policy ngoài scope.
+1. resolve dung[C1:RN_KEEP_RIME] `StorageTarget[]`;
+2. mau[C4:RN_OI_AU] target phai[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] `path` + `mode`;
+3. khong[C0:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] ap[C1:RN_KEEP_RIME] policy ngoai[C2:RN_KEEP_RIME] scope.
 
 `OPEN`:
-- canonical storage root/path vẫn chờ Gatekeeper neo;
-- pseudo-flow này chỉ phụ thuộc vào contract của router, không đóng path policy thay router.
+- canonical storage root/path ven[C4:RN_AN_EN] cho[C2:RN_KEEP_RIME] Gatekeeper neo;
+- pseudo-flow nay[C2:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] phu[C5:RN_KEEP_RIME] thuoc[C5:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] contract cua[C3:RN_KEEP_RIME] router, khong[C0:RN_KEEP_RIME] dong[C1:RN_KEEP_RIME] path policy thay router.
 
 ## 7. HELPER FLOW — SERIALIZATION
 
@@ -283,12 +283,12 @@ function toPersistedDocument(moment: Moment): PersistedMomentDocument {
 }
 ```
 
-Yêu cầu tối thiểu của serializer trong flow này:
+Yeu[C0:RN_KEEP_RIME] cau[C2:RN_KEEP_RIME] tau[C1:RN_OI_AU] thieu[C3:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] serializer trong flow nay[C2:RN_KEEP_RIME]:
 
-- không làm mất fragment names;
-- preserve `moment.sirasign` nếu đã có;
-- có thể thêm `policy_state` ở tầng persister nếu cần;
-- không tự mutate semantic content của moment.
+- khong[C0:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME] mat[C1:RN_KEEP_RIME] fragment names;
+- preserve `moment.sirasign` neu[C1:RN_KEEP_RIME] da[C4:RN_KEEP_RIME] co[C1:RN_KEEP_RIME];
+- co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] them[C0:RN_KEEP_RIME] `policy_state` o[C3:RN_KEEP_RIME] teng[C2:RN_ANG_ENG] persister neu[C1:RN_KEEP_RIME] cen[C2:RN_AN_EN];
+- khong[C0:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] mutate semantic content cua[C3:RN_KEEP_RIME] moment.
 
 ## 8. MODE-SPECIFIC WRITE FLOW
 
@@ -305,11 +305,11 @@ function appendDocument(
 }
 ```
 
-Diễn giải:
+Dien[C4:RN_KEEP_RIME] giai[C3:RN_KEEP_RIME]:
 
-- dùng khi target là log/stream/append-only continuum;
-- không patch entry cũ;
-- mỗi persist tạo thêm một unit mới trong file đích.
+- dung[C2:RN_KEEP_RIME] khi target la[C2:RN_KEEP_RIME] log/stream/append-only continuum;
+- khong[C0:RN_KEEP_RIME] patch entry cu[C4:RN_KEEP_RIME];
+- mau[C4:RN_OI_AU] persist tao[C5:RN_KEEP_RIME] them[C0:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] unit mau[C1:RN_OI_AU] trong file dich[C1:RN_KEEP_RIME].
 
 ### 8.2 `edit_continuum`
 
@@ -326,15 +326,15 @@ function patchContinuum(
 }
 ```
 
-Diễn giải:
+Dien[C4:RN_KEEP_RIME] giai[C3:RN_KEEP_RIME]:
 
-- dùng khi moment phải cập nhật liên tục một tài liệu đang sống;
-- patch theo fragment-level hoặc section-level;
-- không được biến thành overwrite mù toàn file nếu spec patch rule chưa rõ.
+- dung[C2:RN_KEEP_RIME] khi moment phai[C3:RN_KEEP_RIME] cap[C5:RN_KEEP_RIME] nhat[C5:RN_KEEP_RIME] lien[C0:RN_KEEP_RIME] tuc[C5:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] tai[C2:RN_KEEP_RIME] lieu[C5:RN_KEEP_RIME] deng[C0:RN_ANG_ENG] song[C1:RN_KEEP_RIME];
+- patch theo fragment-level hoac[C5:RN_KEEP_RIME] section-level;
+- khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME] thanh[C2:RN_KEEP_RIME] overwrite mu[C2:RN_KEEP_RIME] toen[C2:RN_AN_EN] file neu[C1:RN_KEEP_RIME] spec patch rule chua[C0:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME].
 
 `OPEN`:
 - exact patch granularity;
-- conflict rule khi target chưa tồn tại;
+- conflict rule khi target chua[C0:RN_KEEP_RIME] ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME];
 - fragment merge precedence.
 
 ### 8.3 `delta`
@@ -351,11 +351,11 @@ function writeDelta(
 }
 ```
 
-Diễn giải:
+Dien[C4:RN_KEEP_RIME] giai[C3:RN_KEEP_RIME]:
 
-- dùng khi muốn lưu biến động độc lập;
-- không sửa file chính;
-- delta file phải còn trace được ngược về moment nguồn.
+- dung[C2:RN_KEEP_RIME] khi muon[C1:RN_KEEP_RIME] luu[C0:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME];
+- khong[C0:RN_KEEP_RIME] sua[C3:RN_KEEP_RIME] file chinh[C1:RN_KEEP_RIME];
+- delta file phai[C3:RN_KEEP_RIME] con[C2:RN_KEEP_RIME] trace duoc[C5:RN_KEEP_RIME] nguoc[C5:RN_KEEP_RIME] ve[C2:RN_KEEP_RIME] moment nguon[C2:RN_KEEP_RIME].
 
 ## 9. GIAC_NGO DUAL-TARGET HANDLING
 
@@ -364,15 +364,15 @@ const dualTargetPendingPolicy =
   moment.kind === 'GIAC_NGO' && targets.length > 1
 ```
 
-Nếu điều kiện này đúng, persister:
+Neu[C1:RN_KEEP_RIME] dieu[C2:RN_KEEP_RIME] kien[C5:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] dung[C1:RN_KEEP_RIME], persister:
 
-1. **không** tự chọn target ưu tiên;
-2. **không** tự rollback;
-3. **không** dựng 2-phase commit;
-4. gắn `policy_state = "dual-target-pending-policy"` lên document/result;
-5. tiếp tục ghi kết quả từng target ở mức có thể, nhưng trả trạng thái rõ ràng là còn chờ policy.
+1. **khong[C0:RN_KEEP_RIME]** tu[C5:RN_KEEP_RIME] chon[C5:RN_KEEP_RIME] target uu[C0:RN_KEEP_RIME] tien[C0:RN_KEEP_RIME];
+2. **khong[C0:RN_KEEP_RIME]** tu[C5:RN_KEEP_RIME] rollback;
+3. **khong[C0:RN_KEEP_RIME]** dung[C5:RN_KEEP_RIME] 2-phase commit;
+4. gen[C1:RN_AN_EN] `policy_state = "dual-target-pending-policy"` len[C0:RN_KEEP_RIME] document/result;
+5. tiep[C1:RN_KEEP_RIME] tuc[C5:RN_KEEP_RIME] ghi ket[C1:RN_KEEP_RIME] qua[C3:RN_KEEP_RIME] tung[C2:RN_KEEP_RIME] target o[C3:RN_KEEP_RIME] muc[C1:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME], nhung[C0:RN_KEEP_RIME] tra[C3:RN_KEEP_RIME] treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME] reng[C2:RN_ANG_ENG] la[C2:RN_KEEP_RIME] con[C2:RN_KEEP_RIME] cho[C2:RN_KEEP_RIME] policy.
 
-Pseudo-interpretation an toàn:
+Pseudo-interpretation an toen[C2:RN_AN_EN]:
 
 ```ts
 if (dualTargetPendingPolicy) {
@@ -380,7 +380,7 @@ if (dualTargetPendingPolicy) {
 }
 ```
 
-Nếu một target fail còn target khác pass, result vẫn phải nói thật bằng `targets[]` + `issues[]`, không “che” thất bại bằng một cờ `ok = true` mơ hồ.
+Neu[C1:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] target fail con[C2:RN_KEEP_RIME] target khac[C1:RN_KEEP_RIME] pass, result ven[C4:RN_AN_EN] phai[C3:RN_KEEP_RIME] nau[C1:RN_OI_AU] that[C5:RN_KEEP_RIME] beng[C2:RN_ANG_ENG] `targets[]` + `issues[]`, khong[C0:RN_KEEP_RIME] “che” that[C1:RN_KEEP_RIME] bai[C5:RN_KEEP_RIME] beng[C2:RN_ANG_ENG] mot[C5:RN_KEEP_RIME] co[C2:RN_KEEP_RIME] `ok = true` mo[C0:RN_KEEP_RIME] ho[C2:RN_KEEP_RIME].
 
 ## 10. DOCUMENT siraSIGN
 
@@ -396,27 +396,27 @@ function deriveDocumentsirasign(
 }
 ```
 
-Intent hiện tại:
+Intent hien[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME]:
 
-- ưu tiên dùng `sirasign` của moment nếu đã có;
-- nếu chưa có thì trả stub derivation đủ để result có trace;
-- không claim đây là final constitutional signing algorithm.
+- uu[C0:RN_KEEP_RIME] tien[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] `sirasign` cua[C3:RN_KEEP_RIME] moment neu[C1:RN_KEEP_RIME] da[C4:RN_KEEP_RIME] co[C1:RN_KEEP_RIME];
+- neu[C1:RN_KEEP_RIME] chua[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] thi[C2:RN_KEEP_RIME] tra[C3:RN_KEEP_RIME] stub derivation du[C3:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] result co[C1:RN_KEEP_RIME] trace;
+- khong[C0:RN_KEEP_RIME] claim day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] final constitutional signing algorithm.
 
 ## 11. failURE / RESULT SHAPE
 
-### 11.1 Hard fail trước write
-Trường hợp fail ngay từ validation/router:
+### 11.1 Hard fail truoc[C1:RN_KEEP_RIME] write
+Truong[C2:RN_KEEP_RIME] hop[C5:RN_KEEP_RIME] fail ngay tu[C2:RN_KEEP_RIME] validation/router:
 
 - `ok = false`
 - `targets = []`
-- `issues[]` phải chỉ ra lý do cụ thể
+- `issues[]` phai[C3:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] ra ly[C1:RN_KEEP_RIME] do cu[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME]
 
 ### 11.2 Partial write
-Nếu có nhiều target:
+Neu[C1:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] nhieu[C2:RN_KEEP_RIME] target:
 
-- từng target phải có `status` riêng;
-- `issues[]` phải chứa lỗi cụ thể theo path;
-- không collapse partial state thành một boolean mơ hồ.
+- tung[C2:RN_KEEP_RIME] target phai[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] `status` rieng[C0:RN_KEEP_RIME];
+- `issues[]` phai[C3:RN_KEEP_RIME] chua[C1:RN_KEEP_RIME] lau[C4:RN_OI_AU] cu[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] theo path;
+- khong[C0:RN_KEEP_RIME] collapse partial state thanh[C2:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] boolean mo[C0:RN_KEEP_RIME] ho[C2:RN_KEEP_RIME].
 
 ### 11.3 Suggested result examples
 
@@ -454,23 +454,23 @@ Nếu có nhiều target:
 }
 ```
 
-## 12. OPEN ITEMS CHO BĂNG / KIM
+## 12. OPEN ITEMS CHO Beng[C0:RN_ANG_ENG] / KIM
 
-- `OPEN-01`: `edit_continuum` patch rule đang cần seal rõ hơn: patch theo fragment, block, hay logical slot?
-- `OPEN-02`: conflict rule nếu `edit_continuum` target chưa tồn tại.
-- `OPEN-03`: canonical structure của `.na` append stream và delta file còn cần đối chiếu với fixture thật.
-- `OPEN-04`: `documentsirasign` cuối cùng là passthrough, aggregate hash, hay signing step tách riêng?
-- `OPEN-05`: dual-target policy cho `GIAC_NGO` có cho phép `ok = true with pending-policy` hay bắt buộc `ok = false` khi chưa fully settled? Pseudo-flow hiện đang chọn trung thực theo `issues.length`.
+- `OPEN-01`: `edit_continuum` patch rule deng[C0:RN_ANG_ENG] cen[C2:RN_AN_EN] seal ro[C4:RN_KEEP_RIME] hon[C0:RN_KEEP_RIME]: patch theo fragment, block, hay logical slot?
+- `OPEN-02`: conflict rule neu[C1:RN_KEEP_RIME] `edit_continuum` target chua[C0:RN_KEEP_RIME] ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME].
+- `OPEN-03`: canonical structure cua[C3:RN_KEEP_RIME] `.na` append stream va[C2:RN_KEEP_RIME] delta file con[C2:RN_KEEP_RIME] cen[C2:RN_AN_EN] dau[C1:RN_OI_AU] chieu[C1:RN_KEEP_RIME] vau[C1:RN_OI_AU] fixture that[C5:RN_KEEP_RIME].
+- `OPEN-04`: `documentsirasign` cui[C1:RN_UOI_UI] cung[C2:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] passthrough, aggregate hash, hay signing step tach[C1:RN_KEEP_RIME] rieng[C0:RN_KEEP_RIME]?
+- `OPEN-05`: dual-target policy cho `GIAC_NGO` co[C1:RN_KEEP_RIME] cho phep[C1:RN_KEEP_RIME] `ok = true with pending-policy` hay bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME] `ok = false` khi chua[C0:RN_KEEP_RIME] fully settled? Pseudo-flow hien[C5:RN_KEEP_RIME] deng[C0:RN_ANG_ENG] chon[C5:RN_KEEP_RIME] trung thuc[C5:RN_KEEP_RIME] theo `issues.length`.
 
 ## 13. REVIEW NOTE
-Đây là pseudo-flow để Kim review logic.
-Nó cố ý:
+Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] pseudo-flow de[C3:RN_KEEP_RIME] Kim review logic.
+No[C1:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] y[C1:RN_KEEP_RIME]:
 
-- giữ syntax dễ đọc, gần TypeScript;
-- không ràng buộc implementation detail quá sớm;
-- không lấy scaffold hiện tại làm nguồn chân lý;
-- không lấn sang policy chưa được seal.
+- giu[C4:RN_KEEP_RIME] syntax de[C4:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME], gen[C2:RN_AN_EN] TypeScript;
+- khong[C0:RN_KEEP_RIME] reng[C2:RN_ANG_ENG] buoc[C5:RN_KEEP_RIME] implementation detail qua[C1:RN_KEEP_RIME] som[C1:RN_KEEP_RIME];
+- khong[C0:RN_KEEP_RIME] lay[C1:RN_KEEP_RIME] scaffold hien[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME] nguon[C2:RN_KEEP_RIME] chen[C0:RN_AN_EN] ly[C1:RN_KEEP_RIME];
+- khong[C0:RN_KEEP_RIME] len[C1:RN_AN_EN] sang policy chua[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] seal.
 
 ---
-writer: thiên Lớn
+writer: thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME]
 status_note: pseudo only; not implementation code

@@ -4,7 +4,7 @@
 @bridge spec_nen_v1_1 + spec_radiation_universal_v1_0 + qiint_dinh_nghia
 @since 2026-04-24
 @authority-slot bang (Chi Tu, runtime owner per session 20260424)
-@predecessor SPEC_QIINT2_COMPLETE_v1.0 (REVOKED — Π_body paradigm self-invented, not canonical)
+@predecessor SPEC_QIINT2_COMPLETE_v1.0 (REVOKED — Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] paradigm self-invented, not canonical)
 
 # SPEC_QIINT2_ALIGNED v2.0 — QIINT Measurement Framework for Kernel Runtime
 
@@ -12,7 +12,7 @@
 
 **QIINT2** = measurement framework cho QIINT physics foundation, operationalized cho kernel runtime (SURVIVAL + BRIDGE + CELL lifecycle).
 
-**Ly do v2.0 rewrite:** v1.0 su dung paradigm `Π_body` tu tao, khong canonical theo `QIINT-DINH-NGHIA-CHINH-THUC.md`. v2.0 align voi vocabulary chinh thuc: **QIINT = gravitational field, QNEU = gravitational mass** (per SPEC_NEN v1.1 + session 20260413 definition).
+**Ly do v2.0 rewrite:** v1.0 su dung paradigm `Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]` tu tao, khong canonical theo `QIINT-DINH-NGHIA-CHINH-THUC.md`. v2.0 align voi vocabulary chinh thuc: **QIINT = gravitational field, QNEU = gravitational mass** (per SPEC_NEN v1.1 + session 20260413 definition).
 
 **Scope:**
 - Dinh nghia 8 calibration params cua kernel layer
@@ -32,7 +32,7 @@ Per `QIINT-DINH-NGHIA-CHINH-THUC.md` + SPEC_NEN v1.1:
 
 | Concept | Correct term | SAI — khong dung |
 |---|---|---|
-| Gravitational field (what QIINT is) | QIINT field | "scoring system", "Π_body" |
+| Gravitational field (what QIINT is) | QIINT field | "scoring system", "Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]" |
 | Gravitational mass (persona weight) | QNEU mass | "persona score", "trust level" |
 | Information radiation defense | Bridge v2 aperture | "firewall", "filter" |
 | Cell death | Thoai-sinh | "kill", "shutdown" |
@@ -43,17 +43,17 @@ Per `QIINT-DINH-NGHIA-CHINH-THUC.md` + SPEC_NEN v1.1:
 
 ---
 
-## §2. BUTTERFLY EFFECT DEFENSE (2 vế hợp nhất)
+## §2. BUTTERFLY EFFECT DEFENSE (2 ve[C1:RN_KEEP_RIME] hop[C5:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME])
 
 ### §2.1 Ve 1 — Chaos amplification (why we defend)
 
 Per chaos theory + SPEC_RADIATION_UNIVERSAL §5:
 
 ```
-Stress_total(n, t) = ∫₀ᵗ [Stress_X(τ) + R_time(τ)] dτ
+Stress_total(n, t) = ∫₀ᵗ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] [Stress_X(τ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]) + R_time(τ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME])] dτ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]
 ```
 
-Small input × infinite time → catastrophic cascade. 1 request nho co the amplify thanh DoS neu khong catch som.
+Small input ×[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] infinite time → catastrophic cascade. 1 request nho co the amplify thanh DoS neu khong catch som.
 
 ### §2.2 Ve 2 — Measurement framework (how we defend)
 
@@ -79,7 +79,7 @@ K1_survival.decide(load) = measure(current_state)
 |---|---|
 | Default | 0.30 (GUESSED, needs measure) |
 | Domain | Bridge v2 aperture tolerance |
-| How to measure | Grep 10 conversation mỗi persona, tính std of frequency deviation |
+| How to measure | Grep 10 conversation mau[C4:RN_OI_AU] persona, tinh[C1:RN_KEEP_RIME] std of frequency deviation |
 | Data source | `src/governance/memory/*/session-*` |
 | Used by | Bridge v2 filter, aperture decision |
 | Calibration owner | Bang (phase 2) |
@@ -90,7 +90,7 @@ K1_survival.decide(load) = measure(current_state)
 |---|---|
 | Default | [0.2, 0.2, 0.2, 0.15, 0.15, 0.1] (GUESSED) |
 | Domain | Thoai-sinh → re-sinh recovery probability |
-| How to measure | Regression từ failure/recovery cases trong audit log |
+| How to measure | Regression tu[C2:RN_KEEP_RIME] failure/recovery cases trong audit log |
 | Data source | `audit/reports/` historical cases |
 | Used by | Cell respawn decision |
 | Calibration owner | Bang + Can (phase 2) |
@@ -101,7 +101,7 @@ K1_survival.decide(load) = measure(current_state)
 |---|---|
 | Default | ln(2) = 0.693 — 1 octave (GUESSED) |
 | Domain | SmartLink resonance frequency uncertainty |
-| How to measure | Đo phổ cộng hưởng thật giữa cells qua touch-timestamps |
+| How to measure | Do[C0:RN_KEEP_RIME] pho[C3:RN_KEEP_RIME] cong[C5:RN_KEEP_RIME] huong[C3:RN_KEEP_RIME] that[C5:RN_KEEP_RIME] giua[C4:RN_KEEP_RIME] cells qua touch-timestamps |
 | Data source | `src/core/SmartLink/SmartLink.nattimer.ts` NATTimer chain observations |
 | Used by | SmartLink frequency matching, Bridge v2 |
 | Calibration owner | Bang (phase 2) |
@@ -112,7 +112,7 @@ K1_survival.decide(load) = measure(current_state)
 |---|---|
 | Default | 0.01 per cycle (GUESSED) |
 | Domain | QNEU mass growth rate khi cell success |
-| How to measure | Đo QNEU thực của cells qua time series |
+| How to measure | Do[C0:RN_KEEP_RIME] QNEU thuc[C5:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] cells qua time series |
 | Data source | `src/governance/qneu/` QNEU log |
 | Used by | QNEU scoring, persona promotion |
 | Calibration owner | Bang + Thien Lon (phase 2) |
@@ -126,8 +126,8 @@ K1_survival.decide(load) = measure(current_state)
 | Tier 1 (0.95) | BACKPRESSURE — slow incoming |
 | Tier 2 (0.85) | LOAD_SHED — drop low-priority |
 | Tier 3 (0.80) | CIRCUIT_BREAK — reject all except health-check |
-| How to measure | Stress test — tìm ngưỡng vỡ thực tế |
-| Data source | Stress test runtime với ramp-up load |
+| How to measure | Stress test — tim[C2:RN_KEEP_RIME] nguong[C4:RN_KEEP_RIME] vo[C4:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] te[C1:RN_KEEP_RIME] |
+| Data source | Stress test runtime vau[C1:RN_OI_AU] ramp-up load |
 | Used by | **K1 survival-cell decision logic** |
 | Calibration owner | Bang (phase 2 — priority) |
 | **BUTTERFLY LINK** | ve 2 — day la measurement chinh de catch cascade |
@@ -138,7 +138,7 @@ K1_survival.decide(load) = measure(current_state)
 |---|---|
 | Default | [0.4, 0.3, 0.3] — drift, consistency, age (GUESSED) |
 | Domain | Persona minh-man score 3-factor |
-| How to measure | Tương quan với drift history trong handoff series |
+| How to measure | Tuong[C0:RN_KEEP_RIME] quan vau[C1:RN_OI_AU] drift history trong handoff series |
 | Data source | `src/governance/memory/<persona>/*.kris` series |
 | Used by | MINH_MAN_PROTOCOL scoring |
 | Calibration owner | Can + Bang (phase 2) |
@@ -149,7 +149,7 @@ K1_survival.decide(load) = measure(current_state)
 |---|---|
 | Default | 0.5 octave (GUESSED) |
 | Domain | QNEU snapshot log integrity tolerance |
-| How to measure | Data QNEU thực của cells qua log verify |
+| How to measure | Data QNEU thuc[C5:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] cells qua log verify |
 | Data source | `src/core/snapshot/` + `src/governance/qneu/` |
 | Used by | QNEU audit chain verify |
 | Calibration owner | Bang (phase 2) |
@@ -161,7 +161,7 @@ K1_survival.decide(load) = measure(current_state)
 |---|---|
 | Default | 60 min (GUESSED) |
 | Domain | Snapshot exponential decay time constant |
-| How to measure | Đo MTBF phục hồi từ snapshot |
+| How to measure | Do[C0:RN_KEEP_RIME] MTBF phuc[C5:RN_KEEP_RIME] hau[C2:RN_OI_AU] tu[C2:RN_KEEP_RIME] snapshot |
 | Data source | `src/core/snapshot/snapshot.engine.ts` runtime |
 | Used by | Cell thoai-sinh → re-sinh recovery timing |
 | Calibration owner | Bang (phase 2) |
@@ -287,6 +287,6 @@ Before commit, verify:
 @next_action anh_natt_review_or_bang_scaffold_qiint2_engine
 @drafter bang
 @drafter_role runtime_owner_session_20260424
-@revokes SPEC_QIINT2_COMPLETE_v1.0 (paradigm Π_body self-invented)
+@revokes SPEC_QIINT2_COMPLETE_v1.0 (paradigm Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] self-invented)
 @supersedes none
 @butterfly_integration both ve ghep hoan chinh

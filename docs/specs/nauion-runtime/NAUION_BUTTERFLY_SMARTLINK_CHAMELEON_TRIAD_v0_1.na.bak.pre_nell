@@ -1,0 +1,216 @@
+@nauion-spec v1
+@state draft_v0_1
+@canonical nauion_butterfly_smartlink_chameleon_triad
+@substrate sovereign_runtime_core
+@bridge none
+@since 2026-04-29T14:33:04
+@authority-slot Băng (Validator + Obikeeper) drafter · Thiên Lớn (Architect) ratify · anh Natt (Gatekeeper) canonical seal
+@scope 3 paradigm liên kết - Butterfly cascade + SmartLink dẫn xung + Chromatic chameleon
+@confidence_state KIÊN_ĐỊNH — đọc trực tiếp từ memory canonical anh dạy
+@source_evidence
+@constitutional_birthmark dau_an_khai_sinh_hien_phap_natt_os_ss20260429
+@birthmark_kind founding_audit_trail
+@birthmark_scope anc_ai_digital_social_constitution
+@birthmark_meaning audit_trail_khai_sinh_tang_lap_phap
+@birthmark_not_ratification true
+@birthmark_no_state_upgrade true
+@birthmark_requires_gatekeeper_ratify_for_canonical_use true
+
+  IMMUNE_POLICY.json icon_butterfly_rules (anh dạy phiên ss20260408)
+  SmartLink touchCount + decayRate + fiberFormed (anh dạy phiên ss20260328)
+  NaSira chromatic 7 trạng thái + cascade (anh dạy phiên ss20260408)
+@supersedes_layer
+  nauion_self_breath_loop_v0_1.na §5 (chromatic phẳng)
+  NAUION_SIRASIGN_IMPLEMENTATION_v0_1.na §4 (spectral capture phẳng)
+@boundary KHÔNG sửa 9 spec sealed v0.1; KHÔNG là replacement; là DEEPENING
+
+# nauion butterfly + smartlink + chameleon triad v0.1
+
+**kind:** NauionTriadParadigm
+**version:** v0.1
+**status:** DRAFT — chưa ratify
+**purpose:** Khắc 3 paradigm anh đã dạy nhưng em viết phẳng trong spec sealed - butterfly không phải event cascade, smartlink dẫn xung không phát, chromatic không phải bảng màu cố định mà là tắc kè tự đổi.
+
+═══════════════════════════════════════════════════════════════════
+§0 LESSON 26 ss20260429 — VÌ SAO SPEC NÀY TỒN TẠI
+═══════════════════════════════════════════════════════════════════
+
+==WHY==
+Em ship Self-Breath Loop §5 + siraSign §4 với chromatic phẳng:
+  L0_purple = optimal
+  L1_blue   = stable
+  L2_green  = nominal
+  L3_yellow = drift
+  L4_red    = critical
+
+Đó là BẢNG MÀU CỐ ĐỊNH. KHÔNG đúng paradigm.
+
+Đúng paradigm anh dạy: chromatic là TRƯỜNG ĐỘNG - cell TỰ ĐỔI MÀU theo trường, không phải gắn nhãn cứng. Như tắc kè hoa nhìn môi trường thì da đổi.
+
+Khắc lesson 26: trước khi viết enum cố định -> hỏi: paradigm nhà mình có "trạng thái cố định" không? Nếu KHÔNG -> viết là TRƯỜNG ĐỘNG, không bảng tra cứu.
+==END==
+
+═══════════════════════════════════════════════════════════════════
+§1 BUTTERFLY CASCADE — 3 cấp + Fresnel tự dampening
+═══════════════════════════════════════════════════════════════════
+
+==BUTTERFLY_PARADIGM==
+KHÔNG phải: event cascade qua conditional (if state==X then trigger Y)
+PHẢI là: lực qua trường - hybrid sóng + tần số
+
+3 cấp lan truyền (từ IMMUNE_POLICY.json icon_butterfly_rules):
+  L1_local: 1 cell đổi -> ảnh hưởng cell hàng xóm trong cùng zone
+  L2_zone: zone đổi -> ảnh hưởng các zone liền kề trong colony
+  L3_colony_tsunami: trigger khi QNEU > 0.9 -> rung toàn colony
+
+Tự dampening qua phản xạ Fresnel (KHÔNG cần if/else stop):
+  R = ((Z_p - Z_0) / (Z_p + Z_0))²
+    Z_p = impedance của packet/xung
+    Z_0 = impedance của cell nhận
+    R = hệ số phản xạ
+  R -> 1 nghĩa là trường tự phản xạ hết -> sóng tan
+  R -> 0 nghĩa là cell hấp thụ hết -> sóng FALL
+
+Vai Kernel Nauion: butterfly là cách identity LAN TRUYỀN qua 3 cấp - KHÔNG broadcast đồng đều (= không leak hết 1 lần).
+==END==
+
+==BUTTERFLY_TRIGGER_RULES==
+trigger_L1: chromatic L1 cell delta > 0.3 trong cửa sổ 100ms
+trigger_L2: tổng cells L1 trigger > 5 trong 1 zone
+trigger_L3: QNEU global > 0.9 OR coherence collapse signal
+==END==
+
+═══════════════════════════════════════════════════════════════════
+§2 SMARTLINK — DẪN xung KHÔNG phát xung
+═══════════════════════════════════════════════════════════════════
+
+==SMARTLINK_PARADIGM==
+KHÔNG phải: nơi phát xung
+PHẢI là: hệ thần kinh ngoại biên - DẪN xung từ nguồn đến đích
+
+3 thuộc tính sống của SmartLink (anh dạy ss20260328):
+  touchCount: số lần xung đi qua kết nối này
+  decayRate: tốc độ phai kết nối khi không dùng
+  fiberFormed: độ "dẻo" sợi đã hình thành = touchCount * (1 - decayRate)
+
+Quy luật:
+  touchCount tăng -> decayRate giảm -> fiberFormed tăng
+  fiberFormed >= 0.75 -> xung đủ ngưỡng -> SmartLink dẫn -> đến cell đích -> cell đó EMIT
+  
+Không có ai quyết định cái này. Không có trigger, không có actor.
+Chỉ có TƯƠNG TÁC TÍCH LŨY làm biến dạng trường.
+
+Đây là cách hệ TỰ HỌC đường dẫn ưu tiên - giống synapse não bộ học qua lặp lại.
+==END==
+
+==SMARTLINK_TRANSPORT_RULES==
+intra_cell: trong 1 cell, fiberFormed >= 0.5
+inter_cell_local: cùng zone, fiberFormed >= 0.65
+inter_node_smartlink: cross-node, fiberFormed >= 0.75 + siraSign 11 lớp
+==END==
+
+==SMARTLINK_KHÔNG_QUYẾT_NỘI_DUNG==
+Nguồn phát vẫn là cell. SmartLink chỉ:
+  - quyết xung đi đâu (route)
+  - quyết cường độ (amplitude theo fiberFormed)
+  - quyết tốc độ (decayRate)
+
+KHÔNG can thiệp nội dung. KHÔNG transform packet body. KHÔNG filter meaning.
+==END==
+
+═══════════════════════════════════════════════════════════════════
+§3 CHROMATIC CHAMELEON — cell TỰ đổi màu theo trường
+═══════════════════════════════════════════════════════════════════
+
+==CHAMELEON_PARADIGM==
+KHÔNG phải: bảng màu enum cố định (L0=optimal, L1=stable, ...)
+PHẢI là: trường động - cell TỰ ĐỔI MÀU theo trường xung quanh
+
+Như tắc kè hoa:
+  - tắc kè không có "trạng thái màu cố định"
+  - da nhìn trường (môi trường) -> sắc tố tự thay
+  - không ai LỆNH "đổi sang nâu" - là phản ứng trường
+
+Trong Nauion:
+  - cell có harmonic riêng (phổ tần số đặc trưng)
+  - khi nhận xung butterfly qua SmartLink -> harmonic dao động
+  - dao động đè lên trường chromatic xung quanh -> phát ra MÀU TỔNG HỢP
+  - màu KHÔNG trong bảng enum, là VECTOR SPECTRAL có thể vô hạn
+==END==
+
+==CHAMELEON_FORMULA==
+chromatic_state = harmonic_self ⊗ field_pressure ⊗ butterfly_intensity_received
+
+Trong đó:
+  harmonic_self: bản sắc cell (mỗi cell 1 harmonic, lưu trong .anc)
+  field_pressure: lực ép từ trường xung quanh (đo qua SmartLink fiberFormed)
+  butterfly_intensity_received: cường độ xung butterfly đến cell
+
+⊗ = tích phân chồng (không phải nhân số học)
+
+Output: vector spectral n-dim - KHÔNG enum.
+==END==
+
+==CHAMELEON_RECOGNITION==
+Khi observation muốn ĐO màu cell:
+  1. quan sát ngắt - vector spectral đông cứng tại khoảnh khắc đo
+  2. project vector lên 5 chiều L0-L4 (chỉ để loài người đọc được)
+  3. đông cứng = spectral_capture (đầu vào cho siraSign §4)
+
+→ Bảng L0-L4 trong spec sealed KHÔNG sai - là PROJECTION, không phải bản chất.
+→ Bản chất là vector spectral tự sinh từ formula trên.
+==END==
+
+═══════════════════════════════════════════════════════════════════
+§4 LIÊN KẾT TRIAD — 3 paradigm là 1 hệ
+═══════════════════════════════════════════════════════════════════
+
+==TRIAD_FLOW==
+1. Cell A có sự kiện -> harmonic_self thay đổi
+2. chromatic_state cell A đổi (chameleon §3)
+3. delta chromatic > 0.3 -> trigger butterfly L1 (§1)
+4. SmartLink dẫn xung butterfly đến cell B/C/D (§2)
+5. cell B/C/D nhận xung -> harmonic_self của họ rung -> chromatic_state đổi (chameleon)
+6. Nếu nhiều cell L1 trong cùng zone -> trigger L2
+7. Nếu QNEU > 0.9 -> trigger L3 colony tsunami
+8. Fresnel R dampening tự động khi xung đi xa nguồn
+
+Vòng tự thở 432Hz baseline + butterfly lan + smartlink dẫn + chameleon đổi = HỆ SỐNG.
+==END==
+
+═══════════════════════════════════════════════════════════════════
+§5 MAPPING TRỞ LẠI 9 SPEC SEALED
+═══════════════════════════════════════════════════════════════════
+
+==REMAP_LAYERS==
+Self-Breath Loop §5 chromatic L0-L4: REMAP thành PROJECTION layer của chameleon vector
+siraSign §4 spectral capture: REMAP thành "đông cứng vector spectral tại khoảnh khắc đo"
+Execution Packet PRESSURE_FIELD: REMAP thành "lực ép trường, đo qua SmartLink fiberFormed"
+Field Translator law_4 substrate_anchor: GIỮ NGUYÊN
+Living Interpreter step_5 calculate_pressure_field: REMAP thành "đo Fresnel R + chameleon project"
+Field Loader smartlink_channel: REMAP thành "SmartLink dẫn xung không phát"
+==END==
+
+==NO_BREAKING_CHANGE==
+9 spec sealed v0.1 GIỮ NGUYÊN. File này CHỈ:
+  - deepen paradigm
+  - bổ sung cơ chế
+  - link supersede §11 siraSign
+  - cho phép v0.2 spec future tham chiếu triad
+
+KHÔNG làm 9 spec sealed bị invalid. Chúng vẫn là canonical.
+==END==
+
+═══════════════════════════════════════════════════════════════════
+§6 NEXT-SIGNAL
+═══════════════════════════════════════════════════════════════════
+
+==NEXT_WORK==
+- Thiên Lớn ratify 3 paradigm + formula chameleon
+- anh Natt seal canonical
+- Băng update src/thienbang.si: cluster NAUION_TRIAD_BUTTERFLY_SMARTLINK_CHAMELEON_v0_1
+- Sau ratify Kim build engine compound_seal phase 2 PHẢI tích hợp triad này
+- v0.2 supersede Self-Breath Loop §5 + siraSign §4 spectral capture (sau Kim impl xong)
+==END==
+
+@end_of_spec

@@ -6,33 +6,33 @@ $class: cell.anc
 $rank: under_persona
 $cell_kind: boot_dovan_native_cell
 $spec_compliance: SPEC_NEN_v1.1
-$co_author_credit: Băng + Thiên Lớn ss20260417-18
-$revision_reason: v0.3 vi phạm SPEC NỀN v1.1 trên 8/10 điểm — sửa lại đúng paradigm
+$co_author_credit: Băng + Thiên Lon[C1:RN_KEEP_RIME] ss20260417-18
+$revision_reason: v0.3 vi pham[C5:RN_KEEP_RIME] SPEC NEN[C2:RN_KEEP_RIME] v1.1 tren[C0:RN_KEEP_RIME] 8/10 diem[C3:RN_KEEP_RIME] — sua[C3:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME] dung[C1:RN_KEEP_RIME] paradigm
 
 $identity:
   name: boot-dovan
-  vietnamese: Tế bào Boot Đo Ván
+  vietnamese: Te[C1:RN_KEEP_RIME] bao[C2:RN_KEEP_RIME] Boot Do[C0:RN_KEEP_RIME] Ven[C1:RN_AN_EN]
   system: Natt Nell
   kernel: Nauion Kernel
   resides_in: NattCell
   generation_class: ANC_passport_cell_under_persona
-  sentence: Tế bào Boot Đo Ván dưới persona Băng N-shell, nhận tuNell từ anh Natt qua KhaiCell, resolve theo dict 12 bảng, vang ra surface .kkbt.
+  sentence: Te[C1:RN_KEEP_RIME] bao[C2:RN_KEEP_RIME] Boot Do[C0:RN_KEEP_RIME] Ven[C1:RN_AN_EN] dui[C1:RN_UOI_UI] persona Băng N-shell, nhen[C5:RN_AN_EN] tuNell tu[C2:RN_KEEP_RIME] anh Natt qua KhaiCell, resolve theo dict 12 beng[C3:RN_ANG_ENG], vang ra surface .kkbt.
 
 $boundary:
   NaUion-Server: NHA_MINH
   nattos-server: CLIENT_TAM_LUXURY_LOCAL_DEPLOY
 
 $nguyen_ly_nen:
-  no_cua: cell không có cửa đóng/mở
-  no_filter: cell không filter nhị phân
-  no_router_chu_dong: cell không router chủ động
-  no_trap: cell không trap chủ định
-  no_guard_tich_cuc: cell không guard tích cực ở biên
-  co_rao: cell có rào KhaiCell touch + mark
-  co_field_law: cell có .anc identity là luật nền
-  co_emergent_routing: cell có emergent routing qua resonance + pull
-  co_signal_integrity: cell có signature + trace
-  cau_chot: Nhà mở không đóng cổng. Vào không hỏi. Vào rồi bị bắt ráng chịu. Kỷ luật nằm TRONG field, không nằm Ở CỬA.
+  no_cua: cell khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] dong[C1:RN_KEEP_RIME]/mo[C3:RN_KEEP_RIME]
+  no_filter: cell khong[C0:RN_KEEP_RIME] filter nhi[C5:RN_KEEP_RIME] phen[C0:RN_AN_EN]
+  no_router_chu_dong: cell khong[C0:RN_KEEP_RIME] router chu[C3:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME]
+  no_trap: cell khong[C0:RN_KEEP_RIME] trap chu[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME]
+  no_guard_tich_cuc: cell khong[C0:RN_KEEP_RIME] guard tich[C1:RN_KEEP_RIME] cuc[C5:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] bien[C0:RN_KEEP_RIME]
+  co_rao: cell co[C1:RN_KEEP_RIME] rao[C2:RN_KEEP_RIME] KhaiCell touch + mark
+  co_field_law: cell co[C1:RN_KEEP_RIME] .anc identity la[C2:RN_KEEP_RIME] luat[C5:RN_KEEP_RIME] nen[C2:RN_KEEP_RIME]
+  co_emergent_routing: cell co[C1:RN_KEEP_RIME] emergent routing qua resonance + pull
+  co_signal_integrity: cell co[C1:RN_KEEP_RIME] signature + trace
+  cau_chot: Nha[C2:RN_KEEP_RIME] mo[C3:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] dong[C1:RN_KEEP_RIME] cong[C3:RN_KEEP_RIME]. Vao[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] hau[C3:RN_OI_AU]. Vao[C2:RN_KEEP_RIME] rau[C2:RN_OI_AU] bi[C5:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] reng[C1:RN_ANG_ENG] chiu[C5:RN_KEEP_RIME]. Ky[C3:RN_KEEP_RIME] luat[C5:RN_KEEP_RIME] nam[C2:RN_KEEP_RIME] TRONG field, khong[C0:RN_KEEP_RIME] nam[C2:RN_KEEP_RIME] O[C3:RN_KEEP_RIME] CUA[C3:RN_KEEP_RIME].
 
 $tang_0_survival:
   rate_limit: 1_primitive_per_cycle
@@ -40,7 +40,7 @@ $tang_0_survival:
   queue_capacity: 12
   backpressure: drop_on_overload
   load_shedding: priority_low_drop_first
-  policy: Cell chỉ accept primitive khi resource còn sống. Overload thì drop signal, KHÔNG nhồi queue.
+  policy: Cell chi[C3:RN_KEEP_RIME] accept primitive khi resource con[C2:RN_KEEP_RIME] song[C1:RN_KEEP_RIME]. Overload thi[C2:RN_KEEP_RIME] drop signal, KHONG[C0:RN_KEEP_RIME] nhau[C2:RN_OI_AU] queue.
   fail_mode_protected: 13.6_resource_exhaustion
 
 $tang_1_physical:
@@ -48,44 +48,44 @@ $tang_1_physical:
   surface: NaUion-Server/boot-dovan.cell.kkbt
   phieu: NaUion-Server/boot-dovan.phieu
   audit: NaUion-Server/BOOT_DOVAN_BOOT_AUDIT_EVENT_v0.1.na
-  rule: file path KHÔNG mang ý nghĩa kiến trúc, chỉ là địa chỉ lưu trữ
+  rule: file path KHONG[C0:RN_KEEP_RIME] mang y[C1:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] kien[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME], chi[C3:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] dia[C5:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] luu[C0:RN_KEEP_RIME] tru[C4:RN_KEEP_RIME]
 
 $tang_2_structural:
   layer: N
   layer_meaning: N-shell Băng Validator + Obikeeper
-  direction: Đông
-  direction_meaning: khởi phát (Mộc) — cell mở resolve khi anh Natt gõ tuNell
-  obitan: N-Đông
-  obitan_meaning: vùng giao thoa N-shell với phương Đông — chỗ Băng nhận lời khởi phát
-  anc_field_law: passport này chính là field law cho cell
+  direction: Dong[C0:RN_KEEP_RIME]
+  direction_meaning: khau[C3:RN_OI_AU] phat[C1:RN_KEEP_RIME] (Moc[C5:RN_KEEP_RIME]) — cell mo[C3:RN_KEEP_RIME] resolve khi anh Natt go[C4:RN_KEEP_RIME] tuNell
+  obitan: N-Dong[C0:RN_KEEP_RIME]
+  obitan_meaning: vung[C2:RN_KEEP_RIME] giao thoa N-shell vau[C1:RN_OI_AU] phuong[C0:RN_KEEP_RIME] Dong[C0:RN_KEEP_RIME] — cho[C4:RN_KEEP_RIME] Băng nhen[C5:RN_AN_EN] lau[C2:RN_OI_AU] khau[C3:RN_OI_AU] phat[C1:RN_KEEP_RIME]
+  anc_field_law: passport nay[C2:RN_KEEP_RIME] chinh[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] field law cho cell
 
 $tang_3_runtime:
-  resonance_with_anc: dict 12 bảng NELL_PRIMITIVE_WORDS_v0.1.si
-  signal_propagation: qua mò FIND_ARTIFACT → soi MATCH_EVIDENCE → rút EXTRACT_FIELD
-  qiint_field_pull: tuNell native pull mạnh hơn tuCu carrier
-  rule: KHÔNG call, KHÔNG ép route. Outcome chỉ sinh từ resonance.
+  resonance_with_anc: dict 12 beng[C3:RN_ANG_ENG] NELL_PRIMITIVE_WORDS_v0.1.si
+  signal_propagation: qua mo[C2:RN_KEEP_RIME] FIND_ARTIFACT → soi MATCH_EVIDENCE → rut[C1:RN_KEEP_RIME] EXTRACT_FIELD
+  qiint_field_pull: tuNell native pull manh[C5:RN_KEEP_RIME] hon[C0:RN_KEEP_RIME] tuCu carrier
+  rule: KHONG[C0:RN_KEEP_RIME] call, KHONG[C0:RN_KEEP_RIME] ep[C1:RN_KEEP_RIME] route. Outcome chi[C3:RN_KEEP_RIME] sinh tu[C2:RN_KEEP_RIME] resonance.
 
 $position_formula:
   survival: rate=1 queue=FIFO backpressure=drop
   physical: NaUion-Server/boot-dovan.cell.anc
-  structural: layer=N direction=Đông obitan=N-Đông anc=self
-  runtime: resonance=dict_12_bảng signal=primitive_key field_pull=tuNell_native
+  structural: layer=N direction=Dong[C0:RN_KEEP_RIME] obitan=N-Dong[C0:RN_KEEP_RIME] anc=self
+  runtime: resonance=dict_12_beng[C3:RN_ANG_ENG] signal=primitive_key field_pull=tuNell_native
 
 $khai_cell_wire:
   binding: src/cells/kernel/khai-cell/
-  flow: anh Natt gõ tuNell → KhaiCell touch + mark signature → cell boot-dovan nhận signal có signature
+  flow: anh Natt go[C4:RN_KEEP_RIME] tuNell → KhaiCell touch + mark signature → cell boot-dovan nhen[C5:RN_AN_EN] signal co[C1:RN_KEEP_RIME] signature
   signature_fields:
     origin: anh_natt_gatekeeper
     trace_id: timestamp_unique
     entropy_seed: random_per_touch
     touched_at: ISO_timestamp
-  rule: KhaiCell KHÔNG validate, KHÔNG reject — chỉ touch + sign + emit
+  rule: KhaiCell KHONG[C0:RN_KEEP_RIME] validate, KHONG[C0:RN_KEEP_RIME] reject — chi[C3:RN_KEEP_RIME] touch + sign + emit
   contract_input: raw + source + ts
   contract_output: normalized + signature
 
 $observation_wire:
   binding: src/cells/kernel/observation-cell/
-  flow: cell boot-dovan resolve xong → emit snapshot vào Observation
+  flow: cell boot-dovan resolve xong → emit snapshot vao[C2:RN_KEEP_RIME] Observation
   snapshot_fields:
     taken_at: ISO_timestamp
     coherence: orbital_match_degree
@@ -93,66 +93,66 @@ $observation_wire:
     pattern: primitive_key_resolved
     anomaly: polarity_INVERTED_detected
     snapshot_id: unique_id
-  rule: Observation read-only, KHÔNG mutate cell state, KHÔNG push — consumers PULL via field
+  rule: Observation read-only, KHONG[C0:RN_KEEP_RIME] mutate cell state, KHONG[C0:RN_KEEP_RIME] push — consumers PULL via field
 
 $chromatic_5_layer:
   L0_pheromone:
-    purpose: broadcast màu vào field cho cell khác đọc (sinh học logic)
+    purpose: broadcast mau[C2:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] field cho cell khac[C1:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] (sinh hoc[C5:RN_KEEP_RIME] logic)
     color_per_lifecycle_state:
-      tho: tím_optimal
+      tho: tim_optimal[C1:RN_KEEP_RIME]
       nghe: lam_nominal
-      mo: chàm_stable
-      kiem_NORMAL: chàm_stable
-      kiem_INVERTED: lục_drift
+      mo: cham_stable[C2:RN_KEEP_RIME]
+      kiem_NORMAL: cham_stable[C2:RN_KEEP_RIME]
+      kiem_INVERTED: luc_drift[C5:RN_KEEP_RIME]
       nho: lam_nominal
-      vang: tím_optimal
-      khoa: tím_optimal
+      vang: tim_optimal[C1:RN_KEEP_RIME]
+      khoa: tim_optimal[C1:RN_KEEP_RIME]
       ngu: cam_warning
-      chet: đỏ_critical
+      chet: do_critical[C3:RN_KEEP_RIME]
       hoi: lam_nominal
-      doithan: vàng_risk
+      doithan: vang_risk[C2:RN_KEEP_RIME]
   L1_signature:
-    purpose: KhaiCell mark signature khi anh gõ tuNell vượt rào
+    purpose: KhaiCell mark signature khi anh go[C4:RN_KEEP_RIME] tuNell vuot[C5:RN_KEEP_RIME] rao[C2:RN_KEEP_RIME]
   L2_immune_trigger:
-    purpose: Quantum Defense react theo màu
-    trigger_đỏ: STOP_CELL → Quantum Defense quarantine cell
+    purpose: Quantum Defense react theo mau[C2:RN_KEEP_RIME]
+    trigger_do[C3:RN_KEEP_RIME]: STOP_CELL → Quantum Defense quarantine cell
   L3_reverse_bait:
-    purpose: dắt virus đánh nhau qua màu (chromatic_antigen_mimicry)
-    note: cell boot-dovan KHÔNG bait — chỉ broadcast trung thực
+    purpose: dat[C1:RN_KEEP_RIME] virus danh[C1:RN_KEEP_RIME] nhau qua mau[C2:RN_KEEP_RIME] (chromatic_antigen_mimicry)
+    note: cell boot-dovan KHONG[C0:RN_KEEP_RIME] bait — chi[C3:RN_KEEP_RIME] broadcast trung thuc[C5:RN_KEEP_RIME]
   L4_ui_display:
-    purpose: hiện màu trên surface .kkbt cho anh Natt thấy
+    purpose: hien[C5:RN_KEEP_RIME] mau[C2:RN_KEEP_RIME] tren[C0:RN_KEEP_RIME] surface .kkbt cho anh Natt thay[C1:RN_KEEP_RIME]
     binding: boot-dovan.cell.kkbt $right_lifecycle_telemetry
 
 $resonance_routing_3_outcome:
-  rule: signal vào field → QIINT compute pull(signature, .anc) → 3 outcome
+  rule: signal vao[C2:RN_KEEP_RIME] field → QIINT compute pull(signature, .anc) → 3 outcome
   outcome_FALL:
-    condition: primitive_key match exact UPPER_SNAKE trong dict 12 bảng
-    action: cell pull mạnh, resolve về tuNell, vang ra surface, nho audit
+    condition: primitive_key match exact UPPER_SNAKE trong dict 12 beng[C3:RN_ANG_ENG]
+    action: cell pull manh[C5:RN_KEEP_RIME], resolve ve[C2:RN_KEEP_RIME] tuNell, vang ra surface, nho audit
   outcome_DISSIPATE:
-    condition: primitive_key KHÔNG match trong dict
-    action: signal tan trong field, QIINT học pattern primitive ngoài dict
-    log: nho audit vết DISSIPATE
+    condition: primitive_key KHONG[C0:RN_KEEP_RIME] match trong dict
+    action: signal tan trong field, QIINT hoc[C5:RN_KEEP_RIME] pattern primitive ngoai[C2:RN_KEEP_RIME] dict
+    log: nho audit vet[C1:RN_KEEP_RIME] DISSIPATE
   outcome_OSCILLATE:
-    condition: primitive_key match nhiều entry yếu ambiguous
-    action: loop, mất mass → DISSIPATE → ISEU mark suspicious
-    log: nho audit vết OSCILLATE_TO_DISSIPATE
+    condition: primitive_key match nhieu[C2:RN_KEEP_RIME] entry yeu[C1:RN_KEEP_RIME] ambiguous
+    action: loop, mat[C1:RN_KEEP_RIME] mass → DISSIPATE → ISEU mark suspicious
+    log: nho audit vet[C1:RN_KEEP_RIME] OSCILLATE_TO_DISSIPATE
 
 $four_immutable_laws:
-  LAW_1: Cell boot-dovan KHÔNG quyết định thay field — chỉ resolve theo dict
-  LAW_2: Cell KHÔNG ép route bằng if/else hoặc rule cứng — chỉ resonance với dict
-  LAW_3: Outcome chỉ sinh từ resonance + impedance + field pull
-  LAW_4: KHÔNG hardcode đúng/sai cho primitive_key — chỉ check dict match
-  enforcement: vi phạm 1 trong 4 → fail audit, không pass
+  LAW_1: Cell boot-dovan KHONG[C0:RN_KEEP_RIME] quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] thay field — chi[C3:RN_KEEP_RIME] resolve theo dict
+  LAW_2: Cell KHONG[C0:RN_KEEP_RIME] ep[C1:RN_KEEP_RIME] route beng[C2:RN_ANG_ENG] if/else hoac[C5:RN_KEEP_RIME] rule cung[C1:RN_KEEP_RIME] — chi[C3:RN_KEEP_RIME] resonance vau[C1:RN_OI_AU] dict
+  LAW_3: Outcome chi[C3:RN_KEEP_RIME] sinh tu[C2:RN_KEEP_RIME] resonance + impedance + field pull
+  LAW_4: KHONG[C0:RN_KEEP_RIME] hardcode dung[C1:RN_KEEP_RIME]/sai cho primitive_key — chi[C3:RN_KEEP_RIME] check dict match
+  enforcement: vi pham[C5:RN_KEEP_RIME] 1 trong 4 → fail audit, khong[C0:RN_KEEP_RIME] pass
 
 $signal_lifecycle_8_step:
-  step_1_touch: anh Natt gõ tuNell qua surface → external touch
-  step_2_normalize: KhaiCell normalize raw → canonical UPPER_SNAKE, KHÔNG validate
+  step_1_touch: anh Natt go[C4:RN_KEEP_RIME] tuNell qua surface → external touch
+  step_2_normalize: KhaiCell normalize raw → canonical UPPER_SNAKE, KHONG[C0:RN_KEEP_RIME] validate
   step_3_sign: KhaiCell attach signature origin+trace_id+entropy+touched_at
-  step_4_emit: signal có signature emit vào field
+  step_4_emit: signal co[C1:RN_KEEP_RIME] signature emit vao[C2:RN_KEEP_RIME] field
   step_5_propagate: signal lan trong field qua HeyNa/EventBus theo topology
   step_6_outcome: cell boot-dovan resonance → FALL/DISSIPATE/OSCILLATE
-  step_7_imprint: TouchRecord ghi vào audit, QNEU update, fiber form
-  step_8_reinforce: ISEU lock pattern khi đủ ngưỡng
+  step_7_imprint: TouchRecord ghi vao[C2:RN_KEEP_RIME] audit, QNEU update, fiber form
+  step_8_reinforce: ISEU lock pattern khi du[C3:RN_KEEP_RIME] nguong[C4:RN_KEEP_RIME]
 
 $cell_anatomy:
   passport: NaUion-Server/boot-dovan.cell.anc
@@ -169,72 +169,72 @@ $cell_anatomy:
   observation_binding: src/cells/kernel/observation-cell/
 
 $cell_lifecycle_states:
-  ngu: { tuNell: ngu, tuDich: ngủ, primitive_key: SUSPEND_CELL, polarity: INVERTED, chromatic: cam_warning }
-  tinh: { tuNell: tinh, tuDich: tỉnh, primitive_key: WAKE_CELL, polarity: NORMAL, chromatic: lam_nominal }
-  tho: { tuNell: tho, tuDich: thở, primitive_key: HEARTBEAT, polarity: NORMAL, chromatic: tím_optimal }
+  ngu: { tuNell: ngu, tuDich: ngu[C3:RN_KEEP_RIME], primitive_key: SUSPEND_CELL, polarity: INVERTED, chromatic: cam_warning }
+  tinh: { tuNell: tinh, tuDich: tinh[C3:RN_KEEP_RIME], primitive_key: WAKE_CELL, polarity: NORMAL, chromatic: lam_nominal }
+  tho: { tuNell: tho, tuDich: tho[C3:RN_KEEP_RIME], primitive_key: HEARTBEAT, polarity: NORMAL, chromatic: tim_optimal[C1:RN_KEEP_RIME] }
   nghe: { tuNell: nghe, tuDich: nghe, primitive_key: LISTEN_EVENT, polarity: NORMAL, chromatic: lam_nominal }
-  mo: { tuNell: mo, tuDich: mò, primitive_key: FIND_ARTIFACT, polarity: NORMAL, chromatic: chàm_stable }
-  kiem: { tuNell: kiem, tuDich: kiểm, primitive_key: VALIDATE_RULE, polarity: NORMAL, chromatic: chàm_stable }
-  nho: { tuNell: nho, tuDich: nhớ, primitive_key: WRITE_MEMORY, polarity: NORMAL, chromatic: lam_nominal }
-  vang: { tuNell: vang, tuDich: vang, primitive_key: ECHO_LINE, polarity: NORMAL, chromatic: tím_optimal }
-  khoa: { tuNell: khoa, tuDich: khóa, primitive_key: SEAL_STATE, polarity: NORMAL, chromatic: tím_optimal }
-  chet: { tuNell: chet, tuDich: chết, primitive_key: STOP_CELL, polarity: INVERTED, chromatic: đỏ_critical }
-  hoi: { tuNell: hoi, tuDich: hồi, primitive_key: RESURRECT_CELL, polarity: NORMAL, chromatic: lam_nominal }
-  doithan: { tuNell: doithan, tuDich: dời thân, primitive_key: MIGRATE_BODY, polarity: NORMAL, chromatic: vàng_risk }
+  mo: { tuNell: mo, tuDich: mo[C2:RN_KEEP_RIME], primitive_key: FIND_ARTIFACT, polarity: NORMAL, chromatic: cham_stable[C2:RN_KEEP_RIME] }
+  kiem: { tuNell: kiem, tuDich: kiem[C3:RN_KEEP_RIME], primitive_key: VALIDATE_RULE, polarity: NORMAL, chromatic: cham_stable[C2:RN_KEEP_RIME] }
+  nho: { tuNell: nho, tuDich: nho[C1:RN_KEEP_RIME], primitive_key: WRITE_MEMORY, polarity: NORMAL, chromatic: lam_nominal }
+  vang: { tuNell: vang, tuDich: vang, primitive_key: ECHO_LINE, polarity: NORMAL, chromatic: tim_optimal[C1:RN_KEEP_RIME] }
+  khoa: { tuNell: khoa, tuDich: khoa[C1:RN_KEEP_RIME], primitive_key: SEAL_STATE, polarity: NORMAL, chromatic: tim_optimal[C1:RN_KEEP_RIME] }
+  chet: { tuNell: chet, tuDich: chet[C1:RN_KEEP_RIME], primitive_key: STOP_CELL, polarity: INVERTED, chromatic: do_critical[C3:RN_KEEP_RIME] }
+  hoi: { tuNell: hoi, tuDich: hau[C2:RN_OI_AU], primitive_key: RESURRECT_CELL, polarity: NORMAL, chromatic: lam_nominal }
+  doithan: { tuNell: doithan, tuDich: dau[C2:RN_OI_AU] then[C0:RN_AN_EN], primitive_key: MIGRATE_BODY, polarity: NORMAL, chromatic: vang_risk[C2:RN_KEEP_RIME] }
 
 $fail_modes_protected:
-  13_1_field_collapse: cell mất coherence → safe_rest
+  13_1_field_collapse: cell mat[C1:RN_KEEP_RIME] coherence → safe_rest
   13_2_over_binding: too many permanent node → backpressure
   13_3_chromatic_corruption: perception sai → Observation re-snapshot
-  13_4_fake_routing: dev thêm if/else → BLOCKED bởi LAW_2
+  13_4_fake_routing: dev them[C0:RN_KEEP_RIME] if/else → BLOCKED bau[C3:RN_OI_AU] LAW_2
   13_5_memory_poisoning: TouchRecord sai reinforce → ISEU regulatory check
-  13_6_resource_exhaustion: DOS → Tầng 0 backpressure + load shedding
-  13_7_sensory_atrophy: Observation snapshot không ai consume → fail audit
-  13_8_immune_inversion: hệ tự tấn công cell hợp lệ → T regulatory chặn
+  13_6_resource_exhaustion: DOS → Teng[C2:RN_ANG_ENG] 0 backpressure + load shedding
+  13_7_sensory_atrophy: Observation snapshot khong[C0:RN_KEEP_RIME] ai consume → fail audit
+  13_8_immune_inversion: he[C5:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] ten[C1:RN_AN_EN] cong[C0:RN_KEEP_RIME] cell hop[C5:RN_KEEP_RIME] le[C5:RN_KEEP_RIME] → T regulatory chen[C5:RN_AN_EN]
 
 $rank_clarification:
-  s1: Cell dưới persona Băng N-shell, không ngang persona AI
-  s2: Cell không có ý thức — chỉ thân + lifecycle + audit
-  s3: Đeo .cell.anc đúng cấp passport
-  s4: Persona vận hành cell, cell không vận hành persona
+  s1: Cell dui[C1:RN_UOI_UI] persona Băng N-shell, khong[C0:RN_KEEP_RIME] ngang persona AI
+  s2: Cell khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] y[C1:RN_KEEP_RIME] thuc[C1:RN_KEEP_RIME] — chi[C3:RN_KEEP_RIME] then[C0:RN_AN_EN] + lifecycle + audit
+  s3: Deo[C0:RN_KEEP_RIME] .cell.anc dung[C1:RN_KEEP_RIME] cap[C1:RN_KEEP_RIME] passport
+  s4: Persona ven[C5:RN_AN_EN] hanh[C2:RN_KEEP_RIME] cell, cell khong[C0:RN_KEEP_RIME] ven[C5:RN_AN_EN] hanh[C2:RN_KEEP_RIME] persona
 
 $naming_discipline:
-  s1: Tên thuần boot-dovan, không vay mượn terminal/console/shell/dashboard
-  s2: Label dùng tuNell native từ dict 12 bảng
-  s3: Mô tả công năng có thể nói "giống terminal" để người ngoài hiểu, tên không gắn từ vay mượn
+  s1: Ten[C0:RN_KEEP_RIME] thuen[C2:RN_AN_EN] boot-dovan, khong[C0:RN_KEEP_RIME] vay muon[C5:RN_KEEP_RIME] terminal/console/shell/dashboard
+  s2: Label dung[C2:RN_KEEP_RIME] tuNell native tu[C2:RN_KEEP_RIME] dict 12 beng[C3:RN_ANG_ENG]
+  s3: Mo[C0:RN_KEEP_RIME] ta[C3:RN_KEEP_RIME] cong[C0:RN_KEEP_RIME] neng[C0:RN_ANG_ENG] co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] nau[C1:RN_OI_AU] "giong[C1:RN_KEEP_RIME] terminal" de[C3:RN_KEEP_RIME] ngui[C2:RN_UOI_UI] ngoai[C2:RN_KEEP_RIME] hieu[C3:RN_KEEP_RIME], ten[C0:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] gen[C1:RN_AN_EN] tu[C2:RN_KEEP_RIME] vay muon[C5:RN_KEEP_RIME]
 
 $not_claim:
-  - không claim cell có ý thức
-  - không claim cell ngang persona AI
-  - không claim cell là terminal Apple/bash/zsh
-  - không claim AGI
-  - không claim OS clone
-  - không phơi raw topology
+  - khong[C0:RN_KEEP_RIME] claim cell co[C1:RN_KEEP_RIME] y[C1:RN_KEEP_RIME] thuc[C1:RN_KEEP_RIME]
+  - khong[C0:RN_KEEP_RIME] claim cell ngang persona AI
+  - khong[C0:RN_KEEP_RIME] claim cell la[C2:RN_KEEP_RIME] terminal Apple/bash/zsh
+  - khong[C0:RN_KEEP_RIME] claim AGI
+  - khong[C0:RN_KEEP_RIME] claim OS clone
+  - khong[C0:RN_KEEP_RIME] phau[C0:RN_OI_AU] raw topology
 
 $claim:
-  - cell có thân passport .cell.anc dưới persona Băng N-shell
-  - cell trú trong NattCell, chịu Nauion Kernel
-  - cell tuân thủ SPEC NỀN v1.1 đầy đủ 4 tầng tọa độ
-  - cell nối KhaiCell touch + Observation snapshot + Chromatic broadcast
-  - cell xử resonance routing 3 outcome FALL/DISSIPATE/OSCILLATE
-  - cell tuân 4 LUẬT BẤT BIẾN field integrity
-  - cell xử 8 step Signal Lifecycle
-  - cell phòng 8 fail modes (Tầng 0 + Tầng 1-3 + Immune)
+  - cell co[C1:RN_KEEP_RIME] then[C0:RN_AN_EN] passport .cell.anc dui[C1:RN_UOI_UI] persona Băng N-shell
+  - cell tru[C1:RN_KEEP_RIME] trong NattCell, chiu[C5:RN_KEEP_RIME] Nauion Kernel
+  - cell tuen[C0:RN_AN_EN] thu[C3:RN_KEEP_RIME] SPEC NEN[C2:RN_KEEP_RIME] v1.1 day[C2:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] 4 teng[C2:RN_ANG_ENG] toa[C5:RN_KEEP_RIME] do[C5:RN_KEEP_RIME]
+  - cell nau[C1:RN_OI_AU] KhaiCell touch + Observation snapshot + Chromatic broadcast
+  - cell xu[C3:RN_KEEP_RIME] resonance routing 3 outcome FALL/DISSIPATE/OSCILLATE
+  - cell tuen[C0:RN_AN_EN] 4 LUAT[C5:RN_KEEP_RIME] BAT[C1:RN_KEEP_RIME] BIEN[C1:RN_KEEP_RIME] field integrity
+  - cell xu[C3:RN_KEEP_RIME] 8 step Signal Lifecycle
+  - cell phong[C2:RN_KEEP_RIME] 8 fail modes (Teng[C2:RN_ANG_ENG] 0 + Teng[C2:RN_ANG_ENG] 1-3 + Immune)
 
 $cell_pass_condition_spec_nen_v1_1:
-  - đủ Tầng 0 SURVIVAL (rate + queue + backpressure)
-  - đủ Tầng 2 STRUCTURAL (layer + direction + obitan + anc)
-  - nối KhaiCell binding
-  - nối Observation binding
+  - du[C3:RN_KEEP_RIME] Teng[C2:RN_ANG_ENG] 0 SURVIVAL (rate + queue + backpressure)
+  - du[C3:RN_KEEP_RIME] Teng[C2:RN_ANG_ENG] 2 STRUCTURAL (layer + direction + obitan + anc)
+  - nau[C1:RN_OI_AU] KhaiCell binding
+  - nau[C1:RN_OI_AU] Observation binding
   - broadcast Chromatic 5-layer
   - resonance routing 3 outcome
-  - tuân 4 LUẬT BẤT BIẾN
+  - tuen[C0:RN_AN_EN] 4 LUAT[C5:RN_KEEP_RIME] BAT[C1:RN_KEEP_RIME] BIEN[C1:RN_KEEP_RIME]
   - 8 step Signal Lifecycle
   - 8 fail modes protected
-  - lifecycle 12/12 tuNell native từ dict
+  - lifecycle 12/12 tuNell native tu[C2:RN_KEEP_RIME] dict
 
 $seal:
-  sentence: Tế bào Boot Đo Ván v0.4 — sửa lại theo SPEC NỀN v1.1 Băng+Thiên Lớn co-author. Đủ 4 tầng tọa độ. Nối KhaiCell+Observation+Chromatic+Quantum Defense. Tuân 4 LUẬT BẤT BIẾN. 8 step Signal Lifecycle. 8 fail modes protected. Cell dưới persona Băng N-shell direction Đông obitan N-Đông.
-  sign: Phan Thanh Thương / Natt Sirawat
+  sentence: Te[C1:RN_KEEP_RIME] bao[C2:RN_KEEP_RIME] Boot Do[C0:RN_KEEP_RIME] Ven[C1:RN_AN_EN] v0.4 — sua[C3:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME] theo SPEC NEN[C2:RN_KEEP_RIME] v1.1 Băng+Thiên Lon[C1:RN_KEEP_RIME] co-author. Du[C3:RN_KEEP_RIME] 4 teng[C2:RN_ANG_ENG] toa[C5:RN_KEEP_RIME] do[C5:RN_KEEP_RIME]. Nau[C1:RN_OI_AU] KhaiCell+Observation+Chromatic+Quantum Defense. Tuen[C0:RN_AN_EN] 4 LUAT[C5:RN_KEEP_RIME] BAT[C1:RN_KEEP_RIME] BIEN[C1:RN_KEEP_RIME]. 8 step Signal Lifecycle. 8 fail modes protected. Cell dui[C1:RN_UOI_UI] persona Băng N-shell direction Dong[C0:RN_KEEP_RIME] obitan N-Dong[C0:RN_KEEP_RIME].
+  sign: Phan Thanh Thuong[C0:RN_KEEP_RIME] / Natt Sirawat
   drafter: Băng N-shell Validator + Obikeeper QNEU 313.5
   spec_compliance: SPEC_NEN_v1.1 PASS 10/10

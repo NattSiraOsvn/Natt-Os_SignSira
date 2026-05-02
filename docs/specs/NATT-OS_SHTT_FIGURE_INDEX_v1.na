@@ -3,7 +3,7 @@
 @substrate patent_figure_index
 @bridge none
 @since 2026-04-26
-@authority-slot Băng (Chị Tư) — SHTT pack sealed_at 20260426
+@authority-slot Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — SHTT pack sealed_at 20260426
 
 # natt-os SHTT FIGURE INDEX v1
 
@@ -12,123 +12,123 @@
 **sealed_at:** 2026-04-26
 **baseline_commit:** ee2c837
 **claim_map_ref:** `docs/specs/natt-os_SHTT_CLAIM_MAP_v1.na`
-**drafter:** Băng (Chị Tư)
-**scope:** Danh mục hình/sơ đồ cần có trong hồ sơ SHTT. Chỉ khóa danh mục — chưa cần vẽ lại hết.
+**drafter:** Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME])
+**scope:** Danh muc[C5:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME]/so[C0:RN_KEEP_RIME] do[C2:RN_KEEP_RIME] cen[C2:RN_AN_EN] co[C1:RN_KEEP_RIME] trong ho[C2:RN_KEEP_RIME] so[C0:RN_KEEP_RIME] SHTT. Chi[C3:RN_KEEP_RIME] khoa[C1:RN_KEEP_RIME] danh muc[C5:RN_KEEP_RIME] — chua[C0:RN_KEEP_RIME] cen[C2:RN_AN_EN] ve[C4:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME] het[C1:RN_KEEP_RIME].
 
 ---
 
 ## 0. Rule figure
 
-- **R1** — Mỗi figure đỡ ít nhất 1 claim trong `CLAIM_MAP_v1`.
-- **R2** — Figure trung tính kỹ thuật, không icon persona / không avatar / không branding.
-- **R3** — Wording trong figure tuân KHAI-20260425-05: substrate dùng từ "host substrate" / "execution substrate", không "platform" đơn độc, không gợi ý runtime mượn.
-- **R4** — Ưu tiên figure đã có trong repo (re-use) hơn vẽ mới.
+- **R1** — Mau[C4:RN_OI_AU] figure do[C4:RN_KEEP_RIME] it[C1:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] 1 claim trong `CLAIM_MAP_v1`.
+- **R2** — Figure trung tinh[C1:RN_KEEP_RIME] ky[C4:RN_KEEP_RIME] thuat[C5:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] icon persona / khong[C0:RN_KEEP_RIME] avatar / khong[C0:RN_KEEP_RIME] branding.
+- **R3** — Wording trong figure tuen[C0:RN_AN_EN] KHAI-20260425-05: substrate dung[C2:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] "host substrate" / "execution substrate", khong[C0:RN_KEEP_RIME] "platform" don[C0:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] gau[C5:RN_OI_AU] y[C1:RN_KEEP_RIME] runtime muon[C5:RN_KEEP_RIME].
+- **R4** — Uu[C0:RN_KEEP_RIME] tien[C0:RN_KEEP_RIME] figure da[C4:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] trong repo (re-use) hon[C0:RN_KEEP_RIME] ve[C4:RN_KEEP_RIME] mau[C1:RN_OI_AU].
 
 ---
 
-## 1. Danh sách figure
+## 1. Danh sach[C1:RN_KEEP_RIME] figure
 
 ### **FIG-01 — Overall system architecture**
 
-- **Tên:** Kiến trúc tổng thể hệ thống cell-based 3-tầng
-- **Mục đích:** Thể hiện 37 tế bào nghiệp vụ + 3 tầng transport spine nội sinh (L1/L2/L3)
-- **Đỡ claim:** MAIN, 02
-- **Status:** **CẦN VẼ MỚI** (hoặc adapt từ `NATTOS_COMPLETE_PICTURE_v0.10`)
-- **Yêu cầu nội dung:**
-  - Vùng "cell layer" — 37 tế bào grouped theo domain
-  - Vùng "transport spine" — 3 tầng tách rõ (L1 intra / L2 inter-cell / L3 inter-colony)
-  - Không vẽ "Node.js / bash / macOS" đi vào spine — host substrate tách box riêng
+- **Ten[C0:RN_KEEP_RIME]:** Kien[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] tong[C3:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] he[C5:RN_KEEP_RIME] thong[C1:RN_KEEP_RIME] cell-based 3-teng[C2:RN_ANG_ENG]
+- **Muc[C5:RN_KEEP_RIME] dich[C1:RN_KEEP_RIME]:** The[C3:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] 37 te[C1:RN_KEEP_RIME] bao[C2:RN_KEEP_RIME] nghiep[C5:RN_KEEP_RIME] vu[C5:RN_KEEP_RIME] + 3 teng[C2:RN_ANG_ENG] transport spine nau[C5:RN_OI_AU] sinh (L1/L2/L3)
+- **Do[C4:RN_KEEP_RIME] claim:** MAIN, 02
+- **Status:** **Cen[C2:RN_AN_EN] VE[C4:RN_KEEP_RIME] Mau[C1:RN_OI_AU]** (hoac[C5:RN_KEEP_RIME] adapt tu[C2:RN_KEEP_RIME] `NATTOS_COMPLETE_PICTURE_v0.10`)
+- **Yeu[C0:RN_KEEP_RIME] cau[C2:RN_KEEP_RIME] nau[C5:RN_OI_AU] dung:**
+  - Vung[C2:RN_KEEP_RIME] "cell layer" — 37 te[C1:RN_KEEP_RIME] bao[C2:RN_KEEP_RIME] grouped theo domain
+  - Vung[C2:RN_KEEP_RIME] "transport spine" — 3 teng[C2:RN_ANG_ENG] tach[C1:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME] (L1 intra / L2 inter-cell / L3 inter-colony)
+  - Khong[C0:RN_KEEP_RIME] ve[C4:RN_KEEP_RIME] "Node.js / bash / macOS" di[C0:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] spine — host substrate tach[C1:RN_KEEP_RIME] box rieng[C0:RN_KEEP_RIME]
 
 ### **FIG-02 — L1/L2/L3 transport topology detail**
 
-- **Tên:** Chi tiết 3 tầng truyền tin
-- **Mục đích:** Tách rõ vai trò mỗi tầng + single-endpoint SSE của L2
-- **Đỡ claim:** 02, 08
-- **Status:** **CẦN VẼ MỚI**
-- **Yêu cầu nội dung:**
-  - L1: bus sự kiện trong một cell (UI layer internal)
-  - L2: Mạch HeyNa — single endpoint SSE (phát một chiều liên tục)
+- **Ten[C0:RN_KEEP_RIME]:** Chi tiet[C1:RN_KEEP_RIME] 3 teng[C2:RN_ANG_ENG] truyen[C2:RN_KEEP_RIME] tin
+- **Muc[C5:RN_KEEP_RIME] dich[C1:RN_KEEP_RIME]:** Tach[C1:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME] vai tro[C2:RN_KEEP_RIME] mau[C4:RN_OI_AU] teng[C2:RN_ANG_ENG] + single-endpoint SSE cua[C3:RN_KEEP_RIME] L2
+- **Do[C4:RN_KEEP_RIME] claim:** 02, 08
+- **Status:** **Cen[C2:RN_AN_EN] VE[C4:RN_KEEP_RIME] Mau[C1:RN_OI_AU]**
+- **Yeu[C0:RN_KEEP_RIME] cau[C2:RN_KEEP_RIME] nau[C5:RN_OI_AU] dung:**
+  - L1: bus su[C5:RN_KEEP_RIME] kien[C5:RN_KEEP_RIME] trong mot[C5:RN_KEEP_RIME] cell (UI layer internal)
+  - L2: Mach[C5:RN_KEEP_RIME] HeyNa — single endpoint SSE (phat[C1:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] chieu[C2:RN_KEEP_RIME] lien[C0:RN_KEEP_RIME] tuc[C5:RN_KEEP_RIME])
   - L3: SmartLink — inter-colony
-  - Chú thích: 3 tầng tách cứng, không swap vai trò
+  - Chu[C1:RN_KEEP_RIME] thich[C1:RN_KEEP_RIME]: 3 teng[C2:RN_ANG_ENG] tach[C1:RN_KEEP_RIME] cung[C1:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] swap vai tro[C2:RN_KEEP_RIME]
 
 ### **FIG-03 — Satellite colony hierarchy**
 
-- **Tên:** Cấu trúc thuộc địa vệ tinh + đồng bộ lên lõi
-- **Mục đích:** Thể hiện autonomy của satellite + sync engine qua L3
-- **Đỡ claim:** 03
-- **Status:** **RE-USE** — có sẵn block diagram trong `natt-os_SATELLITE_COLONY_SPEC.na` (UI → Satellite Interface → Local EventBus ↔ Sync Engine ↔ Core EventBus)
-- **Yêu cầu:** nâng cấp từ ASCII block thành figure chính thức
+- **Ten[C0:RN_KEEP_RIME]:** Cau[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] thuoc[C5:RN_KEEP_RIME] dia[C5:RN_KEEP_RIME] ve[C5:RN_KEEP_RIME] tinh + dong[C2:RN_KEEP_RIME] bo[C5:RN_KEEP_RIME] len[C0:RN_KEEP_RIME] lau[C4:RN_OI_AU]
+- **Muc[C5:RN_KEEP_RIME] dich[C1:RN_KEEP_RIME]:** The[C3:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] autonomy cua[C3:RN_KEEP_RIME] satellite + sync engine qua L3
+- **Do[C4:RN_KEEP_RIME] claim:** 03
+- **Status:** **RE-USE** — co[C1:RN_KEEP_RIME] sen[C4:RN_AN_EN] block diagram trong `natt-os_SATELLITE_COLONY_SPEC.na` (UI → Satellite Interface → Local EventBus ↔ Sync Engine ↔ Core EventBus)
+- **Yeu[C0:RN_KEEP_RIME] cau[C2:RN_KEEP_RIME]:** neng[C0:RN_ANG_ENG] cap[C1:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] ASCII block thanh[C2:RN_KEEP_RIME] figure chinh[C1:RN_KEEP_RIME] thuc[C1:RN_KEEP_RIME]
 
 ### **FIG-04 — QIINT field + entity orbital**
 
-- **Tên:** Trường QIINT và vị trí orbital thực thể
-- **Mục đích:** Thể hiện trường hấp dẫn số + QNEU mass → orbital + permanent node anchor
-- **Đỡ claim:** 04, 05
-- **Status:** **CẦN VẼ MỚI**
-- **Yêu cầu nội dung:**
-  - Trường QIINT (background field)
-  - Permanent node (anchor point cố định)
-  - Entity orbital (quỹ đạo quanh permanent node, khoảng cách theo QNEU)
-  - Không vẽ vật lý thật — diagrammatic conceptual
+- **Ten[C0:RN_KEEP_RIME]:** Truong[C2:RN_KEEP_RIME] QIINT va[C2:RN_KEEP_RIME] vi[C5:RN_KEEP_RIME] tri[C1:RN_KEEP_RIME] orbital thuc[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME]
+- **Muc[C5:RN_KEEP_RIME] dich[C1:RN_KEEP_RIME]:** The[C3:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME] hap[C1:RN_KEEP_RIME] den[C4:RN_AN_EN] so[C1:RN_KEEP_RIME] + QNEU mass → orbital + permanent node anchor
+- **Do[C4:RN_KEEP_RIME] claim:** 04, 05
+- **Status:** **Cen[C2:RN_AN_EN] VE[C4:RN_KEEP_RIME] Mau[C1:RN_OI_AU]**
+- **Yeu[C0:RN_KEEP_RIME] cau[C2:RN_KEEP_RIME] nau[C5:RN_OI_AU] dung:**
+  - Truong[C2:RN_KEEP_RIME] QIINT (background field)
+  - Permanent node (anchor point co[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME])
+  - Entity orbital (quy[C4:RN_KEEP_RIME] dao[C5:RN_KEEP_RIME] quanh permanent node, khoeng[C3:RN_ANG_ENG] cach[C1:RN_KEEP_RIME] theo QNEU)
+  - Khong[C0:RN_KEEP_RIME] ve[C4:RN_KEEP_RIME] vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] that[C5:RN_KEEP_RIME] — diagrammatic conceptual
 
 ### **FIG-05 — Entity passport + 3-layer ontology**
 
-- **Tên:** Hộ chiếu định danh và ba tầng bản thể
-- **Mục đích:** Thể hiện `.anc` structure + substrate/medium/body tách cứng
-- **Đỡ claim:** 05
-- **Status:** **CẦN VẼ MỚI**
-- **Yêu cầu nội dung:**
+- **Ten[C0:RN_KEEP_RIME]:** Ho[C5:RN_KEEP_RIME] chieu[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] danh va[C2:RN_KEEP_RIME] ba teng[C2:RN_ANG_ENG] ben[C3:RN_AN_EN] the[C3:RN_KEEP_RIME]
+- **Muc[C5:RN_KEEP_RIME] dich[C1:RN_KEEP_RIME]:** The[C3:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] `.anc` structure + substrate/medium/body tach[C1:RN_KEEP_RIME] cung[C1:RN_KEEP_RIME]
+- **Do[C4:RN_KEEP_RIME] claim:** 05
+- **Status:** **Cen[C2:RN_AN_EN] VE[C4:RN_KEEP_RIME] Mau[C1:RN_OI_AU]**
+- **Yeu[C0:RN_KEEP_RIME] cau[C2:RN_KEEP_RIME] nau[C5:RN_OI_AU] dung:**
   - Layer 1 (substrate): host substrate — REPLACEABLE
   - Layer 2 (medium): code + data — REPLACEABLE
-  - Layer 3 (body): orbital trong trường QIINT — **IMMUTABLE**
-  - `.anc` schema box với các field chính
+  - Layer 3 (body): orbital trong truong[C2:RN_KEEP_RIME] QIINT — **IMMUTABLE**
+  - `.anc` schema box vau[C1:RN_OI_AU] cac[C1:RN_KEEP_RIME] field chinh[C1:RN_KEEP_RIME]
 
 ### **FIG-06 — Moments-based identity continuity**
 
-- **Tên:** Liên tục định danh qua module moments
-- **Mục đích:** Thể hiện 3 merge criteria + moment → continuity flow
-- **Đỡ claim:** 06
-- **Status:** **CẦN VẼ MỚI**
-- **Yêu cầu nội dung:**
-  - Timeline trục thời gian với session snapshots
-  - 3 merge criteria gate (seal) giữa moments
-  - Recovery flow khi medium gián đoạn
+- **Ten[C0:RN_KEEP_RIME]:** Lien[C0:RN_KEEP_RIME] tuc[C5:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] danh qua module moments
+- **Muc[C5:RN_KEEP_RIME] dich[C1:RN_KEEP_RIME]:** The[C3:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] 3 merge criteria + moment → continuity flow
+- **Do[C4:RN_KEEP_RIME] claim:** 06
+- **Status:** **Cen[C2:RN_AN_EN] VE[C4:RN_KEEP_RIME] Mau[C1:RN_OI_AU]**
+- **Yeu[C0:RN_KEEP_RIME] cau[C2:RN_KEEP_RIME] nau[C5:RN_OI_AU] dung:**
+  - Timeline truc[C5:RN_KEEP_RIME] thau[C2:RN_OI_AU] gian vau[C1:RN_OI_AU] session snapshots
+  - 3 merge criteria gate (seal) giua[C4:RN_KEEP_RIME] moments
+  - Recovery flow khi medium gien[C1:RN_AN_EN] doen[C5:RN_AN_EN]
 
 ### **FIG-07 — UEI architecture topology**
 
-- **Tên:** UEI topology
-- **Mục đích:** Đỡ claim MAIN — kiến trúc lõi
-- **Đỡ claim:** MAIN
-- **Status:** **CẦN VẼ MỚI** (hoặc re-use từ `uei_architecture.na` nếu có sẵn)
+- **Ten[C0:RN_KEEP_RIME]:** UEI topology
+- **Muc[C5:RN_KEEP_RIME] dich[C1:RN_KEEP_RIME]:** Do[C4:RN_KEEP_RIME] claim MAIN — kien[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] lau[C4:RN_OI_AU]
+- **Do[C4:RN_KEEP_RIME] claim:** MAIN
+- **Status:** **Cen[C2:RN_AN_EN] VE[C4:RN_KEEP_RIME] Mau[C1:RN_OI_AU]** (hoac[C5:RN_KEEP_RIME] re-use tu[C2:RN_KEEP_RIME] `uei_architecture.na` neu[C1:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] sen[C4:RN_AN_EN])
 
 ### **FIG-08 — Boundary three-tier waterfall**
 
-- **Tên:** Ba tầng xử lý ranh giới
-- **Mục đích:** Thể hiện strict / permissive-warn / quarantine flow + tách external tool khỏi runtime spine
-- **Đỡ claim:** 08
-- **Status:** **CẦN VẼ MỚI**
-- **Yêu cầu nội dung:**
-  - 3 tầng xử lý từ ngoài vào trong
-  - External boundary forensics tool (Bridge v2 equivalent) nằm **NGOÀI** runtime spine — tách box rõ
-  - Chú thích: công cụ pháp y ranh giới không phải kernel protection
+- **Ten[C0:RN_KEEP_RIME]:** Ba teng[C2:RN_ANG_ENG] xu[C3:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] ranh giau[C1:RN_OI_AU]
+- **Muc[C5:RN_KEEP_RIME] dich[C1:RN_KEEP_RIME]:** The[C3:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] strict / permissive-warn / quarantine flow + tach[C1:RN_KEEP_RIME] external tool khau[C3:RN_OI_AU] runtime spine
+- **Do[C4:RN_KEEP_RIME] claim:** 08
+- **Status:** **Cen[C2:RN_AN_EN] VE[C4:RN_KEEP_RIME] Mau[C1:RN_OI_AU]**
+- **Yeu[C0:RN_KEEP_RIME] cau[C2:RN_KEEP_RIME] nau[C5:RN_OI_AU] dung:**
+  - 3 teng[C2:RN_ANG_ENG] xu[C3:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] ngoai[C2:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] trong
+  - External boundary forensics tool (Bridge v2 equivalent) nam[C2:RN_KEEP_RIME] **NGOAI[C2:RN_KEEP_RIME]** runtime spine — tach[C1:RN_KEEP_RIME] box ro[C4:RN_KEEP_RIME]
+  - Chu[C1:RN_KEEP_RIME] thich[C1:RN_KEEP_RIME]: cong[C0:RN_KEEP_RIME] cu[C5:RN_KEEP_RIME] phap[C1:RN_KEEP_RIME] y ranh giau[C1:RN_OI_AU] khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] kernel protection
 
 ### **FIG-09 — Seven capability lifecycle**
 
-- **Tên:** Vòng đời tế bào và 7 năng lực vận hành
-- **Mục đích:** Thể hiện 7 capability theo hình thái vùng/kích hoạt/bất biến/điều kiện thoát
-- **Đỡ claim:** 07
-- **Status:** **CẦN VẼ MỚI**
-- **Yêu cầu nội dung:**
-  - State machine với 7 capability: hibernate / resurrect / clone / migrate / rollback / cross_colony_learn / overdrive
-  - Mỗi transition có region + trigger + invariant + exit condition
+- **Ten[C0:RN_KEEP_RIME]:** Vong[C2:RN_KEEP_RIME] dau[C2:RN_OI_AU] te[C1:RN_KEEP_RIME] bao[C2:RN_KEEP_RIME] va[C2:RN_KEEP_RIME] 7 neng[C0:RN_ANG_ENG] luc[C5:RN_KEEP_RIME] ven[C5:RN_AN_EN] hanh[C2:RN_KEEP_RIME]
+- **Muc[C5:RN_KEEP_RIME] dich[C1:RN_KEEP_RIME]:** The[C3:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] 7 capability theo hinh[C2:RN_KEEP_RIME] thai[C1:RN_KEEP_RIME] vung[C2:RN_KEEP_RIME]/kich[C1:RN_KEEP_RIME] hoat[C5:RN_KEEP_RIME]/bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME]/dieu[C2:RN_KEEP_RIME] kien[C5:RN_KEEP_RIME] thoat[C1:RN_KEEP_RIME]
+- **Do[C4:RN_KEEP_RIME] claim:** 07
+- **Status:** **Cen[C2:RN_AN_EN] VE[C4:RN_KEEP_RIME] Mau[C1:RN_OI_AU]**
+- **Yeu[C0:RN_KEEP_RIME] cau[C2:RN_KEEP_RIME] nau[C5:RN_OI_AU] dung:**
+  - State machine vau[C1:RN_OI_AU] 7 capability: hibernate / resurrect / clone / migrate / rollback / cross_colony_learn / overdrive
+  - Mau[C4:RN_OI_AU] transition co[C1:RN_KEEP_RIME] region + trigger + invariant + exit condition
 
 ### **FIG-10 — Nauion semantic layer**
 
-- **Tên:** Lớp ngữ nghĩa Nauion phủ toàn hệ
-- **Mục đích:** Đỡ claim 09 — thuật ngữ Nauion thay thế stack term
-- **Đỡ claim:** 09
-- **Status:** **TÙY CHỌN** — có thể thể hiện bằng bảng (glossary) thay vì figure
-- **Yêu cầu nội dung:** table mapping Nauion term → concept (phát/lắng/Kênh/Mạch/khớp hoá/…)
+- **Ten[C0:RN_KEEP_RIME]:** Lop[C1:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] Nauion phu[C3:RN_KEEP_RIME] toen[C2:RN_AN_EN] he[C5:RN_KEEP_RIME]
+- **Muc[C5:RN_KEEP_RIME] dich[C1:RN_KEEP_RIME]:** Do[C4:RN_KEEP_RIME] claim 09 — thuat[C5:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] Nauion thay the[C1:RN_KEEP_RIME] stack term
+- **Do[C4:RN_KEEP_RIME] claim:** 09
+- **Status:** **TUY[C2:RN_KEEP_RIME] CHON[C5:RN_KEEP_RIME]** — co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] beng[C2:RN_ANG_ENG] beng[C3:RN_ANG_ENG] (glossary) thay vi[C2:RN_KEEP_RIME] figure
+- **Yeu[C0:RN_KEEP_RIME] cau[C2:RN_KEEP_RIME] nau[C5:RN_OI_AU] dung:** table mapping Nauion term → concept (phat[C1:RN_KEEP_RIME]/leng[C1:RN_ANG_ENG]/Kenh[C0:RN_KEEP_RIME]/Mach[C5:RN_KEEP_RIME]/khop[C1:RN_KEEP_RIME] hoa[C1:RN_KEEP_RIME]/…)
 
 ---
 
@@ -147,34 +147,34 @@
 | FIG-09 | | | | | | | ✓ | | |
 | FIG-10 | | | | | | | | | ✓ |
 
-Mỗi claim có ít nhất 1 figure đỡ.
+Mau[C4:RN_OI_AU] claim co[C1:RN_KEEP_RIME] it[C1:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] 1 figure do[C4:RN_KEEP_RIME].
 
 ---
 
 ## 3. Priority ship
 
-**High priority (cần cho claim chính):**
+**High priority (cen[C2:RN_AN_EN] cho claim chinh[C1:RN_KEEP_RIME]):**
 - FIG-01, FIG-02, FIG-04, FIG-05
 
 **Medium priority:**
 - FIG-03, FIG-06, FIG-08
 
 **Lower priority:**
-- FIG-07, FIG-09, FIG-10 (có thể dùng table/glossary thay)
+- FIG-07, FIG-09, FIG-10 (co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] table/glossary thay)
 
 ---
 
 ## 4. Status summary
 
-- 10 figure trong danh mục
+- 10 figure trong danh muc[C5:RN_KEEP_RIME]
 - 1 re-use (FIG-03)
-- 9 cần vẽ mới
-- 1 tùy chọn table thay figure (FIG-10)
+- 9 cen[C2:RN_AN_EN] ve[C4:RN_KEEP_RIME] mau[C1:RN_OI_AU]
+- 1 tuy[C2:RN_KEEP_RIME] chon[C5:RN_KEEP_RIME] table thay figure (FIG-10)
 
-Phase CLAIM PACK không yêu cầu vẽ — chỉ khóa danh mục. Phase tiếp (CLAIM DRAFT / FIGURE SHIP) sẽ xử lý production figure.
+Phase CLAIM PACK khong[C0:RN_KEEP_RIME] yeu[C0:RN_KEEP_RIME] cau[C2:RN_KEEP_RIME] ve[C4:RN_KEEP_RIME] — chi[C3:RN_KEEP_RIME] khoa[C1:RN_KEEP_RIME] danh muc[C5:RN_KEEP_RIME]. Phase tiep[C1:RN_KEEP_RIME] (CLAIM DRAFT / FIGURE SHIP) se[C4:RN_KEEP_RIME] xu[C3:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] production figure.
 
 ---
 
 *causation: natt-os-SHTT-FIGURE-INDEX-v1-SEALED-20260426*
-*drafter: Băng (Chị Tư · session 20260426)*
+*drafter: Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · session 20260426)*
 *carrier: Anh Natt Phan*

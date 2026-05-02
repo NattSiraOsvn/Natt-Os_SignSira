@@ -3,7 +3,7 @@
 @substrate wire_fragments
 @bridge none
 @since 2026-04-25
-@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+@authority-slot Phan Thanh Thuong[C0:RN_KEEP_RIME] Giao Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — 20260423
 
 # A.2 — MOMENTS WIRE + FRAGMENTS v0.1
 
@@ -75,9 +75,9 @@ CausationChainFragment = FragmentBase + {
 }
 
 note:
-  - target_causation là opaque string literal
-  - giá trị này phải match verbatim với MomentBase.causation của moment được tham chiếu
-  - không diễn giải nó như UUID, hash, hay typed identifier khác
+  - target_causation la[C2:RN_KEEP_RIME] opaque string literal
+  - gia[C1:RN_KEEP_RIME] tri[C5:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] match verbatim vau[C1:RN_OI_AU] MomentBase.causation cua[C3:RN_KEEP_RIME] moment duoc[C5:RN_KEEP_RIME] tham chieu[C1:RN_KEEP_RIME]
+  - khong[C0:RN_KEEP_RIME] dien[C4:RN_KEEP_RIME] giai[C3:RN_KEEP_RIME] no[C1:RN_KEEP_RIME] nhu[C0:RN_KEEP_RIME] UUID, hash, hay typed identifier khac[C1:RN_KEEP_RIME]
 
 BodyResponseFragment = FragmentBase + {
   fragment_kind: BODY_RESPONSE,

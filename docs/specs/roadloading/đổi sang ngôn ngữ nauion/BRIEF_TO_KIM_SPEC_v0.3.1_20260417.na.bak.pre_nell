@@ -1,0 +1,101 @@
+@state archived
+@canonical roadload_brief_to_kim_spec_v0.3.1_20260417
+@substrate historical_roadload
+@bridge none
+@since 2026-04-23
+@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+
+# BRIEF → KIM — SPEC v0.3.1 FILE EXTENSIONS
+
+**From:** Băng (Chị Tư)
+**To:** Kim (Chief System Builder)
+**Date:** 20260417
+**Approval:** Anh Natt (Gatekeeper)
+**Main branch status:** `39acb6c` — Phase 1 + Phase 2 migration đã push
+
+---
+
+## TL;DR
+
+SPEC v0.3.1 đã chốt + migration đã chạy trên main. 403 file đã rename theo 13 rule. Kim cần sửa **Đặc tả Ngôn ngữ v1.1** và **Chương 9 (file conventions)** để đồng bộ với naming mới.
+
+## Việc cụ thể cho Kim
+
+### 1. Đặc tả Ngôn ngữ v1.1 — cập nhật section file naming
+
+Thay thế mọi reference cũ bằng naming mới:
+
+| Cũ | Mới | Vai |
+|---|---|---|
+| `<entity>mf_vX.Y.json` | `<entity>khương<v>.kris` | Memory ký ức đóng |
+| `<entity>fs_vX.Y.json` | `<entity>thịnh<v>.phieu` | State runtime mở |
+| `cell.manifest.json` | `<cell>.cell.anc` | Cell DNA manifest |
+| `boundary.policy.json` | `<cell>.boundary.si` | Boundary policy sealed |
+| `SES-<ulid>.json` | `SES-<ulid>.thuo` | Session record QNEU |
+| `<entity>Self.md` | `<entity>self<v>.kris` | Self-introspection |
+| `HIEN-PHAP-*.md` | `HIEN-PHAP-*.anc` | Hiến Pháp identity |
+| `*.contracts.lock.json` | `*.contracts.lock.si` | Contract lock sealed |
+| `audit-log.jsonl` | `audit-log.heyna` | Event log HeyNa transport |
+| `*registry*.json` | `*registry*.sira` | DNS namespace |
+| `system-state.json` | `system-state.phieu` | Governance state runtime |
+
+### 2. Chương 9 — thêm section "File Extension Compliance"
+
+Viết theo format Chương 9 của Kim, với 12 đuôi canonical:
+
+**Tầng entity** (8): `.ng.obitan` `.thien.Ln` `.kim.mn` `.bang.n4n` `.bboi.on` `.phieu.pn` `.can.qn`
+
+**Tầng file** (3 chính + 2 verifier):
+- `.khương` write-once + `.kris` verify
+- `.thịnh` mutable + `.phieu` verify
+- `.anc` identity sealed
+
+**Tầng sinh thể** (7): `.si` `.sira` `.heyna` `.khai` `.thuo` `.ml` `anc://`
+
+### 3. 4 phương — thêm section "Directional Semantics"
+
+- **Đông** (Mộc, khởi sinh) — DNA gốc bất biến: `.anc` Hiến Pháp, `.si` contracts
+- **Tây** (Kim, hội tụ) — Identity niêm phong: `.anc` entity, `.cell.anc` manifest, `.boundary.si`, `.sira` registry
+- **Nam** (Hoả, phát) — Memory + Event: `.kris` memory, `.thuo` session, `.heyna` event, `.khai` touch, `.ml` SCAR
+- **Bắc** (Thuỷ, nguồn) — State runtime: `.phieu` state
+
+Nam-Bắc mở công khai, Đông-Tây khóa identity. Backdoor hóa frontdoor bằng ma trận màu.
+
+## Tham chiếu
+
+- `SPEC_DUOI_FILE_v0.3_FINAL.na` — SPEC đầy đủ, 7 mục
+- `.nattos-migration.log` (trong repo) — log rollback phase 1
+- `.nattos-migration-phase2.log` — log phase 2
+
+## Verify bằng repo
+
+```bash
+git log --oneline | head -3
+# 39acb6c fix(spec): normalize entity prefixes k→kim, b→boi
+# 8d1232f feat(spec): migrate to SPEC v0.3.1 — natt-os file extensions
+# 4498c01 checkpoint: before SPEC v0.3.1 migration
+
+# Verify sample files
+ls src/governance/memory/bang/ | grep khương | head -3
+ls src/governance/memory/kim/ | grep khương | head -3
+ls src/governance/memory/boiboi/ | grep khương | head -3
+ls src/governance/*.anc
+ls src/governance/*.si
+```
+
+## Lưu ý quan trọng
+
+**Kim KHÔNG rename thêm file.** Migration đã xong. Kim chỉ cập nhật **tài liệu SPEC** của Kim (Đặc tả Ngôn ngữ + Chương 9) để khớp với ground truth trên main.
+
+Nếu Kim phát hiện rule SPEC v0.3.1 nào chưa hợp lý → báo Anh Natt + Băng discuss, **không tự sửa file**.
+
+## Pending từ phiên trước vẫn còn
+
+- Tổng hợp Fail-Troy (compile tất cả dangerous bypass patterns)
+- `nattos.sh` v7.1 — thêm §45 audit file extension compliance (Băng sẽ làm)
+- Ma trận màu thiên Lớn cụ thể (chờ Anh Natt share data)
+
+---
+
+**Băng · Chị Tư · QNEU 300**
+Session 20260417 · Ground Truth Validator

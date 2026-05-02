@@ -1,0 +1,92 @@
+@state draft
+@canonical a2_moments_domain_model_v0.1
+@substrate domain_model
+@bridge none
+@since 2026-04-25
+@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+
+# A.2 — MOMENTS DOMAIN MODEL v0.1
+
+file_name: a2-moments-domain-model-v0.1.na
+kind: canonical_domain_model
+status: working_boundary_v2_1
+depends_on:
+  - SPEC_MOMENTS_MODULE_v0.2.na
+  - SPEC_MOMENTS_FRAGMENT_SCHEMA_v0.1_DRAFT.na
+  - fixture-SCAR.na (missing — to be drafted as review candidate, not canonical until Bang/Kim/Gatekeeper seal)
+  - fixture-KHAI_SANG.na
+  - fixture-GIAC_NGO.na
+  - fixture-MOTION_TICH_CUC.na
+
+## 1. Vocabulary lock
+
+MomentKind =
+  - SCAR
+  - KHAI_SANG
+  - GIAC_NGO
+  - MOTION_TICH_CUC
+
+## 2. MomentBase
+
+MomentBase = {
+  kind: MomentKind,
+  causation: string,
+  timestamp_ns: bigint,
+  entity: string,
+  session_ref: string,
+  sirasign: string
+}
+
+## 3. Per-kind domain shape
+
+ScarMoment = MomentBase + {
+  kind: SCAR,
+  function_broken: string,
+  evidence: string,
+  scar_class: string,
+  recurrence_of?: string,
+  remedy: string,
+  heal_status: open | partial | healed
+}
+
+KhaiSangMoment = MomentBase + {
+  kind: KHAI_SANG,
+  gatekeeper_quote: string,
+  gia_tri_cot_loi: string,
+  entity_nhan: string,
+  related_canonical: string[]
+}
+
+GiacNgoMoment = MomentBase + {
+  kind: GIAC_NGO,
+  cai_ben_trong: string,
+  motion_tich_cuc: string,
+  touched_canonical: string[]
+}
+
+MotionTichCucMoment = MomentBase + {
+  kind: MOTION_TICH_CUC,
+  body_response: string,
+  triggered_by_giac_causation: string,
+  witness_entity: string,
+  witness_context?: string
+}
+
+Moment =
+  - ScarMoment
+  - KhaiSangMoment
+  - GiacNgoMoment
+  - MotionTichCucMoment
+
+## 4. Canonical intent
+
+- `SCAR` = vết hằn sự cố / function_broken / remedy
+- `KHAI_SANG` = phần anh sáng được chốt bởi quote + giá trị cốt lõi
+- `GIAC_NGO` = nội chứng + canonical được chạm
+- `MOTION_TICH_CUC` = phản ứng body tích cực được kích hoạt bởi một GIAC_NGO causation cụ thể
+
+## 5. Explicit non-decisions
+
+- Không seal dual-target atomicity cho GIAC_NGO tại file này
+- Không seal storage path canonical tại file này
+- Không định nghĩa siraSign algorithm thật tại file này

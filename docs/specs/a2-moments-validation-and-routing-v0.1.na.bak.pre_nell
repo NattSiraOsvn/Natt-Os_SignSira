@@ -1,0 +1,73 @@
+@state draft
+@canonical a2_moments_validation_routing_v0.1
+@substrate validation_routing
+@bridge none
+@since 2026-04-25
+@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+
+# A.2 — MOMENTS validation + ROUTING v0.1
+
+file_name: a2-moments-validation-and-routing-v0.1.na
+kind: scaffold_rules
+status: working_boundary_v2_1
+
+## 1. Validation entrypoints
+
+validate_moment(moment):
+  - assert MomentBase complete
+  - assert per-kind required fields complete
+
+validate_fragments(moment, fragments):
+  - assert FragmentBase complete
+  - assert parent_moment_causation == moment.causation
+  - assert parent_moment_kind == moment.kind
+  - assert REQUIRED_FRAGMENTS[moment.kind] all present
+  - assert REQUIRED_CHAIN_LINK[moment.kind] respected when chain exists
+  - if moment.kind == MOTION_TICH_CUC:
+      - assert BODY_RESPONSE count >= 1
+      - assert at least one CAUSATION_CHAIN has:
+          link_type = triggered_by
+          target_kind = GIAC_NGO
+      - assert the CAUSATION_CHAIN with link_type=triggered_by satisfies:
+          target_causation == moment.triggered_by_giac_causation
+
+validate_document(document, moment?):
+  - assert {moment, fragments[]} shape
+  - if domain moment given:
+      - document.moment.kind == moment.kind
+      - document.moment.causation == moment.causation
+      - validate_fragments(moment, document.fragments)
+
+## 2. Storage routing semantics
+
+StorageMode =
+  - append
+  - edit_continuum
+  - delta
+
+StorageTarget = {
+  path: string,
+  mode: StorageMode
+}
+
+storagePathsFor(kind, entity) returns StorageTarget[]
+
+scaffold_default_routing = {
+  SCAR:
+    - { path: ".nattos-twin/moments/<entity>/scar.na", mode: append }
+
+  KHAI_SANG:
+    - { path: ".nattos-twin/moments/<entity>/khai_sang.na", mode: edit_continuum }
+
+  GIAC_NGO:
+    - { path: ".nattos-twin/moments/<entity>/giac_ngo.na", mode: edit_continuum }
+    - { path: ".nattos-twin/moments/<entity>/giac_ngo.delta.na", mode: delta }
+
+  MOTION_TICH_CUC:
+    - { path: ".nattos-twin/moments/<entity>/motion_tich_cuc.na", mode: delta }
+
+## 3. Path authority note
+
+- Path trên là scaffold default
+- KHÔNG coi là canonical path
+- cần Gatekeeper neo path chuẩn nếu merge vào hệ chính

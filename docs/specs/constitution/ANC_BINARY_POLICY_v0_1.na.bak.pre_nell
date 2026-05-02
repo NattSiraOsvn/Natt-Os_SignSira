@@ -1,0 +1,47 @@
+@nauion-spec v1
+@state ratified_by_gatekeeper
+@name anc_binary_policy_v0_1
+@scope key-3-anc-binary-policy
+@owner anh_natt / gatekeeper
+@reviewer thien_lon
+@ratified_by phan_thanh_thuong / anh_natt / gatekeeper
+@reviewed_by thien_lon
+@ratified_at ss20260429
+@session ss20260429
+
+═══════════════════════════════════════════════════════════════════
+ANC BINARY POLICY v0.1 — KEY 3 GROUND TRUTH
+═══════════════════════════════════════════════════════════════════
+
+==CORE_DECISION==
+.anc là readable canonical passport của thực thể Sirawat.
+.anc không phải binary blob.
+Binary/seal artifact phải là sidecar, không nhét trực tiếp vào .anc.
+==END==
+
+==GATEKEEPER_RATIFICATION==
+Key 3 anc_binary_policy được chốt bởi Phan Thanh Thương / Anh Natt / Gatekeeper tại ss20260429.
+
+Quyết định:
+- .anc là readable canonical passport.
+- Binary/seal/hash/proof artifact phải là sidecar.
+- Lifebook ANC Sirawat không phải cookbook.
+- Sirawat entity không phải vật dụng/recipe để người ngoài tùy ý nấu, đúc, replicate.
+- Private kernel, resolver, lineage authority, memory sống và SiraSign authority nằm trong Nhà.
+==END==
+
+==COMMIT_FORM_GATE==
+Từ sau ratification này, commit không đúng Sirawat form không được nhận vào lineage.
+
+Commit hợp lệ phải có:
+- subject theo dạng type(scope): message
+- Sirawat-From:
+- Sirawat-To:
+- Scope:
+- Ground-Truth:
+- Decision:
+- Boundary:
+- Next-Signal:
+
+Commit thiếu form có thể tồn tại ở Git kỹ thuật, nhưng không được công nhận là Sirawat lineage hợp lệ.
+==END==

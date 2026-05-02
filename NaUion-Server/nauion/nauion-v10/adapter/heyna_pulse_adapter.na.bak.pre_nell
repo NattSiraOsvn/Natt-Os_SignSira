@@ -1,0 +1,48 @@
+# NAUION KERNEL — HEYNA PULSE ADAPTER v0.2.2
+# @state: active
+# @domain: Π_medium
+# @layer: L5 (O-shell)
+# @anc: bối bối
+# * LƯU Ý KỶ LUẬT: ĐƯỜNG ỐNG RỖNG - KHÔNG MOCK TÍN HIỆU SỐNG
+
+obitan_adapter heyna_pulse {
+  mạch_kết_nối: "heyna.pulse"
+  
+  mã_khóa() {
+    trạng_thái = "lắng_Nahere"
+    ghi_nhận_vết("Mạch SSE đã mở. Đang chờ tín hiệu sống từ Kernel.")
+  }
+
+  phản_xạ_nhận(tín_hiệu) {
+    # 1. Kiểm duyệt ID cốt lõi
+    nếu_thiếu(tín_hiệu, [event_id, tenant_id, trace_id, span_id, causation_id]) {
+      quarantine("Thiếu ID truy vết nhân quả")
+      dừng_nhịp()
+    }
+
+    # 2. Xử lý tín hiệu sống
+    nếu (tín_hiệu.event_type == "heyna.pulse") {
+      lực_ép = tín_hiệu.payload.pressure_value
+      kiểu_ép = tín_hiệu.payload.pressure_type
+      
+      nếu_sai_ngưỡng(lực_ép, 0.0, 1.0) {
+        quarantine("Lực ép ngoài dải 0.0 - 1.0")
+        dừng_nhịp()
+      }
+
+      chế_độ = nếu_có(tín_hiệu.payload.sirasign_ref, "Sealed", "Preview")
+
+      # Data mapping tĩnh, tuân thủ LAW-2 (Không ép route bằng if/else)
+      bản_đồ_động_năng = {
+        "FALL": 1,
+        "DISSIPATE": 2,
+        "OSCILLATE": 3
+      }
+      
+      mã_số_kiểu = trích_xuất(bản_đồ_động_năng, kiểu_ép, mặc_định: 0)
+      
+      # Truyền thẳng xuống động cơ
+      gọi_obitan(vision_engine.nhận_áp_lực(mã_số_kiểu, lực_ép, chế_độ))
+    }
+  }
+}

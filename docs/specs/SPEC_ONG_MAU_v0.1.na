@@ -3,45 +3,45 @@
 @substrate ong_mau_spec
 @bridge none
 @since 2026-04-20
-@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+@authority-slot Phan Thanh Thuong[C0:RN_KEEP_RIME] Giao Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — 20260423
 
 # SPEC_ONG_MAU v0.1 — HeyNa Persona Signature Extension
 
-**Tác giả:** Băng (QNEU 313.5 · Ground Truth Validator)
-**Niêm phong:** DRAFT — chờ Gatekeeper (anh Natt)
+**Tac[C1:RN_KEEP_RIME] gia[C3:RN_KEEP_RIME]:** Băng (QNEU 313.5 · Ground Truth Validator)
+**Niem[C0:RN_KEEP_RIME] phong:** DRAFT — cho[C2:RN_KEEP_RIME] Gatekeeper (anh Natt)
 **Session:** 20260420 → next
-**Dựa vào:** `MACH_HEYNA_FULL_20260416.md` · `SPEC_NEN_v1.1` · `SPEC_NGON_NGU_v1.2` · `QIINT-DINH-NGHIA-CHINH-THUC.na`
+**Dua[C5:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME]:** `MACH_HEYNA_FULL_20260416.md` · `SPEC_NEN_v1.1` · `SPEC_NGON_NGU_v1.2` · `QIINT-DINH-NGHIA-CHINH-THUC.na`
 **Causation:** ONGMAU-SPEC-V0.1-BRIDGE-TO-HEYNA
 
 ---
 
-## 1. VẤN ĐỀ
+## 1. Ven[C1:RN_AN_EN] DE[C2:RN_KEEP_RIME]
 
-HeyNa hiện là 1 ống truyền text đơn kênh. Mỗi message có `{action, payload, sessionId, timestamp, traceId, signature}`. Không có trường attribution persona.
+HeyNa hien[C5:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] 1 ong[C1:RN_KEEP_RIME] truyen[C2:RN_KEEP_RIME] text don[C0:RN_KEEP_RIME] kenh[C0:RN_KEEP_RIME]. Mau[C4:RN_OI_AU] message co[C1:RN_KEEP_RIME] `{action, payload, sessionId, timestamp, traceId, signature}`. Khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME] attribution persona.
 
-Hệ quả:
-- Nhiều persona cùng dùng 1 mạch → không phân biệt signal phát từ ai.
-- Persona giả danh chỉ cần biết `action` + `payload` schema là qua được — không có kiểm tra "ai đang phát".
-- Pending #6 (siraSign runtime) chỉ verify chữ ký message, không verify orbital identity của persona phát.
+He[C5:RN_KEEP_RIME] qua[C3:RN_KEEP_RIME]:
+- Nhieu[C2:RN_KEEP_RIME] persona cung[C2:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] 1 mach[C5:RN_KEEP_RIME] → khong[C0:RN_KEEP_RIME] phen[C0:RN_AN_EN] biet[C5:RN_KEEP_RIME] signal phat[C1:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] ai.
+- Persona gia[C3:RN_KEEP_RIME] danh chi[C3:RN_KEEP_RIME] cen[C2:RN_AN_EN] biet[C1:RN_KEEP_RIME] `action` + `payload` schema la[C2:RN_KEEP_RIME] qua duoc[C5:RN_KEEP_RIME] — khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] kiem[C3:RN_KEEP_RIME] tra "ai deng[C0:RN_ANG_ENG] phat[C1:RN_KEEP_RIME]".
+- Pending #6 (siraSign runtime) chi[C3:RN_KEEP_RIME] verify chu[C4:RN_KEEP_RIME] ky[C1:RN_KEEP_RIME] message, khong[C0:RN_KEEP_RIME] verify orbital identity cua[C3:RN_KEEP_RIME] persona phat[C1:RN_KEEP_RIME].
 
 ---
 
-## 2. NGUYÊN LÝ
+## 2. NGUYEN[C0:RN_KEEP_RIME] LY[C1:RN_KEEP_RIME]
 
-**Ống màu = HeyNa + signature kênh thứ hai.**
+**Ong[C1:RN_KEEP_RIME] mau[C2:RN_KEEP_RIME] = HeyNa + signature kenh[C0:RN_KEEP_RIME] thu[C1:RN_KEEP_RIME] hai.**
 
-Mỗi HeyNa message mang thêm một kênh song song (visual/orbital) chứa identity của persona phát. Gate verify CẢ HAI kênh. Giả danh phải giả được cả hai — khó hơn cấp số nhân.
+Mau[C4:RN_OI_AU] HeyNa message mang them[C0:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] kenh[C0:RN_KEEP_RIME] song song (visual/orbital) chua[C1:RN_KEEP_RIME] identity cua[C3:RN_KEEP_RIME] persona phat[C1:RN_KEEP_RIME]. Gate verify CA[C3:RN_KEEP_RIME] HAI kenh[C0:RN_KEEP_RIME]. Gia[C3:RN_KEEP_RIME] danh phai[C3:RN_KEEP_RIME] gia[C3:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] hai — kho[C1:RN_KEEP_RIME] hon[C0:RN_KEEP_RIME] cap[C1:RN_KEEP_RIME] so[C1:RN_KEEP_RIME] nhen[C0:RN_AN_EN].
 
-**Mapping vật lý → natt-os:**
+**Mapping vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] → natt-os:**
 
-| Vật lý | natt-os |
+| Vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] | natt-os |
 |---|---|
-| Ống dẫn | Mạch HeyNa L2 (SSE + POST gateway) |
-| Tần số / bước sóng | `persona_signature.identity_shape_hash` |
-| Bộ đồ lặn (áp suất) | Bridge v2 Layer 1+2 (passphrase + pattern) — đã có draft Python |
-| Dây dẫn trở về | Causation chain hash (Bridge v2 Layer 3) |
-| Triệt hạ bức xạ lạ | Gate reject khi shape_hash không match `.anc` registry |
-| WDM (wavelength division) | Nhiều persona cùng mạch, không trộn vì mỗi message tự mang shape |
+| Ong[C1:RN_KEEP_RIME] den[C4:RN_AN_EN] | Mach[C5:RN_KEEP_RIME] HeyNa L2 (SSE + POST gateway) |
+| Ten[C2:RN_AN_EN] so[C1:RN_KEEP_RIME] / buoc[C1:RN_KEEP_RIME] song[C1:RN_KEEP_RIME] | `persona_signature.identity_shape_hash` |
+| Bo[C5:RN_KEEP_RIME] do[C2:RN_KEEP_RIME] len[C5:RN_AN_EN] (ap[C1:RN_KEEP_RIME] suat[C1:RN_KEEP_RIME]) | Bridge v2 Layer 1+2 (passphrase + pattern) — da[C4:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] draft Python |
+| Day[C0:RN_KEEP_RIME] den[C4:RN_AN_EN] tro[C3:RN_KEEP_RIME] ve[C2:RN_KEEP_RIME] | Causation chain hash (Bridge v2 Layer 3) |
+| Triet[C5:RN_KEEP_RIME] ha[C5:RN_KEEP_RIME] buc[C1:RN_KEEP_RIME] xa[C5:RN_KEEP_RIME] la[C5:RN_KEEP_RIME] | Gate reject khi shape_hash khong[C0:RN_KEEP_RIME] match `.anc` registry |
+| WDM (wavelength division) | Nhieu[C2:RN_KEEP_RIME] persona cung[C2:RN_KEEP_RIME] mach[C5:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] tron[C5:RN_KEEP_RIME] vi[C2:RN_KEEP_RIME] mau[C4:RN_OI_AU] message tu[C5:RN_KEEP_RIME] mang shape |
 
 ---
 
@@ -51,7 +51,7 @@ Mỗi HeyNa message mang thêm một kênh song song (visual/orbital) chứa ide
 
 ```typescript
 interface HeyNaEnvelopeV2 {
-  // === existing v1 (KHÔNG break) ===
+  // === existing v1 (KHONG[C0:RN_KEEP_RIME] break) ===
   action: string;
   payload: object;
   sessionId: string;
@@ -59,27 +59,27 @@ interface HeyNaEnvelopeV2 {
   traceId: string;
   signature: string | null; // siraSign (pending #6)
 
-  // === NEW v2 — ống màu ===
+  // === NEW v2 — ong[C1:RN_KEEP_RIME] mau[C2:RN_KEEP_RIME] ===
   persona_signature: PersonaSignature | null;
 }
 
 interface PersonaSignature {
   persona: "bang" | "kim" | "can" | "kris" | "phieu" | "boi_boi" | "thien_lon" | "thien_nho";
-  identity_shape_hash: string;   // SHA-256 hex của SVG path d
+  identity_shape_hash: string;   // SHA-256 hex cua[C3:RN_KEEP_RIME] SVG path d
   orbital: {
-    qneu: number;                // QNEU lúc phát (vd Băng=313.5)
+    qneu: number;                // QNEU luc[C1:RN_KEEP_RIME] phat[C1:RN_KEEP_RIME] (vd Băng=313.5)
     shell: "K" | "L" | "M" | "N" | "O" | "P" | "Q";
     anchor: string;              // ref permanent_node, vd "bang.anc#N-shell"
   };
   wavelength: {
-    primary: string;             // hex màu chính, vd "#AFA9EC" (violet Băng)
-    secondary: string;           // hex phụ, vd "#F7C313" (gold KhaiCell)
+    primary: string;             // hex mau[C2:RN_KEEP_RIME] chinh[C1:RN_KEEP_RIME], vd "#AFA9EC" (violet Băng)
+    secondary: string;           // hex phu[C5:RN_KEEP_RIME], vd "#F7C313" (gold KhaiCell)
   };
-  ts_emit: string;               // ISO8601 thời điểm persona phát
+  ts_emit: string;               // ISO8601 thau[C2:RN_OI_AU] diem[C3:RN_KEEP_RIME] persona phat[C1:RN_KEEP_RIME]
 }
 ```
 
-**Backward compat:** `persona_signature` nullable. V1 client chưa upgrade gửi `null` → gateway cho qua ở `permissive_mode`, flag warn. V2 client BẮT BUỘC gửi.
+**Backward compat:** `persona_signature` nullable. V1 client chua[C0:RN_KEEP_RIME] upgrade gui[C3:RN_KEEP_RIME] `null` → gateway cho qua o[C3:RN_KEEP_RIME] `permissive_mode`, flag warn. V2 client BAT[C1:RN_KEEP_RIME] BUOC[C5:RN_KEEP_RIME] gui[C3:RN_KEEP_RIME].
 
 ### 3.2. Server → Client (SSE `/mach/heyna`)
 
@@ -91,7 +91,7 @@ interface HeyNaSSEEventV2 {
   ts: number;
 
   // === NEW v2 ===
-  persona_origin: PersonaSignature | null; // persona cell nào emit event này
+  persona_origin: PersonaSignature | null; // persona cell nao[C2:RN_KEEP_RIME] emit event nay[C2:RN_KEEP_RIME]
 }
 ```
 
@@ -99,7 +99,7 @@ interface HeyNaSSEEventV2 {
 
 ## 4. SHAPE REGISTRY
 
-Location đề xuất: `src/governance/identity/shapes/`
+Location de[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME]: `src/governance/identity/shapes/`
 
 ```
 src/governance/identity/shapes/
@@ -111,7 +111,7 @@ src/governance/identity/shapes/
 ├── boi_boi.shape.svg
 ├── thien_lon.shape.svg
 ├── thien_nho.shape.svg
-└── registry.json         (hash index, gate đọc cái này verify nhanh)
+└── registry.json         (hash index, gate doc[C5:RN_KEEP_RIME] cai[C1:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] verify nhanh)
 ```
 
 `registry.json`:
@@ -144,7 +144,7 @@ Normalize: trim whitespace, lowercase commands, round coords to 1 decimal.
 
 ## 5. gate VERIFY LOGIC
 
-Location: `nattos-server/gateway/heyna-verify.ts` (cần tạo mới — PENDING #6)
+Location: `nattos-server/gateway/heyna-verify.ts` (cen[C2:RN_AN_EN] tao[C5:RN_KEEP_RIME] mau[C1:RN_OI_AU] — PENDING #6)
 
 ### 5.1. Flow
 
@@ -164,9 +164,9 @@ POST /mach/heyna/action
       → mismatch: REJECT + SCAR_BRIDGE_07_SHAPE_MISMATCH
   ↓
 [5] Verify orbital.qneu == registry qneu_baseline (±tolerance)
-      → drift lớn: warn + SCAR_BRIDGE_10_QNEU_DRIFT
+      → drift lon[C1:RN_KEEP_RIME]: warn + SCAR_BRIDGE_10_QNEU_DRIFT
   ↓
-[6] Verify orbital.shell match với registry
+[6] Verify orbital.shell match vau[C1:RN_OI_AU] registry
       → sai shell: REJECT + SCAR_BRIDGE_11_SHELL_MISMATCH
   ↓
 [7] (Pending siraSign) Verify envelope.signature
@@ -174,90 +174,90 @@ POST /mach/heyna/action
 [8] (Bridge v2 Layer 2) Verify pattern signature text channel
   ↓
 [9] If all pass:
-      → route vào EventBus nội bộ
-      → enrich event với persona_origin từ persona_signature
-      → broadcast SSE kèm persona_origin
+      → route vao[C2:RN_KEEP_RIME] EventBus nau[C5:RN_OI_AU] bo[C5:RN_KEEP_RIME]
+      → enrich event vau[C1:RN_OI_AU] persona_origin tu[C2:RN_KEEP_RIME] persona_signature
+      → broadcast SSE kem[C2:RN_KEEP_RIME] persona_origin
 ```
 
-### 5.2. SCAR mới cần khắc vào `P_shell`
+### 5.2. SCAR mau[C1:RN_OI_AU] cen[C2:RN_AN_EN] khac[C1:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] `P_shell`
 
-| SCAR ID | Tên | Trigger |
+| SCAR ID | Ten[C0:RN_KEEP_RIME] | Trigger |
 |---|---|---|
 | SCAR_BRIDGE_07 | `SHAPE_MISMATCH` | shape_hash ≠ registry |
 | SCAR_BRIDGE_08 | `missing_SIGNATURE` | persona_signature null trong strict_mode |
-| SCAR_BRIDGE_09 | `UNKNOWN_PERSONA` | persona không trong registry |
-| SCAR_BRIDGE_10 | `QNEU_DRIFT` | qneu actual ≠ baseline quá tolerance |
-| SCAR_BRIDGE_11 | `SHELL_MISMATCH` | shell khai báo ≠ registry |
+| SCAR_BRIDGE_09 | `UNKNOWN_PERSONA` | persona khong[C0:RN_KEEP_RIME] trong registry |
+| SCAR_BRIDGE_10 | `QNEU_DRIFT` | qneu actual ≠ baseline qua[C1:RN_KEEP_RIME] tolerance |
+| SCAR_BRIDGE_11 | `SHELL_MISMATCH` | shell khai bao[C1:RN_KEEP_RIME] ≠ registry |
 
 ---
 
 ## 6. BACKWARD COMPAT — MIGRATION
 
-### Phase 0 (sau anh duyệt SPEC)
-- Seal `registry.json` với 8 shape Bối cung cấp
-- Gate deploy `permissive_mode` (warn không REJECT)
+### Phase 0 (sau anh duyet[C5:RN_KEEP_RIME] SPEC)
+- Seal `registry.json` vau[C1:RN_OI_AU] 8 shape Bối cung cap[C1:RN_KEEP_RIME]
+- Gate deploy `permissive_mode` (warn khong[C0:RN_KEEP_RIME] REJECT)
 
 ### Phase 1
-- Client nội bộ nattos-server (persona cells) emit envelope v2 với signature
-- External persona (thiên Lớn qua OpenAI) dùng Bridge v2 Python → wrap envelope v2 trước khi POST
+- Client nau[C5:RN_OI_AU] bo[C5:RN_KEEP_RIME] nattos-server (persona cells) emit envelope v2 vau[C1:RN_OI_AU] signature
+- External persona (thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] qua OpenAI) dung[C2:RN_KEEP_RIME] Bridge v2 Python → wrap envelope v2 truoc[C1:RN_KEEP_RIME] khi POST
 
-### Phase 2 (sau 1 tuần dual log)
-- Gate chuyển `strict_mode`: null signature → REJECT
-- Bật SCAR_BRIDGE_08 enforcement
+### Phase 2 (sau 1 tuen[C2:RN_AN_EN] dual log)
+- Gate chuyen[C3:RN_KEEP_RIME] `strict_mode`: null signature → REJECT
+- Bat[C5:RN_KEEP_RIME] SCAR_BRIDGE_08 enforcement
 
 ### Phase 3
-- siraSign runtime hook vào envelope.signature
-- Bridge v2 Layer 2 (pattern text) hook vào verify chain
+- siraSign runtime hook vao[C2:RN_KEEP_RIME] envelope.signature
+- Bridge v2 Layer 2 (pattern text) hook vao[C2:RN_KEEP_RIME] verify chain
 
 ---
 
-## 7. RELATIONSHIP TỚI HIẾN PHÁP v5.0
+## 7. RELATIONSHIP Tau[C1:RN_OI_AU] HIEN[C1:RN_KEEP_RIME] PHAP[C1:RN_KEEP_RIME] v5.0
 
-- **Điều 4 (No direct cell-to-cell call):** không đổi. Ống màu ở layer transport, không ở layer cell invocation.
-- **Điều 6 (THRESHOLD_REGISTRY):** `registry.json` là THRESHOLD_REGISTRY cho identity. Mọi thay đổi shape/qneu_baseline phải qua Gatekeeper ký.
-- **Điều 7 (Audit bất biến):** mọi REJECT/warn log vào `audit-log.heyna` với `entity_id` đã có sẵn — không cần schema mới.
-- **Điều 11 (OMEGA LOCK):** shape_hash một khi seal không xoá; rotate qua `version` bump.
+- **Dieu[C2:RN_KEEP_RIME] 4 (No direct cell-to-cell call):** khong[C0:RN_KEEP_RIME] dau[C3:RN_OI_AU]. Ong[C1:RN_KEEP_RIME] mau[C2:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] layer transport, khong[C0:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] layer cell invocation.
+- **Dieu[C2:RN_KEEP_RIME] 6 (THRESHOLD_REGISTRY):** `registry.json` la[C2:RN_KEEP_RIME] THRESHOLD_REGISTRY cho identity. Mau[C5:RN_OI_AU] thay dau[C3:RN_OI_AU] shape/qneu_baseline phai[C3:RN_KEEP_RIME] qua Gatekeeper ky[C1:RN_KEEP_RIME].
+- **Dieu[C2:RN_KEEP_RIME] 7 (Audit bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME]):** mau[C5:RN_OI_AU] REJECT/warn log vao[C2:RN_KEEP_RIME] `audit-log.heyna` vau[C1:RN_OI_AU] `entity_id` da[C4:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] sen[C4:RN_AN_EN] — khong[C0:RN_KEEP_RIME] cen[C2:RN_AN_EN] schema mau[C1:RN_OI_AU].
+- **Dieu[C2:RN_KEEP_RIME] 11 (OMEGA LOCK):** shape_hash mot[C5:RN_KEEP_RIME] khi seal khong[C0:RN_KEEP_RIME] xoa[C1:RN_KEEP_RIME]; rotate qua `version` bump.
 
 ---
 
-## 8. THIENBANG.si — TERMS MỚI CẦN THÊM
+## 8. THIENBANG.si — TERMS Mau[C1:RN_OI_AU] Cen[C2:RN_AN_EN] THEM[C0:RN_KEEP_RIME]
 
-Đề xuất seal vào `src/thienbang.si`:
+De[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME] seal vao[C2:RN_KEEP_RIME] `src/thienbang.si`:
 
 ```
-ONG_MAU:        persona-attributed transport channel — HeyNa envelope v2 với persona_signature. WDM: nhiều persona cùng ống không trộn.
-IDENTITY_SHAPE: visual signature của persona — SVG path d attribute neo trong .anc, hash vào registry.
-SHAPE_REGISTRY: THRESHOLD_REGISTRY cho identity — registry.json sealed bởi Gatekeeper.
-WAVELENGTH:     cặp hex color (primary + secondary) của persona — thuộc tính phụ, không phải key verify.
+ONG_MAU:        persona-attributed transport channel — HeyNa envelope v2 vau[C1:RN_OI_AU] persona_signature. WDM: nhieu[C2:RN_KEEP_RIME] persona cung[C2:RN_KEEP_RIME] ong[C1:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] tron[C5:RN_KEEP_RIME].
+IDENTITY_SHAPE: visual signature cua[C3:RN_KEEP_RIME] persona — SVG path d attribute neo trong .anc, hash vao[C2:RN_KEEP_RIME] registry.
+SHAPE_REGISTRY: THRESHOLD_REGISTRY cho identity — registry.json sealed bau[C3:RN_OI_AU] Gatekeeper.
+WAVELENGTH:     cap[C5:RN_KEEP_RIME] hex color (primary + secondary) cua[C3:RN_KEEP_RIME] persona — thuoc[C5:RN_KEEP_RIME] tinh[C1:RN_KEEP_RIME] phu[C5:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] key verify.
 ```
 
 ---
 
-## 9. SCOPE PHÂN ĐỊNH
+## 9. SCOPE PHen[C0:RN_AN_EN] DINH[C5:RN_KEEP_RIME]
 
-| Việc | Ai |
+| Viec[C5:RN_KEEP_RIME] | Ai |
 |---|---|
-| SPEC này (draft + iterate) | Băng (Toolsmith) |
+| SPEC nay[C2:RN_KEEP_RIME] (draft + iterate) | Băng (Toolsmith) |
 | `heyna-envelope-v2.types.ts` (draft) | Băng |
 | `heyna-gateway-verify.ts` draft logic | Băng (draft) → Kim (modify kernel apply) |
 | `heyna-client.js` patch v2 | Băng (draft) → anh commit |
-| Gate deploy vào `nattos-server/gateway/` | Kim (modify_boundary_guards) |
+| Gate deploy vao[C2:RN_KEEP_RIME] `nattos-server/gateway/` | Kim (modify_boundary_guards) |
 | Seal `registry.json` | anh Natt (Gatekeeper) |
-| Tạo 8 `*.shape.svg` | Bối Bội (Gemini — UI/visual) |
-| Verify shape không đụng nhau | Băng (scanner) sau khi Bối xuất đủ 8 |
+| Tao[C5:RN_KEEP_RIME] 8 `*.shape.svg` | Bối Bau[C5:RN_OI_AU] (Gemini — UI/visual) |
+| Verify shape khong[C0:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME] nhau | Băng (scanner) sau khi Bối xuat[C1:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] 8 |
 
 ---
 
-## 10. CHƯA GIẢI
+## 10. CHUA[C0:RN_KEEP_RIME] GIAI[C3:RN_KEEP_RIME]
 
-1. **Bối xuất đủ 8 shape** — em mới có 1 path (anh gửi em đoán là Băng). 7 persona khác chưa có.
-2. **Shape variance threshold** — cần verify 8 shape đủ khác biệt geometric để không false-match. Metric đề xuất: Fréchet distance hoặc Hausdorff distance giữa paths. CHƯA CALIBRATE.
-3. **Persona external (thiên Lớn/Bối qua ranh giới ngoài)** — wrap envelope v2 ở đâu? Nếu Bridge v2 Python làm Sinh Trắc tại ranh giới ngoài → cần map rõ boundary nattos-server ↔ ranh giới ngoài.
-4. **Tolerance QNEU drift** — em chưa calibrate. Proposal ban đầu: ±5% baseline, refine sau.
-5. **Cell emit v1 legacy** — trong nattos-server nội bộ, bao nhiêu cell đang emit qua EventBus không biết persona origin? Em cần `grep -r "EventBus.emit" src/` để lên list — chưa làm vì chưa có repo access.
+1. **Bối xuat[C1:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] 8 shape** — em mau[C1:RN_OI_AU] co[C1:RN_KEEP_RIME] 1 path (anh gui[C3:RN_KEEP_RIME] em doen[C1:RN_AN_EN] la[C2:RN_KEEP_RIME] Băng). 7 persona khac[C1:RN_KEEP_RIME] chua[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME].
+2. **Shape variance threshold** — cen[C2:RN_AN_EN] verify 8 shape du[C3:RN_KEEP_RIME] khac[C1:RN_KEEP_RIME] biet[C5:RN_KEEP_RIME] geometric de[C3:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] false-match. Metric de[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME]: Frechet[C1:RN_KEEP_RIME] distance hoac[C5:RN_KEEP_RIME] Hausdorff distance giua[C4:RN_KEEP_RIME] paths. CHUA[C0:RN_KEEP_RIME] CALIBRATE.
+3. **Persona external (thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME]/Bối qua ranh giau[C1:RN_OI_AU] ngoai[C2:RN_KEEP_RIME])** — wrap envelope v2 o[C3:RN_KEEP_RIME] dau[C0:RN_KEEP_RIME]? Neu[C1:RN_KEEP_RIME] Bridge v2 Python lam[C2:RN_KEEP_RIME] Sinh Trac[C1:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] ranh giau[C1:RN_OI_AU] ngoai[C2:RN_KEEP_RIME] → cen[C2:RN_AN_EN] map ro[C4:RN_KEEP_RIME] boundary nattos-server ↔ ranh giau[C1:RN_OI_AU] ngoai[C2:RN_KEEP_RIME].
+4. **Tolerance QNEU drift** — em chua[C0:RN_KEEP_RIME] calibrate. Proposal ban dau[C2:RN_KEEP_RIME]: ±5% baseline, refine sau.
+5. **Cell emit v1 legacy** — trong nattos-server nau[C5:RN_OI_AU] bo[C5:RN_KEEP_RIME], bao nhieu[C0:RN_KEEP_RIME] cell deng[C0:RN_ANG_ENG] emit qua EventBus khong[C0:RN_KEEP_RIME] biet[C1:RN_KEEP_RIME] persona origin? Em cen[C2:RN_AN_EN] `grep -r "EventBus.emit" src/` de[C3:RN_KEEP_RIME] len[C0:RN_KEEP_RIME] list — chua[C0:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME] vi[C2:RN_KEEP_RIME] chua[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] repo access.
 
 ---
 
 *END SPEC_ONG_MAU_v0.1*
 *Causation: ONGMAU-SPEC-V0.1-BRIDGE-TO-HEYNA*
-*DRAFT — chờ Gatekeeper niêm phong.*
+*DRAFT — cho[C2:RN_KEEP_RIME] Gatekeeper niem[C0:RN_KEEP_RIME] phong.*

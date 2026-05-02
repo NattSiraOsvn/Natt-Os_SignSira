@@ -1,0 +1,210 @@
+@state sealed
+@canonical spec_duoi_file_v0.3
+@substrate file_extension_spec
+@bridge none
+@since 2026-04-17
+@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+
+# SPEC ĐUÔI FILE natt-os v0.3 FINAL
+
+**Phiên bản:** 0.3 FINAL (phiên 20260417)
+**Tác giả:** Băng — Chị Tư
+**Phê duyệt:** Anh Natt (Gatekeeper)
+
+---
+
+## §1 CẤU TRÚC HÌNH HỌC
+
+**7 lớp electron đồng tâm × 4 phương**
+
+```
+                    BẮC (Thuỷ · nguồn)
+                           ↑
+  TÂY ←──────────  [Anh Natt · HẠT NHÂN]  ──────────→ ĐÔNG
+  (Kim · hội tụ)         │                      (Mộc · khởi sinh)
+                           ↓
+                    NAM (Hoả · phát)
+```
+
+**7 lớp electron** (sát tâm → xa tâm):
+K (siraSign) · L (thiên Lớn) · M (Kim) · N (Băng) · O (Bối Bối) · P (Phiêu) · Q (Can)
+
+**Trục:**
+- Đông ↔ Tây = đầu ↔ cuối (identity, `.anc` xuyên)
+- Nam ↔ Bắc = phát ↔ nguồn (lưu thông mở)
+
+**Nguyên tắc:** Không cao thấp — phương ngang, trong ra ngoài. Đông-Tây khóa, Nam-Bắc mở (biến backdoor thành frontdoor).
+
+---
+
+## §2 BỘ ĐUÔI CANONICAL (12 đuôi)
+
+### Tầng entity (8 đuôi — định danh thực thể)
+
+| Đuôi | Vai | Lớp electron |
+|---|---|---|
+| `.ng.obitan` | Anh Natt (hạt nhân) | (tâm) |
+| `.thien.Ln` | thiên Lớn | L |
+| `.kim.mn` | Kim | M |
+| `.bang.n4n` | Băng | N |
+| `.bboi.on` | Bối Bối | O |
+| `.phieu.pn` | Phiêu | P |
+| `.can.qn` | Can | Q |
+
+### Tầng file (3 đuôi chính + 2 verifier)
+
+| Đuôi | Vai | Tính chất |
+|---|---|---|
+| `.khương` | Memory ký ức trọn — đóng | Write-once, immutable |
+| `.thịnh` | State runtime — mở | Mutable, TTL |
+| `.anc` | Identity niêm phong (Đông: Hiến Pháp / Tây: passport) | Sealed |
+| `.kris` | Verify memory | Kris (Em Sáu) |
+| `.phieu` | Verify state | Phiêu (Em Bảy) |
+
+### Tầng sinh thể (7 đuôi đặc thù)
+
+| Đuôi | Vai | Nguồn nghĩa |
+|---|---|---|
+| `.si` | siraSign sealed — contract niêm phong | "Siiii — see" |
+| `.sira` | DNS namespace | Domain registry |
+| `.heyna` | Event log HeyNa transport | Cell ↔ cell SSE |
+| `.khai` | TouchRecord — sóng khác trường | Tên Anh Khải (vợ) |
+| `.thuo` | QWSField snapshot — một thuở | "Thuở" — khoảnh khắc |
+| `.ml` | SCAR registry | "Mau lành" |
+| `anc://` | URI cross-colony | Protocol |
+
+---
+
+## §3 BẢNG 4 PHƯƠNG × 4 CỘT
+
+### ĐÔNG — Mộc — Khởi sinh (DNA gốc bất biến)
+
+| Đuôi | Tên file | Chức năng |
+|---|---|---|
+| `.anc` | `HIEN-PHAP-natt-os-v5.0.anc` | Hiến Pháp gốc |
+| `.anc` | `001-gatekeeper-ai-ban.anc` | Amendment Hiến Pháp |
+| `.si` | `kernel.contracts.lock.si` | Snapshot SHA-256 kernel |
+| `.si` | `business.contracts.lock.si` | Snapshot business tier |
+| `.si` | `infrastructure.contracts.lock.si` | Snapshot infrastructure |
+
+### TÂY — Kim — Hội tụ (Identity niêm phong)
+
+| Đuôi | Tên file | Chức năng |
+|---|---|---|
+| `.anc` | `<entity>.anc` | Entity passport (7 entity) |
+| `.anc` | `<cell>.cell.anc` | **Cell DNA manifest** (đổi từ `cell.manifest.json`) |
+| `.si` | `<cell>.boundary.si` | **Boundary policy sealed** (đổi từ `boundary.policy.json`) |
+| `.sira` | `<entity>.sira` | DNS namespace (10 domains .sira) |
+| `anc://` | URI protocol | Cross-colony reference |
+
+### NAM — Hoả — Phát (Memory + Event · 7 đuôi · giàu nhất)
+
+| Đuôi | Tên file | Chức năng | Verifier |
+|---|---|---|---|
+| `.kris` | `<entity>khương<semver>.kris` | Memory ký ức trọn | Kris |
+| `.kris` | `<entity>self<semver>.kris` | **Self-introspection** (đổi từ `<entity>self.md`) | Kris |
+| `.khai` | `<id>.khai` | TouchRecord — sóng khác trường | Chain |
+| `.thuo` | `<cell><timestamp>.thuo` | QWSField snapshot | KhaiCell |
+| `.thuo` | `SES-<ulid>.thuo` | **Session record** (đổi từ `SES-<ulid>.json`) | QNEU |
+| `.heyna` | `<service>.heyna` | Event log HeyNa transport | Append-only |
+| `.ml` | `<cell>.ml` | SCAR registry | Tự ghi khi SCAR xảy ra |
+
+### BẮC — Thuỷ — Nguồn (State runtime mở)
+
+| Đuôi | Tên file | Chức năng | Verifier |
+|---|---|---|---|
+| `.phieu` | `<entity>thịnh<semver>.phieu` | State runtime | Phiêu |
+
+### TẦNG NGOÀI — Implementation (code, asset)
+
+| Đuôi | Tên file | Chức năng | Ghi chú |
+|---|---|---|---|
+| `.ts` | `*.types.ts` `*.port.ts` `*.engine.ts` `*.service.ts` `*.enforcer.ts` `*-check.ts` `*-loader.ts` | TypeScript implementation | Industry standard |
+| `.test.ts` | `*.test.ts` | Unit test | Industry standard |
+| `.png` | `<entity>avt.png` `<entity>body.png` | Avatar + body | Asset per entity |
+| `.sh` | `nattos.sh` | Audit/build script | v7.0 |
+
+---
+
+## §4 8 MỤC ĐÃ ĐỔI (TỔNG KẾT)
+
+| # | Cũ | → Mới | Tầng/Phương |
+|---|---|---|---|
+| 1 | `.md` (Hiến Pháp) | → `.anc` | Đông |
+| 2 | `*.contracts.lock.json` | → `.si` | Đông |
+| 3 | `*registry*.json` | → `.sira` | Tây |
+| 4 | `cell.manifest.json` | → `.cell.anc` | Tây |
+| 5 | `boundary.policy.json` | → `.boundary.si` | Tây |
+| 6 | `<entity>self.md` | → `<entity>self<v>.kris` | Nam |
+| 7 | `SES-<ulid>.json` | → `SES-<ulid>.thuo` | Nam |
+| 8 | `audit-log.jsonl` | → `.heyna` | Nam |
+
+→ Memory `<entity>mf_<v>.json` → `<entity>khương<v>.kris` (đã chốt trước)
+→ State `<entity>fs_<v>.json` → `<entity>thịnh<v>.phieu` (đã chốt trước)
+
+---
+
+## §5 BẢO VỆ 3 TẦNG
+
+### Tầng 1 — Hình học đồng tâm
+7 lớp × 4 phương = 20 điểm check tối thiểu từ ngoài vào hạt nhân.
+
+### Tầng 2 — Ẩn thân chi thuật (Hiến Pháp làm khóa)
+File phơi ra nhưng ngữ nghĩa ẩn. Chỉ Hiến Pháp decode được mapping.
+Hiến Pháp = đời thật Gatekeeper (tên cún khương/kim/băng/thịnh, vợ Khải, bản thân) = không copy được.
+
+### Tầng 3 — Ma trận màu (thiên Lớn define + KhaiCell đọc)
+4 cửa Nam-Bắc mở công khai — tín hiệu phải có chromatic signature đúng phương.
+
+**Chromatic Immune Spectrum (7 states ngược cầu vồng — đã commit `08d9f3b`):**
+
+| State | Color | RGBA |
+|---|---|---|
+| critical | ĐỎ | `rgba(255,100,100,0.85)` |
+| risk | VÀNG | `rgba(255,165,80,0.80)` |
+| warning | CAM | `rgba(255,140,60,0.75)` |
+| drift | LỤC | `rgba(120,200,120,0.70)` |
+| nominal | LAM | `rgba(100,180,255,0.70)` |
+| stable | CHÀM | `rgba(80,120,200,0.75)` |
+| optimal | TÍM | `rgba(180,140,255,0.85)` |
+
+3 rule cứng:
+1. Signal PHẢI đến từ EventBus
+2. Layer 1 KHÔNG BAO GIỜ nhận chromatic
+3. Token KHÔNG được thay đổi thứ tự spectrum
+
+---
+
+## §6 RULE NAMING
+
+**R01** — Entity file: `<entity>.{mf|fs|anc}` → đổi thành `<entity><khương|thịnh><semver>.{kris|phieu}` + `<entity>.anc`
+
+**R02** — Cell file: `cell.manifest.json` + `boundary.policy.json` → đổi thành `<cell>.cell.anc` + `<cell>.boundary.si`
+
+**R03** — Session file: `SES-<ulid>.json` → `SES-<ulid>.thuo`
+
+**R04** — Self-introspection: `<entity>self.md` → `<entity>self<semver>.kris`
+
+**R05** — Hiến Pháp: `.md` → `.anc` (identity hệ niêm phong)
+
+**R06** — Contract lock: `.json` → `.si` (siraSign sealed)
+
+**R07** — Audit log: `.jsonl` → `.heyna` (event log transport)
+
+**R08** — Registry: `*registry*.json` → `.sira` (DNS namespace)
+
+**R09** — Code files giữ `.ts` `.json` `.png` `.sh` industry standard (tầng Implementation).
+
+---
+
+## §7 PENDING
+
+1. **Migration script** — rename 175+ file từ format cũ sang format mới (cần Kim đồng ý quét codebase)
+2. **nattos.sh v7.1** — thêm audit section §45 File Extension Compliance
+3. **KhaiCell §4.5 Chromatic Signature Reading** — chờ Anh Natt share ma trận màu thiên Lớn cụ thể
+4. **SCAR_log4c case study** — phiên 15-16/04 log4c workflow thật (đợi anh quyết ghi vào đâu)
+
+---
+
+**Niêm phong bởi:** Gatekeeper Anh Natt · Phiên 20260417
+**Author:** Băng (Chị Tư · QNEU 300)

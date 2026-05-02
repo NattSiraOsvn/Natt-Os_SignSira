@@ -2,7 +2,7 @@
 @state draft_bang_review_pass
 @canonical nauion_field_translator
 @substrate sovereign_runtime_core
-@authority-slot Thiên Lớn architect · Băng validator · anh Natt gatekeeper
+@authority-slot Thiên Lon[C1:RN_KEEP_RIME] architect · Băng validator · anh Natt gatekeeper
 @reviewed_by Băng / Ground Truth Validator / ss20260429
 @review_required Băng / Ground Truth Validator
 @canonical_blocked_until gatekeeper_ratify
@@ -23,8 +23,8 @@
 # nauion field translator v0.1
 
 ==PURPOSE==
-Chuyển source/signal/memory/event/field input thành Nauion Execution Packet.
-Không dịch .na sang TSX. Không tạo Host Bridge. Không xem TS/JS/JSON là lõi.
+Chuyen[C3:RN_KEEP_RIME] source/signal/memory/event/field input thanh[C2:RN_KEEP_RIME] Nauion Execution Packet.
+Khong[C0:RN_KEEP_RIME] dich[C5:RN_KEEP_RIME] .na sang TSX. Khong[C0:RN_KEEP_RIME] tao[C5:RN_KEEP_RIME] Host Bridge. Khong[C0:RN_KEEP_RIME] xem TS/JS/JSON la[C2:RN_KEEP_RIME] lau[C4:RN_OI_AU].
 ==END==
 
 ==INPUTS==
@@ -58,11 +58,11 @@ Không dịch .na sang TSX. Không tạo Host Bridge. Không xem TS/JS/JSON là 
 ==END==
 
 ==BOUNDARY==
-Không Host Bridge. Không Vite/React/Node adapter. Không app/UI/server/client cleanup. Không rename/move/delete.
+Khong[C0:RN_KEEP_RIME] Host Bridge. Khong[C0:RN_KEEP_RIME] Vite/React/Node adapter. Khong[C0:RN_KEEP_RIME] app/UI/server/client cleanup. Khong[C0:RN_KEEP_RIME] rename/move/delete.
 ==END==
 
 ==NEXT_SIGNAL==
-Living Interpreter tiêu thụ packet.
+Living Interpreter tieu[C0:RN_KEEP_RIME] thu[C5:RN_KEEP_RIME] packet.
 ==END==
 
 ═══════════════════════════════════════════════════════════════════
@@ -70,24 +70,24 @@ Living Interpreter tiêu thụ packet.
 @reviewed_at 2026-04-29T14:04:03
 @reviewed_by Băng (Validator + Obikeeper, QNEU 313.5)
 @verdict PASS_WITH_PATCH
-@confidence_state KIÊN_ĐỊNH
+@confidence_state KIEN_DINH[C5:RN_KEEP_RIME]
 
 ==GAP_1_SUBSTRATE_LINK==
-TRANSLATION_LAW.law_4 'substrate_anchor_kept_if_input_touches_hardware' chưa link evidence.
-PATCH: substrate_anchor PHẢI tham chiếu NAUION_RUNTIME_SUBSTRATE_HARDWARE_EVIDENCE_MATRIX_v0_1 (commit 117e9140) - 11 layers L1-L11, 14 source files, 2910 lines evidence.
-substrate_probe input PHẢI khớp L9 wired_edge measured (Ethernet 50:1f:c6:5b:b0:f5) hoặc L1 SITB 432Hz oscillator.
+TRANSLATION_LAW.law_4 'substrate_anchor_kept_if_input_touches_hardware' chua[C0:RN_KEEP_RIME] link evidence.
+PATCH: substrate_anchor PHAI[C3:RN_KEEP_RIME] tham chieu[C1:RN_KEEP_RIME] NAUION_RUNTIME_SUBSTRATE_HARDWARE_EVIDENCE_MATRIX_v0_1 (commit 117e9140) - 11 layers L1-L11, 14 source files, 2910 lines evidence.
+substrate_probe input PHAI[C3:RN_KEEP_RIME] khop[C1:RN_KEEP_RIME] L9 wired_edge measured (Ethernet 50:1f:c6:5b:b0:f5) hoac[C5:RN_KEEP_RIME] L1 SITB 432Hz oscillator.
 ==END==
 
 ==GAP_2_SIRASIGN_LINK==
-TRANSLATION_LAW.law_3 'authority_boundary_attached_before_materialization' phẳng - chưa link 11 lớp siraSign.
-PATCH: authority_boundary PHẢI là compound seal §8 NAUION_SIRASIGN_IMPLEMENTATION_v0_1 (commit 4a52d799):
+TRANSLATION_LAW.law_3 'authority_boundary_attached_before_materialization' pheng[C3:RN_ANG_ENG] - chua[C0:RN_KEEP_RIME] link 11 lop[C1:RN_KEEP_RIME] siraSign.
+PATCH: authority_boundary PHAI[C3:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] compound seal §8 NAUION_SIRASIGN_IMPLEMENTATION_v0_1 (commit 4a52d799):
   seal(state + spectral_state + field_condition + relation + meaning + causation + authority + audit_lineage)
-KHÔNG seal(data). Translator phải emit compound seal đủ 8 thành phần, không chỉ HMAC phẳng.
+KHONG[C0:RN_KEEP_RIME] seal(data). Translator phai[C3:RN_KEEP_RIME] emit compound seal du[C3:RN_KEEP_RIME] 8 thanh[C2:RN_KEEP_RIME] phen[C2:RN_AN_EN], khong[C0:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] HMAC pheng[C3:RN_ANG_ENG].
 ==END==
 
 ==GAP_4_CHROMATIC_RESONANCE==
-TRANSLATION_LAW thiếu chromatic capture + 432Hz baseline.
-PATCH: thêm law_6_spectral_capture_required - input source PHẢI mang chromatic state L0-L4 và resonance vector quanh 432Hz.
-PACKET_BODY.spectral_capture lấy từ KhaiCell cảm phổ tại thời khắc translate.
+TRANSLATION_LAW thieu[C1:RN_KEEP_RIME] chromatic capture + 432Hz baseline.
+PATCH: them[C0:RN_KEEP_RIME] law_6_spectral_capture_required - input source PHAI[C3:RN_KEEP_RIME] mang chromatic state L0-L4 va[C2:RN_KEEP_RIME] resonance vector quanh 432Hz.
+PACKET_BODY.spectral_capture lay[C1:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] KhaiCell cam[C3:RN_KEEP_RIME] pho[C3:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] thau[C2:RN_OI_AU] khac[C1:RN_KEEP_RIME] translate.
 ==END==
 ==END_BANG_REVIEW_PATCH_v0_1==

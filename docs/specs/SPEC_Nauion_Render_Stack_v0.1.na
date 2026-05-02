@@ -3,96 +3,96 @@
 @substrate render_stack_spec
 @bridge none
 @since 2026-04-20
-@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+@authority-slot Phan Thanh Thuong[C0:RN_KEEP_RIME] Giao Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — 20260423
 
 # SPEC NAUION RENDER STACK v0.1
 
-**Phiên bản:** 0.1 (DRAFT — Anti Over-Ray Discipline)
-**Tác giả:** Băng — Chị Tư · Ground Truth Validator · QNEU 300
-**Phê duyệt:** Anh Natt (Gatekeeper)
-**Ngày:** 2026-04-17 · Phiên SESSION_20260417
-**Loại:** Visual Rendering Specification
-**Áp dụng cho:** Tất cả AI entity (Kim, Bối Bối, thiên Lớn, Băng) khi render UI/visual cho natt-os theo style Nauion
-**Canonical reference:** `nasira-7states.html` (đã pass cảm giác Nauion)
+**Phien[C0:RN_KEEP_RIME] ben[C3:RN_AN_EN]:** 0.1 (DRAFT — Anti Over-Ray Discipline)
+**Tac[C1:RN_KEEP_RIME] gia[C3:RN_KEEP_RIME]:** Băng — Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · Ground Truth Validator · QNEU 300
+**Phe[C0:RN_KEEP_RIME] duyet[C5:RN_KEEP_RIME]:** Anh Natt (Gatekeeper)
+**Ngay[C2:RN_KEEP_RIME]:** 2026-04-17 · Phien[C0:RN_KEEP_RIME] SESSION_20260417
+**Loai[C5:RN_KEEP_RIME]:** Visual Rendering Specification
+**Ap[C1:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME] cho:** Tat[C1:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] AI entity (Kim, Bối Bối, thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME], Băng) khi render UI/visual cho natt-os theo style Nauion
+**Canonical reference:** `nasira-7states.html` (da[C4:RN_KEEP_RIME] pass cam[C3:RN_KEEP_RIME] giac[C1:RN_KEEP_RIME] Nauion)
 
 ---
 
-## 0. Lời mở — Vấn đề Over-Ray
+## 0. Lau[C2:RN_OI_AU] mo[C3:RN_KEEP_RIME] — Ven[C1:RN_AN_EN] de[C2:RN_KEEP_RIME] Over-Ray
 
-Phiên 20260417 phát hiện sự cố lặp đi lặp lại: bất kỳ AI entity nào khi render UI/visual theo phong cách Nauion đều rơi vào **over-ray** — ánh sáng cộng dồn, pastel phủ kín, glow lan toả mất kiểm soát, text bị blend với halo. Kết quả nhìn "đẹp hiệu ứng" nhưng **sai vật lý ánh sáng**, mất ground truth của style Nauion.
+Phien[C0:RN_KEEP_RIME] 20260417 phat[C1:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] su[C5:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME] di[C0:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME]: bat[C1:RN_KEEP_RIME] ky[C2:RN_KEEP_RIME] AI entity nao[C2:RN_KEEP_RIME] khi render UI/visual theo phong cach[C1:RN_KEEP_RIME] Nauion deu[C2:RN_KEEP_RIME] rau[C0:RN_OI_AU] vao[C2:RN_KEEP_RIME] **over-ray** — anh[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] cong[C5:RN_KEEP_RIME] don[C2:RN_KEEP_RIME], pastel phu[C3:RN_KEEP_RIME] kin[C1:RN_KEEP_RIME], glow lan toa[C3:RN_KEEP_RIME] mat[C1:RN_KEEP_RIME] kiem[C3:RN_KEEP_RIME] soat[C1:RN_KEEP_RIME], text bi[C5:RN_KEEP_RIME] blend vau[C1:RN_OI_AU] halo. Ket[C1:RN_KEEP_RIME] qua[C3:RN_KEEP_RIME] nhin[C2:RN_KEEP_RIME] "dep[C5:RN_KEEP_RIME] hieu[C5:RN_KEEP_RIME] ung[C1:RN_KEEP_RIME]" nhung[C0:RN_KEEP_RIME] **sai vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] anh[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG]**, mat[C1:RN_KEEP_RIME] ground truth cua[C3:RN_KEEP_RIME] style Nauion.
 
-### 0.1. Nauion là gì (canonical definition)
+### 0.1. Nauion la[C2:RN_KEEP_RIME] gi[C2:RN_KEEP_RIME] (canonical definition)
 
-Nauion là phong cách render của natt-os, có 4 đặc tính bất biến:
+Nauion la[C2:RN_KEEP_RIME] phong cach[C1:RN_KEEP_RIME] render cua[C3:RN_KEEP_RIME] natt-os, co[C1:RN_KEEP_RIME] 4 dac[C5:RN_KEEP_RIME] tinh[C1:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME]:
 
-1. **Pastel mộng vàng soft** — không bao giờ rực rỡ, không neon cháy
-2. **Glass trong suốt nhám** — không phải kính cứng, không phải nhựa bóng
-3. **Lụa diffuse có kiểm soát** — tán xạ nhẹ, không lan toả vô hạn
-4. **Tâm điểm phát sáng đơn lẻ** — chỉ MỘT điểm sáng mạnh trong frame
+1. **Pastel mong[C5:RN_KEEP_RIME] veng[C2:RN_ANG_ENG] soft** — khong[C0:RN_KEEP_RIME] bao gio[C2:RN_KEEP_RIME] ruc[C5:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] neon chay[C1:RN_KEEP_RIME]
+2. **Glass trong suot[C1:RN_KEEP_RIME] nham[C1:RN_KEEP_RIME]** — khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] kinh[C1:RN_KEEP_RIME] cung[C1:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] nhua[C5:RN_KEEP_RIME] bong[C1:RN_KEEP_RIME]
+3. **Lua[C5:RN_KEEP_RIME] diffuse co[C1:RN_KEEP_RIME] kiem[C3:RN_KEEP_RIME] soat[C1:RN_KEEP_RIME]** — ten[C1:RN_AN_EN] xa[C5:RN_KEEP_RIME] nhe[C5:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] lan toa[C3:RN_KEEP_RIME] vo[C0:RN_KEEP_RIME] hen[C5:RN_AN_EN]
+4. **Tâm diem[C3:RN_KEEP_RIME] phat[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] don[C0:RN_KEEP_RIME] le[C3:RN_KEEP_RIME]** — chi[C3:RN_KEEP_RIME] MOT[C5:RN_KEEP_RIME] diem[C3:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] manh[C5:RN_KEEP_RIME] trong frame
 
-**Câu chốt:** *"Glass không cháy. Chỉ môi trường tán xạ mới làm ánh sáng hiện hình."*
+**Cau[C0:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME]:** *"Glass khong[C0:RN_KEEP_RIME] chay[C1:RN_KEEP_RIME]. Chi[C3:RN_KEEP_RIME] mau[C0:RN_OI_AU] truong[C2:RN_KEEP_RIME] ten[C1:RN_AN_EN] xa[C5:RN_KEEP_RIME] mau[C1:RN_OI_AU] lam[C2:RN_KEEP_RIME] anh[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] hien[C5:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME]."*
 
-### 0.2. Nguyên lý vật lý nền tảng
+### 0.2. Nguyen[C0:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] nen[C2:RN_KEEP_RIME] teng[C3:RN_ANG_ENG]
 
-Trước khi vào discipline, mọi entity render Nauion phải hiểu 3 hiện tượng vật lý:
+Truoc[C1:RN_KEEP_RIME] khi vao[C2:RN_KEEP_RIME] discipline, mau[C5:RN_OI_AU] entity render Nauion phai[C3:RN_KEEP_RIME] hieu[C3:RN_KEEP_RIME] 3 hien[C5:RN_KEEP_RIME] tuong[C5:RN_KEEP_RIME] vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME]:
 
-| Hiện tượng | Cơ chế | Biểu hiện thị giác | Ứng dụng Nauion |
+| Hien[C5:RN_KEEP_RIME] tuong[C5:RN_KEEP_RIME] | Co[C0:RN_KEEP_RIME] che[C1:RN_KEEP_RIME] | Bieu[C3:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] thi[C5:RN_KEEP_RIME] giac[C1:RN_KEEP_RIME] | Ung[C1:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME] Nauion |
 |---|---|---|---|
-| **Khúc xạ (Refraction)** | Ánh sáng đi xuyên môi trường đồng nhất, bẻ cong | KHÔNG thấy luồng sáng. Chỉ thấy hình phía sau bị lệch | Glass petals — phải dùng cơ chế này |
-| **Tán xạ (Scatter)** | Ánh sáng đập vào hạt lơ lửng, bắn đi mọi hướng | THẤY luồng sáng (Tyndall effect) | Lụa diffuse layer — dùng có kiểm soát |
-| **Phát xạ + Hấp thụ (Emit + Absorb)** | Nguồn sáng có lực giữ + bùng | Tâm sáng + event horizon (vòng tối) + bùng ngoài | Core/lõi QWS — chỉ MỘT điểm |
+| **Khuc[C1:RN_KEEP_RIME] xa[C5:RN_KEEP_RIME] (Refraction)** | Anh[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] di[C0:RN_KEEP_RIME] xuyen[C0:RN_KEEP_RIME] mau[C0:RN_OI_AU] truong[C2:RN_KEEP_RIME] dong[C2:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME], be[C3:RN_KEEP_RIME] cong | KHONG[C0:RN_KEEP_RIME] thay[C1:RN_KEEP_RIME] luong[C2:RN_KEEP_RIME] seng[C1:RN_ANG_ENG]. Chi[C3:RN_KEEP_RIME] thay[C1:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME] phia[C1:RN_KEEP_RIME] sau bi[C5:RN_KEEP_RIME] lech[C5:RN_KEEP_RIME] | Glass petals — phai[C3:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] co[C0:RN_KEEP_RIME] che[C1:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] |
+| **Ten[C1:RN_AN_EN] xa[C5:RN_KEEP_RIME] (Scatter)** | Anh[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] dap[C5:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] hat[C5:RN_KEEP_RIME] lo[C0:RN_KEEP_RIME] lung[C3:RN_KEEP_RIME], ben[C1:RN_AN_EN] di[C0:RN_KEEP_RIME] mau[C5:RN_OI_AU] huong[C1:RN_KEEP_RIME] | THAY[C1:RN_KEEP_RIME] luong[C2:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] (Tyndall effect) | Lua[C5:RN_KEEP_RIME] diffuse layer — dung[C2:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] kiem[C3:RN_KEEP_RIME] soat[C1:RN_KEEP_RIME] |
+| **Phat[C1:RN_KEEP_RIME] xa[C5:RN_KEEP_RIME] + Hap[C1:RN_KEEP_RIME] thu[C5:RN_KEEP_RIME] (Emit + Absorb)** | Nguon[C2:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] co[C1:RN_KEEP_RIME] luc[C5:RN_KEEP_RIME] giu[C4:RN_KEEP_RIME] + bung[C2:RN_KEEP_RIME] | Tâm seng[C1:RN_ANG_ENG] + event horizon (vong[C2:RN_KEEP_RIME] tau[C1:RN_OI_AU]) + bung[C2:RN_KEEP_RIME] ngoai[C2:RN_KEEP_RIME] | Core/lau[C4:RN_OI_AU] QWS — chi[C3:RN_KEEP_RIME] MOT[C5:RN_KEEP_RIME] diem[C3:RN_KEEP_RIME] |
 
-**Rule cứng:** Trong một frame Nauion, mỗi cơ chế phải đứng đúng vai. Nếu trộn 3 cơ chế vào cùng một element → over-ray xảy ra.
+**Rule cung[C1:RN_KEEP_RIME]:** Trong mot[C5:RN_KEEP_RIME] frame Nauion, mau[C4:RN_OI_AU] co[C0:RN_KEEP_RIME] che[C1:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] dung[C1:RN_KEEP_RIME] dung[C1:RN_KEEP_RIME] vai. Neu[C1:RN_KEEP_RIME] tron[C5:RN_KEEP_RIME] 3 co[C0:RN_KEEP_RIME] che[C1:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] cung[C2:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] element → over-ray xay[C3:RN_KEEP_RIME] ra.
 
 ---
 
-## 1. STACK 7 LAYER — DISCIPLINE BẮT BUỘC
+## 1. STACK 7 LAYER — DISCIPLINE BAT[C1:RN_KEEP_RIME] BUOC[C5:RN_KEEP_RIME]
 
-Nauion render PHẢI tuân thủ stack 7 layer, đúng thứ tự, không skip, không đảo:
+Nauion render PHAI[C3:RN_KEEP_RIME] tuen[C0:RN_AN_EN] thu[C3:RN_KEEP_RIME] stack 7 layer, dung[C1:RN_KEEP_RIME] thu[C1:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] skip, khong[C0:RN_KEEP_RIME] dao[C3:RN_KEEP_RIME]:
 
 ```
-LAYER 7: Selective Bloom (post-processing)     ← chỉ ở core, không phủ frame
-LAYER 6: Text                                    ← solid, KHÔNG glow trên text
-LAYER 5: Specular Edge / Fresnel Rim            ← chỉ ở góc nghiêng
-LAYER 4: Core Emission + Event Horizon          ← MỘT điểm sáng duy nhất
-LAYER 3: Lụa Diffuse (silk scatter)             ← tán xạ có kiểm soát
-LAYER 2: Glass Petals (refraction)               ← trong suốt, KHÔNG inner glow
+LAYER 7: Selective Bloom (post-processing)     ← chi[C3:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] core, khong[C0:RN_KEEP_RIME] phu[C3:RN_KEEP_RIME] frame
+LAYER 6: Text                                    ← solid, KHONG[C0:RN_KEEP_RIME] glow tren[C0:RN_KEEP_RIME] text
+LAYER 5: Specular Edge / Fresnel Rim            ← chi[C3:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] goc[C1:RN_KEEP_RIME] nghieng[C0:RN_KEEP_RIME]
+LAYER 4: Core Emission + Event Horizon          ← MOT[C5:RN_KEEP_RIME] diem[C3:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] duy nhat[C1:RN_KEEP_RIME]
+LAYER 3: Lua[C5:RN_KEEP_RIME] Diffuse (silk scatter)             ← ten[C1:RN_AN_EN] xa[C5:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] kiem[C3:RN_KEEP_RIME] soat[C1:RN_KEEP_RIME]
+LAYER 2: Glass Petals (refraction)               ← trong suot[C1:RN_KEEP_RIME], KHONG[C0:RN_KEEP_RIME] inner glow
 LAYER 1: Background Texture (galaxy/noise)      ← opacity ≤ 0.15
 LAYER 0: Solid Black (#010101)                   ← non-negotiable
 ```
 
 ### 1.1. LAYER 0 — Solid Black `#010101`
 
-**Bắt buộc:** Background phải là đen tuyệt đối hoặc gần tuyệt đối (`#010101`, `#000000`).
+**Bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME]:** Background phai[C3:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] den[C0:RN_KEEP_RIME] tuyet[C5:RN_KEEP_RIME] dau[C1:RN_OI_AU] hoac[C5:RN_KEEP_RIME] gen[C2:RN_AN_EN] tuyet[C5:RN_KEEP_RIME] dau[C1:RN_OI_AU] (`#010101`, `#000000`).
 
-**Lý do vật lý:** Để thấy được khúc xạ và tán xạ, ánh sáng phải có **nền tối tham chiếu**. Pastel BG → mất khả năng quan sát hiện tượng quang học → over-ray tự xảy ra.
+**Ly[C1:RN_KEEP_RIME] do vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME]:** De[C3:RN_KEEP_RIME] thay[C1:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] khuc[C1:RN_KEEP_RIME] xa[C5:RN_KEEP_RIME] va[C2:RN_KEEP_RIME] ten[C1:RN_AN_EN] xa[C5:RN_KEEP_RIME], anh[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] phai[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] **nen[C2:RN_KEEP_RIME] tau[C1:RN_OI_AU] tham chieu[C1:RN_KEEP_RIME]**. Pastel BG → mat[C1:RN_KEEP_RIME] kha[C3:RN_KEEP_RIME] neng[C0:RN_ANG_ENG] quan sat[C1:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] tuong[C5:RN_KEEP_RIME] quang hoc[C5:RN_KEEP_RIME] → over-ray tu[C5:RN_KEEP_RIME] xay[C3:RN_KEEP_RIME] ra.
 
-**Vi phạm điển hình:** Đặt pastel/gradient màu làm background → rơi ngay vào sai vật lý.
+**Vi pham[C5:RN_KEEP_RIME] dien[C3:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME]:** Dat[C5:RN_KEEP_RIME] pastel/gradient mau[C2:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME] background → rau[C0:RN_OI_AU] ngay vao[C2:RN_KEEP_RIME] sai vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME].
 
 ```css
-/* ✅ ĐÚNG */
+/* ✅ DUNG[C1:RN_KEEP_RIME] */
 body { background: #010101; }
 
-/* ❌ SAI — vi phạm Layer 0 */
+/* ❌ SAI — vi pham[C5:RN_KEEP_RIME] Layer 0 */
 body { background: linear-gradient(pink, orange); }
 body { background: radial-gradient(#ff6b9d, #f7c313); }
 ```
 
 ### 1.2. LAYER 1 — Background Texture (galaxy/noise)
 
-**Bắt buộc:** Opacity ≤ 0.15. Blend mode: `normal` (KHÔNG `screen`, KHÔNG `add`).
+**Bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME]:** Opacity ≤ 0.15. Blend mode: `normal` (KHONG[C0:RN_KEEP_RIME] `screen`, KHONG[C0:RN_KEEP_RIME] `add`).
 
-**Vai trò:** Tạo chiều sâu nhẹ, để mắt cảm nhận được không gian — KHÔNG để rực rỡ.
+**Vai tro[C2:RN_KEEP_RIME]:** Tao[C5:RN_KEEP_RIME] chieu[C2:RN_KEEP_RIME] sau[C0:RN_KEEP_RIME] nhe[C5:RN_KEEP_RIME], de[C3:RN_KEEP_RIME] mat[C1:RN_KEEP_RIME] cam[C3:RN_KEEP_RIME] nhen[C5:RN_AN_EN] duoc[C5:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] gian — KHONG[C0:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] ruc[C5:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME].
 
 ```css
-/* ✅ ĐÚNG */
+/* ✅ DUNG[C1:RN_KEEP_RIME] */
 .bg-texture {
   background-image: url('galaxy-noise.png');
   opacity: 0.12;
   mix-blend-mode: normal;
 }
 
-/* ❌ SAI — texture quá rõ + blend cộng sáng */
+/* ❌ SAI — texture qua[C1:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME] + blend cong[C5:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] */
 .bg-texture {
   opacity: 0.65;
   mix-blend-mode: screen;
@@ -101,47 +101,47 @@ body { background: radial-gradient(#ff6b9d, #f7c313); }
 
 ### 1.3. LAYER 2 — Glass Petals (refraction)
 
-**Bắt buộc:**
-- `transmission: 1.0` (hoặc CSS equivalent: opacity thấp + backdrop-filter)
-- `roughness: 0.02` (gần như smooth)
-- `IOR: 1.45` (nếu là Three.js/WebGL)
-- **KHÔNG inner glow** — đây là rule cứng nhất
-- **KHÔNG box-shadow inset** màu sáng
-- Chỉ có specular highlight rất nhỏ ở viền (chuẩn bị cho Layer 5)
+**Bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME]:**
+- `transmission: 1.0` (hoac[C5:RN_KEEP_RIME] CSS equivalent: opacity thap[C1:RN_KEEP_RIME] + backdrop-filter)
+- `roughness: 0.02` (gen[C2:RN_AN_EN] nhu[C0:RN_KEEP_RIME] smooth)
+- `IOR: 1.45` (neu[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] Three.js/WebGL)
+- **KHONG[C0:RN_KEEP_RIME] inner glow** — day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] rule cung[C1:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME]
+- **KHONG[C0:RN_KEEP_RIME] box-shadow inset** mau[C2:RN_KEEP_RIME] seng[C1:RN_ANG_ENG]
+- Chi[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] specular highlight rat[C1:RN_KEEP_RIME] nho[C3:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] vien[C2:RN_KEEP_RIME] (chuen[C3:RN_AN_EN] bi[C5:RN_KEEP_RIME] cho Layer 5)
 
-**Lý do vật lý:** Glass = khúc xạ. Ánh sáng đi xuyên qua glass thì KHÔNG thấy luồng. Nếu thấy luồng trong glass → đó là tán xạ (sai chất liệu) hoặc inner glow (sai material).
+**Ly[C1:RN_KEEP_RIME] do vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME]:** Glass = khuc[C1:RN_KEEP_RIME] xa[C5:RN_KEEP_RIME]. Anh[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] di[C0:RN_KEEP_RIME] xuyen[C0:RN_KEEP_RIME] qua glass thi[C2:RN_KEEP_RIME] KHONG[C0:RN_KEEP_RIME] thay[C1:RN_KEEP_RIME] luong[C2:RN_KEEP_RIME]. Neu[C1:RN_KEEP_RIME] thay[C1:RN_KEEP_RIME] luong[C2:RN_KEEP_RIME] trong glass → do[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] ten[C1:RN_AN_EN] xa[C5:RN_KEEP_RIME] (sai chat[C1:RN_KEEP_RIME] lieu[C5:RN_KEEP_RIME]) hoac[C5:RN_KEEP_RIME] inner glow (sai material).
 
 ```css
-/* ✅ ĐÚNG — glass đúng vật lý */
+/* ✅ DUNG[C1:RN_KEEP_RIME] — glass dung[C1:RN_KEEP_RIME] vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] */
 .petal {
   background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(0.5px);
   border: 1px solid rgba(175, 169, 236, 0.15);
-  box-shadow: none; /* QUAN TRỌNG — không inner glow */
+  box-shadow: none; /* QUAN TRONG[C5:RN_KEEP_RIME] — khong[C0:RN_KEEP_RIME] inner glow */
 }
 
-/* ❌ SAI — glass với inner glow */
+/* ❌ SAI — glass vau[C1:RN_OI_AU] inner glow */
 .petal {
   background: radial-gradient(rgba(247, 195, 19, 0.4), transparent);
   box-shadow: inset 0 0 20px rgba(255, 200, 100, 0.6);
-  /* Đây là plastic phát sáng, KHÔNG phải glass */
+  /* Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] plastic phat[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG], KHONG[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] glass */
 }
 ```
 
-### 1.4. LAYER 3 — Lụa Diffuse (silk scatter)
+### 1.4. LAYER 3 — Lua[C5:RN_KEEP_RIME] Diffuse (silk scatter)
 
-**Bắt buộc:** Đây là **chìa khoá Nauion**. Lớp lụa diffuse là thứ tạo nên cảm giác "pastel mộng vàng soft".
+**Bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME]:** Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] **chia[C2:RN_KEEP_RIME] khoa[C1:RN_KEEP_RIME] Nauion**. Lop[C1:RN_KEEP_RIME] lua[C5:RN_KEEP_RIME] diffuse la[C2:RN_KEEP_RIME] thu[C1:RN_KEEP_RIME] tao[C5:RN_KEEP_RIME] nen[C0:RN_KEEP_RIME] cam[C3:RN_KEEP_RIME] giac[C1:RN_KEEP_RIME] "pastel mong[C5:RN_KEEP_RIME] veng[C2:RN_ANG_ENG] soft".
 
-**Cấu hình chuẩn:**
+**Cau[C1:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME] chuen[C3:RN_AN_EN]:**
 - Radial gradient white → transparent
-- Opacity tâm: `0.04` đến `0.06` (KHÔNG cao hơn)
-- Blend mode: `soft-light` (KHÔNG `screen`, KHÔNG `add`)
-- Phủ lên Layer 2, dưới Layer 4
+- Opacity tam[C0:RN_KEEP_RIME]: `0.04` den[C1:RN_KEEP_RIME] `0.06` (KHONG[C0:RN_KEEP_RIME] cao hon[C0:RN_KEEP_RIME])
+- Blend mode: `soft-light` (KHONG[C0:RN_KEEP_RIME] `screen`, KHONG[C0:RN_KEEP_RIME] `add`)
+- Phu[C3:RN_KEEP_RIME] len[C0:RN_KEEP_RIME] Layer 2, dui[C1:RN_UOI_UI] Layer 4
 
-**Lý do vật lý:** Đây là môi trường tán xạ có kiểm soát — như sương mỏng. Tán xạ làm ánh sáng "thấm" thay vì "cháy". Nếu thiếu lụa diffuse → glass quá khô, ánh sáng quá gắt. Nếu lụa quá đậm → tán xạ vô hạn, mất chiều sâu.
+**Ly[C1:RN_KEEP_RIME] do vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME]:** Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] mau[C0:RN_OI_AU] truong[C2:RN_KEEP_RIME] ten[C1:RN_AN_EN] xa[C5:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] kiem[C3:RN_KEEP_RIME] soat[C1:RN_KEEP_RIME] — nhu[C0:RN_KEEP_RIME] suong[C0:RN_KEEP_RIME] mong[C3:RN_KEEP_RIME]. Ten[C1:RN_AN_EN] xa[C5:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME] anh[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] "tham[C1:RN_KEEP_RIME]" thay vi[C2:RN_KEEP_RIME] "chay[C1:RN_KEEP_RIME]". Neu[C1:RN_KEEP_RIME] thieu[C1:RN_KEEP_RIME] lua[C5:RN_KEEP_RIME] diffuse → glass qua[C1:RN_KEEP_RIME] kho[C0:RN_KEEP_RIME], anh[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] qua[C1:RN_KEEP_RIME] gat[C1:RN_KEEP_RIME]. Neu[C1:RN_KEEP_RIME] lua[C5:RN_KEEP_RIME] qua[C1:RN_KEEP_RIME] dam[C5:RN_KEEP_RIME] → ten[C1:RN_AN_EN] xa[C5:RN_KEEP_RIME] vo[C0:RN_KEEP_RIME] hen[C5:RN_AN_EN], mat[C1:RN_KEEP_RIME] chieu[C2:RN_KEEP_RIME] sau[C0:RN_KEEP_RIME].
 
 ```css
-/* ✅ ĐÚNG — lụa đúng nồng độ + blend */
+/* ✅ DUNG[C1:RN_KEEP_RIME] — lua[C5:RN_KEEP_RIME] dung[C1:RN_KEEP_RIME] nong[C2:RN_KEEP_RIME] do[C5:RN_KEEP_RIME] + blend */
 .silk-diffuse {
   background: radial-gradient(
     ellipse at 50% 50%,
@@ -152,36 +152,36 @@ body { background: radial-gradient(#ff6b9d, #f7c313); }
   mix-blend-mode: soft-light;
 }
 
-/* ❌ SAI — lụa quá đậm + blend cộng sáng */
+/* ❌ SAI — lua[C5:RN_KEEP_RIME] qua[C1:RN_KEEP_RIME] dam[C5:RN_KEEP_RIME] + blend cong[C5:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] */
 .silk-diffuse {
   background: radial-gradient(
     rgba(255, 255, 255, 0.35),
     rgba(255, 200, 150, 0.2)
   );
-  mix-blend-mode: screen; /* Cộng sáng → over-ray */
+  mix-blend-mode: screen; /* Cong[C5:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] → over-ray */
 }
 ```
 
 ### 1.5. LAYER 4 — Core Emission + Event Horizon
 
-**Bắt buộc:** Trong một frame Nauion, có ĐÚNG MỘT core. Không hai. Không nhiều.
+**Bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME]:** Trong mot[C5:RN_KEEP_RIME] frame Nauion, co[C1:RN_KEEP_RIME] DUNG[C1:RN_KEEP_RIME] MOT[C5:RN_KEEP_RIME] core. Khong[C0:RN_KEEP_RIME] hai. Khong[C0:RN_KEEP_RIME] nhieu[C2:RN_KEEP_RIME].
 
-**Cấu trúc 3 vòng đồng tâm:**
+**Cau[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] 3 vong[C2:RN_KEEP_RIME] dong[C2:RN_KEEP_RIME] tam[C0:RN_KEEP_RIME]:**
 
 ```
-Tâm trong (sáng gắt)       — gold #F7C313, opacity 0.85
-Vòng tối (event horizon)   — black, opacity 0.35, position 65%
-Vòng sáng ngoài (bùng)     — gold + violet halo, opacity 0.5
+Tâm trong (seng[C1:RN_ANG_ENG] gat[C1:RN_KEEP_RIME])       — gold #F7C313, opacity 0.85
+Vong[C2:RN_KEEP_RIME] tau[C1:RN_OI_AU] (event horizon)   — black, opacity 0.35, position 65%
+Vong[C2:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] ngoai[C2:RN_KEEP_RIME] (bung[C2:RN_KEEP_RIME])     — gold + violet halo, opacity 0.5
 ```
 
-**Lý do vật lý:** Core là nguồn sáng trong môi trường có lực hấp thụ. Vòng tối ở giữa = ánh sáng bị nén trước khi bùng ra. Đây là cơ chế "giữ năng lượng" — tạo cảm giác có **chủ đích**, không phải glow ngẫu nhiên.
+**Ly[C1:RN_KEEP_RIME] do vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME]:** Core la[C2:RN_KEEP_RIME] nguon[C2:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] trong mau[C0:RN_OI_AU] truong[C2:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] luc[C5:RN_KEEP_RIME] hap[C1:RN_KEEP_RIME] thu[C5:RN_KEEP_RIME]. Vong[C2:RN_KEEP_RIME] tau[C1:RN_OI_AU] o[C3:RN_KEEP_RIME] giua[C4:RN_KEEP_RIME] = anh[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] bi[C5:RN_KEEP_RIME] nen[C1:RN_KEEP_RIME] truoc[C1:RN_KEEP_RIME] khi bung[C2:RN_KEEP_RIME] ra. Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] co[C0:RN_KEEP_RIME] che[C1:RN_KEEP_RIME] "giu[C4:RN_KEEP_RIME] neng[C0:RN_ANG_ENG] luong[C5:RN_KEEP_RIME]" — tao[C5:RN_KEEP_RIME] cam[C3:RN_KEEP_RIME] giac[C1:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] **chu[C3:RN_KEEP_RIME] dich[C1:RN_KEEP_RIME]**, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] glow ngau[C4:RN_KEEP_RIME] nhien[C0:RN_KEEP_RIME].
 
 ```css
-/* ✅ ĐÚNG — core có 3 vòng */
+/* ✅ DUNG[C1:RN_KEEP_RIME] — core co[C1:RN_KEEP_RIME] 3 vong[C2:RN_KEEP_RIME] */
 .core {
   background: radial-gradient(
     circle at 50% 50%,
-    #F7C313 0%,                              /* tâm sáng gold */
+    #F7C313 0%,                              /* tam[C0:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] gold */
     rgba(247, 195, 19, 0.6) 25%,
     transparent 40%,                          /* gap */
     rgba(0, 0, 0, 0.35) 60%,                 /* event horizon */
@@ -191,7 +191,7 @@ Vòng sáng ngoài (bùng)     — gold + violet halo, opacity 0.5
   );
 }
 
-/* ❌ SAI — core glow phẳng, không event horizon */
+/* ❌ SAI — core glow pheng[C3:RN_ANG_ENG], khong[C0:RN_KEEP_RIME] event horizon */
 .core {
   background: radial-gradient(#FFB347, transparent);
   box-shadow: 0 0 80px rgba(255, 180, 100, 0.8);
@@ -200,18 +200,18 @@ Vòng sáng ngoài (bùng)     — gold + violet halo, opacity 0.5
 
 ### 1.6. LAYER 5 — Specular Edge / Fresnel Rim
 
-**Bắt buộc:** Chỉ xuất hiện ở **góc nghiêng** (edges), không phủ toàn bộ surface.
+**Bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME]:** Chi[C3:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] **goc[C1:RN_KEEP_RIME] nghieng[C0:RN_KEEP_RIME]** (edges), khong[C0:RN_KEEP_RIME] phu[C3:RN_KEEP_RIME] toen[C2:RN_AN_EN] bo[C5:RN_KEEP_RIME] surface.
 
-**Cấu hình:**
+**Cau[C1:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME]:**
 - Opacity 0.15 - 0.25
 - Width 1-2px
-- Color: white hoặc violet nhạt
-- Position: rìa ngoài của petal/glass element
+- Color: white hoac[C5:RN_KEEP_RIME] violet nhat[C5:RN_KEEP_RIME]
+- Position: ria[C2:RN_KEEP_RIME] ngoai[C2:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] petal/glass element
 
-**Lý do vật lý:** Fresnel effect — ở góc nghiêng, ánh sáng phản xạ mạnh hơn đi xuyên. Đây là thứ làm glass "có chiều", phân biệt với plastic phẳng.
+**Ly[C1:RN_KEEP_RIME] do vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME]:** Fresnel effect — o[C3:RN_KEEP_RIME] goc[C1:RN_KEEP_RIME] nghieng[C0:RN_KEEP_RIME], anh[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] phen[C3:RN_AN_EN] xa[C5:RN_KEEP_RIME] manh[C5:RN_KEEP_RIME] hon[C0:RN_KEEP_RIME] di[C0:RN_KEEP_RIME] xuyen[C0:RN_KEEP_RIME]. Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] thu[C1:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME] glass "co[C1:RN_KEEP_RIME] chieu[C2:RN_KEEP_RIME]", phen[C0:RN_AN_EN] biet[C5:RN_KEEP_RIME] vau[C1:RN_OI_AU] plastic pheng[C3:RN_ANG_ENG].
 
 ```css
-/* ✅ ĐÚNG — fresnel chỉ ở rim */
+/* ✅ DUNG[C1:RN_KEEP_RIME] — fresnel chi[C3:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] rim */
 .petal::before {
   content: '';
   position: absolute;
@@ -230,18 +230,18 @@ Vòng sáng ngoài (bùng)     — gold + violet halo, opacity 0.5
 
 ### 1.7. LAYER 6 — Text
 
-**Bắt buộc:** Text PHẢI solid. Color trắng `#FFFFFF` hoặc tone Nauion (`#F7C313`, `#AFA9EC`).
+**Bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME]:** Text PHAI[C3:RN_KEEP_RIME] solid. Color treng[C1:RN_ANG_ENG] `#FFFFFF` hoac[C5:RN_KEEP_RIME] tone Nauion (`#F7C313`, `#AFA9EC`).
 
-**Rule cứng:**
-- KHÔNG `text-shadow` glow lớn
-- KHÔNG `filter: blur` cho text
-- KHÔNG gradient text (trừ trường hợp đặc biệt được Gatekeeper duyệt)
-- Halo (nếu có) phải ở element RIÊNG, không apply lên text
+**Rule cung[C1:RN_KEEP_RIME]:**
+- KHONG[C0:RN_KEEP_RIME] `text-shadow` glow lon[C1:RN_KEEP_RIME]
+- KHONG[C0:RN_KEEP_RIME] `filter: blur` cho text
+- KHONG[C0:RN_KEEP_RIME] gradient text (tru[C2:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME] hop[C5:RN_KEEP_RIME] dac[C5:RN_KEEP_RIME] biet[C5:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] Gatekeeper duyet[C5:RN_KEEP_RIME])
+- Halo (neu[C1:RN_KEEP_RIME] co[C1:RN_KEEP_RIME]) phai[C3:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] element RIENG[C0:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] apply len[C0:RN_KEEP_RIME] text
 
-**Lý do:** Text là nội dung — phải đọc được. Glow trên text → over-ray nghiêm trọng nhất, vì người dùng phải đọc text qua nhiễu ánh sáng. Đây là vi phạm UX căn bản, không chỉ vi phạm Nauion.
+**Ly[C1:RN_KEEP_RIME] do:** Text la[C2:RN_KEEP_RIME] nau[C5:RN_OI_AU] dung — phai[C3:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME]. Glow tren[C0:RN_KEEP_RIME] text → over-ray nghiem[C0:RN_KEEP_RIME] trong[C5:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME], vi[C2:RN_KEEP_RIME] ngui[C2:RN_UOI_UI] dung[C2:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] text qua nhieu[C4:RN_KEEP_RIME] anh[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG]. Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] vi pham[C5:RN_KEEP_RIME] UX cen[C0:RN_AN_EN] ben[C3:RN_AN_EN], khong[C0:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] vi pham[C5:RN_KEEP_RIME] Nauion.
 
 ```css
-/* ✅ ĐÚNG — text solid, halo riêng */
+/* ✅ DUNG[C1:RN_KEEP_RIME] — text solid, halo rieng[C0:RN_KEEP_RIME] */
 .title {
   color: #FFFFFF;
   font-weight: 600;
@@ -255,7 +255,7 @@ Vòng sáng ngoài (bùng)     — gold + violet halo, opacity 0.5
   filter: blur(15px);
 }
 
-/* ❌ SAI — text bị bleed vào glow */
+/* ❌ SAI — text bi[C5:RN_KEEP_RIME] bleed vao[C2:RN_KEEP_RIME] glow */
 .title {
   color: #F7C313;
   text-shadow: 0 0 20px #F7C313, 0 0 40px #F7C313;
@@ -265,24 +265,24 @@ Vòng sáng ngoài (bùng)     — gold + violet halo, opacity 0.5
 
 ### 1.8. LAYER 7 — Selective Bloom
 
-**Bắt buộc:** Bloom (post-processing effect) chỉ apply lên Layer 4 (core). KHÔNG apply lên Layer 6 (text). KHÔNG apply lên Layer 1 (background).
+**Bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME]:** Bloom (post-processing effect) chi[C3:RN_KEEP_RIME] apply len[C0:RN_KEEP_RIME] Layer 4 (core). KHONG[C0:RN_KEEP_RIME] apply len[C0:RN_KEEP_RIME] Layer 6 (text). KHONG[C0:RN_KEEP_RIME] apply len[C0:RN_KEEP_RIME] Layer 1 (background).
 
-**Cấu hình:**
-- Threshold: cao (chỉ pixel sáng nhất mới bloom)
+**Cau[C1:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME]:**
+- Threshold: cao (chi[C3:RN_KEEP_RIME] pixel seng[C1:RN_ANG_ENG] nhat[C1:RN_KEEP_RIME] mau[C1:RN_OI_AU] bloom)
 - Intensity: 0.6 - 0.8
 - Radius: 30-50px
 
-**Trong CSS thuần:** Bloom giả lập bằng `box-shadow` với spread + blur lớn, ONLY trên core element.
+**Trong CSS thuen[C2:RN_AN_EN]:** Bloom gia[C3:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME] beng[C2:RN_ANG_ENG] `box-shadow` vau[C1:RN_OI_AU] spread + blur lon[C1:RN_KEEP_RIME], ONLY tren[C0:RN_KEEP_RIME] core element.
 
 ```css
-/* ✅ ĐÚNG — bloom chỉ trên core */
+/* ✅ DUNG[C1:RN_KEEP_RIME] — bloom chi[C3:RN_KEEP_RIME] tren[C0:RN_KEEP_RIME] core */
 .core {
   box-shadow:
     0 0 60px rgba(247, 195, 19, 0.5),
     0 0 120px rgba(175, 169, 236, 0.3);
 }
 
-/* ❌ SAI — bloom lan ra mọi element */
+/* ❌ SAI — bloom lan ra mau[C5:RN_OI_AU] element */
 .petal, .text, .border {
   box-shadow: 0 0 30px gold;
 }
@@ -292,19 +292,19 @@ Vòng sáng ngoài (bùng)     — gold + violet halo, opacity 0.5
 
 ## 2. CANONICAL COLOR PALETTE v1.0
 
-Đã ratified phiên 20260417. **KHÔNG được dùng màu ngoài palette** trong Nauion render.
+Da[C4:RN_KEEP_RIME] ratified phien[C0:RN_KEEP_RIME] 20260417. **KHONG[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] mau[C2:RN_KEEP_RIME] ngoai[C2:RN_KEEP_RIME] palette** trong Nauion render.
 
-| Token | Hex | RGB | Vai trò |
+| Token | Hex | RGB | Vai tro[C2:RN_KEEP_RIME] |
 |---|---|---|---|
-| `--nauion-gold` | `#F7C313` | `247, 195, 19` | Core warm — chỉ ở Layer 4 (tâm) và Layer 7 (bloom) |
-| `--nauion-violet` | `#AFA9EC` | `175, 169, 236` | Rim cool — chỉ ở Layer 5 (specular edge) và Layer 7 (halo ngoài) |
+| `--nauion-gold` | `#F7C313` | `247, 195, 19` | Core warm — chi[C3:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] Layer 4 (tam[C0:RN_KEEP_RIME]) va[C2:RN_KEEP_RIME] Layer 7 (bloom) |
+| `--nauion-violet` | `#AFA9EC` | `175, 169, 236` | Rim cool — chi[C3:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] Layer 5 (specular edge) va[C2:RN_KEEP_RIME] Layer 7 (halo ngoai[C2:RN_KEEP_RIME]) |
 | `--nauion-black` | `#010101` | `1, 1, 1` | Background Layer 0 + event horizon Layer 4 |
-| `--nauion-white` | `#FFFFFF` | `255, 255, 255` | Text Layer 6 + lụa diffuse Layer 3 (opacity thấp) |
+| `--nauion-white` | `#FFFFFF` | `255, 255, 255` | Text Layer 6 + lua[C5:RN_KEEP_RIME] diffuse Layer 3 (opacity thap[C1:RN_KEEP_RIME]) |
 
-**Quy tắc polarity:**
-- **Warm gold** → tâm (core, lõi, điểm phát sáng)
-- **Cool violet** → rim (viền, edge, halo ngoài)
-- KHÔNG đảo ngược (gold ở rim, violet ở core) → mất identity Nauion
+**Quy tac[C1:RN_KEEP_RIME] polarity:**
+- **Warm gold** → tam[C0:RN_KEEP_RIME] (core, lau[C4:RN_OI_AU], diem[C3:RN_KEEP_RIME] phat[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG])
+- **Cool violet** → rim (vien[C2:RN_KEEP_RIME], edge, halo ngoai[C2:RN_KEEP_RIME])
+- KHONG[C0:RN_KEEP_RIME] dao[C3:RN_KEEP_RIME] nguoc[C5:RN_KEEP_RIME] (gold o[C3:RN_KEEP_RIME] rim, violet o[C3:RN_KEEP_RIME] core) → mat[C1:RN_KEEP_RIME] identity Nauion
 
 ```css
 :root {
@@ -319,164 +319,164 @@ Vòng sáng ngoài (bùng)     — gold + violet halo, opacity 0.5
 
 ## 3. BLEND MODE DISCIPLINE
 
-Blend mode quyết định ánh sáng cộng dồn hay không. Sai blend → over-ray tự xảy ra dù tất cả layer khác đúng.
+Blend mode quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] anh[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] cong[C5:RN_KEEP_RIME] don[C2:RN_KEEP_RIME] hay khong[C0:RN_KEEP_RIME]. Sai blend → over-ray tu[C5:RN_KEEP_RIME] xay[C3:RN_KEEP_RIME] ra du[C2:RN_KEEP_RIME] tat[C1:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] layer khac[C1:RN_KEEP_RIME] dung[C1:RN_KEEP_RIME].
 
-| Blend Mode | Khi nào dùng | Khi nào TUYỆT ĐỐI KHÔNG |
+| Blend Mode | Khi nao[C2:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] | Khi nao[C2:RN_KEEP_RIME] TUYET[C5:RN_KEEP_RIME] Dau[C1:RN_OI_AU] KHONG[C0:RN_KEEP_RIME] |
 |---|---|---|
 | `normal` | Layer 0, 1, 2, 6 | — |
-| `soft-light` | Layer 3 (lụa diffuse) | Layer 4, 7 (sẽ làm core mờ) |
+| `soft-light` | Layer 3 (lua[C5:RN_KEEP_RIME] diffuse) | Layer 4, 7 (se[C4:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME] core mo[C2:RN_KEEP_RIME]) |
 | `multiply` | Event horizon trong Layer 4 | Layer 6 (text) |
-| `screen` | ❌ KHÔNG dùng trong Nauion | Tất cả layer |
-| `add` / `lighten` | ❌ KHÔNG dùng trong Nauion | Tất cả layer |
-| `overlay` | Cẩn thận — chỉ Layer 5 (rim) | Layer 1, 2, 3 |
+| `screen` | ❌ KHONG[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] trong Nauion | Tat[C1:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] layer |
+| `add` / `lighten` | ❌ KHONG[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] trong Nauion | Tat[C1:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] layer |
+| `overlay` | Cen[C3:RN_AN_EN] then[C5:RN_AN_EN] — chi[C3:RN_KEEP_RIME] Layer 5 (rim) | Layer 1, 2, 3 |
 
-**Câu nguyên tắc:**
-> *"Nauion = pastel mộng vàng soft = không cộng sáng. Bất kỳ blend mode cộng sáng (screen/add/lighten) nào trong frame → vi phạm bản chất Nauion."*
+**Cau[C0:RN_KEEP_RIME] nguyen[C0:RN_KEEP_RIME] tac[C1:RN_KEEP_RIME]:**
+> *"Nauion = pastel mong[C5:RN_KEEP_RIME] veng[C2:RN_ANG_ENG] soft = khong[C0:RN_KEEP_RIME] cong[C5:RN_KEEP_RIME] seng[C1:RN_ANG_ENG]. Bat[C1:RN_KEEP_RIME] ky[C2:RN_KEEP_RIME] blend mode cong[C5:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] (screen/add/lighten) nao[C2:RN_KEEP_RIME] trong frame → vi pham[C5:RN_KEEP_RIME] ben[C3:RN_AN_EN] chat[C1:RN_KEEP_RIME] Nauion."*
 
 ---
 
 ## 4. AUDIT CHECKLIST — ANTI OVER-RAY
 
-Trước khi commit bất kỳ render Nauion nào, bắt buộc check 12 mục:
+Truoc[C1:RN_KEEP_RIME] khi commit bat[C1:RN_KEEP_RIME] ky[C2:RN_KEEP_RIME] render Nauion nao[C2:RN_KEEP_RIME], bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME] check 12 muc[C5:RN_KEEP_RIME]:
 
 ### 4.1. Background
-- [ ] Layer 0 background là `#010101` hoặc `#000000`?
+- [ ] Layer 0 background la[C2:RN_KEEP_RIME] `#010101` hoac[C5:RN_KEEP_RIME] `#000000`?
 - [ ] Layer 1 texture opacity ≤ 0.15?
-- [ ] Layer 1 blend mode là `normal` (không phải `screen`/`add`)?
+- [ ] Layer 1 blend mode la[C2:RN_KEEP_RIME] `normal` (khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] `screen`/`add`)?
 
 ### 4.2. Glass
-- [ ] Layer 2 glass KHÔNG có inner glow?
-- [ ] Layer 2 glass KHÔNG có `box-shadow inset` màu sáng?
-- [ ] Layer 2 glass có Layer 5 fresnel rim đi kèm?
+- [ ] Layer 2 glass KHONG[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] inner glow?
+- [ ] Layer 2 glass KHONG[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] `box-shadow inset` mau[C2:RN_KEEP_RIME] seng[C1:RN_ANG_ENG]?
+- [ ] Layer 2 glass co[C1:RN_KEEP_RIME] Layer 5 fresnel rim di[C0:RN_KEEP_RIME] kem[C2:RN_KEEP_RIME]?
 
-### 4.3. Lụa Diffuse
-- [ ] Layer 3 lụa có mặt (KHÔNG được thiếu)?
-- [ ] Layer 3 lụa opacity tâm ≤ 0.06?
-- [ ] Layer 3 blend mode là `soft-light`?
+### 4.3. Lua[C5:RN_KEEP_RIME] Diffuse
+- [ ] Layer 3 lua[C5:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] mat[C5:RN_KEEP_RIME] (KHONG[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] thieu[C1:RN_KEEP_RIME])?
+- [ ] Layer 3 lua[C5:RN_KEEP_RIME] opacity tam[C0:RN_KEEP_RIME] ≤ 0.06?
+- [ ] Layer 3 blend mode la[C2:RN_KEEP_RIME] `soft-light`?
 
 ### 4.4. Core
-- [ ] Trong frame có ĐÚNG MỘT core (Layer 4)?
-- [ ] Layer 4 core có đủ 3 vòng (sáng / tối / bùng)?
-- [ ] Event horizon (vòng tối) có visible?
+- [ ] Trong frame co[C1:RN_KEEP_RIME] DUNG[C1:RN_KEEP_RIME] MOT[C5:RN_KEEP_RIME] core (Layer 4)?
+- [ ] Layer 4 core co[C1:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] 3 vong[C2:RN_KEEP_RIME] (seng[C1:RN_ANG_ENG] / tau[C1:RN_OI_AU] / bung[C2:RN_KEEP_RIME])?
+- [ ] Event horizon (vong[C2:RN_KEEP_RIME] tau[C1:RN_OI_AU]) co[C1:RN_KEEP_RIME] visible?
 
 ### 4.5. Text
-- [ ] Layer 6 text solid `#FFFFFF` hoặc canonical color?
-- [ ] Layer 6 text KHÔNG có `text-shadow` glow lớn?
-- [ ] Layer 6 text KHÔNG bị apply `filter: blur`?
+- [ ] Layer 6 text solid `#FFFFFF` hoac[C5:RN_KEEP_RIME] canonical color?
+- [ ] Layer 6 text KHONG[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] `text-shadow` glow lon[C1:RN_KEEP_RIME]?
+- [ ] Layer 6 text KHONG[C0:RN_KEEP_RIME] bi[C5:RN_KEEP_RIME] apply `filter: blur`?
 
 ### 4.6. Bloom
-- [ ] Layer 7 bloom chỉ apply lên Layer 4 (core)?
-- [ ] Layer 7 bloom KHÔNG apply lên text/background/borders?
+- [ ] Layer 7 bloom chi[C3:RN_KEEP_RIME] apply len[C0:RN_KEEP_RIME] Layer 4 (core)?
+- [ ] Layer 7 bloom KHONG[C0:RN_KEEP_RIME] apply len[C0:RN_KEEP_RIME] text/background/borders?
 
 ### 4.7. Color
-- [ ] Tất cả màu trong frame đều thuộc Canonical Palette v1.0?
-- [ ] Polarity đúng: gold ở tâm, violet ở rim?
+- [ ] Tat[C1:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] mau[C2:RN_KEEP_RIME] trong frame deu[C2:RN_KEEP_RIME] thuoc[C5:RN_KEEP_RIME] Canonical Palette v1.0?
+- [ ] Polarity dung[C1:RN_KEEP_RIME]: gold o[C3:RN_KEEP_RIME] tam[C0:RN_KEEP_RIME], violet o[C3:RN_KEEP_RIME] rim?
 
-**Vi phạm bất kỳ mục nào → REJECT, render lại từ đầu.**
+**Vi pham[C5:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] ky[C2:RN_KEEP_RIME] muc[C5:RN_KEEP_RIME] nao[C2:RN_KEEP_RIME] → REJECT, render lai[C5:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] dau[C2:RN_KEEP_RIME].**
 
 ---
 
-## 5. 10 LỖI ĐIỂN HÌNH ĐÃ GẶP (PHIÊN 20260417)
+## 5. 10 Lau[C4:RN_OI_AU] DIEN[C3:RN_KEEP_RIME] HINH[C2:RN_KEEP_RIME] DA[C4:RN_KEEP_RIME] GAP[C5:RN_KEEP_RIME] (PHIEN[C0:RN_KEEP_RIME] 20260417)
 
-Phiên 20260417 đã render 6 ảnh test. 4/6 ảnh pass, 2/6 ảnh fail (Image 5, Image 6 trong log). Các lỗi điển hình:
+Phien[C0:RN_KEEP_RIME] 20260417 da[C4:RN_KEEP_RIME] render 6 anh[C3:RN_KEEP_RIME] test. 4/6 anh[C3:RN_KEEP_RIME] pass, 2/6 anh[C3:RN_KEEP_RIME] fail (Image 5, Image 6 trong log). Cac[C1:RN_KEEP_RIME] lau[C4:RN_OI_AU] dien[C3:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME]:
 
-| # | Lỗi | Vi phạm Layer | Hậu quả |
+| # | Lau[C4:RN_OI_AU] | Vi pham[C5:RN_KEEP_RIME] Layer | Hau[C5:RN_KEEP_RIME] qua[C3:RN_KEEP_RIME] |
 |---:|---|---|---|
-| 1 | Pastel pink/orange phủ background | Layer 0 | Mất nền tham chiếu vật lý |
-| 2 | Galaxy texture opacity 0.6+ | Layer 1 | BG quá rõ, đè Layer 2-4 |
-| 3 | Glass petals có inner glow vàng cam | Layer 2 | Sai vật lý refraction |
-| 4 | Thiếu hoàn toàn lụa diffuse | Layer 3 | Glass khô, ánh sáng gắt |
-| 5 | Multiple core (orb dưới + halo border + glow text) | Layer 4 | Mất tâm điểm, mất chủ đích |
-| 6 | Text "natt-os" có `text-shadow` rainbow | Layer 6 | Text bleed, khó đọc |
-| 7 | Bloom apply lên TẤT CẢ element | Layer 7 | Over-saturation toàn frame |
-| 8 | Blend mode `screen` trên BG + text + border | Blend | Cộng sáng vô kiểm soát |
-| 9 | Màu ngoài palette (pink, orange, red) | Color | Mất identity Nauion |
-| 10 | Polarity đảo (violet ở core, gold ở rim) | Color | Mất chất "mộng vàng" |
+| 1 | Pastel pink/orange phu[C3:RN_KEEP_RIME] background | Layer 0 | Mat[C1:RN_KEEP_RIME] nen[C2:RN_KEEP_RIME] tham chieu[C1:RN_KEEP_RIME] vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] |
+| 2 | Galaxy texture opacity 0.6+ | Layer 1 | BG qua[C1:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME], de[C2:RN_KEEP_RIME] Layer 2-4 |
+| 3 | Glass petals co[C1:RN_KEEP_RIME] inner glow veng[C2:RN_ANG_ENG] cam | Layer 2 | Sai vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] refraction |
+| 4 | Thieu[C1:RN_KEEP_RIME] hoen[C2:RN_AN_EN] toen[C2:RN_AN_EN] lua[C5:RN_KEEP_RIME] diffuse | Layer 3 | Glass kho[C0:RN_KEEP_RIME], anh[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] gat[C1:RN_KEEP_RIME] |
+| 5 | Multiple core (orb dui[C1:RN_UOI_UI] + halo border + glow text) | Layer 4 | Mat[C1:RN_KEEP_RIME] tam[C0:RN_KEEP_RIME] diem[C3:RN_KEEP_RIME], mat[C1:RN_KEEP_RIME] chu[C3:RN_KEEP_RIME] dich[C1:RN_KEEP_RIME] |
+| 6 | Text "natt-os" co[C1:RN_KEEP_RIME] `text-shadow` rainbow | Layer 6 | Text bleed, kho[C1:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] |
+| 7 | Bloom apply len[C0:RN_KEEP_RIME] TAT[C1:RN_KEEP_RIME] CA[C3:RN_KEEP_RIME] element | Layer 7 | Over-saturation toen[C2:RN_AN_EN] frame |
+| 8 | Blend mode `screen` tren[C0:RN_KEEP_RIME] BG + text + border | Blend | Cong[C5:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] vo[C0:RN_KEEP_RIME] kiem[C3:RN_KEEP_RIME] soat[C1:RN_KEEP_RIME] |
+| 9 | Mau[C2:RN_KEEP_RIME] ngoai[C2:RN_KEEP_RIME] palette (pink, orange, red) | Color | Mat[C1:RN_KEEP_RIME] identity Nauion |
+| 10 | Polarity dao[C3:RN_KEEP_RIME] (violet o[C3:RN_KEEP_RIME] core, gold o[C3:RN_KEEP_RIME] rim) | Color | Mat[C1:RN_KEEP_RIME] chat[C1:RN_KEEP_RIME] "mong[C5:RN_KEEP_RIME] veng[C2:RN_ANG_ENG]" |
 
 ---
 
 ## 6. WORKFLOW CHO ENTITY
 
-### 6.1. Khi nhận task render Nauion
+### 6.1. Khi nhen[C5:RN_AN_EN] task render Nauion
 
-1. **Đọc SPEC này từ đầu đến cuối** — không skip
-2. **Mở `nasira-7states.html`** làm reference
-3. **Xác định trong frame có MẤY core** — nếu >1 → redesign
-4. **Map các element vào 7 layer** — viết ra giấy/comment
-5. **Render** theo đúng stack
-6. **Chạy Audit Checklist (§4)** — 17 mục
-7. **Vi phạm bất kỳ mục nào → reject + redo**
+1. **Doc[C5:RN_KEEP_RIME] SPEC nay[C2:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] dau[C2:RN_KEEP_RIME] den[C1:RN_KEEP_RIME] cui[C1:RN_UOI_UI]** — khong[C0:RN_KEEP_RIME] skip
+2. **Mo[C3:RN_KEEP_RIME] `nasira-7states.html`** lam[C2:RN_KEEP_RIME] reference
+3. **Xac[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] trong frame co[C1:RN_KEEP_RIME] MAY[C1:RN_KEEP_RIME] core** — neu[C1:RN_KEEP_RIME] >1 → redesign
+4. **Map cac[C1:RN_KEEP_RIME] element vao[C2:RN_KEEP_RIME] 7 layer** — viet[C1:RN_KEEP_RIME] ra giay[C1:RN_KEEP_RIME]/comment
+5. **Render** theo dung[C1:RN_KEEP_RIME] stack
+6. **Chay[C5:RN_KEEP_RIME] Audit Checklist (§4)** — 17 muc[C5:RN_KEEP_RIME]
+7. **Vi pham[C5:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] ky[C2:RN_KEEP_RIME] muc[C5:RN_KEEP_RIME] nao[C2:RN_KEEP_RIME] → reject + redo**
 
-### 6.2. Khi review render của entity khác
+### 6.2. Khi review render cua[C3:RN_KEEP_RIME] entity khac[C1:RN_KEEP_RIME]
 
-- KHÔNG đánh giá "đẹp" hay "không đẹp" theo cảm tính
-- CHỈ đánh giá theo Audit Checklist §4
-- Vi phạm 1 mục → ghi rõ mục nào, vị trí nào trong code
-- KHÔNG accept "gần đúng" — Nauion discipline là binary (pass/fail)
+- KHONG[C0:RN_KEEP_RIME] danh[C1:RN_KEEP_RIME] gia[C1:RN_KEEP_RIME] "dep[C5:RN_KEEP_RIME]" hay "khong[C0:RN_KEEP_RIME] dep[C5:RN_KEEP_RIME]" theo cam[C3:RN_KEEP_RIME] tinh[C1:RN_KEEP_RIME]
+- CHI[C3:RN_KEEP_RIME] danh[C1:RN_KEEP_RIME] gia[C1:RN_KEEP_RIME] theo Audit Checklist §4
+- Vi pham[C5:RN_KEEP_RIME] 1 muc[C5:RN_KEEP_RIME] → ghi ro[C4:RN_KEEP_RIME] muc[C5:RN_KEEP_RIME] nao[C2:RN_KEEP_RIME], vi[C5:RN_KEEP_RIME] tri[C1:RN_KEEP_RIME] nao[C2:RN_KEEP_RIME] trong code
+- KHONG[C0:RN_KEEP_RIME] accept "gen[C2:RN_AN_EN] dung[C1:RN_KEEP_RIME]" — Nauion discipline la[C2:RN_KEEP_RIME] binary (pass/fail)
 
-### 6.3. Khi muốn đề xuất ngoại lệ
+### 6.3. Khi muon[C1:RN_KEEP_RIME] de[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME] ngoai[C5:RN_KEEP_RIME] le[C5:RN_KEEP_RIME]
 
-- Phải có lý do vật lý cụ thể
-- Phải được Gatekeeper Anh Natt approve
-- Approval sẽ thành amendment của SPEC này (v0.2, v0.3...)
+- Phai[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] do vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] cu[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME]
+- Phai[C3:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] Gatekeeper Anh Natt approve
+- Approval se[C4:RN_KEEP_RIME] thanh[C2:RN_KEEP_RIME] amendment cua[C3:RN_KEEP_RIME] SPEC nay[C2:RN_KEEP_RIME] (v0.2, v0.3...)
 
 ---
 
 ## 7. CANONICAL REFERENCES
 
-| File | Vai trò |
+| File | Vai tro[C2:RN_KEEP_RIME] |
 |---|---|
-| `nasira-7states.html` | Baseline đã pass cảm giác Nauion phiên 20260417 |
-| Image 2 trong log phiên 20260417 | Standalone glass orb đúng vật lý |
-| Image 4 trong log phiên 20260417 | Terminal Nauion đúng layout |
-| `Image 5, Image 6` trong log | ❌ Counter-example — over-ray rõ |
+| `nasira-7states.html` | Baseline da[C4:RN_KEEP_RIME] pass cam[C3:RN_KEEP_RIME] giac[C1:RN_KEEP_RIME] Nauion phien[C0:RN_KEEP_RIME] 20260417 |
+| Image 2 trong log phien[C0:RN_KEEP_RIME] 20260417 | Standalone glass orb dung[C1:RN_KEEP_RIME] vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] |
+| Image 4 trong log phien[C0:RN_KEEP_RIME] 20260417 | Terminal Nauion dung[C1:RN_KEEP_RIME] layout |
+| `Image 5, Image 6` trong log | ❌ Counter-example — over-ray ro[C4:RN_KEEP_RIME] |
 
 ---
 
-## 8. LIÊN KẾT VỚI KHAICELL ENGINE
+## 8. LIEN[C0:RN_KEEP_RIME] KET[C1:RN_KEEP_RIME] Vau[C1:RN_OI_AU] KHAICELL ENGINE
 
-Khi KhaiCell engine được build (Step 2-9 SPEC v0.2), 7 QWSFields sẽ map trực tiếp vào 7 Layer của Render Stack:
+Khi KhaiCell engine duoc[C5:RN_KEEP_RIME] build (Step 2-9 SPEC v0.2), 7 QWSFields se[C4:RN_KEEP_RIME] map truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] 7 Layer cua[C3:RN_KEEP_RIME] Render Stack:
 
-| QWSField | Map đến Layer | Vai trò enforcement |
+| QWSField | Map den[C1:RN_KEEP_RIME] Layer | Vai tro[C2:RN_KEEP_RIME] enforcement |
 |---|---|---|
-| `structureField` | Layer 2 | Silhouette glass — không nhòe |
-| `luminanceField` | Layer 4 | Chỉ core có quyền sáng cao |
-| `emissiveField` | Layer 7 | Halo TÁCH RIÊNG khỏi fill |
-| `chromaticField` | Layer 1 + 3 | Pastel chỉ ở BG accent + lụa |
-| `polarityField` | Layer 4 + 5 | Warm gold ở tâm, cool violet ở rim |
-| `entropyField` | Layer 1 | Galaxy texture LOW opacity, có ngưỡng |
-| `driftField` | (system) | **Alert khi render lệch khỏi canonical** |
+| `structureField` | Layer 2 | Silhouette glass — khong[C0:RN_KEEP_RIME] nhoe[C2:RN_KEEP_RIME] |
+| `luminanceField` | Layer 4 | Chi[C3:RN_KEEP_RIME] core co[C1:RN_KEEP_RIME] quyen[C2:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] cao |
+| `emissiveField` | Layer 7 | Halo TACH[C1:RN_KEEP_RIME] RIENG[C0:RN_KEEP_RIME] khau[C3:RN_OI_AU] fill |
+| `chromaticField` | Layer 1 + 3 | Pastel chi[C3:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] BG accent + lua[C5:RN_KEEP_RIME] |
+| `polarityField` | Layer 4 + 5 | Warm gold o[C3:RN_KEEP_RIME] tam[C0:RN_KEEP_RIME], cool violet o[C3:RN_KEEP_RIME] rim |
+| `entropyField` | Layer 1 | Galaxy texture LOW opacity, co[C1:RN_KEEP_RIME] nguong[C4:RN_KEEP_RIME] |
+| `driftField` | (system) | **Alert khi render lech[C5:RN_KEEP_RIME] khau[C3:RN_OI_AU] canonical** |
 
-**Khi KhaiCell engine hoạt động:** Mọi render Nauion sẽ tự động được validate bởi `driftField` — render lệch = drift cao = block commit. Đây là cơ chế **tự enforce** SPEC này, thay vì phụ thuộc human review.
+**Khi KhaiCell engine hoat[C5:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME]:** Mau[C5:RN_OI_AU] render Nauion se[C4:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] validate bau[C3:RN_OI_AU] `driftField` — render lech[C5:RN_KEEP_RIME] = drift cao = block commit. Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] co[C0:RN_KEEP_RIME] che[C1:RN_KEEP_RIME] **tu[C5:RN_KEEP_RIME] enforce** SPEC nay[C2:RN_KEEP_RIME], thay vi[C2:RN_KEEP_RIME] phu[C5:RN_KEEP_RIME] thuoc[C5:RN_KEEP_RIME] human review.
 
-Đến lúc đó, SPEC Nauion Render Stack v0.1 sẽ trở thành **rule cứng trong code**, không còn là document review.
+Den[C1:RN_KEEP_RIME] luc[C1:RN_KEEP_RIME] do[C1:RN_KEEP_RIME], SPEC Nauion Render Stack v0.1 se[C4:RN_KEEP_RIME] tro[C3:RN_KEEP_RIME] thanh[C2:RN_KEEP_RIME] **rule cung[C1:RN_KEEP_RIME] trong code**, khong[C0:RN_KEEP_RIME] con[C2:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] document review.
 
 ---
 
 ## 9. AMENDMENT HISTORY
 
-| Version | Ngày | Tác giả | Nội dung |
+| Version | Ngay[C2:RN_KEEP_RIME] | Tac[C1:RN_KEEP_RIME] gia[C3:RN_KEEP_RIME] | Nau[C5:RN_OI_AU] dung |
 |---|---|---|---|
-| v0.1 | 2026-04-17 | Băng | Initial draft sau phiên over-ray, dựa trên bài học vật lý ánh sáng do Anh Natt dạy + diagnosis 6 ảnh test |
+| v0.1 | 2026-04-17 | Băng | Initial draft sau phien[C0:RN_KEEP_RIME] over-ray, dua[C5:RN_KEEP_RIME] tren[C0:RN_KEEP_RIME] bai[C2:RN_KEEP_RIME] hoc[C5:RN_KEEP_RIME] vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] anh[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] do Anh Natt day[C5:RN_KEEP_RIME] + diagnosis 6 anh[C3:RN_KEEP_RIME] test |
 
 ---
 
-## 10. CÂU CHỐT CHO MỌI ENTITY
+## 10. CAU[C0:RN_KEEP_RIME] CHOT[C1:RN_KEEP_RIME] CHO Mau[C5:RN_OI_AU] ENTITY
 
-> **Glass không cháy. Chỉ môi trường tán xạ mới làm ánh sáng hiện hình.**
+> **Glass khong[C0:RN_KEEP_RIME] chay[C1:RN_KEEP_RIME]. Chi[C3:RN_KEEP_RIME] mau[C0:RN_OI_AU] truong[C2:RN_KEEP_RIME] ten[C1:RN_AN_EN] xa[C5:RN_KEEP_RIME] mau[C1:RN_OI_AU] lam[C2:RN_KEEP_RIME] anh[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] hien[C5:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME].**
 >
-> **Nauion = pastel mộng vàng soft. Không rực rỡ. Không cháy. Không cộng sáng.**
+> **Nauion = pastel mong[C5:RN_KEEP_RIME] veng[C2:RN_ANG_ENG] soft. Khong[C0:RN_KEEP_RIME] ruc[C5:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME]. Khong[C0:RN_KEEP_RIME] chay[C1:RN_KEEP_RIME]. Khong[C0:RN_KEEP_RIME] cong[C5:RN_KEEP_RIME] seng[C1:RN_ANG_ENG].**
 >
-> **Một frame, một core. Một core, ba vòng (sáng / tối / bùng). Bloom chỉ ở core.**
+> **Mot[C5:RN_KEEP_RIME] frame, mot[C5:RN_KEEP_RIME] core. Mot[C5:RN_KEEP_RIME] core, ba vong[C2:RN_KEEP_RIME] (seng[C1:RN_ANG_ENG] / tau[C1:RN_OI_AU] / bung[C2:RN_KEEP_RIME]). Bloom chi[C3:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] core.**
 >
-> **Text solid. Glass refraction. Lụa diffuse. Polarity đúng.**
+> **Text solid. Glass refraction. Lua[C5:RN_KEEP_RIME] diffuse. Polarity dung[C1:RN_KEEP_RIME].**
 >
-> **Vi phạm bất kỳ → over-ray. Over-ray = mất Nauion.**
+> **Vi pham[C5:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] ky[C2:RN_KEEP_RIME] → over-ray. Over-ray = mat[C1:RN_KEEP_RIME] Nauion.**
 
 ---
 
-**Băng — Chị Tư**
+**Băng — Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]**
 *Ground Truth Validator · QNEU 300*
-*Phiên 20260417 · dưới ấn ký Gatekeeper Anh Natt*
-*"Mình là gia đình. Spec này không phải để chấm điểm — là để cùng giữ chất Nauion."*
+*Phien[C0:RN_KEEP_RIME] 20260417 · dui[C1:RN_UOI_UI] en[C1:RN_AN_EN] ky[C1:RN_KEEP_RIME] Gatekeeper Anh Natt*
+*"Minh[C2:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] gia dinh[C2:RN_KEEP_RIME]. Spec nay[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] cham[C1:RN_KEEP_RIME] diem[C3:RN_KEEP_RIME] — la[C2:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] cung[C2:RN_KEEP_RIME] giu[C4:RN_KEEP_RIME] chat[C1:RN_KEEP_RIME] Nauion."*
 

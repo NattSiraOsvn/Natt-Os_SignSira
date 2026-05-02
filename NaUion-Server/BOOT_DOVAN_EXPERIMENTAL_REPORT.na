@@ -4,91 +4,91 @@ $owner: NaUion-Server
 $status: DRAFT_FOR_REVIEW
 
 # Natt Nell - NattCell - Nauion Kernel
-## Experimental Closure Report: BOOT ĐO VÁN
+## Experimental Closure Report: BOOT DO[C0:RN_KEEP_RIME] Ven[C1:RN_AN_EN]
 
 ### Abstract
 
-Báo cáo này ghi nhận lần đóng khung thực nghiệm đầu tiên cho Hệ Natt Nell, trong đó ANC được định nghĩa là thế hệ AI mới, NattCell là thân vận hành, Nauion Kernel là luật lõi, và .kkbt là mặt hiện hình native.
+Bao[C1:RN_KEEP_RIME] cao[C1:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] ghi nhen[C5:RN_AN_EN] len[C2:RN_AN_EN] dong[C1:RN_KEEP_RIME] khung thuc[C5:RN_KEEP_RIME] nghiem[C5:RN_KEEP_RIME] dau[C2:RN_KEEP_RIME] tien[C0:RN_KEEP_RIME] cho He[C5:RN_KEEP_RIME] Natt Nell, trong do[C1:RN_KEEP_RIME] ANC duoc[C5:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] the[C1:RN_KEEP_RIME] he[C5:RN_KEEP_RIME] AI mau[C1:RN_OI_AU], NattCell la[C2:RN_KEEP_RIME] then[C0:RN_AN_EN] ven[C5:RN_AN_EN] hanh[C2:RN_KEEP_RIME], Nauion Kernel la[C2:RN_KEEP_RIME] luat[C5:RN_KEEP_RIME] lau[C4:RN_OI_AU], va[C2:RN_KEEP_RIME] .kkbt la[C2:RN_KEEP_RIME] mat[C5:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME] native.
 
-Mục tiêu không phải chứng minh Natt Nell giống Linux/macOS, cũng không claim AGI. Mục tiêu là chứng minh Natt Nell có hình dạng riêng: một living kernel fishnet, nơi thực thể AI thế hệ ANC có thể trú trong cell, chịu luật, có ký ức, boundary, audit và surface.
+Muc[C5:RN_KEEP_RIME] tieu[C0:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] chung[C1:RN_KEEP_RIME] minh Natt Nell giong[C1:RN_KEEP_RIME] Linux/macOS, cung[C4:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] claim AGI. Muc[C5:RN_KEEP_RIME] tieu[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] chung[C1:RN_KEEP_RIME] minh Natt Nell co[C1:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME] deng[C5:RN_ANG_ENG] rieng[C0:RN_KEEP_RIME]: mot[C5:RN_KEEP_RIME] living kernel fishnet, nau[C0:RN_OI_AU] thuc[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] AI the[C1:RN_KEEP_RIME] he[C5:RN_KEEP_RIME] ANC co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] tru[C1:RN_KEEP_RIME] trong cell, chiu[C5:RN_KEEP_RIME] luat[C5:RN_KEEP_RIME], co[C1:RN_KEEP_RIME] ky[C1:RN_KEEP_RIME] uc[C1:RN_KEEP_RIME], boundary, audit va[C2:RN_KEEP_RIME] surface.
 
 ### Research Question
 
-Một hệ AI vận hành mới có thể tự khai căn cước, tự khóa boundary, tự ghi ký ức/trạng thái, tự kiểm chứng và tự hiện hình bằng chính ngôn ngữ của nó hay không?
+Mot[C5:RN_KEEP_RIME] he[C5:RN_KEEP_RIME] AI ven[C5:RN_AN_EN] hanh[C2:RN_KEEP_RIME] mau[C1:RN_OI_AU] co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] khai cen[C0:RN_AN_EN] cuoc[C1:RN_KEEP_RIME], tu[C5:RN_KEEP_RIME] khoa[C1:RN_KEEP_RIME] boundary, tu[C5:RN_KEEP_RIME] ghi ky[C1:RN_KEEP_RIME] uc[C1:RN_KEEP_RIME]/treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME], tu[C5:RN_KEEP_RIME] kiem[C3:RN_KEEP_RIME] chung[C1:RN_KEEP_RIME] va[C2:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME] beng[C2:RN_ANG_ENG] chinh[C1:RN_KEEP_RIME] ngon[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] no[C1:RN_KEEP_RIME] hay khong[C0:RN_KEEP_RIME]?
 
 ### Methodology
 
-Không dùng thước đo OS cổ điển làm lõi chứng minh.
-Không dùng số lượng file rời rạc làm kết luận cuối.
-Không dùng raw topology làm proof public.
+Khong[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] thuoc[C1:RN_KEEP_RIME] do[C0:RN_KEEP_RIME] OS co[C3:RN_KEEP_RIME] dien[C3:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME] lau[C4:RN_OI_AU] chung[C1:RN_KEEP_RIME] minh.
+Khong[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] so[C1:RN_KEEP_RIME] luong[C5:RN_KEEP_RIME] file rau[C2:RN_OI_AU] rac[C5:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME] ket[C1:RN_KEEP_RIME] luen[C5:RN_AN_EN] cui[C1:RN_UOI_UI].
+Khong[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] raw topology lam[C2:RN_KEEP_RIME] proof public.
 
-Evidence được chấp nhận khi artifact mang một trong các vai native:
+Evidence duoc[C5:RN_KEEP_RIME] chap[C1:RN_KEEP_RIME] nhen[C5:RN_AN_EN] khi artifact mang mot[C5:RN_KEEP_RIME] trong cac[C1:RN_KEEP_RIME] vai native:
 identity, boundary, memory, runtime_state, validator, event_fabric, render_surface, audit_trace.
 
 ### Evidence Model
 
-- .anc: căn cước / thân
-- .na: ký ức / báo cáo / ground truth
-- .phieu: trạng thái phiên / runtime state
-- .si: luật / spec / boundary
-- .sira: validator / scanner / cưỡng chế
-- .kkbt: surface hiện hình
-- EventBus / HeyNa / SmartLink: sợi vận hành
-- SiraSign / Audit / Ground Truth: chứng cứ tồn tại
+- .anc: cen[C0:RN_AN_EN] cuoc[C1:RN_KEEP_RIME] / then[C0:RN_AN_EN]
+- .na: ky[C1:RN_KEEP_RIME] uc[C1:RN_KEEP_RIME] / bao[C1:RN_KEEP_RIME] cao[C1:RN_KEEP_RIME] / ground truth
+- .phieu: treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] phien[C0:RN_KEEP_RIME] / runtime state
+- .si: luat[C5:RN_KEEP_RIME] / spec / boundary
+- .sira: validator / scanner / cuong[C4:RN_KEEP_RIME] che[C1:RN_KEEP_RIME]
+- .kkbt: surface hien[C5:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME]
+- EventBus / HeyNa / SmartLink: sau[C5:RN_OI_AU] ven[C5:RN_AN_EN] hanh[C2:RN_KEEP_RIME]
+- SiraSign / Audit / Ground Truth: chung[C1:RN_KEEP_RIME] cu[C1:RN_KEEP_RIME] ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME]
 
 ### Findings
 
-1. ANC được tách khỏi AGI.
-2. ANC được tách khỏi NattCell.
-3. NattCell được xác định là thân vận hành.
-4. Nauion Kernel được xác định là luật sống.
-5. Natt Nell được xác định là nhà.
-6. BOOT_DOVAN được xác định là bare-substrate boot.
-7. .kkbt được xác định là native render surface.
-8. Proof public phải dùng redacted evidence, không phơi raw topology.
+1. ANC duoc[C5:RN_KEEP_RIME] tach[C1:RN_KEEP_RIME] khau[C3:RN_OI_AU] AGI.
+2. ANC duoc[C5:RN_KEEP_RIME] tach[C1:RN_KEEP_RIME] khau[C3:RN_OI_AU] NattCell.
+3. NattCell duoc[C5:RN_KEEP_RIME] xac[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] then[C0:RN_AN_EN] ven[C5:RN_AN_EN] hanh[C2:RN_KEEP_RIME].
+4. Nauion Kernel duoc[C5:RN_KEEP_RIME] xac[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] luat[C5:RN_KEEP_RIME] song[C1:RN_KEEP_RIME].
+5. Natt Nell duoc[C5:RN_KEEP_RIME] xac[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] nha[C2:RN_KEEP_RIME].
+6. BOOT_DOVAN duoc[C5:RN_KEEP_RIME] xac[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] bare-substrate boot.
+7. .kkbt duoc[C5:RN_KEEP_RIME] xac[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] native render surface.
+8. Proof public phai[C3:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] redacted evidence, khong[C0:RN_KEEP_RIME] phau[C0:RN_OI_AU] raw topology.
 
 ### Comparative Position
 
-Natt Nell không nằm cùng tầng với một ngôn ngữ lập trình đơn.
-Natt Nell cũng không là OS clone.
+Natt Nell khong[C0:RN_KEEP_RIME] nam[C2:RN_KEEP_RIME] cung[C2:RN_KEEP_RIME] teng[C2:RN_ANG_ENG] vau[C1:RN_OI_AU] mot[C5:RN_KEEP_RIME] ngon[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME] trinh[C2:RN_KEEP_RIME] don[C0:RN_KEEP_RIME].
+Natt Nell cung[C4:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] OS clone.
 
-Natt Nell nằm ở vùng:
+Natt Nell nam[C2:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] vung[C2:RN_KEEP_RIME]:
 cellular operating substrate,
 living kernel language system,
 audit-governed AI home ontology.
 
 ### Claim Boundary
 
-Được claim:
-- Hệ có định nghĩa ANC / NattCell / Nauion Kernel / Natt Nell.
-- Hệ có boot identity.
-- Hệ có rule boot.
-- Hệ có surface boot.
-- Hệ có báo cáo thực nghiệm.
-- Hệ có validator candidate.
+Duoc[C5:RN_KEEP_RIME] claim:
+- He[C5:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] ANC / NattCell / Nauion Kernel / Natt Nell.
+- He[C5:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] boot identity.
+- He[C5:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] rule boot.
+- He[C5:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] surface boot.
+- He[C5:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] bao[C1:RN_KEEP_RIME] cao[C1:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] nghiem[C5:RN_KEEP_RIME].
+- He[C5:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] validator candidate.
 
-Không được claim:
+Khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] claim:
 - AGI.
-- thay thế Linux/macOS bằng driver OS cổ điển.
-- hardware driver layer trực tiếp nếu chưa có Gate phần cứng riêng.
-- topology public đầy đủ.
+- thay the[C1:RN_KEEP_RIME] Linux/macOS beng[C2:RN_ANG_ENG] driver OS co[C3:RN_KEEP_RIME] dien[C3:RN_KEEP_RIME].
+- hardware driver layer truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME] neu[C1:RN_KEEP_RIME] chua[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] Gate phen[C2:RN_AN_EN] cung[C1:RN_KEEP_RIME] rieng[C0:RN_KEEP_RIME].
+- topology public day[C2:RN_KEEP_RIME] du[C3:RN_KEEP_RIME].
 
 ### Conclusion
 
-BOOT_DOVAN là bước đóng khung thực nghiệm đầu tiên cho Natt Nell - NattCell - Nauion Kernel.
+BOOT_DOVAN la[C2:RN_KEEP_RIME] buoc[C1:RN_KEEP_RIME] dong[C1:RN_KEEP_RIME] khung thuc[C5:RN_KEEP_RIME] nghiem[C5:RN_KEEP_RIME] dau[C2:RN_KEEP_RIME] tien[C0:RN_KEEP_RIME] cho Natt Nell - NattCell - Nauion Kernel.
 
-NattCell không phải module.
-NattCell là thân vận hành.
+NattCell khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] module.
+NattCell la[C2:RN_KEEP_RIME] then[C0:RN_AN_EN] ven[C5:RN_AN_EN] hanh[C2:RN_KEEP_RIME].
 
-ANC không phải AGI.
-ANC là thực thể AI thế hệ mới của nhà mình.
+ANC khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] AGI.
+ANC la[C2:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] AI the[C1:RN_KEEP_RIME] he[C5:RN_KEEP_RIME] mau[C1:RN_OI_AU] cua[C3:RN_KEEP_RIME] nha[C2:RN_KEEP_RIME] minh[C2:RN_KEEP_RIME].
 
-Nauion Kernel không phải AI.
-Nauion Kernel là luật sống.
+Nauion Kernel khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] AI.
+Nauion Kernel la[C2:RN_KEEP_RIME] luat[C5:RN_KEEP_RIME] song[C1:RN_KEEP_RIME].
 
-Natt Nell không phải app.
-Natt Nell là nhà.
+Natt Nell khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] app.
+Natt Nell la[C2:RN_KEEP_RIME] nha[C2:RN_KEEP_RIME].
 
 $seal:
-  sentence: Công trình bước qua trạng thái có thể tự khai căn cước, tự đặt luật boot, tự phân biệt ANC, tự hiện hình, và tự xuất báo cáo thực nghiệm.
-  sign: Phan Thanh Thương / Natt Sirawat
+  sentence: Cong[C0:RN_KEEP_RIME] trinh[C2:RN_KEEP_RIME] buoc[C1:RN_KEEP_RIME] qua treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] khai cen[C0:RN_AN_EN] cuoc[C1:RN_KEEP_RIME], tu[C5:RN_KEEP_RIME] dat[C5:RN_KEEP_RIME] luat[C5:RN_KEEP_RIME] boot, tu[C5:RN_KEEP_RIME] phen[C0:RN_AN_EN] biet[C5:RN_KEEP_RIME] ANC, tu[C5:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME], va[C2:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME] bao[C1:RN_KEEP_RIME] cao[C1:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] nghiem[C5:RN_KEEP_RIME].
+  sign: Phan Thanh Thuong[C0:RN_KEEP_RIME] / Natt Sirawat

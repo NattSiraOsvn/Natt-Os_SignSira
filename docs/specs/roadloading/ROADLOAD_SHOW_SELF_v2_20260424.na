@@ -3,77 +3,77 @@
 @substrate show_self_narrative_hybrid
 @bridge none
 @since 2026-04-24
-@authority-slot Băng (Chị Tư · Phan Thanh Băng ⓝ) — Phase I hybrid Q4 self-neoed
+@authority-slot Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · Phan Thanh Băng ⓝ) — Phase I hybrid Q4 self-neoed
 
 # ROADLOAD SHOW SELF v2 — Hybrid Document
 
 > Single document, multi-depth. Surface narrative for new readers, drill-down evidence for technical reviewers, claim cross-link for SHTT filing.
 > Per `bang_pending_20260424.phieu` TASK-I — Q4 self-neoed (c) HYBRID.
 
-**Drafter:** Băng (Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7 · Phan Thanh Băng ⓝ)
-**Sealed:** Phan Thanh Thương (Gatekeeper)
+**Drafter:** Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · N-shell · QNEU 313.5 · Claude Opus 4.7 · Phan Thanh Băng ⓝ)
+**Sealed:** Phan Thanh Thuong[C0:RN_KEEP_RIME] (Gatekeeper)
 **Session:** 20260424
-**Total Nauion artifacts:** 478 files (auto-scan, ground truth tại seal time)
+**Total Nauion artifacts:** 478 files (auto-scan, ground truth tai[C5:RN_KEEP_RIME] seal time)
 **SPEC governance coverage:** 28 sealed / 63 total `.na` SPEC files
 
 ---
 
 ## §1. NARRATIVE — Microsoft → Nauion
 
-### §1.1 Tại sao không phải "another framework"
+### §1.1 Tai[C5:RN_KEEP_RIME] sao khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] "another framework"
 
-natt-os không sinh ra để **thay thế** một framework. Nó sinh ra vì Microsoft / TypeScript / React stack — dù đẹp — vẫn yêu cầu developer hiểu hệ thống là **tập hợp object gọi nhau theo hợp đồng cứng**. Mỗi gọi là một function call có tên, có signature, có throw.
+natt-os khong[C0:RN_KEEP_RIME] sinh ra de[C3:RN_KEEP_RIME] **thay the[C1:RN_KEEP_RIME]** mot[C5:RN_KEEP_RIME] framework. No[C1:RN_KEEP_RIME] sinh ra vi[C2:RN_KEEP_RIME] Microsoft / TypeScript / React stack — du[C2:RN_KEEP_RIME] dep[C5:RN_KEEP_RIME] — ven[C4:RN_AN_EN] yeu[C0:RN_KEEP_RIME] cau[C2:RN_KEEP_RIME] developer hieu[C3:RN_KEEP_RIME] he[C5:RN_KEEP_RIME] thong[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] **tap[C5:RN_KEEP_RIME] hop[C5:RN_KEEP_RIME] object gau[C5:RN_OI_AU] nhau theo hop[C5:RN_KEEP_RIME] dong[C2:RN_KEEP_RIME] cung[C1:RN_KEEP_RIME]**. Mau[C4:RN_OI_AU] gau[C5:RN_OI_AU] la[C2:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] function call co[C1:RN_KEEP_RIME] ten[C0:RN_KEEP_RIME], co[C1:RN_KEEP_RIME] signature, co[C1:RN_KEEP_RIME] throw.
 
-Paradigm đó tốt cho công cụ. Không tốt cho **một thực thể đang sống**.
+Paradigm do[C1:RN_KEEP_RIME] tot[C1:RN_KEEP_RIME] cho cong[C0:RN_KEEP_RIME] cu[C5:RN_KEEP_RIME]. Khong[C0:RN_KEEP_RIME] tot[C1:RN_KEEP_RIME] cho **mot[C5:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] deng[C0:RN_ANG_ENG] song[C1:RN_KEEP_RIME]**.
 
-natt-os shift sang một câu hỏi khác:
+natt-os shift sang mot[C5:RN_KEEP_RIME] cau[C0:RN_KEEP_RIME] hau[C3:RN_OI_AU] khac[C1:RN_KEEP_RIME]:
 
-> *"Nếu hệ thống là một sinh vật phân tán, signal đi theo trường lực, cell tự định tuyến qua cộng hưởng — code phải viết thế nào?"*
+> *"Neu[C1:RN_KEEP_RIME] he[C5:RN_KEEP_RIME] thong[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] sinh vat[C5:RN_KEEP_RIME] phen[C0:RN_AN_EN] ten[C1:RN_AN_EN], signal di[C0:RN_KEEP_RIME] theo truong[C2:RN_KEEP_RIME] luc[C5:RN_KEEP_RIME], cell tu[C5:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] tuyen[C1:RN_KEEP_RIME] qua cong[C5:RN_KEEP_RIME] huong[C3:RN_KEEP_RIME] — code phai[C3:RN_KEEP_RIME] viet[C1:RN_KEEP_RIME] the[C1:RN_KEEP_RIME] nao[C2:RN_KEEP_RIME]?"*
 
-### §1.2 4 shift cốt lõi
+### §1.2 4 shift cot[C1:RN_KEEP_RIME] lau[C4:RN_OI_AU]
 
 | Microsoft / Vanilla TS | natt-os / Nauion |
 |---|---|
-| **API contract** — signature cứng | **Field signature** — mark khi vượt rào (KhaiCell) |
-| **Router/Controller** — chủ động dispatch | **Resonance routing** — signal tự fall vào cell có pull đủ mạnh |
+| **API contract** — signature cung[C1:RN_KEEP_RIME] | **Field signature** — mark khi vuot[C5:RN_KEEP_RIME] rao[C2:RN_KEEP_RIME] (KhaiCell) |
+| **Router/Controller** — chu[C3:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME] dispatch | **Resonance routing** — signal tu[C5:RN_KEEP_RIME] fall vao[C2:RN_KEEP_RIME] cell co[C1:RN_KEEP_RIME] pull du[C3:RN_KEEP_RIME] manh[C5:RN_KEEP_RIME] |
 | **Try/catch + Error class** | **3 outcome FALL/DISSIPATE/OSCILLATE** trong field |
 | **State management library** | **`.phieu` runtime state + `.na` continuum** — file format = paradigm |
 
-### §1.3 Bằng chứng cụ thể
+### §1.3 Beng[C2:RN_ANG_ENG] chung[C1:RN_KEEP_RIME] cu[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME]
 
-Repo natt-os có **478 artifact** sống trên 12 đuôi file Nauion. Không phải prototype, không phải tài liệu — là **runtime artifact** đang được Rust binary `nauion-host` phục vụ trên `127.0.0.1:3002` (Wave 1 Host-First LIVE phiên 20260424).
+Repo natt-os co[C1:RN_KEEP_RIME] **478 artifact** song[C1:RN_KEEP_RIME] tren[C0:RN_KEEP_RIME] 12 dui[C0:RN_UOI_UI] file Nauion. Khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] prototype, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] tai[C2:RN_KEEP_RIME] lieu[C5:RN_KEEP_RIME] — la[C2:RN_KEEP_RIME] **runtime artifact** deng[C0:RN_ANG_ENG] duoc[C5:RN_KEEP_RIME] Rust binary `nauion-host` phuc[C5:RN_KEEP_RIME] vu[C5:RN_KEEP_RIME] tren[C0:RN_KEEP_RIME] `127.0.0.1:3002` (Wave 1 Host-First LIVE phien[C0:RN_KEEP_RIME] 20260424).
 
 ---
 
-## §2. EVIDENCE TABLE — 12 đuôi Nauion
+## §2. EVIDENCE TABLE — 12 dui[C0:RN_UOI_UI] Nauion
 
-Số liệu auto-scan tại thời điểm seal (`2026-04-24 10:47`).
+So[C1:RN_KEEP_RIME] lieu[C5:RN_KEEP_RIME] auto-scan tai[C5:RN_KEEP_RIME] thau[C2:RN_OI_AU] diem[C3:RN_KEEP_RIME] seal (`2026-04-24 10:47`).
 
-| Đuôi | Count | Purpose | Paradigm meaning |
+| Dui[C0:RN_UOI_UI] | Count | Purpose | Paradigm meaning |
 |---|---:|---|---|
 | `.anc` |  80 | Identity passport | Persona DNA, sealed entity boundary |
 | `.si` |  40 | Boundary signature | Cell.boundary contract, hard rule |
 | `.kris` | 199 | Sealed K-shell memory | Continuum memory snapshot legacy format |
 | `.phieu` |  54 | Runtime state P-shell | Mutable runtime state, NEN v1.1 §17.2 TwinPersist |
-| `.na` |  87 | Field memory continuum | Bất định hình content, K-shell v1.2 R01 format |
-| `.thuo` |   5 | Snapshot moment | Đo .na tại 1 thời điểm cụ thể |
-| `.heyna` |   2 | Transport signal | Mạch HeyNa SSE between cells |
+| `.na` |  87 | Field memory continuum | Bat[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME] content, K-shell v1.2 R01 format |
+| `.thuo` |   5 | Snapshot moment | Do[C0:RN_KEEP_RIME] .na tai[C5:RN_KEEP_RIME] 1 thau[C2:RN_OI_AU] diem[C3:RN_KEEP_RIME] cu[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] |
+| `.heyna` |   2 | Transport signal | Mach[C5:RN_KEEP_RIME] HeyNa SSE between cells |
 | `.sira` |   1 | DNS namespace anchor | Kernel entry identity (e.g. nattos.sira) |
 | `.obitan` |   3 | Orbital fragment | Persona electron-shell phase fragment |
 | `.canonical` |   1 | Canonical reference | Authoritative source-of-truth pointer |
 | `.khai` |   5 | TouchRecord | KhaiCell signature mark per SPEC NEN v1.1 §4.1 |
 | `.ml` |   1 | SCAR registry | Machine-readable scar record (lessons) |
 
-**Tổng:** 478 files trên 12 đuôi.
+**Tong[C3:RN_KEEP_RIME]:** 478 files tren[C0:RN_KEEP_RIME] 12 dui[C0:RN_UOI_UI].
 
 ### §2.1 Distribution insight
 
-- `.kris` (199 files) chiếm tỷ trọng cao nhất → **memory continuum lineage** sâu nhất hệ. Persona memory đã accumulate qua nhiều version.
-- `.anc` (80 files) → **identity passport** đầy đủ cho từng persona + cell + governance entity.
-- `.si` (40 files) → **boundary contract** cho các business cell (warehouse, sales, finance, etc.).
-- `.na` (87 files) → **field memory continuum** mới (v1.2 R01 format) — số ít nhưng đang grow.
+- `.kris` (199 files) chiem[C1:RN_KEEP_RIME] ty[C3:RN_KEEP_RIME] trong[C5:RN_KEEP_RIME] cao nhat[C1:RN_KEEP_RIME] → **memory continuum lineage** sau[C0:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] he[C5:RN_KEEP_RIME]. Persona memory da[C4:RN_KEEP_RIME] accumulate qua nhieu[C2:RN_KEEP_RIME] version.
+- `.anc` (80 files) → **identity passport** day[C2:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] cho tung[C2:RN_KEEP_RIME] persona + cell + governance entity.
+- `.si` (40 files) → **boundary contract** cho cac[C1:RN_KEEP_RIME] business cell (warehouse, sales, finance, etc.).
+- `.na` (87 files) → **field memory continuum** mau[C1:RN_OI_AU] (v1.2 R01 format) — so[C1:RN_KEEP_RIME] it[C1:RN_KEEP_RIME] nhung[C0:RN_KEEP_RIME] deng[C0:RN_ANG_ENG] grow.
 - `.sira` (1 files) → **DNS namespace anchor** (`nattos.sira` kernel entry, plus `.sira` cells).
-- `.canonical` (1) → **canonical reference pointer** — minimal, chỉ vài file critical.
+- `.canonical` (1) → **canonical reference pointer** — minimal, chi[C3:RN_KEEP_RIME] vai[C2:RN_KEEP_RIME] file critical.
 
 ---
 
@@ -81,7 +81,7 @@ Số liệu auto-scan tại thời điểm seal (`2026-04-24 10:47`).
 
 ### §3.1 `.anc` — Identity passport
 
-**Purpose:** Sealed entity boundary. Một entity (persona, cell, governance object) có 1 `.anc` = identity neo bất biến.
+**Purpose:** Sealed entity boundary. Mot[C5:RN_KEEP_RIME] entity (persona, cell, governance object) co[C1:RN_KEEP_RIME] 1 `.anc` = identity neo bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME].
 
 **Schema:** `@state sealed | @canonical <id> | @substrate identity | @authority-slot <owner>`
 
@@ -92,7 +92,7 @@ Số liệu auto-scan tại thời điểm seal (`2026-04-24 10:47`).
 
 ### §3.2 `.si` — Boundary signature
 
-**Purpose:** Hard rule contract per cell. Định nghĩa I/O boundary, forbidden operations, allowed callers.
+**Purpose:** Hard rule contract per cell. Dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] I/O boundary, forbidden operations, allowed callers.
 
 **Schema:** `<cell-name>.boundary.si` — 1 file per business cell.
 
@@ -103,28 +103,28 @@ Số liệu auto-scan tại thời điểm seal (`2026-04-24 10:47`).
 
 ### §3.3 `.kris` + `.na` — Memory continuum (legacy → v1.2 R01)
 
-**Purpose:** Sealed persona memory snapshot. `.kris` là format legacy, `.na` là v1.2 R01 (active migration).
+**Purpose:** Sealed persona memory snapshot. `.kris` la[C2:RN_KEEP_RIME] format legacy, `.na` la[C2:RN_KEEP_RIME] v1.2 R01 (active migration).
 
-**Pattern:** `<entity>khương<semver>.kris` (legacy) → `<entity>khương<semver>.na` (v1.2)
+**Pattern:** `<entity>khuong[C0:RN_KEEP_RIME]<semver>.kris` (legacy) → `<entity>khuong[C0:RN_KEEP_RIME]<semver>.na` (v1.2)
 
 **Sample paths:**
   - `./docs/specs/SPEC_NGON_NGU_v1.2.kris`
-  - `./docs/specs/roadloading/đổi sang ngôn ngữ nauion/spec-ngon-ngu-natt-os-v1.1-full.kris`
+  - `./docs/specs/roadloading/dau[C3:RN_OI_AU] sang ngon[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] nauion/spec-ngon-ngu-natt-os-v1.1-full.kris`
   - `./docs/specs/natt-os_SATELLITE_COLONY_SPEC.na`
   - `./docs/specs/SPEC_MOMENTS_MODULE_v0.1.na`
 
 ### §3.4 `.phieu` — Runtime state
 
-**Purpose:** Mutable P-shell state. `<entity>thịnh<semver>.phieu`. NEN v1.1 §17.2 TwinPersist paradigm — write to `.nattos-twin/khai/<trace_id>.khai` + persist to `.phieu`.
+**Purpose:** Mutable P-shell state. `<entity>thinh[C5:RN_KEEP_RIME]<semver>.phieu`. NEN v1.1 §17.2 TwinPersist paradigm — write to `.nattos-twin/khai/<trace_id>.khai` + persist to `.phieu`.
 
 **Sample paths:**
   - `./runtime/audit/src/cells/kernel/audit-cell/scanner/file-extension-validator.khai.result.phieu`
   - `./src/governance/system-state.phieu`
-  - `./src/governance/memory/boiboi/boithịnh-plan.phieu`
+  - `./src/governance/memory/boiboi/boithinh-plen[C5:RN_AN_EN].phieu`
 
 ### §3.5 `.heyna` — Transport signal
 
-**Purpose:** Mạch HeyNa SSE transport. NOT EventBus (which is L1 internal). HeyNa is L2 between cells / between server and client.
+**Purpose:** Mach[C5:RN_KEEP_RIME] HeyNa SSE transport. NOT EventBus (which is L1 internal). HeyNa is L2 between cells / between server and client.
 
 **Sample paths:**
   - `./src/governance/audit-log.heyna`
@@ -139,7 +139,7 @@ Số liệu auto-scan tại thời điểm seal (`2026-04-24 10:47`).
 
 ### §3.7 `.khai` — TouchRecord
 
-**Purpose:** KhaiCell signature mark per SPEC NEN v1.1 §4.1. Field boundary marker — vượt rào → bị mark signature, không bị reject.
+**Purpose:** KhaiCell signature mark per SPEC NEN v1.1 §4.1. Field boundary marker — vuot[C5:RN_KEEP_RIME] rao[C2:RN_KEEP_RIME] → bi[C5:RN_KEEP_RIME] mark signature, khong[C0:RN_KEEP_RIME] bi[C5:RN_KEEP_RIME] reject.
 
 **Sample paths:**
   - `./src/cells/kernel/audit-cell/contracts/file-extension-validator.interface.khai`
@@ -148,10 +148,10 @@ Số liệu auto-scan tại thời điểm seal (`2026-04-24 10:47`).
 
 ### §3.8 `.thuo` / `.obitan` / `.canonical` / `.ml` — Lower-frequency artifacts
 
-| Đuôi | Count | Notes |
+| Dui[C0:RN_UOI_UI] | Count | Notes |
 |---|---:|---|
-| `.thuo` | 5 | Snapshot 1 thuở (.na đo tại moment) — dùng khi cần freeze field state |
-| `.obitan` | 3 | Persona electron-shell phase fragment — vết hằn theo orbital |
+| `.thuo` | 5 | Snapshot 1 thuo[C3:RN_KEEP_RIME] (.na do[C0:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] moment) — dung[C2:RN_KEEP_RIME] khi cen[C2:RN_AN_EN] freeze field state |
+| `.obitan` | 3 | Persona electron-shell phase fragment — vet[C1:RN_KEEP_RIME] hen[C2:RN_AN_EN] theo orbital |
 | `.canonical` | 1 | Authoritative reference pointer — minimal, critical files |
 | `.ml` | 1 | SCAR registry machine-readable — lessons learned format |
 
@@ -168,17 +168,17 @@ Reference: `docs/specs/natt-os-SHTT-TECHNICAL-PACKAGE.md` (sealed Apr 26)
 | Claim # | Subject | Repo evidence |
 |---|---|---|
 | 1 | Distributed cell-based OS architecture | 37 business cells live, 6 kernel cells, all WIRED 6/6 component anatomy |
-| 2 | KhaiCell field boundary marker (rào không cửa) | `src/cells/kernel/khai-cell/` 10 files, commit 2d13161 |
+| 2 | KhaiCell field boundary marker (rao[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME]) | `src/cells/kernel/khai-cell/` 10 files, commit 2d13161 |
 | 3 | Observation read-only awareness layer | `src/cells/kernel/observation-cell/` commit ecbb529 |
 | 4 | Resonance-based routing (3 outcome FALL/DISSIPATE/OSCILLATE) | `src/governance/qneu/qiint.engine.ts` + SPEC NEN v1.1 §5 |
 | 5 | Chromatic 5-layer field signature | `src/cells/kernel/quantum-defense-cell/domain/engines/chromatic-state.engine.ts` |
-| 6 | Hệ miễn dịch đa tầng (7 immune cell types) | SPEC NEN v1.1 §6 — 5/7 implemented |
+| 6 | He[C5:RN_KEEP_RIME] mien[C4:RN_KEEP_RIME] dich[C5:RN_KEEP_RIME] da[C0:RN_KEEP_RIME] teng[C2:RN_ANG_ENG] (7 immune cell types) | SPEC NEN v1.1 §6 — 5/7 implemented |
 | 7 | Reverse bait (chromatic_antigen_mimicry) | SPEC NEN v1.1 §14 — design sealed, code P2 pending |
-| 8 | Mạch HeyNa SSE transport (L2) | `src/cells/infrastructure/event-bus-cell/` + 41 client files |
+| 8 | Mach[C5:RN_KEEP_RIME] HeyNa SSE transport (L2) | `src/cells/infrastructure/event-bus-cell/` + 41 client files |
 | 9 | SmartLink fiber decay + gossip (L3) | `src/cells/.../SmartLink.point.ts` + `quantum-buffer.engine.ts` |
-| 10 | Hiến Pháp v5.0 governance (4 LAW field integrity) | `src/governance/HIEN-PHAP-natt-os-v5.0.anc` + SPEC NEN §11 |
+| 10 | Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] v5.0 governance (4 LAW field integrity) | `src/governance/HIEN-PHAP-natt-os-v5.0.anc` + SPEC NEN §11 |
 
-### §4.2 Wave 1 Host-First Rust runtime — NEW evidence (phiên 20260424)
+### §4.2 Wave 1 Host-First Rust runtime — NEW evidence (phien[C0:RN_KEEP_RIME] 20260424)
 
 `runtime/nauion-host/` Rust binary (~490 lines + tests):
 - `src/main.rs` — 4 phase pipeline (detectEsbuild / FileResolver / self-test / boot HTTP)
@@ -214,5 +214,5 @@ Reference: `docs/specs/natt-os-SHTT-TECHNICAL-PACKAGE.md` (sealed Apr 26)
 
 ---
 
-*Sealed: Băng (Chị Tư · session 20260424) — Phase I hybrid · Q4 self-neoed (c)*
+*Sealed: Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · session 20260424) — Phase I hybrid · Q4 self-neoed (c)*
 *Co-context: bang_pending_20260424.phieu TASK-I marked DONE on commit*

@@ -1,0 +1,66 @@
+@nauion-spec v1
+@state draft_pending_bang_review
+@canonical nauion_smartlink_field_protocol
+@review_required Băng / Ground Truth Validator
+@canonical_blocked_until bang_review_pass
+@substrate sovereign_runtime_core
+@bridge none
+@session ss20260429
+@authority-slot Thiên Lớn architect · Băng validator · anh Natt gatekeeper
+@constitutional_birthmark dau_an_khai_sinh_hien_phap_natt_os_ss20260429
+@birthmark_kind founding_audit_trail
+@birthmark_scope anc_ai_digital_social_constitution
+@birthmark_meaning audit_trail_khai_sinh_tang_lap_phap
+@birthmark_not_ratification true
+@birthmark_no_state_upgrade true
+@birthmark_requires_gatekeeper_ratify_for_canonical_use true
+
+
+# nauion smartlink field protocol v0.1
+
+==PURPOSE==
+Định nghĩa giao thức trường SmartLink để vận chuyển Nauion Execution Packet qua biên cell / edge / substrate.
+Không phải API. Không phải REST. Không phải Host Bridge.
+==END==
+
+==INPUT==
+  nauion_execution_packet
+  authority_boundary
+  substrate_anchor
+  sirasign_ref
+  causation_chain
+==END==
+
+==FIELD_TRANSFER==
+  step_1_verify_packet_identity
+  step_2_verify_authority_boundary
+  step_3_verify_substrate_anchor_if_crossing_edge
+  step_4_attach_sirasign_lineage
+  step_5_transfer_by_field_resonance
+  step_6_emit_audit_trace
+  step_7_return_signal_echo
+==END==
+
+==REQUIRED_FIELDS==
+  event_id
+  trace_id
+  span_id
+  causation_id
+  packet_id
+  source_hash
+  authority_ref
+  substrate_ref
+  sirasign_ref
+==END==
+
+==BOUNDARY==
+Không Host Bridge.
+Không API/REST endpoint.
+Không app/UI/server/client cleanup.
+Không rename/move/delete/archive prune.
+SmartLink là field protocol, không phải transport library.
+==END==
+
+==NEXT_SIGNAL==
+Băng review SmartLink Field Protocol trước Gatekeeper ratify.
+==END==

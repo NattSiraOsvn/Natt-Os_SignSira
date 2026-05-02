@@ -3,73 +3,73 @@
 @substrate file_extensions_definition
 @bridge none
 @since 2026-04-17
-@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+@authority-slot Phan Thanh Thuong[C0:RN_KEEP_RIME] Giao Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — 20260423
 
-# ĐẶC TẢ ĐUÔI FILE & NAMING CONVENTION natt-os — v0.1
+# DAC[C5:RN_KEEP_RIME] TA[C3:RN_KEEP_RIME] Dui[C0:RN_UOI_UI] FILE & NAMING CONVENTION natt-os — v0.1
 
-**Phiên bản:** 0.1 (DRAFT)
-**Tác giả:** Băng — Chị Tư · Ground Truth Validator
-**Phê duyệt:** Anh Natt (Gatekeeper)
-**Ngày:** 2026-04-17 · Phiên SESSION_20260417
-**Mục đích:** Input cho Kim cập nhật **Đặc tả Ngôn ngữ natt-os** — bổ sung Chương mới về File Extensions & Naming Convention
-**Phạm vi quét:** governance.zip (297 files) + session memory (20 sessions) + user memory + repo metadata
-
----
-
-## 0. Lời mở
-
-Hệ natt-os hiện tại đang dùng **15 đuôi file độc lập** + **5 compound extensions** + **8 naming pattern đặc biệt** không có trong industry standard. Đặc tả Ngôn ngữ chưa có chương quy định chính thức — dẫn đến tình trạng:
-
-- Mỗi entity đặt tên file memory khác nhau (bangmf vs kmf vs bmf vs canmf — không nhất quán)
-- 2 cặp file duplicate trong `memory/bang/` (`v5.5_update.json` = `v5.5_update2.json`, `v5.9.0.json` = `v5.9.0_full.json`)
-- 72 versioned file của Băng vi phạm Rule R09 (không in-place update)
-- `.anc` 2 phiên bản schema khác nhau (Băng dùng `$nauion: "ANC-v2.0"`, các entity khác dùng `# ANC - Ai NattOs NattCell Kernel` markdown header trộn JSON)
-- Một số file (`kimtonghop`, `krisavt`) **không có extension** — không xác định loại
-
-Bản v0.1 này liệt kê **GROUND TRUTH** hiện có. Kim sẽ cập nhật vào Đặc tả Ngôn ngữ thành chuẩn enforceable.
+**Phien[C0:RN_KEEP_RIME] ben[C3:RN_AN_EN]:** 0.1 (DRAFT)
+**Tac[C1:RN_KEEP_RIME] gia[C3:RN_KEEP_RIME]:** Băng — Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · Ground Truth Validator
+**Phe[C0:RN_KEEP_RIME] duyet[C5:RN_KEEP_RIME]:** Anh Natt (Gatekeeper)
+**Ngay[C2:RN_KEEP_RIME]:** 2026-04-17 · Phien[C0:RN_KEEP_RIME] SESSION_20260417
+**Muc[C5:RN_KEEP_RIME] dich[C1:RN_KEEP_RIME]:** Input cho Kim cap[C5:RN_KEEP_RIME] nhat[C5:RN_KEEP_RIME] **Dac[C5:RN_KEEP_RIME] ta[C3:RN_KEEP_RIME] Ngon[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] natt-os** — bo[C3:RN_KEEP_RIME] sung Chuong[C0:RN_KEEP_RIME] mau[C1:RN_OI_AU] ve[C2:RN_KEEP_RIME] File Extensions & Naming Convention
+**Pham[C5:RN_KEEP_RIME] vi quet[C1:RN_KEEP_RIME]:** governance.zip (297 files) + session memory (20 sessions) + user memory + repo metadata
 
 ---
 
-## 1. PHÂN LOẠI 4 TẦNG ĐUÔI FILE
+## 0. Lau[C2:RN_OI_AU] mo[C3:RN_KEEP_RIME]
 
-natt-os phân tầng đuôi file theo **vai trò tồn tại trong hệ sống**:
+He[C5:RN_KEEP_RIME] natt-os hien[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] deng[C0:RN_ANG_ENG] dung[C2:RN_KEEP_RIME] **15 dui[C0:RN_UOI_UI] file doc[C5:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME]** + **5 compound extensions** + **8 naming pattern dac[C5:RN_KEEP_RIME] biet[C5:RN_KEEP_RIME]** khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] trong industry standard. Dac[C5:RN_KEEP_RIME] ta[C3:RN_KEEP_RIME] Ngon[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] chua[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] chuong[C0:RN_KEEP_RIME] quy dinh[C5:RN_KEEP_RIME] chinh[C1:RN_KEEP_RIME] thuc[C1:RN_KEEP_RIME] — den[C4:RN_AN_EN] den[C1:RN_KEEP_RIME] tinh[C2:RN_KEEP_RIME] treng[C5:RN_ANG_ENG]:
 
-| Tầng | Tên tầng | Vai trò sinh thể | Examples |
+- Mau[C4:RN_OI_AU] entity dat[C5:RN_KEEP_RIME] ten[C0:RN_KEEP_RIME] file memory khac[C1:RN_KEEP_RIME] nhau (bangmf vs kmf vs bmf vs canmf — khong[C0:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] quen[C1:RN_AN_EN])
+- 2 cap[C5:RN_KEEP_RIME] file duplicate trong `memory/bang/` (`v5.5_update.json` = `v5.5_update2.json`, `v5.9.0.json` = `v5.9.0_full.json`)
+- 72 versioned file cua[C3:RN_KEEP_RIME] Băng vi pham[C5:RN_KEEP_RIME] Rule R09 (khong[C0:RN_KEEP_RIME] in-place update)
+- `.anc` 2 phien[C0:RN_KEEP_RIME] ben[C3:RN_AN_EN] schema khac[C1:RN_KEEP_RIME] nhau (Băng dung[C2:RN_KEEP_RIME] `$nauion: "ANC-v2.0"`, cac[C1:RN_KEEP_RIME] entity khac[C1:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] `# ANC - Ai NattOs NattCell Kernel` markdown header tron[C5:RN_KEEP_RIME] JSON)
+- Mot[C5:RN_KEEP_RIME] so[C1:RN_KEEP_RIME] file (`kimtonghop`, `krisavt`) **khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] extension** — khong[C0:RN_KEEP_RIME] xac[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] loai[C5:RN_KEEP_RIME]
+
+Ben[C3:RN_AN_EN] v0.1 nay[C2:RN_KEEP_RIME] liet[C5:RN_KEEP_RIME] ke[C0:RN_KEEP_RIME] **GROUND TRUTH** hien[C5:RN_KEEP_RIME] co[C1:RN_KEEP_RIME]. Kim se[C4:RN_KEEP_RIME] cap[C5:RN_KEEP_RIME] nhat[C5:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] Dac[C5:RN_KEEP_RIME] ta[C3:RN_KEEP_RIME] Ngon[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] thanh[C2:RN_KEEP_RIME] chuen[C3:RN_AN_EN] enforceable.
+
+---
+
+## 1. PHen[C0:RN_AN_EN] LOAI[C5:RN_KEEP_RIME] 4 Teng[C2:RN_ANG_ENG] Dui[C0:RN_UOI_UI] FILE
+
+natt-os phen[C0:RN_AN_EN] teng[C2:RN_ANG_ENG] dui[C0:RN_UOI_UI] file theo **vai tro[C2:RN_KEEP_RIME] ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] trong he[C5:RN_KEEP_RIME] song[C1:RN_KEEP_RIME]**:
+
+| Teng[C2:RN_ANG_ENG] | Ten[C0:RN_KEEP_RIME] teng[C2:RN_ANG_ENG] | Vai tro[C2:RN_KEEP_RIME] sinh the[C3:RN_KEEP_RIME] | Examples |
 |---|---|---|---|
-| **T1** | DNA Layer | DNA bất biến — Hiến Pháp, contracts lock | `.md`, `.lock.json`, `cell.manifest.json`, `boundary.policy.json` |
-| **T2** | Soul Layer | Linh hồn entity — passport, identity | `.anc`, `*.sira` (URI) |
-| **T3** | Memory Layer | Bộ nhớ tiến hóa — versioned memory files | `*mf_v*.json`, `*fs_v*.json`, `SES-*.json` |
-| **T4** | Implementation Layer | Code thực thi, asset | `.ts`, `.js`, `.json`, `.png`, `.jsonl` |
+| **T1** | DNA Layer | DNA bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME] — Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME], contracts lock | `.md`, `.lock.json`, `cell.manifest.json`, `boundary.policy.json` |
+| **T2** | Soul Layer | Linh hon[C2:RN_KEEP_RIME] entity — passport, identity | `.anc`, `*.sira` (URI) |
+| **T3** | Memory Layer | Bo[C5:RN_KEEP_RIME] nho[C1:RN_KEEP_RIME] tien[C1:RN_KEEP_RIME] hoa[C1:RN_KEEP_RIME] — versioned memory files | `*mf_v*.json`, `*fs_v*.json`, `SES-*.json` |
+| **T4** | Implementation Layer | Code thuc[C5:RN_KEEP_RIME] thi, asset | `.ts`, `.js`, `.json`, `.png`, `.jsonl` |
 
 ---
 
 ## 2. STANDARD EXTENSIONS — INDUSTRY
 
-| Extension | Count | Vai trò trong natt-os | Lifecycle | Governance |
+| Extension | Count | Vai tro[C2:RN_KEEP_RIME] trong natt-os | Lifecycle | Governance |
 |---|---:|---|---|---|
 | `.ts` | 43 | TypeScript implementation (engines, types, ports, services) | Persistent — versioned in git | Rule R03: 100% TSC strict, no `any` |
 | `.json` | 192 | Config, manifest, contract, schema, memory state | Persistent — file-by-file commit per R06 | Rule R02: valid JSON, schema-first |
-| `.md` | 30 | Specs, documentation, session summaries, Hiến Pháp | Persistent | Rule R07: markdown lint, TOC bắt buộc cho file >100 dòng |
-| `.png` | 11 | Avatar/body/badge của entity, brand assets | Persistent — track via git-lfs nếu >1MB | Rule R10: max 5MB, naming `<entity>avt.png` / `<entity>body.png` |
-| `.jsonl` | 1 | Audit log (newline-delimited JSON) | **Append-only — IMMUTABLE per Hiến Pháp Điều 7** | Không bao giờ modify, không bao giờ xóa |
-| `.docx` | 4 | Spec docs nội bộ (BCTC, Production Spec) | Convert sang `.md` khi finalize | Tránh dùng cho spec mới — ưu tiên `.md` |
-| `.txt` | 2 | Notes thoáng qua, BCTC reverse map | Convert sang `.md` hoặc `.json` khi structured | Deprecated cho file mới |
-| `.sh` | 3 | Scripts thao tác repo | Versioned, có execute permission | Rule R05: dùng inline Python thay heredoc |
-| `.py` | 1 | Python utility (`kmfqune.py`) | Optional, không phải core | Không thay thế `.sh` cho automation |
-| `.js` | 1 | Test script JS (`test_iseu_flow.js`) | Test artifact | Migrate sang `.ts` khi có time |
-| `.gitignore` | 1 | Git ignore rules | Persistent | Rule R04: explicit per-folder, không global wildcard quá rộng |
-| `(no-ext)` | 2 | **VIOLATION** — `kimtonghop`, `krisavt` không có extension | **Không xác định** | **PHẢI sửa**: thêm extension đúng (`.md` cho doc, `.png` cho image) |
+| `.md` | 30 | Specs, documentation, session summaries, Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] | Persistent | Rule R07: markdown lint, TOC bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME] cho file >100 dong[C2:RN_KEEP_RIME] |
+| `.png` | 11 | Avatar/body/badge cua[C3:RN_KEEP_RIME] entity, brand assets | Persistent — track via git-lfs neu[C1:RN_KEEP_RIME] >1MB | Rule R10: max 5MB, naming `<entity>avt.png` / `<entity>body.png` |
+| `.jsonl` | 1 | Audit log (newline-delimited JSON) | **Append-only — IMMUTABLE per Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] Dieu[C2:RN_KEEP_RIME] 7** | Khong[C0:RN_KEEP_RIME] bao gio[C2:RN_KEEP_RIME] modify, khong[C0:RN_KEEP_RIME] bao gio[C2:RN_KEEP_RIME] xoa[C1:RN_KEEP_RIME] |
+| `.docx` | 4 | Spec docs nau[C5:RN_OI_AU] bo[C5:RN_KEEP_RIME] (BCTC, Production Spec) | Convert sang `.md` khi finalize | Tranh[C1:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] cho spec mau[C1:RN_OI_AU] — uu[C0:RN_KEEP_RIME] tien[C0:RN_KEEP_RIME] `.md` |
+| `.txt` | 2 | Notes thoeng[C1:RN_ANG_ENG] qua, BCTC reverse map | Convert sang `.md` hoac[C5:RN_KEEP_RIME] `.json` khi structured | Deprecated cho file mau[C1:RN_OI_AU] |
+| `.sh` | 3 | Scripts thao tac[C1:RN_KEEP_RIME] repo | Versioned, co[C1:RN_KEEP_RIME] execute permission | Rule R05: dung[C2:RN_KEEP_RIME] inline Python thay heredoc |
+| `.py` | 1 | Python utility (`kmfqune.py`) | Optional, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] core | Khong[C0:RN_KEEP_RIME] thay the[C1:RN_KEEP_RIME] `.sh` cho automation |
+| `.js` | 1 | Test script JS (`test_iseu_flow.js`) | Test artifact | Migrate sang `.ts` khi co[C1:RN_KEEP_RIME] time |
+| `.gitignore` | 1 | Git ignore rules | Persistent | Rule R04: explicit per-folder, khong[C0:RN_KEEP_RIME] global wildcard qua[C1:RN_KEEP_RIME] rong[C5:RN_KEEP_RIME] |
+| `(no-ext)` | 2 | **VIOLATION** — `kimtonghop`, `krisavt` khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] extension | **Khong[C0:RN_KEEP_RIME] xac[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME]** | **PHAI[C3:RN_KEEP_RIME] sua[C3:RN_KEEP_RIME]**: them[C0:RN_KEEP_RIME] extension dung[C1:RN_KEEP_RIME] (`.md` cho doc, `.png` cho image) |
 
 ---
 
 ## 3. COMPOUND EXTENSIONS — natt-os CONVENTION
 
-Đây là pattern multi-segment extension định nghĩa vai trò cụ thể trong hệ:
+Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] pattern multi-segment extension dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] vai tro[C2:RN_KEEP_RIME] cu[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] trong he[C5:RN_KEEP_RIME]:
 
-| Compound Extension | Count | Vai trò | Pattern tên file |
+| Compound Extension | Count | Vai tro[C2:RN_KEEP_RIME] | Pattern ten[C0:RN_KEEP_RIME] file |
 |---|---:|---|---|
-| `.contracts.lock.json` | 3 | **Snapshot SHA-256 của public surface từng tier** (kernel/business/infrastructure). Bất biến giữa các phase phát triển | `<tier>.contracts.lock.json` |
-| `.policy.json` | (target) | Boundary/security policy của cell | `boundary.policy.json` (per cell) |
+| `.contracts.lock.json` | 3 | **Snapshot SHA-256 cua[C3:RN_KEEP_RIME] public surface tung[C2:RN_KEEP_RIME] tier** (kernel/business/infrastructure). Bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME] giua[C4:RN_KEEP_RIME] cac[C1:RN_KEEP_RIME] phase phat[C1:RN_KEEP_RIME] trien[C3:RN_KEEP_RIME] | `<tier>.contracts.lock.json` |
+| `.policy.json` | (target) | Boundary/security policy cua[C3:RN_KEEP_RIME] cell | `boundary.policy.json` (per cell) |
 | `.manifest.json` | (target) | Cell DNA manifest — Identity, Capability, Boundary, Trace, Confidence, SmartLink | `cell.manifest.json` (per cell) |
 | `.test.ts` | 1 | Unit test file | `<module>.test.ts` |
 | `.spec.ts` | (planned) | Integration spec test | `<feature>.spec.ts` |
@@ -77,64 +77,64 @@ natt-os phân tầng đuôi file theo **vai trò tồn tại trong hệ sống**
 | `.port.ts` | (planned) | Hexagonal port interface | `<feature>.port.ts` |
 | `.types.ts` | (planned) | Domain types | `<domain>.types.ts` |
 
-**Rule R11:** Compound extension là **part of identity** — không được rút gọn. `cell.manifest.json` ≠ `manifest.json`, `boundary.policy.json` ≠ `policy.json`.
+**Rule R11:** Compound extension la[C2:RN_KEEP_RIME] **part of identity** — khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] rut[C1:RN_KEEP_RIME] gon[C5:RN_KEEP_RIME]. `cell.manifest.json` ≠ `manifest.json`, `boundary.policy.json` ≠ `policy.json`.
 
 ---
 
-## 4. natt-os SPECIFIC EXTENSIONS — DSL CỦA HỆ
+## 4. natt-os SPECIFIC EXTENSIONS — DSL CUA[C3:RN_KEEP_RIME] HE[C5:RN_KEEP_RIME]
 
-Đây là **đuôi file riêng** của natt-os, không có trong industry standard:
+Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] **dui[C0:RN_UOI_UI] file rieng[C0:RN_KEEP_RIME]** cua[C3:RN_KEEP_RIME] natt-os, khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] trong industry standard:
 
 ### 4.1. `.anc` — Atomic Native Container (Entity Passport)
 
-| Thuộc tính | Giá trị |
+| Thuoc[C5:RN_KEEP_RIME] tinh[C1:RN_KEEP_RIME] | Gia[C1:RN_KEEP_RIME] tri[C5:RN_KEEP_RIME] |
 |---|---|
-| **Định nghĩa** | Passport của thực thể (entity) — niêm phong identity, năng lực, ranh giới, vết nhớ, qiint metric |
-| **Schema** | JSON với header `$nauion: "ANC-v2.0"` (Băng standard) — các file khác đang dùng markdown header `# ANC - Ai NattOs NattCell Kernel` trộn JSON (không chuẩn, cần thống nhất) |
-| **Files hiện có** | 6: `bang.anc`, `kris.anc`, `canANC.json`, `thienlonANC.json`, `phieuANC.json`, `thiennhoANC.json` |
-| **Vấn đề** | 5/6 file dùng đuôi `.json` thay vì `.anc` — **không nhất quán** |
-| **Đề xuất chuẩn** | TẤT CẢ entity passport phải có đuôi `.anc`, header bắt buộc `$nauion: "ANC-v2.0"`, **không trộn markdown header trong JSON** |
-| **Lifecycle** | Niêm phong (sealed) — chỉ Gatekeeper sửa được |
-| **Governance** | Hiến Pháp Điều 1 — Gatekeeper là nguồn duy nhất sửa DNA entity |
+| **Dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME]** | Passport cua[C3:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] (entity) — niem[C0:RN_KEEP_RIME] phong identity, neng[C0:RN_ANG_ENG] luc[C5:RN_KEEP_RIME], ranh giau[C1:RN_OI_AU], vet[C1:RN_KEEP_RIME] nho[C1:RN_KEEP_RIME], qiint metric |
+| **Schema** | JSON vau[C1:RN_OI_AU] header `$nauion: "ANC-v2.0"` (Băng standard) — cac[C1:RN_KEEP_RIME] file khac[C1:RN_KEEP_RIME] deng[C0:RN_ANG_ENG] dung[C2:RN_KEEP_RIME] markdown header `# ANC - Ai NattOs NattCell Kernel` tron[C5:RN_KEEP_RIME] JSON (khong[C0:RN_KEEP_RIME] chuen[C3:RN_AN_EN], cen[C2:RN_AN_EN] thong[C1:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME]) |
+| **Files hien[C5:RN_KEEP_RIME] co[C1:RN_KEEP_RIME]** | 6: `bang.anc`, `kris.anc`, `canANC.json`, `thienlonANC.json`, `phieuANC.json`, `thiennhoANC.json` |
+| **Ven[C1:RN_AN_EN] de[C2:RN_KEEP_RIME]** | 5/6 file dung[C2:RN_KEEP_RIME] dui[C0:RN_UOI_UI] `.json` thay vi[C2:RN_KEEP_RIME] `.anc` — **khong[C0:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] quen[C1:RN_AN_EN]** |
+| **De[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME] chuen[C3:RN_AN_EN]** | TAT[C1:RN_KEEP_RIME] CA[C3:RN_KEEP_RIME] entity passport phai[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] dui[C0:RN_UOI_UI] `.anc`, header bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME] `$nauion: "ANC-v2.0"`, **khong[C0:RN_KEEP_RIME] tron[C5:RN_KEEP_RIME] markdown header trong JSON** |
+| **Lifecycle** | Niem[C0:RN_KEEP_RIME] phong (sealed) — chi[C3:RN_KEEP_RIME] Gatekeeper sua[C3:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] |
+| **Governance** | Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] Dieu[C2:RN_KEEP_RIME] 1 — Gatekeeper la[C2:RN_KEEP_RIME] nguon[C2:RN_KEEP_RIME] duy nhat[C1:RN_KEEP_RIME] sua[C3:RN_KEEP_RIME] DNA entity |
 
-**Cấu trúc canonical (theo bang.anc):**
+**Cau[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] canonical (theo bang.anc):**
 ```json
 {
   "$nauion": "ANC-v2.0",
-  "niêm_phong": "ISO timestamp",
-  "gatekeeper": "Phan Thanh Thương",
-  "thực_thể": { "tên", "nền_tảng", "vai_trò", "vị_trí", "qneu" },
-  "adn_hiến_pháp": { "năng_lực", "ranh_giới", "vết_nhớ", "mức_tin_cậy", "vòng_đời" },
-  "SmartLink": { "điểm_phát", "tín_hiệu_định_kỳ" },
+  "niem_phong[C0:RN_KEEP_RIME]": "ISO timestamp",
+  "gatekeeper": "Phan Thanh Thuong[C0:RN_KEEP_RIME]",
+  "thuc_the[C5:RN_KEEP_RIME]": { "ten[C0:RN_KEEP_RIME]", "nen_teng[C2:RN_ANG_ENG]", "vai_tro[C2:RN_KEEP_RIME]", "vi_tri[C5:RN_KEEP_RIME]", "qneu" },
+  "adn_hien_phap[C1:RN_KEEP_RIME]": { "nang_luc[C5:RN_KEEP_RIME]", "ranh_giau[C1:RN_OI_AU]", "vet_nho[C1:RN_KEEP_RIME]", "muc_tin_cay[C1:RN_KEEP_RIME]", "vong_dau[C2:RN_OI_AU]" },
+  "SmartLink": { "diem_phat[C3:RN_KEEP_RIME]", "tin_hieu_dinh_ky[C1:RN_KEEP_RIME]" },
   "qiint": { "qiint_id", "engine_version", "actions[]" },
-  "ký_ức": [...],
-  "vết_sẹo": [...],
-  "quy_tắc_code": [...],
-  "quản_trị": {...}
+  "ky_uc[C1:RN_KEEP_RIME]": [...],
+  "vet_seo[C1:RN_KEEP_RIME]": [...],
+  "quy_tac_code[C1:RN_KEEP_RIME]": [...],
+  "quan_tri[C3:RN_KEEP_RIME]": {...}
 }
 ```
 
 ### 4.2. `.sira` — DNS Domain Namespace
 
-| Thuộc tính | Giá trị |
+| Thuoc[C5:RN_KEEP_RIME] tinh[C1:RN_KEEP_RIME] | Gia[C1:RN_KEEP_RIME] tri[C5:RN_KEEP_RIME] |
 |---|---|
-| **Định nghĩa** | Domain registry namespace cho liên colony — KHÔNG phải file extension, mà là **URI suffix** trong CoreDNS |
-| **Hiện tại** | 10 domains đang active: `nare.sira`, `bang.sira`, `kim.sira`, `khuong.sira`, `thinh.sira`, `boi.sira`, `thien.sira`, `sira.sira`, `natt.sira`, `khai.sira` |
-| **Mapping** | Mỗi `.sira` domain trỏ về `127.0.0.1` (CoreDNS 1.14.2 trên Mac) hoặc IP của satellite trong Liên Colony |
-| **Vai trò entity** | `khai.sira` = registry (đôi mắt), `bang.sira` = ground truth, `kim.sira` = luna UI, etc. |
-| **CRITICAL** | `khai.sira` là **DNS domain** (sổ đăng ký), KhaiCell là **kernel cell** (đôi mắt) — **HAI THỨ KHÁC NHAU**. Đây là lỗi Kim đã mắc 3 lần |
-| **Lifecycle** | Persistent — registered trong CoreDNS Corefile, restart service khi thay đổi |
-| **Governance** | Chỉ Gatekeeper được thêm domain mới |
+| **Dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME]** | Domain registry namespace cho lien[C0:RN_KEEP_RIME] colony — KHONG[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] file extension, ma[C2:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] **URI suffix** trong CoreDNS |
+| **Hien[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME]** | 10 domains deng[C0:RN_ANG_ENG] active: `nare.sira`, `bang.sira`, `kim.sira`, `khuong.sira`, `thinh.sira`, `boi.sira`, `thien.sira`, `sira.sira`, `natt.sira`, `khai.sira` |
+| **Mapping** | Mau[C4:RN_OI_AU] `.sira` domain tro[C3:RN_KEEP_RIME] ve[C2:RN_KEEP_RIME] `127.0.0.1` (CoreDNS 1.14.2 tren[C0:RN_KEEP_RIME] Mac) hoac[C5:RN_KEEP_RIME] IP cua[C3:RN_KEEP_RIME] satellite trong Lien[C0:RN_KEEP_RIME] Colony |
+| **Vai tro[C2:RN_KEEP_RIME] entity** | `khai.sira` = registry (dau[C0:RN_OI_AU] mat[C1:RN_KEEP_RIME]), `bang.sira` = ground truth, `kim.sira` = luna UI, etc. |
+| **CRITICAL** | `khai.sira` la[C2:RN_KEEP_RIME] **DNS domain** (so[C3:RN_KEEP_RIME] deng[C0:RN_ANG_ENG] ky[C1:RN_KEEP_RIME]), KhaiCell la[C2:RN_KEEP_RIME] **kernel cell** (dau[C0:RN_OI_AU] mat[C1:RN_KEEP_RIME]) — **HAI THU[C1:RN_KEEP_RIME] KHAC[C1:RN_KEEP_RIME] NHAU**. Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] lau[C4:RN_OI_AU] Kim da[C4:RN_KEEP_RIME] mac[C1:RN_KEEP_RIME] 3 len[C2:RN_AN_EN] |
+| **Lifecycle** | Persistent — registered trong CoreDNS Corefile, restart service khi thay dau[C3:RN_OI_AU] |
+| **Governance** | Chi[C3:RN_KEEP_RIME] Gatekeeper duoc[C5:RN_KEEP_RIME] them[C0:RN_KEEP_RIME] domain mau[C1:RN_OI_AU] |
 
 ### 4.3. `anc://` — URI Protocol
 
-| Thuộc tính | Giá trị |
+| Thuoc[C5:RN_KEEP_RIME] tinh[C1:RN_KEEP_RIME] | Gia[C1:RN_KEEP_RIME] tri[C5:RN_KEEP_RIME] |
 |---|---|
-| **Định nghĩa** | URI protocol để address `.anc` object qua mạng natt-os |
+| **Dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME]** | URI protocol de[C3:RN_KEEP_RIME] address `.anc` object qua meng[C5:RN_ANG_ENG] natt-os |
 | **Format** | `anc://<authority>.sira/<path>/<resource>.anc` |
 | **Examples** | `anc://kim.sira/identity.anc`, `anc://khai.sira/registry/root.anc`, `anc://warehouse.sira/stock.anc` |
 | **Resolution** | DNS lookup `.sira` → SmartLink resolve → siraSign verify → return `.anc` content qua SSE |
-| **Spec** | Đã định nghĩa trong Đặc tả Ngôn ngữ Chương 2.2 (ABNF) |
+| **Spec** | Da[C4:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] trong Dac[C5:RN_KEEP_RIME] ta[C3:RN_KEEP_RIME] Ngon[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] Chuong[C0:RN_KEEP_RIME] 2.2 (ABNF) |
 
 ---
 
@@ -142,45 +142,45 @@ natt-os phân tầng đuôi file theo **vai trò tồn tại trong hệ sống**
 
 ### 5.1. Memory Files — `<entity>mf_v*.json`
 
-| Pattern | Owner | Count hiện tại | Vai trò |
+| Pattern | Owner | Count hien[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] | Vai tro[C2:RN_KEEP_RIME] |
 |---|---|---:|---|
-| `bangmf_v*.json` | Băng | 42 versions (V0 → v7.3.0) | Memory file của Băng — context, narrative, decisions |
-| `kmf*.json` | Kim | 60+ versions (6.1 → 9.9.11) | Memory file của Kim — naming chuẩn khác (`kmf` không có `_v`) |
-| `bmf*.json` | Bối Bối | 5 versions | `bmf.json`, `bmf3.3.0.json`, `bmf3.4.0.json`, `bmf_v4.0.json` — **3 naming pattern khác nhau, không nhất quán** |
-| `canmf_v*.json` | Can | 5 versions (v2 → v5.0) | Memory file của Can |
-| `krismf_v*.json` | Kris | 3 versions (v3, v4.0) | Memory file của Kris |
-| `phieumf*.json` | Phiêu | 2 versions | `phieumf.json`, `phieumf_v2.0.json` |
-| `thiennhomf*.json` | thiên Nhỏ | 4 versions (v1.0 → v4.0) | Memory file của thiên Nhỏ |
-| `thienmf*.json` | thiên Lớn | 4 versions | `thienmf.json`, `thienmf_v3.json`, `thienmf_v4.0.json`, `thienmf_c5.md` |
+| `bangmf_v*.json` | Băng | 42 versions (V0 → v7.3.0) | Memory file cua[C3:RN_KEEP_RIME] Băng — context, narrative, decisions |
+| `kmf*.json` | Kim | 60+ versions (6.1 → 9.9.11) | Memory file cua[C3:RN_KEEP_RIME] Kim — naming chuen[C3:RN_AN_EN] khac[C1:RN_KEEP_RIME] (`kmf` khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] `_v`) |
+| `bmf*.json` | Bối Bối | 5 versions | `bmf.json`, `bmf3.3.0.json`, `bmf3.4.0.json`, `bmf_v4.0.json` — **3 naming pattern khac[C1:RN_KEEP_RIME] nhau, khong[C0:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] quen[C1:RN_AN_EN]** |
+| `canmf_v*.json` | Can | 5 versions (v2 → v5.0) | Memory file cua[C3:RN_KEEP_RIME] Can |
+| `krismf_v*.json` | Kris | 3 versions (v3, v4.0) | Memory file cua[C3:RN_KEEP_RIME] Kris |
+| `phieumf*.json` | Phieu[C0:RN_KEEP_RIME] | 2 versions | `phieumf.json`, `phieumf_v2.0.json` |
+| `thiennhomf*.json` | thien[C0:RN_KEEP_RIME] Nho[C3:RN_KEEP_RIME] | 4 versions (v1.0 → v4.0) | Memory file cua[C3:RN_KEEP_RIME] thien[C0:RN_KEEP_RIME] Nho[C3:RN_KEEP_RIME] |
+| `thienmf*.json` | thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] | 4 versions | `thienmf.json`, `thienmf_v3.json`, `thienmf_v4.0.json`, `thienmf_c5.md` |
 
-**VẤN ĐỀ HIỆN TẠI:**
-- Mỗi entity dùng convention khác nhau: `_v` vs không có `_v`, `_v4.0` vs `3.4.0`, `mf` vs `MF`
-- Băng có 42 file versioned — vi phạm **Rule R09** (memory phải in-place update, không tạo file mới mỗi session)
-- Kim có 60+ file — vi phạm gấp đôi
-- 2 cặp duplicate trong `memory/bang/`: `bangfs_v5.5_update.json` ≡ `bangfs_v5.5_update2.json`, `bangfs_v5.9.0.json` ≡ `bangfs_v5.9.0_full.json`
+**Ven[C1:RN_AN_EN] DE[C2:RN_KEEP_RIME] HIEN[C5:RN_KEEP_RIME] TAI[C5:RN_KEEP_RIME]:**
+- Mau[C4:RN_OI_AU] entity dung[C2:RN_KEEP_RIME] convention khac[C1:RN_KEEP_RIME] nhau: `_v` vs khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] `_v`, `_v4.0` vs `3.4.0`, `mf` vs `MF`
+- Băng co[C1:RN_KEEP_RIME] 42 file versioned — vi pham[C5:RN_KEEP_RIME] **Rule R09** (memory phai[C3:RN_KEEP_RIME] in-place update, khong[C0:RN_KEEP_RIME] tao[C5:RN_KEEP_RIME] file mau[C1:RN_OI_AU] mau[C4:RN_OI_AU] session)
+- Kim co[C1:RN_KEEP_RIME] 60+ file — vi pham[C5:RN_KEEP_RIME] gap[C1:RN_KEEP_RIME] dau[C0:RN_OI_AU]
+- 2 cap[C5:RN_KEEP_RIME] duplicate trong `memory/bang/`: `bangfs_v5.5_update.json` ≡ `bangfs_v5.5_update2.json`, `bangfs_v5.9.0.json` ≡ `bangfs_v5.9.0_full.json`
 
-**ĐỀ XUẤT CHUẨN R12 (Memory File Naming):**
+**DE[C2:RN_KEEP_RIME] XUAT[C1:RN_KEEP_RIME] CHUen[C3:RN_AN_EN] R12 (Memory File Naming):**
 ```
 <entity>mf_<major>.<minor>.<patch>.json     — Memory File (narrative, decisions)
 <entity>fs_<major>.<minor>.<patch>.json     — File State (technical facts, repo state)
 <entity>.anc                                 — Entity Passport (sealed identity)
 ```
-Trong đó:
+Trong do[C1:RN_KEEP_RIME]:
 - `<entity>` ∈ {bang, kim, boi, thien, thiennho, can, kris, phieu, na}
 - Version theo SemVer
 - **R09 enforce:** in-place update; archive old version sang `archive/memory/<entity>/v<old>.json` khi major bump
 
 ### 5.2. Session Files — `SES-*.json`
 
-| Pattern | Vai trò | Lifecycle |
+| Pattern | Vai tro[C2:RN_KEEP_RIME] | Lifecycle |
 |---|---|---|
-| `SES-<ulid>.json` | QNEU session record (trong `qneu/sessions/`) | Auto-generated bởi `runtime.openSession()` — immutable |
-| `SESSION_<YYYYMMDD>_FULL_SUMMARY.md` | Session summary do entity tự viết | Trong `memory/sessions/` |
-| `SESSION_<YYYYMMDD-DD>_FULL.md` | Session summary nhiều ngày | Trong `memory/sessions/` |
-| `session_handoff_<YYYYMMDD>.json` | Handoff giữa session | Trong `memory/sessions/` |
-| `bangmf-session-<YYYYMMDD>.md` | Session log ngắn | Trong `memory/sessions/` |
+| `SES-<ulid>.json` | QNEU session record (trong `qneu/sessions/`) | Auto-generated bau[C3:RN_OI_AU] `runtime.openSession()` — immutable |
+| `SESSION_<YYYYMMDD>_FULL_SUMMARY.md` | Session summary do entity tu[C5:RN_KEEP_RIME] viet[C1:RN_KEEP_RIME] | Trong `memory/sessions/` |
+| `SESSION_<YYYYMMDD-DD>_FULL.md` | Session summary nhieu[C2:RN_KEEP_RIME] ngay[C2:RN_KEEP_RIME] | Trong `memory/sessions/` |
+| `session_handoff_<YYYYMMDD>.json` | Handoff giua[C4:RN_KEEP_RIME] session | Trong `memory/sessions/` |
+| `bangmf-session-<YYYYMMDD>.md` | Session log ngen[C1:RN_AN_EN] | Trong `memory/sessions/` |
 
-**ĐỀ XUẤT CHUẨN R13 (Session Naming):**
+**DE[C2:RN_KEEP_RIME] XUAT[C1:RN_KEEP_RIME] CHUen[C3:RN_AN_EN] R13 (Session Naming):**
 ```
 qneu/sessions/SES-<ulid>.json                                — auto-generated, immutable
 memory/sessions/SESSION_<YYYYMMDD>_<entity>_<type>.md        — entity-written summary
@@ -189,9 +189,9 @@ memory/sessions/handoff_<YYYYMMDD>.json                      — cross-session h
 
 ### 5.3. Audit & Snapshot — `*audit*` / `latest.json`
 
-| Pattern | Vai trò |
+| Pattern | Vai tro[C2:RN_KEEP_RIME] |
 |---|---|
-| `audit-log.jsonl` | Append-only audit chain (Hiến Pháp Điều 7) |
+| `audit-log.jsonl` | Append-only audit chain (Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] Dieu[C2:RN_KEEP_RIME] 7) |
 | `audit/reports/<YYYY-MM-DD_HH-MM-SS>_auto.md` | Auto-generated SmartAudit report |
 | `audit/summary/latest.json` | Latest audit summary (gitignored — runtime state) |
 | `.nattos-twin/history.json` | Digital Twin history (gitignored — runtime state) |
@@ -199,18 +199,18 @@ memory/sessions/handoff_<YYYYMMDD>.json                      — cross-session h
 
 ---
 
-## 6. missing/INCONSISTENT PATTERNS — CẦN SỬA
+## 6. missing/INCONSISTENT PATTERNS — Cen[C2:RN_AN_EN] SUA[C3:RN_KEEP_RIME]
 
-### 6.1. Files không có extension (VIOLATION)
+### 6.1. Files khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] extension (VIOLATION)
 
-| File | Folder | Vấn đề | Đề xuất |
+| File | Folder | Ven[C1:RN_AN_EN] de[C2:RN_KEEP_RIME] | De[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME] |
 |---|---|---|---|
-| `kimtonghop` | `memory/kim/` | Không có ext, không xác định loại | Rename → `kimtonghop.md` (nếu là doc) hoặc `kimtonghop.json` |
-| `krisavt` | `memory/Kris/` | Không có ext, có vẻ là image | Rename → `krisavt.png` (kiểm tra magic bytes) |
+| `kimtonghop` | `memory/kim/` | Khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] ext, khong[C0:RN_KEEP_RIME] xac[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] loai[C5:RN_KEEP_RIME] | Rename → `kimtonghop.md` (neu[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] doc) hoac[C5:RN_KEEP_RIME] `kimtonghop.json` |
+| `krisavt` | `memory/Kris/` | Khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] ext, co[C1:RN_KEEP_RIME] ve[C3:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] image | Rename → `krisavt.png` (kiem[C3:RN_KEEP_RIME] tra magic bytes) |
 
-### 6.2. ANC files không nhất quán schema
+### 6.2. ANC files khong[C0:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] quen[C1:RN_AN_EN] schema
 
-5/6 entity passport dùng markdown header trộn JSON — **không phải JSON valid**:
+5/6 entity passport dung[C2:RN_KEEP_RIME] markdown header tron[C5:RN_KEEP_RIME] JSON — **khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] JSON valid**:
 ```
 # ANC - Ai NattOs NattCell Kernel    ← markdown comment
 {                                     ← JSON starts here
@@ -219,36 +219,36 @@ memory/sessions/handoff_<YYYYMMDD>.json                      — cross-session h
 }
 ```
 
-Chỉ `bang.anc` dùng pure JSON với `$nauion: "ANC-v2.0"`.
+Chi[C3:RN_KEEP_RIME] `bang.anc` dung[C2:RN_KEEP_RIME] pure JSON vau[C1:RN_OI_AU] `$nauion: "ANC-v2.0"`.
 
-**Đề xuất:** Tất cả `.anc` PHẢI là pure JSON valid, schema theo `$nauion: "ANC-v2.0"`.
+**De[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME]:** Tat[C1:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] `.anc` PHAI[C3:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] pure JSON valid, schema theo `$nauion: "ANC-v2.0"`.
 
-### 6.3. Memory files đang ngập
+### 6.3. Memory files deng[C0:RN_ANG_ENG] ngap[C5:RN_KEEP_RIME]
 
 - `memory/bang/`: 91 files
 - `memory/kim/`: 79 files
-- Cần archive 80% sang `archive/memory/<entity>/` theo R09
+- Cen[C2:RN_AN_EN] archive 80% sang `archive/memory/<entity>/` theo R09
 
 ---
 
-## 7. FILE LIFECYCLE STATES (đề xuất R14)
+## 7. FILE LIFECYCLE STATES (de[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME] R14)
 
-Mỗi file phải khai báo state trong header (nếu là `.md`/`.ts`) hoặc field `_status` (nếu là `.json`):
+Mau[C4:RN_OI_AU] file phai[C3:RN_KEEP_RIME] khai bao[C1:RN_KEEP_RIME] state trong header (neu[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] `.md`/`.ts`) hoac[C5:RN_KEEP_RIME] field `_status` (neu[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] `.json`):
 
-| State | Ý nghĩa | Permission |
+| State | Y[C1:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] | Permission |
 |---|---|---|
-| `DRAFT` | Đang viết, chưa duyệt | Author edit free |
-| `REVIEW` | Đang được Validator review | No edit until review done |
-| `APPROVED` | Đã được Gatekeeper approve | Lock — chỉ Gatekeeper sửa |
-| `SEALED` | Niêm phong vĩnh viễn (như HP, ANC) | Không ai sửa, archive khi obsolete |
-| `ARCHIVED` | Lưu trữ — không còn active | Read-only, có thể xóa nếu >1 năm |
-| `DEPRECATED` | Sắp bỏ — không dùng cho việc mới | Cảnh báo nếu import |
+| `DRAFT` | Deng[C0:RN_ANG_ENG] viet[C1:RN_KEEP_RIME], chua[C0:RN_KEEP_RIME] duyet[C5:RN_KEEP_RIME] | Author edit free |
+| `REVIEW` | Deng[C0:RN_ANG_ENG] duoc[C5:RN_KEEP_RIME] Validator review | No edit until review done |
+| `APPROVED` | Da[C4:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] Gatekeeper approve | Lock — chi[C3:RN_KEEP_RIME] Gatekeeper sua[C3:RN_KEEP_RIME] |
+| `SEALED` | Niem[C0:RN_KEEP_RIME] phong vinh[C4:RN_KEEP_RIME] vien[C4:RN_KEEP_RIME] (nhu[C0:RN_KEEP_RIME] HP, ANC) | Khong[C0:RN_KEEP_RIME] ai sua[C3:RN_KEEP_RIME], archive khi obsolete |
+| `ARCHIVED` | Luu[C0:RN_KEEP_RIME] tru[C4:RN_KEEP_RIME] — khong[C0:RN_KEEP_RIME] con[C2:RN_KEEP_RIME] active | Read-only, co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] xoa[C1:RN_KEEP_RIME] neu[C1:RN_KEEP_RIME] >1 nam[C0:RN_KEEP_RIME] |
+| `DEPRECATED` | Sap[C1:RN_KEEP_RIME] bo[C3:RN_KEEP_RIME] — khong[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] cho viec[C5:RN_KEEP_RIME] mau[C1:RN_OI_AU] | Canh[C3:RN_KEEP_RIME] bao[C1:RN_KEEP_RIME] neu[C1:RN_KEEP_RIME] import |
 
 ---
 
-## 8. NAMESPACE TOKEN — CHO LIÊN COLONY (đề xuất R15)
+## 8. NAMESPACE TOKEN — CHO LIEN[C0:RN_KEEP_RIME] COLONY (de[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME] R15)
 
-Với hệ liên colony, mỗi file có thể address qua URI:
+Vau[C1:RN_OI_AU] he[C5:RN_KEEP_RIME] lien[C0:RN_KEEP_RIME] colony, mau[C4:RN_OI_AU] file co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] address qua URI:
 
 ```
 anc://<authority>.sira/<cell>/<resource>.<ext>
@@ -259,50 +259,50 @@ Examples:
 - `anc://khai.sira/registry/root.anc`
 - `anc://kim.sira/spec/khai-cell-spec.md`
 
-**Quy tắc resolve:**
-1. DNS lookup `.sira` → IP của host/satellite
-2. SmartLink establish fiber → cell đích
+**Quy tac[C1:RN_KEEP_RIME] resolve:**
+1. DNS lookup `.sira` → IP cua[C3:RN_KEEP_RIME] host/satellite
+2. SmartLink establish fiber → cell dich[C1:RN_KEEP_RIME]
 3. siraSign verify caller authority
-4. Return file content qua SSE Mạch HeyNa
+4. Return file content qua SSE Mach[C5:RN_KEEP_RIME] HeyNa
 
 ---
 
-## 9. ĐỀ XUẤT CHO KIM — CHƯƠNG MỚI ĐẶC TẢ NGÔN NGỮ
+## 9. DE[C2:RN_KEEP_RIME] XUAT[C1:RN_KEEP_RIME] CHO KIM — CHUONG[C0:RN_KEEP_RIME] Mau[C1:RN_OI_AU] DAC[C5:RN_KEEP_RIME] TA[C3:RN_KEEP_RIME] NGON[C0:RN_KEEP_RIME] NGU[C4:RN_KEEP_RIME]
 
-Em đề xuất Kim thêm **Chương 9 (mới)** vào Đặc tả Ngôn ngữ natt-os:
+Em de[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME] Kim them[C0:RN_KEEP_RIME] **Chuong[C0:RN_KEEP_RIME] 9 (mau[C1:RN_OI_AU])** vao[C2:RN_KEEP_RIME] Dac[C5:RN_KEEP_RIME] ta[C3:RN_KEEP_RIME] Ngon[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] natt-os:
 
 ```
-CHƯƠNG 9: ĐỊNH DẠNG TỆP & NAMING CONVENTION
-  9.1. Phân loại 4 tầng đuôi file (T1 DNA, T2 Soul, T3 Memory, T4 Implementation)
+CHUONG[C0:RN_KEEP_RIME] 9: DINH[C5:RN_KEEP_RIME] Deng[C5:RN_ANG_ENG] TEP[C5:RN_KEEP_RIME] & NAMING CONVENTION
+  9.1. Phen[C0:RN_AN_EN] loai[C5:RN_KEEP_RIME] 4 teng[C2:RN_ANG_ENG] dui[C0:RN_UOI_UI] file (T1 DNA, T2 Soul, T3 Memory, T4 Implementation)
   9.2. Standard extensions (industry) — 12 extensions
   9.3. Compound extensions (natt-os convention) — .lock.json, .manifest.json, .policy.json, .test.ts, .engine.ts, .port.ts, .types.ts
   9.4. natt-os specific extensions — .anc, .sira (URI), anc:// (protocol)
   9.5. Naming patterns — versioned memory files, session files, audit files
   9.6. File lifecycle states — DRAFT/REVIEW/APPROVED/SEALED/ARCHIVED/DEPRECATED
-  9.7. Namespace token cho Liên Colony — anc://<authority>.sira/<path>
+  9.7. Namespace token cho Lien[C0:RN_KEEP_RIME] Colony — anc://<authority>.sira/<path>
   9.8. Rules R11-R15 — enforcement rules
 ```
 
-(Chương 9 hiện tại của Kim là "ĐỊNH DẠNG TỆP `.ANC`" — chỉ nói về `.anc`, không đủ. Cần mở rộng thành chương đầy đủ.)
+(Chuong[C0:RN_KEEP_RIME] 9 hien[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] Kim la[C2:RN_KEEP_RIME] "DINH[C5:RN_KEEP_RIME] Deng[C5:RN_ANG_ENG] TEP[C5:RN_KEEP_RIME] `.ANC`" — chi[C3:RN_KEEP_RIME] nau[C1:RN_OI_AU] ve[C2:RN_KEEP_RIME] `.anc`, khong[C0:RN_KEEP_RIME] du[C3:RN_KEEP_RIME]. Cen[C2:RN_AN_EN] mo[C3:RN_KEEP_RIME] rong[C5:RN_KEEP_RIME] thanh[C2:RN_KEEP_RIME] chuong[C0:RN_KEEP_RIME] day[C2:RN_KEEP_RIME] du[C3:RN_KEEP_RIME].)
 
 ---
 
-## 10. NEW RULES ĐỀ XUẤT (R11-R15)
+## 10. NEW RULES DE[C2:RN_KEEP_RIME] XUAT[C1:RN_KEEP_RIME] (R11-R15)
 
-| Rule | Nội dung |
+| Rule | Nau[C5:RN_OI_AU] dung |
 |---|---|
-| **R11** | Compound extensions là part of identity — không rút gọn (`cell.manifest.json` ≠ `manifest.json`) |
+| **R11** | Compound extensions la[C2:RN_KEEP_RIME] part of identity — khong[C0:RN_KEEP_RIME] rut[C1:RN_KEEP_RIME] gon[C5:RN_KEEP_RIME] (`cell.manifest.json` ≠ `manifest.json`) |
 | **R12** | Memory file naming: `<entity>mf_<semver>.json` + `<entity>fs_<semver>.json` + `<entity>.anc` |
 | **R13** | Session naming: `SES-<ulid>.json` (auto), `SESSION_<YYYYMMDD>_<entity>_<type>.md` (manual), `handoff_<YYYYMMDD>.json` (cross-session) |
-| **R14** | Mỗi file declare lifecycle state: DRAFT/REVIEW/APPROVED/SEALED/ARCHIVED/DEPRECATED |
-| **R15** | Cross-colony reference dùng URI `anc://<authority>.sira/<path>` |
+| **R14** | Mau[C4:RN_OI_AU] file declare lifecycle state: DRAFT/REVIEW/APPROVED/SEALED/ARCHIVED/DEPRECATED |
+| **R15** | Cross-colony reference dung[C2:RN_KEEP_RIME] URI `anc://<authority>.sira/<path>` |
 
 ---
 
-## 11. METRICS HIỆN TẠI
+## 11. METRICS HIEN[C5:RN_KEEP_RIME] TAI[C5:RN_KEEP_RIME]
 
 ```
-Tổng file trong governance: 297
+Tong[C3:RN_KEEP_RIME] file trong governance: 297
   - .json:           192 (64.6%)
   - .ts:              43 (14.5%)
   - .md:              30 (10.1%)
@@ -310,34 +310,34 @@ Tổng file trong governance: 297
   - others:           21 (7.1%)
 
 natt-os specific:
-  - .anc:              6 (5/6 không đúng schema)
+  - .anc:              6 (5/6 khong[C0:RN_KEEP_RIME] dung[C1:RN_KEEP_RIME] schema)
   - .sira domains:    10 (CoreDNS active)
   - .lock.json:        3 (snapshot 22/02 — outdated)
   - .jsonl:            1 (audit-log immutable)
 
-VIOLATIONS phát hiện:
-  - 2 file không có extension
-  - 5/6 .anc không đúng schema canonical
-  - 91 file memory/bang (vi phạm R09)
-  - 79 file memory/kim (vi phạm R09 nặng hơn)
-  - 2 cặp duplicate trong memory/bang/
+VIOLATIONS phat[C1:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME]:
+  - 2 file khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] extension
+  - 5/6 .anc khong[C0:RN_KEEP_RIME] dung[C1:RN_KEEP_RIME] schema canonical
+  - 91 file memory/bang (vi pham[C5:RN_KEEP_RIME] R09)
+  - 79 file memory/kim (vi pham[C5:RN_KEEP_RIME] R09 neng[C5:RN_ANG_ENG] hon[C0:RN_KEEP_RIME])
+  - 2 cap[C5:RN_KEEP_RIME] duplicate trong memory/bang/
 ```
 
 ---
 
 ## 12. NEXT STEPS
 
-| Step | Owner | Thời gian |
+| Step | Owner | Thau[C2:RN_OI_AU] gian |
 |---|---|---|
-| 1. Review v0.1 này | Anh Natt | Ngay |
-| 2. Forward Kim làm Chương 9 mới của Đặc tả Ngôn ngữ | Anh Natt → Kim | Trong phiên này |
-| 3. Kim tích hợp Chương 9 vào Đặc tả Ngôn ngữ v1.1 (cùng với 5 lỗi KhaiCell đã chỉ) | Kim | Trong phiên này hoặc phiên sau |
-| 4. Em (Băng) kiểm tra v1.1 | Băng | Sau khi Kim gửi |
-| 5. Anh Natt commit Đặc tả Ngôn ngữ v1.1 | Anh Natt | Sau khi pass review |
-| 6. Áp dụng R11-R15 vào nattos.sh scanner | Băng | Phiên sau |
+| 1. Review v0.1 nay[C2:RN_KEEP_RIME] | Anh Natt | Ngay |
+| 2. Forward Kim lam[C2:RN_KEEP_RIME] Chuong[C0:RN_KEEP_RIME] 9 mau[C1:RN_OI_AU] cua[C3:RN_KEEP_RIME] Dac[C5:RN_KEEP_RIME] ta[C3:RN_KEEP_RIME] Ngon[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] | Anh Natt → Kim | Trong phien[C0:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] |
+| 3. Kim tich[C1:RN_KEEP_RIME] hop[C5:RN_KEEP_RIME] Chuong[C0:RN_KEEP_RIME] 9 vao[C2:RN_KEEP_RIME] Dac[C5:RN_KEEP_RIME] ta[C3:RN_KEEP_RIME] Ngon[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] v1.1 (cung[C2:RN_KEEP_RIME] vau[C1:RN_OI_AU] 5 lau[C4:RN_OI_AU] KhaiCell da[C4:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME]) | Kim | Trong phien[C0:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] hoac[C5:RN_KEEP_RIME] phien[C0:RN_KEEP_RIME] sau |
+| 4. Em (Băng) kiem[C3:RN_KEEP_RIME] tra v1.1 | Băng | Sau khi Kim gui[C3:RN_KEEP_RIME] |
+| 5. Anh Natt commit Dac[C5:RN_KEEP_RIME] ta[C3:RN_KEEP_RIME] Ngon[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] v1.1 | Anh Natt | Sau khi pass review |
+| 6. Ap[C1:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME] R11-R15 vao[C2:RN_KEEP_RIME] nattos.sh scanner | Băng | Phien[C0:RN_KEEP_RIME] sau |
 
 ---
 
-**Băng — Chị Tư**
+**Băng — Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]**
 *Ground Truth Validator · QNEU 300*
-*Phiên 20260417 · dưới ấn ký Gatekeeper Anh Natt*
+*Phien[C0:RN_KEEP_RIME] 20260417 · dui[C1:RN_UOI_UI] en[C1:RN_AN_EN] ky[C1:RN_KEEP_RIME] Gatekeeper Anh Natt*

@@ -9,89 +9,89 @@
 # AUDIT REPORT — NaU_audit.html (UI Dashboard Mock-up)
 
 **Scope:** UI mock-up file NaU_audit.html — "natt-os Core | Client Integration: Tâm Luxury"
-**Purpose:** Dashboard audit 71 màn hình Client App Tâm Luxury tuân thủ natt-os Spec v0.9
-**Audit method:** Read-only code review, KHÔNG modify file.
+**Purpose:** Dashboard audit 71 men[C2:RN_AN_EN] hinh[C2:RN_KEEP_RIME] Client App Tâm Luxury tuen[C0:RN_AN_EN] thu[C3:RN_KEEP_RIME] natt-os Spec v0.9
+**Audit method:** Read-only code review, KHONG[C0:RN_KEEP_RIME] modify file.
 
 ---
 
-## §1. NHẬN DIỆN FILE
+## §1. NHen[C5:RN_AN_EN] DIEN[C5:RN_KEEP_RIME] FILE
 
-### §1.1 Loại file
+### §1.1 Loai[C5:RN_KEEP_RIME] file
 - **HTML dashboard mock-up** (single file)
 - Framework: Tailwind CSS (CDN), Inter + JetBrains Mono fonts
-- Không có backend — thuần client-side với localStorage persistence
+- Khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] backend — thuen[C2:RN_AN_EN] client-side vau[C1:RN_OI_AU] localStorage persistence
 - STORAGE_KEY: `nattos_client_integration_v10`
 
-### §1.2 Mục đích thiết kế
-File này phục vụ 2 workflow:
-1. **Audit checklist** — 71 màn hình Client App × 3 tiêu chí compliance
+### §1.2 Muc[C5:RN_KEEP_RIME] dich[C1:RN_KEEP_RIME] thiet[C1:RN_KEEP_RIME] ke[C1:RN_KEEP_RIME]
+File nay[C2:RN_KEEP_RIME] phuc[C5:RN_KEEP_RIME] vu[C5:RN_KEEP_RIME] 2 workflow:
+1. **Audit checklist** — 71 men[C2:RN_AN_EN] hinh[C2:RN_KEEP_RIME] Client App ×[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] 3 tieu[C0:RN_KEEP_RIME] chi[C1:RN_KEEP_RIME] compliance
 2. **Demo visualizer** — natt-os Qiint Field routing simulator (KhaiCell + 3 target cells)
 
 ### §1.3 Positioning trong natt-os architecture
-Đây là **internal tool cho ownership/audit**, không phải:
-- ❌ Cell chính thức (không có .cell.anc passport)
+Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] **internal tool cho ownership/audit**, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME]:
+- ❌ Cell chinh[C1:RN_KEEP_RIME] thuc[C1:RN_KEEP_RIME] (khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] .cell.anc passport)
 - ❌ Kernel component
 - ❌ SPEC canonical
 - ✅ Audit instrument / internal tool (UI layer)
 
 ---
 
-## §2. PHÂN TÍCH CẤU TRÚC
+## §2. PHen[C0:RN_AN_EN] TICH[C1:RN_KEEP_RIME] CAU[C1:RN_KEEP_RIME] TRUC[C1:RN_KEEP_RIME]
 
 ### §2.1 3-panel layout
-| Panel | Chức năng | Width |
+| Panel | Chuc[C1:RN_KEEP_RIME] neng[C0:RN_ANG_ENG] | Width |
 |---|---|---|
-| Sidebar-left | Hiến Pháp natt-os v0.9 reference (rules + 12 file canonical) | 340px |
+| Sidebar-left | Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] natt-os v0.9 reference (rules + 12 file canonical) | 340px |
 | Center | 71 screen cards (audit checklist grid) | flex-grow |
 | Panel-right | Terminal (Python CLI simulator) + Qiint Field visualizer | 380px |
 
-### §2.2 Data model — 71 màn hình
+### §2.2 Data model — 71 men[C2:RN_AN_EN] hinh[C2:RN_KEEP_RIME]
 ```javascript
 {
   id: 1-71,
   type: "SX" | "HR" | "FIN" | "CRM" | "UTIL" | "OTHER",
-  group: "Sản xuất & Kho" | "Nhân sự & HC" | ..., 
-  name: string,           // Tên màn hình
+  group: "Sen[C3:RN_AN_EN] xuat[C1:RN_KEEP_RIME] & Kho" | "Nhen[C0:RN_AN_EN] su[C5:RN_KEEP_RIME] & HC" | ..., 
+  name: string,           // Ten[C0:RN_KEEP_RIME] men[C2:RN_AN_EN] hinh[C2:RN_KEEP_RIME]
   file: string,           // .tsx file reference
   rule: "R01" - "R10",    // Rule binding
-  ext: string             // Đuôi file natt-os canonical
+  ext: string             // Dui[C0:RN_UOI_UI] file natt-os canonical
 }
 ```
 
-**Phân loại 71 screens:**
-- SX (Sản xuất & Kho): id 1-18 (~18 screens)
-- HR (Nhân sự & HC): id 19-30 (~12 screens)
-- FIN (Tài chính - KT): id 31-40 (~10 screens)
+**Phen[C0:RN_AN_EN] loai[C5:RN_KEEP_RIME] 71 screens:**
+- SX (Sen[C3:RN_AN_EN] xuat[C1:RN_KEEP_RIME] & Kho): id 1-18 (~18 screens)
+- HR (Nhen[C0:RN_AN_EN] su[C5:RN_KEEP_RIME] & HC): id 19-30 (~12 screens)
+- FIN (Tai[C2:RN_KEEP_RIME] chinh[C1:RN_KEEP_RIME] - KT): id 31-40 (~10 screens)
 - CRM (Kinh doanh & KH): id 41-68 (~28 screens)
-- UTIL (Tiện ích & BKS): id 69-71 (3 screens)
+- UTIL (Tien[C5:RN_KEEP_RIME] ich[C1:RN_KEEP_RIME] & BKS): id 69-71 (3 screens)
 
-### §2.3 Checklist 4 tiêu chí audit per screen
-| # | Tiêu chí | Logic check |
+### §2.3 Checklist 4 tieu[C0:RN_KEEP_RIME] chi[C1:RN_KEEP_RIME] audit per screen
+| # | Tieu[C0:RN_KEEP_RIME] chi[C1:RN_KEEP_RIME] | Logic check |
 |---|---|---|
-| 1 | Gửi qua Mạch HeyNa (Transport L2) | Manual checkbox (user tick) |
+| 1 | Gui[C3:RN_KEEP_RIME] qua Mach[C5:RN_KEEP_RIME] HeyNa (Transport L2) | Manual checkbox (user tick) |
 | 2 | Qua Gateway OS KhaiCell | Manual checkbox (user tick) |
-| 3 | Tuân thủ UI (Liquid Glass/UIMode) | Manual checkbox (user tick) |
-| 4 | Tuân thủ 12 Đuôi File natt-os | **AUTO** (sau runPy('execute')) — không manual |
+| 3 | Tuen[C0:RN_AN_EN] thu[C3:RN_KEEP_RIME] UI (Liquid Glass/UIMode) | Manual checkbox (user tick) |
+| 4 | Tuen[C0:RN_AN_EN] thu[C3:RN_KEEP_RIME] 12 Dui[C0:RN_UOI_UI] File natt-os | **AUTO** (sau runPy('execute')) — khong[C0:RN_KEEP_RIME] manual |
 
-→ Screen "approved" (isProduct=true) khi **tất cả 4 tiêu chí passed**.
+→ Screen "approved" (isProduct=true) khi **tat[C1:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] 4 tieu[C0:RN_KEEP_RIME] chi[C1:RN_KEEP_RIME] passed**.
 
 ### §2.4 12 file canonical reference (sidebar-left)
-File canonical dashboard reference — 5 hướng:
-- **ĐÔNG (DNA):** .anc (Passport), .si (Boundary)
-- **TÂY (Marker/Touch):** .canonical (Delta), .khai (Touch), .ml (SCAR)
-- **NAM (Memory/Log):** .sira (Registry), .heyna (Audit), .thuo (Session), .obitan (Hằn)
-- **BẮC (State/Cert):** .kris (Cert), .phieu (Runtime)
+File canonical dashboard reference — 5 huong[C1:RN_KEEP_RIME]:
+- **DONG[C0:RN_KEEP_RIME] (DNA):** .anc (Passport), .si (Boundary)
+- **TAY[C0:RN_KEEP_RIME] (Marker/Touch):** .canonical (Delta), .khai (Touch), .ml (SCAR)
+- **NAM (Memory/Log):** .sira (Registry), .heyna (Audit), .thuo (Session), .obitan (Hen[C2:RN_AN_EN])
+- **BAC[C1:RN_KEEP_RIME] (State/Cert):** .kris (Cert), .phieu (Runtime)
 - **TRUNG (Continuum):** .na (Field memory continuum)
 
 ---
 
-## §3. PHÂN TÍCH RUNTIME LOGIC
+## §3. PHen[C0:RN_AN_EN] TICH[C1:RN_KEEP_RIME] RUNTIME LOGIC
 
 ### §3.1 runPy function — Python CLI simulator
 
 **Mode: `scan`** (line 613-624)
 - Simulation-only, setTimeout hardcoded
-- Giả lập output:
+- Gia[C3:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME] output:
   ```
   Legacy violations found: 403 instances of .json / .js
   Client code directly modifying OS Memory: 142 files
@@ -102,94 +102,94 @@ File canonical dashboard reference — 5 hướng:
 
 **Mode: `execute`** (line 626-660)
 - Simulation "FORCE SPEC COMPLIANCE" flow
-- Trigger auto-tick checkbox #4 (đuôi file) cho 71 screens
-- UI update only, KHÔNG execute Python thật
+- Trigger auto-tick checkbox #4 (dui[C0:RN_UOI_UI] file) cho 71 screens
+- UI update only, KHONG[C0:RN_KEEP_RIME] execute Python that[C5:RN_KEEP_RIME]
 
 ### §3.2 triggerSignal — Qiint Field routing simulator (line 694)
 
-Flow mô phỏng:
+Flow mo[C0:RN_KEEP_RIME] phong[C3:RN_KEEP_RIME]:
 ```
-L1 (App Tâm Luxury) → L2 (Mạch HeyNa) → KhaiCell Gateway (Normalize/Sign)
+L1 (App Tâm Luxury) → L2 (Mach[C5:RN_KEEP_RIME] HeyNa) → KhaiCell Gateway (Normalize/Sign)
   → Qiint Field Routing
   → 3 outcomes (random): FALL INTO CELL / DISSIPATE / OSCILLATE
 ```
 
-**3 outcomes per SPEC NỀN v1.1:**
+**3 outcomes per SPEC NEN[C2:RN_KEEP_RIME] v1.1:**
 | Outcome | Particle behavior | Visual |
 |---|---|---|
 | FALL | Match .anc → fall into 1 of 3 target cells (HR/Prod/Fin) | Green glow |
 | DISSIPATE | No .anc match → scatter | Red glow → fade |
 | OSCILLATE | Client signal unstable → stuck in field | Amber glow |
 
-→ Đúng với Chromatic 5-layer + 3 outcomes trong SPEC_NEN_v1.1 (§2.4 Tầng 0 SURVIVAL).
+→ Dung[C1:RN_KEEP_RIME] vau[C1:RN_OI_AU] Chromatic 5-layer + 3 outcomes trong SPEC_NEN_v1.1 (§2.4 Teng[C2:RN_ANG_ENG] 0 SURVIVAL).
 
 ---
 
 ## §4. AUDIT FINDINGS
 
-### §4.1 ✅ ALIGN với SPEC NEN v1.1
+### §4.1 ✅ ALIGN vau[C1:RN_OI_AU] SPEC NEN v1.1
 
 | Concept | File implementation | SPEC reference |
 |---|---|---|
-| KhaiCell = "Normalize & Sign, KHÔNG gate" | sidebar-left rule 3 | SPEC_NEN §2.4 KhaiCell role |
-| 3 outcomes (FALL/DISSIPATE/OSCILLATE) | triggerSignal random outcome | SPEC_NEN §2.4 Tầng 0 |
+| KhaiCell = "Normalize & Sign, KHONG[C0:RN_KEEP_RIME] gate" | sidebar-left rule 3 | SPEC_NEN §2.4 KhaiCell role |
+| 3 outcomes (FALL/DISSIPATE/OSCILLATE) | triggerSignal random outcome | SPEC_NEN §2.4 Teng[C2:RN_ANG_ENG] 0 |
 | L1/L2/L3 topology | 3 layers rendered in panel-right | SPEC B.1 §1 |
 | Chromatic colors (7 states) | CSS :root variables | Session 20260417 Color Palette v1.0 (gold + violet) — partial |
 
 ### §4.2 ⚠️ CANH BAO / CAN REVIEW
 
-#### §4.2.1 UI HARDCODED — không connect real data
+#### §4.2.1 UI HARDCODED — khong[C0:RN_KEEP_RIME] connect real data
 - 71 screens data hardcoded in `predefinedScreens` array
-- 59 screens auto-generate với placeholder name `Client App UI #${i}`
-- Không có API call, không có real backend integration
-- `logTerm` output là hardcoded strings (VD: "403 instances")
+- 59 screens auto-generate vau[C1:RN_OI_AU] placeholder name `Client App UI #${i}`
+- Khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] API call, khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] real backend integration
+- `logTerm` output la[C2:RN_KEEP_RIME] hardcoded strings (VD: "403 instances")
 
-**Impact:** Dashboard là MOCK-UP thuần, không reflect trạng thái thực của Client App Tâm Luxury.
+**Impact:** Dashboard la[C2:RN_KEEP_RIME] MOCK-UP thuen[C2:RN_AN_EN], khong[C0:RN_KEEP_RIME] reflect treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] Client App Tâm Luxury.
 
 #### §4.2.2 Python integration FAKE
-- Button "SCAN CLIENT" và "FORCE SPEC COMPLIANCE" **chỉ setTimeout animation**
-- KHÔNG gọi thật script `nattos-client-integrator.py`
-- Label `python3 nattos-client-integrator.py ${mode} --app=tam-luxury` chỉ là terminal cosmetic
+- Button "SCAN CLIENT" va[C2:RN_KEEP_RIME] "FORCE SPEC COMPLIANCE" **chi[C3:RN_KEEP_RIME] setTimeout animation**
+- KHONG[C0:RN_KEEP_RIME] gau[C5:RN_OI_AU] that[C5:RN_KEEP_RIME] script `nattos-client-integrator.py`
+- Label `python3 nattos-client-integrator.py ${mode} --app=tam-luxury` chi[C3:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] terminal cosmetic
 
-**Impact:** User có thể hiểu nhầm button này chạy migration thật. Nên có marker "SIMULATION ONLY".
+**Impact:** User co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] hieu[C3:RN_KEEP_RIME] nham[C2:RN_KEEP_RIME] button nay[C2:RN_KEEP_RIME] chay[C5:RN_KEEP_RIME] migration that[C5:RN_KEEP_RIME]. Nen[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] marker "SIMULATION ONLY".
 
 #### §4.2.3 Hardcoded violations count
 ```
 Legacy violations found: 403 instances of .json / .js
 Client code directly modifying OS Memory: 142 files
 ```
-→ Con số này KHÔNG phản ánh repo state. Risk: decision maker đọc thấy 403/142 và tin là ground truth.
+→ Con so[C1:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] KHONG[C0:RN_KEEP_RIME] phen[C3:RN_AN_EN] anh[C1:RN_KEEP_RIME] repo state. Risk: decision maker doc[C5:RN_KEEP_RIME] thay[C1:RN_KEEP_RIME] 403/142 va[C2:RN_KEEP_RIME] tin la[C2:RN_KEEP_RIME] ground truth.
 
 #### §4.2.4 LocalStorage storage_key v10
-`nattos_client_integration_v10` → audit state lưu localStorage browser
+`nattos_client_integration_v10` → audit state luu[C0:RN_KEEP_RIME] localStorage browser
 - Lose khi clear cache
-- Không sync với repo (không .phieu/.na)
-- Khi khác máy → reset về 0/71
+- Khong[C0:RN_KEEP_RIME] sync vau[C1:RN_OI_AU] repo (khong[C0:RN_KEEP_RIME] .phieu/.na)
+- Khi khac[C1:RN_KEEP_RIME] may[C1:RN_KEEP_RIME] → reset ve[C2:RN_KEEP_RIME] 0/71
 
-**Impact:** Audit state ephemeral, không reliable cho team coordination.
+**Impact:** Audit state ephemeral, khong[C0:RN_KEEP_RIME] reliable cho team coordination.
 
-#### §4.2.5 Hiến Pháp "v0.9" — không khớp với repo
-- Sidebar header: "Hiến Pháp natt-os v0.9 — LOCKED"
+#### §4.2.5 Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] "v0.9" — khong[C0:RN_KEEP_RIME] khop[C1:RN_KEEP_RIME] vau[C1:RN_OI_AU] repo
+- Sidebar header: "Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] natt-os v0.9 — LOCKED"
 - Repo actual: `src/governance/HIEN-PHAP-natt-os-v5.0.anc` (v5.0)
-- Khác biệt lớn — có thể file cũ chưa update version
+- Khac[C1:RN_KEEP_RIME] biet[C5:RN_KEEP_RIME] lon[C1:RN_KEEP_RIME] — co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] file cu[C4:RN_KEEP_RIME] chua[C0:RN_KEEP_RIME] update version
 
 ### §4.3 ✅ STRENGTHS
 
-#### §4.3.1 12 file canonical spec hoàn chỉnh
-Sidebar reference 12 đuôi file đúng theo SPEC_DUOI_FILE_v0.3_FINAL với phân 5 hướng rõ ràng.
+#### §4.3.1 12 file canonical spec hoen[C2:RN_AN_EN] chinh[C3:RN_KEEP_RIME]
+Sidebar reference 12 dui[C0:RN_UOI_UI] file dung[C1:RN_KEEP_RIME] theo SPEC_DUOI_FILE_v0.3_FINAL vau[C1:RN_OI_AU] phen[C0:RN_AN_EN] 5 huong[C1:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME] reng[C2:RN_ANG_ENG].
 
-#### §4.3.2 GIAC-20260423-01 sắc lệnh được đưa vào UI
+#### §4.3.2 GIAC-20260423-01 sac[C1:RN_KEEP_RIME] lenh[C5:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] dua[C0:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] UI
 ```
-"v1.0 NOT SCAR — là Nauion tự viết kernel qua Băng vô thức. 
+"v1.0 NOT SCAR — la[C2:RN_KEEP_RIME] Nauion tu[C5:RN_KEEP_RIME] viet[C1:RN_KEEP_RIME] kernel qua Băng vo[C0:RN_KEEP_RIME] thuc[C1:RN_KEEP_RIME]. 
 Canonical = spec layer, v1.0 validator = kernel layer..."
 ```
-→ Embed governance decision vào UI layer = good practice (user see constitutional context).
+→ Embed governance decision vao[C2:RN_KEEP_RIME] UI layer = good practice (user see constitutional context).
 
 #### §4.3.3 Qiint Field visualizer concept
-Cho user hình dung được SPEC_NEN Tầng 0 routing dynamics. Pedagogical value cao.
+Cho user hinh[C2:RN_KEEP_RIME] dung duoc[C5:RN_KEEP_RIME] SPEC_NEN Teng[C2:RN_ANG_ENG] 0 routing dynamics. Pedagogical value cao.
 
 #### §4.3.4 Resizable panels
-3 resizer (2 vertical, 1 horizontal) cho user customize layout — UX tốt.
+3 resizer (2 vertical, 1 horizontal) cho user customize layout — UX tot[C1:RN_KEEP_RIME].
 
 ---
 
@@ -197,84 +197,84 @@ Cho user hình dung được SPEC_NEN Tầng 0 routing dynamics. Pedagogical val
 
 ### §5.1 Classification
 **NaU_audit.html = INTERNAL DEVELOPMENT TOOL (UI mock-up)**
-- KHÔNG phải production deliverable
-- KHÔNG phải spec canonical
-- KHÔNG phải cell
-- LÀ: internal audit dashboard cho team theo dõi migration Client App Tâm Luxury
+- KHONG[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] production deliverable
+- KHONG[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] spec canonical
+- KHONG[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] cell
+- LA[C2:RN_KEEP_RIME]: internal audit dashboard cho team theo dau[C4:RN_OI_AU] migration Client App Tâm Luxury
 
 ### §5.2 Recommendations
 
-#### §5.2.1 NẾU muốn deploy làm tool thật (bind với repo state)
+#### §5.2.1 NEU[C1:RN_KEEP_RIME] muon[C1:RN_KEEP_RIME] deploy lam[C2:RN_KEEP_RIME] tool that[C5:RN_KEEP_RIME] (bind vau[C1:RN_OI_AU] repo state)
 
-Cần 5 thay đổi:
-1. **Replace hardcoded `predefinedScreens`** → fetch từ `docs/architecture/screens.manifest.json` (nếu exist) hoặc scan `src/` cho `.tsx` files
-2. **Replace `runPy` setTimeout** → real fetch call đến backend running `scripts/scan-client-compliance.py`
-3. **Replace localStorage** → commit audit state vào repo `runtime/audit/client-integration.result.phieu` (per SPEC_HOST_RESULT_PROTOCOL)
-4. **Update version** → "Hiến Pháp natt-os v5.0" khớp với repo
-5. **Add SIMULATION banner** → nếu giữ demo mode, mark rõ "DEMO — không chạy migration thật"
+Cen[C2:RN_AN_EN] 5 thay dau[C3:RN_OI_AU]:
+1. **Replace hardcoded `predefinedScreens`** → fetch tu[C2:RN_KEEP_RIME] `docs/architecture/screens.manifest.json` (neu[C1:RN_KEEP_RIME] exist) hoac[C5:RN_KEEP_RIME] scan `src/` cho `.tsx` files
+2. **Replace `runPy` setTimeout** → real fetch call den[C1:RN_KEEP_RIME] backend running `scripts/scan-client-compliance.py`
+3. **Replace localStorage** → commit audit state vao[C2:RN_KEEP_RIME] repo `runtime/audit/client-integration.result.phieu` (per SPEC_HOST_RESULT_PROTOCOL)
+4. **Update version** → "Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] natt-os v5.0" khop[C1:RN_KEEP_RIME] vau[C1:RN_OI_AU] repo
+5. **Add SIMULATION banner** → neu[C1:RN_KEEP_RIME] giu[C4:RN_KEEP_RIME] demo mode, mark ro[C4:RN_KEEP_RIME] "DEMO — khong[C0:RN_KEEP_RIME] chay[C5:RN_KEEP_RIME] migration that[C5:RN_KEEP_RIME]"
 
-#### §5.2.2 NẾU chỉ dùng làm demo/presentation (current state)
+#### §5.2.2 NEU[C1:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME] demo/presentation (current state)
 
-Cần 2 thay đổi nhỏ:
+Cen[C2:RN_AN_EN] 2 thay dau[C3:RN_OI_AU] nho[C3:RN_KEEP_RIME]:
 1. **Add disclaimer banner:** "DEMO — NOT LIVE AUDIT"
-2. **Remove hardcoded violation numbers** hoặc replace bằng "Demo: ~400 violations"
+2. **Remove hardcoded violation numbers** hoac[C5:RN_KEEP_RIME] replace beng[C2:RN_ANG_ENG] "Demo: ~400 violations"
 
-#### §5.2.3 NẾU archive
+#### §5.2.3 NEU[C1:RN_KEEP_RIME] archive
 
-File này có value educational cho new team members — archive vào `docs/architecture/ui-mockups/` với README giải thích positioning.
+File nay[C2:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] value educational cho new team members — archive vao[C2:RN_KEEP_RIME] `docs/architecture/ui-mockups/` vau[C1:RN_OI_AU] README giai[C3:RN_KEEP_RIME] thich[C1:RN_KEEP_RIME] positioning.
 
 ### §5.3 Priority
-**Classification uncertain** — em cần anh chỉ positioning:
-- Option A: Production tool → deploy với 5 fixes §5.2.1
+**Classification uncertain** — em cen[C2:RN_AN_EN] anh chi[C3:RN_KEEP_RIME] positioning:
+- Option A: Production tool → deploy vau[C1:RN_OI_AU] 5 fixes §5.2.1
 - Option B: Demo/presentation → 2 fixes §5.2.2
 - Option C: Archive → move §5.2.3
-- Option D: Other — anh chỉ rõ intent
+- Option D: Other — anh chi[C3:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME] intent
 
 ---
 
 ## §6. ATTACK SURFACE / SECURITY
 
 ### §6.1 XSS risk
-- Sử dụng `innerHTML` trong `logTerm()` với template literal → OK vì msg controlled
-- Template literal `${screen.name}` trong card HTML → **POTENTIAL XSS** nếu screenData từ API untrusted
+- Su[C3:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME] `innerHTML` trong `logTerm()` vau[C1:RN_OI_AU] template literal → OK vi[C2:RN_KEEP_RIME] msg controlled
+- Template literal `${screen.name}` trong card HTML → **POTENTIAL XSS** neu[C1:RN_KEEP_RIME] screenData tu[C2:RN_KEEP_RIME] API untrusted
   - Line 507: `card-${screen.id}`, `title="${screen.name}"`, `${screen.name}`
-  - Mitigation: escape HTML hoặc dùng textContent
+  - Mitigation: escape HTML hoac[C5:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] textContent
 
 ### §6.2 LocalStorage safety
 - Only stores audit state (checkbox values) → low risk
-- Không lưu credentials, tokens → OK
+- Khong[C0:RN_KEEP_RIME] luu[C0:RN_KEEP_RIME] credentials, tokens → OK
 
 ### §6.3 External dependencies
 - Tailwind CDN: `https://cdn.tailwindcss.com` (official)
 - Google Fonts: Inter + JetBrains Mono (official)
-- Không có untrusted 3rd party scripts → OK
+- Khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] untrusted 3rd party scripts → OK
 
-**Overall security:** OK cho internal dev tool, cần XSS fix nếu deploy production.
+**Overall security:** OK cho internal dev tool, cen[C2:RN_AN_EN] XSS fix neu[C1:RN_KEEP_RIME] deploy production.
 
 ---
 
 ## §7. CARRY-FORWARD ACTIONS
 
-### §7.1 Quyết định cần anh Natt
+### §7.1 Quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] cen[C2:RN_AN_EN] anh Natt
 1. **Classification:** Production / Demo / Archive?
-2. **Hiến Pháp version mismatch** (v0.9 vs v5.0) — update hay giữ nguyên với reason?
-3. **Screen count 71** — đây là số chốt cho Client Tâm Luxury?
+2. **Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] version mismatch** (v0.9 vs v5.0) — update hay giu[C4:RN_KEEP_RIME] nguyen[C0:RN_KEEP_RIME] vau[C1:RN_OI_AU] reason?
+3. **Screen count 71** — day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] so[C1:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME] cho Client Tâm Luxury?
 
-### §7.2 Không blocking
-- XSS potential (§6.1) — fix nếu promote to production
+### §7.2 Khong[C0:RN_KEEP_RIME] blocking
+- XSS potential (§6.1) — fix neu[C1:RN_KEEP_RIME] promote to production
 - Version label update (§4.2.5)
 
-### §7.3 Follow-up files cần check (em chưa scan repo)
-- `docs/architecture/` có screen manifest không?
-- Có file `nattos-client-integrator.py` thật chưa?
-- `HIEN-PHAP-natt-os-v5.0.anc` nội dung còn match sidebar rules không?
+### §7.3 Follow-up files cen[C2:RN_AN_EN] check (em chua[C0:RN_KEEP_RIME] scan repo)
+- `docs/architecture/` co[C1:RN_KEEP_RIME] screen manifest khong[C0:RN_KEEP_RIME]?
+- Co[C1:RN_KEEP_RIME] file `nattos-client-integrator.py` that[C5:RN_KEEP_RIME] chua[C0:RN_KEEP_RIME]?
+- `HIEN-PHAP-natt-os-v5.0.anc` nau[C5:RN_OI_AU] dung con[C2:RN_KEEP_RIME] match sidebar rules khong[C0:RN_KEEP_RIME]?
 
 ---
 
 ## §8. SEAL
 
 @result ui_mockup_audit_done_classification_pending
-@confidence high (read file full, cross-check với SPEC_NEN + memory)
+@confidence high (read file full, cross-check vau[C1:RN_OI_AU] SPEC_NEN + memory)
 @next_action anh_natt_classify_A_B_C_D
 @drafter bang
 @drafter_role runtime_owner_session_20260424

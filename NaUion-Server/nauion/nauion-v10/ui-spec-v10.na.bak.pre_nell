@@ -1,0 +1,21 @@
+# VISUAL CONSTRAINT v0.3 — NAUION v10 UI SPEC
+# @state: active
+# @status: locked → chờ Kim ship ui-kernel-contract.sira
+
+obitan_ui_spec nauion_v10 {
+  domain: Π_medium
+  obitan_layer: n=5 # L5 IMMUNE CAMOUFLAGE (O-shell)
+  
+  architectural_boundaries {
+    mock_policy: NO_MOCK_LIVING_SIGNAL
+    allowed_mock: [NauionEvent_structure, cell.metric_format, aura_pulse_format]
+    forbidden_mock: [FALL, DISSIPATE, OSCILLATE, pressure_type, pressure_value]
+  }
+
+  vision_engine {
+    renderer: WebGPU
+    primary_material: Liquid_Glass
+    boundary_fx: Fresnel_Rim
+    core_fx: Chromatic_Bloom
+  }
+}

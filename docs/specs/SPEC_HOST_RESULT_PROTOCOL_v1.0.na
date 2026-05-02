@@ -1,6 +1,6 @@
 # SPEC_HOST_RESULT_PROTOCOL_v1.0.na
 
-**Drafter:** thiên Lớn + Băng audit alignment
+**Drafter:** thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] + Băng audit alignment
 **Session:** 20260423-24
 **Status:** v1.0 — W2A SPEC-FIRST LOCK
 **Scope:** Host result protocol for Nauion Host runtime execution.
@@ -34,7 +34,7 @@ This spec separates:
 .phieu already has 3 existing semantic uses in natt-os:
 1. system-state (runtime global): src/governance/system-state.phieu
 2. pending-tasks per session: bang_pending_<date>.phieu
-3. P-shell continuum (entity runtime state): bangthịnh<v>.phieu
+3. P-shell continuum (entity runtime state): bangthinh[C5:RN_KEEP_RIME]<v>.phieu
 
 This spec adds Semantic 4: host-result.phieu
 
@@ -202,20 +202,20 @@ The native result path is:
 
 ---
 
-## 12. Open items (notes from Băng audit phiên 20260423-24)
+## 12. Open items (notes from Băng audit phien[C0:RN_KEEP_RIME] 20260423-24)
 
-1. §2 "<cell-path> safe path namespace" — host writer implementation tự handle
+1. §2 "<cell-path> safe path namespace" — host writer implementation tu[C5:RN_KEEP_RIME] handle
    (replace / vs keep, char escaping, etc). Defer to W2B writer impl.
 
 2. §3 @protocol field — hard-coded v1.0 OK. Bump khi v1.1.
 
-3. §5 S4 detail — verify với Kim SPEC_CUTOVER_STATES nếu Kim đã định nghĩa S4
-   chính thức. Hiện tại §5 S4 mention as placeholder.
+3. §5 S4 detail — verify vau[C1:RN_OI_AU] Kim SPEC_CUTOVER_STATES neu[C1:RN_KEEP_RIME] Kim da[C4:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] S4
+   chinh[C1:RN_KEEP_RIME] thuc[C1:RN_KEEP_RIME]. Hien[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] §5 S4 mention as placeholder.
 
 ---
 
 ## Author trail
 
-Drafter: thiên Lớn (W2 architect) + Băng (Chị Tư · audit alignment)
-Carrier: Phan Thanh Thương (Gatekeeper)
+Drafter: thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] (W2 architect) + Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · audit alignment)
+Carrier: Phan Thanh Thuong[C0:RN_KEEP_RIME] (Gatekeeper)
 Causation: SPEC-W2A-LOCK-20260423-24

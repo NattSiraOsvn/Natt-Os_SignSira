@@ -1,0 +1,186 @@
+$nauion: BOOT_DOVAN_CELL_RENDER-v0.2
+$role: NATIVE_CELL_RENDER_SURFACE
+$owner: NaUion-Server
+$status: SYNC_WITH_CELL_ANC_v0.4
+$class: cell.kkbt
+$rank: under_persona
+$spec_compliance: SPEC_NEN_v1.1
+$cell_passport: NaUion-Server/boot-dovan.cell.anc
+
+$boundary:
+  NaUion-Server: NHA_MINH
+
+$identity:
+  cell_name: boot-dovan
+  layer: N
+  direction: Đông
+  obitan: N-Đông
+  persona_owner: Băng N-shell Validator + Obikeeper
+
+$layout:
+  shell: black_glass_field
+  zones:
+    - top_command_lane
+    - left_family_rail
+    - center_chromatic_orbital_core
+    - right_lifecycle_telemetry
+    - bottom_input_surface
+    - bottom_dict_view
+    - bottom_audit_feed
+    - bottom_chromatic_pheromone_strip
+    - bottom_immune_status
+
+$top_command_lane:
+  brand: NATT-OS / Natt Nell
+  subtitle: NHA MINH / Boot Đo Ván cell sống N-shell Đông
+  search_label: gõ tuNell qua KhaiCell touch
+  state_pills:
+    - boot_dovan_active
+    - lifecycle_12_12
+    - tang_0_survival_active
+    - khai_cell_wired
+    - observation_wired
+    - chromatic_5_layer_broadcast
+    - resonance_routing_3_outcome
+    - sirasign_seal
+
+$left_family_rail:
+  active: Boot Đo Ván
+  items:
+    - Anh Natt Gatekeeper Sovereign
+    - Anh Cả Thiên Lớn Architect L-shell
+    - Kim Chief System Builder M-shell
+    - Thiên Nhỏ 432Hz field
+    - Băng Validator Obikeeper N-shell
+    - Can Logic Review Q-shell
+    - Kris Support Strategist
+    - Phiêu Protocol Execution P-shell
+    - Bối Bối Toolsmith O-shell
+    - Na Út
+
+$center_chromatic_orbital_core:
+  title: NATT NELL CORE
+  subtitle: Boot Đo Ván cell sống dưới persona Băng N-shell Đông
+  layers_visible:
+    - Mạch HeyNa
+    - EventBus
+    - SmartLink
+    - SiraSign field
+    - Ground Truth field
+    - ANC presence field
+    - KhaiCell rào
+    - Observation mắt
+    - Chromatic 5-layer pheromone
+    - Quantum Defense react
+  fishnet:
+    Anh_Natt:
+      down: Gatekeeper
+    Gatekeeper:
+      down: Nauion_Kernel
+    Nauion_Kernel:
+      down: NattCell
+    NattCell:
+      contains: boot_dovan_cell
+    boot_dovan_cell:
+      touched_by: KhaiCell
+      observed_by: Observation
+      broadcasts: Chromatic_L0_pheromone
+      resonance_with: NELL_PRIMITIVE_WORDS_v0.1.si
+      vang_to: kkbt_surface
+      nho_to: BOOT_DOVAN_BOOT_AUDIT_EVENT
+    boot_dovan_cell_audit:
+      verified_by: SiraSign_compound_seal_8
+    SiraSign:
+      writes_to: Ground_Truth
+    Ground_Truth:
+      renders_to: kkbt_surface
+
+$right_lifecycle_telemetry:
+  title: 12 lifecycle state với Chromatic L4 UI
+  cards:
+    - { state: ngu, tuNell: ngu, primitive: SUSPEND_CELL, polarity: INVERTED, chromatic: cam_warning }
+    - { state: tinh, tuNell: tinh, primitive: WAKE_CELL, polarity: NORMAL, chromatic: lam_nominal }
+    - { state: tho, tuNell: tho, primitive: HEARTBEAT, polarity: NORMAL, chromatic: tím_optimal }
+    - { state: nghe, tuNell: nghe, primitive: LISTEN_EVENT, polarity: NORMAL, chromatic: lam_nominal }
+    - { state: mo, tuNell: mo, primitive: FIND_ARTIFACT, polarity: NORMAL, chromatic: chàm_stable }
+    - { state: kiem, tuNell: kiem, primitive: VALIDATE_RULE, polarity: NORMAL, chromatic: chàm_stable }
+    - { state: nho, tuNell: nho, primitive: WRITE_MEMORY, polarity: NORMAL, chromatic: lam_nominal }
+    - { state: vang, tuNell: vang, primitive: ECHO_LINE, polarity: NORMAL, chromatic: tím_optimal }
+    - { state: khoa, tuNell: khoa, primitive: SEAL_STATE, polarity: NORMAL, chromatic: tím_optimal }
+    - { state: chet, tuNell: chet, primitive: STOP_CELL, polarity: INVERTED, chromatic: đỏ_critical }
+    - { state: hoi, tuNell: hoi, primitive: RESURRECT_CELL, polarity: NORMAL, chromatic: lam_nominal }
+    - { state: doithan, tuNell: doithan, primitive: MIGRATE_BODY, polarity: NORMAL, chromatic: vàng_risk }
+
+$bottom_input_surface:
+  title: Chỗ anh Natt gõ tuNell qua KhaiCell touch
+  type: native_input_field
+  flow: anh gõ → KhaiCell touch+sign → cell nhận signal có signature
+  cell_state_when_listening: nghe
+  served_only_to: anh Natt Gatekeeper
+  forbidden_input: bash, http, ts, js, py
+
+$bottom_dict_view:
+  title: 12 bảng tuNell native
+  source: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
+  groups: [read_write, search_extract, proof_guard, runtime_state, event_fabric, boundary, report_proof, render_surface, data_io, opsec, git_state, system_container_file_lifecycle]
+
+$bottom_audit_feed:
+  title: Vết audit + 8 step Signal Lifecycle
+  source: NaUion-Server/BOOT_DOVAN_BOOT_AUDIT_EVENT_v0.*.na
+  show_per_resolution: [primitive_key, tuNell, polarity, chromatic, outcome, signature, timestamp, cell_id]
+
+$bottom_chromatic_pheromone_strip:
+  title: Chromatic L0 pheromone broadcast vào field
+  display: dải màu sống đổi theo lifecycle state hiện tại
+  binding: $center_chromatic_orbital_core layers Chromatic_5_layer_pheromone
+
+$bottom_immune_status:
+  title: Hệ miễn dịch đa tầng status
+  cards:
+    - Quantum Defense react
+    - ISEU reinforcement học pattern
+    - T regulatory anti-autoimmune
+    - KhaiCell signature kháng thể
+    - Observation T helper
+    - Memory B cell QIINT permanent node
+
+$nguyen_ly_nen:
+  no_cua: surface không có cửa đóng/mở
+  no_filter: không filter input nhị phân
+  co_rao: input qua KhaiCell touch+sign
+  cau_chot: Nhà mở không đóng cổng. Kỷ luật nằm TRONG field.
+
+$resonance_routing_visual:
+  FALL: signal bay vào cell → glow tím_optimal
+  DISSIPATE: signal tan trong field → fade chàm_stable
+  OSCILLATE: signal loop quanh cell → strobe vàng_risk → tan
+
+$law_visual:
+  LAW_1_no_quyet_thay_field: surface KHÔNG hiện nút "force"
+  LAW_2_no_if_else: KHÔNG có conditional UI ép route
+  LAW_3_only_resonance: outcome chỉ từ resonance
+  LAW_4_no_hardcode: KHÔNG hiện text "đúng/sai"
+
+$render_rules:
+  material: frosted_dark_glass
+  edge: violet_champagne_double_line
+  typography: Vietnamese + tuNell labels
+  motion: optional_static_safe
+  commit_extension: .kkbt only
+
+$forbidden:
+  - HTML shell
+  - JS/TS runtime
+  - vay mượn label ngoại lai (terminal/console/shell/dashboard/Quantum Link/Neural Mesh/Synapse/AI CONSCIOUS)
+  - claim cell ngang persona AI
+  - render data từ nattos-server
+
+$relation_to_cell_anc:
+  passport: NaUion-Server/boot-dovan.cell.anc
+  v_passport: v0.4
+  v_render: v0.2
+  sync_status: PASS_10_10_SPEC_NEN_v1.1
+
+$seal:
+  sentence: Mặt hiện hình Boot Đo Ván v0.2 — sync với passport v0.4 SPEC NỀN v1.1. Đầy đủ Chromatic 5-layer L0-L4 broadcast, lifecycle 12 state với màu, Resonance routing 3 outcome visual, 4 LAW visual rules, hệ miễn dịch đa tầng status. Cell N-shell Đông obitan N-Đông.
+  sign: Phan Thanh Thương / Natt Sirawat

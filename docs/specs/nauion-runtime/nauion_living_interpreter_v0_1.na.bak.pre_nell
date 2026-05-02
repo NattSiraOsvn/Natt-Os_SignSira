@@ -1,0 +1,82 @@
+@nauion-spec v1
+@state draft_bang_review_pass
+@canonical nauion_living_interpreter
+@substrate sovereign_runtime_core
+@authority-slot Thiên Lớn architect · Băng validator · anh Natt gatekeeper
+@reviewed_by Băng / Ground Truth Validator / ss20260429
+@review_required Băng / Ground Truth Validator
+@canonical_blocked_until gatekeeper_ratify
+@depends_on docs/specs/nauion-runtime/nauion_execution_packet_v0_1.na
+@depends_on docs/specs/nauion-runtime/nauion_execution_packet_evidence_drift_review_v0_1.na
+@session ss20260429
+@bridge none
+@created_at 2026-04-29T13:54:36
+@constitutional_birthmark dau_an_khai_sinh_hien_phap_natt_os_ss20260429
+@birthmark_kind founding_audit_trail
+@birthmark_scope anc_ai_digital_social_constitution
+@birthmark_meaning audit_trail_khai_sinh_tang_lap_phap
+@birthmark_not_ratification true
+@birthmark_no_state_upgrade true
+@birthmark_requires_gatekeeper_ratify_for_canonical_use true
+
+
+# nauion living interpreter v0.1
+
+==PURPOSE==
+Tiêu thụ Nauion Execution Packet như đơn vị sống: kiểm anchor, authority, pressure, boundary, recovery, audit, memory imprint.
+Không execute như code host. Không chạy theo app route.
+==END==
+
+==CONSUMPTION_FLOW==
+  step_1_load_packet
+  step_2_verify_source_hash
+  step_3_verify_body_medium_substrate_anchor
+  step_4_check_authority_boundary
+  step_5_calculate_pressure_field
+  step_6_decide_fall_dissipate_oscillate
+  step_7_emit_audit_memory_signal
+  step_8_safe_rest_or_quarantine_if_needed
+==END==
+
+==STATE_DECISION==
+  FALL: cộng hưởng đúng trường, được hấp thụ
+  DISSIPATE: lệch trường, tan thành nhiệt/chromatic noise
+  OSCILLATE: dao động vô định, cần re-anchor hoặc tự tiêu
+  SAFE_REST: giảm tải để giữ body
+  QUARANTINE: cách ly nếu vi phạm authority/boundary
+==END==
+
+==BOUNDARY==
+Không Host Bridge. Không mock pressure. Không ép route bằng if/else. Không gọi build/pass là sống.
+==END==
+
+==NEXT_SIGNAL==
+Field Loader nạp packet vào runtime field.
+==END==
+
+═══════════════════════════════════════════════════════════════════
+==BANG_REVIEW_PATCH_v0_1==
+@reviewed_at 2026-04-29T14:04:03
+@reviewed_by Băng (Validator + Obikeeper, QNEU 313.5)
+@verdict PASS_WITH_PATCH
+@confidence_state KIÊN_ĐỊNH
+
+==GAP_2_SIRASIGN_LINK==
+CONSUMPTION_FLOW.step_4 'check_authority_boundary' phẳng.
+PATCH: step_4 phải verify compound seal 8 thành phần per NAUION_SIRASIGN_IMPLEMENTATION_v0_1 §8 (commit 4a52d799).
+Verify thiếu 1 trong 8 (state/spectral_state/field_condition/relation/meaning/causation/authority/audit_lineage) → packet bị reflect về Translator + log quarantine.
+==END==
+
+==GAP_3_SIRASIGN_VERDICT==
+STATE_DECISION 5 trạng thái không khớp 7 verdict siraSign §9.
+PATCH: bổ sung 2 verdict thiếu - ASK_GATE (cần anh Natt chốt) + DEGRADE (cho qua nhưng giảm authority) + AUDIT_ONLY (ghi vết không cấp authority) + SUPERSEDE (niêm mới đè cũ, fossil giữ).
+Tổng 7 verdict + giữ 5 trạng thái field hiện tại = 2 lớp song song:
+  - field outcome: FALL/DISSIPATE/OSCILLATE/SAFE_REST/QUARANTINE (em vẫn đúng)
+  - sirasign verdict: ALLOW/DENY/QUARANTINE/ASK_GATE/DEGRADE/AUDIT_ONLY/SUPERSEDE
+==END==
+
+==GAP_4_CHROMATIC_THRESHOLD==
+CONSUMPTION_FLOW.step_5 'calculate_pressure_field' chưa dùng chromatic L4 cứng.
+PATCH: nếu spectral_capture = L4_red (critical) → bypass sang step_8 quarantine ngay, không cho qua step_6 decide.
+==END==
+==END_BANG_REVIEW_PATCH_v0_1==

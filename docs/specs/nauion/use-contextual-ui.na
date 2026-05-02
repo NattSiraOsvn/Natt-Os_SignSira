@@ -6,7 +6,7 @@ export type UIMode = 'night' | 'morning' | 'work' | 'evening' | 'fast' | 'precis
 
 /**
  * 🧠 CONTEXTUAL UI ADAPTER
- * Đồng bộ diện mạo và hành vi theo ngữ cảnh sử dụng.
+ * Dong[C2:RN_KEEP_RIME] bo[C5:RN_KEEP_RIME] dien[C5:RN_KEEP_RIME] mao[C5:RN_KEEP_RIME] va[C2:RN_KEEP_RIME] hanh[C2:RN_KEEP_RIME] vi theo ngu[C4:RN_KEEP_RIME] canh[C3:RN_KEEP_RIME] su[C3:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME].
  */
 export const useContextualUI = (currentTime: Date, intensity: number, clusterRole?: string) => {
   const [uiMode, setUiMode] = useState<UIMode>('work');

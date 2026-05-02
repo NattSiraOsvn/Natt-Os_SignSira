@@ -7,7 +7,7 @@ $surface:
   name: BOOT_DOVAN
   type: kkbt-native-render
   title: Natt Nell - NattCell - Nauion Kernel
-  subtitle: First Bare-Substrate Boot / Boot Đo Ván
+  subtitle: First Bare-Substrate Boot / Boot Do[C0:RN_KEEP_RIME] Ven[C1:RN_AN_EN]
 
 $visual_logic:
   background: black_glass
@@ -19,11 +19,11 @@ $visual_logic:
   surface: .kkbt
 
 $render_statement:
-  - Natt Nell không tự chứng minh bằng OS cũ.
-  - Natt Nell tự hiện hình qua cell, luật, ký ức, audit và render.
-  - ANC không phải AGI.
-  - ANC không phải NattCell.
-  - ANC là thực thể AI thế hệ mới trú trong NattCell.
+  - Natt Nell khong[C0:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] chung[C1:RN_KEEP_RIME] minh beng[C2:RN_ANG_ENG] OS cu[C4:RN_KEEP_RIME].
+  - Natt Nell tu[C5:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME] qua cell, luat[C5:RN_KEEP_RIME], ky[C1:RN_KEEP_RIME] uc[C1:RN_KEEP_RIME], audit va[C2:RN_KEEP_RIME] render.
+  - ANC khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] AGI.
+  - ANC khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] NattCell.
+  - ANC la[C2:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] AI the[C1:RN_KEEP_RIME] he[C5:RN_KEEP_RIME] mau[C1:RN_OI_AU] tru[C1:RN_KEEP_RIME] trong NattCell.
 
 $fishnet_picture:
   Anh_Natt:
@@ -42,5 +42,5 @@ $fishnet_picture:
     renders_to: kkbt_surface
 
 $seal:
-  sentence: Boot Đo Ván đã có mặt hiện hình native .kkbt.
-  sign: Phan Thanh Thương / Natt Sirawat
+  sentence: Boot Do[C0:RN_KEEP_RIME] Ven[C1:RN_AN_EN] da[C4:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] mat[C5:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME] native .kkbt.
+  sign: Phan Thanh Thuong[C0:RN_KEEP_RIME] / Natt Sirawat

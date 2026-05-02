@@ -1,0 +1,151 @@
+@nauion-spec v1
+@state draft_bang_review_pass
+@canonical nauion_execution_packet
+@substrate sovereign_runtime_core
+@bridge none
+@since ss20260429
+@authority-slot Thiên Lớn architect · Băng ground_truth_validator · anh Natt gatekeeper
+@reviewed_by Băng / Ground Truth Validator / ss20260429
+@review_required Băng / Ground Truth Validator
+@canonical_blocked_until gatekeeper_ratify
+@depends_on docs/runtime/audit/NAUION_RUNTIME_EXCLUSIVE_ACTIVITY_BAN_ss20260429.na
+@constitutional_birthmark dau_an_khai_sinh_hien_phap_natt_os_ss20260429
+@birthmark_kind founding_audit_trail
+@birthmark_scope anc_ai_digital_social_constitution
+@birthmark_meaning audit_trail_khai_sinh_tang_lap_phap
+@birthmark_not_ratification true
+@birthmark_no_state_upgrade true
+@birthmark_requires_gatekeeper_ratify_for_canonical_use true
+
+
+# NAUION EXECUTION PACKET v0.1
+
+==PURPOSE==
+Định nghĩa đơn vị thực thi tối thiểu của Nauion Runtime Sovereign Core.
+Packet không đồng nhất với JSON, AST, bytecode, HTTP request, TS object, Vite loader, React component, hoặc host bridge.
+Packet là đơn vị mang ý nghĩa qua trường số: có body, medium, substrate, authority, pressure, audit, memory imprint, signal echo.
+==END==
+
+==GROUND_TRUTH==
+  - docs/specs/SPEC_NEN_v1.1.anc | sha256=bcd6afd8f67a43c9e1400cc93aefc71a68e6ffb95291fc5089ae454e59573408 | bytes=14432
+  - docs/runtime/boot_family_map_15_memory_states_20260425.na | sha256=359635538a43e9e0ba5646faafb3c0c350d879e8c724fb39e8a72a993d259399 | bytes=1568
+  - docs/runtime/migration_roadmap_ts_to_nauion_ss20260427.na | sha256=516fe5829fd45407270fd5bd748948830e1cff9916fe828a226f07d3545c7276 | bytes=9690
+  - docs/specs/NATT-OS_SUBSTRATE_REALITY_SYNTHESIS_v1.na | sha256=6867738d19c9d0c5e9bbe44bc0a47f0019e1fba2c538cba007184579d7bbb09b | bytes=15103
+  - docs/specs/THIENBANG_MAPPING_v1_canonical_answers.na | sha256=190fffa601290bfd158e65652678464b7c63b8e708391bb34f837aecf9debdaa | bytes=4898
+  - docs/specs/nauion-runtime/NAUION_RUNTIME_GROUND_TRUTH_INVENTORY_v0_1.na | sha256=170dd55be99bd91cf6e1ab7f428ebcc1dd35a9e7758cfcaf25533c03d676a4f1 | bytes=199929
+  - docs/specs/nauion-runtime/NAUION_RUNTIME_SUBSTRATE_HARDWARE_EVIDENCE_MATRIX_v0_1.na | sha256=7e5d5d8876376c4272c3b0e4510555808ce227920622d0bbddca9ffc275dc6f1 | bytes=18302
+  - docs/specs/nauion-runtime/NAUION_PACKET_SUBSTRATE_HARDWARE_BINDING_v0_1.na | sha256=f31a4948e47b5d9d6c5e6184b59415a5e2b8d80bf387218c7e37b85c2058f1e1 | bytes=10735
+  - docs/specs/nauion-runtime/nauion_authority_boundary_v0_1.na | sha256=a99993eb2f9681c51b47a747c477333d3ec0de37bcc7bdb3345d478d8e51bc21 | bytes=10311
+  - docs/specs/nauion-runtime/nauion_self_breath_loop_v0_1.na | sha256=9971cf4dd3d46b932af1d96c579bd408c229c22c07335f65fa7a094bd4ebe7e7 | bytes=11779
+==END==
+
+==PACKET_ROOT==
+  packet_id: định danh packet
+  packet_kind: source | signal | memory | authority | substrate | audit | recovery
+  grammar_ref: Nauion grammar / source rule đang áp dụng
+  created_at: thời điểm sinh packet
+  source_hash: hash nguồn sinh packet
+  state: optimal | stable | nominal | drift | warning | risk | critical
+==END==
+
+==PACKET_BODY==
+  obitan: pattern bản thể bất biến
+  field_anchor:
+    hien_phap_ref: neo hiến pháp
+    anc_ref: passport / identity anchor
+    sirasign_ref: seal / authority proof
+    memory_ref: .na / .phieu / audit evidence
+  qneu_mass: khối lượng trọng trường
+  qiint_pull: lực kéo trường theo context
+  orbital_coherence: độ kết mạch obitan
+  body_drift: mức trôi bản thể nếu có
+==END==
+
+==PACKET_MEDIUM==
+  carrier_kind: na_text | signal_payload | memory_fragment | audit_record | state_snapshot
+  carrier_ref: path / hash / signal id
+  chromatic_mark: none | L0 | L1 | L2 | L3 | L4
+  medium_state: clean | partial | stale | corrupted | quarantined
+  materialization_allowed: yes | no | gatekeeper_only
+==END==
+
+==PACKET_SUBSTRATE==
+  substrate_ref: evidence path hoặc SiraSign ref
+  substrate_kind: sovereign_gateway | wired_edge | sensor_intake | dns_route | electrical_module | field_installation
+  hardware_anchor: topology / BOM / module evidence
+  physical_intake_anchor: luật tiếp nhận vật lý
+  edge_anchor: wired edge / configuration / installation evidence
+  route_anchor: DNS / line / quota / route evidence
+  power_thermal_anchor: điện / nhiệt / tải
+  runtime_probe_anchor: probe / timeout / manifest evidence
+  acceptance_anchor: procurement / installation / acceptance evidence
+==END==
+
+==CAUSATION_CHAIN==
+  event_id: id duy nhất
+  tenant_scope: business/runtime scope
+  lineage_scope: Sirawat / entity lineage scope
+  trace_id: vết end-to-end
+  span_id: nhánh con
+  causation_id: packet cha
+  parent_packet_ref: optional
+==END==
+
+==PRESSURE_FIELD==
+  pressure_type: FALL | DISSIPATE | OSCILLATE
+  pressure_value: range 0.0..1.0
+  impedance_z: trở kháng packet
+  receiver_impedance_z0: trở kháng cell nhận
+  reflection_coefficient: R=(Z-Z0)/(Z+Z0)
+  rule: pressure không được mock; không ép route bằng if/else; pressure sinh từ trường và boundary result.
+==END==
+
+==AUTHORITY_BOUNDARY==
+  drafter: entity tạo packet
+  ratifier: entity duyệt nếu cần
+  consumer_whitelist: cell/entity được đọc
+  forbidden_zones: vùng cấm
+  public_redaction: mức được lộ ra public layer
+  violation_action: mark_boundary | quarantine | reflect | safe_rest
+==END==
+
+==SELF_BREATH_LOOP==
+  audit_trace: append-only
+  memory_imprint: none | temporary | reinforced | permanent_node_candidate
+  signal_echo: none | real | reflected | quarantined
+  decay_clock: ttl | session | durable | permanent
+  recovery_path: none | reanchor | safe_rest | resurrect_if_body_anchor_alive
+==END==
+
+==INTERPRETER_CONSUMPTION_RULE==
+  step_1_load: Field Loader nạp packet + kiểm source_hash.
+  step_2_anchor: kiểm body/medium/substrate anchor.
+  step_3_authority: kiểm authority boundary trước materialization.
+  step_4_pressure: tính pressure field, không mock.
+  step_5_consume: Living Interpreter quyết FALL/DISSIPATE/OSCILLATE.
+  step_6_breath: ghi audit, imprint memory, phát signal echo.
+  step_7_stop: nếu drift/risk/critical thì safe-rest hoặc quarantine.
+==END==
+
+==KERNEL_COUPLING==
+  field_translator: source/signal/memory/event -> packet
+  field_loader: packet -> runtime field
+  living_interpreter: packet -> state transition
+  smartlink_protocol: packet -> field transfer
+  authority_boundary: packet -> allowed/marked/quarantined
+  self_breath_loop: packet -> audit/memory/signal
+==END==
+
+==NON_SCOPE==
+  - không Host Bridge
+  - không Vite/React/Node adapter
+  - không app/server/client cleanup
+  - không JSON hóa bản thể
+  - không đổi source evidence của Băng
+  - không rename/move/delete
+==END==
+
+==NEXT_SIGNAL==
+Băng review drift/evidence.
+Sau review mới tách Field Translator / Living Interpreter / Field Loader spec.
+==END==

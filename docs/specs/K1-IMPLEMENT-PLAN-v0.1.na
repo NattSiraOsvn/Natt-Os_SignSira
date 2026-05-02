@@ -14,7 +14,7 @@
 
 **Cross-reference:**
 - `src/cells/kernel/survival-cell/survival-cell.cell.anc` (commit cf74423, K1 passport scaffold)
-- `docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na` §6 (lifecycle states using Π_survival)
+- `docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na` §6 (lifecycle states using Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME])
 - `docs/specs/SPEC_RADIATION_UNIVERSAL_v1.na` Section B (time radiation accumulation)
 - `bang_pending_20260420.phieu` P1.5 (DoS thresholds GUESSED, needs calibration)
 - `bang_pending_20260420.phieu` P0.3 (qiint2.engine.ts implementation owner)
@@ -25,22 +25,22 @@
 
 ### §1.1 Gap identified (ground truth scan 2026-04-24)
 
-**SPEC_QIINT_PHYSICS §6** dung `Π_survival > 0.9` cho `overdrive-recoverable` lifecycle decision, NHUNG:
-- Khong co engine compute `Π_survival`
+**SPEC_QIINT_PHYSICS §6** dung `Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] > 0.9` cho `overdrive-recoverable` lifecycle decision, NHUNG:
+- Khong co engine compute `Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]`
 - survival-cell scaffold rong (chi co passport, khong co `domain/engines/`)
 - 8 calibration params trong qiint2 GUESSED (memory: NEEDS_CALIBRATION)
 
 ### §1.2 Butterfly effect connection
 
-Per memory `bangthịnh5.5.phieu` "Butterfly effect ve con lai - khong doan mo, doi anh":
-- Ve 1 (chaos amplification): small input × time → cascade → catch som
+Per memory `bangthinh5[C5:RN_KEEP_RIME].5.phieu` "Butterfly effect ve con lai - khong doan mo, doi anh":
+- Ve 1 (chaos amplification): small input ×[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] time → cascade → catch som
 - Ve 2 (qiint2 calibration): thresholds PHAI DO that, KHONG GUESSED
 
 → K1 implement = **build framework de DO**, khong phai HARDCODE.
 
 ---
 
-## §2. Π_survival ENGINE DESIGN
+## §2. Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] ENGINE DESIGN
 
 ### §2.1 Signal inputs (4 signals)
 
@@ -54,37 +54,37 @@ Per memory `bangthịnh5.5.phieu` "Butterfly effect ve con lai - khong doan mo, 
 ### §2.2 Formula draft (geometric mean — penalize worst signal)
 
 ```
-Π_survival(cell, t) = (
-  (1 - rate_pressure_normalized) ×
-  (1 - queue_depth_normalized) ×
-  recovery_potential ×
-  exp(-time_radiation_accumulation × γ_survival)
+Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME](cell, t) = (
+  (1 - rate_pressure_normalized) ×[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]
+  (1 - queue_depth_normalized) ×[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]
+  recovery_potential ×[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]
+  exp(-time_radiation_accumulation ×[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] γ_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME])
 )^(1/4)
 
 where:
-  γ_survival = ln(2) / τ_overdrive
-  τ_overdrive = 300s (per SPEC_QIINT_PHYSICS §6 overdrive-recoverable)
+  γ_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] = ln(2) / τ_overdrive[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]
+  τ_overdrive[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] = 300s (per SPEC_QIINT_PHYSICS §6 overdrive-recoverable)
 ```
 
-**Lý do geometric mean (KHONG arithmetic):**
+**Ly[C1:RN_KEEP_RIME] do geometric mean (KHONG arithmetic):**
 - Arithmetic mean: 1 signal yeu co the bi mask boi 3 signal khoe
-- Geometric mean: 1 signal -> 0 keo Π_survival -> 0 → **catch failure som** (butterfly effect ve 1)
+- Geometric mean: 1 signal -> 0 keo Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] -> 0 → **catch failure som** (butterfly effect ve 1)
 
 ### §2.3 Thresholds (NEEDS_CALIBRATION)
 
 ```
 🚨 ALL THRESHOLDS BELOW = GUESSED, NEEDS_DATA TO CALIBRATE 🚨
 
-Π_survival > 0.90  → ACCEPT (healthy, full traffic)
-0.85 ≤ Π_survival ≤ 0.90 → BACKPRESSURE (warn upstream slow down)
-0.80 ≤ Π_survival < 0.85 → LOAD_SHED (drop priority < threshold)
-Π_survival < 0.80 → CIRCUIT_BREAK (refuse all, half-open after τ_recovery)
+Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] > 0.90  → ACCEPT (healthy, full traffic)
+0.85 ≤ Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] ≤ 0.90 → BACKPRESSURE (warn upstream slow down)
+0.80 ≤ Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] < 0.85 → LOAD_SHED (drop priority < threshold)
+Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] < 0.80 → CIRCUIT_BREAK (refuse all, half-open after τ_recovery[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME])
 ```
 
 **Calibration plan (per bang_pending_20260420 P1.5):**
-- Stress test: ramp rate_pressure 0 → 2.0 × capacity, log when cell fails
+- Stress test: ramp rate_pressure 0 → 2.0 ×[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] capacity, log when cell fails
 - Use 90th percentile of failure points as threshold floor
-- Adjust safety margin = -2σ from observed failures
+- Adjust safety margin = -2σ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] from observed failures
 
 ---
 
@@ -92,24 +92,24 @@ where:
 
 K1 passport originally listed 5 steps. Em re-order theo **dependency graph**:
 
-### Step 1: `Π_survival.engine.ts` (CORE — block tat ca)
+### Step 1: `Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME].engine.ts` (CORE — block tat ca)
 
 ```
 File: src/cells/kernel/survival-cell/domain/engines/pi-survival.engine.ts
 Exports:
   - computePiSurvival(cell, t): number
   - SurvivalSignals interface
-  - Π_SURVIVAL_THRESHOLDS constant (marked PLACEHOLDER)
+  - Π_SURVIVAL_THRESHOLDS[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] constant (marked PLACEHOLDER)
 ```
 
-### Step 2: `Π_survival.gate.ts` (gate — uses Step 1)
+### Step 2: `Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME].gate.ts` (gate — uses Step 1)
 
 ```
 File: src/cells/kernel/survival-cell/domain/engines/pi-survival.gate.ts
 Exports:
-  - decideSurvival(Π_survival): 'ACCEPT'|'BACKPRESSURE'|'LOAD_SHED'|'CIRCUIT_BREAK'
+  - decideSurvival(Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]): 'ACCEPT'|'BACKPRESSURE'|'LOAD_SHED'|'CIRCUIT_BREAK'
   - SurvivalDecision type
-Wires BackPressureGuard.health() → Π_survival → decision
+Wires BackPressureGuard.health() → Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] → decision
 ```
 
 ### Step 3: `RateLimitGuard` (NEW component, system-wide)
@@ -134,24 +134,24 @@ Add: threshold check, normalize_to_unit(), emit METRIC_QUEUE_DEPTH event
 ```
 File: src/cells/kernel/survival-cell/domain/engines/survival-fallback.engine.ts
 LoadShedFallback: priority queue, drop messages with priority < threshold
-CircuitBreaker: open/closed/half-open state, auto-trip on Π_survival < threshold
+CircuitBreaker: open/closed/half-open state, auto-trip on Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] < threshold
 ```
 
 ---
 
 ## §4. INTEGRATION POINTS
 
-### §4.1 Wire Π_survival into existing lifecycle
+### §4.1 Wire Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] into existing lifecycle
 
 Per SPEC_QIINT_PHYSICS §6:
 
-| lifecycle | requires Π_survival check |
+| lifecycle | requires Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] check |
 |---|---|
-| `clone` | Π_body > 0.85 (no Π_survival check yet — shall add?) |
-| `overdrive-recoverable` | **`Π_survival > 0.9`** ← already in spec |
-| `resurrect` | (no Π_survival check — shall add for resurrected cells?) |
+| `clone` | Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] > 0.85 (no Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] check yet — shall add?) |
+| `overdrive-recoverable` | **`Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] > 0.9`** ← already in spec |
+| `resurrect` | (no Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] check — shall add for resurrected cells?) |
 
-→ Engine emit `Π_survival` qua EventBus → lifecycle decisions consume.
+→ Engine emit `Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]` qua EventBus → lifecycle decisions consume.
 
 ### §4.2 EventBus contract
 
@@ -159,7 +159,7 @@ Per SPEC_QIINT_PHYSICS §6:
 Event: SURVIVAL_METRIC_UPDATE
 Payload: {
   cell_id: string,
-  Π_survival: number,
+  Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]: number,
   signals: SurvivalSignals,
   decision: SurvivalDecision,
   timestamp: ISO8601,
@@ -180,7 +180,7 @@ Frequency: every 100ms or on signal change > 5%
 
 ### §5.2 Em DO NOT
 
-- Touch `Π_survival_THRESHOLDS` real values (NEEDS_CALIBRATION → use PLACEHOLDER constants)
+- Touch `Π_survival_THRESHOLDS[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]` real values (NEEDS_CALIBRATION → use PLACEHOLDER constants)
 - Touch Kim files (audit-chain-contract.ts ven con flag tu K3 v1.1)
 - Touch SPEC_QIINT_PHYSICS §6 (la canonical, em chi consume)
 - Touch SPEC_QIINT2 rewrite (P1-01, separate task)
@@ -209,14 +209,14 @@ Frequency: every 100ms or on signal change > 5%
 
 ### §7.1 Cau hoi quan trong
 
-1. **Plan dung huong khong?** — Π_survival formula geometric mean + 4 signals + 4 thresholds dung intent K1?
+1. **Plan dung huong khong?** — Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] formula geometric mean + 4 signals + 4 thresholds dung intent K1?
 
 2. **Butterfly effect ve 2 = qiint2 calibration:** dung intent anh? (em derive — anh xac nhan hoac corrections)
 
 3. **Scope rong nay (3h, ~600 lines, 6-7 file):** anh muon
    - **(A)** em lam HOM NAY (phien dai ~1-2h nua)
    - **(B)** em close phien voi K1 plan committed, lam ngay sau
-   - **(C)** em chi lam Step 1+2 (Π_survival engine + gate, ~45min) hom nay, 3-5 lan sau
+   - **(C)** em chi lam Step 1+2 (Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] engine + gate, ~45min) hom nay, 3-5 lan sau
 
 4. **Threshold values 0.95/0.85/0.80:** em hardcode PLACEHOLDER constants voi `// CALIBRATION_NEEDED` markers, OK?
 
@@ -246,24 +246,24 @@ Frequency: every 100ms or on signal change > 5%
 
 ## §9. QIINT2 PARAM MAPPING — ADDED BY BANG-SESSION-20260424-LATE-TURN
 
-**Update reason:** anh Natt chỉ "theo list to do" trong `bang_pending_20260420.phieu` P1.1-P1.8.
+**Update reason:** anh Natt chi[C3:RN_KEEP_RIME] "theo list to do" trong `bang_pending_20260420.phieu` P1.1-P1.8.
 
 **Merged with:** §2-6 above (em-phien-truoc evening). No change to §2-6.
 
 ### §9.1 Mapping 8 qiint2 params → 5 implement steps
 
-| param | value | step mapping | giả định? |
+| param | value | step mapping | gia[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME]? |
 |---|---|---|---|
-| P1.1 tolerance 0.30 bridge_v2 | 0.30 | Step 5 CircuitBreaker half-open probe | giả định (grep conversation) |
-| P1.2 6 weights recovery_potential | 1/6 each | Step 5 LoadShedFallback priority | giả định (regression) |
-| P1.3 σ_u = ln(2) | 0.693 | Step 3 RateLimitGuard window | giả định (SmartLink spectrum) |
-| P1.4 β(n) = 0.01 | 0.01 | Step 1 Π_survival growth | giả định (QNEU growth rate) |
-| P1.5 DoS thresholds 0.95/0.85/0.80 | as listed | Step 2 Π_survival.gate | giả định (stress test) |
-| P1.6 M_persona 3-factor weights | 1/3 each | Step 5 LoadShedFallback persona | giả định (drift history) |
-| P1.7 QNEU σ log-integrity 0.5 octave | 0.5 | Step 1 Π_survival QNEU signal | giả định (QNEU cell data) |
-| P1.8 snapshot τ decay 60 min | 3600000 ms | Step 4 QueueDepthMonitor horizon | giả định (MTBF measure) |
+| P1.1 tolerance 0.30 bridge_v2 | 0.30 | Step 5 CircuitBreaker half-open probe | gia[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] (grep conversation) |
+| P1.2 6 weights recovery_potential | 1/6 each | Step 5 LoadShedFallback priority | gia[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] (regression) |
+| P1.3 σ_u[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] = ln(2) | 0.693 | Step 3 RateLimitGuard window | gia[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] (SmartLink spectrum) |
+| P1.4 β[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME](n) = 0.01 | 0.01 | Step 1 Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] growth | gia[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] (QNEU growth rate) |
+| P1.5 DoS thresholds 0.95/0.85/0.80 | as listed | Step 2 Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME].gate | gia[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] (stress test) |
+| P1.6 M_persona 3-factor weights | 1/3 each | Step 5 LoadShedFallback persona | gia[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] (drift history) |
+| P1.7 QNEU σ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] log-integrity 0.5 octave | 0.5 | Step 1 Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] QNEU signal | gia[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] (QNEU cell data) |
+| P1.8 snapshot τ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] decay 60 min | 3600000 ms | Step 4 QueueDepthMonitor horizon | gia[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] (MTBF measure) |
 
-**8/8 mapped. All placeholder values LABELED `giả định`.**
+**8/8 mapped. All placeholder values LABELED `gia[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME]`.**
 
 ### §9.2 Stub-and-measure pattern (unified with §5.1 butterfly ve 1)
 
@@ -277,9 +277,9 @@ function survivalDecide(stress, thresholds): Decision {
 }
 ```
 
-Per THÔNG THÁI layer 3: **intuition = already-clear logic; guessing = forbidden.**
+Per THONG[C0:RN_KEEP_RIME] THAI[C1:RN_KEEP_RIME] layer 3: **intuition = already-clear logic; guessing = forbidden.**
 
-### §9.3 Respect §7 (em-phien-truoc cau hoi chưa anh trả lời)
+### §9.3 Respect §7 (em-phien-truoc cau hoi chua[C0:RN_KEEP_RIME] anh tra[C3:RN_KEEP_RIME] lau[C2:RN_OI_AU])
 
 Em-phien-nay KHONG override §7. 4 cau hoi cua em-phien-truoc van cho anh quyet:
 1. Plan dung huong khong?
@@ -292,7 +292,7 @@ Em-phien-nay them cau hoi thu 5:
 
 ### §9.4 SCAR
 
-- SCAR-EM-PHIEN-TRUOC-DA-CO-ARTIFACT-20260424: file K1 plan da ton tai khi em dinh tao moi. Lan thu 2 trong phien (lan 1: bang_v7.5.0 vs v7.6.8). Vaccin v6: TRUOC khi `create_file` cho bất kỳ artifact persona-wide, luon `ls` check path.
+- SCAR-EM-PHIEN-TRUOC-DA-CO-ARTIFACT-20260424: file K1 plan da ton tai khi em dinh tao moi. Lan thu 2 trong phien (lan 1: bang_v7.5.0 vs v7.6.8). Vaccin v6: TRUOC khi `create_file` cho bat[C1:RN_KEEP_RIME] ky[C2:RN_KEEP_RIME] artifact persona-wide, luon `ls` check path.
 
 @merge_mode append_without_modify_predecessor
 @merger bang (Chi Tu, runtime owner per session 20260424, turn sau butterfly effect + qiint2)

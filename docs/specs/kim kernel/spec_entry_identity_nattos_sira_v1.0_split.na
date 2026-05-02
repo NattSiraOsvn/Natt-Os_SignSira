@@ -3,16 +3,16 @@
 @substrate identity-layer
 @bridge none
 @since 2026-04-23
-@authority-slot thiên Lớn -> Kim
+@authority-slot thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] -> Kim
 @semantic-role identity_validation
 
 # SPEC_ENTRY_IDENTITY_NATTOS_sira_V1.0
 
 ## §1. File location
 - **Canonical path:** `./nattos.sira` (root repo).
-- Định dạng: **self‑describing object** (Stage 1 reference encoding: JSON; có thể mở rộng sang NDJSON hoặc Nauion grammar sau Wave 1).
+- Dinh[C5:RN_KEEP_RIME] deng[C5:RN_ANG_ENG]: **self‑describing object** (Stage 1 reference encoding: JSON; co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] mo[C3:RN_KEEP_RIME] rong[C5:RN_KEEP_RIME] sang NDJSON hoac[C5:RN_KEEP_RIME] Nauion grammar sau Wave 1).
 
-## §2. Schema bắt buộc (các field phải có mặt)
+## §2. Schema bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME] (cac[C1:RN_KEEP_RIME] field phai[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] mat[C5:RN_KEEP_RIME])
 ```json
 {
   "kind": "entry_identity",
@@ -22,36 +22,36 @@
     "binary": "nauion-host",
     "min_compatible_commit": "sha256 prefix 7 chars"
   },
-  "sha256": "hex hash của toàn bộ file (bỏ qua dòng @ directives nếu có)",
+  "sha256": "hex hash cua[C3:RN_KEEP_RIME] toen[C2:RN_AN_EN] bo[C5:RN_KEEP_RIME] file (bo[C3:RN_KEEP_RIME] qua dong[C2:RN_KEEP_RIME] @ directives neu[C1:RN_KEEP_RIME] co[C1:RN_KEEP_RIME])",
   "public_key": "ed25519 fingerprint (optional Stage1, mandatory Stage2)",
   "signature": "sign(sha256) (optional Stage1)"
 }
 ```
-- Tất cả các field trên đều bắt buộc có mặt (trừ public_key/signature optional Stage1 – nhưng nếu có thì đúng format).
+- Tat[C1:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] cac[C1:RN_KEEP_RIME] field tren[C0:RN_KEEP_RIME] deu[C2:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] mat[C5:RN_KEEP_RIME] (tru[C2:RN_KEEP_RIME] public_key/signature optional Stage1 – nhung[C0:RN_KEEP_RIME] neu[C1:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] thi[C2:RN_KEEP_RIME] dung[C1:RN_KEEP_RIME] format).
 
-## §3. Validation rules (host thực thi)
-Host đọc file từ đường dẫn launcher chỉ định (mặc định `./nattos.sira`).
+## §3. Validation rules (host thuc[C5:RN_KEEP_RIME] thi)
+Host doc[C5:RN_KEEP_RIME] file tu[C2:RN_KEEP_RIME] duong[C2:RN_KEEP_RIME] den[C4:RN_AN_EN] launcher chi[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] (mac[C5:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] `./nattos.sira`).
 
-1. File không tồn tại hoặc không parse được → **reject**, exit code 64, ghi audit.
-2. `kind != "entry_identity"` hoặc `domain != "nattos"` → **reject**.
-3. `host_requires.spec_version` không khớp spec version host → **reject**.
+1. File khong[C0:RN_KEEP_RIME] ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] hoac[C5:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] parse duoc[C5:RN_KEEP_RIME] → **reject**, exit code 64, ghi audit.
+2. `kind != "entry_identity"` hoac[C5:RN_KEEP_RIME] `domain != "nattos"` → **reject**.
+3. `host_requires.spec_version` khong[C0:RN_KEEP_RIME] khop[C1:RN_KEEP_RIME] spec version host → **reject**.
 4. `host_requires.binary != "nauion-host"` → **reject**.
-5. `min_compatible_commit` prefix 7 ký tự không khớp với commit host → **cảnh báo** (Stage1), Stage2 bắt buộc khớp.
-6. `sha256` không khớp hash thực tế → **reject**.
-7. `public_key`/`signature` có mặt ở Stage1 nhưng sai format → **cảnh báo**, vẫn chạy.
+5. `min_compatible_commit` prefix 7 ky[C1:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] khop[C1:RN_KEEP_RIME] vau[C1:RN_OI_AU] commit host → **canh[C3:RN_KEEP_RIME] bao[C1:RN_KEEP_RIME]** (Stage1), Stage2 bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME] khop[C1:RN_KEEP_RIME].
+6. `sha256` khong[C0:RN_KEEP_RIME] khop[C1:RN_KEEP_RIME] hash thuc[C5:RN_KEEP_RIME] te[C1:RN_KEEP_RIME] → **reject**.
+7. `public_key`/`signature` co[C1:RN_KEEP_RIME] mat[C5:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] Stage1 nhung[C0:RN_KEEP_RIME] sai format → **canh[C3:RN_KEEP_RIME] bao[C1:RN_KEEP_RIME]**, ven[C4:RN_AN_EN] chay[C5:RN_KEEP_RIME].
 
-## §4. Hành vi khi reject
-- Host in stderr: `IDENTITY_REJECT: <lý do>`
-- Ghi audit vào `logs/host-audit.ndjson`
+## §4. Hanh[C2:RN_KEEP_RIME] vi khi reject
+- Host in stderr: `IDENTITY_REJECT: <ly[C1:RN_KEEP_RIME] do>`
+- Ghi audit vao[C2:RN_KEEP_RIME] `logs/host-audit.ndjson`
 - Exit code 64
-- Launcher **không được** bỏ qua reject.
+- Launcher **khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME]** bo[C3:RN_KEEP_RIME] qua reject.
 
-## §5. Quan hệ với host authority
-- Host không khởi động execution trước khi identity được accept.
-- Sau accept, host cấp cho mỗi bridge worker một subset chứa `kind`, `domain`, `host_requires.binary`.
+## §5. Quan he[C5:RN_KEEP_RIME] vau[C1:RN_OI_AU] host authority
+- Host khong[C0:RN_KEEP_RIME] khau[C3:RN_OI_AU] dong[C5:RN_KEEP_RIME] execution truoc[C1:RN_KEEP_RIME] khi identity duoc[C5:RN_KEEP_RIME] accept.
+- Sau accept, host cap[C1:RN_KEEP_RIME] cho mau[C4:RN_OI_AU] bridge worker mot[C5:RN_KEEP_RIME] subset chua[C1:RN_KEEP_RIME] `kind`, `domain`, `host_requires.binary`.
 
-## §6. Rollback flag ảnh hưởng
-- `rbf_w0_node_hosted = 1` → host không khởi động, launcher dùng Node trực tiếp (validation không do host).
-- `rbf_w1_host_live = 1` → host bắt buộc validation + ghi audit.
+## §6. Rollback flag anh[C3:RN_KEEP_RIME] huong[C3:RN_KEEP_RIME]
+- `rbf_w0_node_hosted = 1` → host khong[C0:RN_KEEP_RIME] khau[C3:RN_OI_AU] dong[C5:RN_KEEP_RIME], launcher dung[C2:RN_KEEP_RIME] Node truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME] (validation khong[C0:RN_KEEP_RIME] do host).
+- `rbf_w1_host_live = 1` → host bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME] validation + ghi audit.
 
 @end

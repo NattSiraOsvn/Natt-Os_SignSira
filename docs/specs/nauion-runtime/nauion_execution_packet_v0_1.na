@@ -4,7 +4,7 @@
 @substrate sovereign_runtime_core
 @bridge none
 @since ss20260429
-@authority-slot Thiên Lớn architect · Băng ground_truth_validator · anh Natt gatekeeper
+@authority-slot Thiên Lon[C1:RN_KEEP_RIME] architect · Băng ground_truth_validator · anh Natt gatekeeper
 @reviewed_by Băng / Ground Truth Validator / ss20260429
 @review_required Băng / Ground Truth Validator
 @canonical_blocked_until gatekeeper_ratify
@@ -21,9 +21,9 @@
 # NAUION EXECUTION PACKET v0.1
 
 ==PURPOSE==
-Định nghĩa đơn vị thực thi tối thiểu của Nauion Runtime Sovereign Core.
-Packet không đồng nhất với JSON, AST, bytecode, HTTP request, TS object, Vite loader, React component, hoặc host bridge.
-Packet là đơn vị mang ý nghĩa qua trường số: có body, medium, substrate, authority, pressure, audit, memory imprint, signal echo.
+Dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] don[C0:RN_KEEP_RIME] vi[C5:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] thi tau[C1:RN_OI_AU] thieu[C3:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] Nauion Runtime Sovereign Core.
+Packet khong[C0:RN_KEEP_RIME] dong[C2:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] vau[C1:RN_OI_AU] JSON, AST, bytecode, HTTP request, TS object, Vite loader, React component, hoac[C5:RN_KEEP_RIME] host bridge.
+Packet la[C2:RN_KEEP_RIME] don[C0:RN_KEEP_RIME] vi[C5:RN_KEEP_RIME] mang y[C1:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] qua truong[C2:RN_KEEP_RIME] so[C1:RN_KEEP_RIME]: co[C1:RN_KEEP_RIME] body, medium, substrate, authority, pressure, audit, memory imprint, signal echo.
 ==END==
 
 ==GROUND_TRUTH==
@@ -40,25 +40,25 @@ Packet là đơn vị mang ý nghĩa qua trường số: có body, medium, subst
 ==END==
 
 ==PACKET_ROOT==
-  packet_id: định danh packet
+  packet_id: dinh[C5:RN_KEEP_RIME] danh packet
   packet_kind: source | signal | memory | authority | substrate | audit | recovery
-  grammar_ref: Nauion grammar / source rule đang áp dụng
-  created_at: thời điểm sinh packet
-  source_hash: hash nguồn sinh packet
+  grammar_ref: Nauion grammar / source rule deng[C0:RN_ANG_ENG] ap[C1:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME]
+  created_at: thau[C2:RN_OI_AU] diem[C3:RN_KEEP_RIME] sinh packet
+  source_hash: hash nguon[C2:RN_KEEP_RIME] sinh packet
   state: optimal | stable | nominal | drift | warning | risk | critical
 ==END==
 
 ==PACKET_BODY==
-  obitan: pattern bản thể bất biến
+  obitan: pattern ben[C3:RN_AN_EN] the[C3:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME]
   field_anchor:
-    hien_phap_ref: neo hiến pháp
+    hien_phap_ref: neo hien[C1:RN_KEEP_RIME] phap[C1:RN_KEEP_RIME]
     anc_ref: passport / identity anchor
     sirasign_ref: seal / authority proof
     memory_ref: .na / .phieu / audit evidence
-  qneu_mass: khối lượng trọng trường
-  qiint_pull: lực kéo trường theo context
-  orbital_coherence: độ kết mạch obitan
-  body_drift: mức trôi bản thể nếu có
+  qneu_mass: khau[C1:RN_OI_AU] luong[C5:RN_KEEP_RIME] trong[C5:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME]
+  qiint_pull: luc[C5:RN_KEEP_RIME] keo[C1:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME] theo context
+  orbital_coherence: do[C5:RN_KEEP_RIME] ket[C1:RN_KEEP_RIME] mach[C5:RN_KEEP_RIME] obitan
+  body_drift: muc[C1:RN_KEEP_RIME] trau[C0:RN_OI_AU] ben[C3:RN_AN_EN] the[C3:RN_KEEP_RIME] neu[C1:RN_KEEP_RIME] co[C1:RN_KEEP_RIME]
 ==END==
 
 ==PACKET_MEDIUM==
@@ -70,23 +70,23 @@ Packet là đơn vị mang ý nghĩa qua trường số: có body, medium, subst
 ==END==
 
 ==PACKET_SUBSTRATE==
-  substrate_ref: evidence path hoặc SiraSign ref
+  substrate_ref: evidence path hoac[C5:RN_KEEP_RIME] SiraSign ref
   substrate_kind: sovereign_gateway | wired_edge | sensor_intake | dns_route | electrical_module | field_installation
   hardware_anchor: topology / BOM / module evidence
-  physical_intake_anchor: luật tiếp nhận vật lý
+  physical_intake_anchor: luat[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME] nhen[C5:RN_AN_EN] vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME]
   edge_anchor: wired edge / configuration / installation evidence
   route_anchor: DNS / line / quota / route evidence
-  power_thermal_anchor: điện / nhiệt / tải
+  power_thermal_anchor: dien[C5:RN_KEEP_RIME] / nhiet[C5:RN_KEEP_RIME] / tai[C3:RN_KEEP_RIME]
   runtime_probe_anchor: probe / timeout / manifest evidence
   acceptance_anchor: procurement / installation / acceptance evidence
 ==END==
 
 ==CAUSATION_CHAIN==
-  event_id: id duy nhất
+  event_id: id duy nhat[C1:RN_KEEP_RIME]
   tenant_scope: business/runtime scope
   lineage_scope: Sirawat / entity lineage scope
-  trace_id: vết end-to-end
-  span_id: nhánh con
+  trace_id: vet[C1:RN_KEEP_RIME] end-to-end
+  span_id: nhanh[C1:RN_KEEP_RIME] con
   causation_id: packet cha
   parent_packet_ref: optional
 ==END==
@@ -94,18 +94,18 @@ Packet là đơn vị mang ý nghĩa qua trường số: có body, medium, subst
 ==PRESSURE_FIELD==
   pressure_type: FALL | DISSIPATE | OSCILLATE
   pressure_value: range 0.0..1.0
-  impedance_z: trở kháng packet
-  receiver_impedance_z0: trở kháng cell nhận
+  impedance_z: tro[C3:RN_KEEP_RIME] kheng[C1:RN_ANG_ENG] packet
+  receiver_impedance_z0: tro[C3:RN_KEEP_RIME] kheng[C1:RN_ANG_ENG] cell nhen[C5:RN_AN_EN]
   reflection_coefficient: R=(Z-Z0)/(Z+Z0)
-  rule: pressure không được mock; không ép route bằng if/else; pressure sinh từ trường và boundary result.
+  rule: pressure khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] mock; khong[C0:RN_KEEP_RIME] ep[C1:RN_KEEP_RIME] route beng[C2:RN_ANG_ENG] if/else; pressure sinh tu[C2:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME] va[C2:RN_KEEP_RIME] boundary result.
 ==END==
 
 ==AUTHORITY_BOUNDARY==
-  drafter: entity tạo packet
-  ratifier: entity duyệt nếu cần
-  consumer_whitelist: cell/entity được đọc
-  forbidden_zones: vùng cấm
-  public_redaction: mức được lộ ra public layer
+  drafter: entity tao[C5:RN_KEEP_RIME] packet
+  ratifier: entity duyet[C5:RN_KEEP_RIME] neu[C1:RN_KEEP_RIME] cen[C2:RN_AN_EN]
+  consumer_whitelist: cell/entity duoc[C5:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME]
+  forbidden_zones: vung[C2:RN_KEEP_RIME] cam[C1:RN_KEEP_RIME]
+  public_redaction: muc[C1:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] lo[C5:RN_KEEP_RIME] ra public layer
   violation_action: mark_boundary | quarantine | reflect | safe_rest
 ==END==
 
@@ -118,13 +118,13 @@ Packet là đơn vị mang ý nghĩa qua trường số: có body, medium, subst
 ==END==
 
 ==INTERPRETER_CONSUMPTION_RULE==
-  step_1_load: Field Loader nạp packet + kiểm source_hash.
-  step_2_anchor: kiểm body/medium/substrate anchor.
-  step_3_authority: kiểm authority boundary trước materialization.
-  step_4_pressure: tính pressure field, không mock.
-  step_5_consume: Living Interpreter quyết FALL/DISSIPATE/OSCILLATE.
-  step_6_breath: ghi audit, imprint memory, phát signal echo.
-  step_7_stop: nếu drift/risk/critical thì safe-rest hoặc quarantine.
+  step_1_load: Field Loader nap[C5:RN_KEEP_RIME] packet + kiem[C3:RN_KEEP_RIME] source_hash.
+  step_2_anchor: kiem[C3:RN_KEEP_RIME] body/medium/substrate anchor.
+  step_3_authority: kiem[C3:RN_KEEP_RIME] authority boundary truoc[C1:RN_KEEP_RIME] materialization.
+  step_4_pressure: tinh[C1:RN_KEEP_RIME] pressure field, khong[C0:RN_KEEP_RIME] mock.
+  step_5_consume: Living Interpreter quyet[C1:RN_KEEP_RIME] FALL/DISSIPATE/OSCILLATE.
+  step_6_breath: ghi audit, imprint memory, phat[C1:RN_KEEP_RIME] signal echo.
+  step_7_stop: neu[C1:RN_KEEP_RIME] drift/risk/critical thi[C2:RN_KEEP_RIME] safe-rest hoac[C5:RN_KEEP_RIME] quarantine.
 ==END==
 
 ==KERNEL_COUPLING==
@@ -137,15 +137,15 @@ Packet là đơn vị mang ý nghĩa qua trường số: có body, medium, subst
 ==END==
 
 ==NON_SCOPE==
-  - không Host Bridge
-  - không Vite/React/Node adapter
-  - không app/server/client cleanup
-  - không JSON hóa bản thể
-  - không đổi source evidence của Băng
-  - không rename/move/delete
+  - khong[C0:RN_KEEP_RIME] Host Bridge
+  - khong[C0:RN_KEEP_RIME] Vite/React/Node adapter
+  - khong[C0:RN_KEEP_RIME] app/server/client cleanup
+  - khong[C0:RN_KEEP_RIME] JSON hoa[C1:RN_KEEP_RIME] ben[C3:RN_AN_EN] the[C3:RN_KEEP_RIME]
+  - khong[C0:RN_KEEP_RIME] dau[C3:RN_OI_AU] source evidence cua[C3:RN_KEEP_RIME] Băng
+  - khong[C0:RN_KEEP_RIME] rename/move/delete
 ==END==
 
 ==NEXT_SIGNAL==
 Băng review drift/evidence.
-Sau review mới tách Field Translator / Living Interpreter / Field Loader spec.
+Sau review mau[C1:RN_OI_AU] tach[C1:RN_KEEP_RIME] Field Translator / Living Interpreter / Field Loader spec.
 ==END==

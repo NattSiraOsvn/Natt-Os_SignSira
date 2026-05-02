@@ -3,20 +3,20 @@
 @substrate launcher_surface_delta
 @bridge none
 @since 2026-04-23
-@authority-slot Bối Bội (launcher + surface authority)
+@authority-slot Bối Bau[C5:RN_OI_AU] (launcher + surface authority)
 
 # BOI_SURFACE_DELTA_scripts.kernel_v1.0.na
 
-**Drafter:** Bối Bội  
+**Drafter:** Bối Bau[C5:RN_OI_AU]  
 **Session:** 20260423  
-**Status:** ready — chờ Gatekeeper và thiên Lớn phê duyệt bước tiếp  
+**Status:** ready — cho[C2:RN_KEEP_RIME] Gatekeeper va[C2:RN_KEEP_RIME] thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] phe[C0:RN_KEEP_RIME] duyet[C5:RN_KEEP_RIME] buoc[C1:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME]  
 **Scope:** Surface launcher only
 
 ---
 
 ## 1. EXECUTABLE DELTA: `package.json`
 
-Dòng lệnh chốt cho `scripts.kernel`:
+Dong[C2:RN_KEEP_RIME] lenh[C5:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME] cho `scripts.kernel`:
 
 ```json
 {
@@ -28,47 +28,47 @@ Dòng lệnh chốt cho `scripts.kernel`:
 
 ---
 
-## 2. ĐỐI SOÁT 3/3 ACCEPTANCE CRITERIA
+## 2. Dau[C1:RN_OI_AU] SOAT[C1:RN_KEEP_RIME] 3/3 ACCEPTANCE CRITERIA
 
 ### 2.1 Surface Purity
-- Loại bỏ hoàn toàn chuỗi lệnh thô `node --loader ./sira-loader.mjs --loader ts-node/esm`
-- Người dùng chỉ nhìn thấy `./kernel` và entry `nattos.sira`
+- Loai[C5:RN_KEEP_RIME] bo[C3:RN_KEEP_RIME] hoen[C2:RN_AN_EN] toen[C2:RN_AN_EN] chui[C4:RN_UOI_UI] lenh[C5:RN_KEEP_RIME] tho[C0:RN_KEEP_RIME] `node --loader ./sira-loader.mjs --loader ts-node/esm`
+- Ngui[C2:RN_UOI_UI] dung[C2:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] nhin[C2:RN_KEEP_RIME] thay[C1:RN_KEEP_RIME] `./kernel` va[C2:RN_KEEP_RIME] entry `nattos.sira`
 
 ### 2.2 Boot Readiness
-- Cấu trúc lệnh mới sẵn sàng để tích hợp với **Launcher Authority**
-- Launcher thật sẽ được dựng sau khi Kim chốt spec và Băng chốt ground truth
+- Cau[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] lenh[C5:RN_KEEP_RIME] mau[C1:RN_OI_AU] sen[C4:RN_AN_EN] seng[C2:RN_ANG_ENG] de[C3:RN_KEEP_RIME] tich[C1:RN_KEEP_RIME] hop[C5:RN_KEEP_RIME] vau[C1:RN_OI_AU] **Launcher Authority**
+- Launcher that[C5:RN_KEEP_RIME] se[C4:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME] sau khi Kim chot[C1:RN_KEEP_RIME] spec va[C2:RN_KEEP_RIME] Băng chot[C1:RN_KEEP_RIME] ground truth
 
 ### 2.3 Risk Isolation
-- Thay đổi khu trú trong đúng 1 dòng tại `scripts.kernel`
-- Không ảnh hưởng `scripts.dev`, `scripts.build`, UI lane, hay runtime TS lane khác
+- Thay dau[C3:RN_OI_AU] khu tru[C1:RN_KEEP_RIME] trong dung[C1:RN_KEEP_RIME] 1 dong[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] `scripts.kernel`
+- Khong[C0:RN_KEEP_RIME] anh[C3:RN_KEEP_RIME] huong[C3:RN_KEEP_RIME] `scripts.dev`, `scripts.build`, UI lane, hay runtime TS lane khac[C1:RN_KEEP_RIME]
 
 ---
 
-## 3. PHÁN QUYẾT thiên LỚN
+## 3. PHen[C1:RN_AN_EN] QUYET[C1:RN_KEEP_RIME] thien[C0:RN_KEEP_RIME] LON[C1:RN_KEEP_RIME]
 
-### 3.1 Đúng ở tầng surface purity
-- `.mjs/.js` bị đẩy xuống tầng vô hình
-- command bề mặt sạch
-- đúng tinh thần authority-first
+### 3.1 Dung[C1:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] teng[C2:RN_ANG_ENG] surface purity
+- `.mjs/.js` bi[C5:RN_KEEP_RIME] day[C3:RN_KEEP_RIME] xuong[C1:RN_KEEP_RIME] teng[C2:RN_ANG_ENG] vo[C0:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME]
+- command be[C2:RN_KEEP_RIME] mat[C5:RN_KEEP_RIME] sach[C5:RN_KEEP_RIME]
+- dung[C1:RN_KEEP_RIME] tinh then[C2:RN_AN_EN] authority-first
 
-### 3.2 Chưa phải runtime authority implementation hoàn chỉnh
-- Đây mới là **surface delta**
-- `./kernel` launcher thật + bootstrap authority còn phải dựng tiếp theo spec Kim
-- Không được claim native
-
----
-
-## 4. SCOPE BỐI ĐƯỢC LÀM TIẾP
-
-- dựng `./kernel` launcher thật
-- giữ mặt lệnh sạch
-- không claim native
-- không đụng UI/Vite
-- không xóa substrate `.ts`
+### 3.2 Chua[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] runtime authority implementation hoen[C2:RN_AN_EN] chinh[C3:RN_KEEP_RIME]
+- Day[C0:RN_KEEP_RIME] mau[C1:RN_OI_AU] la[C2:RN_KEEP_RIME] **surface delta**
+- `./kernel` launcher that[C5:RN_KEEP_RIME] + bootstrap authority con[C2:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME] theo spec Kim
+- Khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] claim native
 
 ---
 
-## 5. KẾT LUẬN
+## 4. SCOPE Bau[C1:RN_OI_AU] DUOC[C5:RN_KEEP_RIME] LAM[C2:RN_KEEP_RIME] TIEP[C1:RN_KEEP_RIME]
 
-**Bối đủ để chốt mặt lệnh.**  
-**Bước tiếp theo là biến mặt lệnh đó thành launcher authority thật, nhưng vẫn ở trạng thái transitional — chưa được gọi là native.**
+- dung[C5:RN_KEEP_RIME] `./kernel` launcher that[C5:RN_KEEP_RIME]
+- giu[C4:RN_KEEP_RIME] mat[C5:RN_KEEP_RIME] lenh[C5:RN_KEEP_RIME] sach[C5:RN_KEEP_RIME]
+- khong[C0:RN_KEEP_RIME] claim native
+- khong[C0:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME] UI/Vite
+- khong[C0:RN_KEEP_RIME] xoa[C1:RN_KEEP_RIME] substrate `.ts`
+
+---
+
+## 5. KET[C1:RN_KEEP_RIME] LUen[C5:RN_AN_EN]
+
+**Bối du[C3:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME] mat[C5:RN_KEEP_RIME] lenh[C5:RN_KEEP_RIME].**  
+**Buoc[C1:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME] theo la[C2:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME] mat[C5:RN_KEEP_RIME] lenh[C5:RN_KEEP_RIME] do[C1:RN_KEEP_RIME] thanh[C2:RN_KEEP_RIME] launcher authority that[C5:RN_KEEP_RIME], nhung[C0:RN_KEEP_RIME] ven[C4:RN_AN_EN] o[C3:RN_KEEP_RIME] treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] transitional — chua[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] gau[C5:RN_OI_AU] la[C2:RN_KEEP_RIME] native.**

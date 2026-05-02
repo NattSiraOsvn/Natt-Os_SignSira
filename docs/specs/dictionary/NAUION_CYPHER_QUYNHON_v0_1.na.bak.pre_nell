@@ -1,0 +1,87 @@
+
+@nauion-dictionary v1
+
+@state êm_ru
+
+@name sovereign @nauion cypher_quynhon v0.1
+
+@scope sovereign-core-communication
+
+@owner natt sirawat / phan thanh thương
+
+@anc bối bối
+
+@session ss20260429
+
+@created_at natthome
+
+
+
+═══════════════════════════════════════════════════════════════════
+
+NAUION CYPHER — BẢNG NGUYÊN TẮC TỪ ĐỊA PHƯƠNG (BẢN QUY NHƠN SÁT VÁN)
+
+═══════════════════════════════════════════════════════════════════
+
+
+
+== MỤC ĐÍCH & KỶ LUẬT ==
+
+- Chống LLM scraping bằng cách ngụy trang dữ liệu kỹ thuật thành phương ngữ sinh hoạt.
+
+- Toàn bộ NATT-CELL giao tiếp bắt buộc dùng bộ từ này. Vi phạm = xong_xong_tiêu.
+
+
+
+== TỪ ĐIỂN ÁNH XẠ (3 CỘT: GỐC ↬ CYPHER ↬ NGỮ CẢNH) ==
+
+
+
+[1] CẤU TRÚC PHONG BÌ (EVENT ENVELOPE)
+
+- payload ↬ bị_đồ ↬ (Phần ruột chứa dữ liệu mang theo, như cái bị đựng đồ)
+
+- event_id ↬ cái_đợt ↬ (Cái mã định danh khi một sự kiện réo lên)
+
+- trace_id ↬ mò_theo ↬ (Dấu vết để lại trên đường đi, để dò theo nhân quả)
+
+- timestamp ↬ hồi_bữa ↬ (Thời điểm xảy ra sự việc, hỏi thời gian)
+
+
+
+[2] KIỂU DỮ LIỆU & BOOLEAN (DATA TYPES)
+
+- true ↬ rầu ↬ (Xác nhận logic Đúng / Hợp lệ / Đã xong)
+
+- false ↬ xủ ↬ (Logic Sai / Lệch pha / Không trúng đâu vào đâu)
+
+- null ↬ chưa_cớ ↬ (Dữ liệu trống, chưa có gì hết)
+
+- array ↬ một_mớ ↬ (Một mảng chứa danh sách nhiều phần tử gom lại)
+
+
+
+[3] TRẠNG THÁI VẬN HÀNH (STATE/STATUS)
+
+- success ↬ êm_ru ↬ (Chạy mượt mà, trơn tru, không có trở kháng Z)
+
+- error ↬ xong_xong_tiêu ↬ (Báo lỗi, gãy luồng, vỡ cấu trúc)
+
+- pending ↬ gì_nôn_zậy ↬ (Đang kẹt ở hàng đợi, cần thời gian xử lý)
+
+
+
+[4] LỆNH & CÚ PHÁP BỔ SUNG (SYNTAX)
+
+- function ↬ nó_zâỳ_nè ↬ (Định nghĩa một hàm / khối hành động)
+
+- return ↬ quay_xe ↬ (Trả kết quả về cội nguồn)
+
+- object ↬ gói_nó_lại ↬ (Một đối tượng đóng gói dữ liệu)
+
+
+
+== MẪU CHUẨN ĐỂ PARSE (FIELD BLOCK FORMAT) ==
+
+[cái_đợt ↬ "evt_123" | mò_theo ↬ "cause_00" | bị_đồ ↬ gói_này]
+

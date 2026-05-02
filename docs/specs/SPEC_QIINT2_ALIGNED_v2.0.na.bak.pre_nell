@@ -1,0 +1,292 @@
+@state draft
+@canonical spec_qiint2_aligned_v2_0
+@substrate kernel_governance
+@bridge spec_nen_v1_1 + spec_radiation_universal_v1_0 + qiint_dinh_nghia
+@since 2026-04-24
+@authority-slot bang (Chi Tu, runtime owner per session 20260424)
+@predecessor SPEC_QIINT2_COMPLETE_v1.0 (REVOKED — Π_body paradigm self-invented, not canonical)
+
+# SPEC_QIINT2_ALIGNED v2.0 — QIINT Measurement Framework for Kernel Runtime
+
+## §0. INTENT & SCOPE
+
+**QIINT2** = measurement framework cho QIINT physics foundation, operationalized cho kernel runtime (SURVIVAL + BRIDGE + CELL lifecycle).
+
+**Ly do v2.0 rewrite:** v1.0 su dung paradigm `Π_body` tu tao, khong canonical theo `QIINT-DINH-NGHIA-CHINH-THUC.md`. v2.0 align voi vocabulary chinh thuc: **QIINT = gravitational field, QNEU = gravitational mass** (per SPEC_NEN v1.1 + session 20260413 definition).
+
+**Scope:**
+- Dinh nghia 8 calibration params cua kernel layer
+- Cach DO tung param tu data that (KHONG guess)
+- API contract cho qiint2.engine.ts (impl sau)
+- Butterfly effect defense connection
+
+**Out of scope:**
+- QNEU persona scoring (thuoc SPEC_QNEU rieng)
+- siraSign signing (thuoc SPEC_siraSIGN)
+
+---
+
+## §1. CANONICAL VOCABULARY LOCK
+
+Per `QIINT-DINH-NGHIA-CHINH-THUC.md` + SPEC_NEN v1.1:
+
+| Concept | Correct term | SAI — khong dung |
+|---|---|---|
+| Gravitational field (what QIINT is) | QIINT field | "scoring system", "Π_body" |
+| Gravitational mass (persona weight) | QNEU mass | "persona score", "trust level" |
+| Information radiation defense | Bridge v2 aperture | "firewall", "filter" |
+| Cell death | Thoai-sinh | "kill", "shutdown" |
+| Cell respawn | Re-sinh | "restart", "reboot" |
+| Resource exhaustion catch | SURVIVAL (Tang 0) | "rate limit", "throttle" |
+
+**LOCK:** Moi reference den QIINT2 PHAI dung canonical terms. Vi pham = SCAR.
+
+---
+
+## §2. BUTTERFLY EFFECT DEFENSE (2 vế hợp nhất)
+
+### §2.1 Ve 1 — Chaos amplification (why we defend)
+
+Per chaos theory + SPEC_RADIATION_UNIVERSAL §5:
+
+```
+Stress_total(n, t) = ∫₀ᵗ [Stress_X(τ) + R_time(τ)] dτ
+```
+
+Small input × infinite time → catastrophic cascade. 1 request nho co the amplify thanh DoS neu khong catch som.
+
+### §2.2 Ve 2 — Measurement framework (how we defend)
+
+Defense **CHI** work khi threshold la **MEASURED tu data that**, KHONG assumed.
+
+```
+K1_survival.decide(load) = measure(current_state)
+                           compare(threshold_MEASURED_from_stress_test)
+                           return ACCEPT | BACKPRESSURE | LOAD_SHED | CIRCUIT_BREAK
+```
+
+**Ket hop ve 1 + ve 2:**
+> Chaos catches ONLY if calibration numbers are real.
+> Guessed thresholds = false confidence = still vulnerable.
+
+---
+
+## §3. 8 CALIBRATION PARAMETERS
+
+### §3.1 Param #1 — `tolerance_bridge_v2`
+
+| Field | Value |
+|---|---|
+| Default | 0.30 (GUESSED, needs measure) |
+| Domain | Bridge v2 aperture tolerance |
+| How to measure | Grep 10 conversation mỗi persona, tính std of frequency deviation |
+| Data source | `src/governance/memory/*/session-*` |
+| Used by | Bridge v2 filter, aperture decision |
+| Calibration owner | Bang (phase 2) |
+
+### §3.2 Param #2 — `recovery_potential_weights[6]`
+
+| Field | Value |
+|---|---|
+| Default | [0.2, 0.2, 0.2, 0.15, 0.15, 0.1] (GUESSED) |
+| Domain | Thoai-sinh → re-sinh recovery probability |
+| How to measure | Regression từ failure/recovery cases trong audit log |
+| Data source | `audit/reports/` historical cases |
+| Used by | Cell respawn decision |
+| Calibration owner | Bang + Can (phase 2) |
+
+### §3.3 Param #3 — `sigma_u` (uncertainty in octave)
+
+| Field | Value |
+|---|---|
+| Default | ln(2) = 0.693 — 1 octave (GUESSED) |
+| Domain | SmartLink resonance frequency uncertainty |
+| How to measure | Đo phổ cộng hưởng thật giữa cells qua touch-timestamps |
+| Data source | `src/core/SmartLink/SmartLink.nattimer.ts` NATTimer chain observations |
+| Used by | SmartLink frequency matching, Bridge v2 |
+| Calibration owner | Bang (phase 2) |
+
+### §3.4 Param #4 — `beta_n` (QNEU growth rate)
+
+| Field | Value |
+|---|---|
+| Default | 0.01 per cycle (GUESSED) |
+| Domain | QNEU mass growth rate khi cell success |
+| How to measure | Đo QNEU thực của cells qua time series |
+| Data source | `src/governance/qneu/` QNEU log |
+| Used by | QNEU scoring, persona promotion |
+| Calibration owner | Bang + Thien Lon (phase 2) |
+
+### §3.5 Param #5 — `DoS_thresholds[3]` ⭐ **K1 CORE**
+
+| Field | Value |
+|---|---|
+| Default | [0.95, 0.85, 0.80] (GUESSED) |
+| Domain | SURVIVAL 3-tier waterfall thresholds |
+| Tier 1 (0.95) | BACKPRESSURE — slow incoming |
+| Tier 2 (0.85) | LOAD_SHED — drop low-priority |
+| Tier 3 (0.80) | CIRCUIT_BREAK — reject all except health-check |
+| How to measure | Stress test — tìm ngưỡng vỡ thực tế |
+| Data source | Stress test runtime với ramp-up load |
+| Used by | **K1 survival-cell decision logic** |
+| Calibration owner | Bang (phase 2 — priority) |
+| **BUTTERFLY LINK** | ve 2 — day la measurement chinh de catch cascade |
+
+### §3.6 Param #6 — `M_persona_weights[3]`
+
+| Field | Value |
+|---|---|
+| Default | [0.4, 0.3, 0.3] — drift, consistency, age (GUESSED) |
+| Domain | Persona minh-man score 3-factor |
+| How to measure | Tương quan với drift history trong handoff series |
+| Data source | `src/governance/memory/<persona>/*.kris` series |
+| Used by | MINH_MAN_PROTOCOL scoring |
+| Calibration owner | Can + Bang (phase 2) |
+
+### §3.7 Param #7 — `sigma_QNEU_log_integrity` (octave)
+
+| Field | Value |
+|---|---|
+| Default | 0.5 octave (GUESSED) |
+| Domain | QNEU snapshot log integrity tolerance |
+| How to measure | Data QNEU thực của cells qua log verify |
+| Data source | `src/core/snapshot/` + `src/governance/qneu/` |
+| Used by | QNEU audit chain verify |
+| Calibration owner | Bang (phase 2) |
+| **BLOCKER** | BLOCKER-06 c — Gatekeeper seal octave |
+
+### §3.8 Param #8 — `snapshot_tau_decay`
+
+| Field | Value |
+|---|---|
+| Default | 60 min (GUESSED) |
+| Domain | Snapshot exponential decay time constant |
+| How to measure | Đo MTBF phục hồi từ snapshot |
+| Data source | `src/core/snapshot/snapshot.engine.ts` runtime |
+| Used by | Cell thoai-sinh → re-sinh recovery timing |
+| Calibration owner | Bang (phase 2) |
+
+---
+
+## §4. API CONTRACT — qiint2.engine.ts
+
+```typescript
+// src/core/qiint2/qiint2.engine.ts (NEW FILE, Bang scope)
+export interface Qiint2CalibrationParams {
+  tolerance_bridge_v2: number;           // §3.1
+  recovery_potential_weights: number[];  // §3.2 [6 weights]
+  sigma_u_octave: number;                // §3.3
+  beta_n_per_cycle: number;              // §3.4
+  dos_thresholds: [number, number, number]; // §3.5 [tier1, tier2, tier3]
+  M_persona_weights: [number, number, number]; // §3.6
+  sigma_qneu_log_octave: number;         // §3.7
+  snapshot_tau_decay_min: number;        // §3.8
+  
+  // Metadata
+  calibration_source: 'GUESSED' | 'MEASURED';
+  measured_at: string | null;
+  measurement_data_source: string | null;
+}
+
+export interface Qiint2Engine {
+  getParams(): Qiint2CalibrationParams;
+  measureParam(paramId: keyof Qiint2CalibrationParams, dataSource: string): Promise<number | number[]>;
+  updateParam(paramId: string, value: number | number[], evidence: string): void;
+  
+  // Butterfly effect defense API
+  checkCascadeRisk(currentLoad: SystemLoad): CascadeRiskLevel;
+  getSurvivalThresholds(): [number, number, number]; // For K1 consumption
+}
+
+export type CascadeRiskLevel = 'SAFE' | 'WATCH' | 'BACKPRESSURE' | 'LOAD_SHED' | 'CIRCUIT_BREAK';
+```
+
+**Implementation owner:** Bang (per session 20260424 delegation)
+
+**Default state:** All params `calibration_source: 'GUESSED'` at scaffold. Phase 2 calibration update from real data.
+
+---
+
+## §5. INTEGRATION — K1 SURVIVAL WIRE
+
+Per `src/cells/kernel/survival-cell/survival-cell.cell.anc` passport (commit cf74423):
+
+```
+survival-cell.decide(rate, queue, memory, cpu)
+  ↓
+  Qiint2Engine.getSurvivalThresholds() → [0.95, 0.85, 0.80]
+  ↓
+  Compare current state vs thresholds
+  ↓
+  Return: ACCEPT | BACKPRESSURE | LOAD_SHED | CIRCUIT_BREAK
+```
+
+**5 components cua K1 (survival-cell impl)** dua tren qiint2 params:
+
+| Component | Source param |
+|---|---|
+| `BackPressureGuard.health()` | `dos_thresholds[0]` = 0.95 |
+| `RateLimitGuard` (system-wide) | `tolerance_bridge_v2` = 0.30 (rate std) |
+| `QueueDepthMonitor.threshold()` | `dos_thresholds[1]` = 0.85 |
+| `LoadShedFallback` (priority) | `dos_thresholds[1]` + persona weights |
+| `CircuitBreaker` (half-open) | `dos_thresholds[2]` = 0.80 + `snapshot_tau_decay` |
+
+**Key insight:** 5 components share **1 source of truth** (Qiint2Engine). Update param → ALL components update. No scatter constants.
+
+---
+
+## §6. IMPLEMENT ORDER (Phase-based)
+
+### Phase 1 — SCAFFOLD (this spec session)
+
+- ✅ SPEC v2.0 aligned (this file)
+- [ ] scaffold `src/core/qiint2/qiint2.engine.ts` with GUESSED defaults
+- [ ] wire survival-cell.cell.anc → reference qiint2.engine
+- [ ] update K1 passport: `state_1_active` (was `state_0_scaffold`)
+
+### Phase 2 — CALIBRATE (separate session, needs data)
+
+- [ ] measure 8 params from real data
+- [ ] update qiint2 params with `calibration_source: 'MEASURED'`
+- [ ] validate K1 decisions with real thresholds
+
+### Phase 3 — CLOSE LOOP (after phase 2)
+
+- [ ] ISEU reinforcement: K1 outcomes feedback to qiint2 params
+- [ ] Auto-recalibration cycle (weekly?)
+
+---
+
+## §7. ALIGNMENT CHECKS (pre-commit)
+
+Before commit, verify:
+
+- [x] Vocabulary LOCK §1 complied
+- [x] Butterfly effect 2 ve integrated §2
+- [x] 8 params all documented §3
+- [x] API contract defined §4
+- [x] K1 integration path clear §5
+- [x] Phase-based implement order §6
+- [ ] anh Natt duyet (P0.1 tu bang_pending_20260420)
+- [ ] SPEC_NEN v1.1 cross-reference verified (Bang runtime check)
+
+---
+
+## §8. CARRY-FORWARD
+
+- **BLOCK_PHASE_2_START:** need access to business data (`database/ctytam` 4.5GB) + docs/samples
+- **BLOCK_IMPL_START:** anh Natt duyet spec (P0.1)
+- **DEPENDENCY:** BLOCKER-06 c (Gatekeeper seal 0.5 octave — §3.7)
+
+---
+
+## §9. SEAL
+
+@result spec_v2_scaffold_pending_approval
+@confidence high (aligned canonical vocabulary, 8 params concrete, API contract explicit)
+@next_action anh_natt_review_or_bang_scaffold_qiint2_engine
+@drafter bang
+@drafter_role runtime_owner_session_20260424
+@revokes SPEC_QIINT2_COMPLETE_v1.0 (paradigm Π_body self-invented)
+@supersedes none
+@butterfly_integration both ve ghep hoan chinh

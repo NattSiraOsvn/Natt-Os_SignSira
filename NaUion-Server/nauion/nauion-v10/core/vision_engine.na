@@ -1,27 +1,27 @@
 # NAUION KERNEL — VISION ENGINE v0.1
 # @state: active
-# @domain: Π_medium
+# @domain: Π_medium[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]
 # @layer: L5 (O-shell)
-# @owner: natt sirawat / phan thanh thương
-# @anc: bối bối
+# @owner: natt sirawat / phan thanh thuong[C0:RN_KEEP_RIME]
+# @anc: bau[C1:RN_OI_AU] bau[C1:RN_OI_AU]
 # @session: ss20260429
 
 obitan_engine vision_engine {
   renderer: "WebGPU"
-  shader_mặc_định: ["liquid_glass.wgsl", "compute_particles.wgsl"]
-  trạng_thái: "Whao_khởi_tạo"
+  shader_mac_dinh[C5:RN_KEEP_RIME]: ["liquid_glass.wgsl", "compute_particles.wgsl"]
+  trang_thai[C5:RN_KEEP_RIME]: "Whao_khoi_tao[C3:RN_KEEP_RIME]"
 
-  khởi_động() {
-    ghi_nhận_vết("Whao: Đang nạp WebGPU Context...")
-    trạng_thái = "Whau_sẵn_sàng"
-    trạng_thái_lực = "TĨNH_IDLE"
-    lực_ép_hiện_tại = 0.0
+  khoi_dong[C3:RN_KEEP_RIME]() {
+    ghi_nhan_vet[C5:RN_KEEP_RIME]("Whao: Deng[C0:RN_ANG_ENG] nap[C5:RN_KEEP_RIME] WebGPU Context...")
+    trang_thai[C5:RN_KEEP_RIME] = "Whau_san_seng[C4:RN_ANG_ENG]"
+    trang_thai_luc[C5:RN_KEEP_RIME] = "TINH_IDLE[C4:RN_KEEP_RIME]"
+    luc_ep_hien_tai[C5:RN_KEEP_RIME] = 0.0
   }
 
-  nhận_áp_lực(kiểu_nguyên, lực_ép, chế_độ) {
-    # Kỷ luật: Chỉ nhận tham số, ghi thẳng vào Buffer của GPU
-    # Không có if/else phân nhánh hiển thị ở đây
-    ghi_buffer_gpu(kiểu_nguyên, lực_ép, chế_độ)
-    phát_Nauion("vision.frame.rendered", { kiểu: kiểu_nguyên, lực: lực_ép })
+  nhan_ap_luc[C5:RN_KEEP_RIME](kieu_nguyen[C3:RN_KEEP_RIME], luc_ep[C5:RN_KEEP_RIME], che_do[C1:RN_KEEP_RIME]) {
+    # Ky[C3:RN_KEEP_RIME] luat[C5:RN_KEEP_RIME]: Chi[C3:RN_KEEP_RIME] nhen[C5:RN_AN_EN] tham so[C1:RN_KEEP_RIME], ghi theng[C3:RN_ANG_ENG] vao[C2:RN_KEEP_RIME] Buffer cua[C3:RN_KEEP_RIME] GPU
+    # Khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] if/else phen[C0:RN_AN_EN] nhanh[C1:RN_KEEP_RIME] hien[C3:RN_KEEP_RIME] thi[C5:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] day[C0:RN_KEEP_RIME]
+    ghi_buffer_gpu(kieu_nguyen[C3:RN_KEEP_RIME], luc_ep[C5:RN_KEEP_RIME], che_do[C1:RN_KEEP_RIME])
+    phat_Nauion[C1:RN_KEEP_RIME]("vision.frame.rendered", { kieu[C3:RN_KEEP_RIME]: kieu_nguyen[C3:RN_KEEP_RIME], luc[C5:RN_KEEP_RIME]: luc_ep[C5:RN_KEEP_RIME] })
   }
 }

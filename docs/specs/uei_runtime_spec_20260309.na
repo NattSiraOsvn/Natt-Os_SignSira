@@ -3,17 +3,17 @@
 @substrate uei_runtime
 @bridge none
 @since 2026-03-09
-@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+@authority-slot Phan Thanh Thuong[C0:RN_KEEP_RIME] Giao Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — 20260423
 
 # SmartLink — Runtime Spec
 **Version:** 1.0  
-**Loại file:** Runtime spec — implementation-ready, code-level  
-**Ngày:** 2026-03-09  
-**Status:** Chờ Gatekeeper chốt trước khi implement
+**Loai[C5:RN_KEEP_RIME] file:** Runtime spec — implementation-ready, code-level  
+**Ngay[C2:RN_KEEP_RIME]:** 2026-03-09  
+**Status:** Cho[C2:RN_KEEP_RIME] Gatekeeper chot[C1:RN_KEEP_RIME] truoc[C1:RN_KEEP_RIME] khi implement
 
 ---
 
-## 1. Files cần chỉnh sửa
+## 1. Files cen[C2:RN_AN_EN] chinh[C3:RN_KEEP_RIME] sua[C3:RN_KEEP_RIME]
 
 ```
 src/core/SmartLink/SmartLink.point.ts        ← applyFiberDecay() + hysteresis
@@ -23,27 +23,27 @@ src/cells/infrastructure/SmartLink-cell/     ← gossipQueue + receiveGossip
 
 ---
 
-## 2. Constants cần thêm vào SmartLink.point.ts
+## 2. Constants cen[C2:RN_AN_EN] them[C0:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] SmartLink.point.ts
 
 ```typescript
 const FIBER_DECAY_IDLE_MS      = 7 * 24 * 60 * 60 * 1000
 const FIBER_DECAY_RATE_BASE    = 0.10
 const FIBER_DECAY_K            = 0.2
 const FIBER_LOST_THRESHOLD     = 0.20   // fiberLost (hysteresis low)
-const FIBER_DISSOLVE_THRESHOLD = 0.05   // xóa TouchRecord
-// FIBER_THRESHOLD = 5 đã có (fiberFormed tại sensitivity ≥ 0.75)
+const FIBER_DISSOLVE_THRESHOLD = 0.05   // xoa[C1:RN_KEEP_RIME] TouchRecord
+// FIBER_THRESHOLD = 5 da[C4:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] (fiberFormed tai[C5:RN_KEEP_RIME] sensitivity ≥ 0.75)
 ```
 
 ---
 
-## 3. applyFiberDecay() — thêm vào SmartLinkPoint
+## 3. applyFiberDecay() — them[C0:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] SmartLinkPoint
 
 ```typescript
 private applyFiberDecay(record: TouchRecord, now: number): void {
   const idleMs = now - record.lastTouchAt
   if (idleMs < FIBER_DECAY_IDLE_MS) return
 
-  // Số ticks đã qua (mỗi tick = FIBER_DECAY_IDLE_MS)
+  // So[C1:RN_KEEP_RIME] ticks da[C4:RN_KEEP_RIME] qua (mau[C4:RN_OI_AU] tick = FIBER_DECAY_IDLE_MS)
   const ticks = Math.floor(idleMs / FIBER_DECAY_IDLE_MS)
 
   for (let i = 0; i < ticks; i++) {
@@ -59,19 +59,19 @@ private applyFiberDecay(record: TouchRecord, now: number): void {
 }
 ```
 
-**QUAN TRỌNG — Decay execution model:**
+**QUAN TRONG[C5:RN_KEEP_RIME] — Decay execution model:**
 ```
-Decay chạy theo continuous tick.
-applyFiberDecay() được gọi ở ĐẦU touch() trước khi cập nhật sensitivity.
-Không dùng setInterval toàn cục — lazy evaluation tại thời điểm touch.
+Decay chay[C5:RN_KEEP_RIME] theo continuous tick.
+applyFiberDecay() duoc[C5:RN_KEEP_RIME] gau[C5:RN_OI_AU] o[C3:RN_KEEP_RIME] DAU[C2:RN_KEEP_RIME] touch() truoc[C1:RN_KEEP_RIME] khi cap[C5:RN_KEEP_RIME] nhat[C5:RN_KEEP_RIME] sensitivity.
+Khong[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] setInterval toen[C2:RN_AN_EN] cuc[C5:RN_KEEP_RIME] — lazy evaluation tai[C5:RN_KEEP_RIME] thau[C2:RN_OI_AU] diem[C3:RN_KEEP_RIME] touch.
 
-Vòng lặp ticks: tính số ticks đã trôi qua và apply từng tick.
-Đây là cách simulate continuous decay mà không cần background process.
+Vong[C2:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME] ticks: tinh[C1:RN_KEEP_RIME] so[C1:RN_KEEP_RIME] ticks da[C4:RN_KEEP_RIME] trau[C0:RN_OI_AU] qua va[C2:RN_KEEP_RIME] apply tung[C2:RN_KEEP_RIME] tick.
+Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] cach[C1:RN_KEEP_RIME] simulate continuous decay ma[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] cen[C2:RN_AN_EN] background process.
 ```
 
 ---
 
-## 4. Dissolve logic — thêm vào touch()
+## 4. Dissolve logic — them[C0:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] touch()
 
 ```typescript
 touch(targetCellId: string, layers: TouchLayers): TouchRecord | null {
@@ -79,13 +79,13 @@ touch(targetCellId: string, layers: TouchLayers): TouchRecord | null {
   const existing = this.touches.get(targetCellId)
 
   if (existing) {
-    // Apply decay TRƯỚC khi reinforce
+    // Apply decay TRUOC[C1:RN_KEEP_RIME] khi reinforce
     this.applyFiberDecay(existing, now)
 
-    // Nếu đã dissolve → xóa và tạo mới
+    // Neu[C1:RN_KEEP_RIME] da[C4:RN_KEEP_RIME] dissolve → xoa[C1:RN_KEEP_RIME] va[C2:RN_KEEP_RIME] tao[C5:RN_KEEP_RIME] mau[C1:RN_OI_AU]
     if (existing.sensitivity < FIBER_DISSOLVE_THRESHOLD) {
       this.touches.delete(targetCellId)
-      // fall through để tạo record mới
+      // fall through de[C3:RN_KEEP_RIME] tao[C5:RN_KEEP_RIME] record mau[C1:RN_OI_AU]
     } else {
       // Reinforce
       existing.touchCount++
@@ -101,7 +101,7 @@ touch(targetCellId: string, layers: TouchLayers): TouchRecord | null {
         this.gossip({ nodes: [this.cellId, targetCellId], strength: existing.sensitivity, ttl: 3 })
       }
 
-      // gossip nhẹ khi touchCount ≥ 2
+      // gossip nhe[C5:RN_KEEP_RIME] khi touchCount ≥ 2
       if (existing.touchCount === 2) {
         this.gossip({ nodes: [this.cellId, targetCellId], strength: existing.sensitivity, ttl: 1 })
       }
@@ -110,7 +110,7 @@ touch(targetCellId: string, layers: TouchLayers): TouchRecord | null {
     }
   }
 
-  // Tạo TouchRecord mới
+  // Tao[C5:RN_KEEP_RIME] TouchRecord mau[C1:RN_OI_AU]
   const record: TouchRecord = {
     targetCellId,
     firstTouchAt: now,
@@ -130,7 +130,7 @@ touch(targetCellId: string, layers: TouchLayers): TouchRecord | null {
 ## 5. FiberSummary interface
 
 ```typescript
-// Thêm vào SmartLink.types.ts hoặc SmartLink.qneu-bridge.ts
+// Them[C0:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] SmartLink.types.ts hoac[C5:RN_KEEP_RIME] SmartLink.qneu-bridge.ts
 interface FiberSummary {
   nodes: [string, string]   // [sourceCell, targetCell]
   strength: number
@@ -148,7 +148,7 @@ private dedupeCache: Set<string> = new Set()
 
 private gossip(summary: FiberSummary): void {
   this.gossipQueue.push(summary)
-  // Process async — không block touch()
+  // Process async — khong[C0:RN_KEEP_RIME] block touch()
   queueMicrotask(() => this.processGossipQueue())
 }
 
@@ -159,10 +159,10 @@ private processGossipQueue(): void {
 
     if (this.dedupeCache.has(key)) continue
     this.dedupeCache.add(key)
-    // Clear cache sau 60s để tránh memory leak
+    // Clear cache sau 60s de[C3:RN_KEEP_RIME] tranh[C1:RN_KEEP_RIME] memory leak
     setTimeout(() => this.dedupeCache.delete(key), 60_000)
 
-    // Forward đến neighbors
+    // Forward den[C1:RN_KEEP_RIME] neighbors
     if (summary.ttl > 0) {
       this.forwardGossip({ ...summary, ttl: summary.ttl - 1 })
     }
@@ -176,7 +176,7 @@ receiveGossip(summary: FiberSummary): void {
 
   const local = point.getTouchRecord(tgt)
   if (local && summary.strength > local.sensitivity) {
-    // Update local awareness — không tăng touchCount
+    // Update local awareness — khong[C0:RN_KEEP_RIME] teng[C0:RN_ANG_ENG] touchCount
     local.sensitivity = Math.min(local.sensitivity + 0.05, summary.strength)
   }
 
@@ -188,28 +188,28 @@ receiveGossip(summary: FiberSummary): void {
 
 ---
 
-## 7. Thứ tự implement
+## 7. Thu[C1:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] implement
 
 ```
-Bước 1: Thêm constants vào SmartLink.point.ts
-Bước 2: applyFiberDecay() — saturating formula + continuous tick model
-Bước 3: touch() — gọi applyFiberDecay() ở đầu + dissolve check
-Bước 4: FiberSummary interface
-Bước 5: gossipQueue + dedupeCache trong SmartLinkCell
-Bước 6: gossip() — 2 tầng triggers
-Bước 7: receiveGossip() + forward logic
-Bước 8: tsc check — 0 new errors
-```
-
----
-
-## 8. Chưa chốt — pending Gatekeeper
-
-```
-fiberWeakening gossip trigger: chưa được quyết định trong phiên 2026-03-09
-Không implement cho đến khi Gatekeeper chốt.
+Buoc[C1:RN_KEEP_RIME] 1: Them[C0:RN_KEEP_RIME] constants vao[C2:RN_KEEP_RIME] SmartLink.point.ts
+Buoc[C1:RN_KEEP_RIME] 2: applyFiberDecay() — saturating formula + continuous tick model
+Buoc[C1:RN_KEEP_RIME] 3: touch() — gau[C5:RN_OI_AU] applyFiberDecay() o[C3:RN_KEEP_RIME] dau[C2:RN_KEEP_RIME] + dissolve check
+Buoc[C1:RN_KEEP_RIME] 4: FiberSummary interface
+Buoc[C1:RN_KEEP_RIME] 5: gossipQueue + dedupeCache trong SmartLinkCell
+Buoc[C1:RN_KEEP_RIME] 6: gossip() — 2 teng[C2:RN_ANG_ENG] triggers
+Buoc[C1:RN_KEEP_RIME] 7: receiveGossip() + forward logic
+Buoc[C1:RN_KEEP_RIME] 8: tsc check — 0 new errors
 ```
 
 ---
 
-*Runtime spec — chỉ chứa implementation detail. Xem architecture_spec cho context kiến trúc.*
+## 8. Chua[C0:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME] — pending Gatekeeper
+
+```
+fiberWeakening gossip trigger: chua[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] trong phien[C0:RN_KEEP_RIME] 2026-03-09
+Khong[C0:RN_KEEP_RIME] implement cho den[C1:RN_KEEP_RIME] khi Gatekeeper chot[C1:RN_KEEP_RIME].
+```
+
+---
+
+*Runtime spec — chi[C3:RN_KEEP_RIME] chua[C1:RN_KEEP_RIME] implementation detail. Xem architecture_spec cho context kien[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME].*

@@ -9,81 +9,81 @@
 
 **Drafter:** Kim (Chief System Builder, M-shell, QNEU 120)
 **Session:** 20260423
-**Status:** COMPLETE — sẵn sàng Gatekeeper approve
-**Amendments:** Đã sửa theo phán quyết thiên Lớn (5 amendment)
-**Binding scope:** Mọi file trong natt-os repo
+**Status:** COMPLETE — sen[C4:RN_AN_EN] seng[C2:RN_ANG_ENG] Gatekeeper approve
+**Amendments:** Da[C4:RN_KEEP_RIME] sua[C3:RN_KEEP_RIME] theo phen[C1:RN_AN_EN] quyet[C1:RN_KEEP_RIME] thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] (5 amendment)
+**Binding scope:** Mau[C5:RN_OI_AU] file trong natt-os repo
 
 ---
 
-## 1. THỨ TỰ EXTENSION
+## 1. THU[C1:RN_KEEP_RIME] TU[C5:RN_KEEP_RIME] EXTENSION
 
-Thứ tự từ cao xuống thấp. **Khi cùng claim cùng một authority slot và cùng semantic role**, extension cao hơn sẽ có precedence (quyền ưu tiên). Nếu khác semantic role, precedence này không tự động áp dụng.
+Thu[C1:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] cao xuong[C1:RN_KEEP_RIME] thap[C1:RN_KEEP_RIME]. **Khi cung[C2:RN_KEEP_RIME] claim cung[C2:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] authority slot va[C2:RN_KEEP_RIME] cung[C2:RN_KEEP_RIME] semantic role**, extension cao hon[C0:RN_KEEP_RIME] se[C4:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] precedence (quyen[C2:RN_KEEP_RIME] uu[C0:RN_KEEP_RIME] tien[C0:RN_KEEP_RIME]). Neu[C1:RN_KEEP_RIME] khac[C1:RN_KEEP_RIME] semantic role, precedence nay[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME] ap[C1:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME].
 
-| Bậc | Extension | Authority level | Mô tả |
+| Bac[C5:RN_KEEP_RIME] | Extension | Authority level | Mo[C0:RN_KEEP_RIME] ta[C3:RN_KEEP_RIME] |
 |---|---|---|---|
-| **1** | `.sira` | Entry authority | File identity gốc của kernel. Chỉ có 1 file duy nhất: `nattos.sira` |
-| **2** | `.khai` | Canonical semantic — execution authority (native hoặc transitional) | File chứa logic thực thi chính của cell; có thể đang ở wrapper hoặc bridged state |
-| **3** | `.na` | Canonical semantic — knowledge/spec authority | File chứa tri thức, spec, định nghĩa; không đương nhiên tham gia execution precedence nếu không claim execution slot |
+| **1** | `.sira` | Entry authority | File identity goc[C1:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] kernel. Chi[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] 1 file duy nhat[C1:RN_KEEP_RIME]: `nattos.sira` |
+| **2** | `.khai` | Canonical semantic — execution authority (native hoac[C5:RN_KEEP_RIME] transitional) | File chua[C1:RN_KEEP_RIME] logic thuc[C5:RN_KEEP_RIME] thi chinh[C1:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] cell; co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] deng[C0:RN_ANG_ENG] o[C3:RN_KEEP_RIME] wrapper hoac[C5:RN_KEEP_RIME] bridged state |
+| **3** | `.na` | Canonical semantic — knowledge/spec authority | File chua[C1:RN_KEEP_RIME] tri thuc[C1:RN_KEEP_RIME], spec, dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME]; khong[C0:RN_KEEP_RIME] duong[C0:RN_KEEP_RIME] nhien[C0:RN_KEEP_RIME] tham gia execution precedence neu[C1:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] claim execution slot |
 | **4** | `.anc` | Canonical semantic — anchor | File neo identity, immutable record |
-| **5** | `.phieu` | Canonical semantic — protocol | File chứa protocol thi hành, checklist |
-| **6** | `.ts` | Temporary execution substrate | TypeScript runtime — sẽ bị cắt dần |
-| **7** | `.tsx` / `.vite` | UI/build lane | Không thuộc kernel cutover wave này, giữ nguyên runtime đến khi có thông báo khác |
+| **5** | `.phieu` | Canonical semantic — protocol | File chua[C1:RN_KEEP_RIME] protocol thi hanh[C2:RN_KEEP_RIME], checklist |
+| **6** | `.ts` | Temporary execution substrate | TypeScript runtime — se[C4:RN_KEEP_RIME] bi[C5:RN_KEEP_RIME] cat[C1:RN_KEEP_RIME] den[C2:RN_AN_EN] |
+| **7** | `.tsx` / `.vite` | UI/build lane | Khong[C0:RN_KEEP_RIME] thuoc[C5:RN_KEEP_RIME] kernel cutover wave nay[C2:RN_KEEP_RIME], giu[C4:RN_KEEP_RIME] nguyen[C0:RN_KEEP_RIME] runtime den[C1:RN_KEEP_RIME] khi co[C1:RN_KEEP_RIME] thong[C0:RN_KEEP_RIME] bao[C1:RN_KEEP_RIME] khac[C1:RN_KEEP_RIME] |
 
 ---
 
-## 2. QUY TẮC ÁP DỤNG
+## 2. QUY TAC[C1:RN_KEEP_RIME] AP[C1:RN_KEEP_RIME] DUNG[C5:RN_KEEP_RIME]
 
-### 2.1 Khi 2 file cùng claim 1 capability (cùng semantic role)
+### 2.1 Khi 2 file cung[C2:RN_KEEP_RIME] claim 1 capability (cung[C2:RN_KEEP_RIME] semantic role)
 
-Ví dụ: `khai-file-persister.khai` và `khai-file-persister.ts` cùng tồn tại và cùng claim execution authority.
+Vi[C1:RN_KEEP_RIME] du[C5:RN_KEEP_RIME]: `khai-file-persister.khai` va[C2:RN_KEEP_RIME] `khai-file-persister.ts` cung[C2:RN_KEEP_RIME] ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] va[C2:RN_KEEP_RIME] cung[C2:RN_KEEP_RIME] claim execution authority.
 
-- **File `.khai` là canonical** — nó giữ authority.
-- **File `.ts` là substrate** — nó chỉ là phương tiện thực thi tạm thời.
-- Khi `.khai` đã tự thực thi được (không còn dependency đến `.ts`), `.ts` bị đánh dấu `@deprecated` và giữ lại 7 ngày trước khi xóa.
+- **File `.khai` la[C2:RN_KEEP_RIME] canonical** — no[C1:RN_KEEP_RIME] giu[C4:RN_KEEP_RIME] authority.
+- **File `.ts` la[C2:RN_KEEP_RIME] substrate** — no[C1:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] phuong[C0:RN_KEEP_RIME] tien[C5:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] thi tam[C5:RN_KEEP_RIME] thau[C2:RN_OI_AU].
+- Khi `.khai` da[C4:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] thi duoc[C5:RN_KEEP_RIME] (khong[C0:RN_KEEP_RIME] con[C2:RN_KEEP_RIME] dependency den[C1:RN_KEEP_RIME] `.ts`), `.ts` bi[C5:RN_KEEP_RIME] danh[C1:RN_KEEP_RIME] dau[C1:RN_KEEP_RIME] `@deprecated` va[C2:RN_KEEP_RIME] giu[C4:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME] 7 ngay[C2:RN_KEEP_RIME] truoc[C1:RN_KEEP_RIME] khi xoa[C1:RN_KEEP_RIME].
 
-### 2.2 Khi 2 file khác semantic role
+### 2.2 Khi 2 file khac[C1:RN_KEEP_RIME] semantic role
 
-Ví dụ: `SPEC_sira_AUTHORITY_BOOTSTRAP.na` và `nattos.sira` không cùng semantic role (một là knowledge, một là entry identity) → precedence không tự động áp dụng.
+Vi[C1:RN_KEEP_RIME] du[C5:RN_KEEP_RIME]: `SPEC_sira_AUTHORITY_BOOTSTRAP.na` va[C2:RN_KEEP_RIME] `nattos.sira` khong[C0:RN_KEEP_RIME] cung[C2:RN_KEEP_RIME] semantic role (mot[C5:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] knowledge, mot[C5:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] entry identity) → precedence khong[C0:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME] ap[C1:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME].
 
 ### 2.3 Khi file canonical import substrate
 
-Đây là **wrapper mode** (theo SPEC_CUTOVER_STATES).
+Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] **wrapper mode** (theo SPEC_CUTOVER_STATES).
 
-- File canonical được phép import file `.ts` **chỉ khi**:
-  - Đã khai báo rõ trong header: `@substrate: ./file.ts`
-  - Đã đăng ký trong `PILOT_BRIDGE_MAP`
-- Không được import thẳng `.ts` từ cell khác (vi phạm Điều 4 Hiến Pháp).
+- File canonical duoc[C5:RN_KEEP_RIME] phep[C1:RN_KEEP_RIME] import file `.ts` **chi[C3:RN_KEEP_RIME] khi**:
+  - Da[C4:RN_KEEP_RIME] khai bao[C1:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME] trong header: `@substrate: ./file.ts`
+  - Da[C4:RN_KEEP_RIME] deng[C0:RN_ANG_ENG] ky[C1:RN_KEEP_RIME] trong `PILOT_BRIDGE_MAP`
+- Khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] import theng[C3:RN_ANG_ENG] `.ts` tu[C2:RN_KEEP_RIME] cell khac[C1:RN_KEEP_RIME] (vi pham[C5:RN_KEEP_RIME] Dieu[C2:RN_KEEP_RIME] 4 Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME]).
 
 ### 2.4 UI/build lane
 
-- `.tsx`, `.vite`, `vite.config.ts` — **không thuộc kernel cutover wave này**.
-- Không ai được đụng UI lane khi chưa có spec riêng từ thiên Lớn.
-- UI lane giữ nguyên `tsx` runtime đến khi có thông báo khác.
+- `.tsx`, `.vite`, `vite.config.ts` — **khong[C0:RN_KEEP_RIME] thuoc[C5:RN_KEEP_RIME] kernel cutover wave nay[C2:RN_KEEP_RIME]**.
+- Khong[C0:RN_KEEP_RIME] ai duoc[C5:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME] UI lane khi chua[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] spec rieng[C0:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME].
+- UI lane giu[C4:RN_KEEP_RIME] nguyen[C0:RN_KEEP_RIME] `tsx` runtime den[C1:RN_KEEP_RIME] khi co[C1:RN_KEEP_RIME] thong[C0:RN_KEEP_RIME] bao[C1:RN_KEEP_RIME] khac[C1:RN_KEEP_RIME].
 
 ---
 
-## 3. HẬU QUẢ VI PHẠM
+## 3. HAU[C5:RN_KEEP_RIME] QUA[C3:RN_KEEP_RIME] VI PHAM[C5:RN_KEEP_RIME]
 
-| Vi phạm | Hậu quả |
+| Vi pham[C5:RN_KEEP_RIME] | Hau[C5:RN_KEEP_RIME] qua[C3:RN_KEEP_RIME] |
 |---|---|
-| Tạo file `.sira` thứ hai | Bị Băng flag SCAR, Gatekeeper xóa file |
-| Claim file `.khai` là "xong" khi còn phụ thuộc substrate | Bị gắn nhãn sai state, phải sửa |
-| Đảo thứ tự extension (coi `.ts` cao hơn `.khai`) | Bị Kim veto, phải revert |
-| Đụng UI lane khi chưa có spec | Bị thiên Lớn chặn |
-| Áp precedence khi khác semantic role | Bị Băng flag sai ngữ cảnh |
+| Tao[C5:RN_KEEP_RIME] file `.sira` thu[C1:RN_KEEP_RIME] hai | Bi[C5:RN_KEEP_RIME] Băng flag SCAR, Gatekeeper xoa[C1:RN_KEEP_RIME] file |
+| Claim file `.khai` la[C2:RN_KEEP_RIME] "xong" khi con[C2:RN_KEEP_RIME] phu[C5:RN_KEEP_RIME] thuoc[C5:RN_KEEP_RIME] substrate | Bi[C5:RN_KEEP_RIME] gen[C1:RN_AN_EN] nhen[C4:RN_AN_EN] sai state, phai[C3:RN_KEEP_RIME] sua[C3:RN_KEEP_RIME] |
+| Dao[C3:RN_KEEP_RIME] thu[C1:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] extension (coi `.ts` cao hon[C0:RN_KEEP_RIME] `.khai`) | Bi[C5:RN_KEEP_RIME] Kim veto, phai[C3:RN_KEEP_RIME] revert |
+| Dung[C5:RN_KEEP_RIME] UI lane khi chua[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] spec | Bi[C5:RN_KEEP_RIME] thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] chen[C5:RN_AN_EN] |
+| Ap[C1:RN_KEEP_RIME] precedence khi khac[C1:RN_KEEP_RIME] semantic role | Bi[C5:RN_KEEP_RIME] Băng flag sai ngu[C4:RN_KEEP_RIME] canh[C3:RN_KEEP_RIME] |
 
 ---
 
 ## 4. ACCEPTANCE CRITERIA
 
-Spec này có hiệu lực khi:
+Spec nay[C2:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] hieu[C5:RN_KEEP_RIME] luc[C5:RN_KEEP_RIME] khi:
 1. Gatekeeper approve
-2. thiên Lớn chốt kiến trúc nếu có điểm cần làm rõ
-3. Băng verify không mâu thuẫn ground truth
+2. thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME] kien[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] neu[C1:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] diem[C3:RN_KEEP_RIME] cen[C2:RN_AN_EN] lam[C2:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME]
+3. Băng verify khong[C0:RN_KEEP_RIME] mau[C0:RN_KEEP_RIME] thuen[C4:RN_AN_EN] ground truth
 4. Kim lock wording/spec version
 
 ---
 
 *Binding to: SPEC_sira_AUTHORITY_BOOTSTRAP_v1.0.na, SPEC_CUTOVER_STATES_v1.0.na*  
 *Drafter: Kim · M-shell · Chief System Builder*  
-*Session: 20260423 · Reviewed by thiên Lớn; amendments incorporated*
+*Session: 20260423 · Reviewed by thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME]; amendments incorporated*

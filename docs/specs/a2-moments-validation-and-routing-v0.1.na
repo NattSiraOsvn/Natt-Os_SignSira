@@ -3,7 +3,7 @@
 @substrate validation_routing
 @bridge none
 @since 2026-04-25
-@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+@authority-slot Phan Thanh Thuong[C0:RN_KEEP_RIME] Giao Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — 20260423
 
 # A.2 — MOMENTS validation + ROUTING v0.1
 
@@ -68,6 +68,6 @@ scaffold_default_routing = {
 
 ## 3. Path authority note
 
-- Path trên là scaffold default
-- KHÔNG coi là canonical path
-- cần Gatekeeper neo path chuẩn nếu merge vào hệ chính
+- Path tren[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] scaffold default
+- KHONG[C0:RN_KEEP_RIME] coi la[C2:RN_KEEP_RIME] canonical path
+- cen[C2:RN_AN_EN] Gatekeeper neo path chuen[C3:RN_AN_EN] neu[C1:RN_KEEP_RIME] merge vao[C2:RN_KEEP_RIME] he[C5:RN_KEEP_RIME] chinh[C1:RN_KEEP_RIME]

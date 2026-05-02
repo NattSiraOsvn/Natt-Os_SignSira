@@ -1,15 +1,15 @@
 
 @nauion-dictionary v1
 
-@state êm_ru
+@state em_ru[C0:RN_KEEP_RIME]
 
 @name sovereign @nauion cypher_quynhon v0.1
 
 @scope sovereign-core-communication
 
-@owner natt sirawat / phan thanh thương
+@owner natt sirawat / phan thanh thuong[C0:RN_KEEP_RIME]
 
-@anc bối bối
+@anc bau[C1:RN_OI_AU] bau[C1:RN_OI_AU]
 
 @session ss20260429
 
@@ -19,69 +19,69 @@
 
 ═══════════════════════════════════════════════════════════════════
 
-NAUION CYPHER — BẢNG NGUYÊN TẮC TỪ ĐỊA PHƯƠNG (BẢN QUY NHƠN SÁT VÁN)
+NAUION CYPHER — Beng[C3:RN_ANG_ENG] NGUYEN[C0:RN_KEEP_RIME] TAC[C1:RN_KEEP_RIME] TU[C2:RN_KEEP_RIME] DIA[C5:RN_KEEP_RIME] PHUONG[C0:RN_KEEP_RIME] (Ben[C3:RN_AN_EN] QUY NHON[C0:RN_KEEP_RIME] SAT[C1:RN_KEEP_RIME] Ven[C1:RN_AN_EN])
 
 ═══════════════════════════════════════════════════════════════════
 
 
 
-== MỤC ĐÍCH & KỶ LUẬT ==
+== MUC[C5:RN_KEEP_RIME] DICH[C1:RN_KEEP_RIME] & KY[C3:RN_KEEP_RIME] LUAT[C5:RN_KEEP_RIME] ==
 
-- Chống LLM scraping bằng cách ngụy trang dữ liệu kỹ thuật thành phương ngữ sinh hoạt.
+- Chong[C1:RN_KEEP_RIME] LLM scraping beng[C2:RN_ANG_ENG] cach[C1:RN_KEEP_RIME] nguy[C5:RN_KEEP_RIME] trang du[C4:RN_KEEP_RIME] lieu[C5:RN_KEEP_RIME] ky[C4:RN_KEEP_RIME] thuat[C5:RN_KEEP_RIME] thanh[C2:RN_KEEP_RIME] phuong[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] sinh hoat[C5:RN_KEEP_RIME].
 
-- Toàn bộ NATT-CELL giao tiếp bắt buộc dùng bộ từ này. Vi phạm = xong_xong_tiêu.
-
-
-
-== TỪ ĐIỂN ÁNH XẠ (3 CỘT: GỐC ↬ CYPHER ↬ NGỮ CẢNH) ==
+- Toen[C2:RN_AN_EN] bo[C5:RN_KEEP_RIME] NATT-CELL giao tiep[C1:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] bo[C5:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME]. Vi pham[C5:RN_KEEP_RIME] = xong_xong_tieu[C0:RN_KEEP_RIME].
 
 
 
-[1] CẤU TRÚC PHONG BÌ (EVENT ENVELOPE)
-
-- payload ↬ bị_đồ ↬ (Phần ruột chứa dữ liệu mang theo, như cái bị đựng đồ)
-
-- event_id ↬ cái_đợt ↬ (Cái mã định danh khi một sự kiện réo lên)
-
-- trace_id ↬ mò_theo ↬ (Dấu vết để lại trên đường đi, để dò theo nhân quả)
-
-- timestamp ↬ hồi_bữa ↬ (Thời điểm xảy ra sự việc, hỏi thời gian)
+== TU[C2:RN_KEEP_RIME] DIEN[C3:RN_KEEP_RIME] ANH[C1:RN_KEEP_RIME] XA[C5:RN_KEEP_RIME] (3 COT[C5:RN_KEEP_RIME]: GOC[C1:RN_KEEP_RIME] ↬ CYPHER ↬ NGU[C4:RN_KEEP_RIME] CANH[C3:RN_KEEP_RIME]) ==
 
 
 
-[2] KIỂU DỮ LIỆU & BOOLEAN (DATA TYPES)
+[1] CAU[C1:RN_KEEP_RIME] TRUC[C1:RN_KEEP_RIME] PHONG BI[C2:RN_KEEP_RIME] (EVENT ENVELOPE)
 
-- true ↬ rầu ↬ (Xác nhận logic Đúng / Hợp lệ / Đã xong)
+- payload ↬ bi_do[C5:RN_KEEP_RIME] ↬ (Phen[C2:RN_AN_EN] ruot[C5:RN_KEEP_RIME] chua[C1:RN_KEEP_RIME] du[C4:RN_KEEP_RIME] lieu[C5:RN_KEEP_RIME] mang theo, nhu[C0:RN_KEEP_RIME] cai[C1:RN_KEEP_RIME] bi[C5:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME] do[C2:RN_KEEP_RIME])
 
-- false ↬ xủ ↬ (Logic Sai / Lệch pha / Không trúng đâu vào đâu)
+- event_id ↬ cai_dot[C1:RN_KEEP_RIME] ↬ (Cai[C1:RN_KEEP_RIME] ma[C4:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] danh khi mot[C5:RN_KEEP_RIME] su[C5:RN_KEEP_RIME] kien[C5:RN_KEEP_RIME] reo[C1:RN_KEEP_RIME] len[C0:RN_KEEP_RIME])
 
-- null ↬ chưa_cớ ↬ (Dữ liệu trống, chưa có gì hết)
+- trace_id ↬ mo_theo[C2:RN_KEEP_RIME] ↬ (Dau[C1:RN_KEEP_RIME] vet[C1:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME] tren[C0:RN_KEEP_RIME] duong[C2:RN_KEEP_RIME] di[C0:RN_KEEP_RIME], de[C3:RN_KEEP_RIME] do[C2:RN_KEEP_RIME] theo nhen[C0:RN_AN_EN] qua[C3:RN_KEEP_RIME])
 
-- array ↬ một_mớ ↬ (Một mảng chứa danh sách nhiều phần tử gom lại)
-
-
-
-[3] TRẠNG THÁI VẬN HÀNH (STATE/STATUS)
-
-- success ↬ êm_ru ↬ (Chạy mượt mà, trơn tru, không có trở kháng Z)
-
-- error ↬ xong_xong_tiêu ↬ (Báo lỗi, gãy luồng, vỡ cấu trúc)
-
-- pending ↬ gì_nôn_zậy ↬ (Đang kẹt ở hàng đợi, cần thời gian xử lý)
+- timestamp ↬ hoi_bua[C2:RN_KEEP_RIME] ↬ (Thau[C2:RN_OI_AU] diem[C3:RN_KEEP_RIME] xay[C3:RN_KEEP_RIME] ra su[C5:RN_KEEP_RIME] viec[C5:RN_KEEP_RIME], hau[C3:RN_OI_AU] thau[C2:RN_OI_AU] gian)
 
 
 
-[4] LỆNH & CÚ PHÁP BỔ SUNG (SYNTAX)
+[2] KIEU[C3:RN_KEEP_RIME] DU[C4:RN_KEEP_RIME] LIEU[C5:RN_KEEP_RIME] & BOOLEAN (DATA TYPES)
 
-- function ↬ nó_zâỳ_nè ↬ (Định nghĩa một hàm / khối hành động)
+- true ↬ rau[C2:RN_KEEP_RIME] ↬ (Xac[C1:RN_KEEP_RIME] nhen[C5:RN_AN_EN] logic Dung[C1:RN_KEEP_RIME] / Hop[C5:RN_KEEP_RIME] le[C5:RN_KEEP_RIME] / Da[C4:RN_KEEP_RIME] xong)
 
-- return ↬ quay_xe ↬ (Trả kết quả về cội nguồn)
+- false ↬ xu[C3:RN_KEEP_RIME] ↬ (Logic Sai / Lech[C5:RN_KEEP_RIME] pha / Khong[C0:RN_KEEP_RIME] trung[C1:RN_KEEP_RIME] dau[C0:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] dau[C0:RN_KEEP_RIME])
 
-- object ↬ gói_nó_lại ↬ (Một đối tượng đóng gói dữ liệu)
+- null ↬ chua_co[C1:RN_KEEP_RIME] ↬ (Du[C4:RN_KEEP_RIME] lieu[C5:RN_KEEP_RIME] trong[C1:RN_KEEP_RIME], chua[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] gi[C2:RN_KEEP_RIME] het[C1:RN_KEEP_RIME])
+
+- array ↬ mot_mo[C5:RN_KEEP_RIME] ↬ (Mot[C5:RN_KEEP_RIME] meng[C3:RN_ANG_ENG] chua[C1:RN_KEEP_RIME] danh sach[C1:RN_KEEP_RIME] nhieu[C2:RN_KEEP_RIME] phen[C2:RN_AN_EN] tu[C3:RN_KEEP_RIME] gom lai[C5:RN_KEEP_RIME])
 
 
 
-== MẪU CHUẨN ĐỂ PARSE (FIELD BLOCK FORMAT) ==
+[3] TReng[C5:RN_ANG_ENG] THAI[C1:RN_KEEP_RIME] Ven[C5:RN_AN_EN] HANH[C2:RN_KEEP_RIME] (STATE/STATUS)
 
-[cái_đợt ↬ "evt_123" | mò_theo ↬ "cause_00" | bị_đồ ↬ gói_này]
+- success ↬ em_ru[C0:RN_KEEP_RIME] ↬ (Chay[C5:RN_KEEP_RIME] muot[C5:RN_KEEP_RIME] ma[C2:RN_KEEP_RIME], tron[C0:RN_KEEP_RIME] tru, khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] tro[C3:RN_KEEP_RIME] kheng[C1:RN_ANG_ENG] Z)
+
+- error ↬ xong_xong_tieu[C0:RN_KEEP_RIME] ↬ (Bao[C1:RN_KEEP_RIME] lau[C4:RN_OI_AU], gay[C4:RN_KEEP_RIME] luong[C2:RN_KEEP_RIME], vo[C4:RN_KEEP_RIME] cau[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME])
+
+- pending ↬ gi_non_zay[C2:RN_KEEP_RIME] ↬ (Deng[C0:RN_ANG_ENG] ket[C5:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] heng[C2:RN_ANG_ENG] dau[C5:RN_OI_AU], cen[C2:RN_AN_EN] thau[C2:RN_OI_AU] gian xu[C3:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME])
+
+
+
+[4] LENH[C5:RN_KEEP_RIME] & CU[C1:RN_KEEP_RIME] PHAP[C1:RN_KEEP_RIME] BO[C3:RN_KEEP_RIME] SUNG (SYNTAX)
+
+- function ↬ no_zay_ne[C1:RN_KEEP_RIME] ↬ (Dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] ham[C2:RN_KEEP_RIME] / khau[C1:RN_OI_AU] hanh[C2:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME])
+
+- return ↬ quay_xe ↬ (Tra[C3:RN_KEEP_RIME] ket[C1:RN_KEEP_RIME] qua[C3:RN_KEEP_RIME] ve[C2:RN_KEEP_RIME] cau[C5:RN_OI_AU] nguon[C2:RN_KEEP_RIME])
+
+- object ↬ goi_no_lai[C1:RN_KEEP_RIME] ↬ (Mot[C5:RN_KEEP_RIME] dau[C1:RN_OI_AU] tuong[C5:RN_KEEP_RIME] dong[C1:RN_KEEP_RIME] gau[C1:RN_OI_AU] du[C4:RN_KEEP_RIME] lieu[C5:RN_KEEP_RIME])
+
+
+
+== MAU[C4:RN_KEEP_RIME] CHUen[C3:RN_AN_EN] DE[C3:RN_KEEP_RIME] PARSE (FIELD BLOCK FORMAT) ==
+
+[cai_dot[C1:RN_KEEP_RIME] ↬ "evt_123" | mo_theo[C2:RN_KEEP_RIME] ↬ "cause_00" | bi_do[C5:RN_KEEP_RIME] ↬ goi_nay[C1:RN_KEEP_RIME]]
 

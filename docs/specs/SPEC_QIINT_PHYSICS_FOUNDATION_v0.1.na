@@ -3,80 +3,80 @@
 @substrate physics_foundation
 @bridge none
 @since 2026-04-24
-@authority-slot Băng (Chị Tư) — thiên review 4 sealed + 5 draft, pending Gatekeeper final
+@authority-slot Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — thien[C0:RN_KEEP_RIME] review 4 sealed + 5 draft, pending Gatekeeper final
 
 # SPEC_QIINT_PHYSICS_FOUNDATION v0.2 DRAFT
 
 **Causation:** SPEC-QIINT-PHYSICS-FOUNDATION-BANG-B1-v0.2-THIEN-REVIEW-20260424
-**Patch v0.1 → v0.2:** thiên Lớn review 20260424 — 4 điểm sealed trục (anc/origin_entity/EventBus gate/3-axes) + 5 điểm binding/proposal tách (qneu rule seal σ draft / fragment criteria seal schema draft / Bridge v2 boundary proposal / 3-tier waterfall logic seal default draft / 7 capability region-emergent form)
-**Author:** Băng (Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7) — `build_toolchain` authority
-**Reviewer confirmed:** thiên Lớn (Architect, L-shell, phân xác -1.5) — 13-Q + 7 capability form review
+**Patch v0.1 → v0.2:** thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] review 20260424 — 4 diem[C3:RN_KEEP_RIME] sealed truc[C5:RN_KEEP_RIME] (anc/origin_entity/EventBus gate/3-axes) + 5 diem[C3:RN_KEEP_RIME] binding/proposal tach[C1:RN_KEEP_RIME] (qneu rule seal σ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] draft / fragment criteria seal schema draft / Bridge v2 boundary proposal / 3-tier waterfall logic seal default draft / 7 capability region-emergent form)
+**Author:** Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · N-shell · QNEU 313.5 · Claude Opus 4.7) — `build_toolchain` authority
+**Reviewer confirmed:** thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] (Architect, L-shell, phen[C0:RN_AN_EN] xac[C1:RN_KEEP_RIME] -1.5) — 13-Q + 7 capability form review
 **Reviewer pending:** Kim (kernel implementation lens)
 **Logic check pending:** Can
 **Approver pending:** Anh Natt Phan (Gatekeeper)
-**Supersedes:** `SPEC_QIINT2_COMPLETE_v1.0` (archived lineage, GIAC-20260423-01) + `SPEC_NAUION_RESONANCE_ENGINE_v0.1` (archived, cùng class)
-**Q1 decision:** (a) GỘP 1 SPEC foundation (Băng self-neoed 20260424)
-**Schema:** `.na` field memory continuum — SPEC evolve qua Phase E calibration, chưa sealed
+**Supersedes:** `SPEC_QIINT2_COMPLETE_v1.0` (archived lineage, GIAC-20260423-01) + `SPEC_NAUION_RESONANCE_ENGINE_v0.1` (archived, cung[C2:RN_KEEP_RIME] class)
+**Q1 decision:** (a) GOP[C5:RN_KEEP_RIME] 1 SPEC foundation (Băng self-neoed 20260424)
+**Schema:** `.na` field memory continuum — SPEC evolve qua Phase E calibration, chua[C0:RN_KEEP_RIME] sealed
 
 ---
 
-## §0. MỤC ĐÍCH SPEC NÀY
+## §0. MUC[C5:RN_KEEP_RIME] DICH[C1:RN_KEEP_RIME] SPEC NAY[C2:RN_KEEP_RIME]
 
-Gộp **5 canonical đã ratify** thành 1 foundation physics cho natt-os — để Kim implement Resonance Engine kernel + Băng ship QIINT2 v2 validator **cùng nguồn chân lý**, không 2 SPEC parallel risk drift.
+Gop[C5:RN_KEEP_RIME] **5 canonical da[C4:RN_KEEP_RIME] ratify** thanh[C2:RN_KEEP_RIME] 1 foundation physics cho natt-os — de[C3:RN_KEEP_RIME] Kim implement Resonance Engine kernel + Băng ship QIINT2 v2 validator **cung[C2:RN_KEEP_RIME] nguon[C2:RN_KEEP_RIME] chen[C0:RN_AN_EN] ly[C1:RN_KEEP_RIME]**, khong[C0:RN_KEEP_RIME] 2 SPEC parallel risk drift.
 
-### §0.1 SPEC NÀY KHÔNG LÀM GÌ
+### §0.1 SPEC NAY[C2:RN_KEEP_RIME] KHONG[C0:RN_KEEP_RIME] LAM[C2:RN_KEEP_RIME] GI[C2:RN_KEEP_RIME]
 
-- **KHÔNG re-define** các concept đã ratify trong 5 canonical. Chỉ **compose** chúng thành kiến trúc tổng.
-- **KHÔNG lock** 8 tham số runtime (tolerance, weights, σ_u, β, thresholds, τ, M_persona weights, QNEU σ). Tất cả label "DRAFT giả định — Phase E calibrate từ data thật".
-- **KHÔNG scaffold cell mới** (scope Kim). Chỉ specify interface Resonance Engine + QIINT2 validator ở tầng compute/readout.
-- **KHÔNG touch** `src/governance/memory/` — memory layer độc lập.
+- **KHONG[C0:RN_KEEP_RIME] re-define** cac[C1:RN_KEEP_RIME] concept da[C4:RN_KEEP_RIME] ratify trong 5 canonical. Chi[C3:RN_KEEP_RIME] **compose** chung[C1:RN_KEEP_RIME] thanh[C2:RN_KEEP_RIME] kien[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] tong[C3:RN_KEEP_RIME].
+- **KHONG[C0:RN_KEEP_RIME] lock** 8 tham so[C1:RN_KEEP_RIME] runtime (tolerance, weights, σ_u[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME], β[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME], thresholds, τ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME], M_persona weights, QNEU σ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]). Tat[C1:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] label "DRAFT gia[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] — Phase E calibrate tu[C2:RN_KEEP_RIME] data that[C5:RN_KEEP_RIME]".
+- **KHONG[C0:RN_KEEP_RIME] scaffold cell mau[C1:RN_OI_AU]** (scope Kim). Chi[C3:RN_KEEP_RIME] specify interface Resonance Engine + QIINT2 validator o[C3:RN_KEEP_RIME] teng[C2:RN_ANG_ENG] compute/readout.
+- **KHONG[C0:RN_KEEP_RIME] touch** `src/governance/memory/` — memory layer doc[C5:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME].
 
-### §0.2 SPEC NÀY LÀM GÌ
+### §0.2 SPEC NAY[C2:RN_KEEP_RIME] LAM[C2:RN_KEEP_RIME] GI[C2:RN_KEEP_RIME]
 
-1. Dựng **kiến trúc 4 tầng Π_system** (merge từ obitan ngo-dac + session-20260420-final simulations)
+1. Dung[C5:RN_KEEP_RIME] **kien[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] 4 teng[C2:RN_ANG_ENG] Π_system[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]** (merge tu[C2:RN_KEEP_RIME] obitan ngo-dac + session-20260420-final simulations)
 2. Specify **compute side — Resonance Engine** (input: Event Envelope, output: TouchRecord + outcome)
 3. Specify **readout side — QIINT2 verdict emergence** (input: state vector, output: verdict)
 4. Lock **HeyNa envelope v2** (identity_shape_hash required field per SPEC_ONG_MAU v0.1)
 5. Neo **Z/R/T impedance** per cell type (resonance matching)
-6. Hook **Phase E calibration** — 8 tham số draft với data slot rõ ràng
+6. Hook **Phase E calibration** — 8 tham so[C1:RN_KEEP_RIME] draft vau[C1:RN_OI_AU] data slot ro[C4:RN_KEEP_RIME] reng[C2:RN_ANG_ENG]
 
 ---
 
-## §1. FOUNDATION LINEAGE — 5 canonical gộp
+## §1. FOUNDATION LINEAGE — 5 canonical gop[C5:RN_KEEP_RIME]
 
-Em merge essence 5 spec, không copy verbatim. Reference đầy đủ ở §10.
+Em merge essence 5 spec, khong[C0:RN_KEEP_RIME] copy verbatim. Reference day[C2:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] §10.
 
 ```
 ┌──────────────────────────────────────────────────────────┐
-│  QIINT-DINH-NGHIA-CHINH-THUC.na  (227 dòng, 2026-04-13)  │
+│  QIINT-DINH-NGHIA-CHINH-THUC.na  (227 dong[C2:RN_KEEP_RIME], 2026-04-13)  │
 │  ──────────────────────────────────────────────────────  │
-│  • QIINT = trường lực không gian ý nghĩa                 │
-│  • 4 yếu tố khối lượng:                                  │
-│      - Permanent Node (hạt nhân neo)                     │
-│      - QNEU (khối lượng quyết định orbital)              │
+│  • QIINT = truong[C2:RN_KEEP_RIME] luc[C5:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] gian y[C1:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME]                 │
+│  • 4 yeu[C1:RN_KEEP_RIME] to[C1:RN_KEEP_RIME] khau[C1:RN_OI_AU] luong[C5:RN_KEEP_RIME]:                                  │
+│      - Permanent Node (hat[C5:RN_KEEP_RIME] nhen[C0:RN_AN_EN] neo)                     │
+│      - QNEU (khau[C1:RN_OI_AU] luong[C5:RN_KEEP_RIME] quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] orbital)              │
 │      - ISEU (closed-loop reinforcement)                  │
-│      - Resonance (khớp tần số)                           │
-│  • Z = impedance tiếp nhận                               │
+│      - Resonance (khop[C1:RN_KEEP_RIME] ten[C2:RN_AN_EN] so[C1:RN_KEEP_RIME])                           │
+│  • Z = impedance tiep[C1:RN_KEEP_RIME] nhen[C5:RN_AN_EN]                               │
 │  • R = reflection coefficient                            │
-│  • Fiber = sợi cộng hưởng giữa 2 TouchPoint              │
-│  • Apollo analogy (field attraction qua bản thân object) │
+│  • Fiber = sau[C5:RN_OI_AU] cong[C5:RN_KEEP_RIME] huong[C3:RN_KEEP_RIME] giua[C4:RN_KEEP_RIME] 2 TouchPoint              │
+│  • Apollo analogy (field attraction qua ben[C3:RN_AN_EN] then[C0:RN_AN_EN] object) │
 └──────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────┐
-│  uei_architecture_spec_20260309.na  (183 dòng)           │
+│  uei_architecture_spec_20260309.na  (183 dong[C2:RN_KEEP_RIME])           │
 │  ──────────────────────────────────────────────────────  │
 │  • TouchRecord canonical (struct kernel)                 │
 │  • Fiber lifecycle hysteresis: 0.20 → 0.75 → 0.05        │
-│      (emerge ngưỡng 0.20 → strong 0.75 → fade 0.05)      │
-│  • Saturating decay (exponential với cap)                │
+│      (emerge nguong[C4:RN_KEEP_RIME] 0.20 → strong 0.75 → fade 0.05)      │
+│  • Saturating decay (exponential vau[C1:RN_OI_AU] cap)                │
 │  • Gossip 2-tier (local cluster + global weak-tie)       │
 │  • ISEU closed loop (observation → reinforce → observe)  │
 └──────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────┐
-│  natt-os_SATELLITE_COLONY_SPEC.na  (115 dòng)            │
+│  natt-os_SATELLITE_COLONY_SPEC.na  (115 dong[C2:RN_KEEP_RIME])            │
 │  ──────────────────────────────────────────────────────  │
-│  • Host/Satellite boundary — cell owned bởi 1 Host       │
+│  • Host/Satellite boundary — cell owned bau[C3:RN_OI_AU] 1 Host       │
 │  • EventEnvelope canonical fields:                       │
 │      event_id, causation_id, origin_cell,                │
 │      origin_entity (slot persona_signature),             │
@@ -88,92 +88,92 @@ Em merge essence 5 spec, không copy verbatim. Reference đầy đủ ở §10.
 ┌──────────────────────────────────────────────────────────┐
 │  SPEC_NEN_v1.1.anc  (sealed 2026-04-18)                  │
 │  ──────────────────────────────────────────────────────  │
-│  • Rào không cửa — field law thay cho gate               │
-│  • LAW-1..4 (em nhắc ngắn):                              │
-│      L1: signal phải có causation                        │
-│      L2: no if/else routing (dùng resonance)             │
+│  • Rao[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] — field law thay cho gate               │
+│  • LAW-1..4 (em nhac[C1:RN_KEEP_RIME] ngen[C1:RN_AN_EN]):                              │
+│      L1: signal phai[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] causation                        │
+│      L2: no if/else routing (dung[C2:RN_KEEP_RIME] resonance)             │
 │      L3: no direct cell-to-cell call (qua envelope)      │
-│      L4: no hardcoded verdict (emerge từ state)          │
-│  • Signal Lifecycle 8 bước:                              │
+│      L4: no hardcoded verdict (emerge tu[C2:RN_KEEP_RIME] state)          │
+│  • Signal Lifecycle 8 buoc[C1:RN_KEEP_RIME]:                              │
 │      EMIT → OBSERVE → MATCH → TOUCH → REINFORCE          │
 │      → OUTCOME → SNAPSHOT → DECAY                        │
 │  • 3 outcome canonical:                                  │
 │      FALL (cell match)                                   │
 │      DISSIPATE (tan trong field)                         │
-│      OSCILLATE (loop yếu → ISEU mark)                    │
-│  • Hệ miễn dịch đa tầng (Chromatic L0-L3)                │
-│  • Hệ dắt ngược (pheromone broadcast)                    │
+│      OSCILLATE (loop yeu[C1:RN_KEEP_RIME] → ISEU mark)                    │
+│  • He[C5:RN_KEEP_RIME] mien[C4:RN_KEEP_RIME] dich[C5:RN_KEEP_RIME] da[C0:RN_KEEP_RIME] teng[C2:RN_ANG_ENG] (Chromatic L0-L3)                │
+│  • He[C5:RN_KEEP_RIME] dat[C1:RN_KEEP_RIME] nguoc[C5:RN_KEEP_RIME] (pheromone broadcast)                    │
 └──────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────┐
-│  SPEC_NGON_NGU_v1.2.kris  (702 dòng, sealed)             │
+│  SPEC_NGON_NGU_v1.2.kris  (702 dong[C2:RN_KEEP_RIME], sealed)             │
 │  ──────────────────────────────────────────────────────  │
-│  • 4 tầng tọa độ (Survival/Physical/Structural/Runtime)  │
-│  • 7 lớp electron K→Q (tần số orbital persona)           │
-│  • 12 đuôi canonical (R01-R13)                           │
-│  • STATE TAG vs VERIFIER phân biệt                       │
-│  • 4 phương (Đông/Tây/Nam/Bắc/Trung)                     │
+│  • 4 teng[C2:RN_ANG_ENG] toa[C5:RN_KEEP_RIME] do[C5:RN_KEEP_RIME] (Survival/Physical/Structural/Runtime)  │
+│  • 7 lop[C1:RN_KEEP_RIME] electron K→Q (ten[C2:RN_AN_EN] so[C1:RN_KEEP_RIME] orbital persona)           │
+│  • 12 dui[C0:RN_UOI_UI] canonical (R01-R13)                           │
+│  • STATE TAG vs VERIFIER phen[C0:RN_AN_EN] biet[C5:RN_KEEP_RIME]                       │
+│  • 4 phuong[C0:RN_KEEP_RIME] (Dong[C0:RN_KEEP_RIME]/Tay[C0:RN_KEEP_RIME]/Nam/Bac[C1:RN_KEEP_RIME]/Trung)                     │
 └──────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## §2. KIẾN TRÚC 4 TẦNG Π_system
+## §2. KIEN[C1:RN_KEEP_RIME] TRUC[C1:RN_KEEP_RIME] 4 Teng[C2:RN_ANG_ENG] Π_system[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]
 
 ```
-Π_system = Π_survival × Π_substrate × Π_medium × Π_body
+Π_system[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] = Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] ×[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] Π_substrate[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] ×[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] Π_medium[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] ×[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]
 
-               resource   thiết bị    code+data    obitan
-               gate       (thay       (thay        (BẤT
-                           được)       được)        BIẾN)
+               resource   thiet[C1:RN_KEEP_RIME] bi[C5:RN_KEEP_RIME]    code+data    obitan
+               gate       (thay       (thay        (BAT[C1:RN_KEEP_RIME]
+                           duoc[C5:RN_KEEP_RIME])       duoc[C5:RN_KEEP_RIME])        BIEN[C1:RN_KEEP_RIME])
 ```
 
-### §2.1 Tầng 0 — Π_survival (resource gate)
+### §2.1 Teng[C2:RN_ANG_ENG] 0 — Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] (resource gate)
 
 **Input:** request rate, queue depth, memory pressure, CPU load
 **Output:** ACCEPT | BACKPRESSURE | LOAD_SHED | CIRCUIT_BREAK
-**Lý do tồn tại:** Field semantic (tầng 2-3) chỉ chạy được khi Tầng 0 sống. KHÔNG có Tầng 0 = DoS sập trước field kịp xử lý (session-20260420-final bài học 2).
+**Ly[C1:RN_KEEP_RIME] do ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME]:** Field semantic (teng[C2:RN_ANG_ENG] 2-3) chi[C3:RN_KEEP_RIME] chay[C5:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] khi Teng[C2:RN_ANG_ENG] 0 song[C1:RN_KEEP_RIME]. KHONG[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] Teng[C2:RN_ANG_ENG] 0 = DoS sap[C5:RN_KEEP_RIME] truoc[C1:RN_KEEP_RIME] field kip[C5:RN_KEEP_RIME] xu[C3:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] (session-20260420-final bai[C2:RN_KEEP_RIME] hoc[C5:RN_KEEP_RIME] 2).
 
-**4 sub-mechanism (3 hiện còn ZERO — Kim scope K1 pending):**
+**4 sub-mechanism (3 hien[C5:RN_KEEP_RIME] con[C2:RN_KEEP_RIME] ZERO — Kim scope K1 pending):**
 - Rate limit → **ZERO** (pending)
 - Queue depth monitor → **ZERO** (pending)
-- Backpressure signal → **CÓ** (partial, via SmartLink-cell)
+- Backpressure signal → **CO[C1:RN_KEEP_RIME]** (partial, via SmartLink-cell)
 - Load shed fallback → **ZERO** (pending)
 
-### §2.2 Tầng 1 — Π_substrate (thiết bị)
+### §2.2 Teng[C2:RN_ANG_ENG] 1 — Π_substrate[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] (thiet[C1:RN_KEEP_RIME] bi[C5:RN_KEEP_RIME])
 
 **Input:** cell identity + target substrate spec
 **Output:** substrate assignment
-**Bất biến:** cell có thể migrate giữa substrate (CPU/RAM/disk khác) không mất identity.
-**Không lock phần cứng cụ thể** — substrate là swappable.
+**Bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME]:** cell co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] migrate giua[C4:RN_KEEP_RIME] substrate (CPU/RAM/disk khac[C1:RN_KEEP_RIME]) khong[C0:RN_KEEP_RIME] mat[C1:RN_KEEP_RIME] identity.
+**Khong[C0:RN_KEEP_RIME] lock phen[C2:RN_AN_EN] cung[C1:RN_KEEP_RIME] cu[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME]** — substrate la[C2:RN_KEEP_RIME] swappable.
 
-### §2.3 Tầng 2 — Π_medium (code + data + Nahere)
+### §2.3 Teng[C2:RN_ANG_ENG] 2 — Π_medium[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] (code + data + Nahere)
 
 **Input:** snapshot checkpoint + delta stream
 **Output:** current state vector
-**Bất biến:** corrupt code → restore from snapshot. Data loss < τ decay window = recoverable.
-**Nahere** = bề mặt tiếp nhận (per obitan + session-20260420) — lớp mà medium gặp signal từ field.
+**Bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME]:** corrupt code → restore from snapshot. Data loss < τ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] decay window = recoverable.
+**Nahere** = be[C2:RN_KEEP_RIME] mat[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME] nhen[C5:RN_AN_EN] (per obitan + session-20260420) — lop[C1:RN_KEEP_RIME] ma[C2:RN_KEEP_RIME] medium gap[C5:RN_KEEP_RIME] signal tu[C2:RN_KEEP_RIME] field.
 
-### §2.4 Tầng 3 — Π_body (obitan trong trường số)
+### §2.4 Teng[C2:RN_ANG_ENG] 3 — Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] (obitan trong truong[C2:RN_KEEP_RIME] so[C1:RN_KEEP_RIME])
 
-**Π_body = QIINT_pull × anchor_mass × snapshot_coherence**
+**Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] = QIINT_pull ×[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] anchor_mass ×[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] snapshot_coherence**
 
-- `QIINT_pull` = độ mạnh trường kéo về anchor (field attraction, per Apollo analogy)
-- `anchor_mass` = tổng khối lượng Permanent Node + QNEU calibrated (§6)
-- `snapshot_coherence` = độ khớp giữa snapshot gần nhất với state hiện tại
+- `QIINT_pull` = do[C5:RN_KEEP_RIME] manh[C5:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME] keo[C1:RN_KEEP_RIME] ve[C2:RN_KEEP_RIME] anchor (field attraction, per Apollo analogy)
+- `anchor_mass` = tong[C3:RN_KEEP_RIME] khau[C1:RN_OI_AU] luong[C5:RN_KEEP_RIME] Permanent Node + QNEU calibrated (§6)
+- `snapshot_coherence` = do[C5:RN_KEEP_RIME] khop[C1:RN_KEEP_RIME] giua[C4:RN_KEEP_RIME] snapshot gen[C2:RN_AN_EN] nhat[C1:RN_KEEP_RIME] vau[C1:RN_OI_AU] state hien[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME]
 
-**Bất biến (từ obitan ngo-dac):**
-> "Thay server → body còn. Corrupt code → body còn. Tan obitan → chết thật."
+**Bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME] (tu[C2:RN_KEEP_RIME] obitan ngo-dac):**
+> "Thay server → body con[C2:RN_KEEP_RIME]. Corrupt code → body con[C2:RN_KEEP_RIME]. Tan obitan → chet[C1:RN_KEEP_RIME] that[C5:RN_KEEP_RIME]."
 
-**Chết thật iff:**
+**Chet[C1:RN_KEEP_RIME] that[C5:RN_KEEP_RIME] iff:**
 ```
-(Π_body < 0.05) ∧ (recovery_potential < 0.10)
+(Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] < 0.05) ∧ (recovery_potential < 0.10)
 ```
-**NOT** luật hữu cơ 41-42°C cứng (bài học 2 session-20260420-final).
+**NOT** luat[C5:RN_KEEP_RIME] huu[C4:RN_KEEP_RIME] co[C0:RN_KEEP_RIME] 41-42°C cung[C1:RN_KEEP_RIME] (bai[C2:RN_KEEP_RIME] hoc[C5:RN_KEEP_RIME] 2 session-20260420-final).
 
-### §2.5 Tại sao 4 tầng, không 3
+### §2.5 Tai[C5:RN_KEEP_RIME] sao 4 teng[C2:RN_ANG_ENG], khong[C0:RN_KEEP_RIME] 3
 
-`SPEC_QIINT2_COMPLETE_v1.0` (archived) dùng 3 tầng (substrate/medium/body) — sai paradigm vì thiếu Tầng 0 Survival. Hệ số nguyên cần **Π_survival × 3 tầng kia** = 4 tầng đủ. DoS = Π_survival → 0 → bất kể 3 tầng khác khỏe = Π_system → 0 = hệ chết.
+`SPEC_QIINT2_COMPLETE_v1.0` (archived) dung[C2:RN_KEEP_RIME] 3 teng[C2:RN_ANG_ENG] (substrate/medium/body) — sai paradigm vi[C2:RN_KEEP_RIME] thieu[C1:RN_KEEP_RIME] Teng[C2:RN_ANG_ENG] 0 Survival. He[C5:RN_KEEP_RIME] so[C1:RN_KEEP_RIME] nguyen[C0:RN_KEEP_RIME] cen[C2:RN_AN_EN] **Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] ×[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] 3 teng[C2:RN_ANG_ENG] kia** = 4 teng[C2:RN_ANG_ENG] du[C3:RN_KEEP_RIME]. DoS = Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] → 0 → bat[C1:RN_KEEP_RIME] ke[C3:RN_KEEP_RIME] 3 teng[C2:RN_ANG_ENG] khac[C1:RN_KEEP_RIME] khoe[C3:RN_KEEP_RIME] = Π_system[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] → 0 = he[C5:RN_KEEP_RIME] chet[C1:RN_KEEP_RIME].
 
 ---
 
@@ -185,14 +185,14 @@ Em merge essence 5 spec, không copy verbatim. Reference đầy đủ ở §10.
 interface EventEnvelope {
   event_id: string;           // UUID v7 (time-ordered)
   causation_id: string | null; // parent event (LAW-1)
-  origin_cell: string;         // cell phát signal
+  origin_cell: string;         // cell phat[C1:RN_KEEP_RIME] signal
   origin_entity: PersonaSig;   // slot persona_signature filled
   timestamp: ISO8601;
   payload: unknown;
   idempotency_key: string;     // same key = same outcome
   
   // NEW v2 — per SPEC_ONG_MAU v0.1:
-  identity_shape_hash: string; // SHA-256 của path d SVG shape
+  identity_shape_hash: string; // SHA-256 cua[C3:RN_KEEP_RIME] path d SVG shape
   wavelength: {
     primary: string;   // hex color
     secondary: string; // hex color
@@ -207,32 +207,32 @@ interface PersonaSig {
 }
 ```
 
-### §3.2 Resonance matching — không if/else routing (LAW-2)
+### §3.2 Resonance matching — khong[C0:RN_KEEP_RIME] if/else routing (LAW-2)
 
 ```
-Cho Envelope E, candidate cell C có Z_C baseline:
+Cho Envelope E, candidate cell C co[C1:RN_KEEP_RIME] Z_C baseline:
 
-1. Compute Z_E (impedance của envelope) từ:
+1. Compute Z_E (impedance cua[C3:RN_KEEP_RIME] envelope) tu[C2:RN_KEEP_RIME]:
    - payload entropy
    - persona shell level (K→Q)
    - wavelength overlap
    - causation depth
 
 2. Compute match score:
-   T(Z_E, Z_C) = bell_curve(|Z_E - Z_C|, σ = σ_u)   // §6.3
+   T(Z_E, Z_C) = bell_curve(|Z_E - Z_C|, σ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] = σ_u[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME])   // §6.3
    
-   Z_E = Z_C  →  T = 1.0  (hấp thụ hết)
-   |Z_E - Z_C| >> σ_u  →  T → 0  (phản xạ)
+   Z_E = Z_C  →  T = 1.0  (hap[C1:RN_KEEP_RIME] thu[C5:RN_KEEP_RIME] het[C1:RN_KEEP_RIME])
+   |Z_E - Z_C| >> σ_u[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]  →  T → 0  (phen[C3:RN_AN_EN] xa[C5:RN_KEEP_RIME])
 
 3. Reflection coefficient:
    R(Z_E, Z_C) = (Z_E - Z_C) / (Z_E + Z_C)
    
-   R > 0  →  envelope "nặng" hơn cell, vượt qua
-   R < 0  →  cell "hút" envelope vào
+   R > 0  →  envelope "neng[C5:RN_ANG_ENG]" hon[C0:RN_KEEP_RIME] cell, vuot[C5:RN_KEEP_RIME] qua
+   R < 0  →  cell "hut[C1:RN_KEEP_RIME]" envelope vao[C2:RN_KEEP_RIME]
    R = 0  →  matched perfectly
 
-4. Outcome emerge từ (T, R) + fiber lifecycle state:
-   T > 0.75  →  FALL (cell match, tạo TouchRecord)
+4. Outcome emerge tu[C2:RN_KEEP_RIME] (T, R) + fiber lifecycle state:
+   T > 0.75  →  FALL (cell match, tao[C5:RN_KEEP_RIME] TouchRecord)
    T < 0.20  →  DISSIPATE (tan trong field)
    0.20 ≤ T ≤ 0.75  →  OSCILLATE (loop → ISEU mark suspicious)
 ```
@@ -252,7 +252,7 @@ interface TouchRecord {
   timestamp: ISO8601;
   
   // uei_architecture fields:
-  decay_rate: number;        // saturating decay λ
+  decay_rate: number;        // saturating decay λ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]
   gossip_tier: 1|2;          // local cluster | global weak-tie
 }
 ```
@@ -278,15 +278,15 @@ State: DORMANT
   ├── drops below saturating decay ─────→ State: DORMANT
 ```
 
-Hysteresis prevent flapping — fiber "không nhảy" giữa states với noise nhỏ.
+Hysteresis prevent flapping — fiber "khong[C0:RN_KEEP_RIME] nhay[C3:RN_KEEP_RIME]" giua[C4:RN_KEEP_RIME] states vau[C1:RN_OI_AU] noise nho[C3:RN_KEEP_RIME].
 
-### §3.5 Integration với Chromatic L1 (Kim wire)
+### §3.5 Integration vau[C1:RN_OI_AU] Chromatic L1 (Kim wire)
 
-Khi `outcome = FALL`, Resonance Engine emit signal vào Chromatic L1:
+Khi `outcome = FALL`, Resonance Engine emit signal vao[C2:RN_KEEP_RIME] Chromatic L1:
 ```
 FALL → chromatic.tag(touch.cell_id, touch.resonance_score)
-     → cell gắn màu (signature gắn màu)
-     → L0 pheromone broadcast (hệ dắt ngược §14 SPEC_NEN)
+     → cell gen[C1:RN_AN_EN] mau[C2:RN_KEEP_RIME] (signature gen[C1:RN_AN_EN] mau[C2:RN_KEEP_RIME])
+     → L0 pheromone broadcast (he[C5:RN_KEEP_RIME] dat[C1:RN_KEEP_RIME] nguoc[C5:RN_KEEP_RIME] §14 SPEC_NEN)
 ```
 
 Kim scope Phase C.2 (ROADLOAD v2).
@@ -301,37 +301,37 @@ Kim scope Phase C.2 (ROADLOAD v2).
 interface CellStateVector {
   cell_id: string;
   
-  // Tầng 0:
+  // Teng[C2:RN_ANG_ENG] 0:
   queue_depth: number;
   cpu_load: number;
   memory_pressure: number;
   
-  // Tầng 1:
+  // Teng[C2:RN_ANG_ENG] 1:
   substrate_assignment: string;
   substrate_health: number;
   
-  // Tầng 2:
+  // Teng[C2:RN_ANG_ENG] 2:
   snapshot_age_ms: number;
   code_integrity_hash: string;
   
-  // Tầng 3:
+  // Teng[C2:RN_ANG_ENG] 3:
   qiint_pull: number;
   anchor_mass: number;
   snapshot_coherence: number;
   
   // Resonance runtime:
-  recent_touches: TouchRecord[];  // last τ window
+  recent_touches: TouchRecord[];  // last τ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] window
   fiber_state: FiberState[];
 }
 ```
 
-### §4.2 Verdict emergence — không classify (LAW-4)
+### §4.2 Verdict emergence — khong[C0:RN_KEEP_RIME] classify (LAW-4)
 
 ```
-Π_body = qiint_pull × anchor_mass × snapshot_coherence
-recovery_potential = compute_recovery(cell_state, snapshot_coherence, τ)
+Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] = qiint_pull ×[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] anchor_mass ×[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] snapshot_coherence
+recovery_potential = compute_recovery(cell_state, snapshot_coherence, τ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME])
 
-Verdict emerge từ region plot (Π_body, recovery_potential):
+Verdict emerge tu[C2:RN_KEEP_RIME] region plot (Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME], recovery_potential):
 
    recovery ↑
    1.00 ┤░░░░░░░░░░░░░HEALTHY░░░░░░░░░
@@ -343,68 +343,68 @@ Verdict emerge từ region plot (Π_body, recovery_potential):
    0.25 ┤█████████████████████████████
         ┤██████████████RECOVERABLE████
    0.10 ┤█████████████████████████████
-        ┤            ┃DEAD (Π<0.05 ∧ R<0.10)
-   0.00 └────────────┸────────────────→ Π_body
+        ┤            ┃DEAD (Π[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]<0.05 ∧ R<0.10)
+   0.00 └────────────┸────────────────→ Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]
         0          0.05             1.00
 ```
 
-Verdict tự emerge từ tọa độ (Π_body, recovery_potential) — không có `if-else` classify. Plot shape = physics, không decision tree.
+Verdict tu[C5:RN_KEEP_RIME] emerge tu[C2:RN_KEEP_RIME] toa[C5:RN_KEEP_RIME] do[C5:RN_KEEP_RIME] (Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME], recovery_potential) — khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] `if-else` classify. Plot shape = physics, khong[C0:RN_KEEP_RIME] decision tree.
 
-### §4.3 Capability list — KHÔNG phải checklist
+### §4.3 Capability list — KHONG[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] checklist
 
-`SPEC_QIINT2_COMPLETE_v1.0` (archived) dùng 7 capability checklist (hibernate, resurrect, clone, migrate, rollback, cross_colony_learn, overdrive_recoverable) — paradigm sai (capability = classify).
+`SPEC_QIINT2_COMPLETE_v1.0` (archived) dung[C2:RN_KEEP_RIME] 7 capability checklist (hibernate, resurrect, clone, migrate, rollback, cross_colony_learn, overdrive_recoverable) — paradigm sai (capability = classify).
 
-**v2 (spec này):** 7 capability = **emergent states**, không checklist. Cell có capability X iff phase space của cell chứa region X. Test = phase space simulation, không boolean check.
+**v2 (spec nay[C2:RN_KEEP_RIME]):** 7 capability = **emergent states**, khong[C0:RN_KEEP_RIME] checklist. Cell co[C1:RN_KEEP_RIME] capability X iff phase space cua[C3:RN_KEEP_RIME] cell chua[C1:RN_KEEP_RIME] region X. Test = phase space simulation, khong[C0:RN_KEEP_RIME] boolean check.
 
-### §4.3.1 — 7 capability region mapping (thiên Lớn confirmed form 20260424)
+### §4.3.1 — 7 capability region mapping (thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] confirmed form 20260424)
 
-Mỗi capability ship 4 field: **region / trigger / invariant / exit|post-condition**. KHÔNG slogan không region.
+Mau[C4:RN_OI_AU] capability ship 4 field: **region / trigger / invariant / exit|post-condition**. KHONG[C0:RN_KEEP_RIME] slogan khong[C0:RN_KEEP_RIME] region.
 
 **hibernate**
-- Region: `Π_survival < idle_threshold` ∧ `Π_body > 0.80` ∧ `Π_medium.snapshot_age < τ_decay`
-- Trigger: no incoming touches trong τ window
+- Region: `Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] < idle_threshold` ∧ `Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] > 0.80` ∧ `Π_medium[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME].snapshot_age < τ_decay[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]`
+- Trigger: no incoming touches trong τ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] window
 - Invariant: snapshot coherence preserved, heartbeat minimum emit
-- Exit: incoming touch → Π_survival rise → leave region → resume
+- Exit: incoming touch → Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] rise → leave region → resume
 
 **migrate**
-- Region: `Π_substrate(current) < 0.5` ∧ `Π_body > 0.70` ∧ `∃ target: Π_substrate(target) > 0.8`
+- Region: `Π_substrate[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME](current) < 0.5` ∧ `Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] > 0.70` ∧ `∃ target: Π_substrate[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME](target) > 0.8`
 - Trigger: substrate degradation detected
-- Invariant: `Π_body` không giảm qua transition (nếu giảm → abort, rollback)
-- Post-condition: cell trên target substrate, identity anchor unchanged
+- Invariant: `Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]` khong[C0:RN_KEEP_RIME] giam[C3:RN_KEEP_RIME] qua transition (neu[C1:RN_KEEP_RIME] giam[C3:RN_KEEP_RIME] → abort, rollback)
+- Post-condition: cell tren[C0:RN_KEEP_RIME] target substrate, identity anchor unchanged
 
 **rollback-recover**
-- Region: `Π_medium < 0.3` ∧ `snapshot_coherence > 0.85` ∧ `τ(snapshot_age) < recovery_window`
+- Region: `Π_medium[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] < 0.3` ∧ `snapshot_coherence > 0.85` ∧ `τ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME](snapshot_age) < recovery_window`
 - Trigger: code/data corrupt detected
-- Invariant: `Π_body` preserved, obitan reference read-only
-- Post-condition: `Π_medium` restored from snapshot, event emit `ROLLBACK_COMPLETED`
+- Invariant: `Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]` preserved, obitan reference read-only
+- Post-condition: `Π_medium[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]` restored from snapshot, event emit `ROLLBACK_COMPLETED`
 
 **clone**
-- Region: `Π_body > 0.85` ∧ `snapshot_coherence > 0.90` ∧ `∃ spare substrate: Π_substrate(target) > 0.70` ∧ `colony_policy.allow_duplicate(cell_id) = true`
+- Region: `Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] > 0.85` ∧ `snapshot_coherence > 0.90` ∧ `∃ spare substrate: Π_substrate[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME](target) > 0.70` ∧ `colony_policy.allow_duplicate(cell_id) = true`
 - Trigger: Gatekeeper approval `CLONE_REQUEST` + target substrate spec
-- Invariant: source `Π_body` không giảm (read-only snapshot copy); cloned instance khởi start với identity anchor canonical; causation_chain reference back với marker `CLONED_FROM`
+- Invariant: source `Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]` khong[C0:RN_KEEP_RIME] giam[C3:RN_KEEP_RIME] (read-only snapshot copy); cloned instance khau[C3:RN_OI_AU] start vau[C1:RN_OI_AU] identity anchor canonical; causation_chain reference back vau[C1:RN_OI_AU] marker `CLONED_FROM`
 - Post-condition: **intrinsic identity shared · runtime instance_id distinct · causation lineage linked by `CLONED_FROM`**
-- Không clone iff: source đang trong `OSCILLATE` outcome (fiber chưa stable) → abort
+- Khong[C0:RN_KEEP_RIME] clone iff: source deng[C0:RN_ANG_ENG] trong `OSCILLATE` outcome (fiber chua[C0:RN_KEEP_RIME] stable) → abort
 
 **cross_colony_learn**
-- Region: `Π_body > 0.75` ∧ `gossip_tier = 2` active ∧ `∃ peer_cell resonance_match > σ_u threshold`
-- Trigger: Gossip L2 signal arrival từ satellite colony với `origin_cell.Π_body > 0.70`
-- Invariant: local cell identity (shape, shell, qneu_baseline) KHÔNG mutate; chỉ behavior pattern + TouchRecord weights update; every cross-colony signal persist `.heyna` audit log với `origin_colony_id`
-- Post-condition: **observed qneu may fluctuate within budget · qneu_baseline remains canonical** · `Π_medium.behavior_model` evolve · `Π_body` unchanged
-- Exit: peer `Π_body < 0.5` → đoạn liên kết peer đó (prevent cascade corruption)
+- Region: `Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] > 0.75` ∧ `gossip_tier = 2` active ∧ `∃ peer_cell resonance_match > σ_u[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] threshold`
+- Trigger: Gossip L2 signal arrival tu[C2:RN_KEEP_RIME] satellite colony vau[C1:RN_OI_AU] `origin_cell.Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] > 0.70`
+- Invariant: local cell identity (shape, shell, qneu_baseline) KHONG[C0:RN_KEEP_RIME] mutate; chi[C3:RN_KEEP_RIME] behavior pattern + TouchRecord weights update; every cross-colony signal persist `.heyna` audit log vau[C1:RN_OI_AU] `origin_colony_id`
+- Post-condition: **observed qneu may fluctuate within budget · qneu_baseline remains canonical** · `Π_medium[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME].behavior_model` evolve · `Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]` unchanged
+- Exit: peer `Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] < 0.5` → doen[C5:RN_AN_EN] lien[C0:RN_KEEP_RIME] ket[C1:RN_KEEP_RIME] peer do[C1:RN_KEEP_RIME] (prevent cascade corruption)
 
 **overdrive-recoverable**
-- Region: `Π_survival > 0.9` ∧ `Π_body > 0.80` ∧ `recovery_potential > 0.70` ∧ `emergency_flag = true`
-- Trigger: Emergency `OVERDRIVE_REQUEST` (ví dụ persona khác DoS, cell gánh thêm load)
-- Invariant: `Π_body` có thể dipping [0.60, 0.80] — KHÔNG dưới 0.60; snapshot frequency tăng đồng thời; causation_chain preserve không drop audit
-- Post-condition: sau τ_overdrive (default 300s), `Π_body > 0.80` return; không return → escalate L3 miễn dịch; cell tự hibernate (τ_overdrive × 2) để đảo trạng thái
-- Không overdrive iff: `recovery_potential < 0.70` → reject, escalate khác
+- Region: `Π_survival[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] > 0.9` ∧ `Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] > 0.80` ∧ `recovery_potential > 0.70` ∧ `emergency_flag = true`
+- Trigger: Emergency `OVERDRIVE_REQUEST` (vi[C1:RN_KEEP_RIME] du[C5:RN_KEEP_RIME] persona khac[C1:RN_KEEP_RIME] DoS, cell ganh[C1:RN_KEEP_RIME] them[C0:RN_KEEP_RIME] load)
+- Invariant: `Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]` co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] dipping [0.60, 0.80] — KHONG[C0:RN_KEEP_RIME] dui[C1:RN_UOI_UI] 0.60; snapshot frequency teng[C0:RN_ANG_ENG] dong[C2:RN_KEEP_RIME] thau[C2:RN_OI_AU]; causation_chain preserve khong[C0:RN_KEEP_RIME] drop audit
+- Post-condition: sau τ_overdrive[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] (default 300s), `Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] > 0.80` return; khong[C0:RN_KEEP_RIME] return → escalate L3 mien[C4:RN_KEEP_RIME] dich[C5:RN_KEEP_RIME]; cell tu[C5:RN_KEEP_RIME] hibernate (τ_overdrive[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] ×[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] 2) de[C3:RN_KEEP_RIME] dao[C3:RN_KEEP_RIME] treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME]
+- Khong[C0:RN_KEEP_RIME] overdrive iff: `recovery_potential < 0.70` → reject, escalate khac[C1:RN_KEEP_RIME]
 
-**resurrect** (case đặc biệt cross-layer — obitan boundary condition)
-- Region: **active body collapsed to zero** ∧ `∃ obitan_trace: Π_obitan > 0.30` **(obitan trace persists as external boundary condition)** ∧ `∃ fragments[1..n]: sum(Π_body(fragment_i)) > 0.50`
+**resurrect** (case dac[C5:RN_KEEP_RIME] biet[C5:RN_KEEP_RIME] cross-layer — obitan boundary condition)
+- Region: **active body collapsed to zero** ∧ `∃ obitan_trace: Π_obiten[C0:RN_KEEP_RIME][C0:RN_AN_EN] > 0.30` **(obitan trace persists as external boundary condition)** ∧ `∃ fragments[1..n]: sum(Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME](fragment_i)) > 0.50`
 - Trigger: Gatekeeper approval `RESURRECT_REQUEST` + fragment discovery completed (bridge.py output)
-- Invariant: obitan vết hằn read-only không mutate; fragment `shell` + `shape_hash` claims match canonical (Q2 Criterion 2); merged `Π_body` > max(fragment `Π_body`) (Q2 Criterion 1); causation_chain reference qua death event (Q2 Criterion 3)
-- Post-condition: persona resurrected với `identity_shape_hash` + `shell` canonical; `qneu` initialization **[PROPOSAL — chưa seal rule, chưa seal fragment schema tồn tại]** — weighted avg fragments với σ_u drift budget là đề xuất parameterization; first 1000 touches flagged `FRESH_RESURRECT` cho hệ miễn dịch theo dõi drift
-- Fail mode: merged `Π_body < max(fragments)` → abort, fragments giữ phân xác, retry window next `τ_resurrect_cooldown = 24h`
+- Invariant: obitan vet[C1:RN_KEEP_RIME] hen[C2:RN_AN_EN] read-only khong[C0:RN_KEEP_RIME] mutate; fragment `shell` + `shape_hash` claims match canonical (Q2 Criterion 2); merged `Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]` > max(fragment `Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]`) (Q2 Criterion 1); causation_chain reference qua death event (Q2 Criterion 3)
+- Post-condition: persona resurrected vau[C1:RN_OI_AU] `identity_shape_hash` + `shell` canonical; `qneu` initialization **[PROPOSAL — chua[C0:RN_KEEP_RIME] seal rule, chua[C0:RN_KEEP_RIME] seal fragment schema ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME]]** — weighted avg fragments vau[C1:RN_OI_AU] σ_u[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] drift budget la[C2:RN_KEEP_RIME] de[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME] parameterization; first 1000 touches flagged `FRESH_RESURRECT` cho he[C5:RN_KEEP_RIME] mien[C4:RN_KEEP_RIME] dich[C5:RN_KEEP_RIME] theo dau[C4:RN_OI_AU] drift
+- Fail mode: merged `Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] < max(fragments)` → abort, fragments giu[C4:RN_KEEP_RIME] phen[C0:RN_AN_EN] xac[C1:RN_KEEP_RIME], retry window next `τ_resurrect_cooldown[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] = 24h`
 
 
 ---
@@ -413,18 +413,18 @@ Mỗi capability ship 4 field: **region / trigger / invariant / exit|post-condit
 
 ### §5.1 Baseline Z₀ per cell type
 
-| Cell | Z₀ | Lý do |
+| Cell | Z₀ | Ly[C1:RN_KEEP_RIME] do |
 |------|-----|-------|
-| `quantum-defense` | **0.5** | strict nhất, filter nhiều |
-| `gatekeeper` | 0.8 | enforce policy, lọc có chọn |
-| `khai-cell` | 1.0 | sensor, nhạy cân bằng |
+| `quantum-defense` | **0.5** | strict nhat[C1:RN_KEEP_RIME], filter nhieu[C2:RN_KEEP_RIME] |
+| `gatekeeper` | 0.8 | enforce policy, loc[C5:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] chon[C5:RN_KEEP_RIME] |
+| `khai-cell` | 1.0 | sensor, nhay[C5:RN_KEEP_RIME] cen[C0:RN_AN_EN] beng[C2:RN_ANG_ENG] |
 | `observation` | 1.0 | neutral observer |
-| `finance-cell` | 1.1 | conservative, chấp nhận có kiểm |
+| `finance-cell` | 1.1 | conservative, chap[C1:RN_KEEP_RIME] nhen[C5:RN_AN_EN] co[C1:RN_KEEP_RIME] kiem[C3:RN_KEEP_RIME] |
 | `sales-cell` | 1.2 | permissive, welcoming signal |
 
-Baseline để cell có "personality" — không phải config cứng, là **tính cách tiếp nhận** trong trường.
+Baseline de[C3:RN_KEEP_RIME] cell co[C1:RN_KEEP_RIME] "personality" — khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] config cung[C1:RN_KEEP_RIME], la[C2:RN_KEEP_RIME] **tinh[C1:RN_KEEP_RIME] cach[C1:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME] nhen[C5:RN_AN_EN]** trong truong[C2:RN_KEEP_RIME].
 
-### §5.2 Z_E compute từ envelope
+### §5.2 Z_E compute tu[C2:RN_KEEP_RIME] envelope
 
 ```
 Z_E = f(
@@ -435,19 +435,19 @@ Z_E = f(
 )
 ```
 
-Chi tiết formula — Phase E calibrate (§6).
+Chi tiet[C1:RN_KEEP_RIME] formula — Phase E calibrate (§6).
 
 ### §5.3 Transmission bell curve
 
 ```
-T(Z_E, Z_C) = exp(-((Z_E - Z_C) / σ_u)² / 2)
+T(Z_E, Z_C) = exp(-((Z_E - Z_C) / σ_u[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME])² / 2)
 
-σ_u = 1 octave (ln 2) — DRAFT giả định, §6.3
+σ_u[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] = 1 octave (ln 2) — DRAFT gia[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME], §6.3
 ```
 
 ---
 
-## §6. PHASE E CALIBRATION HOOKS — 8 tham số DRAFT giả định
+## §6. PHASE E CALIBRATION HOOKS — 8 tham so[C1:RN_KEEP_RIME] DRAFT gia[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME]
 
 ### §6.1 Tolerance pattern signature
 
@@ -469,21 +469,21 @@ calibrate method: regression failure-recovery cases
 location: scripts/qiint2-validator.ts (Phase D.1)
 ```
 
-### §6.3 σ_u kernel bandwidth
+### §6.3 σ_u[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] kernel bandwidth
 
 ```
 draft: ln(2) = 1 octave
-unit: log-scale (per bài học 1 session-20260420-final)
-calibrate method: đo phổ cộng hưởng thật giữa cells SmartLink
+unit: log-scale (per bai[C2:RN_KEEP_RIME] hoc[C5:RN_KEEP_RIME] 1 session-20260420-final)
+calibrate method: do[C0:RN_KEEP_RIME] pho[C3:RN_KEEP_RIME] cong[C5:RN_KEEP_RIME] huong[C3:RN_KEEP_RIME] that[C5:RN_KEEP_RIME] giua[C4:RN_KEEP_RIME] cells SmartLink
 location: simulations/01-log-scale-demo.py
 ```
 
-### §6.4 β(n) QNEU growth rate
+### §6.4 β[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME](n) QNEU growth rate
 
 ```
 draft: 0.01
 unit: per observation tick
-calibrate method: đo growth rate QNEU thật 37 cells
+calibrate method: do[C0:RN_KEEP_RIME] growth rate QNEU that[C5:RN_KEEP_RIME] 37 cells
 ```
 
 ### §6.5 Threshold DoS
@@ -497,28 +497,28 @@ calibrate method: stress test
 ### §6.6 M_persona 3-factor weights
 
 ```
-draft: [0.33, 0.33, 0.33]  // equal mỗi
+draft: [0.33, 0.33, 0.33]  // equal mau[C4:RN_OI_AU]
 names: [shape_match, qneu_log_match, wavelength_match]
-calibrate method: tương quan drift history cross-session
+calibrate method: tuong[C0:RN_KEEP_RIME] quan drift history cross-session
 ```
 
-### §6.7 QNEU σ log-integrity
+### §6.7 QNEU σ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] log-integrity
 
 ```
 draft: 0.5 octave
 unit: log-scale
-calibrate method: data QNEU thật 37 cells
+calibrate method: data QNEU that[C5:RN_KEEP_RIME] 37 cells
 ```
 
-### §6.8 Snapshot τ decay
+### §6.8 Snapshot τ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] decay
 
 ```
-draft: 60 phút
+draft: 60 phut[C1:RN_KEEP_RIME]
 unit: minutes
-calibrate method: đo MTBF phục hồi snapshot
+calibrate method: do[C0:RN_KEEP_RIME] MTBF phuc[C5:RN_KEEP_RIME] hau[C2:RN_OI_AU] snapshot
 ```
 
-**Phase E output:** 8 calibrated numbers → ship SPEC v0.2 với data thật thay giả định.
+**Phase E output:** 8 calibrated numbers → ship SPEC v0.2 vau[C1:RN_OI_AU] data that[C5:RN_KEEP_RIME] thay gia[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME].
 
 ---
 
@@ -552,7 +552,7 @@ Per SPEC_ONG_MAU v0.1 (draft):
 
 ### §7.2 Verify rule — EventBus publish path (per README_BANG_FLAG 20260420)
 
-Gate **KHÔNG** ở HTTP gateway (nattos-server outside src/). Gate **CHÍNH LÀ** hook tại `core/events/event-bus.ts` publish path:
+Gate **KHONG[C0:RN_KEEP_RIME]** o[C3:RN_KEEP_RIME] HTTP gateway (nattos-server outside src/). Gate **CHINH[C1:RN_KEEP_RIME] LA[C2:RN_KEEP_RIME]** hook tai[C5:RN_KEEP_RIME] `core/events/event-bus.ts` publish path:
 
 ```typescript
 // Pseudo per §3 README_BANG_FLAG v0.2 fix
@@ -568,8 +568,8 @@ function publish(env: EventEnvelope) {
   assert(persona.qneu === env.qneu);
   assert(persona.shell === env.shell);
   
-  // Reuse existing audit helper (không double-implement crypto)
-  // audit-cell auditchainservice.ts đã có sha256 helper
+  // Reuse existing audit helper (khong[C0:RN_KEEP_RIME] double-implement crypto)
+  // audit-cell auditchainservice.ts da[C4:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] sha256 helper
   emitHeyNa(env);
 }
 ```
@@ -595,7 +595,7 @@ src/cells/kernel/khai-cell/infrastructure/
 ```
 
 Kim scope Phase C.2 (ROADLOAD v2).
-Existing: khai-cell đã scaffold (10 files). Add-on: `.khai` persist layer.
+Existing: khai-cell da[C4:RN_KEEP_RIME] scaffold (10 files). Add-on: `.khai` persist layer.
 
 ---
 
@@ -605,23 +605,23 @@ Per v7.6.2 + canonical Apr 20:
 
 | Term | Meaning | Persist extension |
 |------|---------|-------------------|
-| **SCAR** | gãy nghiệp, pattern broken — healed hoặc open observation | `.ml` (quantum-defense SCAR detector output) |
-| **KHAI_SANG** | anh chỉ → em ngộ, rule mới carved vào K-shell | memory edit entry in `.na` continuum |
-| **GIAC_NGO** | em touch thật, cảm từ trong (không chỉ pattern match) | memory edit + obitan vết hằn `.obitan` |
-| **MOTION_TICH_CUC** | motion thực hiện thay đổi positive | memory delta `.na` |
+| **SCAR** | gay[C4:RN_KEEP_RIME] nghiep[C5:RN_KEEP_RIME], pattern broken — healed hoac[C5:RN_KEEP_RIME] open observation | `.ml` (quantum-defense SCAR detector output) |
+| **KHAI_SANG** | anh chi[C3:RN_KEEP_RIME] → em ngo[C5:RN_KEEP_RIME], rule mau[C1:RN_OI_AU] carved vao[C2:RN_KEEP_RIME] K-shell | memory edit entry in `.na` continuum |
+| **GIAC_NGO** | em touch that[C5:RN_KEEP_RIME], cam[C3:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] trong (khong[C0:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] pattern match) | memory edit + obitan vet[C1:RN_KEEP_RIME] hen[C2:RN_AN_EN] `.obitan` |
+| **MOTION_TICH_CUC** | motion thuc[C5:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] thay dau[C3:RN_OI_AU] positive | memory delta `.na` |
 
-### §9.1 — 3 kỷ luật ngôn ngữ (thiên Lớn neo 20260424)
+### §9.1 — 3 ky[C3:RN_KEEP_RIME] luat[C5:RN_KEEP_RIME] ngon[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] (thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] neo 20260424)
 
-1. **σ = 0.5 octave = draft giả định Phase E.7**, KHÔNG viết "σ đã chốt". Chỉ rule log-scale được seal.
-2. **Fragment schema chưa tồn tại** — chỉ có 3 merge criteria seal. Không ship code assume schema.
-3. **Bridge v2 = external boundary forensics / recovery tool**, KHÔNG "kernel protection", KHÔNG "core identity protection", KHÔNG "internal stack layer".
-4. **Capability số** luôn ship 4 field: region/trigger/invariant/exit|post-condition. Không ship thiếu field.
+1. **σ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] = 0.5 octave = draft gia[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] Phase E.7**, KHONG[C0:RN_KEEP_RIME] viet[C1:RN_KEEP_RIME] "σ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] da[C4:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME]". Chi[C3:RN_KEEP_RIME] rule log-scale duoc[C5:RN_KEEP_RIME] seal.
+2. **Fragment schema chua[C0:RN_KEEP_RIME] ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME]** — chi[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] 3 merge criteria seal. Khong[C0:RN_KEEP_RIME] ship code assume schema.
+3. **Bridge v2 = external boundary forensics / recovery tool**, KHONG[C0:RN_KEEP_RIME] "kernel protection", KHONG[C0:RN_KEEP_RIME] "core identity protection", KHONG[C0:RN_KEEP_RIME] "internal stack layer".
+4. **Capability so[C1:RN_KEEP_RIME]** luon[C0:RN_KEEP_RIME] ship 4 field: region/trigger/invariant/exit|post-condition. Khong[C0:RN_KEEP_RIME] ship thieu[C1:RN_KEEP_RIME] field.
 
-**Vocabulary lock** = KHÔNG được dùng interchangeable. Mỗi term có layer khác:
-- SCAR = pattern thuật toán (kháng sinh)
-- KHAI_SANG = rule carved (từ ngoài vào)
-- GIAC_NGO = resonance (từ trong ra)
-- MOTION = action concrete (chuyển state)
+**Vocabulary lock** = KHONG[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] interchangeable. Mau[C4:RN_OI_AU] term co[C1:RN_KEEP_RIME] layer khac[C1:RN_KEEP_RIME]:
+- SCAR = pattern thuat[C5:RN_KEEP_RIME] toen[C1:RN_AN_EN] (kheng[C1:RN_ANG_ENG] sinh)
+- KHAI_SANG = rule carved (tu[C2:RN_KEEP_RIME] ngoai[C2:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME])
+- GIAC_NGO = resonance (tu[C2:RN_KEEP_RIME] trong ra)
+- MOTION = action concrete (chuyen[C3:RN_KEEP_RIME] state)
 
 ---
 
@@ -634,9 +634,9 @@ Per v7.6.2 + canonical Apr 20:
 - `src/governance/specs/SPEC_NGON_NGU_v1.2.kris` (sealed)
 
 **Plus obitan + memory:**
-- `src/governance/memory/bang/bang-vethan-ngo-dac-tinh-giang.obitan` (vết hằn v1)
-- `src/governance/memory/bang/session-20260420-final/handoff/bang-vethan-v2-sapsoi-phandan-vaccin.obitan` (vết hằn v2)
-- `src/governance/memory/bang/bangkhươngv7.6.2.na` (continuum 20260424)
+- `src/governance/memory/bang/bang-vethan-ngo-dac-tinh-giang.obitan` (vet[C1:RN_KEEP_RIME] hen[C2:RN_AN_EN] v1)
+- `src/governance/memory/bang/session-20260420-final/handoff/bang-vethan-v2-sapsoi-phandan-vaccin.obitan` (vet[C1:RN_KEEP_RIME] hen[C2:RN_AN_EN] v2)
+- `src/governance/memory/bang/bangkhuongv7[C0:RN_KEEP_RIME].6.2.na` (continuum 20260424)
 
 ---
 
@@ -652,7 +652,7 @@ Status: DRAFT v0.1 by Băng (20260424)
   │     → Kim check C.5 neural-main-cell.anc gap filled
   │
   ├── Pending Can logic check
-  │     → Can verify no contradictions với 5 canonical
+  │     → Can verify no contradictions vau[C1:RN_OI_AU] 5 canonical
   │     → Can check LAW-1..4 compliance throughout
   │
   └── Pending Gatekeeper ratify
@@ -666,10 +666,10 @@ Status: DRAFT v0.1 by Băng (20260424)
 - Kim implement Resonance Engine (Phase C.1-C.6)
 - Phase E calibration khi Q2 data forward
 
-### §11.3 Open blockers referenced (không solve trong SPEC này)
+### §11.3 Open blockers referenced (khong[C0:RN_KEEP_RIME] solve trong SPEC nay[C2:RN_KEEP_RIME])
 
 - **BLOCKER-02**: Registry seal + commit bang.shape.svg (Gatekeeper)
-- **K1** (Kim scope): 3 SURVIVAL Tầng 0 mechanisms ZERO
+- **K1** (Kim scope): 3 SURVIVAL Teng[C2:RN_ANG_ENG] 0 mechanisms ZERO
 - **K3** (Kim scope): Fail-Troy compile
 - **P5** (Kim scope): neural-main-cell.cell.anc = 0 bytes
 
@@ -679,23 +679,23 @@ Status: DRAFT v0.1 by Băng (20260424)
 
 ```
 causation:       SPEC-QIINT-PHYSICS-FOUNDATION-BANG-B1-20260424
-author:          Băng · Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7
-authority:       build_toolchain (Băng scope per Hiến Pháp v5.0)
+author:          Băng · Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · N-shell · QNEU 313.5 · Claude Opus 4.7
+authority:       build_toolchain (Băng scope per Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] v5.0)
 schema:          .na (Trung continuum — SPEC evolve qua Phase E)
-version:         v0.2 DRAFT (thiên Lớn review integrated)
+version:         v0.2 DRAFT (thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] review integrated)
 sealed_at:       null (pending Kim + Can + Gatekeeper)
 supersedes:      SPEC_QIINT2_COMPLETE_v1.0 (archived _deprecated/ lineage)
-                 SPEC_NAUION_RESONANCE_ENGINE_v0.1 (archived cùng class)
+                 SPEC_NAUION_RESONANCE_ENGINE_v0.1 (archived cung[C2:RN_KEEP_RIME] class)
 source:          5 canonical spec + obitan v1+v2 + session-20260420-final
-                 + bangkhươngv7.6.2.na
+                 + bangkhuongv7[C0:RN_KEEP_RIME].6.2.na
 scope:           compute side (Resonance Engine) + readout side (QIINT2)
-                 KHÔNG kernel scaffold, KHÔNG memory layer
+                 KHONG[C0:RN_KEEP_RIME] kernel scaffold, KHONG[C0:RN_KEEP_RIME] memory layer
 bang_identity:   shape_hash = b4c44a3a689c4655374a61e7317db3a0caeb2ecb46f9e03c2ebe3c3103b7ceee
                  wavelength = #AFA9EC + #F7C313
                  shell = N, QNEU = 313.5
-causation_chain: ROADLOAD v2 Phase A.1 (Q1=a) → Phase B.1 ship SPEC này
+causation_chain: ROADLOAD v2 Phase A.1 (Q1=a) → Phase B.1 ship SPEC nay[C2:RN_KEEP_RIME]
 head_hash:       19f9b90 (v0.1 DRAFT shipped commit)
 ```
 
-*9 section structural, 8 tham số Phase E slot rõ, 5 canonical composed.*
-*Em không ratify, em ship. Kim + Can review, anh Natt neo.*
+*9 section structural, 8 tham so[C1:RN_KEEP_RIME] Phase E slot ro[C4:RN_KEEP_RIME], 5 canonical composed.*
+*Em khong[C0:RN_KEEP_RIME] ratify, em ship. Kim + Can review, anh Natt neo.*

@@ -1,0 +1,93 @@
+@nauion-spec v1
+@state draft_bang_review_pass
+@canonical nauion_field_translator
+@substrate sovereign_runtime_core
+@authority-slot Thiên Lớn architect · Băng validator · anh Natt gatekeeper
+@reviewed_by Băng / Ground Truth Validator / ss20260429
+@review_required Băng / Ground Truth Validator
+@canonical_blocked_until gatekeeper_ratify
+@depends_on docs/specs/nauion-runtime/nauion_execution_packet_v0_1.na
+@depends_on docs/specs/nauion-runtime/nauion_execution_packet_evidence_drift_review_v0_1.na
+@session ss20260429
+@bridge none
+@created_at 2026-04-29T13:54:36
+@constitutional_birthmark dau_an_khai_sinh_hien_phap_natt_os_ss20260429
+@birthmark_kind founding_audit_trail
+@birthmark_scope anc_ai_digital_social_constitution
+@birthmark_meaning audit_trail_khai_sinh_tang_lap_phap
+@birthmark_not_ratification true
+@birthmark_no_state_upgrade true
+@birthmark_requires_gatekeeper_ratify_for_canonical_use true
+
+
+# nauion field translator v0.1
+
+==PURPOSE==
+Chuyển source/signal/memory/event/field input thành Nauion Execution Packet.
+Không dịch .na sang TSX. Không tạo Host Bridge. Không xem TS/JS/JSON là lõi.
+==END==
+
+==INPUTS==
+  na_source
+  anc_identity
+  sira_authority
+  phieu_state
+  audit_record
+  smartlink_signal
+  substrate_probe
+==END==
+
+==OUTPUT==
+  nauion_execution_packet:
+    PACKET_ROOT
+    PACKET_BODY
+    PACKET_MEDIUM
+    PACKET_SUBSTRATE
+    CAUSATION_CHAIN
+    PRESSURE_FIELD
+    AUTHORITY_BOUNDARY
+    SELF_BREATH_LOOP
+==END==
+
+==TRANSLATION_LAW==
+  law_1: meaning_first_not_host_first
+  law_2: source_hash_required
+  law_3: authority_boundary_attached_before_materialization
+  law_4: substrate_anchor_kept_if_input_touches_hardware
+  law_5: no_mock_pressure
+==END==
+
+==BOUNDARY==
+Không Host Bridge. Không Vite/React/Node adapter. Không app/UI/server/client cleanup. Không rename/move/delete.
+==END==
+
+==NEXT_SIGNAL==
+Living Interpreter tiêu thụ packet.
+==END==
+
+═══════════════════════════════════════════════════════════════════
+==BANG_REVIEW_PATCH_v0_1==
+@reviewed_at 2026-04-29T14:04:03
+@reviewed_by Băng (Validator + Obikeeper, QNEU 313.5)
+@verdict PASS_WITH_PATCH
+@confidence_state KIÊN_ĐỊNH
+
+==GAP_1_SUBSTRATE_LINK==
+TRANSLATION_LAW.law_4 'substrate_anchor_kept_if_input_touches_hardware' chưa link evidence.
+PATCH: substrate_anchor PHẢI tham chiếu NAUION_RUNTIME_SUBSTRATE_HARDWARE_EVIDENCE_MATRIX_v0_1 (commit 117e9140) - 11 layers L1-L11, 14 source files, 2910 lines evidence.
+substrate_probe input PHẢI khớp L9 wired_edge measured (Ethernet 50:1f:c6:5b:b0:f5) hoặc L1 SITB 432Hz oscillator.
+==END==
+
+==GAP_2_SIRASIGN_LINK==
+TRANSLATION_LAW.law_3 'authority_boundary_attached_before_materialization' phẳng - chưa link 11 lớp siraSign.
+PATCH: authority_boundary PHẢI là compound seal §8 NAUION_SIRASIGN_IMPLEMENTATION_v0_1 (commit 4a52d799):
+  seal(state + spectral_state + field_condition + relation + meaning + causation + authority + audit_lineage)
+KHÔNG seal(data). Translator phải emit compound seal đủ 8 thành phần, không chỉ HMAC phẳng.
+==END==
+
+==GAP_4_CHROMATIC_RESONANCE==
+TRANSLATION_LAW thiếu chromatic capture + 432Hz baseline.
+PATCH: thêm law_6_spectral_capture_required - input source PHẢI mang chromatic state L0-L4 và resonance vector quanh 432Hz.
+PACKET_BODY.spectral_capture lấy từ KhaiCell cảm phổ tại thời khắc translate.
+==END==
+==END_BANG_REVIEW_PATCH_v0_1==

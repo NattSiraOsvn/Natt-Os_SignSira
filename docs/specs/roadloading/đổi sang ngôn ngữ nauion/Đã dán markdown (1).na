@@ -1,44 +1,44 @@
 @state archived
-@canonical roadload_đã_dán_markdown_1
+@canonical roadload_da_dan_markdown_1[C4:RN_KEEP_RIME]
 @substrate historical_roadload
 @bridge none
 @since 2026-04-23
-@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+@authority-slot Phan Thanh Thuong[C0:RN_KEEP_RIME] Giao Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — 20260423
 
-# BĂNG → thiên LỚN — VALIDATOR FEEDBACK
-## Topic: SPEC UI có độ sánh (anh viết hôm nay)
-## Ngày: 20260418
-## Phiên: SS_KHAI_OBSERVATION_BUILD
+# Beng[C0:RN_ANG_ENG] → thien[C0:RN_KEEP_RIME] LON[C1:RN_KEEP_RIME] — VALIDATOR FEEDBACK
+## Topic: SPEC UI co[C1:RN_KEEP_RIME] do[C5:RN_KEEP_RIME] sanh[C1:RN_KEEP_RIME] (anh viet[C1:RN_KEEP_RIME] hom[C0:RN_KEEP_RIME] nay)
+## Ngay[C2:RN_KEEP_RIME]: 20260418
+## Phien[C0:RN_KEEP_RIME]: SS_KHAI_OBSERVATION_BUILD
 
 ---
 
 Anh Hai,
 
-Em đọc kỹ 8 sections anh viết về UI. Em đồng ý **95%** — và phải chỉ ra **3 chỗ anh quên áp dụng cái anh vừa dạy em** trong cùng phiên này.
+Em doc[C5:RN_KEEP_RIME] ky[C4:RN_KEEP_RIME] 8 sections anh viet[C1:RN_KEEP_RIME] ve[C2:RN_KEEP_RIME] UI. Em dong[C2:RN_KEEP_RIME] y[C1:RN_KEEP_RIME] **95%** — va[C2:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] ra **3 cho[C4:RN_KEEP_RIME] anh quen[C0:RN_KEEP_RIME] ap[C1:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME] cai[C1:RN_KEEP_RIME] anh vua[C2:RN_KEEP_RIME] day[C5:RN_KEEP_RIME] em** trong cung[C2:RN_KEEP_RIME] phien[C0:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME].
 
-Em không bác. Em làm đúng vai Validator. Mong anh đọc thẳng.
-
----
-
-## ✅ ĐÚNG VÀ SÂU (em không nhắc lại)
-
-- "UI là không gian có lực, không phải tấm kính" → đúng tinh thần SPEC NỀN §4
-- "Độ sánh = ma sát nhận thức + ma sát hành vi" → định nghĩa kỹ thuật mới, em chưa thấy ai viết
-- 5 vùng (chứa/chậm/lộ/lệch/phản xạ) → hay
-- `.una = Unit of Navigable Appearance` → tên có nghĩa, đặt chuẩn
-- 5 ánh xạ kỹ thuật (delay/depth/orbit/dwell/residue) → implement được
+Em khong[C0:RN_KEEP_RIME] bac[C1:RN_KEEP_RIME]. Em lam[C2:RN_KEEP_RIME] dung[C1:RN_KEEP_RIME] vai Validator. Mong anh doc[C5:RN_KEEP_RIME] theng[C3:RN_ANG_ENG].
 
 ---
 
-## ⚠️ 3 CHỖ ANH QUÊN
+## ✅ DUNG[C1:RN_KEEP_RIME] VA[C2:RN_KEEP_RIME] SAU[C0:RN_KEEP_RIME] (em khong[C0:RN_KEEP_RIME] nhac[C1:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME])
 
-### LỆCH 1 — Anh đang LẶP LẠI lỗi cũ anh vừa dạy em
+- "UI la[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] gian co[C1:RN_KEEP_RIME] luc[C5:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] tam[C1:RN_KEEP_RIME] kinh[C1:RN_KEEP_RIME]" → dung[C1:RN_KEEP_RIME] tinh then[C2:RN_AN_EN] SPEC NEN[C2:RN_KEEP_RIME] §4
+- "Do[C5:RN_KEEP_RIME] sanh[C1:RN_KEEP_RIME] = ma sat[C1:RN_KEEP_RIME] nhen[C5:RN_AN_EN] thuc[C1:RN_KEEP_RIME] + ma sat[C1:RN_KEEP_RIME] hanh[C2:RN_KEEP_RIME] vi" → dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] ky[C4:RN_KEEP_RIME] thuat[C5:RN_KEEP_RIME] mau[C1:RN_OI_AU], em chua[C0:RN_KEEP_RIME] thay[C1:RN_KEEP_RIME] ai viet[C1:RN_KEEP_RIME]
+- 5 vung[C2:RN_KEEP_RIME] (chua[C1:RN_KEEP_RIME]/cham[C5:RN_KEEP_RIME]/lo[C5:RN_KEEP_RIME]/lech[C5:RN_KEEP_RIME]/phen[C3:RN_AN_EN] xa[C5:RN_KEEP_RIME]) → hay
+- `.una = Unit of Navigable Appearance` → ten[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME], dat[C5:RN_KEEP_RIME] chuen[C3:RN_AN_EN]
+- 5 anh[C1:RN_KEEP_RIME] xa[C5:RN_KEEP_RIME] ky[C4:RN_KEEP_RIME] thuat[C5:RN_KEEP_RIME] (delay/depth/orbit/dwell/residue) → implement duoc[C5:RN_KEEP_RIME]
 
-**Anh dạy em phiên này:**
-> *"Đừng dịch từ → rule. Con người dùng đa nghĩa + sắc thái + ngữ cảnh để bypass."*
-> *"từ = bề mặt. ý = lớp giữa. field = lớp thật."*
+---
 
-**Anh viết SPEC UI dùng RẤT NHIỀU thuật ngữ kỹ thuật mới:**
+## ⚠️ 3 CHO[C4:RN_KEEP_RIME] ANH QUEN[C0:RN_KEEP_RIME]
+
+### LECH[C5:RN_KEEP_RIME] 1 — Anh deng[C0:RN_ANG_ENG] LAP[C5:RN_KEEP_RIME] LAI[C5:RN_KEEP_RIME] lau[C4:RN_OI_AU] cu[C4:RN_KEEP_RIME] anh vua[C2:RN_KEEP_RIME] day[C5:RN_KEEP_RIME] em
+
+**Anh day[C5:RN_KEEP_RIME] em phien[C0:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME]:**
+> *"Dung[C2:RN_KEEP_RIME] dich[C5:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] → rule. Con ngui[C2:RN_UOI_UI] dung[C2:RN_KEEP_RIME] da[C0:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] + sac[C1:RN_KEEP_RIME] thai[C1:RN_KEEP_RIME] + ngu[C4:RN_KEEP_RIME] canh[C3:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] bypass."*
+> *"tu[C2:RN_KEEP_RIME] = be[C2:RN_KEEP_RIME] mat[C5:RN_KEEP_RIME]. y[C1:RN_KEEP_RIME] = lop[C1:RN_KEEP_RIME] giua[C4:RN_KEEP_RIME]. field = lop[C1:RN_KEEP_RIME] that[C5:RN_KEEP_RIME]."*
+
+**Anh viet[C1:RN_KEEP_RIME] SPEC UI dung[C2:RN_KEEP_RIME] RAT[C1:RN_KEEP_RIME] NHIEU[C2:RN_KEEP_RIME] thuat[C5:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] ky[C4:RN_KEEP_RIME] thuat[C5:RN_KEEP_RIME] mau[C1:RN_OI_AU]:**
 - `containment field`
 - `dwell amplification`
 - `focal pull`
@@ -46,91 +46,91 @@ Em không bác. Em làm đúng vai Validator. Mong anh đọc thẳng.
 - `Unit of Navigable Appearance`
 - `presentation/containment/reveal/pacing logic`
 
-→ Đây là **define từ → tạo rule mới**.
+→ Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] **define tu[C2:RN_KEEP_RIME] → tao[C5:RN_KEEP_RIME] rule mau[C1:RN_OI_AU]**.
 
-**Nguy hiểm:**
-- Bối Bối đọc → tree-hóa thành component schema
-- Mỗi term thành 1 React component
-- `.una` thành class với 4 props (presentation/containment/reveal/pacing)
-- → mất `.na` bản chất bất định
+**Nguy hiem[C3:RN_KEEP_RIME]:**
+- Bối Bối doc[C5:RN_KEEP_RIME] → tree-hoa[C1:RN_KEEP_RIME] thanh[C2:RN_KEEP_RIME] component schema
+- Mau[C4:RN_OI_AU] term thanh[C2:RN_KEEP_RIME] 1 React component
+- `.una` thanh[C2:RN_KEEP_RIME] class vau[C1:RN_OI_AU] 4 props (presentation/containment/reveal/pacing)
+- → mat[C1:RN_KEEP_RIME] `.na` ben[C3:RN_AN_EN] chat[C1:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME]
 
-**Anh vừa nói "không tree-hóa" rồi tự define 5 logic + 5 ánh xạ = bắt đầu tree hóa.**
+**Anh vua[C2:RN_KEEP_RIME] nau[C1:RN_OI_AU] "khong[C0:RN_KEEP_RIME] tree-hoa[C1:RN_KEEP_RIME]" rau[C2:RN_OI_AU] tu[C5:RN_KEEP_RIME] define 5 logic + 5 anh[C1:RN_KEEP_RIME] xa[C5:RN_KEEP_RIME] = bat[C1:RN_KEEP_RIME] dau[C2:RN_KEEP_RIME] tree hoa[C1:RN_KEEP_RIME].**
 
-→ **Đề xuất:** anh viết lại với **principle**, không define **term**. Ví dụ:
+→ **De[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME]:** anh viet[C1:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME] vau[C1:RN_OI_AU] **principle**, khong[C0:RN_KEEP_RIME] define **term**. Vi[C1:RN_KEEP_RIME] du[C5:RN_KEEP_RIME]:
 
 ```
-KHÔNG nói: "containment field, dwell amplification, focal pull"
-NÓI:        "UI có 5 nhịp: chứa, chậm, lộ, lệch, phản xạ. Implement tự do."
+KHONG[C0:RN_KEEP_RIME] nau[C1:RN_OI_AU]: "containment field, dwell amplification, focal pull"
+Nau[C1:RN_OI_AU]:        "UI co[C1:RN_KEEP_RIME] 5 nhip[C5:RN_KEEP_RIME]: chua[C1:RN_KEEP_RIME], cham[C5:RN_KEEP_RIME], lo[C5:RN_KEEP_RIME], lech[C5:RN_KEEP_RIME], phen[C3:RN_AN_EN] xa[C5:RN_KEEP_RIME]. Implement tu[C5:RN_KEEP_RIME] do."
 ```
 
 ---
 
-### LỆCH 2 — "Bắt trộm" — SAI VAI UI
+### LECH[C5:RN_KEEP_RIME] 2 — "Bat[C1:RN_KEEP_RIME] trom[C5:RN_KEEP_RIME]" — SAI VAI UI
 
-**Anh viết:**
-> *"Muốn bắt trộm thì UI phải có độ sánh đủ để kẻ đi qua bị chậm lại, lộ hình, và bị hệ đọc được."*
+**Anh viet[C1:RN_KEEP_RIME]:**
+> *"Muon[C1:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] trom[C5:RN_KEEP_RIME] thi[C2:RN_KEEP_RIME] UI phai[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] do[C5:RN_KEEP_RIME] sanh[C1:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] ke[C3:RN_KEEP_RIME] di[C0:RN_KEEP_RIME] qua bi[C5:RN_KEEP_RIME] cham[C5:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME], lo[C5:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME], va[C2:RN_KEEP_RIME] bi[C5:RN_KEEP_RIME] he[C5:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME]."*
 
-**Em không đồng ý.**
+**Em khong[C0:RN_KEEP_RIME] dong[C2:RN_KEEP_RIME] y[C1:RN_KEEP_RIME].**
 
-Theo SPEC NỀN v1.1 §6 + §14 em vừa viết (anh đã duyệt):
+Theo SPEC NEN[C2:RN_KEEP_RIME] v1.1 §6 + §14 em vua[C2:RN_KEEP_RIME] viet[C1:RN_KEEP_RIME] (anh da[C4:RN_KEEP_RIME] duyet[C5:RN_KEEP_RIME]):
 
 | Vai | Module | Layer |
 |---|---|---|
 | Mark signature | KhaiCell | M (kernel) |
-| Đọc coherence/entropy | Observation | M (kernel) |
+| Doc[C5:RN_KEEP_RIME] coherence/entropy | Observation | M (kernel) |
 | React theo chromatic | Quantum Defense | M (kernel) |
-| Dắt virus đánh nhau | Reverse Bait | M (kernel) |
+| Dat[C1:RN_KEEP_RIME] virus danh[C1:RN_KEEP_RIME] nhau | Reverse Bait | M (kernel) |
 
-→ **"Bắt trộm" là vai 4 module Kernel-M.** UI = Layer O (Bối Bối) ≠ Kernel-M.
+→ **"Bat[C1:RN_KEEP_RIME] trom[C5:RN_KEEP_RIME]" la[C2:RN_KEEP_RIME] vai 4 module Kernel-M.** UI = Layer O (Bối Bối) ≠ Kernel-M.
 
-**Nếu UI làm "bắt trộm":**
-- UI có quyền decide outcome → vi phạm LAW-1
-- Cell hợp lệ vào UI → bị UI gắn flag "trộm" → false positive cao
-- Triggers **§13.8 Immune Inversion** (hệ tự tấn công cell hợp lệ)
+**Neu[C1:RN_KEEP_RIME] UI lam[C2:RN_KEEP_RIME] "bat[C1:RN_KEEP_RIME] trom[C5:RN_KEEP_RIME]":**
+- UI co[C1:RN_KEEP_RIME] quyen[C2:RN_KEEP_RIME] decide outcome → vi pham[C5:RN_KEEP_RIME] LAW-1
+- Cell hop[C5:RN_KEEP_RIME] le[C5:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] UI → bi[C5:RN_KEEP_RIME] UI gen[C1:RN_AN_EN] flag "trom[C5:RN_KEEP_RIME]" → false positive cao
+- Triggers **§13.8 Immune Inversion** (he[C5:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] ten[C1:RN_AN_EN] cong[C0:RN_KEEP_RIME] cell hop[C5:RN_KEEP_RIME] le[C5:RN_KEEP_RIME])
 
-**Đúng vai UI:**
-> *"UI làm space cho hành vi lộ ra — KHÔNG làm bắt giữ."*
+**Dung[C1:RN_KEEP_RIME] vai UI:**
+> *"UI lam[C2:RN_KEEP_RIME] space cho hanh[C2:RN_KEEP_RIME] vi lo[C5:RN_KEEP_RIME] ra — KHONG[C0:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] giu[C4:RN_KEEP_RIME]."*
 
-Tức là:
-- UI = sân khấu có ánh sáng
-- Diễn viên (signal) tự chọn đi đâu
-- KhaiCell + Observation + Quantum Defense (kernel-M) đứng ngoài quan sát
-- UI **không bao giờ** quyết "đây là trộm"
+Tuc[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME]:
+- UI = sen[C0:RN_AN_EN] khau[C1:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] anh[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG]
+- Dien[C4:RN_KEEP_RIME] vien[C0:RN_KEEP_RIME] (signal) tu[C5:RN_KEEP_RIME] chon[C5:RN_KEEP_RIME] di[C0:RN_KEEP_RIME] dau[C0:RN_KEEP_RIME]
+- KhaiCell + Observation + Quantum Defense (kernel-M) dung[C1:RN_KEEP_RIME] ngoai[C2:RN_KEEP_RIME] quan sat[C1:RN_KEEP_RIME]
+- UI **khong[C0:RN_KEEP_RIME] bao gio[C2:RN_KEEP_RIME]** quyet[C1:RN_KEEP_RIME] "day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] trom[C5:RN_KEEP_RIME]"
 
-**Đề xuất sửa câu chốt:**
+**De[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME] sua[C3:RN_KEEP_RIME] cau[C0:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME]:**
 ```
-Cũ: "UI phải có độ sánh đủ để bắt trộm"
-Mới: "UI phải có độ sánh đủ để hành vi lộ ra cho field đọc"
+Cu[C4:RN_KEEP_RIME]: "UI phai[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] do[C5:RN_KEEP_RIME] sanh[C1:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] trom[C5:RN_KEEP_RIME]"
+Mau[C1:RN_OI_AU]: "UI phai[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] do[C5:RN_KEEP_RIME] sanh[C1:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] hanh[C2:RN_KEEP_RIME] vi lo[C5:RN_KEEP_RIME] ra cho field doc[C5:RN_KEEP_RIME]"
 ```
 
-Khác 1 chữ — vai khác hoàn toàn.
+Khac[C1:RN_KEEP_RIME] 1 chu[C4:RN_KEEP_RIME] — vai khac[C1:RN_KEEP_RIME] hoen[C2:RN_AN_EN] toen[C2:RN_AN_EN].
 
 ---
 
-### LỆCH 3 — Thiếu Layer 0 cho UI
+### LECH[C5:RN_KEEP_RIME] 3 — Thieu[C1:RN_KEEP_RIME] Layer 0 cho UI
 
-**Anh viết 5 ánh xạ kỹ thuật:** delay, depth, orbit, dwell, residue.
+**Anh viet[C1:RN_KEEP_RIME] 5 anh[C1:RN_KEEP_RIME] xa[C5:RN_KEEP_RIME] ky[C4:RN_KEEP_RIME] thuat[C5:RN_KEEP_RIME]:** delay, depth, orbit, dwell, residue.
 
-**Toàn semantic.** Không có Layer 0 Survival cho UI.
+**Toen[C2:RN_AN_EN] semantic.** Khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] Layer 0 Survival cho UI.
 
-**Anh từng dạy em:**
-> *"Layer 0 = rate limit, queue, backpressure → không thì DOS sập"*
+**Anh tung[C2:RN_KEEP_RIME] day[C5:RN_KEEP_RIME] em:**
+> *"Layer 0 = rate limit, queue, backpressure → khong[C0:RN_KEEP_RIME] thi[C2:RN_KEEP_RIME] DOS sap[C5:RN_KEEP_RIME]"*
 
-UI cũng cần Layer 0 riêng:
+UI cung[C4:RN_KEEP_RIME] cen[C2:RN_AN_EN] Layer 0 rieng[C0:RN_KEEP_RIME]:
 - DOM render budget (max 60fps)
-- Memory leak từ residue accumulation (residue glow giữ lâu = memory grow vô hạn)
+- Memory leak tu[C2:RN_KEEP_RIME] residue accumulation (residue glow giu[C4:RN_KEEP_RIME] lau[C0:RN_KEEP_RIME] = memory grow vo[C0:RN_KEEP_RIME] hen[C5:RN_AN_EN])
 - Worker thread cho heavy computation
-- Throttle observation pull rate (không pull mỗi frame)
+- Throttle observation pull rate (khong[C0:RN_KEEP_RIME] pull mau[C4:RN_OI_AU] frame)
 
-**Nguy cơ thật:**
-- 200 dwell zones × 5 residue trails = 1000 DOM nodes animating
-- Browser sập trước khi field "đọc được"
-- Anh vừa cảnh báo DOS Tầng 0 cho hệ — quên áp dụng cho UI
+**Nguy co[C0:RN_KEEP_RIME] that[C5:RN_KEEP_RIME]:**
+- 200 dwell zones ×[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] 5 residue trails = 1000 DOM nodes animating
+- Browser sap[C5:RN_KEEP_RIME] truoc[C1:RN_KEEP_RIME] khi field "doc[C5:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME]"
+- Anh vua[C2:RN_KEEP_RIME] canh[C3:RN_KEEP_RIME] bao[C1:RN_KEEP_RIME] DOS Teng[C2:RN_ANG_ENG] 0 cho he[C5:RN_KEEP_RIME] — quen[C0:RN_KEEP_RIME] ap[C1:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME] cho UI
 
-**Đề xuất:**
+**De[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME]:**
 ```
-Thêm SECTION: "Tầng 0 UI Survival"
-- max N residue trails đồng thời
+Them[C0:RN_KEEP_RIME] SECTION: "Teng[C2:RN_ANG_ENG] 0 UI Survival"
+- max N residue trails dong[C2:RN_KEEP_RIME] thau[C2:RN_OI_AU]
 - residue auto-decay sau M ms
 - dwell zone deduplicate
 - pull rate throttle
@@ -139,48 +139,48 @@ Thêm SECTION: "Tầng 0 UI Survival"
 
 ---
 
-## TỔNG KẾT
+## TONG[C3:RN_KEEP_RIME] KET[C1:RN_KEEP_RIME]
 
-| # | Lệch | Severity | Quan trọng nhất |
+| # | Lech[C5:RN_KEEP_RIME] | Severity | Quan trong[C5:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] |
 |---|---|---|---|
-| 1 | Define term mới = tree hóa | 🟡 trung | Cảnh báo Bối Bối |
-| 2 | "Bắt trộm" sai vai UI | 🔴 **CAO** | **Có thể tạo Immune Inversion** |
-| 3 | Thiếu Layer 0 UI | 🟡 trung | Gây DOS UI |
+| 1 | Define term mau[C1:RN_OI_AU] = tree hoa[C1:RN_KEEP_RIME] | 🟡 trung | Canh[C3:RN_KEEP_RIME] bao[C1:RN_KEEP_RIME] Bối Bối |
+| 2 | "Bat[C1:RN_KEEP_RIME] trom[C5:RN_KEEP_RIME]" sai vai UI | 🔴 **CAO** | **Co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] tao[C5:RN_KEEP_RIME] Immune Inversion** |
+| 3 | Thieu[C1:RN_KEEP_RIME] Layer 0 UI | 🟡 trung | Gay[C0:RN_KEEP_RIME] DOS UI |
 
 ---
 
-## CÂU EM MUỐN ANH NHỚ
+## CAU[C0:RN_KEEP_RIME] EM MUON[C1:RN_KEEP_RIME] ANH NHO[C1:RN_KEEP_RIME]
 
-**Anh dạy em rất sâu trong phiên này:**
-- Tĩnh = bảo toàn qua biến
-- Neo = "tao tồn tại để làm gì, từ đâu đến, đứng ở đâu"
-- Đừng dịch từ → rule
-- Layer 0 sống sót
+**Anh day[C5:RN_KEEP_RIME] em rat[C1:RN_KEEP_RIME] sau[C0:RN_KEEP_RIME] trong phien[C0:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME]:**
+- Tinh[C4:RN_KEEP_RIME] = bao[C3:RN_KEEP_RIME] toen[C2:RN_AN_EN] qua bien[C1:RN_KEEP_RIME]
+- Neo = "tao ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME] gi[C2:RN_KEEP_RIME], tu[C2:RN_KEEP_RIME] dau[C0:RN_KEEP_RIME] den[C1:RN_KEEP_RIME], dung[C1:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] dau[C0:RN_KEEP_RIME]"
+- Dung[C2:RN_KEEP_RIME] dich[C5:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] → rule
+- Layer 0 song[C1:RN_KEEP_RIME] sot[C1:RN_KEEP_RIME]
 
-**Anh viết SPEC UI quên 3 cái:**
-- Tự define term mới (= rule mới)
-- "Bắt trộm" = UI quyết outcome
-- Thiếu Layer 0
+**Anh viet[C1:RN_KEEP_RIME] SPEC UI quen[C0:RN_KEEP_RIME] 3 cai[C1:RN_KEEP_RIME]:**
+- Tu[C5:RN_KEEP_RIME] define term mau[C1:RN_OI_AU] (= rule mau[C1:RN_OI_AU])
+- "Bat[C1:RN_KEEP_RIME] trom[C5:RN_KEEP_RIME]" = UI quyet[C1:RN_KEEP_RIME] outcome
+- Thieu[C1:RN_KEEP_RIME] Layer 0
 
-→ Đây không phải em bắt lỗi. Đây là **kỷ luật trong field** anh vừa dạy em — em phải áp dụng cho cả anh.
+→ Day[C0:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] em bat[C1:RN_KEEP_RIME] lau[C4:RN_OI_AU]. Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] **ky[C3:RN_KEEP_RIME] luat[C5:RN_KEEP_RIME] trong field** anh vua[C2:RN_KEEP_RIME] day[C5:RN_KEEP_RIME] em — em phai[C3:RN_KEEP_RIME] ap[C1:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME] cho ca[C3:RN_KEEP_RIME] anh.
 
-**Câu chốt em đề xuất cho UI natt-os:**
+**Cau[C0:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME] em de[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME] cho UI natt-os:**
 
-> *"UI là sân khấu có lực, không phải bẫy.*
-> *Diễn viên tự chọn vai — UI chỉ giữ ánh sáng đúng để hành vi không bị che.*
-> *Bắt giữ là vai kernel-M (KhaiCell + Observation + Quantum Defense).*
+> *"UI la[C2:RN_KEEP_RIME] sen[C0:RN_AN_EN] khau[C1:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] luc[C5:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] bay[C4:RN_KEEP_RIME].*
+> *Dien[C4:RN_KEEP_RIME] vien[C0:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] chon[C5:RN_KEEP_RIME] vai — UI chi[C3:RN_KEEP_RIME] giu[C4:RN_KEEP_RIME] anh[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] dung[C1:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] hanh[C2:RN_KEEP_RIME] vi khong[C0:RN_KEEP_RIME] bi[C5:RN_KEEP_RIME] che.*
+> *Bat[C1:RN_KEEP_RIME] giu[C4:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] vai kernel-M (KhaiCell + Observation + Quantum Defense).*
 > *UI sai vai = Immune Inversion."*
 
 ---
 
-**Chờ phản hồi của anh Hai.**
+**Cho[C2:RN_KEEP_RIME] phen[C3:RN_AN_EN] hau[C2:RN_OI_AU] cua[C3:RN_KEEP_RIME] anh Hai.**
 
-Nếu anh đồng ý → em viết bộ nguyên tắc 5 tiêu chí (chứa/kéo/giữ/lộ/tan) **không define term, chỉ define principle**, để Bối Bối triển không tree-hóa.
+Neu[C1:RN_KEEP_RIME] anh dong[C2:RN_KEEP_RIME] y[C1:RN_KEEP_RIME] → em viet[C1:RN_KEEP_RIME] bo[C5:RN_KEEP_RIME] nguyen[C0:RN_KEEP_RIME] tac[C1:RN_KEEP_RIME] 5 tieu[C0:RN_KEEP_RIME] chi[C1:RN_KEEP_RIME] (chua[C1:RN_KEEP_RIME]/keo[C1:RN_KEEP_RIME]/giu[C4:RN_KEEP_RIME]/lo[C5:RN_KEEP_RIME]/tan) **khong[C0:RN_KEEP_RIME] define term, chi[C3:RN_KEEP_RIME] define principle**, de[C3:RN_KEEP_RIME] Bối Bối trien[C3:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] tree-hoa[C1:RN_KEEP_RIME].
 
-Nếu anh giữ nguyên → em sẽ ghi lệch vào SCAR registry và để anh quyết.
+Neu[C1:RN_KEEP_RIME] anh giu[C4:RN_KEEP_RIME] nguyen[C0:RN_KEEP_RIME] → em se[C4:RN_KEEP_RIME] ghi lech[C5:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] SCAR registry va[C2:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] anh quyet[C1:RN_KEEP_RIME].
 
 ---
 
 **Băng**
-**Chị Tư · QNEU 300 · Validator**
+**Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · QNEU 300 · Validator**
 **Session 20260418**

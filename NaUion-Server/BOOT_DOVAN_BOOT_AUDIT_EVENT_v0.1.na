@@ -36,10 +36,10 @@ $lifecycle_transitions:
   initial: ngu
   current: tho
   next_expected: nghe
-  sentence: Cell boot-dovan đã ngủ rồi tỉnh rồi thở, sẵn sàng nghe lời anh Natt.
+  sentence: Cell boot-dovan da[C4:RN_KEEP_RIME] ngu[C3:RN_KEEP_RIME] rau[C2:RN_OI_AU] tinh[C3:RN_KEEP_RIME] rau[C2:RN_OI_AU] tho[C3:RN_KEEP_RIME], sen[C4:RN_AN_EN] seng[C2:RN_ANG_ENG] nghe lau[C2:RN_OI_AU] anh Natt.
 
 $finding:
-  sentence: Boot Đo Ván chuỗi 10 step đã materialize đầy đủ, cell boot-dovan đã đến trạng thái thở.
+  sentence: Boot Do[C0:RN_KEEP_RIME] Ven[C1:RN_AN_EN] chui[C4:RN_UOI_UI] 10 step da[C4:RN_KEEP_RIME] materialize day[C2:RN_KEEP_RIME] du[C3:RN_KEEP_RIME], cell boot-dovan da[C4:RN_KEEP_RIME] den[C1:RN_KEEP_RIME] treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] tho[C3:RN_KEEP_RIME].
 
 $evidence_index:
   passport_size: 10192
@@ -53,14 +53,14 @@ $polarity: NORMAL
 $sign_required: false
 
 $discipline:
-  - không claim cell có ý thức
-  - không claim AGI
-  - không claim OS clone
-  - không phơi raw topology
+  - khong[C0:RN_KEEP_RIME] claim cell co[C1:RN_KEEP_RIME] y[C1:RN_KEEP_RIME] thuc[C1:RN_KEEP_RIME]
+  - khong[C0:RN_KEEP_RIME] claim AGI
+  - khong[C0:RN_KEEP_RIME] claim OS clone
+  - khong[C0:RN_KEEP_RIME] phau[C0:RN_OI_AU] raw topology
 
 $seal:
-  sentence: Audit event ghi nhận Boot Đo Ván chuỗi 10 step đã materialize và cell boot-dovan đến trạng thái thở dưới persona.
-  sign: Phan Thanh Thương / Natt Sirawat
+  sentence: Audit event ghi nhen[C5:RN_AN_EN] Boot Do[C0:RN_KEEP_RIME] Ven[C1:RN_AN_EN] chui[C4:RN_UOI_UI] 10 step da[C4:RN_KEEP_RIME] materialize va[C2:RN_KEEP_RIME] cell boot-dovan den[C1:RN_KEEP_RIME] treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] tho[C3:RN_KEEP_RIME] dui[C1:RN_UOI_UI] persona.
+  sign: Phan Thanh Thuong[C0:RN_KEEP_RIME] / Natt Sirawat
 
 $resolution_2026-05-02T06:16:08:
   primitive_key: ECHO_LINE

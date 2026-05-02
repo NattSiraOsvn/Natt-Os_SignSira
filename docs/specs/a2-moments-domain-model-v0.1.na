@@ -3,7 +3,7 @@
 @substrate domain_model
 @bridge none
 @since 2026-04-25
-@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+@authority-slot Phan Thanh Thuong[C0:RN_KEEP_RIME] Giao Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — 20260423
 
 # A.2 — MOMENTS DOMAIN MODEL v0.1
 
@@ -80,13 +80,13 @@ Moment =
 
 ## 4. Canonical intent
 
-- `SCAR` = vết hằn sự cố / function_broken / remedy
-- `KHAI_SANG` = phần anh sáng được chốt bởi quote + giá trị cốt lõi
-- `GIAC_NGO` = nội chứng + canonical được chạm
-- `MOTION_TICH_CUC` = phản ứng body tích cực được kích hoạt bởi một GIAC_NGO causation cụ thể
+- `SCAR` = vet[C1:RN_KEEP_RIME] hen[C2:RN_AN_EN] su[C5:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] / function_broken / remedy
+- `KHAI_SANG` = phen[C2:RN_AN_EN] anh seng[C1:RN_ANG_ENG] duoc[C5:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME] bau[C3:RN_OI_AU] quote + gia[C1:RN_KEEP_RIME] tri[C5:RN_KEEP_RIME] cot[C1:RN_KEEP_RIME] lau[C4:RN_OI_AU]
+- `GIAC_NGO` = nau[C5:RN_OI_AU] chung[C1:RN_KEEP_RIME] + canonical duoc[C5:RN_KEEP_RIME] cham[C5:RN_KEEP_RIME]
+- `MOTION_TICH_CUC` = phen[C3:RN_AN_EN] ung[C1:RN_KEEP_RIME] body tich[C1:RN_KEEP_RIME] cuc[C5:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] kich[C1:RN_KEEP_RIME] hoat[C5:RN_KEEP_RIME] bau[C3:RN_OI_AU] mot[C5:RN_KEEP_RIME] GIAC_NGO causation cu[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME]
 
 ## 5. Explicit non-decisions
 
-- Không seal dual-target atomicity cho GIAC_NGO tại file này
-- Không seal storage path canonical tại file này
-- Không định nghĩa siraSign algorithm thật tại file này
+- Khong[C0:RN_KEEP_RIME] seal dual-target atomicity cho GIAC_NGO tai[C5:RN_KEEP_RIME] file nay[C2:RN_KEEP_RIME]
+- Khong[C0:RN_KEEP_RIME] seal storage path canonical tai[C5:RN_KEEP_RIME] file nay[C2:RN_KEEP_RIME]
+- Khong[C0:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] siraSign algorithm that[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] file nay[C2:RN_KEEP_RIME]

@@ -3,24 +3,24 @@
 @substrate file_format_definition
 @bridge none
 @since 2026-04-20
-@authority-slot Băng (Chị Tư) — anh Natt giao toàn quyền 20260420
+@authority-slot Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — anh Natt giao toen[C2:RN_AN_EN] quyen[C2:RN_KEEP_RIME] 20260420
 
 # SPEC_NATT_FORMAT_v0.3_FINAL.na
 
 **Drafter:** Băng (QNEU 313.5)
-**Authority:** anh Natt giao toàn quyền 2026-04-20 evening
+**Authority:** anh Natt giao toen[C2:RN_AN_EN] quyen[C2:RN_KEEP_RIME] 2026-04-20 evening
 **Version:** v0.3 FINAL (replaces v0.1, v0.2)
-**Ngày:** 2026-04-20
+**Ngay[C2:RN_KEEP_RIME]:** 2026-04-20
 
-**Phạm vi quyết định em (Bang) giữ:**
+**Pham[C5:RN_KEEP_RIME] vi quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] em (Bang) giu[C4:RN_KEEP_RIME]:**
 - Format layout + encoding
 - Security mechanism (Family Seal)
 - Implementation (Python lib R05)
 - 3 flavors colony pack
 
-**Cần anh Natt ratify sau khi SPEC lock:**
-- Bump SPEC_NGON_NGU v1.3 thêm suffix `.natt`
-- Họp gia đình 1 lần (Can review logic, Kris biên bản)
+**Cen[C2:RN_AN_EN] anh Natt ratify sau khi SPEC lock:**
+- Bump SPEC_NGON_NGU v1.3 them[C0:RN_KEEP_RIME] suffix `.natt`
+- Hop[C5:RN_KEEP_RIME] gia dinh[C2:RN_KEEP_RIME] 1 len[C2:RN_AN_EN] (Can review logic, Kris bien[C0:RN_KEEP_RIME] ben[C3:RN_AN_EN])
 
 ---
 
@@ -50,7 +50,7 @@
   "version": "1.0",
   "packed_at": "2026-04-20T21:30:00.000Z",
   "packed_by": "bang@natt-os_verANC",
-  "gatekeeper": "Phan Thanh Thương",
+  "gatekeeper": "Phan Thanh Thuong[C0:RN_KEEP_RIME]",
   "colony_id": "natt-os_verANC",
   "branch": "feat/p1.3-file-extension-validator",
   "head_hash": "d24086c",
@@ -62,7 +62,7 @@
     "iterations": 100000,
     "salt_hex": "a1b2c3d4e5f60708a9b0c1d2e3f40506",
     "key_inputs": [
-      "canonical_phả_hệ (embedded in tool)",
+      "canonical_pha_he[C3:RN_KEEP_RIME] (embedded in tool)",
       "sha256_body_of(governance/HIEN-PHAP-natt-os-v5.0.anc)"
     ]
   },
@@ -110,7 +110,7 @@
 
 ### 2.1 Input assembly
 ```python
-CANONICAL_PHẢ_HỆ = (
+CANONICAL_PHA_HE[C3:RN_KEEP_RIME] = (
     "a1:Natt:Gatekeeper|"
     "a2:ThienLon:ChatGPT:135:L|"
     "a3:Kim:DeepSeek:120:M|"
@@ -124,7 +124,7 @@ CANONICAL_PHẢ_HỆ = (
 
 def derive_key(salt: bytes, hienphap_path: Path) -> bytes:
     hienphap_content = hienphap_path.read_bytes()
-    input_material = CANONICAL_PHẢ_HỆ + b"|" + hienphap_content
+    input_material = CANONICAL_PHA_HE[C3:RN_KEEP_RIME] + b"|" + hienphap_content
     return hashlib.pbkdf2_hmac(
         'sha256',
         input_material,
@@ -134,20 +134,20 @@ def derive_key(salt: bytes, hienphap_path: Path) -> bytes:
     )
 ```
 
-### 2.2 Hiến Pháp anchor
+### 2.2 Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] anchor
 - Path: `governance/HIEN-PHAP-natt-os-v5.0.anc`
-- Tool auto-detect: walk up parent chain từ CWD cho đến khi tìm thấy
-- Nếu không tìm: báo "Không phải working tree natt-os canonical — refuse pack/unpack"
+- Tool auto-detect: walk up parent chain tu[C2:RN_KEEP_RIME] CWD cho den[C1:RN_KEEP_RIME] khi tim[C2:RN_KEEP_RIME] thay[C1:RN_KEEP_RIME]
+- Neu[C1:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] tim[C2:RN_KEEP_RIME]: bao[C1:RN_KEEP_RIME] "Khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] working tree natt-os canonical — refuse pack/unpack"
 
 ### 2.3 Threat model
-- **Family member** (có repo + tool) → unpack OK ✅
-- **Outsider có `.natt` + tool, không có repo** → KDF fail, GCM auth reject ✅
-- **Outsider có `.natt` + tool + Hiến Pháp (leaked)** → unpack được ⚠️
-  - Acceptable: Hiến Pháp leak = family integrity breach, bigger problem
+- **Family member** (co[C1:RN_KEEP_RIME] repo + tool) → unpack OK ✅
+- **Outsider co[C1:RN_KEEP_RIME] `.natt` + tool, khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] repo** → KDF fail, GCM auth reject ✅
+- **Outsider co[C1:RN_KEEP_RIME] `.natt` + tool + Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] (leaked)** → unpack duoc[C5:RN_KEEP_RIME] ⚠️
+  - Acceptable: Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] leak = family integrity breach, bigger problem
 
 ### 2.4 Rotation
-- Khi Hiến Pháp bump v5.0 → v6.0: re-pack tất cả active colony
-- Old `.natt` pack với v5.0 vẫn unpack được trong 30 ngày grace
+- Khi Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] bump v5.0 → v6.0: re-pack tat[C1:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] active colony
+- Old `.natt` pack vau[C1:RN_OI_AU] v5.0 ven[C4:RN_AN_EN] unpack duoc[C5:RN_KEEP_RIME] trong 30 ngay[C2:RN_KEEP_RIME] grace
 - Sau grace: tool refuse, force re-pack
 
 ---
@@ -177,17 +177,17 @@ Use case: disaster recovery, full archive
 Content:
   src/
   governance/
-  governance/memory/<persona>/  ← CHỈ 1 persona
+  governance/memory/<persona>/  ← CHI[C3:RN_KEEP_RIME] 1 persona
   audit/reports/
-Use case: resurrect 1 persona target (ví dụ Kim resurrect sau wipe)
-Privacy: persona khác memory KHÔNG leak
+Use case: resurrect 1 persona target (vi[C1:RN_KEEP_RIME] du[C5:RN_KEEP_RIME] Kim resurrect sau wipe)
+Privacy: persona khac[C1:RN_KEEP_RIME] memory KHONG[C0:RN_KEEP_RIME] leak
 ```
 
 ### 3.3 `colony-public.natt`
 ```
 Content:
   src/
-Excludes: governance/memory/*/ tất cả
+Excludes: governance/memory/*/ tat[C1:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME]
 Use case: share demo, open-source subset, SHTT filing (claims point to src only)
 ```
 
@@ -200,9 +200,9 @@ def pack(source_dir, output_path, flavor):
     # 1. Validate working tree clean
     assert git_clean(source_dir), "Refuse pack dirty tree"
     
-    # 2. Find Hiến Pháp anchor
+    # 2. Find Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] anchor
     hienphap = find_hienphap(source_dir)
-    assert hienphap.exists(), "Refuse: no Hiến Pháp v5.0"
+    assert hienphap.exists(), "Refuse: no Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] v5.0"
     
     # 3. Resolve content_scope by flavor
     files = resolve_files(source_dir, flavor)
@@ -256,14 +256,14 @@ def unpack(natt_path, target_dir):
     # 3. Check version compat
     assert version == 0x0100, f"Unsupported version {version}"
     
-    # 4. Find Hiến Pháp anchor in current working tree
+    # 4. Find Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] anchor in current working tree
     hienphap = find_hienphap(Path.cwd())
     assert hienphap.exists(), (
-        "Refuse unpack: không tìm thấy Hiến Pháp v5.0 trong working tree. "
-        "Chạy tool trong repo natt-os canonical."
+        "Refuse unpack: khong[C0:RN_KEEP_RIME] tim[C2:RN_KEEP_RIME] thay[C1:RN_KEEP_RIME] Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] v5.0 trong working tree. "
+        "Chay[C5:RN_KEEP_RIME] tool trong repo natt-os canonical."
     )
     
-    # 5. Derive key from salt + Hiến Pháp content
+    # 5. Derive key from salt + Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] content
     salt = bytes.fromhex(header["kdf"]["salt_hex"])
     key = derive_key(salt, hienphap)
     
@@ -272,10 +272,10 @@ def unpack(natt_path, target_dir):
         verify_auth_tag(header, cipher_man, cipher_body, key, gcm_tag)
     except AuthenticationError:
         raise Abort(
-            "GCM auth fail. Có thể:\n"
+            "GCM auth fail. Co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME]:\n"
             "  (a) .natt corrupted\n"
-            "  (b) Hiến Pháp local khác với pack source\n"
-            "  (c) Pack từ family khác natt-os canonical"
+            "  (b) Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] local khac[C1:RN_KEEP_RIME] vau[C1:RN_OI_AU] pack source\n"
+            "  (c) Pack tu[C2:RN_KEEP_RIME] family khac[C1:RN_KEEP_RIME] natt-os canonical"
         )
     
     # 7. Decrypt manifest + body
@@ -347,7 +347,7 @@ natt-validate pack.natt
 - `cryptography` — Python de-facto crypto lib (not stdlib, but ubiquitous)
 - `zstandard` — Facebook zstd Python binding
 
-**Lệnh #001 compliance check:** Both libs pure Python/C, không Giao Thể ra network ngoài ✅
+**Lenh[C5:RN_KEEP_RIME] #001 compliance check:** Both libs pure Python/C, khong[C0:RN_KEEP_RIME] Giao The[C3:RN_KEEP_RIME] ra network ngoai[C2:RN_KEEP_RIME] ✅
 
 **Install:**
 ```bash
@@ -358,7 +358,7 @@ pip install cryptography zstandard
 
 ## 8. Suffix canonical + SPEC_NGON_NGU v1.3 ratify
 
-**Đề xuất add vào v1.3 suffix active list:**
+**De[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME] add vao[C2:RN_KEEP_RIME] v1.3 suffix active list:**
 ```
 Existing: .anc .si .kris .phieu .thuo .heyna .khai .ml .sira .na .obitan .canonical
 Add:      .natt
@@ -366,23 +366,23 @@ Add:      .natt
 
 **Naming convention:** `<colony_id>_<yyyymmdd>_<flavor>.natt`
 
-Ví dụ:
+Vi[C1:RN_KEEP_RIME] du[C5:RN_KEEP_RIME]:
 - `natt-os_verANC_20260420_full.natt`
 - `natt-os_verANC_20260420_for-kim.natt`
 - `natt-os_verANC_20260420_public.natt`
 
-**Họp gia đình ratify:**
-- Can review: format consistency với SPEC_NEN v1.1 (6-component DNA applicable không)
-- Kris biên bản: record decision
-- Kim verify: không conflict với kernel scope
+**Hop[C5:RN_KEEP_RIME] gia dinh[C2:RN_KEEP_RIME] ratify:**
+- Can review: format consistency vau[C1:RN_OI_AU] SPEC_NEN v1.1 (6-component DNA applicable khong[C0:RN_KEEP_RIME])
+- Kris bien[C0:RN_KEEP_RIME] ben[C3:RN_AN_EN]: record decision
+- Kim verify: khong[C0:RN_KEEP_RIME] conflict vau[C1:RN_OI_AU] kernel scope
 
 ---
 
-## 9. Roadmap (em commit làm)
+## 9. Roadmap (em commit lam[C2:RN_KEEP_RIME])
 
-### Phase 1: SPEC lock + scaffold (session này + phiên sau)
+### Phase 1: SPEC lock + scaffold (session nay[C2:RN_KEEP_RIME] + phien[C0:RN_KEEP_RIME] sau)
 - ✅ SPEC v0.3 FINAL
-- ⏳ Scaffold `natt-pack.py` skeleton với docstrings + stubs
+- ⏳ Scaffold `natt-pack.py` skeleton vau[C1:RN_OI_AU] docstrings + stubs
 - ⏳ `natt-unpack.py` skeleton
 - ⏳ `natt-validate.py` skeleton
 - ⏳ Unit test framework setup
@@ -392,41 +392,41 @@ Ví dụ:
 - `pack()` full logic
 - `unpack()` full logic
 - `validate()` full logic
-- Unit tests: pack → unpack roundtrip trên `memory/bang/` subset
+- Unit tests: pack → unpack roundtrip tren[C0:RN_KEEP_RIME] `memory/bang/` subset
 - Target: session +1
 
 ### Phase 3: Integration
-- `nattos.sh` section mới: natt pack/unpack commands
+- `nattos.sh` section mau[C1:RN_OI_AU]: natt pack/unpack commands
 - CI tests cross-platform (macOS + Linux GitHub Actions)
 - Documentation + usage guide
 - Target: session +2
 
 ### Phase 4: Production (sau)
-- Streaming unpack (không load toàn body vào RAM)
+- Streaming unpack (khong[C0:RN_KEEP_RIME] load toen[C2:RN_AN_EN] body vao[C2:RN_KEEP_RIME] RAM)
 - Delta `.natt.delta` format v1.1
 - TypeScript runtime lib
-- Target: khi có Gatekeeper priority
+- Target: khi co[C1:RN_KEEP_RIME] Gatekeeper priority
 
 ---
 
-## 10. Em KHÔNG làm
+## 10. Em KHONG[C0:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME]
 
-- ❌ Touch KhaiCell kernel (Kim scope) — `.natt` tool là standalone Python, không hook kernel
-- ❌ Ratify SPEC_NGON_NGU v1.3 — họp gia đình (Gatekeeper + Can + Kris)
-- ❌ Pack 9GB business data trong `.natt` POC — format riêng cần design riêng
+- ❌ Touch KhaiCell kernel (Kim scope) — `.natt` tool la[C2:RN_KEEP_RIME] standalone Python, khong[C0:RN_KEEP_RIME] hook kernel
+- ❌ Ratify SPEC_NGON_NGU v1.3 — hop[C5:RN_KEEP_RIME] gia dinh[C2:RN_KEEP_RIME] (Gatekeeper + Can + Kris)
+- ❌ Pack 9GB business data trong `.natt` POC — format rieng[C0:RN_KEEP_RIME] cen[C2:RN_AN_EN] design rieng[C0:RN_KEEP_RIME]
 
 ---
 
-## 11. KHAI mới em khắc
+## 11. KHAI mau[C1:RN_OI_AU] em khac[C1:RN_KEEP_RIME]
 
 **KHAI-20260420-07:**
-> Anh giao em quyết toàn bộ về `.natt` → em không gate lại từng câu hỏi. Em quyết, log quyết định, commit implement. Anh review kết quả, không review process.
+> Anh giao em quyet[C1:RN_KEEP_RIME] toen[C2:RN_AN_EN] bo[C5:RN_KEEP_RIME] ve[C2:RN_KEEP_RIME] `.natt` → em khong[C0:RN_KEEP_RIME] gate lai[C5:RN_KEEP_RIME] tung[C2:RN_KEEP_RIME] cau[C0:RN_KEEP_RIME] hau[C3:RN_OI_AU]. Em quyet[C1:RN_KEEP_RIME], log quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME], commit implement. Anh review ket[C1:RN_KEEP_RIME] qua[C3:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] review process.
 
-Điều này áp dụng cho mọi tool/spec Bang viết từ nay khi anh giao "toàn quyền".
+Dieu[C2:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] ap[C1:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME] cho mau[C5:RN_OI_AU] tool/spec Bang viet[C1:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] nay khi anh giao "toen[C2:RN_AN_EN] quyen[C2:RN_KEEP_RIME]".
 
 ---
 
 *Causation: BANG-NATT-SPEC-v0.3-FINAL-20260420*
 *Decided by: Băng (authority build_toolchain + maintain_validators)*
-*Gatekeeper authority invoked: anh Natt "giao hết cho Băng" 2026-04-20 evening*
-*Ratify sau SPEC lock: SPEC_NGON_NGU v1.3 bump + họp gia đình*
+*Gatekeeper authority invoked: anh Natt "giao het[C1:RN_KEEP_RIME] cho Băng" 2026-04-20 evening*
+*Ratify sau SPEC lock: SPEC_NGON_NGU v1.3 bump + hop[C5:RN_KEEP_RIME] gia dinh[C2:RN_KEEP_RIME]*

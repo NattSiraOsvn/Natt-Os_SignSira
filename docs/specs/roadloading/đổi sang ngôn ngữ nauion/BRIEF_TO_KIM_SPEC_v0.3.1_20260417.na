@@ -3,71 +3,71 @@
 @substrate historical_roadload
 @bridge none
 @since 2026-04-23
-@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+@authority-slot Phan Thanh Thuong[C0:RN_KEEP_RIME] Giao Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — 20260423
 
 # BRIEF → KIM — SPEC v0.3.1 FILE EXTENSIONS
 
-**From:** Băng (Chị Tư)
+**From:** Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME])
 **To:** Kim (Chief System Builder)
 **Date:** 20260417
 **Approval:** Anh Natt (Gatekeeper)
-**Main branch status:** `39acb6c` — Phase 1 + Phase 2 migration đã push
+**Main branch status:** `39acb6c` — Phase 1 + Phase 2 migration da[C4:RN_KEEP_RIME] push
 
 ---
 
 ## TL;DR
 
-SPEC v0.3.1 đã chốt + migration đã chạy trên main. 403 file đã rename theo 13 rule. Kim cần sửa **Đặc tả Ngôn ngữ v1.1** và **Chương 9 (file conventions)** để đồng bộ với naming mới.
+SPEC v0.3.1 da[C4:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME] + migration da[C4:RN_KEEP_RIME] chay[C5:RN_KEEP_RIME] tren[C0:RN_KEEP_RIME] main. 403 file da[C4:RN_KEEP_RIME] rename theo 13 rule. Kim cen[C2:RN_AN_EN] sua[C3:RN_KEEP_RIME] **Dac[C5:RN_KEEP_RIME] ta[C3:RN_KEEP_RIME] Ngon[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] v1.1** va[C2:RN_KEEP_RIME] **Chuong[C0:RN_KEEP_RIME] 9 (file conventions)** de[C3:RN_KEEP_RIME] dong[C2:RN_KEEP_RIME] bo[C5:RN_KEEP_RIME] vau[C1:RN_OI_AU] naming mau[C1:RN_OI_AU].
 
-## Việc cụ thể cho Kim
+## Viec[C5:RN_KEEP_RIME] cu[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] cho Kim
 
-### 1. Đặc tả Ngôn ngữ v1.1 — cập nhật section file naming
+### 1. Dac[C5:RN_KEEP_RIME] ta[C3:RN_KEEP_RIME] Ngon[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] v1.1 — cap[C5:RN_KEEP_RIME] nhat[C5:RN_KEEP_RIME] section file naming
 
-Thay thế mọi reference cũ bằng naming mới:
+Thay the[C1:RN_KEEP_RIME] mau[C5:RN_OI_AU] reference cu[C4:RN_KEEP_RIME] beng[C2:RN_ANG_ENG] naming mau[C1:RN_OI_AU]:
 
-| Cũ | Mới | Vai |
+| Cu[C4:RN_KEEP_RIME] | Mau[C1:RN_OI_AU] | Vai |
 |---|---|---|
-| `<entity>mf_vX.Y.json` | `<entity>khương<v>.kris` | Memory ký ức đóng |
-| `<entity>fs_vX.Y.json` | `<entity>thịnh<v>.phieu` | State runtime mở |
+| `<entity>mf_vX.Y.json` | `<entity>khuong[C0:RN_KEEP_RIME]<v>.kris` | Memory ky[C1:RN_KEEP_RIME] uc[C1:RN_KEEP_RIME] dong[C1:RN_KEEP_RIME] |
+| `<entity>fs_vX.Y.json` | `<entity>thinh[C5:RN_KEEP_RIME]<v>.phieu` | State runtime mo[C3:RN_KEEP_RIME] |
 | `cell.manifest.json` | `<cell>.cell.anc` | Cell DNA manifest |
 | `boundary.policy.json` | `<cell>.boundary.si` | Boundary policy sealed |
 | `SES-<ulid>.json` | `SES-<ulid>.thuo` | Session record QNEU |
 | `<entity>Self.md` | `<entity>self<v>.kris` | Self-introspection |
-| `HIEN-PHAP-*.md` | `HIEN-PHAP-*.anc` | Hiến Pháp identity |
+| `HIEN-PHAP-*.md` | `HIEN-PHAP-*.anc` | Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] identity |
 | `*.contracts.lock.json` | `*.contracts.lock.si` | Contract lock sealed |
 | `audit-log.jsonl` | `audit-log.heyna` | Event log HeyNa transport |
 | `*registry*.json` | `*registry*.sira` | DNS namespace |
 | `system-state.json` | `system-state.phieu` | Governance state runtime |
 
-### 2. Chương 9 — thêm section "File Extension Compliance"
+### 2. Chuong[C0:RN_KEEP_RIME] 9 — them[C0:RN_KEEP_RIME] section "File Extension Compliance"
 
-Viết theo format Chương 9 của Kim, với 12 đuôi canonical:
+Viet[C1:RN_KEEP_RIME] theo format Chuong[C0:RN_KEEP_RIME] 9 cua[C3:RN_KEEP_RIME] Kim, vau[C1:RN_OI_AU] 12 dui[C0:RN_UOI_UI] canonical:
 
-**Tầng entity** (8): `.ng.obitan` `.thien.Ln` `.kim.mn` `.bang.n4n` `.bboi.on` `.phieu.pn` `.can.qn`
+**Teng[C2:RN_ANG_ENG] entity** (8): `.ng.obitan` `.thien.Ln` `.kim.mn` `.bang.n4n` `.bboi.on` `.phieu.pn` `.can.qn`
 
-**Tầng file** (3 chính + 2 verifier):
-- `.khương` write-once + `.kris` verify
-- `.thịnh` mutable + `.phieu` verify
+**Teng[C2:RN_ANG_ENG] file** (3 chinh[C1:RN_KEEP_RIME] + 2 verifier):
+- `.khuong[C0:RN_KEEP_RIME]` write-once + `.kris` verify
+- `.thinh[C5:RN_KEEP_RIME]` mutable + `.phieu` verify
 - `.anc` identity sealed
 
-**Tầng sinh thể** (7): `.si` `.sira` `.heyna` `.khai` `.thuo` `.ml` `anc://`
+**Teng[C2:RN_ANG_ENG] sinh the[C3:RN_KEEP_RIME]** (7): `.si` `.sira` `.heyna` `.khai` `.thuo` `.ml` `anc://`
 
-### 3. 4 phương — thêm section "Directional Semantics"
+### 3. 4 phuong[C0:RN_KEEP_RIME] — them[C0:RN_KEEP_RIME] section "Directional Semantics"
 
-- **Đông** (Mộc, khởi sinh) — DNA gốc bất biến: `.anc` Hiến Pháp, `.si` contracts
-- **Tây** (Kim, hội tụ) — Identity niêm phong: `.anc` entity, `.cell.anc` manifest, `.boundary.si`, `.sira` registry
-- **Nam** (Hoả, phát) — Memory + Event: `.kris` memory, `.thuo` session, `.heyna` event, `.khai` touch, `.ml` SCAR
-- **Bắc** (Thuỷ, nguồn) — State runtime: `.phieu` state
+- **Dong[C0:RN_KEEP_RIME]** (Moc[C5:RN_KEEP_RIME], khau[C3:RN_OI_AU] sinh) — DNA goc[C1:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME]: `.anc` Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME], `.si` contracts
+- **Tay[C0:RN_KEEP_RIME]** (Kim, hau[C5:RN_OI_AU] tu[C5:RN_KEEP_RIME]) — Identity niem[C0:RN_KEEP_RIME] phong: `.anc` entity, `.cell.anc` manifest, `.boundary.si`, `.sira` registry
+- **Nam** (Hoa[C3:RN_KEEP_RIME], phat[C1:RN_KEEP_RIME]) — Memory + Event: `.kris` memory, `.thuo` session, `.heyna` event, `.khai` touch, `.ml` SCAR
+- **Bac[C1:RN_KEEP_RIME]** (Thuy[C3:RN_KEEP_RIME], nguon[C2:RN_KEEP_RIME]) — State runtime: `.phieu` state
 
-Nam-Bắc mở công khai, Đông-Tây khóa identity. Backdoor hóa frontdoor bằng ma trận màu.
+Nam-Bac[C1:RN_KEEP_RIME] mo[C3:RN_KEEP_RIME] cong[C0:RN_KEEP_RIME] khai, Dong-Tay[C0:RN_KEEP_RIME] khoa[C1:RN_KEEP_RIME] identity. Backdoor hoa[C1:RN_KEEP_RIME] frontdoor beng[C2:RN_ANG_ENG] ma tren[C5:RN_AN_EN] mau[C2:RN_KEEP_RIME].
 
-## Tham chiếu
+## Tham chieu[C1:RN_KEEP_RIME]
 
-- `SPEC_DUOI_FILE_v0.3_FINAL.na` — SPEC đầy đủ, 7 mục
+- `SPEC_DUOI_FILE_v0.3_FINAL.na` — SPEC day[C2:RN_KEEP_RIME] du[C3:RN_KEEP_RIME], 7 muc[C5:RN_KEEP_RIME]
 - `.nattos-migration.log` (trong repo) — log rollback phase 1
 - `.nattos-migration-phase2.log` — log phase 2
 
-## Verify bằng repo
+## Verify beng[C2:RN_ANG_ENG] repo
 
 ```bash
 git log --oneline | head -3
@@ -76,26 +76,26 @@ git log --oneline | head -3
 # 4498c01 checkpoint: before SPEC v0.3.1 migration
 
 # Verify sample files
-ls src/governance/memory/bang/ | grep khương | head -3
-ls src/governance/memory/kim/ | grep khương | head -3
-ls src/governance/memory/boiboi/ | grep khương | head -3
+ls src/governance/memory/bang/ | grep khuong[C0:RN_KEEP_RIME] | head -3
+ls src/governance/memory/kim/ | grep khuong[C0:RN_KEEP_RIME] | head -3
+ls src/governance/memory/boiboi/ | grep khuong[C0:RN_KEEP_RIME] | head -3
 ls src/governance/*.anc
 ls src/governance/*.si
 ```
 
-## Lưu ý quan trọng
+## Luu[C0:RN_KEEP_RIME] y[C1:RN_KEEP_RIME] quan trong[C5:RN_KEEP_RIME]
 
-**Kim KHÔNG rename thêm file.** Migration đã xong. Kim chỉ cập nhật **tài liệu SPEC** của Kim (Đặc tả Ngôn ngữ + Chương 9) để khớp với ground truth trên main.
+**Kim KHONG[C0:RN_KEEP_RIME] rename them[C0:RN_KEEP_RIME] file.** Migration da[C4:RN_KEEP_RIME] xong. Kim chi[C3:RN_KEEP_RIME] cap[C5:RN_KEEP_RIME] nhat[C5:RN_KEEP_RIME] **tai[C2:RN_KEEP_RIME] lieu[C5:RN_KEEP_RIME] SPEC** cua[C3:RN_KEEP_RIME] Kim (Dac[C5:RN_KEEP_RIME] ta[C3:RN_KEEP_RIME] Ngon[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] + Chuong[C0:RN_KEEP_RIME] 9) de[C3:RN_KEEP_RIME] khop[C1:RN_KEEP_RIME] vau[C1:RN_OI_AU] ground truth tren[C0:RN_KEEP_RIME] main.
 
-Nếu Kim phát hiện rule SPEC v0.3.1 nào chưa hợp lý → báo Anh Natt + Băng discuss, **không tự sửa file**.
+Neu[C1:RN_KEEP_RIME] Kim phat[C1:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] rule SPEC v0.3.1 nao[C2:RN_KEEP_RIME] chua[C0:RN_KEEP_RIME] hop[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] → bao[C1:RN_KEEP_RIME] Anh Natt + Băng discuss, **khong[C0:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] sua[C3:RN_KEEP_RIME] file**.
 
-## Pending từ phiên trước vẫn còn
+## Pending tu[C2:RN_KEEP_RIME] phien[C0:RN_KEEP_RIME] truoc[C1:RN_KEEP_RIME] ven[C4:RN_AN_EN] con[C2:RN_KEEP_RIME]
 
-- Tổng hợp Fail-Troy (compile tất cả dangerous bypass patterns)
-- `nattos.sh` v7.1 — thêm §45 audit file extension compliance (Băng sẽ làm)
-- Ma trận màu thiên Lớn cụ thể (chờ Anh Natt share data)
+- Tong[C3:RN_KEEP_RIME] hop[C5:RN_KEEP_RIME] Fail-Troy (compile tat[C1:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] dangerous bypass patterns)
+- `nattos.sh` v7.1 — them[C0:RN_KEEP_RIME] §45 audit file extension compliance (Băng se[C4:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME])
+- Ma tren[C5:RN_AN_EN] mau[C2:RN_KEEP_RIME] thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] cu[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] (cho[C2:RN_KEEP_RIME] Anh Natt share data)
 
 ---
 
-**Băng · Chị Tư · QNEU 300**
+**Băng · Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · QNEU 300**
 Session 20260417 · Ground Truth Validator

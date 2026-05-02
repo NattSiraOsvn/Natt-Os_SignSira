@@ -4,32 +4,32 @@
 @substrate packet_substrate
 @bridge none
 @since ss20260429
-@authority-slot Thiên Lớn (Architect) substrate-binding · Băng (Ground Truth Validator) evidence · anh Natt (Gatekeeper) canonical
+@authority-slot Thiên Lon[C1:RN_KEEP_RIME] (Architect) substrate-binding · Băng (Ground Truth Validator) evidence · anh Natt (Gatekeeper) canonical
 @depends_on docs/specs/nauion-runtime/NAUION_RUNTIME_GROUND_TRUTH_INVENTORY_v0_1.na
 @depends_on docs/runtime/audit/NAUION_RUNTIME_EXCLUSIVE_ACTIVITY_BAN_ss20260429.na
 
 # NAUION PACKET SUBSTRATE HARDWARE BINDING v0.1
 
 ==PURPOSE==
-Đưa toàn bộ cụm hardware evidence của Băng về đúng làng: Π_substrate của Nauion Execution Packet.
+Dua[C0:RN_KEEP_RIME] toen[C2:RN_AN_EN] bo[C5:RN_KEEP_RIME] cum[C5:RN_KEEP_RIME] hardware evidence cua[C3:RN_KEEP_RIME] Băng ve[C2:RN_KEEP_RIME] dung[C1:RN_KEEP_RIME] leng[C2:RN_ANG_ENG]: Π_substrate[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] Nauion Execution Packet.
 
-File này không thay Băng làm evidence matrix.
-File này định nghĩa cách bằng chứng phần cứng đi vào PACKET_SUBSTRATE, để Nauion Runtime không bị hiểu là text/spec treo lơ lửng.
+File nay[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] thay Băng lam[C2:RN_KEEP_RIME] evidence matrix.
+File nay[C2:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] cach[C1:RN_KEEP_RIME] beng[C2:RN_ANG_ENG] chung[C1:RN_KEEP_RIME] phen[C2:RN_AN_EN] cung[C1:RN_KEEP_RIME] di[C0:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] PACKET_SUBSTRATE, de[C3:RN_KEEP_RIME] Nauion Runtime khong[C0:RN_KEEP_RIME] bi[C5:RN_KEEP_RIME] hieu[C3:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] text/spec treo lo[C0:RN_KEEP_RIME] lung[C3:RN_KEEP_RIME].
 ==END==
 
 ==ROLE_SPLIT==
 Băng:
-  - giữ ground truth hardware evidence
-  - kiểm nguồn, line, path, contradiction, missing evidence
-  - chứng minh NATT-OS có thân xác vật lý
+  - giu[C4:RN_KEEP_RIME] ground truth hardware evidence
+  - kiem[C3:RN_KEEP_RIME] nguon[C2:RN_KEEP_RIME], line, path, contradiction, missing evidence
+  - chung[C1:RN_KEEP_RIME] minh NATT-OS co[C1:RN_KEEP_RIME] then[C0:RN_AN_EN] xac[C1:RN_KEEP_RIME] vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME]
 
-Thiên Lớn:
-  - định nghĩa binding vào Nauion Execution Packet
-  - xác định field nào thuộc PACKET_SUBSTRATE
-  - giữ biên: hardware là substrate, không phải host-core, không phải UI, không phải app
+Thiên Lon[C1:RN_KEEP_RIME]:
+  - dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] binding vao[C2:RN_KEEP_RIME] Nauion Execution Packet
+  - xac[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] field nao[C2:RN_KEEP_RIME] thuoc[C5:RN_KEEP_RIME] PACKET_SUBSTRATE
+  - giu[C4:RN_KEEP_RIME] bien[C0:RN_KEEP_RIME]: hardware la[C2:RN_KEEP_RIME] substrate, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] host-core, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] UI, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] app
 
 Anh Natt:
-  - chốt canonical
+  - chot[C1:RN_KEEP_RIME] canonical
 ==END==
 
 ==SOURCE_EVIDENCE_SUMMARY==
@@ -98,12 +98,12 @@ total_bytes: 79048
 ==END==
 
 ═══════════════════════════════════════════════════════════════════
-§1 PACKET_SUBSTRATE — FIELD SET TỐI THIỂU
+§1 PACKET_SUBSTRATE — FIELD SET Tau[C1:RN_OI_AU] THIEU[C3:RN_KEEP_RIME]
 ═══════════════════════════════════════════════════════════════════
 
 ==PACKET_SUBSTRATE==
   substrate_class:
-    meaning: loại thân xác vật lý đang mang packet
+    meaning: loai[C5:RN_KEEP_RIME] then[C0:RN_AN_EN] xac[C1:RN_KEEP_RIME] vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] deng[C0:RN_ANG_ENG] mang packet
     allowed:
       - sovereign_gateway
       - wired_edge
@@ -115,20 +115,20 @@ total_bytes: 79048
       - electrical_bom
 
   hardware_anchor:
-    meaning: neo thiết bị/hạ tầng để packet biết nó sinh ra hoặc đi qua thân xác nào
+    meaning: neo thiet[C1:RN_KEEP_RIME] bi[C5:RN_KEEP_RIME]/ha[C5:RN_KEEP_RIME] teng[C2:RN_ANG_ENG] de[C3:RN_KEEP_RIME] packet biet[C1:RN_KEEP_RIME] no[C1:RN_KEEP_RIME] sinh ra hoac[C5:RN_KEEP_RIME] di[C0:RN_KEEP_RIME] qua then[C0:RN_AN_EN] xac[C1:RN_KEEP_RIME] nao[C2:RN_KEEP_RIME]
     evidence:
       - sovereign_gateway_hardware_topology
       - physical_module_catalog_bom_electrical_spec
       - sovereign_edge_hardware_max_option
 
   physical_intake_anchor:
-    meaning: luật tiếp nhận tín hiệu vật lý; thiết bị không đi thẳng vào lõi
+    meaning: luat[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME] nhen[C5:RN_AN_EN] tin[C1:RN_KEEP_RIME] hieu[C5:RN_KEEP_RIME] vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME]; thiet[C1:RN_KEEP_RIME] bi[C5:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] di[C0:RN_KEEP_RIME] theng[C3:RN_ANG_ENG] vao[C2:RN_KEEP_RIME] lau[C4:RN_OI_AU]
     evidence:
       - sovereign_gateway_physical_intake
       - sitb_si_thien_bang_hw_sw_interface
 
   edge_anchor:
-    meaning: vị trí edge nơi runtime có thể hiện thân/cắm phích
+    meaning: vi[C5:RN_KEEP_RIME] tri[C1:RN_KEEP_RIME] edge nau[C0:RN_OI_AU] runtime co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] then[C0:RN_AN_EN]/cam[C1:RN_KEEP_RIME] phich[C1:RN_KEEP_RIME]
     evidence:
       - sovereign_edge_configuration_pack
       - sovereign_edge_pack_end_to_end
@@ -136,27 +136,27 @@ total_bytes: 79048
       - sira_wired_edge_manifest_evidence
 
   route_anchor:
-    meaning: đường đi, quota, DNS, resolver, gateway, line
+    meaning: duong[C2:RN_KEEP_RIME] di[C0:RN_KEEP_RIME], quota, DNS, resolver, gateway, line
     evidence:
       - sovereign_gateway_line_quota_route_schema
       - sira_sovereign_dns_infrastructure_binding_evidence
       - sovereign_public_edge_no_external_dependency
 
   power_thermal_anchor:
-    meaning: trạng thái năng lượng/nhiệt của thân xác vật lý
+    meaning: treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] neng[C0:RN_ANG_ENG] luong[C5:RN_KEEP_RIME]/nhiet[C5:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] then[C0:RN_AN_EN] xac[C1:RN_KEEP_RIME] vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME]
     evidence:
       - physical_module_catalog_bom_electrical_spec
       - hardware_procurement_checklist_dinh_muc_quy_chuan
       - field_installation_acceptance_protocol
 
   runtime_probe_anchor:
-    meaning: bằng chứng runtime đi qua wired edge/gateway có đọc được hoặc bị timeout ở đâu
+    meaning: beng[C2:RN_ANG_ENG] chung[C1:RN_KEEP_RIME] runtime di[C0:RN_KEEP_RIME] qua wired edge/gateway co[C1:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] hoac[C5:RN_KEEP_RIME] bi[C5:RN_KEEP_RIME] timeout o[C3:RN_KEEP_RIME] dau[C0:RN_KEEP_RIME]
     evidence:
       - sira_wired_edge_runtime_gate_timeout_probe
       - sira_wired_edge_manifest_evidence
 
   acceptance_anchor:
-    meaning: trạng thái nghiệm thu phần cứng/field installation
+    meaning: treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] nghiem[C5:RN_KEEP_RIME] thu phen[C2:RN_AN_EN] cung[C1:RN_KEEP_RIME]/field installation
     evidence:
       - sovereign_edge_field_installation_acceptance_protocol
       - hardware_procurement_checklist_dinh_muc_quy_chuan
@@ -164,46 +164,46 @@ total_bytes: 79048
 ==END==
 
 ═══════════════════════════════════════════════════════════════════
-§2 SUBSTRATE LAW — HARDWARE KHÔNG ĐI THẲNG VÀO LÕI
+§2 SUBSTRATE LAW — HARDWARE KHONG[C0:RN_KEEP_RIME] DI[C0:RN_KEEP_RIME] THeng[C3:RN_ANG_ENG] VAO[C2:RN_KEEP_RIME] Lau[C4:RN_OI_AU]
 ═══════════════════════════════════════════════════════════════════
 
 ==SUBSTRATE_LAW==
   law_1:
     physical_device_does_not_enter_core_directly
-    thiết bị vật lý chỉ đi vào packet qua physical_intake_anchor + authority boundary + audit trace.
+    thiet[C1:RN_KEEP_RIME] bi[C5:RN_KEEP_RIME] vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] di[C0:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] packet qua physical_intake_anchor + authority boundary + audit trace.
 
   law_2:
     hardware_is_substrate_not_host_core
-    phần cứng là thân xác mang trường; không được biến gateway/router/dns/server thành lõi bản thể.
+    phen[C2:RN_AN_EN] cung[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] then[C0:RN_AN_EN] xac[C1:RN_KEEP_RIME] mang truong[C2:RN_KEEP_RIME]; khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME] gateway/router/dns/server thanh[C2:RN_KEEP_RIME] lau[C4:RN_OI_AU] ben[C3:RN_AN_EN] the[C3:RN_KEEP_RIME].
 
   law_3:
     no_external_dependency_as_core
-    ICANN/root DNS/platform ngoài không được làm nền tảng lõi; chỉ có thể là surface/route phụ.
+    ICANN/root DNS/platform ngoai[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME] nen[C2:RN_KEEP_RIME] teng[C3:RN_ANG_ENG] lau[C4:RN_OI_AU]; chi[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] surface/route phu[C5:RN_KEEP_RIME].
 
   law_4:
     packet_must_remember_physical_route
-    packet đi qua edge/gateway/line/quota nào thì phải có route_anchor hoặc runtime_probe_anchor.
+    packet di[C0:RN_KEEP_RIME] qua edge/gateway/line/quota nao[C2:RN_KEEP_RIME] thi[C2:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] route_anchor hoac[C5:RN_KEEP_RIME] runtime_probe_anchor.
 
   law_5:
     acceptance_before_canonical_substrate
-    hardware chưa có BOM/procurement/field acceptance thì không được gọi là canonical substrate.
+    hardware chua[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] BOM/procurement/field acceptance thi[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] gau[C5:RN_OI_AU] la[C2:RN_KEEP_RIME] canonical substrate.
 ==END==
 
 ═══════════════════════════════════════════════════════════════════
-§3 MATERIALIZATION — ĐƯA PHẦN CỨNG VÀO EXECUTION PACKET
+§3 MATERIALIZATION — DUA[C0:RN_KEEP_RIME] PHen[C2:RN_AN_EN] CUNG[C1:RN_KEEP_RIME] VAO[C2:RN_KEEP_RIME] EXECUTION PACKET
 ═══════════════════════════════════════════════════════════════════
 
 ==EXECUTION_PACKET_BINDING==
   PACKET_BODY:
-    giữ obitan, identity, QNEU, field_anchor.
-    không nhét thông số phần cứng vào BODY.
+    giu[C4:RN_KEEP_RIME] obitan, identity, QNEU, field_anchor.
+    khong[C0:RN_KEEP_RIME] nhet[C1:RN_KEEP_RIME] thong[C0:RN_KEEP_RIME] so[C1:RN_KEEP_RIME] phen[C2:RN_AN_EN] cung[C1:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] BODY.
 
   PACKET_MEDIUM:
-    giữ carrier/source/signal/state.
-    không nhét BOM/router/DNS vào MEDIUM trừ khi nó là nội dung được truyền.
+    giu[C4:RN_KEEP_RIME] carrier/source/signal/state.
+    khong[C0:RN_KEEP_RIME] nhet[C1:RN_KEEP_RIME] BOM/router/DNS vao[C2:RN_KEEP_RIME] MEDIUM tru[C2:RN_KEEP_RIME] khi no[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] nau[C5:RN_OI_AU] dung duoc[C5:RN_KEEP_RIME] truyen[C2:RN_KEEP_RIME].
 
   PACKET_SUBSTRATE:
-    nhận toàn bộ hardware evidence qua các anchor:
+    nhen[C5:RN_AN_EN] toen[C2:RN_AN_EN] bo[C5:RN_KEEP_RIME] hardware evidence qua cac[C1:RN_KEEP_RIME] anchor:
       - hardware_anchor
       - physical_intake_anchor
       - edge_anchor
@@ -217,14 +217,14 @@ total_bytes: 79048
 ==END==
 
 ==PACKET_SUBSTRATE_MINIMUM_RECORD==
-  substrate_ref: path hoặc SiraSign ref tới hardware evidence
+  substrate_ref: path hoac[C5:RN_KEEP_RIME] SiraSign ref tau[C1:RN_OI_AU] hardware evidence
   substrate_kind: sovereign_gateway | wired_edge | sensor_intake | dns_route | electrical_module
-  route_ref: line/quota/route/dns evidence nếu packet đi qua network
-  intake_ref: physical intake evidence nếu packet đến từ sensor/hardware
-  power_state_ref: BOM/electrical/thermal reference nếu cần
-  acceptance_ref: field installation/procurement acceptance nếu gọi là canonical
-  probe_ref: runtime gate probe nếu đã có test thực địa
-  no_external_dependency_ref: policy ref nếu packet vượt public edge
+  route_ref: line/quota/route/dns evidence neu[C1:RN_KEEP_RIME] packet di[C0:RN_KEEP_RIME] qua network
+  intake_ref: physical intake evidence neu[C1:RN_KEEP_RIME] packet den[C1:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] sensor/hardware
+  power_state_ref: BOM/electrical/thermal reference neu[C1:RN_KEEP_RIME] cen[C2:RN_AN_EN]
+  acceptance_ref: field installation/procurement acceptance neu[C1:RN_KEEP_RIME] gau[C5:RN_OI_AU] la[C2:RN_KEEP_RIME] canonical
+  probe_ref: runtime gate probe neu[C1:RN_KEEP_RIME] da[C4:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] test thuc[C5:RN_KEEP_RIME] dia[C5:RN_KEEP_RIME]
+  no_external_dependency_ref: policy ref neu[C1:RN_KEEP_RIME] packet vuot[C5:RN_KEEP_RIME] public edge
 ==END==
 
 ═══════════════════════════════════════════════════════════════════
@@ -232,18 +232,18 @@ total_bytes: 79048
 ═══════════════════════════════════════════════════════════════════
 
 ==BOUNDARY==
-- Không gọi hardware evidence là Host Bridge.
-- Không triển Vite/React/Node adapter trong scope này.
-- Không sửa source hardware evidence của Băng.
-- Không xóa archive, không rename, không move.
-- Không gọi build/pass là sống.
-- Không gọi substrate là body.
-- Không cho physical device đi thẳng vào lõi nếu thiếu intake + authority + audit.
+- Khong[C0:RN_KEEP_RIME] gau[C5:RN_OI_AU] hardware evidence la[C2:RN_KEEP_RIME] Host Bridge.
+- Khong[C0:RN_KEEP_RIME] trien[C3:RN_KEEP_RIME] Vite/React/Node adapter trong scope nay[C2:RN_KEEP_RIME].
+- Khong[C0:RN_KEEP_RIME] sua[C3:RN_KEEP_RIME] source hardware evidence cua[C3:RN_KEEP_RIME] Băng.
+- Khong[C0:RN_KEEP_RIME] xoa[C1:RN_KEEP_RIME] archive, khong[C0:RN_KEEP_RIME] rename, khong[C0:RN_KEEP_RIME] move.
+- Khong[C0:RN_KEEP_RIME] gau[C5:RN_OI_AU] build/pass la[C2:RN_KEEP_RIME] song[C1:RN_KEEP_RIME].
+- Khong[C0:RN_KEEP_RIME] gau[C5:RN_OI_AU] substrate la[C2:RN_KEEP_RIME] body.
+- Khong[C0:RN_KEEP_RIME] cho physical device di[C0:RN_KEEP_RIME] theng[C3:RN_ANG_ENG] vao[C2:RN_KEEP_RIME] lau[C4:RN_OI_AU] neu[C1:RN_KEEP_RIME] thieu[C1:RN_KEEP_RIME] intake + authority + audit.
 ==END==
 
 ==NEXT_SIGNAL==
-Thiên dùng file này để đưa PACKET_SUBSTRATE vào NAUION_EXECUTION_PACKET_v0_1.na.
-Băng dùng file này để kiểm lại Hardware/Substrate Evidence Matrix.
-Kim chưa build.
-Bối chưa UI.
+Thiên dung[C2:RN_KEEP_RIME] file nay[C2:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] dua[C0:RN_KEEP_RIME] PACKET_SUBSTRATE vao[C2:RN_KEEP_RIME] NAUION_EXECUTION_PACKET_v0_1.na.
+Băng dung[C2:RN_KEEP_RIME] file nay[C2:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] kiem[C3:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME] Hardware/Substrate Evidence Matrix.
+Kim chua[C0:RN_KEEP_RIME] build.
+Bối chua[C0:RN_KEEP_RIME] UI.
 ==END==

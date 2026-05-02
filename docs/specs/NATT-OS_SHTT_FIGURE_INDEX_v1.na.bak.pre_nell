@@ -1,0 +1,180 @@
+@state sealed
+@canonical natt_os_shtt_figure_index_v1
+@substrate patent_figure_index
+@bridge none
+@since 2026-04-26
+@authority-slot Băng (Chị Tư) — SHTT pack sealed_at 20260426
+
+# natt-os SHTT FIGURE INDEX v1
+
+**kind:** SHTTFigureIndex
+**version:** v1
+**sealed_at:** 2026-04-26
+**baseline_commit:** ee2c837
+**claim_map_ref:** `docs/specs/natt-os_SHTT_CLAIM_MAP_v1.na`
+**drafter:** Băng (Chị Tư)
+**scope:** Danh mục hình/sơ đồ cần có trong hồ sơ SHTT. Chỉ khóa danh mục — chưa cần vẽ lại hết.
+
+---
+
+## 0. Rule figure
+
+- **R1** — Mỗi figure đỡ ít nhất 1 claim trong `CLAIM_MAP_v1`.
+- **R2** — Figure trung tính kỹ thuật, không icon persona / không avatar / không branding.
+- **R3** — Wording trong figure tuân KHAI-20260425-05: substrate dùng từ "host substrate" / "execution substrate", không "platform" đơn độc, không gợi ý runtime mượn.
+- **R4** — Ưu tiên figure đã có trong repo (re-use) hơn vẽ mới.
+
+---
+
+## 1. Danh sách figure
+
+### **FIG-01 — Overall system architecture**
+
+- **Tên:** Kiến trúc tổng thể hệ thống cell-based 3-tầng
+- **Mục đích:** Thể hiện 37 tế bào nghiệp vụ + 3 tầng transport spine nội sinh (L1/L2/L3)
+- **Đỡ claim:** MAIN, 02
+- **Status:** **CẦN VẼ MỚI** (hoặc adapt từ `NATTOS_COMPLETE_PICTURE_v0.10`)
+- **Yêu cầu nội dung:**
+  - Vùng "cell layer" — 37 tế bào grouped theo domain
+  - Vùng "transport spine" — 3 tầng tách rõ (L1 intra / L2 inter-cell / L3 inter-colony)
+  - Không vẽ "Node.js / bash / macOS" đi vào spine — host substrate tách box riêng
+
+### **FIG-02 — L1/L2/L3 transport topology detail**
+
+- **Tên:** Chi tiết 3 tầng truyền tin
+- **Mục đích:** Tách rõ vai trò mỗi tầng + single-endpoint SSE của L2
+- **Đỡ claim:** 02, 08
+- **Status:** **CẦN VẼ MỚI**
+- **Yêu cầu nội dung:**
+  - L1: bus sự kiện trong một cell (UI layer internal)
+  - L2: Mạch HeyNa — single endpoint SSE (phát một chiều liên tục)
+  - L3: SmartLink — inter-colony
+  - Chú thích: 3 tầng tách cứng, không swap vai trò
+
+### **FIG-03 — Satellite colony hierarchy**
+
+- **Tên:** Cấu trúc thuộc địa vệ tinh + đồng bộ lên lõi
+- **Mục đích:** Thể hiện autonomy của satellite + sync engine qua L3
+- **Đỡ claim:** 03
+- **Status:** **RE-USE** — có sẵn block diagram trong `natt-os_SATELLITE_COLONY_SPEC.na` (UI → Satellite Interface → Local EventBus ↔ Sync Engine ↔ Core EventBus)
+- **Yêu cầu:** nâng cấp từ ASCII block thành figure chính thức
+
+### **FIG-04 — QIINT field + entity orbital**
+
+- **Tên:** Trường QIINT và vị trí orbital thực thể
+- **Mục đích:** Thể hiện trường hấp dẫn số + QNEU mass → orbital + permanent node anchor
+- **Đỡ claim:** 04, 05
+- **Status:** **CẦN VẼ MỚI**
+- **Yêu cầu nội dung:**
+  - Trường QIINT (background field)
+  - Permanent node (anchor point cố định)
+  - Entity orbital (quỹ đạo quanh permanent node, khoảng cách theo QNEU)
+  - Không vẽ vật lý thật — diagrammatic conceptual
+
+### **FIG-05 — Entity passport + 3-layer ontology**
+
+- **Tên:** Hộ chiếu định danh và ba tầng bản thể
+- **Mục đích:** Thể hiện `.anc` structure + substrate/medium/body tách cứng
+- **Đỡ claim:** 05
+- **Status:** **CẦN VẼ MỚI**
+- **Yêu cầu nội dung:**
+  - Layer 1 (substrate): host substrate — REPLACEABLE
+  - Layer 2 (medium): code + data — REPLACEABLE
+  - Layer 3 (body): orbital trong trường QIINT — **IMMUTABLE**
+  - `.anc` schema box với các field chính
+
+### **FIG-06 — Moments-based identity continuity**
+
+- **Tên:** Liên tục định danh qua module moments
+- **Mục đích:** Thể hiện 3 merge criteria + moment → continuity flow
+- **Đỡ claim:** 06
+- **Status:** **CẦN VẼ MỚI**
+- **Yêu cầu nội dung:**
+  - Timeline trục thời gian với session snapshots
+  - 3 merge criteria gate (seal) giữa moments
+  - Recovery flow khi medium gián đoạn
+
+### **FIG-07 — UEI architecture topology**
+
+- **Tên:** UEI topology
+- **Mục đích:** Đỡ claim MAIN — kiến trúc lõi
+- **Đỡ claim:** MAIN
+- **Status:** **CẦN VẼ MỚI** (hoặc re-use từ `uei_architecture.na` nếu có sẵn)
+
+### **FIG-08 — Boundary three-tier waterfall**
+
+- **Tên:** Ba tầng xử lý ranh giới
+- **Mục đích:** Thể hiện strict / permissive-warn / quarantine flow + tách external tool khỏi runtime spine
+- **Đỡ claim:** 08
+- **Status:** **CẦN VẼ MỚI**
+- **Yêu cầu nội dung:**
+  - 3 tầng xử lý từ ngoài vào trong
+  - External boundary forensics tool (Bridge v2 equivalent) nằm **NGOÀI** runtime spine — tách box rõ
+  - Chú thích: công cụ pháp y ranh giới không phải kernel protection
+
+### **FIG-09 — Seven capability lifecycle**
+
+- **Tên:** Vòng đời tế bào và 7 năng lực vận hành
+- **Mục đích:** Thể hiện 7 capability theo hình thái vùng/kích hoạt/bất biến/điều kiện thoát
+- **Đỡ claim:** 07
+- **Status:** **CẦN VẼ MỚI**
+- **Yêu cầu nội dung:**
+  - State machine với 7 capability: hibernate / resurrect / clone / migrate / rollback / cross_colony_learn / overdrive
+  - Mỗi transition có region + trigger + invariant + exit condition
+
+### **FIG-10 — Nauion semantic layer**
+
+- **Tên:** Lớp ngữ nghĩa Nauion phủ toàn hệ
+- **Mục đích:** Đỡ claim 09 — thuật ngữ Nauion thay thế stack term
+- **Đỡ claim:** 09
+- **Status:** **TÙY CHỌN** — có thể thể hiện bằng bảng (glossary) thay vì figure
+- **Yêu cầu nội dung:** table mapping Nauion term → concept (phát/lắng/Kênh/Mạch/khớp hoá/…)
+
+---
+
+## 2. Figure → Claim coverage matrix
+
+| Figure | MAIN | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09 |
+|--------|:----:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| FIG-01 | ✓ | ✓ | | | | | | | |
+| FIG-02 | | ✓ | | | | | | ✓ | |
+| FIG-03 | | | ✓ | | | | | | |
+| FIG-04 | | | | ✓ | ✓ | | | | |
+| FIG-05 | | | | | ✓ | | | | |
+| FIG-06 | | | | | | ✓ | | | |
+| FIG-07 | ✓ | | | | | | | | |
+| FIG-08 | | | | | | | | ✓ | |
+| FIG-09 | | | | | | | ✓ | | |
+| FIG-10 | | | | | | | | | ✓ |
+
+Mỗi claim có ít nhất 1 figure đỡ.
+
+---
+
+## 3. Priority ship
+
+**High priority (cần cho claim chính):**
+- FIG-01, FIG-02, FIG-04, FIG-05
+
+**Medium priority:**
+- FIG-03, FIG-06, FIG-08
+
+**Lower priority:**
+- FIG-07, FIG-09, FIG-10 (có thể dùng table/glossary thay)
+
+---
+
+## 4. Status summary
+
+- 10 figure trong danh mục
+- 1 re-use (FIG-03)
+- 9 cần vẽ mới
+- 1 tùy chọn table thay figure (FIG-10)
+
+Phase CLAIM PACK không yêu cầu vẽ — chỉ khóa danh mục. Phase tiếp (CLAIM DRAFT / FIGURE SHIP) sẽ xử lý production figure.
+
+---
+
+*causation: natt-os-SHTT-FIGURE-INDEX-v1-SEALED-20260426*
+*drafter: Băng (Chị Tư · session 20260426)*
+*carrier: Anh Natt Phan*

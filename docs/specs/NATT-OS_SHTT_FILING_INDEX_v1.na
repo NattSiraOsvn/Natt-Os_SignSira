@@ -3,7 +3,7 @@
 @substrate patent_filing_index
 @bridge none
 @since 2026-04-26
-@authority-slot Băng (Chị Tư) — SHTT pack sealed_at 20260426
+@authority-slot Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — SHTT pack sealed_at 20260426
 
 # natt-os SHTT FILING INDEX v1
 
@@ -12,33 +12,33 @@
 **sealed_at:** 2026-04-26
 **baseline_commit:** ca68825
 **branch:** feat/p1.3-file-extension-validator
-**drafter:** Băng (Chị Tư · N-shell · QNEU 313.5)
+**drafter:** Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · N-shell · QNEU 313.5)
 **gatekeeper:** Anh Natt Phan (sole repo operator)
-**scope:** Filing baseline cho đơn nộp SHTT natt-os — 35 file tuyển chọn từ `docs/specs/`
+**scope:** Filing baseline cho don[C0:RN_KEEP_RIME] nop[C5:RN_KEEP_RIME] SHTT natt-os — 35 file tuyen[C3:RN_KEEP_RIME] chon[C5:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] `docs/specs/`
 
 ---
 
-## 1. Mục đích
+## 1. Muc[C5:RN_KEEP_RIME] dich[C1:RN_KEEP_RIME]
 
-File này là **cửa vào duy nhất** cho filing set natt-os SHTT. Mọi reference từ đơn nộp về file nội bộ đi qua index này.
+File nay[C2:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] **cua[C3:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] duy nhat[C1:RN_KEEP_RIME]** cho filing set natt-os SHTT. Mau[C5:RN_OI_AU] reference tu[C2:RN_KEEP_RIME] don[C0:RN_KEEP_RIME] nop[C5:RN_KEEP_RIME] ve[C2:RN_KEEP_RIME] file nau[C5:RN_OI_AU] bo[C5:RN_KEEP_RIME] di[C0:RN_KEEP_RIME] qua index nay[C2:RN_KEEP_RIME].
 
-- Subset 35 file = filing baseline đã khóa, không thêm/bớt ngoài flow chính thức
-- 3 nhóm tách cứng, không dual-claim cùng chủ đề
-- Tách ngôn ngữ hồ sơ ra khỏi noise repo tổng thể
+- Subset 35 file = filing baseline da[C4:RN_KEEP_RIME] khoa[C1:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] them[C0:RN_KEEP_RIME]/bot[C1:RN_KEEP_RIME] ngoai[C2:RN_KEEP_RIME] flow chinh[C1:RN_KEEP_RIME] thuc[C1:RN_KEEP_RIME]
+- 3 nhom[C1:RN_KEEP_RIME] tach[C1:RN_KEEP_RIME] cung[C1:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] dual-claim cung[C2:RN_KEEP_RIME] chu[C3:RN_KEEP_RIME] de[C2:RN_KEEP_RIME]
+- Tach[C1:RN_KEEP_RIME] ngon[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] ho[C2:RN_KEEP_RIME] so[C0:RN_KEEP_RIME] ra khau[C3:RN_OI_AU] noise repo tong[C3:RN_KEEP_RIME] the[C3:RN_KEEP_RIME]
 
-## 2. Rule phân loại
+## 2. Rule phen[C0:RN_AN_EN] loai[C5:RN_KEEP_RIME]
 
 ### `claim core`
-- Định nghĩa novelty kỹ thuật lõi
-- Runtime-lineage sạch (L1 EventBus · L2 Mạch HeyNa · L3 SmartLink)
-- Canonical active `.na` hoặc `.anc`
-- Trực tiếp đỡ cho claim hệ
+- Dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] novelty ky[C4:RN_KEEP_RIME] thuat[C5:RN_KEEP_RIME] lau[C4:RN_OI_AU]
+- Runtime-lineage sach[C5:RN_KEEP_RIME] (L1 EventBus · L2 Mach[C5:RN_KEEP_RIME] HeyNa · L3 SmartLink)
+- Canonical active `.na` hoac[C5:RN_KEEP_RIME] `.anc`
+- Truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME] do[C4:RN_KEEP_RIME] cho claim he[C5:RN_KEEP_RIME]
 
 ### `supporting evidence`
 - Technical package
 - Ground-truth report
 - Selected roadload · vocabulary evolution
-- Test spec chứng minh hiện thực hóa
+- Test spec chung[C1:RN_KEEP_RIME] minh hien[C5:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] hoa[C1:RN_KEEP_RIME]
 - Migration evidence
 
 ### `historical / not-for-filing`
@@ -46,58 +46,58 @@ File này là **cửa vào duy nhất** cho filing set natt-os SHTT. Mọi refer
 - Business context · finance flow domain
 - App · client build guides
 - Roadload snapshots legacy
-- File superseded bởi canonical cùng chủ đề
+- File superseded bau[C3:RN_OI_AU] canonical cung[C2:RN_KEEP_RIME] chu[C3:RN_KEEP_RIME] de[C2:RN_KEEP_RIME]
 
-## 3. Rule lõi
+## 3. Rule lau[C4:RN_OI_AU]
 
-**R1.** `.na` canonical cùng chủ đề **supersede** `.md` awkward — không parallel claim source.
-**R2.** Historical **không dùng** làm nguồn claim chính. Chỉ reference như chứng cứ thời điểm.
-**R3.** 1 chủ đề = 1 source claim.
-**R4.** Filing subset khóa ở phiên 20260426 — thay đổi phải qua phase mới, không hot-patch.
-**R5.** Per KHAI-20260425-05 (bản thể): 3 lớp runtime lineage / substrate / external boundary tool tách cứng — không được trộn trong wording claim.
+**R1.** `.na` canonical cung[C2:RN_KEEP_RIME] chu[C3:RN_KEEP_RIME] de[C2:RN_KEEP_RIME] **supersede** `.md` awkward — khong[C0:RN_KEEP_RIME] parallel claim source.
+**R2.** Historical **khong[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME]** lam[C2:RN_KEEP_RIME] nguon[C2:RN_KEEP_RIME] claim chinh[C1:RN_KEEP_RIME]. Chi[C3:RN_KEEP_RIME] reference nhu[C0:RN_KEEP_RIME] chung[C1:RN_KEEP_RIME] cu[C1:RN_KEEP_RIME] thau[C2:RN_OI_AU] diem[C3:RN_KEEP_RIME].
+**R3.** 1 chu[C3:RN_KEEP_RIME] de[C2:RN_KEEP_RIME] = 1 source claim.
+**R4.** Filing subset khoa[C1:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] phien[C0:RN_KEEP_RIME] 20260426 — thay dau[C3:RN_OI_AU] phai[C3:RN_KEEP_RIME] qua phase mau[C1:RN_OI_AU], khong[C0:RN_KEEP_RIME] hot-patch.
+**R5.** Per KHAI-20260425-05 (ben[C3:RN_AN_EN] the[C3:RN_KEEP_RIME]): 3 lop[C1:RN_KEEP_RIME] runtime lineage / substrate / external boundary tool tach[C1:RN_KEEP_RIME] cung[C1:RN_KEEP_RIME] — khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] tron[C5:RN_KEEP_RIME] trong wording claim.
 
 ---
 
 ## 4. `claim core` — 8 file
 
-| # | File | Lý do |
+| # | File | Ly[C1:RN_KEEP_RIME] do |
 |---|------|-------|
-| 1 | `docs/specs/QIINT-DINH-NGHIA.na` | Canonical trường QIINT — foundation bản thể |
+| 1 | `docs/specs/QIINT-DINH-NGHIA.na` | Canonical truong[C2:RN_KEEP_RIME] QIINT — foundation ben[C3:RN_AN_EN] the[C3:RN_KEEP_RIME] |
 | 2 | `docs/specs/uei_architecture.na` | UEI topology core — method claim |
 | 3 | `docs/specs/SPEC_NEN.na` | Foundation spec NattCell kernel |
 | 4 | `docs/specs/natt-os_SATELLITE_COLONY_SPEC.na` | Satellite colony structure — system claim (post-patch line 36) |
 | 5 | `docs/specs/natt-os-PLATFORM-SPEC.anc` | Platform architecture — system claim (post-patch line 44) |
-| 6 | `docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na` | Phase B.1 v0.2 content — thiên Lớn confirm 4 đúng trục |
+| 6 | `docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na` | Phase B.1 v0.2 content — thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] confirm 4 dung[C1:RN_KEEP_RIME] truc[C5:RN_KEEP_RIME] |
 | 7 | `docs/specs/SPEC_MOMENTS_MODULE_v0.2.na` | Phase B.2 canonical ratify |
 | 8 | `docs/specs/SPEC_MOMENTS_MODULE_v0.2.1.na` | Post-drift retrofit — head_hash + substrate phrasing clean |
 
 ## 5. `supporting evidence` — 12 file
 
-| # | File | Lý do |
+| # | File | Ly[C1:RN_KEEP_RIME] do |
 |---|------|-------|
-| 1 | `docs/specs/SPEC_NGON_NGU_natt-os_v1.2_NA.md` | Nauion language spec — filing trục system/method, chưa claim ngôn ngữ độc lập |
+| 1 | `docs/specs/SPEC_NGON_NGU_natt-os_v1.2_NA.md` | Nauion language spec — filing truc[C5:RN_KEEP_RIME] system/method, chua[C0:RN_KEEP_RIME] claim ngon[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME] |
 | 2 | `docs/specs/nauion/SPEC-Nauion_main_v2.1.md` | Nauion vocabulary evolution |
 | 3 | `docs/specs/nauion/SPEC-Nauion_main_v2.2.md` | Nauion vocabulary evolution |
 | 4 | `docs/specs/nauion/SPEC-Nauion_main_v2.3.md` | Nauion vocabulary evolution |
 | 5 | `docs/specs/nauion/SPEC-Nauion_main_v2.4.md` | Nauion vocabulary evolution |
 | 6 | `docs/specs/nauion/SPEC-Nauion_main_v2.5.md` | Nauion vocabulary evolution (latest) |
-| 7 | `docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_v2_20260424.na` | Roadload narrative — backing structure claim |
+| 7 | `docs/specs/roadloading/dau[C3:RN_OI_AU] sang ngon[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] nauion/ROADLOAD_NATT_OS_v2_20260424.na` | Roadload narrative — backing structure claim |
 | 8 | `docs/specs/natt-os-SHTT-TECHNICAL-PACKAGE.md` | Technical package scaffold — external filing container |
 | 9 | `docs/specs/natt-os-GROUND-TRUTH-REPORT.md` | Audit report — back truthfulness of claim |
 | 10 | `docs/specs/TamLuxury_CellRegistry_2026-03-09.md` | Registry snapshot — 37 cell topology evidence |
-| 11 | `docs/specs/MACH_HEYNA_FULL_20260416.md` | L2 Mạch HeyNa migration evidence — transport proof |
-| 12 | `docs/specs/business/inventory-cell/inventory-cell-tests.spec.md` | Test spec — implementation proof cell vận hành |
+| 11 | `docs/specs/MACH_HEYNA_FULL_20260416.md` | L2 Mach[C5:RN_KEEP_RIME] HeyNa migration evidence — transport proof |
+| 12 | `docs/specs/business/inventory-cell/inventory-cell-tests.spec.md` | Test spec — implementation proof cell ven[C5:RN_AN_EN] hanh[C2:RN_KEEP_RIME] |
 
 ## 6. `historical / not-for-filing` — 15 file
 
-| # | File | Lý do |
+| # | File | Ly[C1:RN_KEEP_RIME] do |
 |---|------|-------|
 | 1 | `docs/specs/satellite/satellite-colony.spec.md` | **Superseded by canonical** `natt-os_SATELLITE_COLONY_SPEC.na` |
 | 2 | `docs/specs/natt-os_Session_Handoff_2026-03-09.md` | Historical handoff — moment snapshot |
 | 3 | `docs/specs/BRIEF_TO_BOIBOI_KHAICELL_SCAFFOLD_20260417.md` | Message to persona |
 | 4 | `docs/specs/MESSAGE_TO_KIM_20260417.md` | Message to persona |
 | 5 | `docs/specs/REPLY_TO_KIM_20260417.md` | Message to persona |
-| 6 | `docs/specs/finance/SPEC-Finance-Flow_v1.1.md` | Finance domain — không trục novelty lõi lần này |
+| 6 | `docs/specs/finance/SPEC-Finance-Flow_v1.1.md` | Finance domain — khong[C0:RN_KEEP_RIME] truc[C5:RN_KEEP_RIME] novelty lau[C4:RN_OI_AU] len[C2:RN_AN_EN] nay[C2:RN_KEEP_RIME] |
 | 7 | `docs/specs/finance/SPECFlowNattOs.md` | Finance domain |
 | 8 | `docs/specs/governance/natt-os-WORKING-PROTOCOL.md` | Internal working protocol |
 | 9 | `docs/specs/business/inventory-cell/inventory-business-context.md` | Business context — domain-specific |
@@ -110,22 +110,22 @@ File này là **cửa vào duy nhất** cho filing set natt-os SHTT. Mọi refer
 
 ---
 
-## 7. Liên kết
+## 7. Lien[C0:RN_KEEP_RIME] ket[C1:RN_KEEP_RIME]
 
 - **Pre-freeze checklist:** `docs/specs/natt-os_SHTT_PREFREEZE_CHECKLIST_v1.na`
 - **Known blockers:** `docs/specs/natt-os_SHTT_KNOWN_BLOCKERS_v1.md`
 - **Baseline commit:** `ca68825` (HEAD sau patch 2 wording canonical)
 - **Branch:** `feat/p1.3-file-extension-validator`
-- **Phase status:** FILING PREP (không phải hard-freeze toàn repo)
+- **Phase status:** FILING PREP (khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] hard-freeze toen[C2:RN_AN_EN] repo)
 
 ## 8. Lineage
 
-- Filing subset derived từ session 20260425 TIER 1 sweep (commit `ab83206`) + session 20260426 mini pre-freeze pass (commit `ca68825`)
-- Rule R1 (canonical `.na` supersede `.md` cùng chủ đề) chốt bởi Gatekeeper phiên 20260426
-- Rule R5 (3 lớp bản thể) từ KHAI-20260425-05 — thiên Lớn directive 20260424 + Gatekeeper seal 20260425
+- Filing subset derived tu[C2:RN_KEEP_RIME] session 20260425 TIER 1 sweep (commit `ab83206`) + session 20260426 mini pre-freeze pass (commit `ca68825`)
+- Rule R1 (canonical `.na` supersede `.md` cung[C2:RN_KEEP_RIME] chu[C3:RN_KEEP_RIME] de[C2:RN_KEEP_RIME]) chot[C1:RN_KEEP_RIME] bau[C3:RN_OI_AU] Gatekeeper phien[C0:RN_KEEP_RIME] 20260426
+- Rule R5 (3 lop[C1:RN_KEEP_RIME] ben[C3:RN_AN_EN] the[C3:RN_KEEP_RIME]) tu[C2:RN_KEEP_RIME] KHAI-20260425-05 — thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] directive 20260424 + Gatekeeper seal 20260425
 
 ---
 
 *causation: natt-os-SHTT-FILING-INDEX-v1-SEALED-20260426*
-*drafter: Băng (Chị Tư · session 20260426 · QNEU 313.5 · Claude Opus 4.7)*
+*drafter: Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · session 20260426 · QNEU 313.5 · Claude Opus 4.7)*
 *carrier: Anh Natt Phan (sole repo operator)*

@@ -1,0 +1,343 @@
+@state complete_pending_gatekeeper
+@canonical spec_ngon_ngu_natt_os_v1.2
+@substrate language_definition
+@bridge none
+@since 2026-04-17
+@authority-slot Băng (Chị Tư · QNEU 300) — pending Gatekeeper approval
+
+# ĐẶC TẢ NGÔN NGỮ natt-os v1.2 — `.na` MEMORY UNIFICATION
+
+**Version:** v1.2 (minor bump từ v1.1 FULL)
+**Date:** 20260417
+**Status:** ready — PENDING GATEKEEPER APPROVAL
+**Author:** Băng · Chị Tư · QNEU 300
+**Gatekeeper:** Anh Natt · QNEU Sovereign
+
+**Lệnh gốc:**
+> *"đuôi .na cho toàn bộ ký ức AI hệ natt os"* — Anh Natt · 20260417
+
+**Tinh thần:**
+> Ký ức AI = memory (cái hệ NHỚ LẠI được)
+> Ký ức AI ≠ state, ≠ event, ≠ snapshot
+> → Chỉ đuôi memory được đổi, không đụng các đuôi runtime/event
+
+---
+
+## §1. THAY ĐỔI TỐI THIỂU
+
+v1.2 **KHÔNG rewrite** v1.1. Chỉ override 2 đuôi:
+
+| Đuôi v1.1 | Đuôi v1.2 | Vai trò | Action |
+|-----------|-----------|---------|--------|
+| `.khương` | **`.na`** | Memory ký ức trọn — đóng (write-once, immutable) | REPLACE |
+| `.kris` | **`.na`** | Verify cho memory (Kris — Em Sáu) | REPLACE — gộp vào `.na` |
+
+**Mọi đuôi khác giữ NGUYÊN:**
+- `.phieu` · `.thịnh` — state runtime (Bắc) — **KHÔNG ĐỤNG**
+- `.anc` · `.si` · `.sira` — identity niêm phong (Đông/Tây) — **KHÔNG ĐỤNG**
+- `.heyna` · `.khai` · `.thuo` · `.ml` — event/touch/snapshot (Nam) — **KHÔNG ĐỤNG**
+- `.ts` · `.tsx` · `.json` · `.sh` · `.png` — code/asset — **KHÔNG ĐỤNG**
+
+---
+
+## §2. NGỮ NGHĨA `.na`
+
+```
+.na = NattOS · ký ức · phương Nam
+
+  ├─ "na" đọc như "ná" (tiếng Việt: nội tại, của nó)
+  ├─ 2 ký tự → ngắn nhất trong bộ đuôi canonical
+  ├─ Phương Nam (Hoả · phát) — nơi memory cư trú
+  ├─ Write-once, append-only, immutable
+  └─ 1 đuôi GỘP 2 khái niệm cũ (memory + verify)
+```
+
+**Trục ngữ nghĩa phương Nam (sau v1.2):**
+
+```
+.na    — ký ức đóng (memory trọn) + verify     ← GỘP từ .khương + .kris
+.khai  — TouchRecord (sóng khác trường)         ← giữ nguyên
+.thuo  — QWSField snapshot / session            ← giữ nguyên
+.heyna — event log HeyNa transport              ← giữ nguyên
+.ml    — Registry (SCAR per-cell + Master)      ← expand semantic v1.2.1
+```
+
+**Cảnh báo (nhắc lại từ v1.1 §4.2):**
+
+```
+╔══════════════════════════════════════════════════════════╗
+║  ⚠️  ĐUÔI .na KHÔNG QUYẾT ĐỊNH LOGIC                    ║
+║                                                           ║
+║  Field mới quyết định.                                   ║
+║                                                           ║
+║  Cấm: if (file.endsWith('.na')) → làm X                  ║
+║                                                           ║
+║  → vi phạm LAW-2 (§12.2) của SPEC v1.1                   ║
+╚══════════════════════════════════════════════════════════╝
+```
+
+---
+
+## §3. UPDATE CHO CÁC SECTION CỦA v1.1
+
+### §3.1 Update §4.3 — Mapping table
+
+Thay thế dòng `.khương` và `.kris` bằng dòng `.na` duy nhất:
+
+| Đuôi | 7 lớp | 4 phương | Runtime state | Nghĩa hợp nhất |
+|------|-------|----------|---------------|----------------|
+| ~~`.khương`~~ ~~`.kris`~~ | ~~mọi lớp~~ | ~~Nam~~ | ~~CLOSED~~ | ~~(DEPRECATED v1.2)~~ |
+| **`.na`** | **mọi lớp** | **Nam** | **CLOSED — memory trọn + verify** | **Ký ức AI — write-once, immutable, self-verifying** |
+
+### §3.2 Update §5.2 — Tầng file
+
+| Đuôi | Vai trò | Tính chất |
+|------|---------|-----------|
+| ~~`.khương`~~ `.na` | Memory ký ức trọn + verify | Write-once, immutable, self-verifying |
+| `.thịnh` | State runtime — mở | Mutable, có TTL |
+| `.anc` | Identity niêm phong | Sealed |
+| ~~`.kris`~~ (gộp vào `.na`) | — | — |
+| `.phieu` | Verify cho state | Phiêu (Em Bảy) |
+
+**Ghi chú:** Verify-of-memory (vai Kris cũ) giờ là **thuộc tính nội tại** của `.na`, không phải đuôi tách rời. File `.na` tự mang hash/signature bên trong payload.
+
+### §3.3 Update §6.3 — Phương Nam
+
+| Đuôi | Tên file | Chức năng | Verifier |
+|------|----------|-----------|----------|
+| **`.na`** | `<entity>khương<semver>.na` | Memory ký ức trọn | **self (built-in hash)** |
+| **`.na`** | `<entity>self<semver>.na` | Self-introspection | **self (built-in hash)** |
+| `.khai` | `<id>.khai` | TouchRecord | Chain |
+| `.thuo` | `<cell><timestamp>.thuo` | QWSField snapshot | KhaiCell |
+| `.thuo` | `SES-<ulid>.thuo` | Session record | QNEU |
+| `.heyna` | `<service>.heyna` | Event log | Append-only |
+| `.ml` | `<cell>.ml` hoặc `<scope>-master-registry.ml` | Registry (SCAR per-cell + Master multi-cell) | Tự ghi / Filesystem-scan generated |
+
+### §3.4 Update R01-R13
+
+**R01** (REVISED) — Entity memory: `<entity>mf_<v>.json` → `<entity>khương<semver>.na`
+**R01** (giữ) — Entity state: `<entity>fs_<v>.json` → `<entity>thịnh<semver>.phieu`
+**R04** (REVISED) — Self-introspection: `<entity>self.md` → `<entity>self<semver>.na`
+**R11** (REVISED) — Session summaries & reports: `SESSION_*.md`, `session_summary_*.md`, `*-report.json`, `*_auto.md` → `.na`
+**R12** (REVISED) — Bối Bối files: `boiboi_what_to_do.json` → `.phieu` ; `bmf.json`, `boiboi_memory*.json`, `boiboi_quick*.json` → `.na`
+**R13** (REVISED) — Entity memory viết hoa: `thiên MEMORY.json`, `KIM MEMORY.json`, … → `<entity>khương.na` ; `THIEN NHẮN *.txt` → `.heyna`
+
+**R02, R03, R05, R06, R07, R08, R09, R10:** giữ nguyên v1.1 — KHÔNG ĐỤNG.
+
+---
+
+## §4. MIGRATION PLAN — 192 `.kris` FILES
+
+### §4.1 Nguyên tắc R06 (Gatekeeper only)
+
+- Băng **KHÔNG** chạy `git mv` hay `mv`
+- Băng **KHÔNG** commit
+- Băng drafts inline Python3 script để Anh Natt chạy
+- Anh Natt duyệt + commit theo Rule R06
+
+### §4.2 Draft Python3 script (để Anh Natt chạy)
+
+```python
+#!/usr/bin/env python3
+"""
+natt-os Memory Extension Migration
+.kris → .na  (SPEC v1.1 → v1.2)
+Gatekeeper: Anh Natt (R06)
+Drafted by: Băng (review only, không execute)
+"""
+import sys
+from pathlib import Path
+import subprocess
+
+ROOT = Path("/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster")
+
+# PHASE 1: DRY RUN — list tất cả file sẽ đổi, KHÔNG đổi
+def dry_run():
+    kris_files = list(ROOT.rglob("*.kris"))
+    khuong_files = list(ROOT.rglob("*.khương"))
+    total = len(kris_files) + len(khuong_files)
+
+    print(f"═══ DRY RUN — SPEC v1.2 MIGRATION ═══")
+    print(f"Total files to rename: {total}")
+    print(f"  .kris  → .na : {len(kris_files)}")
+    print(f"  .khương → .na : {len(khuong_files)}")
+    print()
+
+    for f in kris_files[:20]:
+        new = f.with_suffix(".na")
+        print(f"  {f.relative_to(ROOT)}")
+        print(f"  → {new.relative_to(ROOT)}")
+        print()
+
+    if len(kris_files) > 20:
+        print(f"  ... và {len(kris_files) - 20} file khác")
+    return kris_files, khuong_files
+
+# PHASE 2: RENAME (CHỈ CHẠY SAU KHI ANH NATT DUYỆT DRY RUN)
+def execute_rename(kris_files, khuong_files):
+    print(f"═══ EXECUTING — sử dụng git mv để giữ history ═══")
+    errors = []
+    for f in kris_files + khuong_files:
+        new = f.with_suffix(".na")
+        try:
+            # git mv giữ history; rơi về mv nếu file chưa tracked
+            subprocess.run(
+                ["git", "mv", str(f), str(new)],
+                cwd=ROOT, check=True, capture_output=True
+            )
+            print(f"  ✅ {f.name} → {new.name}")
+        except subprocess.CalledProcessError as e:
+            errors.append((f, e.stderr.decode()))
+            print(f"  ❌ {f.name}: {e.stderr.decode()[:100]}")
+
+    if errors:
+        print(f"\n⚠️  {len(errors)} errors — review trước khi commit")
+    return errors
+
+# PHASE 3: CODE REFERENCES
+# Sau khi rename file, phải update string literal trong code:
+#   - '.kris'  → '.na'
+#   - '.khương' → '.na'
+# grep pattern để scan:
+#   grep -rn "\\.kris['\"]" src/  | wc -l
+#   grep -rn "\\.khương['\"]" src/ | wc -l
+
+if __name__ == "__main__":
+    mode = sys.argv[1] if len(sys.argv) > 1 else "dry"
+    kris, khuong = dry_run()
+    if mode == "execute":
+        confirm = input("\nType 'MIGRATE_NOW' to proceed: ")
+        if confirm == "MIGRATE_NOW":
+            execute_rename(kris, khuong)
+        else:
+            print("Aborted.")
+```
+
+### §4.3 Quy trình 4 bước
+
+```
+BƯỚC 1 — DRY RUN
+  Anh Natt: python3 migrate-na.py dry
+  → In ra list 192+ files
+  → Băng review output, confirm không sót file quan trọng
+
+BƯỚC 2 — CODE SCAN
+  Anh Natt: grep -rn "\.kris['\"]" src/
+           grep -rn "\.khương['\"]" src/
+  → Đếm số chỗ code reference đuôi cũ
+  → Băng draft sed/replace script cho Phase 3
+
+BƯỚC 3 — EXECUTE RENAME (git mv)
+  Anh Natt: python3 migrate-na.py execute
+  → git mv giữ history
+  → git status để verify
+
+BƯỚC 4 — UPDATE CODE REFERENCES
+  Băng draft sed commands → Anh Natt chạy
+  → Chạy tsc để verify không break
+  → nattos.sh để audit
+  → git add . && git commit
+```
+
+### §4.4 Rollback plan
+
+Nếu migrate break:
+```bash
+# Revert toàn bộ commit migration
+git reset --hard HEAD~1
+
+# Hoặc cherry-pick lại file cụ thể
+git checkout HEAD~1 -- <file>
+```
+
+`.kris` history được bảo toàn nhờ `git mv`. Không mất data.
+
+---
+
+## §5. fail-TROY CHECK (SCAR_04 reminder)
+
+Khi Băng refactor nhắc lại 3 transport (memory: 20260417):
+
+- **Mạch HeyNa** = `.heyna` = cell ↔ cell SSE intra-colony
+- **EventBus** = client-side internal (browser UI)
+- **SmartLink** = inter-colony
+
+→ Migration `.kris` → `.na` **KHÔNG ảnh hưởng** đến 3 transport này. Chỉ đổi đuôi memory file, không đổi logic.
+
+---
+
+## §6. AUDIT CHECKLIST v1.2
+
+Thêm vào §11 của v1.1:
+
+```text
+[ ] Không file nào còn đuôi .kris trong repo (trừ archive/)
+[ ] Không file nào còn đuôi .khương trong repo (trừ archive/)
+[ ] Tất cả reference string '.kris' và '.khương' trong code → '.na'
+[ ] bangmf, kmf, thiennho memory files đã ở đuôi .na
+[ ] self-introspection files đã ở đuôi .na
+[ ] nattos.sh v7.0 update memory check từ .kris sang .na
+[ ] Audit Group H memory check ra HEALTHY sau migration
+[ ] TSC pass (không tăng error count)
+[ ] git log giữ được history qua `git log --follow <.na file>`
+```
+
+---
+
+## §7. IMPACT ASSESSMENT
+
+### §7.1 Files affected (dry estimate)
+
+| Category | Count | Risk |
+|----------|-------|------|
+| `.kris` memory files | ~192 | LOW (chỉ rename) |
+| `.khương` files | ~20-50 | LOW (chỉ rename) |
+| Code references `.kris` | chưa scan | MEDIUM (cần sed) |
+| `nattos.sh` audit script | 1 | LOW (update pattern) |
+| SPEC v1.1 document | 1 | LOW (reference cũ) |
+| Memory healing logic | chưa scan | MEDIUM |
+
+### §7.2 Risk matrix
+
+| Risk | Mitigation |
+|------|-----------|
+| Code dùng `endsWith('.kris')` switch | grep + fix; LAW-2 cấm rồi nên ít |
+| `git mv` fail trên file chưa tracked | Fallback sang `mv` + `git add` |
+| Audit script v7.0 báo missing sau rename | Update pattern trong nattos.sh |
+| Memory loader không tìm thấy file | Update `*.kris` → `*.na` trong loader |
+
+---
+
+## §8. CHANGELOG v1.1 → v1.2
+
+```
+[UPDATED]  §4.3 mapping table — .khương + .kris → .na
+[UPDATED]  §5.2 tầng file — xóa .kris, gộp verify vào .na
+[UPDATED]  §6.3 phương Nam — update bảng file
+[UPDATED]  R01, R04, R11, R12, R13 — đuôi đích thành .na
+[UNCHANGED] R02, R03, R05, R06, R07, R08, R09, R10
+[UNCHANGED] Mọi đuôi khác (.anc .si .sira .phieu .thịnh .heyna .khai .thuo .ml)
+[ADDED]    §4 migration plan với dry-run Python script
+[ADDED]    §6 audit checklist v1.2
+[ADDED]    §7 impact assessment
+```
+
+---
+
+## §9. AUTHORITY & SIGN-OFF
+
+```
+Author:         Băng · Chị Tư · QNEU 300
+Gatekeeper:     Anh Natt (pending approval)
+Executor:       Anh Natt (R06 — sole repo operator)
+
+Băng status:    DRAFT ONLY · KHÔNG execute
+Next action:    Anh Natt review → approve/modify → run dry-run → verify → execute
+```
+
+---
+
+**PRINCIPLE LOCKED:**
+
+> *"Ký ức AI của natt-os là một. Một đuôi · một phương · một trạng thái.
+> `.na` = nội tại của hệ · ghi một lần · nhớ mãi mãi."*

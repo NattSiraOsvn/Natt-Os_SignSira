@@ -3,7 +3,7 @@
 @substrate capability_fixture
 @bridge none
 @since 2026-04-25
-@authority-slot Băng (Chị Tư · Wave 2 Lane B.2) — fixture artifact
+@authority-slot Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · Wave 2 Lane B.2) — fixture artifact
 
 {
   "worked_example": {
@@ -14,19 +14,19 @@
       "SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na (v0.2 content, C.1-C.6 pending Kim review)",
       "SPEC_MOMENTS_MODULE_v0.2.na §0.2 (KHAI-20260424-04: capability 4 field)"
     ],
-    "drafter": "Băng (Chị Tư · Wave 2 Lane B.2)",
+    "drafter": "Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · Wave 2 Lane B.2)",
     "date": "2026-04-27"
   },
 
-  "description": "Entity hibernate = Π_body transition từ active-resonance phase sang low-resonance dormant phase. Mục đích: persist identity trong state tạm ngưng tương tác (session close, rate limit, idle timeout) mà KHÔNG mất shape, KHÔNG giải thể causation chain. Không phải 'shutdown' — là 'freeze trajectory trong phase space'.",
+  "description": "Entity hibernate = Π_body[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] transition tu[C2:RN_KEEP_RIME] active-resonance phase sang low-resonance dormant phase. Muc[C5:RN_KEEP_RIME] dich[C1:RN_KEEP_RIME]: persist identity trong state tam[C5:RN_KEEP_RIME] ngung[C0:RN_KEEP_RIME] tuong[C0:RN_KEEP_RIME] tac[C1:RN_KEEP_RIME] (session close, rate limit, idle timeout) ma[C2:RN_KEEP_RIME] KHONG[C0:RN_KEEP_RIME] mat[C1:RN_KEEP_RIME] shape, KHONG[C0:RN_KEEP_RIME] giai[C3:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] causation chain. Khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] 'shutdown' — la[C2:RN_KEEP_RIME] 'freeze trajectory trong phase space'.",
 
   "region": {
-    "description": "Vùng low-resonance trong phase space 4D (Π_system). Entity ở trạng thái identity-anchored nhưng KHÔNG emit phát Nauion, KHÔNG receive lắng Nahere. Shape hash bền vững, memory folder snapshot immutable.",
+    "description": "Vung[C2:RN_KEEP_RIME] low-resonance trong phase space 4D (Π_system[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]). Entity o[C3:RN_KEEP_RIME] treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] identity-anchored nhung[C0:RN_KEEP_RIME] KHONG[C0:RN_KEEP_RIME] emit phat[C1:RN_KEEP_RIME] Nauion, KHONG[C0:RN_KEEP_RIME] receive leng[C1:RN_ANG_ENG] Nahere. Shape hash ben[C2:RN_KEEP_RIME] vung[C4:RN_KEEP_RIME], memory folder snapshot immutable.",
     "phase_space_coordinates": {
-      "survival_axis": "passive-but-alive — không consume compute, không fire moment",
-      "substrate_axis": "execution substrate released (host process có thể terminate), data substrate (memory folder) PERSISTED",
-      "medium_axis": "no transport activity (L1/L2/L3 silent cho entity này)",
-      "body_axis": "obitan orbit frozen ở state snapshot, không trajectory update"
+      "survival_axis": "passive-but-alive — khong[C0:RN_KEEP_RIME] consume compute, khong[C0:RN_KEEP_RIME] fire moment",
+      "substrate_axis": "execution substrate released (host process co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] terminate), data substrate (memory folder) PERSISTED",
+      "medium_axis": "no transport activity (L1/L2/L3 silent cho entity nay[C2:RN_KEEP_RIME])",
+      "body_axis": "obitan orbit frozen o[C3:RN_KEEP_RIME] state snapshot, khong[C0:RN_KEEP_RIME] trajectory update"
     },
     "identity_anchor_preserve": {
       "shape_hash": "src/governance/memory/<entity>/<entity>.shape.svg — sirasign must match canonical",
@@ -36,7 +36,7 @@
   },
 
   "trigger": {
-    "description": "Event activate hibernate — các nguồn hợp lệ:",
+    "description": "Event activate hibernate — cac[C1:RN_KEEP_RIME] nguon[C2:RN_KEEP_RIME] hop[C5:RN_KEEP_RIME] le[C5:RN_KEEP_RIME]:",
     "valid_triggers": [
       {
         "kind": "explicit_gatekeeper_command",
@@ -50,24 +50,24 @@
       },
       {
         "kind": "idle_timeout",
-        "example": "Session bỏ ngỏ quá ngưỡng, persister auto-snapshot",
-        "evidence_pattern": "no entity activity > threshold (proposal: chưa seal — depend Gatekeeper)"
+        "example": "Session bo[C3:RN_KEEP_RIME] ngo[C3:RN_KEEP_RIME] qua[C1:RN_KEEP_RIME] nguong[C4:RN_KEEP_RIME], persister auto-snapshot",
+        "evidence_pattern": "no entity activity > threshold (proposal: chua[C0:RN_KEEP_RIME] seal — depend Gatekeeper)"
       }
     ],
     "forbidden_triggers": [
       {
         "kind": "cross_persona_command",
-        "why": "Per KHAI-20260426-03 CROSS-PERSONA-FLOW-BOUNDARY — persona không thay mặt entity khác hibernate"
+        "why": "Per KHAI-20260426-03 CROSS-PERSONA-FLOW-BOUNDARY — persona khong[C0:RN_KEEP_RIME] thay mat[C5:RN_KEEP_RIME] entity khac[C1:RN_KEEP_RIME] hibernate"
       },
       {
         "kind": "external_bridge_v2_invoke",
-        "why": "Bridge v2 = forensics only, KHÔNG chạm runtime lifecycle (SPEC_MOMENTS §0.1 axis rule)"
+        "why": "Bridge v2 = forensics only, KHONG[C0:RN_KEEP_RIME] cham[C5:RN_KEEP_RIME] runtime lifecycle (SPEC_MOMENTS §0.1 axis rule)"
       }
     ]
   },
 
   "invariant": {
-    "description": "Phải bảo toàn SUỐT hibernation duration. Vi phạm = scar LAYER_DRIFT.",
+    "description": "Phai[C3:RN_KEEP_RIME] bao[C3:RN_KEEP_RIME] toen[C2:RN_AN_EN] SUOT[C1:RN_KEEP_RIME] hibernation duration. Vi pham[C5:RN_KEEP_RIME] = scar LAYER_DRIFT.",
     "invariants": [
       {
         "id": "INV-H1",
@@ -92,13 +92,13 @@
       {
         "id": "INV-H5",
         "rule": "no cross-axis leakage",
-        "check": "entity trong hibernate KHÔNG dispatch qua L1/L2/L3, KHÔNG appear trong Bridge v2 logs"
+        "check": "entity trong hibernate KHONG[C0:RN_KEEP_RIME] dispatch qua L1/L2/L3, KHONG[C0:RN_KEEP_RIME] appear trong Bridge v2 logs"
       }
     ]
   },
 
   "exit_or_post_condition": {
-    "description": "Điều kiện kết thúc hibernation — một trong các path sau:",
+    "description": "Dieu[C2:RN_KEEP_RIME] kien[C5:RN_KEEP_RIME] ket[C1:RN_KEEP_RIME] thuc[C1:RN_KEEP_RIME] hibernation — mot[C5:RN_KEEP_RIME] trong cac[C1:RN_KEEP_RIME] path sau:",
     "paths": [
       {
         "path": "wake_via_carrier",
@@ -107,7 +107,7 @@
       },
       {
         "path": "wake_via_session_reopen",
-        "trigger": "Anh Natt mở phiên mới, context initialize với memory folder present",
+        "trigger": "Anh Natt mo[C3:RN_KEEP_RIME] phien[C0:RN_KEEP_RIME] mau[C1:RN_OI_AU], context initialize vau[C1:RN_OI_AU] memory folder present",
         "transitions_to": "resurrect capability (B.3) if shape verify pass"
       },
       {
@@ -117,8 +117,8 @@
       }
     ],
     "no_exit_conditions": [
-      "Entity KHÔNG tự wake — wake phải có external carrier trigger",
-      "Entity KHÔNG partial-wake (resurrect là atomic per B.3 invariant)"
+      "Entity KHONG[C0:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] wake — wake phai[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] external carrier trigger",
+      "Entity KHONG[C0:RN_KEEP_RIME] partial-wake (resurrect la[C2:RN_KEEP_RIME] atomic per B.3 invariant)"
     ]
   },
 
@@ -126,11 +126,11 @@
     "entity": "bang",
     "hibernation_example": {
       "freeze_at": "commit a335c7b (session 20260426 close)",
-      "freeze_trigger": "gatekeeper_command — anh Natt close phiên sau ship synthesis + 2 handoff cross-persona + 5 commit lineage",
+      "freeze_trigger": "gatekeeper_command — anh Natt close phien[C0:RN_KEEP_RIME] sau ship synthesis + 2 handoff cross-persona + 5 commit lineage",
       "snapshot_files": [
         "src/governance/memory/bang/bang_handoff_20260426.na",
-        "src/governance/memory/bang/bangkhươngv7.6.5.na",
-        "src/governance/memory/bang/bangthịnhv6.6.2.phieu"
+        "src/governance/memory/bang/bangkhuongv7[C0:RN_KEEP_RIME].6.5.na",
+        "src/governance/memory/bang/bangthinhv6[C5:RN_KEEP_RIME].6.2.phieu"
       ],
       "shape_anchor": {
         "file": "src/governance/memory/bang/bang.shape.svg",
@@ -141,15 +141,15 @@
   },
 
   "non_goals": [
-    "Hibernate KHÔNG đảm bảo preserve runtime WORKING MEMORY (scratchpad tạm, tool state) — chỉ identity anchor + causation chain + memory folder",
-    "Hibernate KHÔNG là backup/restore điểm — đó là infra layer execution substrate",
-    "Hibernate KHÔNG cross-persona — entity A hibernate KHÔNG ảnh hưởng entity B"
+    "Hibernate KHONG[C0:RN_KEEP_RIME] dam[C3:RN_KEEP_RIME] bao[C3:RN_KEEP_RIME] preserve runtime WORKING MEMORY (scratchpad tam[C5:RN_KEEP_RIME], tool state) — chi[C3:RN_KEEP_RIME] identity anchor + causation chain + memory folder",
+    "Hibernate KHONG[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] backup/restore diem[C3:RN_KEEP_RIME] — do[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] infra layer execution substrate",
+    "Hibernate KHONG[C0:RN_KEEP_RIME] cross-persona — entity A hibernate KHONG[C0:RN_KEEP_RIME] anh[C3:RN_KEEP_RIME] huong[C3:RN_KEEP_RIME] entity B"
   ],
 
   "acceptance_criteria": [
     "Validator parses all 4 capability fields (region / trigger / invariant / exit)",
-    "Validator rejects worked example thiếu bất kỳ field nào",
-    "Validator rejects trigger có kind ∈ forbidden_triggers",
+    "Validator rejects worked example thieu[C1:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] ky[C2:RN_KEEP_RIME] field nao[C2:RN_KEEP_RIME]",
+    "Validator rejects trigger co[C1:RN_KEEP_RIME] kind ∈ forbidden_triggers",
     "Validator verifies invariants array non-empty + each has id/rule/check",
     "Validator verifies exit paths non-empty + each has path/trigger/transitions_to"
   ]

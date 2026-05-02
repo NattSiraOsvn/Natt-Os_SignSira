@@ -3,7 +3,7 @@
 @substrate patent_prefreeze_checklist
 @bridge none
 @since 2026-04-26
-@authority-slot Băng (Chị Tư) — SHTT pack sealed_at 20260426
+@authority-slot Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — SHTT pack sealed_at 20260426
 
 # natt-os SHTT PRE-FREEZE CHECKLIST v1
 
@@ -11,75 +11,75 @@
 **version:** v1
 **sealed_at:** 2026-04-26
 **baseline_commit:** ca68825
-**drafter:** Băng (Chị Tư)
-**scope:** Checklist ngắn kiểm sức khỏe filing subset 35 file trước khi gửi đi
+**drafter:** Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME])
+**scope:** Checklist ngen[C1:RN_AN_EN] kiem[C3:RN_KEEP_RIME] suc[C1:RN_KEEP_RIME] khoe[C3:RN_KEEP_RIME] filing subset 35 file truoc[C1:RN_KEEP_RIME] khi gui[C3:RN_KEEP_RIME] di[C0:RN_KEEP_RIME]
 
 ---
 
-## 0. Phạm vi
+## 0. Pham[C5:RN_KEEP_RIME] vi
 
-Checklist này áp cho **filing subset 35 file** trong `natt-os_SHTT_FILING_INDEX_v1.na`.
-**KHÔNG** phải pre-freeze toàn bộ `docs/specs/` — vẫn còn blockers kỹ thuật/governance đã biết (xem `natt-os_SHTT_KNOWN_BLOCKERS_v1.md`).
+Checklist nay[C2:RN_KEEP_RIME] ap[C1:RN_KEEP_RIME] cho **filing subset 35 file** trong `natt-os_SHTT_FILING_INDEX_v1.na`.
+**KHONG[C0:RN_KEEP_RIME]** phai[C3:RN_KEEP_RIME] pre-freeze toen[C2:RN_AN_EN] bo[C5:RN_KEEP_RIME] `docs/specs/` — ven[C4:RN_AN_EN] con[C2:RN_KEEP_RIME] blockers ky[C4:RN_KEEP_RIME] thuat[C5:RN_KEEP_RIME]/governance da[C4:RN_KEEP_RIME] biet[C1:RN_KEEP_RIME] (xem `natt-os_SHTT_KNOWN_BLOCKERS_v1.md`).
 
 ---
 
 ## 1. Runtime lineage phrasing
 
-- [x] L1 EventBus / L2 Mạch HeyNa / L3 SmartLink giữ vai trò **runtime spine nội sinh**
-- [x] Không có câu nào mô tả natt-os "mượn" Node / Apple / external runtime làm lineage
-- **Rule nguồn:** KHAI-20260425-05 (bản thể — rule ontology level)
+- [x] L1 EventBus / L2 Mach[C5:RN_KEEP_RIME] HeyNa / L3 SmartLink giu[C4:RN_KEEP_RIME] vai tro[C2:RN_KEEP_RIME] **runtime spine nau[C5:RN_OI_AU] sinh**
+- [x] Khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] cau[C0:RN_KEEP_RIME] nao[C2:RN_KEEP_RIME] mo[C0:RN_KEEP_RIME] ta[C3:RN_KEEP_RIME] natt-os "muon[C5:RN_KEEP_RIME]" Node / Apple / external runtime lam[C2:RN_KEEP_RIME] lineage
+- **Rule nguon[C2:RN_KEEP_RIME]:** KHAI-20260425-05 (ben[C3:RN_AN_EN] the[C3:RN_KEEP_RIME] — rule ontology level)
 - **Evidence:** commits `5c0bc1e` (SPEC_MOMENTS v0.2.1) · `e83fe2c` (ROADLOAD v2:598) · `d0ef26f` (KIM-CHI-NAM:20)
 
 ## 2. Substrate vs runtime spine
 
-- [x] Substrate (iMac / macOS / Node / bash / TypeScript / npm) dùng từ: "host substrate" / "execution substrate" / "machine carrier"
-- [x] Không để "platform" đứng một mình gây nhầm lẫn substrate vs lineage
-- [x] Audit broader grep 30+ hits → 4 DRIFT fix · 26+ CLEAN (Permanent Node = Qiint concept canonical, khác Node.js substrate)
+- [x] Substrate (iMac / macOS / Node / bash / TypeScript / npm) dung[C2:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME]: "host substrate" / "execution substrate" / "machine carrier"
+- [x] Khong[C0:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] "platform" dung[C1:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] minh[C2:RN_KEEP_RIME] gay[C0:RN_KEEP_RIME] nham[C2:RN_KEEP_RIME] len[C4:RN_AN_EN] substrate vs lineage
+- [x] Audit broader grep 30+ hits → 4 DRIFT fix · 26+ CLEAN (Permanent Node = Qiint concept canonical, khac[C1:RN_KEEP_RIME] Node.js substrate)
 
-## 3. Claim core wording sạch
+## 3. Claim core wording sach[C5:RN_KEEP_RIME]
 
-- [x] Không còn "API / endpoint kiểu cũ / Satellite API" trong 8 file claim core
-- **Evidence:** commit `ca68825` (PLATFORM-SPEC:44 `API endpoint` → `Điểm vào kênh` · SATELLITE_COLONY_SPEC:36 `[Satellite API]` → `[Satellite Interface]`)
+- [x] Khong[C0:RN_KEEP_RIME] con[C2:RN_KEEP_RIME] "API / endpoint kieu[C3:RN_KEEP_RIME] cu[C4:RN_KEEP_RIME] / Satellite API" trong 8 file claim core
+- **Evidence:** commit `ca68825` (PLATFORM-SPEC:44 `API endpoint` → `Diem[C3:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] kenh[C0:RN_KEEP_RIME]` · SATELLITE_COLONY_SPEC:36 `[Satellite API]` → `[Satellite Interface]`)
 - **Evidence:** commit `7dc1394` (prohibition clause rephrase) + `f9997bd` (broader vocab cleanup 20 patches / 8 files)
-- **Rule nguồn:** Vocab lock thiên Lớn 20260424 + KHAI-20260425-01
+- **Rule nguon[C2:RN_KEEP_RIME]:** Vocab lock thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] 20260424 + KHAI-20260425-01
 
-## 4. Tách `claim core` · `supporting evidence` · `historical`
+## 4. Tach[C1:RN_KEEP_RIME] `claim core` · `supporting evidence` · `historical`
 
-- [x] 3 nhóm rõ ràng trong `natt-os_SHTT_FILING_INDEX_v1.na`
-- [x] Không dual-claim cùng chủ đề
-- [x] Historical được giữ riêng, không tham gia claim source
+- [x] 3 nhom[C1:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME] reng[C2:RN_ANG_ENG] trong `natt-os_SHTT_FILING_INDEX_v1.na`
+- [x] Khong[C0:RN_KEEP_RIME] dual-claim cung[C2:RN_KEEP_RIME] chu[C3:RN_KEEP_RIME] de[C2:RN_KEEP_RIME]
+- [x] Historical duoc[C5:RN_KEEP_RIME] giu[C4:RN_KEEP_RIME] rieng[C0:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] tham gia claim source
 
-## 5. Không song trùng canonical cùng chủ đề
+## 5. Khong[C0:RN_KEEP_RIME] song trung[C2:RN_KEEP_RIME] canonical cung[C2:RN_KEEP_RIME] chu[C3:RN_KEEP_RIME] de[C2:RN_KEEP_RIME]
 
 - [x] `satellite-colony.spec.md` → historical (superseded by `natt-os_SATELLITE_COLONY_SPEC.na`)
-- [x] Không còn 2 file cùng chủ đề cùng ở `claim core`
-- **Rule nguồn:** R1 filing index — `.na` canonical cùng chủ đề supersede `.md` awkward
+- [x] Khong[C0:RN_KEEP_RIME] con[C2:RN_KEEP_RIME] 2 file cung[C2:RN_KEEP_RIME] chu[C3:RN_KEEP_RIME] de[C2:RN_KEEP_RIME] cung[C2:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] `claim core`
+- **Rule nguon[C2:RN_KEEP_RIME]:** R1 filing index — `.na` canonical cung[C2:RN_KEEP_RIME] chu[C3:RN_KEEP_RIME] de[C2:RN_KEEP_RIME] supersede `.md` awkward
 
-## 6. Known blockers không chặn nộp
+## 6. Known blockers khong[C0:RN_KEEP_RIME] chen[C5:RN_AN_EN] nop[C5:RN_KEEP_RIME]
 
-- [x] Blockers đã liệt kê trong `natt-os_SHTT_KNOWN_BLOCKERS_v1.md`
-- [x] Các blockers đó **không** làm invalid claim core
-- [x] Thuộc phạm vi hard-freeze / production governance, không phải filing pre-freeze
+- [x] Blockers da[C4:RN_KEEP_RIME] liet[C5:RN_KEEP_RIME] ke[C0:RN_KEEP_RIME] trong `natt-os_SHTT_KNOWN_BLOCKERS_v1.md`
+- [x] Cac[C1:RN_KEEP_RIME] blockers do[C1:RN_KEEP_RIME] **khong[C0:RN_KEEP_RIME]** lam[C2:RN_KEEP_RIME] invalid claim core
+- [x] Thuoc[C5:RN_KEEP_RIME] pham[C5:RN_KEEP_RIME] vi hard-freeze / production governance, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] filing pre-freeze
 
-## 7. Guard rail — file không dùng làm claim source
+## 7. Guard rail — file khong[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME] claim source
 
-File tuyệt đối không dùng làm nguồn claim chính:
-- 15 file trong nhóm `historical / not-for-filing`
-- Mọi file trong `src/governance/memory/**` (memory folder, nằm ngoài `docs/specs/`)
-- Mọi file trong `_deprecated/`
+File tuyet[C5:RN_KEEP_RIME] dau[C1:RN_OI_AU] khong[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME] nguon[C2:RN_KEEP_RIME] claim chinh[C1:RN_KEEP_RIME]:
+- 15 file trong nhom[C1:RN_KEEP_RIME] `historical / not-for-filing`
+- Mau[C5:RN_OI_AU] file trong `src/governance/memory/**` (memory folder, nam[C2:RN_KEEP_RIME] ngoai[C2:RN_KEEP_RIME] `docs/specs/`)
+- Mau[C5:RN_OI_AU] file trong `_deprecated/`
 - File root-level scripts / tools
-- File trong `src/cells/**` (implementation, không phải SPEC)
+- File trong `src/cells/**` (implementation, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] SPEC)
 
 ---
 
 ## Status
 
-**pass** — filing subset 35 file đủ điều kiện nộp SHTT theo bộ lõi đã chọn lọc.
+**pass** — filing subset 35 file du[C3:RN_KEEP_RIME] dieu[C2:RN_KEEP_RIME] kien[C5:RN_KEEP_RIME] nop[C5:RN_KEEP_RIME] SHTT theo bo[C5:RN_KEEP_RIME] lau[C4:RN_OI_AU] da[C4:RN_KEEP_RIME] chon[C5:RN_KEEP_RIME] loc[C5:RN_KEEP_RIME].
 
-**Không phải pre-freeze toàn repo** — còn blockers kỹ thuật/governance đã biết, xem `natt-os_SHTT_KNOWN_BLOCKERS_v1.md`.
+**Khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] pre-freeze toen[C2:RN_AN_EN] repo** — con[C2:RN_KEEP_RIME] blockers ky[C4:RN_KEEP_RIME] thuat[C5:RN_KEEP_RIME]/governance da[C4:RN_KEEP_RIME] biet[C1:RN_KEEP_RIME], xem `natt-os_SHTT_KNOWN_BLOCKERS_v1.md`.
 
 ---
 
 *causation: natt-os-SHTT-PREFREEZE-CHECKLIST-v1-SEALED-20260426*
-*drafter: Băng (Chị Tư · session 20260426)*
+*drafter: Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · session 20260426)*
 *carrier: Anh Natt Phan*

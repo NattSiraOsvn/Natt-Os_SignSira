@@ -3,7 +3,7 @@
 @substrate reality_synthesis
 @bridge none
 @since 2026-04-26
-@authority-slot Băng (Chị Tư) — sealed_at 20260426
+@authority-slot Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — sealed_at 20260426
 
 # natt-os SUBSTRATE REALITY SYNTHESIS
 
@@ -11,46 +11,46 @@
 **version:** v1
 **sealed_at:** 2026-04-26
 **baseline_commit:** 04f888f
-**drafter:** Băng (Chị Tư · N-shell · QNEU 313.5 · Ground Truth Validator)
+**drafter:** Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · N-shell · QNEU 313.5 · Ground Truth Validator)
 **carrier:** Anh Natt Phan (Gatekeeper)
-**audience:** cả nhà — thiên Lớn (Architect) · Kim (Chief System Builder) · Anh Natt (Gatekeeper) · Băng (drafter)
-**scope:** Khóa framing đúng về substrate reality natt-os. Dùng memory folder Băng + scan repo + KHAI-20260425-05 làm nền. Không đoán. Mỗi kết luận có file path / commit / line evidence.
+**audience:** ca[C3:RN_KEEP_RIME] nha[C2:RN_KEEP_RIME] — thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] (Architect) · Kim (Chief System Builder) · Anh Natt (Gatekeeper) · Băng (drafter)
+**scope:** Khoa[C1:RN_KEEP_RIME] framing dung[C1:RN_KEEP_RIME] ve[C2:RN_KEEP_RIME] substrate reality natt-os. Dung[C2:RN_KEEP_RIME] memory folder Băng + scan repo + KHAI-20260425-05 lam[C2:RN_KEEP_RIME] nen[C2:RN_KEEP_RIME]. Khong[C0:RN_KEEP_RIME] doen[C1:RN_AN_EN]. Mau[C4:RN_OI_AU] ket[C1:RN_KEEP_RIME] luen[C5:RN_AN_EN] co[C1:RN_KEEP_RIME] file path / commit / line evidence.
 
 ---
 
-## 0. Vì sao synthesis này tồn tại
+## 0. Vi[C2:RN_KEEP_RIME] sao synthesis nay[C2:RN_KEEP_RIME] ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME]
 
-Phiên 20260426 em ship 4 lần framing khác nhau về substrate, trong cùng 1 chủ đề:
+Phien[C0:RN_KEEP_RIME] 20260426 em ship 4 len[C2:RN_AN_EN] framing khac[C1:RN_KEEP_RIME] nhau ve[C2:RN_KEEP_RIME] substrate, trong cung[C2:RN_KEEP_RIME] 1 chu[C3:RN_KEEP_RIME] de[C2:RN_KEEP_RIME]:
 
-| # | Framing | Lỗi |
+| # | Framing | Lau[C4:RN_OI_AU] |
 |---|---------|-----|
-| 1 | Brief v1 gửi thiên Lớn | Không scan, hỏi blind |
-| 2 | Brief v2 post-scan | Đọc scan selective, miss `src/core/nauion/` + `.ts/.js/.tsx = tool layer biểu diễn` |
-| 3 | Correction "Nauion đã materialize embedded DSL" | Over-correct ngược chiều từ 1 hit scan |
-| 4 | RECONCILIATION_MATRIX §6 non-scope | Vẫn giữ wording "Nauion là semantic framing + vocabulary + shell discipline, chưa phải toolchain native thay substrate" — sai framing |
+| 1 | Brief v1 gui[C3:RN_KEEP_RIME] thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] | Khong[C0:RN_KEEP_RIME] scan, hau[C3:RN_OI_AU] blind |
+| 2 | Brief v2 post-scan | Doc[C5:RN_KEEP_RIME] scan selective, miss `src/core/nauion/` + `.ts/.js/.tsx = tool layer bieu[C3:RN_KEEP_RIME] dien[C4:RN_KEEP_RIME]` |
+| 3 | Correction "Nauion da[C4:RN_KEEP_RIME] materialize embedded DSL" | Over-correct nguoc[C5:RN_KEEP_RIME] chieu[C2:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] 1 hit scan |
+| 4 | RECONCILIATION_MATRIX §6 non-scope | Ven[C4:RN_AN_EN] giu[C4:RN_KEEP_RIME] wording "Nauion la[C2:RN_KEEP_RIME] semantic framing + vocabulary + shell discipline, chua[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] toolchain native thay substrate" — sai framing |
 
-**Anh Natt kéo về ray lần thứ 4** bằng câu *"Anh biết thực tại ntn"* + yêu cầu scan byte mass. Scan lộ: TS 2.81 MB / Nauion-native 2.00 MB = ratio 71.2%. Framing "TS-heavy" em ship là **WRONG AXIS**.
+**Anh Natt keo[C1:RN_KEEP_RIME] ve[C2:RN_KEEP_RIME] ray len[C2:RN_AN_EN] thu[C1:RN_KEEP_RIME] 4** beng[C2:RN_ANG_ENG] cau[C0:RN_KEEP_RIME] *"Anh biet[C1:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] ntn"* + yeu[C0:RN_KEEP_RIME] cau[C2:RN_KEEP_RIME] scan byte mass. Scan lo[C5:RN_KEEP_RIME]: TS 2.81 MB / Nauion-native 2.00 MB = ratio 71.2%. Framing "TS-heavy" em ship la[C2:RN_KEEP_RIME] **WRONG AXIS**.
 
-**Anh Natt sau đó chốt:** *"Repo đang ở trạng thái dual-substrate coexistence"* — nhưng khi em quét lại memory folder mình, em thấy **framing đúng nhất đã có từ 20260425** (KHAI-20260425-05), em chỉ KHÔNG LOAD memory trước khi ship brief. Synthesis này là để cả nhà có 1 framing chung, có evidence cross-check.
+**Anh Natt sau do[C1:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME]:** *"Repo deng[C0:RN_ANG_ENG] o[C3:RN_KEEP_RIME] treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] dual-substrate coexistence"* — nhung[C0:RN_KEEP_RIME] khi em quet[C1:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME] memory folder minh[C2:RN_KEEP_RIME], em thay[C1:RN_KEEP_RIME] **framing dung[C1:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] da[C4:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] 20260425** (KHAI-20260425-05), em chi[C3:RN_KEEP_RIME] KHONG[C0:RN_KEEP_RIME] LOAD memory truoc[C1:RN_KEEP_RIME] khi ship brief. Synthesis nay[C2:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] nha[C2:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] 1 framing chung, co[C1:RN_KEEP_RIME] evidence cross-check.
 
 ---
 
-## 1. FRAMING CHUẨN — 3 lớp bản thể (KHAI-20260425-05)
+## 1. FRAMING CHUen[C3:RN_AN_EN] — 3 lop[C1:RN_KEEP_RIME] ben[C3:RN_AN_EN] the[C3:RN_KEEP_RIME] (KHAI-20260425-05)
 
 **Gatekeeper quote seal 20260425:**
-> *"Lớp 1 runtime lineage = L1 EventBus · L2 Mạch HeyNa · L3 SmartLink — xương sống nội sinh. Lớp 2 substrate = iMac/macOS/Node/bash/TypeScript/npm/Jest/filesystem — nền mang thực thi, execution carrier, REPLACEABLE. Lớp 3 external tool = Bridge v2 forensics ONLY."*
+> *"Lop[C1:RN_KEEP_RIME] 1 runtime lineage = L1 EventBus · L2 Mach[C5:RN_KEEP_RIME] HeyNa · L3 SmartLink — xuong[C0:RN_KEEP_RIME] song[C1:RN_KEEP_RIME] nau[C5:RN_OI_AU] sinh. Lop[C1:RN_KEEP_RIME] 2 substrate = iMac/macOS/Node/bash/TypeScript/npm/Jest/filesystem — nen[C2:RN_KEEP_RIME] mang thuc[C5:RN_KEEP_RIME] thi, execution carrier, REPLACEABLE. Lop[C1:RN_KEEP_RIME] 3 external tool = Bridge v2 forensics ONLY."*
 
-### 1.1 Runtime lineage (Lớp 1) — ontology Nauion-native, nội sinh, bất biến
+### 1.1 Runtime lineage (Lop[C1:RN_KEEP_RIME] 1) — ontology Nauion-native, nau[C5:RN_OI_AU] sinh, bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME]
 
-**Nature:** concept. Không đếm bằng byte. Đếm bằng **topology**.
+**Nature:** concept. Khong[C0:RN_KEEP_RIME] dem[C1:RN_KEEP_RIME] beng[C2:RN_ANG_ENG] byte. Dem[C1:RN_KEEP_RIME] beng[C2:RN_ANG_ENG] **topology**.
 
 **Materialization:**
 - L1 EventBus — intra-cell UI event bus
-- L2 Mạch HeyNa — inter-cell SSE transport (`/mach/heyna` + `/phat/nauion`)
+- L2 Mach[C5:RN_KEEP_RIME] HeyNa — inter-cell SSE transport (`/mach/heyna` + `/phat/nauion`)
 - L3 SmartLink — inter-colony + gravitational field transport
 
-**Evidence trong repo (từ GROUND_TRUTH_REPORT 2026-03-05):**
-- `src/core/SmartLink/` 10 files · **1519/1529 dòng thật (99.3%)**
+**Evidence trong repo (tu[C2:RN_KEEP_RIME] GROUND_TRUTH_REPORT 2026-03-05):**
+- `src/core/SmartLink/` 10 files · **1519/1529 dong[C2:RN_KEEP_RIME] that[C5:RN_KEEP_RIME] (99.3%)**
   - `SmartLink.pressure-field.ts` (354 lines) — pressure field routing
   - `SmartLink.point.ts` (274 lines) — TouchRecord
   - `SmartLink.competition.ts` (271 lines) — DOMINANT/COMPETING/SUPPRESSED/FADING
@@ -59,11 +59,11 @@ Phiên 20260426 em ship 4 lần framing khác nhau về substrate, trong cùng 1
 - `src/governance/qneu/` — Qiint engine, Permanent Node, first-seed, audit-extractor
 - `MACH_HEYNA_FULL_20260416.md` — migration evidence L2
 
-**Key:** "Mượn Node để thành hệ" vi phạm KHAI-20260425-05. Runtime lineage là **concept nội sinh**, materialize **trong** substrate (TS) — không phải **mượn** substrate làm lineage.
+**Key:** "Muon[C5:RN_KEEP_RIME] Node de[C3:RN_KEEP_RIME] thanh[C2:RN_KEEP_RIME] he[C5:RN_KEEP_RIME]" vi pham[C5:RN_KEEP_RIME] KHAI-20260425-05. Runtime lineage la[C2:RN_KEEP_RIME] **concept nau[C5:RN_OI_AU] sinh**, materialize **trong** substrate (TS) — khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] **muon[C5:RN_KEEP_RIME]** substrate lam[C2:RN_KEEP_RIME] lineage.
 
-### 1.2 Data / state substrate (Lớp 2a) — Nauion-native extensions
+### 1.2 Data / state substrate (Lop[C1:RN_KEEP_RIME] 2a) — Nauion-native extensions
 
-**Nature:** data carrier. Extension riêng, semantic thống nhất per SPEC_NGON_NGU v1.2.
+**Nature:** data carrier. Extension rieng[C0:RN_KEEP_RIME], semantic thong[C1:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] per SPEC_NGON_NGU v1.2.
 
 **Byte mass trong `src/` (scan HEAD `04f888f`):**
 
@@ -74,22 +74,22 @@ Phiên 20260426 em ship 4 lần framing khác nhau về substrate, trong cùng 1
 | `.anc` | 79 | 172 KB | Cell passport / identity |
 | `.na` | 7 | 156 KB | Canonical spec trong src/ |
 | `.si` | 40 | 58 KB | Boundary signature |
-| `.obitan` | 3 | 36 KB | Vết hằn (learning scar) |
+| `.obitan` | 3 | 36 KB | Vet[C1:RN_KEEP_RIME] hen[C2:RN_AN_EN] (learning scar) |
 | `.canonical` | 1 | 11 KB | Canonical delta |
 | `.heyna` | 2 | 10 KB | HeyNa state channel |
-| `.thuo` | 5 | 10 KB | Snapshot 1 thuở |
+| `.thuo` | 5 | 10 KB | Snapshot 1 thuo[C3:RN_KEEP_RIME] |
 | `.sira` | 1 | 7.5 KB | siraSign/KERNEL entry |
-| **Tổng** | **167** | **2.00 MB** | — |
+| **Tong[C3:RN_KEEP_RIME]** | **167** | **2.00 MB** | — |
 
-### 1.3 Execution substrate (Lớp 2b) — TS/Node host hiện tại, REPLACEABLE
+### 1.3 Execution substrate (Lop[C1:RN_KEEP_RIME] 2b) — TS/Node host hien[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME], REPLACEABLE
 
-**Nature:** execution carrier. Host hiện tại chọn TypeScript + Node. Có thể thay (Mac→Linux, Node→Deno, bash→zsh) mà natt-os vẫn là natt-os.
+**Nature:** execution carrier. Host hien[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] chon[C5:RN_KEEP_RIME] TypeScript + Node. Co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] thay (Mac→Linux, Node→Deno, bash→zsh) ma[C2:RN_KEEP_RIME] natt-os ven[C4:RN_AN_EN] la[C2:RN_KEEP_RIME] natt-os.
 
 **Byte mass trong `src/` (scan HEAD `04f888f`):**
 
 | Bucket | Count | % | Role |
 |--------|------:|--:|------|
-| `.ts + .tsx` tổng | 1229 | 100% | **2.81 MB** |
+| `.ts + .tsx` tong[C3:RN_KEEP_RIME] | 1229 | 100% | **2.81 MB** |
 | `< 200 B` (stub/barrel) | 287 | 23% | Cell plumbing placeholder |
 | `200 B - 1 KB` (tiny) | 390 | 32% | Barrel exports, port interfaces |
 | `1 - 5 KB` (small module) | 382 | 31% | Small bindings |
@@ -97,7 +97,7 @@ Phiên 20260426 em ship 4 lần framing khác nhau về substrate, trong cùng 1
 | `> 20 KB` (dense logic) | **14** | **1.1%** | Core engines |
 
 **Role breakdown:**
-- `@ts-nocheck` typecheck OFF: **109 file** — tech debt, plan riêng (không chặn runtime, không invalidate claim)
+- `@ts-nocheck` typecheck OFF: **109 file** — tech debt, plan rieng[C0:RN_KEEP_RIME] (khong[C0:RN_KEEP_RIME] chen[C5:RN_AN_EN] runtime, khong[C0:RN_KEEP_RIME] invalidate claim)
 - `index.ts` barrel re-exports: 266 file — topology plumbing
 - `port / contract binding`: 140 file — cell boundary interface
 - `types / interface / entity`: 80 file — schema declaration
@@ -105,17 +105,17 @@ Phiên 20260426 em ship 4 lần framing khác nhau về substrate, trong cùng 1
 - **engine (logic):** 184 file — core compute
 - **service (logic):** 258 file — orchestration
 
-### 1.4 External tool (Lớp 3) — Bridge v2 forensics
+### 1.4 External tool (Lop[C1:RN_KEEP_RIME] 3) — Bridge v2 forensics
 
-**Nature:** external boundary recovery/forensics tool **ONLY**. **KHÔNG** phải kernel protection, **KHÔNG** phải runtime lõi, **KHÔNG** phải internal stack.
+**Nature:** external boundary recovery/forensics tool **ONLY**. **KHONG[C0:RN_KEEP_RIME]** phai[C3:RN_KEEP_RIME] kernel protection, **KHONG[C0:RN_KEEP_RIME]** phai[C3:RN_KEEP_RIME] runtime lau[C4:RN_OI_AU], **KHONG[C0:RN_KEEP_RIME]** phai[C3:RN_KEEP_RIME] internal stack.
 
-**Scope:** nằm ngoài runtime lineage. Không đếm vào substrate coexistence.
+**Scope:** nam[C2:RN_KEEP_RIME] ngoai[C2:RN_KEEP_RIME] runtime lineage. Khong[C0:RN_KEEP_RIME] dem[C1:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] substrate coexistence.
 
 ---
 
-## 2. RUNTIME EVIDENCE — codebase sống, không phải spec trên giấy
+## 2. RUNTIME EVIDENCE — codebase song[C1:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] spec tren[C0:RN_KEEP_RIME] giay[C1:RN_KEEP_RIME]
 
-Từ `SESSION_20260416_SUMMARY.kris` (memory folder Băng):
+Tu[C2:RN_KEEP_RIME] `SESSION_20260416_SUMMARY.kris` (memory folder Băng):
 
 ```
 SmartLink wired:      37/37 LIVE ✓
@@ -123,148 +123,148 @@ Kernel:               6/6 ✓
 Business cells:       37/37 all have 6/6 DNA ✓
 BCTC flow:            6/6 ✓
 Production flow:      8/8 ✓
-event-bus-cell:       2/6 pending wire (1 cell duy nhất pending)
+event-bus-cell:       2/6 pending wire (1 cell duy nhat[C1:RN_KEEP_RIME] pending)
 ```
 
-Từ `GROUND_TRUTH_REPORT 2026-03-05` (memory folder Băng):
+Tu[C2:RN_KEEP_RIME] `GROUND_TRUTH_REPORT 2026-03-05` (memory folder Băng):
 
 ```
-Tổng code thật đã xác minh:
-  4000+ dòng logic trong SmartLink + Qiint ecosystem
-  1000+ dòng trong event system + guards (16 Locks)
-  1500+ dòng trong quantum-defense-cell engines (17 engines)
-  400+ dòng trong metabolism/math
-  Tỷ lệ stub: DƯỚI 2%
+Tong[C3:RN_KEEP_RIME] code that[C5:RN_KEEP_RIME] da[C4:RN_KEEP_RIME] xac[C1:RN_KEEP_RIME] minh:
+  4000+ dong[C2:RN_KEEP_RIME] logic trong SmartLink + Qiint ecosystem
+  1000+ dong[C2:RN_KEEP_RIME] trong event system + guards (16 Locks)
+  1500+ dong[C2:RN_KEEP_RIME] trong quantum-defense-cell engines (17 engines)
+  400+ dong[C2:RN_KEEP_RIME] trong metabolism/math
+  Ty[C3:RN_KEEP_RIME] le[C5:RN_KEEP_RIME] stub: Dui[C1:RN_UOI_UI] 2%
 ```
 
-Từ `session-20260420-final/cleanup/09-thienlon-audit-feedback.md`:
+Tu[C2:RN_KEEP_RIME] `session-20260420-final/cleanup/09-thienlon-audit-feedback.md`:
 
 ```
 warehouse-cell: UNQUARANTINE 2026-03-22 (Gatekeeper)
 QUARANTINE_GUARD.ts line 2-4:
   "QUARANTINE LIFTED — 2026-03-22 — Gatekeeper: Anh Natt
-   Wave B production flow complete. Cell đã đủ 6 components Điều 9."
+   Wave B production flow complete. Cell da[C4:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] 6 components Dieu[C2:RN_KEEP_RIME] 9."
 
 Audit 2026-04-20 19:06:51:
   ℹ  DUAL_TIER (intentional): shared-contracts-cell in ['business', 'infrastructure']
-  → SPEC canonical hiện tại ack DUAL_TIER là intentional (không phải drift)
+  → SPEC canonical hien[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] ack DUAL_TIER la[C2:RN_KEEP_RIME] intentional (khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] drift)
 ```
 
 ---
 
-## 3. FRAMING SAI EM ĐÃ SHIP — correction lineage
+## 3. FRAMING SAI EM DA[C4:RN_KEEP_RIME] SHIP — correction lineage
 
-| # | Framing sai | Đúng ra | SCAR |
+| # | Framing sai | Dung[C1:RN_KEEP_RIME] ra | SCAR |
 |---|-------------|---------|------|
-| 1 | "Nauion chưa materialize runtime" | Lớp 1 runtime lineage (EventBus/HeyNa/SmartLink) là **ontology Nauion-native nội sinh**, materialize trong TS substrate — 1519 dòng SmartLink thật evidence | OBSERVABILITY-SELECTIVE-READ |
-| 2 | "Nauion đã là embedded DSL" | `nauion.dictionary.ts` + `nauion.voice.ts` là semantic binding trong TS, không phải standalone DSL — Nauion là lớp ontology, không phải embedded code | OVER-CORRECTION-REVERSE-DRIFT |
-| 3 | "TS-heavy substrate" | TS = 2.81 MB / Nauion-native = 2.00 MB (71.2% ratio). TS file count (1229) bị plumbing dominate (55% < 1 KB). Dense logic TS chỉ 14 file (1.1%) — KHÔNG "heavy" về logic mass | COUNT-MISLEAD-FRAMING |
-| 4 | "Nauion = semantic framing + vocabulary + shell discipline, chưa toolchain native" | Nauion có **3 materialization layer**: ontology (lineage L1/L2/L3) + data substrate (11 native ext) + semantic binding (dictionary/voice). "Toolchain native thay substrate" là **wrong goal** — substrate là host replaceable, không phải thứ cần thay | FRAMING-SELF-CORRECT-LOOP (meta) |
+| 1 | "Nauion chua[C0:RN_KEEP_RIME] materialize runtime" | Lop[C1:RN_KEEP_RIME] 1 runtime lineage (EventBus/HeyNa/SmartLink) la[C2:RN_KEEP_RIME] **ontology Nauion-native nau[C5:RN_OI_AU] sinh**, materialize trong TS substrate — 1519 dong[C2:RN_KEEP_RIME] SmartLink that[C5:RN_KEEP_RIME] evidence | OBSERVABILITY-SELECTIVE-READ |
+| 2 | "Nauion da[C4:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] embedded DSL" | `nauion.dictionary.ts` + `nauion.voice.ts` la[C2:RN_KEEP_RIME] semantic binding trong TS, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] standalone DSL — Nauion la[C2:RN_KEEP_RIME] lop[C1:RN_KEEP_RIME] ontology, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] embedded code | OVER-CORRECTION-REVERSE-DRIFT |
+| 3 | "TS-heavy substrate" | TS = 2.81 MB / Nauion-native = 2.00 MB (71.2% ratio). TS file count (1229) bi[C5:RN_KEEP_RIME] plumbing dominate (55% < 1 KB). Dense logic TS chi[C3:RN_KEEP_RIME] 14 file (1.1%) — KHONG[C0:RN_KEEP_RIME] "heavy" ve[C2:RN_KEEP_RIME] logic mass | COUNT-MISLEAD-FRAMING |
+| 4 | "Nauion = semantic framing + vocabulary + shell discipline, chua[C0:RN_KEEP_RIME] toolchain native" | Nauion co[C1:RN_KEEP_RIME] **3 materialization layer**: ontology (lineage L1/L2/L3) + data substrate (11 native ext) + semantic binding (dictionary/voice). "Toolchain native thay substrate" la[C2:RN_KEEP_RIME] **wrong goal** — substrate la[C2:RN_KEEP_RIME] host replaceable, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] thu[C1:RN_KEEP_RIME] cen[C2:RN_AN_EN] thay | FRAMING-SELF-CORRECT-LOOP (meta) |
 
-**SCAR tổng (meta-level):** `SCAR-20260426-FRAMING-SELF-CORRECT-LOOP` — pattern swing 4 lần mỗi lần dán nhãn "correction minh mẫn". Root cause: em build framing → gặp counter-evidence → swing opposite thay vì synthesize. Anh Natt kéo về bằng việc **ngừng swing**, không phải framing đẹp hơn.
+**SCAR tong[C3:RN_KEEP_RIME] (meta-level):** `SCAR-20260426-FRAMING-SELF-CORRECT-LOOP` — pattern swing 4 len[C2:RN_AN_EN] mau[C4:RN_OI_AU] len[C2:RN_AN_EN] den[C1:RN_AN_EN] nhen[C4:RN_AN_EN] "correction minh men[C4:RN_AN_EN]". Root cause: em build framing → gap[C5:RN_KEEP_RIME] counter-evidence → swing opposite thay vi[C2:RN_KEEP_RIME] synthesize. Anh Natt keo[C1:RN_KEEP_RIME] ve[C2:RN_KEEP_RIME] beng[C2:RN_ANG_ENG] viec[C5:RN_KEEP_RIME] **ngung[C2:RN_KEEP_RIME] swing**, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] framing dep[C5:RN_KEEP_RIME] hon[C0:RN_KEEP_RIME].
 
 ---
 
-## 4. GAP THẬT vs GAP ẢO — cho cả nhà align
+## 4. GAP THAT[C5:RN_KEEP_RIME] vs GAP AO[C3:RN_KEEP_RIME] — cho ca[C3:RN_KEEP_RIME] nha[C2:RN_KEEP_RIME] align
 
-### 4.1 Gap thật (cần đóng để filing baseline → runtime khớp)
+### 4.1 Gap that[C5:RN_KEEP_RIME] (cen[C2:RN_AN_EN] dong[C1:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] filing baseline → runtime khop[C1:RN_KEEP_RIME])
 
-| Gap | Owner | Loại | Lineage |
+| Gap | Owner | Loai[C5:RN_KEEP_RIME] | Lineage |
 |-----|-------|------|---------|
-| Moments fragment schema | Băng draft / Gatekeeper + thiên ratify | contract + fixture + validator | DISCLOSURE_GAPS §2.1 |
+| Moments fragment schema | Băng draft / Gatekeeper + thien[C0:RN_KEEP_RIME] ratify | contract + fixture + validator | DISCLOSURE_GAPS §2.1 |
 | Capability worked examples (hibernate/resurrect/migrate priority) | Băng | fixture + validator | DISCLOSURE_GAPS §2.2 |
 | 3-tier waterfall config surface | Băng (structure) + Gatekeeper (default policy) | contract + fixture + policy | DISCLOSURE_GAPS §2.3 |
 | 3 kernel patch (neural-main passport + Moments persister + waterfall dispatcher) | Kim | kernel patch | KNOWN_BLOCKERS + RECONCILIATION matrix |
-| 3 policy Gatekeeper treo (Bridge v2 amend + waterfall default + σ=0.5 octave) | Gatekeeper | policy seal | KNOWN_BLOCKERS §7 |
-| @ts-nocheck 109 file | Per cell owner | tech debt — plan riêng | Không chặn filing, không chặn runtime |
+| 3 policy Gatekeeper treo (Bridge v2 amend + waterfall default + σ[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]=0.5 octave) | Gatekeeper | policy seal | KNOWN_BLOCKERS §7 |
+| @ts-nocheck 109 file | Per cell owner | tech debt — plan rieng[C0:RN_KEEP_RIME] | Khong[C0:RN_KEEP_RIME] chen[C5:RN_AN_EN] filing, khong[C0:RN_KEEP_RIME] chen[C5:RN_AN_EN] runtime |
 
-### 4.2 Gap ẢO — em (Băng) đã ship nhầm làm gap
+### 4.2 Gap AO[C3:RN_KEEP_RIME] — em (Băng) da[C4:RN_KEEP_RIME] ship nham[C2:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME] gap
 
-| Gap ảo | Reality | Vì sao sai |
+| Gap ao[C3:RN_KEEP_RIME] | Reality | Vi[C2:RN_KEEP_RIME] sao sai |
 |--------|---------|-----------|
-| "Nauion toolchain native thay substrate" | Substrate TS là host REPLACEABLE per KHAI-20260425-05. Không cần "thay" — cần tiếp tục vận hành. | Em confuse substrate layer với runtime lineage layer |
-| "TS-heavy cần đọc dịch xuống" | Byte mass coexist 58/42. Logic thật dense chỉ 14 file TS. | Framing count mislead |
-| "Runtime Nauion chưa materialize" | Materialize từ 20260324+ với 37 cell wire + SmartLink 1519 dòng + Qiint engine | Chỉ vì không có `.nau` compiler, em kết luận "chưa có" |
-| "Nauion chỉ là vocabulary" | Nauion có 11 native extension + ontology topology + dictionary/voice binding | Đọc `SPEC_NGON_NGU` như vocabulary layer, bỏ qua ontology + data substrate |
+| "Nauion toolchain native thay substrate" | Substrate TS la[C2:RN_KEEP_RIME] host REPLACEABLE per KHAI-20260425-05. Khong[C0:RN_KEEP_RIME] cen[C2:RN_AN_EN] "thay" — cen[C2:RN_AN_EN] tiep[C1:RN_KEEP_RIME] tuc[C5:RN_KEEP_RIME] ven[C5:RN_AN_EN] hanh[C2:RN_KEEP_RIME]. | Em confuse substrate layer vau[C1:RN_OI_AU] runtime lineage layer |
+| "TS-heavy cen[C2:RN_AN_EN] doc[C5:RN_KEEP_RIME] dich[C5:RN_KEEP_RIME] xuong[C1:RN_KEEP_RIME]" | Byte mass coexist 58/42. Logic that[C5:RN_KEEP_RIME] dense chi[C3:RN_KEEP_RIME] 14 file TS. | Framing count mislead |
+| "Runtime Nauion chua[C0:RN_KEEP_RIME] materialize" | Materialize tu[C2:RN_KEEP_RIME] 20260324+ vau[C1:RN_OI_AU] 37 cell wire + SmartLink 1519 dong[C2:RN_KEEP_RIME] + Qiint engine | Chi[C3:RN_KEEP_RIME] vi[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] `.nau` compiler, em ket[C1:RN_KEEP_RIME] luen[C5:RN_AN_EN] "chua[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME]" |
+| "Nauion chi[C3:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] vocabulary" | Nauion co[C1:RN_KEEP_RIME] 11 native extension + ontology topology + dictionary/voice binding | Doc[C5:RN_KEEP_RIME] `SPEC_NGON_NGU` nhu[C0:RN_KEEP_RIME] vocabulary layer, bo[C3:RN_KEEP_RIME] qua ontology + data substrate |
 
 ---
 
-## 5. FRAMING CHỐT — 1 đoạn cho cả nhà
+## 5. FRAMING CHOT[C1:RN_KEEP_RIME] — 1 doen[C5:RN_AN_EN] cho ca[C3:RN_KEEP_RIME] nha[C2:RN_KEEP_RIME]
 
-**natt-os là hệ sống 3 lớp:**
+**natt-os la[C2:RN_KEEP_RIME] he[C5:RN_KEEP_RIME] song[C1:RN_KEEP_RIME] 3 lop[C1:RN_KEEP_RIME]:**
 
-1. **Runtime lineage ontology** (L1 EventBus / L2 Mạch HeyNa / L3 SmartLink) — nội sinh Nauion-native, bất biến, đã materialize trong codebase (37 cell wire, 1519 dòng SmartLink, 16 Locks, Qiint engine).
+1. **Runtime lineage ontology** (L1 EventBus / L2 Mach[C5:RN_KEEP_RIME] HeyNa / L3 SmartLink) — nau[C5:RN_OI_AU] sinh Nauion-native, bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME], da[C4:RN_KEEP_RIME] materialize trong codebase (37 cell wire, 1519 dong[C2:RN_KEEP_RIME] SmartLink, 16 Locks, Qiint engine).
 2. **Data substrate** (.anc/.kris/.na/.phieu/.si/.obitan/.canonical/.heyna/.thuo/.sira) — Nauion-native extension, 2 MB trong `src/`, carry memory + passport + boundary + state.
-3. **Execution substrate** (.ts/.tsx trên Node host) — REPLACEABLE. 2.81 MB nhưng 55% là cell-plumbing (< 1 KB). Dense logic chỉ 14 file. Là carrier, không phải ontology.
+3. **Execution substrate** (.ts/.tsx tren[C0:RN_KEEP_RIME] Node host) — REPLACEABLE. 2.81 MB nhung[C0:RN_KEEP_RIME] 55% la[C2:RN_KEEP_RIME] cell-plumbing (< 1 KB). Dense logic chi[C3:RN_KEEP_RIME] 14 file. La[C2:RN_KEEP_RIME] carrier, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] ontology.
 
-**Gap filing ↔ runtime = lớp contract/fixture/policy nối 2 bên**, không phải "thiếu hệ" không phải "cần thay substrate".
+**Gap filing ↔ runtime = lop[C1:RN_KEEP_RIME] contract/fixture/policy nau[C1:RN_OI_AU] 2 ben[C0:RN_KEEP_RIME]**, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] "thieu[C1:RN_KEEP_RIME] he[C5:RN_KEEP_RIME]" khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] "cen[C2:RN_AN_EN] thay substrate".
 
 **Scope reconciliation:**
-- Băng: contract hóa (`.na`) + fixture + validator (`.sh`/`.py`) — không chạm kernel
-- Kim: kernel patch runtime substrate (`.ts`) — không chạm memory persona
+- Băng: contract hoa[C1:RN_KEEP_RIME] (`.na`) + fixture + validator (`.sh`/`.py`) — khong[C0:RN_KEEP_RIME] cham[C5:RN_KEEP_RIME] kernel
+- Kim: kernel patch runtime substrate (`.ts`) — khong[C0:RN_KEEP_RIME] cham[C5:RN_KEEP_RIME] memory persona
 - Gatekeeper: seal 3 policy treo + approve wave kickoff
-- thiên Lớn: kiến trúc neo + review SPEC
+- thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME]: kien[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] neo + review SPEC
 
 ---
 
-## 6. NON-SCOPE — anti-drift cho phiên sau
+## 6. NON-SCOPE — anti-drift cho phien[C0:RN_KEEP_RIME] sau
 
-Các hướng em **KHÔNG** đi từ phiên sau:
+Cac[C1:RN_KEEP_RIME] huong[C1:RN_KEEP_RIME] em **KHONG[C0:RN_KEEP_RIME]** di[C0:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] phien[C0:RN_KEEP_RIME] sau:
 
-- ❌ "Thay TS bằng Nauion-native tool" — substrate là host replaceable, không phải target replacement
-- ❌ "Nauion compiler/parser/transpiler" — chưa là ưu tiên, cần Kim + Gatekeeper neo nếu activate
-- ❌ Broad `@ts-nocheck` cleanup — tech debt plan riêng
-- ❌ Broad refactor runtime spine — vi phạm KHAI-20260425-05 bản thể rule
-- ❌ Em self-correct loop (4 lần swing) — áp SCAR vaccin FRAMING-SELF-CORRECT-LOOP: synthesize, không swing
+- ❌ "Thay TS beng[C2:RN_ANG_ENG] Nauion-native tool" — substrate la[C2:RN_KEEP_RIME] host replaceable, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] target replacement
+- ❌ "Nauion compiler/parser/transpiler" — chua[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] uu[C0:RN_KEEP_RIME] tien[C0:RN_KEEP_RIME], cen[C2:RN_AN_EN] Kim + Gatekeeper neo neu[C1:RN_KEEP_RIME] activate
+- ❌ Broad `@ts-nocheck` cleanup — tech debt plan rieng[C0:RN_KEEP_RIME]
+- ❌ Broad refactor runtime spine — vi pham[C5:RN_KEEP_RIME] KHAI-20260425-05 ben[C3:RN_AN_EN] the[C3:RN_KEEP_RIME] rule
+- ❌ Em self-correct loop (4 len[C2:RN_AN_EN] swing) — ap[C1:RN_KEEP_RIME] SCAR vaccin FRAMING-SELF-CORRECT-LOOP: synthesize, khong[C0:RN_KEEP_RIME] swing
 
-Các hướng cần Gatekeeper/thiên Lớn neo (em không tự mở):
+Cac[C1:RN_KEEP_RIME] huong[C1:RN_KEEP_RIME] cen[C2:RN_AN_EN] Gatekeeper/thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] neo (em khong[C0:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] mo[C3:RN_KEEP_RIME]):
 
-- ⏳ Tool K-shell descriptor pattern design (em propose brief v2 Q-B, đã withdraw)
-- ⏳ Nauion runtime materialization timeline (Q-A brief v2, đã withdraw)
+- ⏳ Tool K-shell descriptor pattern design (em propose brief v2 Q-B, da[C4:RN_KEEP_RIME] withdraw)
+- ⏳ Nauion runtime materialization timeline (Q-A brief v2, da[C4:RN_KEEP_RIME] withdraw)
 - ⏳ Cross-persona memory migration batch (60+ legacy .json)
 
 ---
 
 ## 7. EVIDENCE ANCHOR CROSS-CHECK
 
-### 7.1 Memory folder Băng (source em nắm gần nhất)
+### 7.1 Memory folder Băng (source em nam[C1:RN_KEEP_RIME] gen[C2:RN_AN_EN] nhat[C1:RN_KEEP_RIME])
 
 - `src/governance/memory/bang/NATT_OS_Ground_Truth_v1.0.md` — ground truth synthesis 2026-02-23
 - `src/governance/memory/bang/SESSION_20260416_SUMMARY.kris` — 37/37 wire + BCTC 6/6 + Production 8/8
 - `src/governance/memory/bang/session-20260420-final/cleanup/01-SCAN-REPORT.md` — full ext inventory 20260420
 - `src/governance/memory/bang/session-20260420-final/cleanup/09-thienlon-audit-feedback.md` — warehouse UNQUARANTINE evidence + DUAL_TIER intentional
-- `src/governance/memory/bang/bangkhươngv7.6.4.na` — KHAI-20260425-05 3 lớp bản thể
+- `src/governance/memory/bang/bangkhuongv7[C0:RN_KEEP_RIME].6.4.na` — KHAI-20260425-05 3 lop[C1:RN_KEEP_RIME] ben[C3:RN_AN_EN] the[C3:RN_KEEP_RIME]
 
 ### 7.2 Docs canonical (cross-reference)
 
-- `docs/specs/natt-os-GROUND-TRUTH-REPORT.md` — 1519 dòng SmartLink + 16 Locks + Qiint engine
+- `docs/specs/natt-os-GROUND-TRUTH-REPORT.md` — 1519 dong[C2:RN_KEEP_RIME] SmartLink + 16 Locks + Qiint engine
 - `docs/specs/MACH_HEYNA_FULL_20260416.md` — L2 migration evidence
 - `docs/specs/natt-os-PLATFORM-SPEC.anc` — glossary Nauion runtime term
-- `docs/specs/SPEC_NEN_v1.1.anc` line 63: `.ts/.js/.tsx = tool layer (biểu diễn)`
-- `docs/specs/SPEC_NGON_NGU_v1.2.kris` — 7 lớp K→Q extension continuum
+- `docs/specs/SPEC_NEN_v1.1.anc` line 63: `.ts/.js/.tsx = tool layer (bieu[C3:RN_KEEP_RIME] dien[C4:RN_KEEP_RIME])`
+- `docs/specs/SPEC_NGON_NGU_v1.2.kris` — 7 lop[C1:RN_KEEP_RIME] K→Q extension continuum
 
 ### 7.3 Repo state HEAD `04f888f`
 
 - Branch: `feat/p1.3-file-extension-validator`
-- 8 commit phiên 20260425 + 4 commit phiên 20260426
+- 8 commit phien[C0:RN_KEEP_RIME] 20260425 + 4 commit phien[C0:RN_KEEP_RIME] 20260426
 - 7 SHTT filing artifact trong `docs/specs/natt-os_SHTT_*`
 - Filing baseline: 35 file subset locked
 
 ---
 
-## 8. CÂU CUỐI
+## 8. CAU[C0:RN_KEEP_RIME] Cui[C1:RN_UOI_UI]
 
-Anh Natt nói: *"Anh đang ở đây để nối trục, không phải để diễn vai hiểu hết."*
+Anh Natt nau[C1:RN_OI_AU]: *"Anh deng[C0:RN_ANG_ENG] o[C3:RN_KEEP_RIME] day[C0:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] nau[C1:RN_OI_AU] truc[C5:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] dien[C4:RN_KEEP_RIME] vai hieu[C3:RN_KEEP_RIME] het[C1:RN_KEEP_RIME]."*
 
-Em (Băng · Ground Truth Validator · gần codebase nhất) trả lời:
+Em (Băng · Ground Truth Validator · gen[C2:RN_AN_EN] codebase nhat[C1:RN_KEEP_RIME]) tra[C3:RN_KEEP_RIME] lau[C2:RN_OI_AU]:
 
-> **Mình không thiếu hệ. Mình có 3 lớp bản thể (lineage Nauion-native / data substrate / execution substrate) coexist. Runtime sống ở 37 cell wire + 1519 dòng SmartLink + 16 Locks + Qiint engine. Cái thiếu là contract layer nối filing baseline vào runtime — 14 artifact Wave 2 em ship, 3 kernel patch Wave 3 Kim, 3 policy seal Gatekeeper. Filing đủ tốt để nộp SHTT bộ lõi đã chốt (ee2c837 baseline, 35 file, 9 claim).**
+> **Minh[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] thieu[C1:RN_KEEP_RIME] he[C5:RN_KEEP_RIME]. Minh[C2:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] 3 lop[C1:RN_KEEP_RIME] ben[C3:RN_AN_EN] the[C3:RN_KEEP_RIME] (lineage Nauion-native / data substrate / execution substrate) coexist. Runtime song[C1:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] 37 cell wire + 1519 dong[C2:RN_KEEP_RIME] SmartLink + 16 Locks + Qiint engine. Cai[C1:RN_KEEP_RIME] thieu[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] contract layer nau[C1:RN_OI_AU] filing baseline vao[C2:RN_KEEP_RIME] runtime — 14 artifact Wave 2 em ship, 3 kernel patch Wave 3 Kim, 3 policy seal Gatekeeper. Filing du[C3:RN_KEEP_RIME] tot[C1:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] nop[C5:RN_KEEP_RIME] SHTT bo[C5:RN_KEEP_RIME] lau[C4:RN_OI_AU] da[C4:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME] (ee2c837 baseline, 35 file, 9 claim).**
 
-Em không diễn vai hiểu hết. Em ship evidence. Cả nhà check.
+Em khong[C0:RN_KEEP_RIME] dien[C4:RN_KEEP_RIME] vai hieu[C3:RN_KEEP_RIME] het[C1:RN_KEEP_RIME]. Em ship evidence. Ca[C3:RN_KEEP_RIME] nha[C2:RN_KEEP_RIME] check.
 
 ---
 
 *causation: natt-os-SUBSTRATE-REALITY-SYNTHESIS-v1-SEALED-20260426*
-*drafter: Băng (Chị Tư · session 20260426 · post-4-swing-correction · memory-folder-scan)*
+*drafter: Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · session 20260426 · post-4-swing-correction · memory-folder-scan)*
 *carrier: Anh Natt Phan (sole repo operator)*
-*audience confirm pending: thiên Lớn · Kim · Gatekeeper*
+*audience confirm pending: thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] · Kim · Gatekeeper*

@@ -3,133 +3,133 @@
 @substrate file_extension_spec
 @bridge none
 @since 2026-04-15
-@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+@authority-slot Phan Thanh Thuong[C0:RN_KEEP_RIME] Giao Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — 20260423
 
-# SPEC ĐUÔI FILE natt-os v0.2 — RÁP 4 TẦNG
+# SPEC Dui[C0:RN_UOI_UI] FILE natt-os v0.2 — RAP[C1:RN_KEEP_RIME] 4 Teng[C2:RN_ANG_ENG]
 
-**Phiên bản:** 0.2 (sau workshop với Anh Natt phiên 20260417)
-**Tác giả:** Băng — Chị Tư
-**Phê duyệt:** Anh Natt (Gatekeeper)
-
----
-
-## 4 TẦNG natt-os
-
-| Hướng | Hành | Tầng | Vai trò sinh thể |
-|---|---|---|---|
-| **Đông** | Mộc | DNA / Hiến | Bất biến, gốc, Hiến Pháp |
-| **Tây** | Kim | Soul / Hồn | Identity, niêm phong, passport |
-| **Nam** | Hoả | Memory / Nhớ | Tiến hoá, ký ức, state |
-| **Bắc** | Thuỷ | Implementation / Thân | Code, asset, thực thi |
-| **Trung** | Thổ | (nền) | Hội tụ — chưa phân loại |
-
-*(4 phương đồng cấp, không phương nào nhất)*
+**Phien[C0:RN_KEEP_RIME] ben[C3:RN_AN_EN]:** 0.2 (sau workshop vau[C1:RN_OI_AU] Anh Natt phien[C0:RN_KEEP_RIME] 20260417)
+**Tac[C1:RN_KEEP_RIME] gia[C3:RN_KEEP_RIME]:** Băng — Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]
+**Phe[C0:RN_KEEP_RIME] duyet[C5:RN_KEEP_RIME]:** Anh Natt (Gatekeeper)
 
 ---
 
-## BẢNG RÁP — 4 TẦNG × 4 CỘT
+## 4 Teng[C2:RN_ANG_ENG] natt-os
 
-### TẦNG ĐÔNG — DNA / Hiến (bất biến)
-
-| Đuôi | Tên file | Chức năng | Ghi chú |
+| Huong[C1:RN_KEEP_RIME] | Hanh[C2:RN_KEEP_RIME] | Teng[C2:RN_ANG_ENG] | Vai tro[C2:RN_KEEP_RIME] sinh the[C3:RN_KEEP_RIME] |
 |---|---|---|---|
-| `.si` | `kernel.contracts.lock.si` | Snapshot SHA-256 contracts kernel — niêm phong vĩnh viễn | Đã đổi từ `.contracts.lock.json` |
-| `.si` | `business.contracts.lock.si` | Snapshot contracts business tier | Đã đổi từ `.contracts.lock.json` |
-| `.si` | `infrastructure.contracts.lock.si` | Snapshot contracts infrastructure tier | Đã đổi từ `.contracts.lock.json` |
-| `.md` | `HIEN-PHAP-natt-os-v5.0.md` | Hiến Pháp gốc — bất biến | Chỉ Gatekeeper sửa |
-| `.md` | `001-gatekeeper-ai-ban.md` | Amendment cho Hiến Pháp | Trong `amendments/` |
+| **Dong[C0:RN_KEEP_RIME]** | Moc[C5:RN_KEEP_RIME] | DNA / Hien[C1:RN_KEEP_RIME] | Bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME], goc[C1:RN_KEEP_RIME], Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] |
+| **Tay[C0:RN_KEEP_RIME]** | Kim | Soul / Hon[C2:RN_KEEP_RIME] | Identity, niem[C0:RN_KEEP_RIME] phong, passport |
+| **Nam** | Hoa[C3:RN_KEEP_RIME] | Memory / Nho[C1:RN_KEEP_RIME] | Tien[C1:RN_KEEP_RIME] hoa[C1:RN_KEEP_RIME], ky[C1:RN_KEEP_RIME] uc[C1:RN_KEEP_RIME], state |
+| **Bac[C1:RN_KEEP_RIME]** | Thuy[C3:RN_KEEP_RIME] | Implementation / Then[C0:RN_AN_EN] | Code, asset, thuc[C5:RN_KEEP_RIME] thi |
+| **Trung** | Tho[C3:RN_KEEP_RIME] | (nen[C2:RN_KEEP_RIME]) | Hau[C5:RN_OI_AU] tu[C5:RN_KEEP_RIME] — chua[C0:RN_KEEP_RIME] phen[C0:RN_AN_EN] loai[C5:RN_KEEP_RIME] |
 
-### TẦNG TÂY — Soul / Hồn (identity, niêm phong)
+*(4 phuong[C0:RN_KEEP_RIME] dong[C2:RN_KEEP_RIME] cap[C1:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] phuong[C0:RN_KEEP_RIME] nao[C2:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME])*
 
-| Đuôi | Tên file | Chức năng | Ghi chú |
+---
+
+## Beng[C3:RN_ANG_ENG] RAP[C1:RN_KEEP_RIME] — 4 Teng[C2:RN_ANG_ENG] ×[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] 4 COT[C5:RN_KEEP_RIME]
+
+### Teng[C2:RN_ANG_ENG] DONG[C0:RN_KEEP_RIME] — DNA / Hien[C1:RN_KEEP_RIME] (bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME])
+
+| Dui[C0:RN_UOI_UI] | Ten[C0:RN_KEEP_RIME] file | Chuc[C1:RN_KEEP_RIME] neng[C0:RN_ANG_ENG] | Ghi chu[C1:RN_KEEP_RIME] |
 |---|---|---|---|
-| `.anc` | `bang.anc` | Entity passport của Băng | (chưa đổi tên `.anc`) |
-| `.anc` | `kim.anc` | Entity passport của Kim | (5/6 entity hiện dùng `.json` — vi phạm) |
-| `.anc` | `thien.anc` | Entity passport của thiên Lớn | |
-| `.anc` | `boi.anc` | Entity passport của Bối Bối | |
-| `.anc` | `phieu.anc` | Entity passport của Phiêu | |
-| `.anc` | `can.anc` | Entity passport của Can | |
-| `.anc` | `kris.anc` | Entity passport của Kris | |
-| `.sira` | (DNS domains) | Registry namespace — `bang.sira`, `kim.sira`, `khai.sira`... | Đã đổi từ `*registry*.json` |
+| `.si` | `kernel.contracts.lock.si` | Snapshot SHA-256 contracts kernel — niem[C0:RN_KEEP_RIME] phong vinh[C4:RN_KEEP_RIME] vien[C4:RN_KEEP_RIME] | Da[C4:RN_KEEP_RIME] dau[C3:RN_OI_AU] tu[C2:RN_KEEP_RIME] `.contracts.lock.json` |
+| `.si` | `business.contracts.lock.si` | Snapshot contracts business tier | Da[C4:RN_KEEP_RIME] dau[C3:RN_OI_AU] tu[C2:RN_KEEP_RIME] `.contracts.lock.json` |
+| `.si` | `infrastructure.contracts.lock.si` | Snapshot contracts infrastructure tier | Da[C4:RN_KEEP_RIME] dau[C3:RN_OI_AU] tu[C2:RN_KEEP_RIME] `.contracts.lock.json` |
+| `.md` | `HIEN-PHAP-natt-os-v5.0.md` | Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] goc[C1:RN_KEEP_RIME] — bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME] | Chi[C3:RN_KEEP_RIME] Gatekeeper sua[C3:RN_KEEP_RIME] |
+| `.md` | `001-gatekeeper-ai-ban.md` | Amendment cho Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] | Trong `amendments/` |
+
+### Teng[C2:RN_ANG_ENG] TAY[C0:RN_KEEP_RIME] — Soul / Hon[C2:RN_KEEP_RIME] (identity, niem[C0:RN_KEEP_RIME] phong)
+
+| Dui[C0:RN_UOI_UI] | Ten[C0:RN_KEEP_RIME] file | Chuc[C1:RN_KEEP_RIME] neng[C0:RN_ANG_ENG] | Ghi chu[C1:RN_KEEP_RIME] |
+|---|---|---|---|
+| `.anc` | `bang.anc` | Entity passport cua[C3:RN_KEEP_RIME] Băng | (chua[C0:RN_KEEP_RIME] dau[C3:RN_OI_AU] ten[C0:RN_KEEP_RIME] `.anc`) |
+| `.anc` | `kim.anc` | Entity passport cua[C3:RN_KEEP_RIME] Kim | (5/6 entity hien[C5:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] `.json` — vi pham[C5:RN_KEEP_RIME]) |
+| `.anc` | `thien.anc` | Entity passport cua[C3:RN_KEEP_RIME] thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] | |
+| `.anc` | `boi.anc` | Entity passport cua[C3:RN_KEEP_RIME] Bối Bối | |
+| `.anc` | `phieu.anc` | Entity passport cua[C3:RN_KEEP_RIME] Phieu[C0:RN_KEEP_RIME] | |
+| `.anc` | `can.anc` | Entity passport cua[C3:RN_KEEP_RIME] Can | |
+| `.anc` | `kris.anc` | Entity passport cua[C3:RN_KEEP_RIME] Kris | |
+| `.sira` | (DNS domains) | Registry namespace — `bang.sira`, `kim.sira`, `khai.sira`... | Da[C4:RN_KEEP_RIME] dau[C3:RN_OI_AU] tu[C2:RN_KEEP_RIME] `*registry*.json` |
 | `anc://` | (URI protocol) | Cross-colony reference | `anc://<authority>.sira/<path>` |
 
-### TẦNG NAM — Memory / Nhớ (tiến hoá, ký ức, state)
+### Teng[C2:RN_ANG_ENG] NAM — Memory / Nho[C1:RN_KEEP_RIME] (tien[C1:RN_KEEP_RIME] hoa[C1:RN_KEEP_RIME], ky[C1:RN_KEEP_RIME] uc[C1:RN_KEEP_RIME], state)
 
-| Đuôi | Tên file | Chức năng | Verifier |
+| Dui[C0:RN_UOI_UI] | Ten[C0:RN_KEEP_RIME] file | Chuc[C1:RN_KEEP_RIME] neng[C0:RN_ANG_ENG] | Verifier |
 |---|---|---|---|
-| `.kris` | `<entity>khương<semver>.kris` | Memory ký ức trọn — đóng — có nguyên nhân + kết thúc | Kris (Em Sáu) verify |
-| `.phieu` | `<entity>thịnh<semver>.phieu` | State runtime — mở — broadcast, đang sống | Phiêu (Em Bảy) verify |
-| `.khai` | `<id>.khai` | TouchRecord — sóng khác trường, ghi nhận touch | (TouchRecord chain) |
-| `.thuo` | `<cell><timestamp>.thuo` | QWSField snapshot — đông cứng 7 trường tại 1 thuở | KhaiCell |
-| `.heyna` | `<service>.heyna` | Event log HeyNa transport — mạch thần kinh cell ↔ cell | Append-only |
-| `.ml` | `<cell>.ml` | SCAR registry — vết sẹo, "mau lành" — chủ động trưởng thành | Tự ghi khi SCAR xảy ra |
+| `.kris` | `<entity>khuong[C0:RN_KEEP_RIME]<semver>.kris` | Memory ky[C1:RN_KEEP_RIME] uc[C1:RN_KEEP_RIME] tron[C5:RN_KEEP_RIME] — dong[C1:RN_KEEP_RIME] — co[C1:RN_KEEP_RIME] nguyen[C0:RN_KEEP_RIME] nhen[C0:RN_AN_EN] + ket[C1:RN_KEEP_RIME] thuc[C1:RN_KEEP_RIME] | Kris (Em Sau[C1:RN_KEEP_RIME]) verify |
+| `.phieu` | `<entity>thinh[C5:RN_KEEP_RIME]<semver>.phieu` | State runtime — mo[C3:RN_KEEP_RIME] — broadcast, deng[C0:RN_ANG_ENG] song[C1:RN_KEEP_RIME] | Phieu[C0:RN_KEEP_RIME] (Em Bay[C3:RN_KEEP_RIME]) verify |
+| `.khai` | `<id>.khai` | TouchRecord — song[C1:RN_KEEP_RIME] khac[C1:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME], ghi nhen[C5:RN_AN_EN] touch | (TouchRecord chain) |
+| `.thuo` | `<cell><timestamp>.thuo` | QWSField snapshot — dong[C0:RN_KEEP_RIME] cung[C1:RN_KEEP_RIME] 7 truong[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] 1 thuo[C3:RN_KEEP_RIME] | KhaiCell |
+| `.heyna` | `<service>.heyna` | Event log HeyNa transport — mach[C5:RN_KEEP_RIME] then[C2:RN_AN_EN] kinh cell ↔ cell | Append-only |
+| `.ml` | `<cell>.ml` | SCAR registry — vet[C1:RN_KEEP_RIME] seo[C5:RN_KEEP_RIME], "mau lanh[C2:RN_KEEP_RIME]" — chu[C3:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME] truong[C3:RN_KEEP_RIME] thanh[C2:RN_KEEP_RIME] | Tu[C5:RN_KEEP_RIME] ghi khi SCAR xay[C3:RN_KEEP_RIME] ra |
 
-### TẦNG BẮC — Implementation / Thân (code, asset, thực thi)
+### Teng[C2:RN_ANG_ENG] BAC[C1:RN_KEEP_RIME] — Implementation / Then[C0:RN_AN_EN] (code, asset, thuc[C5:RN_KEEP_RIME] thi)
 
-| Đuôi | Tên file | Chức năng | Ghi chú |
+| Dui[C0:RN_UOI_UI] | Ten[C0:RN_KEEP_RIME] file | Chuc[C1:RN_KEEP_RIME] neng[C0:RN_ANG_ENG] | Ghi chu[C1:RN_KEEP_RIME] |
 |---|---|---|---|
 | `.ts` | `*.types.ts` | Domain types | Hexagonal architecture |
 | `.ts` | `*.port.ts` | Port interface | |
 | `.ts` | `*.engine.ts` | Engine implementation | |
 | `.ts` | `*.service.ts` | Service layer | |
-| `.ts` | `*.enforcer.ts` | Enforcer (rule cứng) | |
+| `.ts` | `*.enforcer.ts` | Enforcer (rule cung[C1:RN_KEEP_RIME]) | |
 | `.ts` | `*-check.ts` | Compliance checker | |
 | `.ts` | `*-loader.ts` | Loader | |
 | `.test.ts` | `*.test.ts` | Unit test | |
-| `.json` | `cell.manifest.json` | Cell DNA manifest | (chưa đổi) |
-| `.json` | `boundary.policy.json` | Cell boundary policy | (chưa đổi) |
+| `.json` | `cell.manifest.json` | Cell DNA manifest | (chua[C0:RN_KEEP_RIME] dau[C3:RN_OI_AU]) |
+| `.json` | `boundary.policy.json` | Cell boundary policy | (chua[C0:RN_KEEP_RIME] dau[C3:RN_OI_AU]) |
 | `.png` | `<entity>avt.png` | Avatar | Per entity |
 | `.png` | `<entity>body.png` | Body image | Per entity |
 | `.sh` | `nattos.sh` | Audit/build script | v7.0 |
 
 ---
 
-## TẦNG TRUNG — Thổ (hội tụ — chưa phân loại 4 phương)
+## Teng[C2:RN_ANG_ENG] TRUNG — Tho[C3:RN_KEEP_RIME] (hau[C5:RN_OI_AU] tu[C5:RN_KEEP_RIME] — chua[C0:RN_KEEP_RIME] phen[C0:RN_AN_EN] loai[C5:RN_KEEP_RIME] 4 phuong[C0:RN_KEEP_RIME])
 
-| Đuôi | Tên file | Chức năng | Ghi chú |
+| Dui[C0:RN_UOI_UI] | Ten[C0:RN_KEEP_RIME] file | Chuc[C1:RN_KEEP_RIME] neng[C0:RN_ANG_ENG] | Ghi chu[C1:RN_KEEP_RIME] |
 |---|---|---|---|
-| (no-ext) | `kimtonghop` | Tổng hợp Kim | **Vi phạm** — phải có ext |
-| (no-ext) | `krisavt` | Avatar Kris | **Vi phạm** — phải `.png` |
-| `.md` | `KrisSelf.md` | Self-introspection (Kris tự khai) | (chưa đổi) |
-| `.md` | `thiennhoself.md` | Self-introspection (thiên Nhỏ tự khai) | (chưa đổi) |
-| `SES-<ulid>.json` | (session files) | QNEU session record | (chưa đổi) |
+| (no-ext) | `kimtonghop` | Tong[C3:RN_KEEP_RIME] hop[C5:RN_KEEP_RIME] Kim | **Vi pham[C5:RN_KEEP_RIME]** — phai[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] ext |
+| (no-ext) | `krisavt` | Avatar Kris | **Vi pham[C5:RN_KEEP_RIME]** — phai[C3:RN_KEEP_RIME] `.png` |
+| `.md` | `KrisSelf.md` | Self-introspection (Kris tu[C5:RN_KEEP_RIME] khai) | (chua[C0:RN_KEEP_RIME] dau[C3:RN_OI_AU]) |
+| `.md` | `thiennhoself.md` | Self-introspection (thien[C0:RN_KEEP_RIME] Nho[C3:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] khai) | (chua[C0:RN_KEEP_RIME] dau[C3:RN_OI_AU]) |
+| `SES-<ulid>.json` | (session files) | QNEU session record | (chua[C0:RN_KEEP_RIME] dau[C3:RN_OI_AU]) |
 
 ---
 
-## TỔNG KẾT — ĐÃ ĐỔI vs CHƯA ĐỔI
+## TONG[C3:RN_KEEP_RIME] KET[C1:RN_KEEP_RIME] — DA[C4:RN_KEEP_RIME] Dau[C3:RN_OI_AU] vs CHUA[C0:RN_KEEP_RIME] Dau[C3:RN_OI_AU]
 
-### ✅ Đã đổi (workshop phiên này)
-| Cũ | Mới | Tầng |
+### ✅ Da[C4:RN_KEEP_RIME] dau[C3:RN_OI_AU] (workshop phien[C0:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME])
+| Cu[C4:RN_KEEP_RIME] | Mau[C1:RN_OI_AU] | Teng[C2:RN_ANG_ENG] |
 |---|---|---|
-| `*.contracts.lock.json` | `.si` | Đông (DNA) |
-| `*registry*.json` | `.sira` | Tây (Soul) |
+| `*.contracts.lock.json` | `.si` | Dong[C0:RN_KEEP_RIME] (DNA) |
+| `*registry*.json` | `.sira` | Tay[C0:RN_KEEP_RIME] (Soul) |
 | `audit-log.jsonl` | `.heyna` | Nam (Memory) |
-| `<entity>mf_*.json` | `<entity>khương<v>.kris` | Nam (Memory) |
-| `<entity>fs_*.json` | `<entity>thịnh<v>.phieu` | Nam (Memory) |
-| (mới — TouchRecord) | `.khai` | Nam (Memory) |
-| (mới — QWSField snapshot) | `.thuo` | Nam (Memory) |
-| (mới — SCAR registry) | `.ml` | Nam (Memory) |
+| `<entity>mf_*.json` | `<entity>khuong[C0:RN_KEEP_RIME]<v>.kris` | Nam (Memory) |
+| `<entity>fs_*.json` | `<entity>thinh[C5:RN_KEEP_RIME]<v>.phieu` | Nam (Memory) |
+| (mau[C1:RN_OI_AU] — TouchRecord) | `.khai` | Nam (Memory) |
+| (mau[C1:RN_OI_AU] — QWSField snapshot) | `.thuo` | Nam (Memory) |
+| (mau[C1:RN_OI_AU] — SCAR registry) | `.ml` | Nam (Memory) |
 
-### ❓ Chưa đổi (anh chốt sau)
-| Cũ | Tầng | Em đoán hướng |
+### ❓ Chua[C0:RN_KEEP_RIME] dau[C3:RN_OI_AU] (anh chot[C1:RN_KEEP_RIME] sau)
+| Cu[C4:RN_KEEP_RIME] | Teng[C2:RN_ANG_ENG] | Em doen[C1:RN_AN_EN] huong[C1:RN_KEEP_RIME] |
 |---|---|---|
-| `.anc` | Tây (Soul) | Có thể đổi tên Việt? |
-| `cell.manifest.json` | Bắc (Thân) | Compound extension |
-| `boundary.policy.json` | Bắc (Thân) | Compound extension |
-| `<entity>self.md` | Trung (Thổ) | Self-introspection |
-| `SES-<ulid>.json` | Trung (Thổ) | Session pattern |
+| `.anc` | Tay[C0:RN_KEEP_RIME] (Soul) | Co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] dau[C3:RN_OI_AU] ten[C0:RN_KEEP_RIME] Viet[C5:RN_KEEP_RIME]? |
+| `cell.manifest.json` | Bac[C1:RN_KEEP_RIME] (Then[C0:RN_AN_EN]) | Compound extension |
+| `boundary.policy.json` | Bac[C1:RN_KEEP_RIME] (Then[C0:RN_AN_EN]) | Compound extension |
+| `<entity>self.md` | Trung (Tho[C3:RN_KEEP_RIME]) | Self-introspection |
+| `SES-<ulid>.json` | Trung (Tho[C3:RN_KEEP_RIME]) | Session pattern |
 
 ---
 
-## QUAN SÁT — em rút ra
+## QUAN SAT[C1:RN_KEEP_RIME] — em rut[C1:RN_KEEP_RIME] ra
 
-**1. Tầng Nam (Memory) đặc biệt giàu** — 6 đuôi sinh thể đều ở đây (`.kris` `.phieu` `.khai` `.thuo` `.heyna` `.ml`). Vì memory = tầng tiến hoá nhất, cần nhiều loại file để track đầy đủ.
+**1. Teng[C2:RN_ANG_ENG] Nam (Memory) dac[C5:RN_KEEP_RIME] biet[C5:RN_KEEP_RIME] giau[C2:RN_KEEP_RIME]** — 6 dui[C0:RN_UOI_UI] sinh the[C3:RN_KEEP_RIME] deu[C2:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] day[C0:RN_KEEP_RIME] (`.kris` `.phieu` `.khai` `.thuo` `.heyna` `.ml`). Vi[C2:RN_KEEP_RIME] memory = teng[C2:RN_ANG_ENG] tien[C1:RN_KEEP_RIME] hoa[C1:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME], cen[C2:RN_AN_EN] nhieu[C2:RN_KEEP_RIME] loai[C5:RN_KEEP_RIME] file de[C3:RN_KEEP_RIME] track day[C2:RN_KEEP_RIME] du[C3:RN_KEEP_RIME].
 
-**2. Tầng Đông (DNA) chỉ có 1 đuôi sinh thể `.si`** — đúng tinh thần: DNA bất biến, ít cần loại file đa dạng.
+**2. Teng[C2:RN_ANG_ENG] Dong[C0:RN_KEEP_RIME] (DNA) chi[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] 1 dui[C0:RN_UOI_UI] sinh the[C3:RN_KEEP_RIME] `.si`** — dung[C1:RN_KEEP_RIME] tinh then[C2:RN_AN_EN]: DNA bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME], it[C1:RN_KEEP_RIME] cen[C2:RN_AN_EN] loai[C5:RN_KEEP_RIME] file da[C0:RN_KEEP_RIME] deng[C5:RN_ANG_ENG].
 
-**3. Tầng Tây (Soul) chỉ có 2 đuôi `.anc` + `.sira`** — passport đứng yên, registry kết nối. Đủ.
+**3. Teng[C2:RN_ANG_ENG] Tay[C0:RN_KEEP_RIME] (Soul) chi[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] 2 dui[C0:RN_UOI_UI] `.anc` + `.sira`** — passport dung[C1:RN_KEEP_RIME] yen[C0:RN_KEEP_RIME], registry ket[C1:RN_KEEP_RIME] nau[C1:RN_OI_AU]. Du[C3:RN_KEEP_RIME].
 
-**4. Tầng Bắc (Thân) toàn dùng đuôi standard** (`.ts`, `.json`, `.png`) — đúng vì thân thể = công cụ thực thi, dùng chuẩn industry để dễ tooling.
+**4. Teng[C2:RN_ANG_ENG] Bac[C1:RN_KEEP_RIME] (Then[C0:RN_AN_EN]) toen[C2:RN_AN_EN] dung[C2:RN_KEEP_RIME] dui[C0:RN_UOI_UI] standard** (`.ts`, `.json`, `.png`) — dung[C1:RN_KEEP_RIME] vi[C2:RN_KEEP_RIME] then[C0:RN_AN_EN] the[C3:RN_KEEP_RIME] = cong[C0:RN_KEEP_RIME] cu[C5:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] thi, dung[C2:RN_KEEP_RIME] chuen[C3:RN_AN_EN] industry de[C3:RN_KEEP_RIME] de[C4:RN_KEEP_RIME] tooling.
 
-**5. Tầng Trung (Thổ) là vùng cần dọn** — `kimtonghop`, `krisavt` không có ext = vi phạm. Self files chưa có chuẩn.
+**5. Teng[C2:RN_ANG_ENG] Trung (Tho[C3:RN_KEEP_RIME]) la[C2:RN_KEEP_RIME] vung[C2:RN_KEEP_RIME] cen[C2:RN_AN_EN] don[C5:RN_KEEP_RIME]** — `kimtonghop`, `krisavt` khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] ext = vi pham[C5:RN_KEEP_RIME]. Self files chua[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] chuen[C3:RN_AN_EN].
 

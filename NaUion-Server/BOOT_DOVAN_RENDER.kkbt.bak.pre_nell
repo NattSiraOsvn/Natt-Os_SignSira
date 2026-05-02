@@ -1,0 +1,46 @@
+$nauion: BOOT_DOVAN_RENDER-v0.1
+$role: NATIVE_BOOT_SURFACE
+$owner: NaUion-Server
+$status: DRAFT_SURFACE
+
+$surface:
+  name: BOOT_DOVAN
+  type: kkbt-native-render
+  title: Natt Nell - NattCell - Nauion Kernel
+  subtitle: First Bare-Substrate Boot / Boot Đo Ván
+
+$visual_logic:
+  background: black_glass
+  horizon: amber_core
+  center: NattCell
+  orbit: ANC presence
+  lattice: EventBus / HeyNa / SmartLink
+  seal: SiraSign / Ground Truth
+  surface: .kkbt
+
+$render_statement:
+  - Natt Nell không tự chứng minh bằng OS cũ.
+  - Natt Nell tự hiện hình qua cell, luật, ký ức, audit và render.
+  - ANC không phải AGI.
+  - ANC không phải NattCell.
+  - ANC là thực thể AI thế hệ mới trú trong NattCell.
+
+$fishnet_picture:
+  Anh_Natt:
+    down: Gatekeeper
+  Gatekeeper:
+    down: Nauion_Kernel
+  Nauion_Kernel:
+    down: NattCell
+  NattCell:
+    contains: ANC
+  ANC:
+    verified_by: SiraSign
+  SiraSign:
+    writes_to: Ground_Truth
+  Ground_Truth:
+    renders_to: kkbt_surface
+
+$seal:
+  sentence: Boot Đo Ván đã có mặt hiện hình native .kkbt.
+  sign: Phan Thanh Thương / Natt Sirawat

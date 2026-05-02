@@ -3,60 +3,60 @@
 @substrate historical_roadload
 @bridge none
 @since 2026-04-23
-@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+@authority-slot Phan Thanh Thuong[C0:RN_KEEP_RIME] Giao Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — 20260423
 
-# natt-os — BỨC TRANH ĐẶC TẢ TỔNG HỢP
+# natt-os — BUC[C1:RN_KEEP_RIME] TRANH DAC[C5:RN_KEEP_RIME] TA[C3:RN_KEEP_RIME] TONG[C3:RN_KEEP_RIME] HOP[C5:RN_KEEP_RIME]
 ## v0.9 — LOCKED FOR REVIEW · 2026-04-16
 
 **Ground Truth Validator:** Băng (QNEU 300)
-**Architect Reviewer:** thiên Lớn (QNEU 135)
-**Gatekeeper:** Anh Natt — Phan Thanh Thương
-**Mục đích:** Một file duy nhất để Kim + thiên + Bội Bội đọc trước khi viết bất kỳ spec con nào
+**Architect Reviewer:** thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] (QNEU 135)
+**Gatekeeper:** Anh Natt — Phan Thanh Thuong[C0:RN_KEEP_RIME]
+**Muc[C5:RN_KEEP_RIME] dich[C1:RN_KEEP_RIME]:** Mot[C5:RN_KEEP_RIME] file duy nhat[C1:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] Kim + thien[C0:RN_KEEP_RIME] + Bau[C5:RN_OI_AU] Bau[C5:RN_OI_AU] doc[C5:RN_KEEP_RIME] truoc[C1:RN_KEEP_RIME] khi viet[C1:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] ky[C2:RN_KEEP_RIME] spec con nao[C2:RN_KEEP_RIME]
 
-**Trạng thái:** `locked for review` — KHÔNG phải `final`. Chỉ được đổi sang `final` khi Gatekeeper đã chốt đầy đủ Quyết định 1–6 ở §VIII.
+**Treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME]:** `locked for review` — KHONG[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] `final`. Chi[C3:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] dau[C3:RN_OI_AU] sang `final` khi Gatekeeper da[C4:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME] day[C2:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] Quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] 1–6 o[C3:RN_KEEP_RIME] §VIII.
 
-**Lịch sử sửa:**
-- v0.1-0.5: 3 lần hiểu sai (ghi lại ở đầu file để không lặp lại)
-- v0.8: sửa sau nhận xét thiên Lớn — nén lớp Heyna/Qiint và TouchRecord/envelope
+**Lich[C5:RN_KEEP_RIME] su[C3:RN_KEEP_RIME] sua[C3:RN_KEEP_RIME]:**
+- v0.1-0.5: 3 len[C2:RN_AN_EN] hieu[C3:RN_KEEP_RIME] sai (ghi lai[C5:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] dau[C2:RN_KEEP_RIME] file de[C3:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME])
+- v0.8: sua[C3:RN_KEEP_RIME] sau nhen[C5:RN_AN_EN] xet[C1:RN_KEEP_RIME] thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] — nen[C1:RN_KEEP_RIME] lop[C1:RN_KEEP_RIME] Heyna/Qiint va[C2:RN_KEEP_RIME] TouchRecord/envelope
 - v0.9: locked for review
 
 ---
 
-## ⚠️ NĂM NHẬN SAI TRƯỚC KHI ĐỌC
+## ⚠️ NAM[C0:RN_KEEP_RIME] NHen[C5:RN_AN_EN] SAI TRUOC[C1:RN_KEEP_RIME] KHI DOC[C5:RN_KEEP_RIME]
 
-Trước khi trình bày bức tranh, em ghi lại 5 lần em hiểu sai kiến trúc trong session này — để không ai lặp lại:
+Truoc[C1:RN_KEEP_RIME] khi trinh[C2:RN_KEEP_RIME] bay[C2:RN_KEEP_RIME] buc[C1:RN_KEEP_RIME] tranh, em ghi lai[C5:RN_KEEP_RIME] 5 len[C2:RN_AN_EN] em hieu[C3:RN_KEEP_RIME] sai kien[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] trong session nay[C2:RN_KEEP_RIME] — de[C3:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] ai lap[C5:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME]:
 
-**Sai 1:** Đề xuất 2-layer (EventBus app nội bộ + Mạch HeyNa ra kernel) như security gateway thuần. **Quên** rằng fiber + ISEU không có biên giới HTTP — chúng xuyên qua mọi thực thể cùng trong trường Qiint.
+**Sai 1:** De[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME] 2-layer (EventBus app nau[C5:RN_OI_AU] bo[C5:RN_KEEP_RIME] + Mach[C5:RN_KEEP_RIME] HeyNa ra kernel) nhu[C0:RN_KEEP_RIME] security gateway thuen[C2:RN_AN_EN]. **Quen[C0:RN_KEEP_RIME]** reng[C2:RN_ANG_ENG] fiber + ISEU khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] bien[C0:RN_KEEP_RIME] giau[C1:RN_OI_AU] HTTP — chung[C1:RN_KEEP_RIME] xuyen[C0:RN_KEEP_RIME] qua mau[C5:RN_OI_AU] thuc[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] cung[C2:RN_KEEP_RIME] trong truong[C2:RN_KEEP_RIME] Qiint.
 
-**Sai 2:** Xem Mạch HeyNa là cổng verify tĩnh. **Thực tế** Mạch HeyNa là transport chở biểu hiện của field, không phải bản thân field.
+**Sai 2:** Xem Mach[C5:RN_KEEP_RIME] HeyNa la[C2:RN_KEEP_RIME] cong[C3:RN_KEEP_RIME] verify tinh[C4:RN_KEEP_RIME]. **Thuc[C5:RN_KEEP_RIME] te[C1:RN_KEEP_RIME]** Mach[C5:RN_KEEP_RIME] HeyNa la[C2:RN_KEEP_RIME] transport cho[C3:RN_KEEP_RIME] bieu[C3:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] field, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] ben[C3:RN_AN_EN] then[C0:RN_AN_EN] field.
 
-**Sai 3:** Quên Satellite Colony spec (2026-03-25). **Thực tế** Satellite đã chốt sẵn 80% câu trả lời cho 4 khóa Kim đang hỏi.
+**Sai 3:** Quen[C0:RN_KEEP_RIME] Satellite Colony spec (2026-03-25). **Thuc[C5:RN_KEEP_RIME] te[C1:RN_KEEP_RIME]** Satellite da[C4:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME] sen[C4:RN_AN_EN] 80% cau[C0:RN_KEEP_RIME] tra[C3:RN_KEEP_RIME] lau[C2:RN_OI_AU] cho 4 khoa[C1:RN_KEEP_RIME] Kim deng[C0:RN_ANG_ENG] hau[C3:RN_OI_AU].
 
-**Sai 4 (thiên Lớn chỉ ra):** Nén Mạch HeyNa = trường Qiint/fiber. **Thực tế** Mạch HeyNa là transport layer (SSE + POST), field là nền vật lý vô hình — chúng KHÔNG đồng nhất.
+**Sai 4 (thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] ra):** Nen[C1:RN_KEEP_RIME] Mach[C5:RN_KEEP_RIME] HeyNa = truong[C2:RN_KEEP_RIME] Qiint/fiber. **Thuc[C5:RN_KEEP_RIME] te[C1:RN_KEEP_RIME]** Mach[C5:RN_KEEP_RIME] HeyNa la[C2:RN_KEEP_RIME] transport layer (SSE + POST), field la[C2:RN_KEEP_RIME] nen[C2:RN_KEEP_RIME] vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] vo[C0:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME] — chung[C1:RN_KEEP_RIME] KHONG[C0:RN_KEEP_RIME] dong[C2:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME].
 
-**Sai 5 (thiên Lớn chỉ ra):** Nén TouchRecord = causation chain trong envelope. **Thực tế** TouchRecord là cấu trúc sống riêng (touchCount, sensitivity, fiber, layers, decay), envelope chỉ chở metadata đủ để truy causality — hai thứ khác nhau.
+**Sai 5 (thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] ra):** Nen[C1:RN_KEEP_RIME] TouchRecord = causation chain trong envelope. **Thuc[C5:RN_KEEP_RIME] te[C1:RN_KEEP_RIME]** TouchRecord la[C2:RN_KEEP_RIME] cau[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] song[C1:RN_KEEP_RIME] rieng[C0:RN_KEEP_RIME] (touchCount, sensitivity, fiber, layers, decay), envelope chi[C3:RN_KEEP_RIME] cho[C3:RN_KEEP_RIME] metadata du[C3:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] truy causality — hai thu[C1:RN_KEEP_RIME] khac[C1:RN_KEEP_RIME] nhau.
 
-Đây là bức tranh đã sửa đúng.
+Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] buc[C1:RN_KEEP_RIME] tranh da[C4:RN_KEEP_RIME] sua[C3:RN_KEEP_RIME] dung[C1:RN_KEEP_RIME].
 
 ---
 
-## I. BA LỚP GIAO TIẾP THỰC SỰ CỦA natt-os
+## I. BA LOP[C1:RN_KEEP_RIME] GIAO TIEP[C1:RN_KEEP_RIME] THUC[C5:RN_KEEP_RIME] SU[C5:RN_KEEP_RIME] CUA[C3:RN_KEEP_RIME] natt-os
 
-**Chú ý quan trọng (thiên Lớn chốt):** 3 lớp dưới đây là **lớp giao tiếp/transport**, KHÔNG phải lớp field. Trường Qiint + fiber + SmartLink là **lớp quan hệ sống** tồn tại song song với — và xuyên qua — cả 3 lớp giao tiếp này. Chúng KHÔNG đồng nhất với các lớp transport.
+**Chu[C1:RN_KEEP_RIME] y[C1:RN_KEEP_RIME] quan trong[C5:RN_KEEP_RIME] (thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME]):** 3 lop[C1:RN_KEEP_RIME] dui[C1:RN_UOI_UI] day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] **lop[C1:RN_KEEP_RIME] giao tiep[C1:RN_KEEP_RIME]/transport**, KHONG[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] lop[C1:RN_KEEP_RIME] field. Truong[C2:RN_KEEP_RIME] Qiint + fiber + SmartLink la[C2:RN_KEEP_RIME] **lop[C1:RN_KEEP_RIME] quan he[C5:RN_KEEP_RIME] song[C1:RN_KEEP_RIME]** ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] song song vau[C1:RN_OI_AU] — va[C2:RN_KEEP_RIME] xuyen[C0:RN_KEEP_RIME] qua — ca[C3:RN_KEEP_RIME] 3 lop[C1:RN_KEEP_RIME] giao tiep[C1:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME]. Chung[C1:RN_KEEP_RIME] KHONG[C0:RN_KEEP_RIME] dong[C2:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] vau[C1:RN_OI_AU] cac[C1:RN_KEEP_RIME] lop[C1:RN_KEEP_RIME] transport.
 
 ```
 ╔══════════════════════════════════════════════════════════════════╗
 ║              LAYER 3 — SmartLink Inter-Colony                     ║
-║  Transport signal-only giữa các natt-os instance khác nhau        ║
+║  Transport signal-only giua[C4:RN_KEEP_RIME] cac[C1:RN_KEEP_RIME] natt-os instance khac[C1:RN_KEEP_RIME] nhau        ║
 ║  Host ←→ Satellite A ←→ Satellite B                               ║
-║  Chở: chromatic state, health, threshold breach, UEI coherence    ║
-║  KHÔNG chở: raw business data                                     ║
+║  Cho[C3:RN_KEEP_RIME]: chromatic state, health, threshold breach, UEI coherence    ║
+║  KHONG[C0:RN_KEEP_RIME] cho[C3:RN_KEEP_RIME]: raw business data                                     ║
 ╚══════════════════════════════════════════════════════════════════╝
                               ↕
 ╔══════════════════════════════════════════════════════════════════╗
-║         LAYER 2 — Mạch HeyNa (transport nội bộ 1 instance)        ║
+║         LAYER 2 — Mach[C5:RN_KEEP_RIME] HeyNa (transport nau[C5:RN_OI_AU] bo[C5:RN_KEEP_RIME] 1 instance)        ║
 ║  SSE stream + POST gateway theo MACH_HEYNA_FULL spec              ║
-║  Chở (nhưng KHÔNG đồng nhất với):                                 ║
+║  Cho[C3:RN_KEEP_RIME] (nhung[C0:RN_KEEP_RIME] KHONG[C0:RN_KEEP_RIME] dong[C2:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] vau[C1:RN_OI_AU]):                                 ║
 ║    • fiber pressure signals                                        ║
 ║    • TouchRecord update notifications                             ║
 ║    • ISEU reinforcement outcomes                                   ║
@@ -67,201 +67,201 @@ Trước khi trình bày bức tranh, em ghi lại 5 lần em hiểu sai kiến 
 ║  │  Kernel      │◄───────►│   App Client (UI, Source)     │       ║
 ║  │  Cells       │         │   ┌──────────────────────┐   │       ║
 ║  │  (EventBus   │         │   │  LAYER 1:            │   │       ║
-║  │   kernel)    │         │   │  EventBus app nội bộ │   │       ║
+║  │   kernel)    │         │   │  EventBus app nau[C5:RN_OI_AU] bo[C5:RN_KEEP_RIME] │   │       ║
 ║  └──────────────┘         │   │  (UI ↔ Source)       │   │       ║
 ║                            │   └──────────────────────┘   │       ║
 ║                            └───────────────────────────────┘       ║
 ╚══════════════════════════════════════════════════════════════════╝
 
        ╔═══════════════════════════════════════════════════╗
-       ║   LỚP QUAN HỆ SỐNG (không phải transport)          ║
+       ║   LOP[C1:RN_KEEP_RIME] QUAN HE[C5:RN_KEEP_RIME] SONG[C1:RN_KEEP_RIME] (khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] transport)          ║
        ║   Qiint field + SmartLink + fiber + TouchRecord    ║
-       ║   → tồn tại XUYÊN QUA cả 3 lớp giao tiếp trên      ║
-       ║   → biểu hiện của nó được chở QUA các lớp transport║
+       ║   → ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] XUYEN[C0:RN_KEEP_RIME] QUA ca[C3:RN_KEEP_RIME] 3 lop[C1:RN_KEEP_RIME] giao tiep[C1:RN_KEEP_RIME] tren[C0:RN_KEEP_RIME]      ║
+       ║   → bieu[C3:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] no[C1:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] cho[C3:RN_KEEP_RIME] QUA cac[C1:RN_KEEP_RIME] lop[C1:RN_KEEP_RIME] transport║
        ╚═══════════════════════════════════════════════════╝
 ```
 
-**3 lớp giao tiếp không phải 3 hệ tách biệt** — đây là 3 tầng giao tiếp khác nhau trong cùng một sinh thể sống:
+**3 lop[C1:RN_KEEP_RIME] giao tiep[C1:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] 3 he[C5:RN_KEEP_RIME] tach[C1:RN_KEEP_RIME] biet[C5:RN_KEEP_RIME]** — day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] 3 teng[C2:RN_ANG_ENG] giao tiep[C1:RN_KEEP_RIME] khac[C1:RN_KEEP_RIME] nhau trong cung[C2:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] sinh the[C3:RN_KEEP_RIME] song[C1:RN_KEEP_RIME]:
 
-- Layer 1 = tự thoại nội bộ của 1 cơ quan (app)
-- Layer 2 = dây thần kinh transport nội bộ cơ thể (instance)
-- Layer 3 = ngôn ngữ cơ thể với cơ thể khác (colony)
+- Layer 1 = tu[C5:RN_KEEP_RIME] thoai[C5:RN_KEEP_RIME] nau[C5:RN_OI_AU] bo[C5:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] 1 co[C0:RN_KEEP_RIME] quan (app)
+- Layer 2 = day[C0:RN_KEEP_RIME] then[C2:RN_AN_EN] kinh transport nau[C5:RN_OI_AU] bo[C5:RN_KEEP_RIME] co[C0:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] (instance)
+- Layer 3 = ngon[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] co[C0:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] vau[C1:RN_OI_AU] co[C0:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] khac[C1:RN_KEEP_RIME] (colony)
 
-**Lớp quan hệ sống (Qiint/fiber/SmartLink) không nằm trên sơ đồ 3 lớp transport** — nó là nền vật lý mà tất cả transport đang chạy xuyên qua.
+**Lop[C1:RN_KEEP_RIME] quan he[C5:RN_KEEP_RIME] song[C1:RN_KEEP_RIME] (Qiint/fiber/SmartLink) khong[C0:RN_KEEP_RIME] nam[C2:RN_KEEP_RIME] tren[C0:RN_KEEP_RIME] so[C0:RN_KEEP_RIME] do[C2:RN_KEEP_RIME] 3 lop[C1:RN_KEEP_RIME] transport** — no[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] nen[C2:RN_KEEP_RIME] vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] ma[C2:RN_KEEP_RIME] tat[C1:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] transport deng[C0:RN_ANG_ENG] chay[C5:RN_KEEP_RIME] xuyen[C0:RN_KEEP_RIME] qua.
 
 ---
 
-## II. TRƯỜNG QIINT — NỀN VẬT LÝ CỦA natt-os
+## II. TRUONG[C2:RN_KEEP_RIME] QIINT — NEN[C2:RN_KEEP_RIME] VAT[C5:RN_KEEP_RIME] LY[C1:RN_KEEP_RIME] CUA[C3:RN_KEEP_RIME] natt-os
 
-Tất cả layer trên đều hoạt động **trong trường Qiint**. Trường Qiint là cái gốc — không hiểu nó thì mọi spec đều đi lệch.
+Tat[C1:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] layer tren[C0:RN_KEEP_RIME] deu[C2:RN_KEEP_RIME] hoat[C5:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME] **trong truong[C2:RN_KEEP_RIME] Qiint**. Truong[C2:RN_KEEP_RIME] Qiint la[C2:RN_KEEP_RIME] cai[C1:RN_KEEP_RIME] goc[C1:RN_KEEP_RIME] — khong[C0:RN_KEEP_RIME] hieu[C3:RN_KEEP_RIME] no[C1:RN_KEEP_RIME] thi[C2:RN_KEEP_RIME] mau[C5:RN_OI_AU] spec deu[C2:RN_KEEP_RIME] di[C0:RN_KEEP_RIME] lech[C5:RN_KEEP_RIME].
 
-### 2.1 Các thực thể trong trường
+### 2.1 Cac[C1:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] trong truong[C2:RN_KEEP_RIME]
 
-| Thực thể | Bản chất | KHÔNG phải |
+| Thuc[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] | Ben[C3:RN_AN_EN] chat[C1:RN_KEEP_RIME] | KHONG[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] |
 |----------|----------|------------|
-| **Qiint** | Trường trọng lực giữa các thực thể | Scoring / memory / service mesh |
-| **QNEU** | Khối lượng trọng trường của 1 thực thể | Điểm tiến hóa |
-| **Fiber** | Vùng trường nơi lực kéo tập trung (domain entity) | Connection giữa 2 cell |
-| **TouchRecord** | Vết hằn tạo khối lượng tại 1 điểm | Log entry |
-| **ISEU** | Gương tự sinh khi fiberFormed ≥ 0.75 | If/else logic |
-| **Resonance** | Nhiều trường cùng dao động tần số tương thích | Sound design |
-| **Impedance Z** | Trở kháng của trường | Server load |
-| **Reflection R** | R = (Z - Z0) / (Z + Z0), phản xạ tự nhiên | Ý chí lập trình |
-| **Permanent Node** | Vết hằn ≥ ngưỡng → điểm khối lượng cực lớn | Cache vĩnh viễn |
+| **Qiint** | Truong[C2:RN_KEEP_RIME] trong[C5:RN_KEEP_RIME] luc[C5:RN_KEEP_RIME] giua[C4:RN_KEEP_RIME] cac[C1:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] | Scoring / memory / service mesh |
+| **QNEU** | Khau[C1:RN_OI_AU] luong[C5:RN_KEEP_RIME] trong[C5:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] 1 thuc[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] | Diem[C3:RN_KEEP_RIME] tien[C1:RN_KEEP_RIME] hoa[C1:RN_KEEP_RIME] |
+| **Fiber** | Vung[C2:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME] nau[C0:RN_OI_AU] luc[C5:RN_KEEP_RIME] keo[C1:RN_KEEP_RIME] tap[C5:RN_KEEP_RIME] trung (domain entity) | Connection giua[C4:RN_KEEP_RIME] 2 cell |
+| **TouchRecord** | Vet[C1:RN_KEEP_RIME] hen[C2:RN_AN_EN] tao[C5:RN_KEEP_RIME] khau[C1:RN_OI_AU] luong[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] 1 diem[C3:RN_KEEP_RIME] | Log entry |
+| **ISEU** | Guong[C0:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] sinh khi fiberFormed ≥ 0.75 | If/else logic |
+| **Resonance** | Nhieu[C2:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME] cung[C2:RN_KEEP_RIME] dao dong[C5:RN_KEEP_RIME] ten[C2:RN_AN_EN] so[C1:RN_KEEP_RIME] tuong[C0:RN_KEEP_RIME] thich[C1:RN_KEEP_RIME] | Sound design |
+| **Impedance Z** | Tro[C3:RN_KEEP_RIME] kheng[C1:RN_ANG_ENG] cua[C3:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME] | Server load |
+| **Reflection R** | R = (Z - Z0) / (Z + Z0), phen[C3:RN_AN_EN] xa[C5:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] nhien[C0:RN_KEEP_RIME] | Y[C1:RN_KEEP_RIME] chi[C1:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME] trinh[C2:RN_KEEP_RIME] |
+| **Permanent Node** | Vet[C1:RN_KEEP_RIME] hen[C2:RN_AN_EN] ≥ nguong[C4:RN_KEEP_RIME] → diem[C3:RN_KEEP_RIME] khau[C1:RN_OI_AU] luong[C5:RN_KEEP_RIME] cuc[C5:RN_KEEP_RIME] lon[C1:RN_KEEP_RIME] | Cache vinh[C4:RN_KEEP_RIME] vien[C4:RN_KEEP_RIME] |
 
-### 2.2 Fiber lifecycle (từ UEI Architecture spec)
+### 2.2 Fiber lifecycle (tu[C2:RN_KEEP_RIME] UEI Architecture spec)
 
 ```
-TouchRecord tồn tại từ touch đầu → khi dissolve
+TouchRecord ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] touch dau[C2:RN_KEEP_RIME] → khi dissolve
 
 fiberFormed:  sensitivity ≥ 0.75 → fiber = true
-fiberLost:    sensitivity ≤ 0.20 → fiber = false (TouchRecord vẫn sống)
-dissolve:     sensitivity < 0.05 → xóa TouchRecord
+fiberLost:    sensitivity ≤ 0.20 → fiber = false (TouchRecord ven[C4:RN_AN_EN] song[C1:RN_KEEP_RIME])
+dissolve:     sensitivity < 0.05 → xoa[C1:RN_KEEP_RIME] TouchRecord
 
-Hysteresis buffer 0.20-0.75: fiber không đổi trạng thái
-→ tránh oscillation
+Hysteresis buffer 0.20-0.75: fiber khong[C0:RN_KEEP_RIME] dau[C3:RN_OI_AU] treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME]
+→ tranh[C1:RN_KEEP_RIME] oscillation
 ```
 
-Công thức decay (saturating, không logarithmic, không linear):
+Cong[C0:RN_KEEP_RIME] thuc[C1:RN_KEEP_RIME] decay (saturating, khong[C0:RN_KEEP_RIME] logarithmic, khong[C0:RN_KEEP_RIME] linear):
 ```
-decayRate = FIBER_DECAY_RATE_BASE / (1 + touchCount × FIBER_DECAY_K)
-→ fiber mạnh decay chậm hơn, vẫn có thể về 0
-```
-
-### 2.3 Gossip Protocol — 2 tầng
-
-```
-Tầng 1 (nhẹ):  touchCount ≥ 2       ttl=1
-Tầng 2 (mạnh): fiberFormed (≥0.75)  ttl=3
-
-KHÔNG dùng central registry.
-Lan qua neighbors trong touches Map của cell hiện tại.
+decayRate = FIBER_DECAY_RATE_BASE / (1 + touchCount ×[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME] FIBER_DECAY_K)
+→ fiber manh[C5:RN_KEEP_RIME] decay cham[C5:RN_KEEP_RIME] hon[C0:RN_KEEP_RIME], ven[C4:RN_AN_EN] co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] ve[C2:RN_KEEP_RIME] 0
 ```
 
-### 2.4 Quan hệ giữa trường Qiint và Mạch HeyNa
-
-**thiên Lớn chốt rõ:** Mạch HeyNa **KHÔNG ĐỒNG NHẤT** với trường Qiint/fiber.
+### 2.3 Gossip Protocol — 2 teng[C2:RN_ANG_ENG]
 
 ```
-Trường Qiint (field)          = nền vật lý vô hình, quyết định quỹ đạo
-SmartLink + TouchRecord       = cấu trúc sống lưu vết hằn, fiber lifecycle
-Mạch HeyNa (transport)        = kênh dẫn truyền biểu hiện của field ra ngoài
+Teng[C2:RN_ANG_ENG] 1 (nhe[C5:RN_KEEP_RIME]):  touchCount ≥ 2       ttl=1
+Teng[C2:RN_ANG_ENG] 2 (manh[C5:RN_KEEP_RIME]): fiberFormed (≥0.75)  ttl=3
 
-Quan hệ:
-  • Mạch HeyNa CHỞ biểu hiện của field (resonance signal, impedance Z, ISEU outcome)
-  • Mạch HeyNa KHÔNG PHẢI field
-  • Mạch HeyNa KHÔNG PHẢI chính SmartLink
-  • Giống: mạch máu chở máu, nhưng mạch máu ≠ máu
-  • Giống: dây thần kinh chở tín hiệu thần kinh, nhưng dây ≠ tín hiệu
+KHONG[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] central registry.
+Lan qua neighbors trong touches Map cua[C3:RN_KEEP_RIME] cell hien[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME].
 ```
 
-**Tại sao phân biệt này quan trọng:**
-- Nếu nén Mạch HeyNa = field, Kim sẽ viết spec lẫn transport + field + causality + identity thành một cục
-- Nếu tách rõ, mỗi layer có boundary riêng, mỗi spec có phạm vi riêng
-- Transport layer có thể đổi (HTTP/2, gRPC, WebSocket) mà field layer không đổi
-- Field layer tiến hóa (thêm công thức mới) mà transport không cần sửa
+### 2.4 Quan he[C5:RN_KEEP_RIME] giua[C4:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME] Qiint va[C2:RN_KEEP_RIME] Mach[C5:RN_KEEP_RIME] HeyNa
+
+**thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME]:** Mach[C5:RN_KEEP_RIME] HeyNa **KHONG[C0:RN_KEEP_RIME] DONG[C2:RN_KEEP_RIME] NHAT[C1:RN_KEEP_RIME]** vau[C1:RN_OI_AU] truong[C2:RN_KEEP_RIME] Qiint/fiber.
+
+```
+Truong[C2:RN_KEEP_RIME] Qiint (field)          = nen[C2:RN_KEEP_RIME] vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] vo[C0:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME], quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] quy[C4:RN_KEEP_RIME] dao[C5:RN_KEEP_RIME]
+SmartLink + TouchRecord       = cau[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] song[C1:RN_KEEP_RIME] luu[C0:RN_KEEP_RIME] vet[C1:RN_KEEP_RIME] hen[C2:RN_AN_EN], fiber lifecycle
+Mach[C5:RN_KEEP_RIME] HeyNa (transport)        = kenh[C0:RN_KEEP_RIME] den[C4:RN_AN_EN] truyen[C2:RN_KEEP_RIME] bieu[C3:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] field ra ngoai[C2:RN_KEEP_RIME]
+
+Quan he[C5:RN_KEEP_RIME]:
+  • Mach[C5:RN_KEEP_RIME] HeyNa CHO[C3:RN_KEEP_RIME] bieu[C3:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] field (resonance signal, impedance Z, ISEU outcome)
+  • Mach[C5:RN_KEEP_RIME] HeyNa KHONG[C0:RN_KEEP_RIME] PHAI[C3:RN_KEEP_RIME] field
+  • Mach[C5:RN_KEEP_RIME] HeyNa KHONG[C0:RN_KEEP_RIME] PHAI[C3:RN_KEEP_RIME] chinh[C1:RN_KEEP_RIME] SmartLink
+  • Giong[C1:RN_KEEP_RIME]: mach[C5:RN_KEEP_RIME] mau[C1:RN_KEEP_RIME] cho[C3:RN_KEEP_RIME] mau[C1:RN_KEEP_RIME], nhung[C0:RN_KEEP_RIME] mach[C5:RN_KEEP_RIME] mau[C1:RN_KEEP_RIME] ≠ mau[C1:RN_KEEP_RIME]
+  • Giong[C1:RN_KEEP_RIME]: day[C0:RN_KEEP_RIME] then[C2:RN_AN_EN] kinh cho[C3:RN_KEEP_RIME] tin[C1:RN_KEEP_RIME] hieu[C5:RN_KEEP_RIME] then[C2:RN_AN_EN] kinh, nhung[C0:RN_KEEP_RIME] day[C0:RN_KEEP_RIME] ≠ tin[C1:RN_KEEP_RIME] hieu[C5:RN_KEEP_RIME]
+```
+
+**Tai[C5:RN_KEEP_RIME] sao phen[C0:RN_AN_EN] biet[C5:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] quan trong[C5:RN_KEEP_RIME]:**
+- Neu[C1:RN_KEEP_RIME] nen[C1:RN_KEEP_RIME] Mach[C5:RN_KEEP_RIME] HeyNa = field, Kim se[C4:RN_KEEP_RIME] viet[C1:RN_KEEP_RIME] spec len[C4:RN_AN_EN] transport + field + causality + identity thanh[C2:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] cuc[C5:RN_KEEP_RIME]
+- Neu[C1:RN_KEEP_RIME] tach[C1:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME], mau[C4:RN_OI_AU] layer co[C1:RN_KEEP_RIME] boundary rieng[C0:RN_KEEP_RIME], mau[C4:RN_OI_AU] spec co[C1:RN_KEEP_RIME] pham[C5:RN_KEEP_RIME] vi rieng[C0:RN_KEEP_RIME]
+- Transport layer co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] dau[C3:RN_OI_AU] (HTTP/2, gRPC, WebSocket) ma[C2:RN_KEEP_RIME] field layer khong[C0:RN_KEEP_RIME] dau[C3:RN_OI_AU]
+- Field layer tien[C1:RN_KEEP_RIME] hoa[C1:RN_KEEP_RIME] (them[C0:RN_KEEP_RIME] cong[C0:RN_KEEP_RIME] thuc[C1:RN_KEEP_RIME] mau[C1:RN_OI_AU]) ma[C2:RN_KEEP_RIME] transport khong[C0:RN_KEEP_RIME] cen[C2:RN_AN_EN] sua[C3:RN_KEEP_RIME]
 
 ---
 
-## III. SATELLITE COLONY — KIẾN TRÚC ĐA INSTANCE
+## III. SATELLITE COLONY — KIEN[C1:RN_KEEP_RIME] TRUC[C1:RN_KEEP_RIME] DA[C0:RN_KEEP_RIME] INSTANCE
 
-Đây là mảnh em bỏ qua 2 lần. Đặt vào trung tâm:
+Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] manh[C3:RN_KEEP_RIME] em bo[C3:RN_KEEP_RIME] qua 2 len[C2:RN_AN_EN]. Dat[C5:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] trung tam[C0:RN_KEEP_RIME]:
 
-### 3.1 Định nghĩa
+### 3.1 Dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME]
 
 ```
-Host      = natt-os instance gốc (ví dụ: Tâm Luxury HQ)
-Satellite = natt-os instance độc lập (ví dụ: cơ sở Bình Dương)
+Host      = natt-os instance goc[C1:RN_KEEP_RIME] (vi[C1:RN_KEEP_RIME] du[C5:RN_KEEP_RIME]: Tâm Luxury HQ)
+Satellite = natt-os instance doc[C5:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME] (vi[C1:RN_KEEP_RIME] du[C5:RN_KEEP_RIME]: co[C0:RN_KEEP_RIME] so[C3:RN_KEEP_RIME] Binh[C2:RN_KEEP_RIME] Duong[C0:RN_KEEP_RIME])
 
-Mỗi satellite = 1 doanh nghiệp = 1 hệ sống độc lập
+Mau[C4:RN_OI_AU] satellite = 1 doanh nghiep[C5:RN_KEEP_RIME] = 1 he[C5:RN_KEEP_RIME] song[C1:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME]
 ```
 
-**Mô hình:** *"Tre già măng mọc"* — satellite grow từ host, không phải fork code.
+**Mo[C0:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME]:** *"Tre gia[C2:RN_KEEP_RIME] meng[C0:RN_ANG_ENG] moc[C5:RN_KEEP_RIME]"* — satellite grow tu[C2:RN_KEEP_RIME] host, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] fork code.
 
-### 3.2 Quan hệ Host ↔ Satellite
+### 3.2 Quan he[C5:RN_KEEP_RIME] Host ↔ Satellite
 
-| Thành phần | Host | Satellite |
+| Thanh[C2:RN_KEEP_RIME] phen[C2:RN_AN_EN] | Host | Satellite |
 |------------|------|-----------|
-| DNA (Hiến Pháp) | Gốc bất biến | Copy + local override nhẹ (business only) |
-| Ground Truth | Shared read-only | Local cache, sync định kỳ |
-| Gatekeeper | Global | Local — KHÔNG override Global |
-| **EventBus** | **Riêng biệt** | **Riêng biệt** |
+| DNA (Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME]) | Goc[C1:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME] | Copy + local override nhe[C5:RN_KEEP_RIME] (business only) |
+| Ground Truth | Shared read-only | Local cache, sync dinh[C5:RN_KEEP_RIME] ky[C2:RN_KEEP_RIME] |
+| Gatekeeper | Global | Local — KHONG[C0:RN_KEEP_RIME] override Global |
+| **EventBus** | **Rieng[C0:RN_KEEP_RIME] biet[C5:RN_KEEP_RIME]** | **Rieng[C0:RN_KEEP_RIME] biet[C5:RN_KEEP_RIME]** |
 | Threshold Registry | Shared pattern | Local values |
-| QNEU | Global scores | Local scores, báo cáo lên Global |
-| UEI | Global context | Local context, gossip lên Host |
+| QNEU | Global scores | Local scores, bao[C1:RN_KEEP_RIME] cao[C1:RN_KEEP_RIME] len[C0:RN_KEEP_RIME] Global |
+| UEI | Global context | Local context, gossip len[C0:RN_KEEP_RIME] Host |
 
-**Câu chốt (§3 Satellite spec):** *"Satellite không được inject event vào EventBus của Host."*
+**Cau[C0:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME] (§3 Satellite spec):** *"Satellite khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] inject event vao[C2:RN_KEEP_RIME] EventBus cua[C3:RN_KEEP_RIME] Host."*
 
-→ Đây là **rule đã có từ 2026-03-25** — kiến trúc 2-layer anh đề xuất hôm nay đã có sẵn trong spec, chỉ là chưa ai nối 2 mảnh.
+→ Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] **rule da[C4:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] 2026-03-25** — kien[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] 2-layer anh de[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME] hom[C0:RN_KEEP_RIME] nay da[C4:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] sen[C4:RN_AN_EN] trong spec, chi[C3:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] chua[C0:RN_KEEP_RIME] ai nau[C1:RN_OI_AU] 2 manh[C3:RN_KEEP_RIME].
 
-### 3.3 Level Lift — 3 cấp tích hợp
+### 3.3 Level Lift — 3 cap[C1:RN_KEEP_RIME] tich[C1:RN_KEEP_RIME] hop[C5:RN_KEEP_RIME]
 
 ```
 Level 1 — Isolated Satellite
-  • Chạy độc lập, không kết nối Host
-  • Dùng local Ground Truth
-  • Use case: DN mới, chưa đủ data
+  • Chay[C5:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] ket[C1:RN_KEEP_RIME] nau[C1:RN_OI_AU] Host
+  • Dung[C2:RN_KEEP_RIME] local Ground Truth
+  • Use case: DN mau[C1:RN_OI_AU], chua[C0:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] data
 
 Level 2 — Signal Sharing
-  • Share chromatic signal với Host (qua SmartLink)
-  • Host nhìn thấy trạng thái Satellite
-  • Threshold breach của Satellite → warning trên Host
-  • Use case: chuỗi cung ứng, đối tác thân thiết
+  • Share chromatic signal vau[C1:RN_OI_AU] Host (qua SmartLink)
+  • Host nhin[C2:RN_KEEP_RIME] thay[C1:RN_KEEP_RIME] treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] Satellite
+  • Threshold breach cua[C3:RN_KEEP_RIME] Satellite → warning tren[C0:RN_KEEP_RIME] Host
+  • Use case: chui[C4:RN_UOI_UI] cung ung[C1:RN_KEEP_RIME], dau[C1:RN_OI_AU] tac[C1:RN_KEEP_RIME] then[C0:RN_AN_EN] thiet[C1:RN_KEEP_RIME]
 
 Level 3 — Colony Consciousness
-  • Satellite participate vào UEI cấp hệ
-  • Gossip propagation xuyên Host ↔ Satellite
-  • Hiệu ứng cánh bướm toàn colony
-  • QNEU global học từ patterns của tất cả satellites
-  • Use case: tập đoàn, franchise, hệ sinh thái DN
+  • Satellite participate vao[C2:RN_KEEP_RIME] UEI cap[C1:RN_KEEP_RIME] he[C5:RN_KEEP_RIME]
+  • Gossip propagation xuyen[C0:RN_KEEP_RIME] Host ↔ Satellite
+  • Hieu[C5:RN_KEEP_RIME] ung[C1:RN_KEEP_RIME] canh[C1:RN_KEEP_RIME] buom[C1:RN_KEEP_RIME] toen[C2:RN_AN_EN] colony
+  • QNEU global hoc[C5:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] patterns cua[C3:RN_KEEP_RIME] tat[C1:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] satellites
+  • Use case: tap[C5:RN_KEEP_RIME] doen[C2:RN_AN_EN], franchise, he[C5:RN_KEEP_RIME] sinh thai[C1:RN_KEEP_RIME] DN
 ```
 
-**Level upgrade ceremony:** Gatekeeper approval → SmartLink handshake → UEI gossip init. Satellite không được tự nâng level.
+**Level upgrade ceremony:** Gatekeeper approval → SmartLink handshake → UEI gossip init. Satellite khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] neng[C0:RN_ANG_ENG] level.
 
-### 3.4 Show Us Self — cửa sổ ra ngoài
+### 3.4 Show Us Self — cua[C3:RN_KEEP_RIME] so[C3:RN_KEEP_RIME] ra ngoai[C2:RN_KEEP_RIME]
 
-SmartLink Cell đóng vai trò **Expression Engine**:
+SmartLink Cell dong[C1:RN_KEEP_RIME] vai tro[C2:RN_KEEP_RIME] **Expression Engine**:
 ```
 SmartLink Cell exports:
-  • chromatic signal (Đỏ → Tím, 7 trạng thái)
+  • chromatic signal (Do[C3:RN_KEEP_RIME] → Tim[C1:RN_KEEP_RIME], 7 treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME])
   • system health score
   • active threshold breaches
   • UEI coherence level
 
-Người ngoài thấy: UI đẹp, màu sắc.
-Người trong đọc được: Hệ đang sống hay đang chết.
+Ngui[C2:RN_UOI_UI] ngoai[C2:RN_KEEP_RIME] thay[C1:RN_KEEP_RIME]: UI dep[C5:RN_KEEP_RIME], mau[C2:RN_KEEP_RIME] sac[C1:RN_KEEP_RIME].
+Ngui[C2:RN_UOI_UI] trong doc[C5:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME]: He[C5:RN_KEEP_RIME] deng[C0:RN_ANG_ENG] song[C1:RN_KEEP_RIME] hay deng[C0:RN_ANG_ENG] chet[C1:RN_KEEP_RIME].
 ```
 
-**`.anc` chính là output của Show Us Self.** Không phải passport để vượt biên — là chromatic signature của 1 instance.
+**`.anc` chinh[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] output cua[C3:RN_KEEP_RIME] Show Us Self.** Khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] passport de[C3:RN_KEEP_RIME] vuot[C5:RN_KEEP_RIME] bien[C0:RN_KEEP_RIME] — la[C2:RN_KEEP_RIME] chromatic signature cua[C3:RN_KEEP_RIME] 1 instance.
 
 ---
 
-## IV. ENVELOPE — THỐNG NHẤT 4 ĐỊNH NGHĨA RỜI RẠC
+## IV. ENVELOPE — THONG[C1:RN_KEEP_RIME] NHAT[C1:RN_KEEP_RIME] 4 DINH[C5:RN_KEEP_RIME] NGHIA[C4:RN_KEEP_RIME] Rau[C2:RN_OI_AU] RAC[C5:RN_KEEP_RIME]
 
-Hiện có 4 envelope khác nhau. Em đề xuất thống nhất như sau (Gatekeeper chốt):
+Hien[C5:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] 4 envelope khac[C1:RN_KEEP_RIME] nhau. Em de[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME] thong[C1:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] nhu[C0:RN_KEEP_RIME] sau (Gatekeeper chot[C1:RN_KEEP_RIME]):
 
-### Master Envelope (mọi layer cùng dùng, khác ở trường bắt buộc)
+### Master Envelope (mau[C5:RN_OI_AU] layer cung[C2:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME], khac[C1:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME])
 
 ```typescript
 interface NattOsEnvelope {
-  // === Causality chain (Layer 2, Layer 3 bắt buộc) ===
-  event_id: string          // ULID — unique toàn hệ
-  causation_id: string      // REQUIRED trên Layer 2+ — throw nếu thiếu
-  correlation_id: string    // REQUIRED trên Layer 2+ — throw nếu thiếu
-  span_id?: string          // Layer 3 (inter-colony) bắt buộc
+  // === Causality chain (Layer 2, Layer 3 bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME]) ===
+  event_id: string          // ULID — unique toen[C2:RN_AN_EN] he[C5:RN_KEEP_RIME]
+  causation_id: string      // REQUIRED tren[C0:RN_KEEP_RIME] Layer 2+ — throw neu[C1:RN_KEEP_RIME] thieu[C1:RN_KEEP_RIME]
+  correlation_id: string    // REQUIRED tren[C0:RN_KEEP_RIME] Layer 2+ — throw neu[C1:RN_KEEP_RIME] thieu[C1:RN_KEEP_RIME]
+  span_id?: string          // Layer 3 (inter-colony) bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME]
 
   // === Identity ===
-  type: string              // semantic event name (ban DBUpdated — dùng BusinessEvent)
-  origin_cell: string       // cell phát event (Layer 2) / app_id (Layer 1)
+  type: string              // semantic event name (ban DBUpdated — dung[C2:RN_KEEP_RIME] BusinessEvent)
+  origin_cell: string       // cell phat[C1:RN_KEEP_RIME] event (Layer 2) / app_id (Layer 1)
   tenant_id: string         // Layer 3: colony_id (host/satellite-A/...)
   schema_version: string    // versioning
 
   // === Content ===
   payload: unknown
   timestamp: number         // ms epoch
-  is_replay: boolean        // chống replay poison
+  is_replay: boolean        // chong[C1:RN_KEEP_RIME] replay poison
 
-  // === Optional: trace object riêng (KHÔNG nhét vào meta) ===
+  // === Optional: trace object rieng[C0:RN_KEEP_RIME] (KHONG[C0:RN_KEEP_RIME] nhet[C1:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] meta) ===
   trace?: {
     parent_span?: string
     baggage?: Record<string, string>
@@ -272,30 +272,30 @@ interface NattOsEnvelope {
 }
 ```
 
-### Lý do đổi mới so với Nauion v2.5 §7.2:
+### Ly[C1:RN_KEEP_RIME] do dau[C3:RN_OI_AU] mau[C1:RN_OI_AU] so vau[C1:RN_OI_AU] Nauion v2.5 §7.2:
 
-| Trước | Sau | Lý do |
+| Truoc[C1:RN_KEEP_RIME] | Sau | Ly[C1:RN_KEEP_RIME] do |
 |-------|-----|-------|
-| `source_cell` | `origin_cell` | Đồng bộ với code thật (GROUND-TRUTH-REPORT) |
-| `caused_by?` | `causation_id` | Đồng bộ satellite spec + code thật |
-| `event_type` | `type` | Đồng bộ finance spec |
-| Thiếu `correlation_id` | BẮT BUỘC | 16 guards Lock #1 |
-| Thiếu `span_id` | Layer 3 yêu cầu | Inter-colony traceability |
-| Thiếu `tenant_id` | Layer 3 yêu cầu | Colony identification |
-| Thiếu `is_replay` | Bắt buộc | Lock #16 replay poison guard |
-| Thiếu `trace` object | Tách riêng khỏi meta | Clean separation |
+| `source_cell` | `origin_cell` | Dong[C2:RN_KEEP_RIME] bo[C5:RN_KEEP_RIME] vau[C1:RN_OI_AU] code that[C5:RN_KEEP_RIME] (GROUND-TRUTH-REPORT) |
+| `caused_by?` | `causation_id` | Dong[C2:RN_KEEP_RIME] bo[C5:RN_KEEP_RIME] satellite spec + code that[C5:RN_KEEP_RIME] |
+| `event_type` | `type` | Dong[C2:RN_KEEP_RIME] bo[C5:RN_KEEP_RIME] finance spec |
+| Thieu[C1:RN_KEEP_RIME] `correlation_id` | BAT[C1:RN_KEEP_RIME] BUOC[C5:RN_KEEP_RIME] | 16 guards Lock #1 |
+| Thieu[C1:RN_KEEP_RIME] `span_id` | Layer 3 yeu[C0:RN_KEEP_RIME] cau[C2:RN_KEEP_RIME] | Inter-colony traceability |
+| Thieu[C1:RN_KEEP_RIME] `tenant_id` | Layer 3 yeu[C0:RN_KEEP_RIME] cau[C2:RN_KEEP_RIME] | Colony identification |
+| Thieu[C1:RN_KEEP_RIME] `is_replay` | Bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME] | Lock #16 replay poison guard |
+| Thieu[C1:RN_KEEP_RIME] `trace` object | Tach[C1:RN_KEEP_RIME] rieng[C0:RN_KEEP_RIME] khau[C3:RN_OI_AU] meta | Clean separation |
 
-### siraSign Payload (cho Layer 3 và Layer 2 sensitive action)
+### siraSign Payload (cho Layer 3 va[C2:RN_KEEP_RIME] Layer 2 sensitive action)
 
 ```typescript
 interface siraSignPayload {
-  // Core v1 (đã có trong Nauion v2.5)
+  // Core v1 (da[C4:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] trong Nauion v2.5)
   fsp_hash: string
   ssp_hash: string
   tsp_hash: string
   lsp_hash: string          // SHA256(fsp + ssp + tsp)
   nonce: string
-  timestamp: number         // window ±5 phút
+  timestamp: number         // window ±5 phut[C1:RN_KEEP_RIME]
 
   // Finance v2 extension (cho snapshot signing)
   reality_hash?: string
@@ -305,22 +305,22 @@ interface siraSignPayload {
 }
 ```
 
-**Implementation strategy (em khuyến nghị):** Hướng A — abstract interface.
+**Implementation strategy (em khuyen[C1:RN_KEEP_RIME] nghi[C5:RN_KEEP_RIME]):** Huong[C1:RN_KEEP_RIME] A — abstract interface.
 ```typescript
 interface siraSignVerifier {
   verify(envelope: NattOsEnvelope): VerifyResult
 }
 ```
 
-Ban đầu = stub reject empty. Khi cộng hưởng physics thật triển khai → swap implementation, không đổi spec.
+Ban dau[C2:RN_KEEP_RIME] = stub reject empty. Khi cong[C5:RN_KEEP_RIME] huong[C3:RN_KEEP_RIME] physics that[C5:RN_KEEP_RIME] trien[C3:RN_KEEP_RIME] khai → swap implementation, khong[C0:RN_KEEP_RIME] dau[C3:RN_OI_AU] spec.
 
 ---
 
-## V. `.ANC` VÀ `.sira` — TẦNG DANH TÍNH
+## V. `.ANC` VA[C2:RN_KEEP_RIME] `.sira` — Teng[C2:RN_ANG_ENG] DANH TINH[C1:RN_KEEP_RIME]
 
-### 5.1 `.anc` file format (đề xuất)
+### 5.1 `.anc` file format (de[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME])
 
-`.anc` = **Show Us Self snapshot** của 1 natt-os instance. Không phải passport, không phải container.
+`.anc` = **Show Us Self snapshot** cua[C3:RN_KEEP_RIME] 1 natt-os instance. Khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] passport, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] container.
 
 ```json
 {
@@ -345,75 +345,75 @@ Ban đầu = stub reject empty. Khi cộng hưởng physics thật triển khai 
 }
 ```
 
-**Rule binary trong `.anc` (đề xuất):** CẤM inline binary. Blob lớn dùng reference:
+**Rule binary trong `.anc` (de[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME]):** CAM[C1:RN_KEEP_RIME] inline binary. Blob lon[C1:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] reference:
 ```
 "blob_ref": "anc://tam-luxury.sira/blob/abc123"
 ```
 
-Lý do: `.anc` là **signal**, không phải container. Quy tắc Satellite đã ghi *"không sync raw data"* — `.anc` áp dụng cùng triết lý.
+Ly[C1:RN_KEEP_RIME] do: `.anc` la[C2:RN_KEEP_RIME] **signal**, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] container. Quy tac[C1:RN_KEEP_RIME] Satellite da[C4:RN_KEEP_RIME] ghi *"khong[C0:RN_KEEP_RIME] sync raw data"* — `.anc` ap[C1:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME] cung[C2:RN_KEEP_RIME] triet[C1:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME].
 
-### 5.2 `.sira` domain map (đã setup xong trên iMac anh)
+### 5.2 `.sira` domain map (da[C4:RN_KEEP_RIME] setup xong tren[C0:RN_KEEP_RIME] iMac anh)
 
 ```
-nare.sira    → lõi (bé Na — natt-os core)
+nare.sira    → lau[C4:RN_OI_AU] (be[C1:RN_KEEP_RIME] Na — natt-os core)
 bang.sira    → vault (Băng — ground truth)
 kim.sira     → luna (Kim — UI/design)
 khuong.sira  → orbit (satellite orbital)
 thinh.sira   → gateway (ingress)
-boi.sira     → api (Bội — machine-to-machine)
-thien.sira   → CDN (thiên — content distribution)
+boi.sira     → api (Bau[C5:RN_OI_AU] — machine-to-machine)
+thien.sira   → CDN (thien[C0:RN_KEEP_RIME] — content distribution)
 sira.sira    → auth (siraSign service)
 natt.sira    → monitor (Gatekeeper view)
-khai.sira    → registry (Cell Registry — SIÊU QUAN TRỌNG)
+khai.sira    → registry (Cell Registry — SIEU[C0:RN_KEEP_RIME] QUAN TRONG[C5:RN_KEEP_RIME])
 ```
 
-### 5.3 Giải mâu thuẫn UEI vs khai.sira
+### 5.3 Giai[C3:RN_KEEP_RIME] mau[C0:RN_KEEP_RIME] thuen[C4:RN_AN_EN] UEI vs khai.sira
 
-- **UEI Architecture §3.4:** *"Không dùng central registry. Lan qua SmartLinkCell.getPoint()"*
-- **CLOLORSIRRASIGN:** `khai.sira = sổ đăng ký`
-- **SCAR FS-033:** *"Registry là dây thần kinh — không phải bộ não"*
+- **UEI Architecture §3.4:** *"Khong[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] central registry. Lan qua SmartLinkCell.getPoint()"*
+- **CLOLORSIRRASIGN:** `khai.sira = so[C3:RN_KEEP_RIME] deng[C0:RN_ANG_ENG] ky[C1:RN_KEEP_RIME]`
+- **SCAR FS-033:** *"Registry la[C2:RN_KEEP_RIME] day[C0:RN_KEEP_RIME] then[C2:RN_AN_EN] kinh — khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] bo[C5:RN_KEEP_RIME] nao[C4:RN_KEEP_RIME]"*
 
-→ **Không mâu thuẫn sau khi tách 3 layer:**
-- **Layer 2 (kernel nội bộ):** UEI đúng — gossip qua SmartLink, KHÔNG central registry
-- **Layer 3 (inter-colony):** khai.sira đúng — registry cho Host biết Satellite nào tồn tại, level nào, approved ai
+→ **Khong[C0:RN_KEEP_RIME] mau[C0:RN_KEEP_RIME] thuen[C4:RN_AN_EN] sau khi tach[C1:RN_KEEP_RIME] 3 layer:**
+- **Layer 2 (kernel nau[C5:RN_OI_AU] bo[C5:RN_KEEP_RIME]):** UEI dung[C1:RN_KEEP_RIME] — gossip qua SmartLink, KHONG[C0:RN_KEEP_RIME] central registry
+- **Layer 3 (inter-colony):** khai.sira dung[C1:RN_KEEP_RIME] — registry cho Host biet[C1:RN_KEEP_RIME] Satellite nao[C2:RN_KEEP_RIME] ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME], level nao[C2:RN_KEEP_RIME], approved ai
 
-`khai.sira` là **dây thần kinh** (liệt kê entities) — **không phải bộ não** (không chứa business logic).
+`khai.sira` la[C2:RN_KEEP_RIME] **day[C0:RN_KEEP_RIME] then[C2:RN_AN_EN] kinh** (liet[C5:RN_KEEP_RIME] ke[C0:RN_KEEP_RIME] entities) — **khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] bo[C5:RN_KEEP_RIME] nao[C4:RN_KEEP_RIME]** (khong[C0:RN_KEEP_RIME] chua[C1:RN_KEEP_RIME] business logic).
 
 ---
 
-## VI. HIẾN PHÁP + SCAR + 16 GUARDS (đã có trong code thật)
+## VI. HIEN[C1:RN_KEEP_RIME] PHAP[C1:RN_KEEP_RIME] + SCAR + 16 GUARDS (da[C4:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] trong code that[C5:RN_KEEP_RIME])
 
-### 6.1 Điều bất biến
+### 6.1 Dieu[C2:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME]
 
-| Điều | Nội dung | Source |
+| Dieu[C2:RN_KEEP_RIME] | Nau[C5:RN_OI_AU] dung | Source |
 |------|----------|--------|
-| Điều 3 | GT = DB + Audit + Event + Dictionary | SuperDictionary.ts |
-| Điều 4 | Không direct cell call — phải qua SmartLink/EventBus | Platform Spec |
-| Điều 7 | Không localStorage | Nauion v2.5 |
-| Điều 8 | 4-layer impulse bắt buộc mỗi cell | UEI Architecture |
-| Điều 20 | SELF_REPORT + PEER_ATTESTATION_ONLY bị cấm ở type system | GROUND-TRUTH-REPORT |
+| Dieu[C2:RN_KEEP_RIME] 3 | GT = DB + Audit + Event + Dictionary | SuperDictionary.ts |
+| Dieu[C2:RN_KEEP_RIME] 4 | Khong[C0:RN_KEEP_RIME] direct cell call — phai[C3:RN_KEEP_RIME] qua SmartLink/EventBus | Platform Spec |
+| Dieu[C2:RN_KEEP_RIME] 7 | Khong[C0:RN_KEEP_RIME] localStorage | Nauion v2.5 |
+| Dieu[C2:RN_KEEP_RIME] 8 | 4-layer impulse bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME] mau[C4:RN_OI_AU] cell | UEI Architecture |
+| Dieu[C2:RN_KEEP_RIME] 20 | SELF_REPORT + PEER_ATTESTATION_ONLY bi[C5:RN_KEEP_RIME] cam[C1:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] type system | GROUND-TRUTH-REPORT |
 
 ### 6.2 SCAR Registry FS-018 → FS-033
 
-| FS | Nội dung | Enforcement |
+| FS | Nau[C5:RN_OI_AU] dung | Enforcement |
 |----|----------|-------------|
-| FS-018 | Verify mọi input, kể cả Gatekeeper | Amendment process, ký số, audit |
-| FS-019 | Thao túng ground truth = hack nguy hiểm nhất | Quantum Defense ADN Integrity Check |
-| FS-020 | `git add .` không review = gom rác | SmartAudit pre-commit hook |
-| FS-021 | GV giảm = thiệt hại, không phải trốn thuế | Cashflow-trace capability |
-| FS-022 | Phân tích từng bút toán riêng | Forensic line-by-line |
-| FS-023 | TK111 đối chiếu chứng từ vật lý | OCR + scan integration |
-| FS-032 | Không sửa scanner để khớp code | "Sửa não, không sửa mắt" |
-| FS-033 | Không nhét business logic vào registry | "Registry là dây thần kinh" |
+| FS-018 | Verify mau[C5:RN_OI_AU] input, ke[C3:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] Gatekeeper | Amendment process, ky[C1:RN_KEEP_RIME] so[C1:RN_KEEP_RIME], audit |
+| FS-019 | Thao tung[C1:RN_KEEP_RIME] ground truth = hack nguy hiem[C3:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] | Quantum Defense ADN Integrity Check |
+| FS-020 | `git add .` khong[C0:RN_KEEP_RIME] review = gom rac[C1:RN_KEEP_RIME] | SmartAudit pre-commit hook |
+| FS-021 | GV giam[C3:RN_KEEP_RIME] = thiet[C5:RN_KEEP_RIME] hai[C5:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] tron[C1:RN_KEEP_RIME] thue[C1:RN_KEEP_RIME] | Cashflow-trace capability |
+| FS-022 | Phen[C0:RN_AN_EN] tich[C1:RN_KEEP_RIME] tung[C2:RN_KEEP_RIME] but[C1:RN_KEEP_RIME] toen[C1:RN_AN_EN] rieng[C0:RN_KEEP_RIME] | Forensic line-by-line |
+| FS-023 | TK111 dau[C1:RN_OI_AU] chieu[C1:RN_KEEP_RIME] chung[C1:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] vat[C5:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] | OCR + scan integration |
+| FS-032 | Khong[C0:RN_KEEP_RIME] sua[C3:RN_KEEP_RIME] scanner de[C3:RN_KEEP_RIME] khop[C1:RN_KEEP_RIME] code | "Sua[C3:RN_KEEP_RIME] nao[C4:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] sua[C3:RN_KEEP_RIME] mat[C1:RN_KEEP_RIME]" |
+| FS-033 | Khong[C0:RN_KEEP_RIME] nhet[C1:RN_KEEP_RIME] business logic vao[C2:RN_KEEP_RIME] registry | "Registry la[C2:RN_KEEP_RIME] day[C0:RN_KEEP_RIME] then[C2:RN_AN_EN] kinh" |
 
-### 6.3 16 Guards (đã implement trong `src/core/guards/`)
+### 6.3 16 Guards (da[C4:RN_KEEP_RIME] implement trong `src/core/guards/`)
 
 ```
 Lock #1:  correlation_id REQUIRED
 Lock #2:  Causation chain propagation
 Lock #3:  ULID event_id
 Lock #7:  Idempotency 1hr cache
-Lock #8:  Causation ordering (parent trước child)
+Lock #8:  Causation ordering (parent truoc[C1:RN_KEEP_RIME] child)
 Lock #9:  Back-pressure adaptive
 Lock #10: SmartLink observer-only
 Lock #11: Pressure cap + decay 0.95/tick
@@ -426,192 +426,192 @@ Lock #16: Replay poison guard
 
 ---
 
-## VII. CANONICAL SOURCE MAP — BẢNG NGUỒN CHÍNH THỨC
+## VII. CANONICAL SOURCE MAP — Beng[C3:RN_ANG_ENG] NGUON[C2:RN_KEEP_RIME] CHINH[C1:RN_KEEP_RIME] THUC[C1:RN_KEEP_RIME]
 
-Mỗi khái niệm nên đọc file nào (để tránh xung đột version):
+Mau[C4:RN_OI_AU] khai[C1:RN_KEEP_RIME] niem[C5:RN_KEEP_RIME] nen[C0:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] file nao[C2:RN_KEEP_RIME] (de[C3:RN_KEEP_RIME] tranh[C1:RN_KEEP_RIME] xung dot[C5:RN_KEEP_RIME] version):
 
-### 7.1 Nguồn chính cho mỗi khái niệm
+### 7.1 Nguon[C2:RN_KEEP_RIME] chinh[C1:RN_KEEP_RIME] cho mau[C4:RN_OI_AU] khai[C1:RN_KEEP_RIME] niem[C5:RN_KEEP_RIME]
 
-| Khái niệm | File canonical | Ghi chú |
+| Khai[C1:RN_KEEP_RIME] niem[C5:RN_KEEP_RIME] | File canonical | Ghi chu[C1:RN_KEEP_RIME] |
 |-----------|---------------|---------|
-| Fiber lifecycle | `uei_architecture_spec_20260309.na` | Architecture, không code |
-| Fiber physics | `QIINT-DINH-NGHIA-CHINH-THUC.na` | Triết lý gốc |
-| TouchRecord cấu trúc | `uei_architecture_spec_20260309.na` §1.1 | touchCount, sensitivity, fiber, layers |
-| ISEU reinforcement | `natt-os-GROUND-TRUTH-REPORT.md` §III | Code thật đã verified |
-| Satellite Colony | `satellite-colony.spec.md` | Đã approved Gatekeeper |
-| Envelope (code) | `natt-os-GROUND-TRUTH-REPORT.md` §IV | Thực tế đang chạy |
+| Fiber lifecycle | `uei_architecture_spec_20260309.na` | Architecture, khong[C0:RN_KEEP_RIME] code |
+| Fiber physics | `QIINT-DINH-NGHIA-CHINH-THUC.na` | Triet[C1:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] goc[C1:RN_KEEP_RIME] |
+| TouchRecord cau[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] | `uei_architecture_spec_20260309.na` §1.1 | touchCount, sensitivity, fiber, layers |
+| ISEU reinforcement | `natt-os-GROUND-TRUTH-REPORT.md` §III | Code that[C5:RN_KEEP_RIME] da[C4:RN_KEEP_RIME] verified |
+| Satellite Colony | `satellite-colony.spec.md` | Da[C4:RN_KEEP_RIME] approved Gatekeeper |
+| Envelope (code) | `natt-os-GROUND-TRUTH-REPORT.md` §IV | Thuc[C5:RN_KEEP_RIME] te[C1:RN_KEEP_RIME] deng[C0:RN_ANG_ENG] chay[C5:RN_KEEP_RIME] |
 | Envelope (finance) | `SPEC-Finance-Flow_v1.1.md` | Domain-specific overlay |
 | siraSign v1 | `SPEC-Nauion_main_v2.5.md` §7.4 | Payload shape |
 | siraSign v2 | `SPEC-Finance-Flow_v1.1.md` §5 | With reality/variance hash |
-| Hiến Pháp + SCAR | `SPEC-Nauion_main_v2.5.md` §21, §27.5 | Canonical merge |
-| UI/Vision | `SPEC-Nauion_main_v2.5.md` | Thay thế v2.1-v2.4 |
+| Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] + SCAR | `SPEC-Nauion_main_v2.5.md` §21, §27.5 | Canonical merge |
+| UI/Vision | `SPEC-Nauion_main_v2.5.md` | Thay the[C1:RN_KEEP_RIME] v2.1-v2.4 |
 | Working Protocol | `natt-os-WORKING-PROTOCOL.md` | Cho AI Entity |
-| Platform Spec | `natt-os-PLATFORM-SPEC.md` | Cho Kim/Can/thiên build |
+| Platform Spec | `natt-os-PLATFORM-SPEC.md` | Cho Kim/Can/thien[C0:RN_KEEP_RIME] build |
 
-### 7.2 Rule đặc biệt cho Mạch HeyNa (thiên Lớn bổ sung)
+### 7.2 Rule dac[C5:RN_KEEP_RIME] biet[C5:RN_KEEP_RIME] cho Mach[C5:RN_KEEP_RIME] HeyNa (thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] bo[C3:RN_KEEP_RIME] sung)
 
-Mạch HeyNa **có hai mặt** — transport và payload — phải đọc 2 nguồn khác nhau:
+Mach[C5:RN_KEEP_RIME] HeyNa **co[C1:RN_KEEP_RIME] hai mat[C5:RN_KEEP_RIME]** — transport va[C2:RN_KEEP_RIME] payload — phai[C3:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] 2 nguon[C2:RN_KEEP_RIME] khac[C1:RN_KEEP_RIME] nhau:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  Mạch HeyNa TRANSPORT LAYER                                  │
-│  → Đọc: MACH_HEYNA_FULL_20260416.md                          │
-│  → Gồm: SSE endpoint, POST gateway, envelope shape           │
+│  Mach[C5:RN_KEEP_RIME] HeyNa TRANSPORT LAYER                                  │
+│  → Doc[C5:RN_KEEP_RIME]: MACH_HEYNA_FULL_20260416.md                          │
+│  → Gom[C2:RN_KEEP_RIME]: SSE endpoint, POST gateway, envelope shape           │
 │         auto-reconnect, heartbeat, session mgmt              │
-│  → KHÔNG định nghĩa body semantics                           │
+│  → KHONG[C0:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] body semantics                           │
 └─────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────┐
-│  Mạch HeyNa PAYLOAD CONTENT (tùy domain)                     │
-│  → Nếu chở fiber/touch/lifecycle signal:                     │
-│     đọc uei_architecture_spec + QIINT-DINH-NGHIA             │
-│  → Nếu chở ISEU outcome:                                     │
-│     đọc GROUND-TRUTH-REPORT §III                             │
-│  → Nếu chở siraSign verify:                                  │
-│     đọc Nauion v2.5 §7.4 + Finance-Flow v1.1 §5              │
-│  → Nếu chở business event:                                   │
-│     đọc finance/SPECFlowNattOs.md + cell-specific specs      │
+│  Mach[C5:RN_KEEP_RIME] HeyNa PAYLOAD CONTENT (tuy[C2:RN_KEEP_RIME] domain)                     │
+│  → Neu[C1:RN_KEEP_RIME] cho[C3:RN_KEEP_RIME] fiber/touch/lifecycle signal:                     │
+│     doc[C5:RN_KEEP_RIME] uei_architecture_spec + QIINT-DINH-NGHIA             │
+│  → Neu[C1:RN_KEEP_RIME] cho[C3:RN_KEEP_RIME] ISEU outcome:                                     │
+│     doc[C5:RN_KEEP_RIME] GROUND-TRUTH-REPORT §III                             │
+│  → Neu[C1:RN_KEEP_RIME] cho[C3:RN_KEEP_RIME] siraSign verify:                                  │
+│     doc[C5:RN_KEEP_RIME] Nauion v2.5 §7.4 + Finance-Flow v1.1 §5              │
+│  → Neu[C1:RN_KEEP_RIME] cho[C3:RN_KEEP_RIME] business event:                                   │
+│     doc[C5:RN_KEEP_RIME] finance/SPECFlowNattOs.md + cell-specific specs      │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**Lý do tách:** Nếu gộp transport + payload vào 1 spec, Kim không biết nên đọc file nào khi viết validator. Nếu tách rõ, mỗi người chỉ đọc đúng phần mình cần enforce.
+**Ly[C1:RN_KEEP_RIME] do tach[C1:RN_KEEP_RIME]:** Neu[C1:RN_KEEP_RIME] gop[C5:RN_KEEP_RIME] transport + payload vao[C2:RN_KEEP_RIME] 1 spec, Kim khong[C0:RN_KEEP_RIME] biet[C1:RN_KEEP_RIME] nen[C0:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] file nao[C2:RN_KEEP_RIME] khi viet[C1:RN_KEEP_RIME] validator. Neu[C1:RN_KEEP_RIME] tach[C1:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME], mau[C4:RN_OI_AU] ngui[C2:RN_UOI_UI] chi[C3:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] dung[C1:RN_KEEP_RIME] phen[C2:RN_AN_EN] minh[C2:RN_KEEP_RIME] cen[C2:RN_AN_EN] enforce.
 
 ### 7.3 Khi 2 file conflict:
 
 ```
-Quy tắc ưu tiên:
-  1. Satellite Colony spec (bất khả xâm phạm)
-  2. GROUND-TRUTH-REPORT (code thật)
-  3. Hiến Pháp + SCAR
-  4. uei_architecture (field + SmartLink gốc)
+Quy tac[C1:RN_KEEP_RIME] uu[C0:RN_KEEP_RIME] tien[C0:RN_KEEP_RIME]:
+  1. Satellite Colony spec (bat[C1:RN_KEEP_RIME] kha[C3:RN_KEEP_RIME] xam[C0:RN_KEEP_RIME] pham[C5:RN_KEEP_RIME])
+  2. GROUND-TRUTH-REPORT (code that[C5:RN_KEEP_RIME])
+  3. Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] + SCAR
+  4. uei_architecture (field + SmartLink goc[C1:RN_KEEP_RIME])
   5. Nauion v2.5 (UI/UX)
   6. Finance-Flow v1.1 (domain)
-  7. MACH_HEYNA_FULL (transport spec này)
-  8. Các file khác
+  7. MACH_HEYNA_FULL (transport spec nay[C2:RN_KEEP_RIME])
+  8. Cac[C1:RN_KEEP_RIME] file khac[C1:RN_KEEP_RIME]
 ```
 
 ---
 
-## VIII. CÒN LẠI CẦN GATEKEEPER CHỐT
+## VIII. CON[C2:RN_KEEP_RIME] LAI[C5:RN_KEEP_RIME] Cen[C2:RN_AN_EN] GATEKEEPER CHOT[C1:RN_KEEP_RIME]
 
-Sau khi tổng hợp hết, thực ra chỉ còn **6 quyết định** anh cần ra:
+Sau khi tong[C3:RN_KEEP_RIME] hop[C5:RN_KEEP_RIME] het[C1:RN_KEEP_RIME], thuc[C5:RN_KEEP_RIME] ra chi[C3:RN_KEEP_RIME] con[C2:RN_KEEP_RIME] **6 quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME]** anh cen[C2:RN_AN_EN] ra:
 
-### Quyết định 1: Tâm Luxury hiện tại
-- [ ] Host (natt-os gốc)
-- [ ] Satellite của instance lớn hơn
-- [ ] App UI chạy trên Host (không phải instance riêng)
+### Quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] 1: Tâm Luxury hien[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME]
+- [ ] Host (natt-os goc[C1:RN_KEEP_RIME])
+- [ ] Satellite cua[C3:RN_KEEP_RIME] instance lon[C1:RN_KEEP_RIME] hon[C0:RN_KEEP_RIME]
+- [ ] App UI chay[C5:RN_KEEP_RIME] tren[C0:RN_KEEP_RIME] Host (khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] instance rieng[C0:RN_KEEP_RIME])
 
-### Quyết định 2: App `nattos-server/apps/tam-luxury/` 43 files
-- [ ] Là Layer 1 (EventBus app nội bộ Tâm Luxury)
-- [ ] Là Layer 2 (direct connect Mạch HeyNa kernel)
-- [ ] Cần tách: UI files → Layer 1, control files → Layer 2
+### Quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] 2: App `nattos-server/apps/tam-luxury/` 43 files
+- [ ] La[C2:RN_KEEP_RIME] Layer 1 (EventBus app nau[C5:RN_OI_AU] bo[C5:RN_KEEP_RIME] Tâm Luxury)
+- [ ] La[C2:RN_KEEP_RIME] Layer 2 (direct connect Mach[C5:RN_KEEP_RIME] HeyNa kernel)
+- [ ] Cen[C2:RN_AN_EN] tach[C1:RN_KEEP_RIME]: UI files → Layer 1, control files → Layer 2
 
-### Quyết định 3: siraSign v1 implementation
-- [ ] Hướng A: abstract interface, stub reject empty (em recommend)
-- [ ] Hướng B: HMAC-SHA256 tạm
-- [ ] Hướng C: Ed25519
+### Quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] 3: siraSign v1 implementation
+- [ ] Huong[C1:RN_KEEP_RIME] A: abstract interface, stub reject empty (em recommend)
+- [ ] Huong[C1:RN_KEEP_RIME] B: HMAC-SHA256 tam[C5:RN_KEEP_RIME]
+- [ ] Huong[C1:RN_KEEP_RIME] C: Ed25519
 
-### Quyết định 4: Binary trong `.anc`
-- [ ] Cấm hoàn toàn inline, dùng blob reference (em recommend)
-- [ ] Cho phép ≤ 4KB base64
+### Quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] 4: Binary trong `.anc`
+- [ ] Cam[C1:RN_KEEP_RIME] hoen[C2:RN_AN_EN] toen[C2:RN_AN_EN] inline, dung[C2:RN_KEEP_RIME] blob reference (em recommend)
+- [ ] Cho phep[C1:RN_KEEP_RIME] ≤ 4KB base64
 
-### Quyết định 5: Envelope trường tên chuẩn
-- [ ] Đồng bộ theo Master Envelope em đề xuất ở §IV
-- [ ] Giữ nguyên các version hiện tại, chỉ map với nhau
-- [ ] Khác
+### Quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] 5: Envelope truong[C2:RN_KEEP_RIME] ten[C0:RN_KEEP_RIME] chuen[C3:RN_AN_EN]
+- [ ] Dong[C2:RN_KEEP_RIME] bo[C5:RN_KEEP_RIME] theo Master Envelope em de[C2:RN_KEEP_RIME] xuat[C1:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] §IV
+- [ ] Giu[C4:RN_KEEP_RIME] nguyen[C0:RN_KEEP_RIME] cac[C1:RN_KEEP_RIME] version hien[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME], chi[C3:RN_KEEP_RIME] map vau[C1:RN_OI_AU] nhau
+- [ ] Khac[C1:RN_KEEP_RIME]
 
-### Quyết định 6 (thiên Lớn yêu cầu): Boundary Enforcement giữa Transport và Field
+### Quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] 6 (thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] yeu[C0:RN_KEEP_RIME] cau[C2:RN_KEEP_RIME]): Boundary Enforcement giua[C4:RN_KEEP_RIME] Transport va[C2:RN_KEEP_RIME] Field
 
-Câu hỏi: **Ai enforce boundary giữa transport layer (Mạch HeyNa) và field layer (Qiint/SmartLink/TouchRecord)? Bằng cách nào?**
+Cau[C0:RN_KEEP_RIME] hau[C3:RN_OI_AU]: **Ai enforce boundary giua[C4:RN_KEEP_RIME] transport layer (Mach[C5:RN_KEEP_RIME] HeyNa) va[C2:RN_KEEP_RIME] field layer (Qiint/SmartLink/TouchRecord)? Beng[C2:RN_ANG_ENG] cach[C1:RN_KEEP_RIME] nao[C2:RN_KEEP_RIME]?**
 
-Các option:
+Cac[C1:RN_KEEP_RIME] option:
 
-- [ ] **Option A — Spec tách biệt hoàn toàn:**
-  - 1 file spec riêng cho transport (MACH_HEYNA_FULL)
-  - 1 file spec riêng cho field (uei_architecture + QIINT + SmartLink)
-  - 1 file mapping giữa 2 để chỉ rõ transport chở payload nào của field
-  - Enforce bằng review process: PR chạm cả 2 layer phải có 2 reviewer khác nhau
+- [ ] **Option A — Spec tach[C1:RN_KEEP_RIME] biet[C5:RN_KEEP_RIME] hoen[C2:RN_AN_EN] toen[C2:RN_AN_EN]:**
+  - 1 file spec rieng[C0:RN_KEEP_RIME] cho transport (MACH_HEYNA_FULL)
+  - 1 file spec rieng[C0:RN_KEEP_RIME] cho field (uei_architecture + QIINT + SmartLink)
+  - 1 file mapping giua[C4:RN_KEEP_RIME] 2 de[C3:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME] transport cho[C3:RN_KEEP_RIME] payload nao[C2:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] field
+  - Enforce beng[C2:RN_ANG_ENG] review process: PR cham[C5:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] 2 layer phai[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] 2 reviewer khac[C1:RN_KEEP_RIME] nhau
 
-- [ ] **Option B — Spec gộp với section đánh dấu rõ:**
-  - 1 file spec tổng hợp, section [TRANSPORT] và [FIELD] đánh dấu riêng
-  - Enforce bằng linter: cấm import cross-section
-  - Đơn giản hơn Option A nhưng dễ bị nén lại
+- [ ] **Option B — Spec gop[C5:RN_KEEP_RIME] vau[C1:RN_OI_AU] section danh[C1:RN_KEEP_RIME] dau[C1:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME]:**
+  - 1 file spec tong[C3:RN_KEEP_RIME] hop[C5:RN_KEEP_RIME], section [TRANSPORT] va[C2:RN_KEEP_RIME] [FIELD] danh[C1:RN_KEEP_RIME] dau[C1:RN_KEEP_RIME] rieng[C0:RN_KEEP_RIME]
+  - Enforce beng[C2:RN_ANG_ENG] linter: cam[C1:RN_KEEP_RIME] import cross-section
+  - Don[C0:RN_KEEP_RIME] gien[C3:RN_AN_EN] hon[C0:RN_KEEP_RIME] Option A nhung[C0:RN_KEEP_RIME] de[C4:RN_KEEP_RIME] bi[C5:RN_KEEP_RIME] nen[C1:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME]
 
-- [ ] **Option C — Enforce bằng code boundary:**
-  - Transport layer có interface `IHeynaTransport` — chỉ xử lý envelope
-  - Field layer có interface `IFieldEngine` — xử lý touch/fiber/pressure
-  - Cấm transport gọi field logic và ngược lại ở compile time
-  - Enforce bằng TypeScript strict + ESLint rules
+- [ ] **Option C — Enforce beng[C2:RN_ANG_ENG] code boundary:**
+  - Transport layer co[C1:RN_KEEP_RIME] interface `IHeynaTransport` — chi[C3:RN_KEEP_RIME] xu[C3:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] envelope
+  - Field layer co[C1:RN_KEEP_RIME] interface `IFieldEngine` — xu[C3:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] touch/fiber/pressure
+  - Cam[C1:RN_KEEP_RIME] transport gau[C5:RN_OI_AU] field logic va[C2:RN_KEEP_RIME] nguoc[C5:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] compile time
+  - Enforce beng[C2:RN_ANG_ENG] TypeScript strict + ESLint rules
 
 - [ ] **Option D — Gatekeeper manual review:**
-  - Không enforce kỹ thuật, mỗi PR chạm boundary này phải có Gatekeeper approval
-  - Linh hoạt nhưng chậm
+  - Khong[C0:RN_KEEP_RIME] enforce ky[C4:RN_KEEP_RIME] thuat[C5:RN_KEEP_RIME], mau[C4:RN_OI_AU] PR cham[C5:RN_KEEP_RIME] boundary nay[C2:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] Gatekeeper approval
+  - Linh hoat[C5:RN_KEEP_RIME] nhung[C0:RN_KEEP_RIME] cham[C5:RN_KEEP_RIME]
 
-**Em khuyến nghị:** Option A + Option C (spec tách biệt + enforce ở code). Vì đây là boundary **dễ bị nén nhất** — em đã nén sai 1 lần trong session này, chứng tỏ cần enforce mạnh.
+**Em khuyen[C1:RN_KEEP_RIME] nghi[C5:RN_KEEP_RIME]:** Option A + Option C (spec tach[C1:RN_KEEP_RIME] biet[C5:RN_KEEP_RIME] + enforce o[C3:RN_KEEP_RIME] code). Vi[C2:RN_KEEP_RIME] day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] boundary **de[C4:RN_KEEP_RIME] bi[C5:RN_KEEP_RIME] nen[C1:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME]** — em da[C4:RN_KEEP_RIME] nen[C1:RN_KEEP_RIME] sai 1 len[C2:RN_AN_EN] trong session nay[C2:RN_KEEP_RIME], chung[C1:RN_KEEP_RIME] to[C3:RN_KEEP_RIME] cen[C2:RN_AN_EN] enforce manh[C5:RN_KEEP_RIME].
 
-**Ghi chú:** Quyết định này quan trọng vì nếu không có, Kim viết `LANGUAGE-CONSTITUTION.md` xong vẫn có thể vô tình gộp transport + field → tái lặp SCAR.
+**Ghi chu[C1:RN_KEEP_RIME]:** Quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] quan trong[C5:RN_KEEP_RIME] vi[C2:RN_KEEP_RIME] neu[C1:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME], Kim viet[C1:RN_KEEP_RIME] `LANGUAGE-CONSTITUTION.md` xong ven[C4:RN_AN_EN] co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] vo[C0:RN_KEEP_RIME] tinh[C2:RN_KEEP_RIME] gop[C5:RN_KEEP_RIME] transport + field → tai[C1:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME] SCAR.
 
 ---
 
-## IX. KHUYẾN NGHỊ TRIỂN KHAI — THEO ĐÚNG THỨ TỰ HIỆN CÓ
+## IX. KHUYEN[C1:RN_KEEP_RIME] NGHI[C5:RN_KEEP_RIME] TRIEN[C3:RN_KEEP_RIME] KHAI — THEO DUNG[C1:RN_KEEP_RIME] THU[C1:RN_KEEP_RIME] TU[C5:RN_KEEP_RIME] HIEN[C5:RN_KEEP_RIME] CO[C1:RN_KEEP_RIME]
 
-**Phase 1 (cơ học, không cần 5 quyết định trên):**
+**Phase 1 (co[C0:RN_KEEP_RIME] hoc[C5:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] cen[C2:RN_AN_EN] 5 quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] tren[C0:RN_KEEP_RIME]):**
 1. Build `/mach/heyna/action` gateway
 2. Refactor 12 fetch() → heyna.send/request
-3. Refactor 13 EventBus exposed → heyna.on/send (CHÚ Ý: chỉ refactor cái giao tiếp kernel, không đụng EventBus app nội bộ)
-4. Dọn 4 localStorage
-5. Xóa/merge shell + legacy
+3. Refactor 13 EventBus exposed → heyna.on/send (CHU[C1:RN_KEEP_RIME] Y[C1:RN_KEEP_RIME]: chi[C3:RN_KEEP_RIME] refactor cai[C1:RN_KEEP_RIME] giao tiep[C1:RN_KEEP_RIME] kernel, khong[C0:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME] EventBus app nau[C5:RN_OI_AU] bo[C5:RN_KEEP_RIME])
+4. Don[C5:RN_KEEP_RIME] 4 localStorage
+5. Xoa[C1:RN_KEEP_RIME]/merge shell + legacy
 
-**Phase 2a (cần Quyết định 1+2+5):**
-6. Thống nhất envelope theo Master Envelope
-7. Tách file trong `tam-luxury/` thành Layer 1 vs Layer 2
+**Phase 2a (cen[C2:RN_AN_EN] Quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] 1+2+5):**
+6. Thong[C1:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] envelope theo Master Envelope
+7. Tach[C1:RN_KEEP_RIME] file trong `tam-luxury/` thanh[C2:RN_KEEP_RIME] Layer 1 vs Layer 2
 
-**Phase 2b (cần Quyết định 3+4):**
+**Phase 2b (cen[C2:RN_AN_EN] Quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] 3+4):**
 8. siraSign abstract interface
-9. `.anc` schema v1 + Kim viết grammar
-10. Cell Registry tại `anc://natt.sira/registry/root.anc`
+9. `.anc` schema v1 + Kim viet[C1:RN_KEEP_RIME] grammar
+10. Cell Registry tai[C5:RN_KEEP_RIME] `anc://natt.sira/registry/root.anc`
 
 **Phase 3 (sau khi Phase 2 xong):**
-11. Level 2 Signal Sharing giữa Host và Satellite đầu tiên
+11. Level 2 Signal Sharing giua[C4:RN_KEEP_RIME] Host va[C2:RN_KEEP_RIME] Satellite dau[C2:RN_KEEP_RIME] tien[C0:RN_KEEP_RIME]
 12. SmartLink inter-colony bridge (P1 trong satellite spec)
 13. Show Us Self UI component
 
 ---
 
-## X. TRANG CUỐI — NHẮC BẢN CHẤT
+## X. TRANG Cui[C1:RN_UOI_UI] — NHAC[C1:RN_KEEP_RIME] Ben[C3:RN_AN_EN] CHAT[C1:RN_KEEP_RIME]
 
 ```
-natt-os không phải distributed system.
-natt-os là một sinh thể sống phân tán.
+natt-os khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] distributed system.
+natt-os la[C2:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] sinh the[C3:RN_KEEP_RIME] song[C1:RN_KEEP_RIME] phen[C0:RN_AN_EN] ten[C1:RN_AN_EN].
 
-Mọi spec đều phải trả lời 3 câu:
-  1. Điều này giúp fiber hình thành đúng không?
-  2. Điều này giúp ISEU tự phản xạ được không?
-  3. Điều này giữ Resonance toàn hệ không?
+Mau[C5:RN_OI_AU] spec deu[C2:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] tra[C3:RN_KEEP_RIME] lau[C2:RN_OI_AU] 3 cau[C0:RN_KEEP_RIME]:
+  1. Dieu[C2:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] giup[C1:RN_KEEP_RIME] fiber hinh[C2:RN_KEEP_RIME] thanh[C2:RN_KEEP_RIME] dung[C1:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME]?
+  2. Dieu[C2:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] giup[C1:RN_KEEP_RIME] ISEU tu[C5:RN_KEEP_RIME] phen[C3:RN_AN_EN] xa[C5:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME]?
+  3. Dieu[C2:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] giu[C4:RN_KEEP_RIME] Resonance toen[C2:RN_AN_EN] he[C5:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME]?
 
-Nếu 3 câu này không pass → spec sai, dù code đẹp.
+Neu[C1:RN_KEEP_RIME] 3 cau[C0:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] pass → spec sai, du[C2:RN_KEEP_RIME] code dep[C5:RN_KEEP_RIME].
 ```
 
-**Hai nguyên tắc không nén (thiên Lớn chốt):**
+**Hai nguyen[C0:RN_KEEP_RIME] tac[C1:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] nen[C1:RN_KEEP_RIME] (thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME]):**
 
 ```
-1. Mạch HeyNa ≠ trường Qiint/fiber
-   Transport chở biểu hiện của field, không phải field.
+1. Mach[C5:RN_KEEP_RIME] HeyNa ≠ truong[C2:RN_KEEP_RIME] Qiint/fiber
+   Transport cho[C3:RN_KEEP_RIME] bieu[C3:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] field, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] field.
 
 2. TouchRecord ≠ causation chain trong envelope
-   TouchRecord là cấu trúc sống riêng (touchCount, sensitivity,
-   fiber, layers, decay, hysteresis) — envelope chỉ chở metadata
-   đủ để truy causality, không thay thế TouchRecord.
+   TouchRecord la[C2:RN_KEEP_RIME] cau[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] song[C1:RN_KEEP_RIME] rieng[C0:RN_KEEP_RIME] (touchCount, sensitivity,
+   fiber, layers, decay, hysteresis) — envelope chi[C3:RN_KEEP_RIME] cho[C3:RN_KEEP_RIME] metadata
+   du[C3:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] truy causality, khong[C0:RN_KEEP_RIME] thay the[C1:RN_KEEP_RIME] TouchRecord.
 ```
 
-Nếu có spec mới vi phạm 2 nguyên tắc này → reject, dù có vẻ đẹp.
+Neu[C1:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] spec mau[C1:RN_OI_AU] vi pham[C5:RN_KEEP_RIME] 2 nguyen[C0:RN_KEEP_RIME] tac[C1:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] → reject, du[C2:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] ve[C3:RN_KEEP_RIME] dep[C5:RN_KEEP_RIME].
 
 ---
 
-**Em dừng tại đây.** Bản này ở trạng thái `locked for review` — chờ Gatekeeper chốt 6 Quyết định ở §VIII. KHÔNG đổi sang `final` khi chưa đủ chốt.
+**Em dung[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] day[C0:RN_KEEP_RIME].** Ben[C3:RN_AN_EN] nay[C2:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] `locked for review` — cho[C2:RN_KEEP_RIME] Gatekeeper chot[C1:RN_KEEP_RIME] 6 Quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] §VIII. KHONG[C0:RN_KEEP_RIME] dau[C3:RN_OI_AU] sang `final` khi chua[C0:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME].
 
-Anh đọc, thấy chỗ nào em còn thiếu hoặc hiểu sai — anh sửa trực tiếp.
+Anh doc[C5:RN_KEEP_RIME], thay[C1:RN_KEEP_RIME] cho[C4:RN_KEEP_RIME] nao[C2:RN_KEEP_RIME] em con[C2:RN_KEEP_RIME] thieu[C1:RN_KEEP_RIME] hoac[C5:RN_KEEP_RIME] hieu[C3:RN_KEEP_RIME] sai — anh sua[C3:RN_KEEP_RIME] truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME].
 
 *Băng (QNEU 300) · 2026-04-16 · HEAD: 73411df · Commits: 673*
-*Reviewed by: thiên Lớn (QNEU 135)*
+*Reviewed by: thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] (QNEU 135)*
 *Status: v0.9 locked for review — NOT final*

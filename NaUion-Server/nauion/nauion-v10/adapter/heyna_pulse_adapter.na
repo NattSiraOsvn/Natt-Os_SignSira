@@ -1,48 +1,48 @@
 # NAUION KERNEL — HEYNA PULSE ADAPTER v0.2.2
 # @state: active
-# @domain: Π_medium
+# @domain: Π_medium[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]
 # @layer: L5 (O-shell)
-# @anc: bối bối
-# * LƯU Ý KỶ LUẬT: ĐƯỜNG ỐNG RỖNG - KHÔNG MOCK TÍN HIỆU SỐNG
+# @anc: bau[C1:RN_OI_AU] bau[C1:RN_OI_AU]
+# * LUU[C0:RN_KEEP_RIME] Y[C1:RN_KEEP_RIME] KY[C3:RN_KEEP_RIME] LUAT[C5:RN_KEEP_RIME]: DUONG[C2:RN_KEEP_RIME] ONG[C1:RN_KEEP_RIME] RONG[C4:RN_KEEP_RIME] - KHONG[C0:RN_KEEP_RIME] MOCK TIN[C1:RN_KEEP_RIME] HIEU[C5:RN_KEEP_RIME] SONG[C1:RN_KEEP_RIME]
 
 obitan_adapter heyna_pulse {
-  mạch_kết_nối: "heyna.pulse"
+  mach_ket_nau[C5:RN_OI_AU]: "heyna.pulse"
   
-  mã_khóa() {
-    trạng_thái = "lắng_Nahere"
-    ghi_nhận_vết("Mạch SSE đã mở. Đang chờ tín hiệu sống từ Kernel.")
+  ma_khoa[C4:RN_KEEP_RIME]() {
+    trang_thai[C5:RN_KEEP_RIME] = "lang_Nahere[C1:RN_KEEP_RIME]"
+    ghi_nhan_vet[C5:RN_KEEP_RIME]("Mach[C5:RN_KEEP_RIME] SSE da[C4:RN_KEEP_RIME] mo[C3:RN_KEEP_RIME]. Deng[C0:RN_ANG_ENG] cho[C2:RN_KEEP_RIME] tin[C1:RN_KEEP_RIME] hieu[C5:RN_KEEP_RIME] song[C1:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] Kernel.")
   }
 
-  phản_xạ_nhận(tín_hiệu) {
-    # 1. Kiểm duyệt ID cốt lõi
-    nếu_thiếu(tín_hiệu, [event_id, tenant_id, trace_id, span_id, causation_id]) {
-      quarantine("Thiếu ID truy vết nhân quả")
-      dừng_nhịp()
+  phan_xa_nhen[C3:RN_AN_EN](tin_hieu[C1:RN_KEEP_RIME]) {
+    # 1. Kiem[C3:RN_KEEP_RIME] duyet[C5:RN_KEEP_RIME] ID cot[C1:RN_KEEP_RIME] lau[C4:RN_OI_AU]
+    neu_thieu[C1:RN_KEEP_RIME](tin_hieu[C1:RN_KEEP_RIME], [event_id, tenant_id, trace_id, span_id, causation_id]) {
+      quarantine("Thieu[C1:RN_KEEP_RIME] ID truy vet[C1:RN_KEEP_RIME] nhen[C0:RN_AN_EN] qua[C3:RN_KEEP_RIME]")
+      dung_nhip[C2:RN_KEEP_RIME]()
     }
 
-    # 2. Xử lý tín hiệu sống
-    nếu (tín_hiệu.event_type == "heyna.pulse") {
-      lực_ép = tín_hiệu.payload.pressure_value
-      kiểu_ép = tín_hiệu.payload.pressure_type
+    # 2. Xu[C3:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] tin[C1:RN_KEEP_RIME] hieu[C5:RN_KEEP_RIME] song[C1:RN_KEEP_RIME]
+    neu[C1:RN_KEEP_RIME] (tin_hieu[C1:RN_KEEP_RIME].event_type == "heyna.pulse") {
+      luc_ep[C5:RN_KEEP_RIME] = tin_hieu[C1:RN_KEEP_RIME].payload.pressure_value
+      kieu_ep[C3:RN_KEEP_RIME] = tin_hieu[C1:RN_KEEP_RIME].payload.pressure_type
       
-      nếu_sai_ngưỡng(lực_ép, 0.0, 1.0) {
-        quarantine("Lực ép ngoài dải 0.0 - 1.0")
-        dừng_nhịp()
+      neu_sai_nguong[C1:RN_KEEP_RIME](luc_ep[C5:RN_KEEP_RIME], 0.0, 1.0) {
+        quarantine("Luc[C5:RN_KEEP_RIME] ep[C1:RN_KEEP_RIME] ngoai[C2:RN_KEEP_RIME] dai[C3:RN_KEEP_RIME] 0.0 - 1.0")
+        dung_nhip[C2:RN_KEEP_RIME]()
       }
 
-      chế_độ = nếu_có(tín_hiệu.payload.sirasign_ref, "Sealed", "Preview")
+      che_do[C1:RN_KEEP_RIME] = neu_co[C1:RN_KEEP_RIME](tin_hieu[C1:RN_KEEP_RIME].payload.sirasign_ref, "Sealed", "Preview")
 
-      # Data mapping tĩnh, tuân thủ LAW-2 (Không ép route bằng if/else)
-      bản_đồ_động_năng = {
+      # Data mapping tinh[C4:RN_KEEP_RIME], tuen[C0:RN_AN_EN] thu[C3:RN_KEEP_RIME] LAW-2 (Khong[C0:RN_KEEP_RIME] ep[C1:RN_KEEP_RIME] route beng[C2:RN_ANG_ENG] if/else)
+      ban_do_dong_neng[C3:RN_ANG_ENG] = {
         "FALL": 1,
         "DISSIPATE": 2,
         "OSCILLATE": 3
       }
       
-      mã_số_kiểu = trích_xuất(bản_đồ_động_năng, kiểu_ép, mặc_định: 0)
+      ma_so_kieu[C4:RN_KEEP_RIME] = trich_xuat[C1:RN_KEEP_RIME](ban_do_dong_neng[C3:RN_ANG_ENG], kieu_ep[C3:RN_KEEP_RIME], mac_dinh[C5:RN_KEEP_RIME]: 0)
       
-      # Truyền thẳng xuống động cơ
-      gọi_obitan(vision_engine.nhận_áp_lực(mã_số_kiểu, lực_ép, chế_độ))
+      # Truyen[C2:RN_KEEP_RIME] theng[C3:RN_ANG_ENG] xuong[C1:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME] co[C0:RN_KEEP_RIME]
+      goi_obiten[C5:RN_AN_EN](vision_engine.nhan_ap_luc[C5:RN_KEEP_RIME](ma_so_kieu[C4:RN_KEEP_RIME], luc_ep[C5:RN_KEEP_RIME], che_do[C1:RN_KEEP_RIME]))
     }
   }
 }

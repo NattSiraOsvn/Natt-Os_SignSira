@@ -10,7 +10,7 @@ $event:
   scanner: NaUion-Server/NELL_PRIMITIVE_WORDS_VALIDATE.sira
 
 $finding:
-  sentence: Primitive words đã đủ 12 nhóm, bổ sung system_container_file_lifecycle sau khi dictionary gốc được cập nhật.
+  sentence: Primitive words da[C4:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] 12 nhom[C1:RN_KEEP_RIME], bo[C3:RN_KEEP_RIME] sung system_container_file_lifecycle sau khi dictionary goc[C1:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] cap[C5:RN_KEEP_RIME] nhat[C5:RN_KEEP_RIME].
 
 $groups:
   - read_write
@@ -27,5 +27,5 @@ $groups:
   - system_container_file_lifecycle
 
 $seal:
-  sentence: Audit event v0.2 xác nhận Nell primitive words đã đủ 12 nhóm.
-  sign: Phan Thanh Thương / Natt Sirawat
+  sentence: Audit event v0.2 xac[C1:RN_KEEP_RIME] nhen[C5:RN_AN_EN] Nell primitive words da[C4:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] 12 nhom[C1:RN_KEEP_RIME].
+  sign: Phan Thanh Thuong[C0:RN_KEEP_RIME] / Natt Sirawat

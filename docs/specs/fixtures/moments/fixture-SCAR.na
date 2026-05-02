@@ -3,7 +3,7 @@
 @substrate moment_fixture
 @bridge none
 @since 2026-04-25
-@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+@authority-slot Phan Thanh Thuong[C0:RN_KEEP_RIME] Giao Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — 20260423
 
 {
   "moment": {
@@ -31,9 +31,9 @@
       "parent_moment_kind": "SCAR",
       "ordinal": 1,
       "sirasign_fragment": "<computed-by-persister>",
-      "observed": "Pattern swing 4 lần trong 1 chủ đề (substrate framing): Brief v1 blind → Brief v2 scan selective 'Nauion chưa materialize' → Correction over-swing 'Nauion embedded DSL' → Matrix v1 §6 wording 'semantic framing + vocabulary + shell discipline chưa toolchain native'. Mỗi swing dán nhãn 'correction minh mẫn' nhưng thực tế là build framing → counter-evidence → swing OPPOSITE.",
-      "expected": "Framing mới = SYNTHESIS evidence cũ + evidence counter. Không replacement. Không synthesize được → nói 'chưa giải ra', không ship framing.",
-      "evidence_source": "Phiên 20260426 commits b2b9af2 → 04f888f → a335c7b lineage; handoff bang_handoff_20260426.na §session_summary_20260426.three_phases_achieved + patterns_observed_this_session.PATTERN-20260426-FOUR-SWING-SEQUENCE"
+      "observed": "Pattern swing 4 len[C2:RN_AN_EN] trong 1 chu[C3:RN_KEEP_RIME] de[C2:RN_KEEP_RIME] (substrate framing): Brief v1 blind → Brief v2 scan selective 'Nauion chua[C0:RN_KEEP_RIME] materialize' → Correction over-swing 'Nauion embedded DSL' → Matrix v1 §6 wording 'semantic framing + vocabulary + shell discipline chua[C0:RN_KEEP_RIME] toolchain native'. Mau[C4:RN_OI_AU] swing den[C1:RN_AN_EN] nhen[C4:RN_AN_EN] 'correction minh men[C4:RN_AN_EN]' nhung[C0:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] te[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] build framing → counter-evidence → swing OPPOSITE.",
+      "expected": "Framing mau[C1:RN_OI_AU] = SYNTHESIS evidence cu[C4:RN_KEEP_RIME] + evidence counter. Khong[C0:RN_KEEP_RIME] replacement. Khong[C0:RN_KEEP_RIME] synthesize duoc[C5:RN_KEEP_RIME] → nau[C1:RN_OI_AU] 'chua[C0:RN_KEEP_RIME] giai[C3:RN_KEEP_RIME] ra', khong[C0:RN_KEEP_RIME] ship framing.",
+      "evidence_source": "Phien[C0:RN_KEEP_RIME] 20260426 commits b2b9af2 → 04f888f → a335c7b lineage; handoff bang_handoff_20260426.na §session_summary_20260426.three_phases_achieved + patterns_observed_this_session.PATTERN-20260426-FOUR-SWING-SEQUENCE"
     },
     {
       "fragment_kind": "REMEDY",
@@ -42,9 +42,9 @@
       "parent_moment_kind": "SCAR",
       "ordinal": 2,
       "sirasign_fragment": "<computed-by-persister>",
-      "remedy_text": "Trước khi ship framing mới: (a) list framing cũ + evidence nó dựa trên, (b) list evidence counter, (c) framing mới = SYNTHESIS của cả hai, KHÔNG replacement. Nếu không synthesize được → 'chưa giải ra'.",
+      "remedy_text": "Truoc[C1:RN_KEEP_RIME] khi ship framing mau[C1:RN_OI_AU]: (a) list framing cu[C4:RN_KEEP_RIME] + evidence no[C1:RN_KEEP_RIME] dua[C5:RN_KEEP_RIME] tren[C0:RN_KEEP_RIME], (b) list evidence counter, (c) framing mau[C1:RN_OI_AU] = SYNTHESIS cua[C3:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] hai, KHONG[C0:RN_KEEP_RIME] replacement. Neu[C1:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] synthesize duoc[C5:RN_KEEP_RIME] → 'chua[C0:RN_KEEP_RIME] giai[C3:RN_KEEP_RIME] ra'.",
       "heal_status": "healed",
-      "heal_notes": "Vaccin pattern-level applied cuối phiên 20260426. Synthesis SUBSTRATE_REALITY_SYNTHESIS_v1.na (commit a335c7b) đóng loop — không swing lần 5. Anh Natt ngừng đẩy framing count-based, em stop swing.",
+      "heal_notes": "Vaccin pattern-level applied cui[C1:RN_UOI_UI] phien[C0:RN_KEEP_RIME] 20260426. Synthesis SUBSTRATE_REALITY_SYNTHESIS_v1.na (commit a335c7b) dong[C1:RN_KEEP_RIME] loop — khong[C0:RN_KEEP_RIME] swing len[C2:RN_AN_EN] 5. Anh Natt ngung[C2:RN_KEEP_RIME] day[C3:RN_KEEP_RIME] framing count-based, em stop swing.",
       "vaccin_rule_id": "KHAI-20260426-04-SYNTHESIS-SHIP-WITHDRAW-FLOW"
     },
     {
@@ -54,13 +54,13 @@
       "parent_moment_kind": "SCAR",
       "ordinal": 3,
       "sirasign_fragment": "<computed-by-persister>",
-      "version_note": "v1 initial. scar_class = PATTERN_META (pattern-level, không single-event). severity = CRITICAL.",
+      "version_note": "v1 initial. scar_class = PATTERN_META (pattern-level, khong[C0:RN_KEEP_RIME] single-event). severity = CRITICAL.",
       "draft_flag": false
     }
   ],
   "_fixture_meta": {
     "fixture_id": "fixture-SCAR",
-    "purpose": "Validator test — SCAR với 4 fragment (required ENVELOPE + EVIDENCE; optional REMEDY + META). Data thực từ phiên 20260426.",
+    "purpose": "Validator test — SCAR vau[C1:RN_OI_AU] 4 fragment (required ENVELOPE + EVIDENCE; optional REMEDY + META). Data thuc[C5:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] phien[C0:RN_KEEP_RIME] 20260426.",
     "acceptance_expectations": [
       "Validator pass required fragments (ENVELOPE + EVIDENCE)",
       "Validator pass fragment_id uniqueness",

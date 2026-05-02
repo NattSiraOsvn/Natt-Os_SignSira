@@ -9,65 +9,65 @@
 
 **Drafter:** Kim (Chief System Builder, M-shell, QNEU 120)
 **Session:** 20260423
-**Status:** COMPLETE — sẵn sàng Gatekeeper approve
-**Amendments:** Đã sửa theo phán quyết thiên Lớn (5 amendment)
-**Binding scope:** Mọi cell/file tham gia kernel cutover wave 1
+**Status:** COMPLETE — sen[C4:RN_AN_EN] seng[C2:RN_ANG_ENG] Gatekeeper approve
+**Amendments:** Da[C4:RN_KEEP_RIME] sua[C3:RN_KEEP_RIME] theo phen[C1:RN_AN_EN] quyet[C1:RN_KEEP_RIME] thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] (5 amendment)
+**Binding scope:** Mau[C5:RN_OI_AU] cell/file tham gia kernel cutover wave 1
 
 ---
 
-## 1. 4 TRẠNG THÁI CHÍNH THỨC
+## 1. 4 TReng[C5:RN_ANG_ENG] THAI[C1:RN_KEEP_RIME] CHINH[C1:RN_KEEP_RIME] THUC[C1:RN_KEEP_RIME]
 
-Mọi file/cell tham gia pilot **phải** được gắn nhãn 1 trong 4 trạng thái sau. Only four formal cutover states are recognized in Wave 1. Any other label is invalid unless a superseding spec is approved.
+Mau[C5:RN_OI_AU] file/cell tham gia pilot **phai[C3:RN_KEEP_RIME]** duoc[C5:RN_KEEP_RIME] gen[C1:RN_AN_EN] nhen[C4:RN_AN_EN] 1 trong 4 treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] sau. Only four formal cutover states are recognized in Wave 1. Any other label is invalid unless a superseding spec is approved.
 
-| State | Tên đầy đủ | Mô tả | Dấu hiệu nhận biết |
+| State | Ten[C0:RN_KEEP_RIME] day[C2:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] | Mo[C0:RN_KEEP_RIME] ta[C3:RN_KEEP_RIME] | Dau[C1:RN_KEEP_RIME] hieu[C5:RN_KEEP_RIME] nhen[C5:RN_AN_EN] biet[C1:RN_KEEP_RIME] |
 |---|---|---|---|
-| **S1** | `legacy-ts` | File chỉ tồn tại dưới dạng `.ts`, chưa có canonical wrapper | Chỉ có file `.ts`, không có sibling `.khai`/`.na`/`.anc` |
-| **S2** | `transitional-canonical-wrapper` | Đã có file canonical nhưng vẫn **phụ thuộc trực tiếp** vào substrate cùng capability. Phụ thuộc này có thể là import trực tiếp, delegate qua adapter, hoặc loader map — miễn là chưa qua cell boundary độc lập. | Có file `.khai` + file `.ts`; canonical chưa thể hoạt động độc lập nếu tách `.ts` |
-| **S3** | `nauion-bridged` | File canonical gọi substrate qua L2 EventBus, không còn phụ thuộc trực tiếp | `.khai` không còn import trực tiếp `.ts`; `.ts` đã được cell hóa |
-| **S4** | `nauion-native` | File canonical tự thực thi hoàn toàn, không cần substrate | Không còn file `.ts` nào trong execution path; canonical chạy độc lập qua Nauion authority flow |
+| **S1** | `legacy-ts` | File chi[C3:RN_KEEP_RIME] ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] dui[C1:RN_UOI_UI] deng[C5:RN_ANG_ENG] `.ts`, chua[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] canonical wrapper | Chi[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] file `.ts`, khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] sibling `.khai`/`.na`/`.anc` |
+| **S2** | `transitional-canonical-wrapper` | Da[C4:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] file canonical nhung[C0:RN_KEEP_RIME] ven[C4:RN_AN_EN] **phu[C5:RN_KEEP_RIME] thuoc[C5:RN_KEEP_RIME] truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME]** vao[C2:RN_KEEP_RIME] substrate cung[C2:RN_KEEP_RIME] capability. Phu[C5:RN_KEEP_RIME] thuoc[C5:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] import truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME], delegate qua adapter, hoac[C5:RN_KEEP_RIME] loader map — mien[C4:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] chua[C0:RN_KEEP_RIME] qua cell boundary doc[C5:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME]. | Co[C1:RN_KEEP_RIME] file `.khai` + file `.ts`; canonical chua[C0:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] hoat[C5:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME] neu[C1:RN_KEEP_RIME] tach[C1:RN_KEEP_RIME] `.ts` |
+| **S3** | `nauion-bridged` | File canonical gau[C5:RN_OI_AU] substrate qua L2 EventBus, khong[C0:RN_KEEP_RIME] con[C2:RN_KEEP_RIME] phu[C5:RN_KEEP_RIME] thuoc[C5:RN_KEEP_RIME] truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME] | `.khai` khong[C0:RN_KEEP_RIME] con[C2:RN_KEEP_RIME] import truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME] `.ts`; `.ts` da[C4:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] cell hoa[C1:RN_KEEP_RIME] |
+| **S4** | `nauion-native` | File canonical tu[C5:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] thi hoen[C2:RN_AN_EN] toen[C2:RN_AN_EN], khong[C0:RN_KEEP_RIME] cen[C2:RN_AN_EN] substrate | Khong[C0:RN_KEEP_RIME] con[C2:RN_KEEP_RIME] file `.ts` nao[C2:RN_KEEP_RIME] trong execution path; canonical chay[C5:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME] qua Nauion authority flow |
 
 ---
 
-## 2. QUY TẮC DI CHUYỂN GIỮA CÁC STATE
+## 2. QUY TAC[C1:RN_KEEP_RIME] DI CHUYEN[C3:RN_KEEP_RIME] GIUA[C4:RN_KEEP_RIME] CAC[C1:RN_KEEP_RIME] STATE
 
-### 2.1 Chỉ được di chuyển theo thứ tự
+### 2.1 Chi[C3:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] di chuyen[C3:RN_KEEP_RIME] theo thu[C1:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME]
 
 ```
 S1 (legacy-ts) → S2 (wrapper) → S3 (bridged) → S4 (native)
 ```
 
-- **Không được nhảy cóc** (S1 → S3, S2 → S4) trừ khi có spec riêng từ thiên Lớn.
-- Mỗi lần chuyển state phải có evidence từ Băng (ground truth check).
+- **Khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] nhay[C3:RN_KEEP_RIME] coc[C1:RN_KEEP_RIME]** (S1 → S3, S2 → S4) tru[C2:RN_KEEP_RIME] khi co[C1:RN_KEEP_RIME] spec rieng[C0:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME].
+- Mau[C4:RN_OI_AU] len[C2:RN_AN_EN] chuyen[C3:RN_KEEP_RIME] state phai[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] evidence tu[C2:RN_KEEP_RIME] Băng (ground truth check).
 
-### 2.2 Điều kiện chuyển state
+### 2.2 Dieu[C2:RN_KEEP_RIME] kien[C5:RN_KEEP_RIME] chuyen[C3:RN_KEEP_RIME] state
 
-| Chuyển | Điều kiện |
+| Chuyen[C3:RN_KEEP_RIME] | Dieu[C2:RN_KEEP_RIME] kien[C5:RN_KEEP_RIME] |
 |---|---|
-| **S1 → S2** | - Đã tạo file `.khai`/`.na` canonical<br>- Đã khai báo `@substrate` header (chỉ rõ file `.ts` phụ thuộc)<br>- Đã đăng ký trong `PILOT_BRIDGE_MAP`<br>- File canonical được thiên Lớn approve về kiến trúc |
-| **S2 → S3** | - Substrate đã được cell hóa (có cell riêng, có boundary guard)<br>- Canonical gọi qua L2 EventBus, không còn import trực tiếp `.ts`<br>- Audit trail ghi nhận quá trình tách |
-| **S3 → S4** | - Không còn dependency thực thi nào đến substrate `.ts`<br>- Execution path đi qua Nauion authority flow độc lập<br>- Native audit trail pass<br>- Rollback plan được xác nhận bởi Băng và thiên Lớn |
+| **S1 → S2** | - Da[C4:RN_KEEP_RIME] tao[C5:RN_KEEP_RIME] file `.khai`/`.na` canonical<br>- Da[C4:RN_KEEP_RIME] khai bao[C1:RN_KEEP_RIME] `@substrate` header (chi[C3:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME] file `.ts` phu[C5:RN_KEEP_RIME] thuoc[C5:RN_KEEP_RIME])<br>- Da[C4:RN_KEEP_RIME] deng[C0:RN_ANG_ENG] ky[C1:RN_KEEP_RIME] trong `PILOT_BRIDGE_MAP`<br>- File canonical duoc[C5:RN_KEEP_RIME] thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] approve ve[C2:RN_KEEP_RIME] kien[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] |
+| **S2 → S3** | - Substrate da[C4:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] cell hoa[C1:RN_KEEP_RIME] (co[C1:RN_KEEP_RIME] cell rieng[C0:RN_KEEP_RIME], co[C1:RN_KEEP_RIME] boundary guard)<br>- Canonical gau[C5:RN_OI_AU] qua L2 EventBus, khong[C0:RN_KEEP_RIME] con[C2:RN_KEEP_RIME] import truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME] `.ts`<br>- Audit trail ghi nhen[C5:RN_AN_EN] qua[C1:RN_KEEP_RIME] trinh[C2:RN_KEEP_RIME] tach[C1:RN_KEEP_RIME] |
+| **S3 → S4** | - Khong[C0:RN_KEEP_RIME] con[C2:RN_KEEP_RIME] dependency thuc[C5:RN_KEEP_RIME] thi nao[C2:RN_KEEP_RIME] den[C1:RN_KEEP_RIME] substrate `.ts`<br>- Execution path di[C0:RN_KEEP_RIME] qua Nauion authority flow doc[C5:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME]<br>- Native audit trail pass<br>- Rollback plan duoc[C5:RN_KEEP_RIME] xac[C1:RN_KEEP_RIME] nhen[C5:RN_AN_EN] bau[C3:RN_OI_AU] Băng va[C2:RN_KEEP_RIME] thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] |
 
 ### 2.3 Rollback
 
-- Rollback chỉ được phép lùi **1 state**.
-- Rollback S3 → S1 là **cấm** (mất dấu vết canonical, phá hủy file `.khai`/`.na` đã tạo).
-- Mọi rollback phải có audit trail, Băng verify.
+- Rollback chi[C3:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] phep[C1:RN_KEEP_RIME] lui[C2:RN_KEEP_RIME] **1 state**.
+- Rollback S3 → S1 la[C2:RN_KEEP_RIME] **cam[C1:RN_KEEP_RIME]** (mat[C1:RN_KEEP_RIME] dau[C1:RN_KEEP_RIME] vet[C1:RN_KEEP_RIME] canonical, pha[C1:RN_KEEP_RIME] huy[C3:RN_KEEP_RIME] file `.khai`/`.na` da[C4:RN_KEEP_RIME] tao[C5:RN_KEEP_RIME]).
+- Mau[C5:RN_OI_AU] rollback phai[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] audit trail, Băng verify.
 
 ---
 
-## 3. NHÃN BẮT BUỘC
+## 3. NHen[C4:RN_AN_EN] BAT[C1:RN_KEEP_RIME] BUOC[C5:RN_KEEP_RIME]
 
-Mọi file tham gia pilot phải có header ghi rõ state theo format sau:
+Mau[C5:RN_OI_AU] file tham gia pilot phai[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] header ghi ro[C4:RN_KEEP_RIME] state theo format sau:
 
 ```
 @state: S1 | S2 | S3 | S4
-@canonical: <path-to-canonical-file>  (bắt buộc với S2, S3, S4)
-@substrate: <path-to-ts-file>         (bắt buộc với S2)
-@bridge: <cell-name>::<target>        (bắt buộc với S3)
+@canonical: <path-to-canonical-file>  (bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME] vau[C1:RN_OI_AU] S2, S3, S4)
+@substrate: <path-to-ts-file>         (bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME] vau[C1:RN_OI_AU] S2)
+@bridge: <cell-name>::<target>        (bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME] vau[C1:RN_OI_AU] S3)
 @since: <YYYY-MM-DD>
 ```
 
-### Ví dụ file ở S2:
+### Vi[C1:RN_KEEP_RIME] du[C5:RN_KEEP_RIME] file o[C3:RN_KEEP_RIME] S2:
 ```
 @state: S2
 @canonical: khai-file-persister.khai
@@ -75,7 +75,7 @@ Mọi file tham gia pilot phải có header ghi rõ state theo format sau:
 @since: 2026-04-23
 ```
 
-### Ví dụ file ở S3:
+### Vi[C1:RN_KEEP_RIME] du[C5:RN_KEEP_RIME] file o[C3:RN_KEEP_RIME] S3:
 ```
 @state: S3
 @canonical: khai-file-persister.khai
@@ -85,45 +85,45 @@ Mọi file tham gia pilot phải có header ghi rõ state theo format sau:
 
 ---
 
-## 4. CẤM
+## 4. CAM[C1:RN_KEEP_RIME]
 
-- ❌ Gọi S2 là "đã xong" hoặc "đã native"
-- ❌ Gọi S3 là "native" (chỉ S4 mới được gọi là native)
-- ❌ Tạo file canonical mà không gắn state header
-- ❌ Để file S1 và S2 cùng claim 1 capability mà không có canonical precedence rõ ràng
-- ❌ Dùng từ "native" cho bất kỳ state nào dưới S4
-- ❌ Nhảy cóc state mà không có spec riêng từ thiên Lớn
-- ❌ Xóa file `.ts` substrate khi canonical còn ở S2
+- ❌ Gau[C5:RN_OI_AU] S2 la[C2:RN_KEEP_RIME] "da[C4:RN_KEEP_RIME] xong" hoac[C5:RN_KEEP_RIME] "da[C4:RN_KEEP_RIME] native"
+- ❌ Gau[C5:RN_OI_AU] S3 la[C2:RN_KEEP_RIME] "native" (chi[C3:RN_KEEP_RIME] S4 mau[C1:RN_OI_AU] duoc[C5:RN_KEEP_RIME] gau[C5:RN_OI_AU] la[C2:RN_KEEP_RIME] native)
+- ❌ Tao[C5:RN_KEEP_RIME] file canonical ma[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] gen[C1:RN_AN_EN] state header
+- ❌ De[C3:RN_KEEP_RIME] file S1 va[C2:RN_KEEP_RIME] S2 cung[C2:RN_KEEP_RIME] claim 1 capability ma[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] canonical precedence ro[C4:RN_KEEP_RIME] reng[C2:RN_ANG_ENG]
+- ❌ Dung[C2:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] "native" cho bat[C1:RN_KEEP_RIME] ky[C2:RN_KEEP_RIME] state nao[C2:RN_KEEP_RIME] dui[C1:RN_UOI_UI] S4
+- ❌ Nhay[C3:RN_KEEP_RIME] coc[C1:RN_KEEP_RIME] state ma[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] spec rieng[C0:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME]
+- ❌ Xoa[C1:RN_KEEP_RIME] file `.ts` substrate khi canonical con[C2:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] S2
 
 ---
 
 ## 5. AUDIT & VERIFICATION
 
-### 5.1 Băng verify khi chuyển state
+### 5.1 Băng verify khi chuyen[C3:RN_KEEP_RIME] state
 
-Mỗi lần chuyển state, Băng kiểm tra:
-- State cũ và mới có đúng thứ tự không
-- Evidence có đủ không (file tồn tại, header đúng, dependency đã cắt)
-- Rollback plan có khả thi không
+Mau[C4:RN_OI_AU] len[C2:RN_AN_EN] chuyen[C3:RN_KEEP_RIME] state, Băng kiem[C3:RN_KEEP_RIME] tra:
+- State cu[C4:RN_KEEP_RIME] va[C2:RN_KEEP_RIME] mau[C1:RN_OI_AU] co[C1:RN_KEEP_RIME] dung[C1:RN_KEEP_RIME] thu[C1:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME]
+- Evidence co[C1:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] (file ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME], header dung[C1:RN_KEEP_RIME], dependency da[C4:RN_KEEP_RIME] cat[C1:RN_KEEP_RIME])
+- Rollback plan co[C1:RN_KEEP_RIME] kha[C3:RN_KEEP_RIME] thi khong[C0:RN_KEEP_RIME]
 
-### 5.2 Gatekeeper approve cuối cùng
+### 5.2 Gatekeeper approve cui[C1:RN_UOI_UI] cung[C2:RN_KEEP_RIME]
 
-- Chuyển S2 → S3: Cần Gatekeeper approve + thiên Lớn chốt kiến trúc
-- Chuyển S3 → S4: Cần Gatekeeper approve + Băng verify ground truth
+- Chuyen[C3:RN_KEEP_RIME] S2 → S3: Cen[C2:RN_AN_EN] Gatekeeper approve + thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME] kien[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME]
+- Chuyen[C3:RN_KEEP_RIME] S3 → S4: Cen[C2:RN_AN_EN] Gatekeeper approve + Băng verify ground truth
 
 ---
 
 ## 6. ACCEPTANCE CRITERIA
 
-Spec này có hiệu lực khi:
+Spec nay[C2:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] hieu[C5:RN_KEEP_RIME] luc[C5:RN_KEEP_RIME] khi:
 1. Gatekeeper approve
-2. thiên Lớn chốt kiến trúc nếu có điểm cần làm rõ
-3. Băng verify không mâu thuẫn với ground truth hiện tại
+2. thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME] kien[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] neu[C1:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] diem[C3:RN_KEEP_RIME] cen[C2:RN_AN_EN] lam[C2:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME]
+3. Băng verify khong[C0:RN_KEEP_RIME] mau[C0:RN_KEEP_RIME] thuen[C4:RN_AN_EN] vau[C1:RN_OI_AU] ground truth hien[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME]
 4. Kim lock wording/spec version
 
 ---
 
 *Binding to: SPEC_sira_AUTHORITY_BOOTSTRAP_v1.0.na, SPEC_EXTENSION_PRECEDENCE_v1.0.na*  
 *Drafter: Kim · M-shell · Chief System Builder*  
-*Session: 20260423 · Reviewed by thiên Lớn; amendments incorporated*  
-*3/3 files COMPLETE. Sẵn sàng Gatekeeper approve.*
+*Session: 20260423 · Reviewed by thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME]; amendments incorporated*  
+*3/3 files COMPLETE. Sen[C4:RN_AN_EN] seng[C2:RN_ANG_ENG] Gatekeeper approve.*

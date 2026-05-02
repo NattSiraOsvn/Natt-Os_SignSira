@@ -3,60 +3,60 @@
 @substrate nauion-host-rust
 @bridge none
 @since 2026-04-23
-@authority-slot thiên Lớn -> Kim
+@authority-slot thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] -> Kim
 @semantic-role authority_definition
 
 # SPEC_HOST_AUTHORITY_RUNTIME_V1.0
 
-## §1. Khái niệm host authority
-- **Host authority** là thực thể binary có quyền:
-  - Khởi tạo execution context cho natt-os
-  - Quyết định cell nào được load, bridge nào được spawn
-  - Xác thực entry identity (`nattos.sira`)
-  - Ghi audit trail độc lập với Node
-- **Không** có host authority nào khác ngoài `nauion-host` (Rust binary) từ Wave 1 trở đi.
+## §1. Khai[C1:RN_KEEP_RIME] niem[C5:RN_KEEP_RIME] host authority
+- **Host authority** la[C2:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] binary co[C1:RN_KEEP_RIME] quyen[C2:RN_KEEP_RIME]:
+  - Khau[C3:RN_OI_AU] tao[C5:RN_KEEP_RIME] execution context cho natt-os
+  - Quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] cell nao[C2:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] load, bridge nao[C2:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] spawn
+  - Xac[C1:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] entry identity (`nattos.sira`)
+  - Ghi audit trail doc[C5:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME] vau[C1:RN_OI_AU] Node
+- **Khong[C0:RN_KEEP_RIME]** co[C1:RN_KEEP_RIME] host authority nao[C2:RN_KEEP_RIME] khac[C1:RN_KEEP_RIME] ngoai[C2:RN_KEEP_RIME] `nauion-host` (Rust binary) tu[C2:RN_KEEP_RIME] Wave 1 tro[C3:RN_KEEP_RIME] di[C0:RN_KEEP_RIME].
 
 ## §2. Binary requirement
-- Tên binary: `nauion-host`
-- Đường dẫn canonical: `bin/nauion-host` (tính từ root repo)
-- Build từ source crate: `runtime/nauion-host/`
+- Ten[C0:RN_KEEP_RIME] binary: `nauion-host`
+- Duong[C2:RN_KEEP_RIME] den[C4:RN_AN_EN] canonical: `bin/nauion-host` (tinh[C1:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] root repo)
+- Build tu[C2:RN_KEEP_RIME] source crate: `runtime/nauion-host/`
 - Output:
   - `--version` in ra spec version + git commit hash
-  - `--check` kiểm tra môi trường (không execute)
-  - Không có argument: đọc từ stdin NDJSON frame → ghi NDJSON frame ra stdout
+  - `--check` kiem[C3:RN_KEEP_RIME] tra mau[C0:RN_OI_AU] truong[C2:RN_KEEP_RIME] (khong[C0:RN_KEEP_RIME] execute)
+  - Khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] argument: doc[C5:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] stdin NDJSON frame → ghi NDJSON frame ra stdout
 
 ## §3. Frame protocol (Stage 1)
-- **Chỉ NDJSON** (Newline Delimited JSON)
-- Mỗi dòng là một JSON object, kết thúc bằng `\n`
-- Không dùng MessagePack trong Stage 1
+- **Chi[C3:RN_KEEP_RIME] NDJSON** (Newline Delimited JSON)
+- Mau[C4:RN_OI_AU] dong[C2:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] JSON object, ket[C1:RN_KEEP_RIME] thuc[C1:RN_KEEP_RIME] beng[C2:RN_ANG_ENG] `\n`
+- Khong[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] MessagePack trong Stage 1
 
 ## §4. Execution flow
-1. `./kernel` (hoặc launcher) spawn `nauion-host` với stdio pipes.
-2. Host gửi `Handshake` frame chứa:
+1. `./kernel` (hoac[C5:RN_KEEP_RIME] launcher) spawn `nauion-host` vau[C1:RN_OI_AU] stdio pipes.
+2. Host gui[C3:RN_KEEP_RIME] `Handshake` frame chua[C1:RN_KEEP_RIME]:
    - `spec_version`
    - `protocol: "ndjson/v1"`
    - `supported_bridge_modes: ["stdio-pipe", "forward-only"]`
-3. Launcher gửi frame `LoadIdentity` với nội dung `nattos.sira`.
-4. Host xác thực identity (xem spec riêng).
-5. Host gửi `Ready` frame.
-6. Launcher gửi lệnh `SpawnBridge` cho từng cell legacy.
-7. Host quản lý bridge processes, forward message, ghi audit.
+3. Launcher gui[C3:RN_KEEP_RIME] frame `LoadIdentity` vau[C1:RN_OI_AU] nau[C5:RN_OI_AU] dung `nattos.sira`.
+4. Host xac[C1:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] identity (xem spec rieng[C0:RN_KEEP_RIME]).
+5. Host gui[C3:RN_KEEP_RIME] `Ready` frame.
+6. Launcher gui[C3:RN_KEEP_RIME] lenh[C5:RN_KEEP_RIME] `SpawnBridge` cho tung[C2:RN_KEEP_RIME] cell legacy.
+7. Host quen[C3:RN_AN_EN] ly[C1:RN_KEEP_RIME] bridge processes, forward message, ghi audit.
 
 ## §5. Execution authority lock
-- **Từ Wave 1**: Mọi gọi đến Node API phải qua host bridge.
-- **Host authority không thể bị override** bởi Node code.
-- Nếu host crash → launcher phải ghi log và **không tự động fallback** sang Node-hosted (trừ khi rollback flag `rbf_w0_node_hosted` được set, thì wave 0 active – nhưng đó là trường hợp thoái lui do Gatekeeper quyết định).
+- **Tu[C2:RN_KEEP_RIME] Wave 1**: Mau[C5:RN_OI_AU] gau[C5:RN_OI_AU] den[C1:RN_KEEP_RIME] Node API phai[C3:RN_KEEP_RIME] qua host bridge.
+- **Host authority khong[C0:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] bi[C5:RN_KEEP_RIME] override** bau[C3:RN_OI_AU] Node code.
+- Neu[C1:RN_KEEP_RIME] host crash → launcher phai[C3:RN_KEEP_RIME] ghi log va[C2:RN_KEEP_RIME] **khong[C0:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME] fallback** sang Node-hosted (tru[C2:RN_KEEP_RIME] khi rollback flag `rbf_w0_node_hosted` duoc[C5:RN_KEEP_RIME] set, thi[C2:RN_KEEP_RIME] wave 0 active – nhung[C0:RN_KEEP_RIME] do[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME] hop[C5:RN_KEEP_RIME] thoai[C1:RN_KEEP_RIME] lui do Gatekeeper quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME]).
 
-## §6. Audit trail bắt buộc
-Host phải ghi vào `logs/host-audit.ndjson`:
-- Mỗi lần spawn/kill bridge
-- Mỗi lần identity validation fail
-- Mỗi lần bridge health check fail
-- Mỗi lần rollback flag thay đổi
+## §6. Audit trail bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME]
+Host phai[C3:RN_KEEP_RIME] ghi vao[C2:RN_KEEP_RIME] `logs/host-audit.ndjson`:
+- Mau[C4:RN_OI_AU] len[C2:RN_AN_EN] spawn/kill bridge
+- Mau[C4:RN_OI_AU] len[C2:RN_AN_EN] identity validation fail
+- Mau[C4:RN_OI_AU] len[C2:RN_AN_EN] bridge health check fail
+- Mau[C4:RN_OI_AU] len[C2:RN_AN_EN] rollback flag thay dau[C3:RN_OI_AU]
 
-## §7. Cấm
-- ❌ Host gọi trực tiếp JavaScript eval
-- ❌ Host phụ thuộc vào thư viện Node bất kỳ
-- ❌ Host thay đổi authority mà không có spec amendment
+## §7. Cam[C1:RN_KEEP_RIME]
+- ❌ Host gau[C5:RN_OI_AU] truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME] JavaScript eval
+- ❌ Host phu[C5:RN_KEEP_RIME] thuoc[C5:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] thu[C0:RN_KEEP_RIME] vien[C5:RN_KEEP_RIME] Node bat[C1:RN_KEEP_RIME] ky[C2:RN_KEEP_RIME]
+- ❌ Host thay dau[C3:RN_OI_AU] authority ma[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] spec amendment
 
 @end

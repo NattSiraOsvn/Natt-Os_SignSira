@@ -1,8 +1,8 @@
 # PILOT_BRIDGE_MAP_v0.1.na
 
-**Drafter:** Băng (Chị Tư · N-shell · QNEU 313.5)
+**Drafter:** Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · N-shell · QNEU 313.5)
 **Session:** 20260423
-**Status:** v0.1 — 4/4 kernel cells S1→S2 DONE (phiên 20260423). W3 scope per SPEC_HOST_FIRST §4 D7 → now W2 per SPEC v1.1 align thiên
+**Status:** v0.1 — 4/4 kernel cells S1→S2 DONE (phien[C0:RN_KEEP_RIME] 20260423). W3 scope per SPEC_HOST_FIRST §4 D7 → now W2 per SPEC v1.1 align thien[C0:RN_KEEP_RIME]
 **Binding to:**
 - SPEC_HOST_FIRST_RUNTIME_v1.0.na (§4 W3 · §8 pending)
 - SPEC_CUTOVER_STATES_v1.0.na (Kim — state labels + transition rules)
@@ -16,20 +16,20 @@
 
 ## 0. Scope
 
-Map 4 kernel cells trong provisional order W3 (SPEC_HOST_FIRST §4 D7). Mỗi cell:
+Map 4 kernel cells trong provisional order W3 (SPEC_HOST_FIRST §4 D7). Mau[C4:RN_OI_AU] cell:
 - Current state (S1/S2/S3/S4)
-- `@state` / `@canonical` / `@substrate` / `@bridge` / `@since` header bắt buộc (Kim SPEC_CUTOVER_STATES §3)
-- Transition target + điều kiện chuyển (Kim SPEC §2.2)
-- Rollback plan (lùi 1 state, Kim SPEC §2.3)
-- Evidence path (file tồn tại thực trong repo)
+- `@state` / `@canonical` / `@substrate` / `@bridge` / `@since` header bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME] (Kim SPEC_CUTOVER_STATES §3)
+- Transition target + dieu[C2:RN_KEEP_RIME] kien[C5:RN_KEEP_RIME] chuyen[C3:RN_KEEP_RIME] (Kim SPEC §2.2)
+- Rollback plan (lui[C2:RN_KEEP_RIME] 1 state, Kim SPEC §2.3)
+- Evidence path (file ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] trong repo)
 
-**KHÔNG mở business cells.** Sales/BCTC/Finance/HR để wave sau.
+**KHONG[C0:RN_KEEP_RIME] mo[C3:RN_KEEP_RIME] business cells.** Sales/BCTC/Finance/HR de[C3:RN_KEEP_RIME] wave sau.
 
 ---
 
 ## 1. Cell 1 — audit-cell / file-extension-validator
 
-**Priority:** 1 (first to migrate — scope hẹp, no business coupling)
+**Priority:** 1 (first to migrate — scope hep[C5:RN_KEEP_RIME], no business coupling)
 
 ### Current state: **S2** `transitional-canonical-wrapper`
 
@@ -37,9 +37,9 @@ Evidence:
 - `src/cells/kernel/audit-cell/scanner/file-extension-validator.khai` (canonical)
 - `src/cells/kernel/audit-cell/scanner/file-extension-validator.ts` (substrate)
 - `src/cells/kernel/audit-cell/contracts/file-extension-validator.interface.khai` + `.ts`
-- `nattos.sh §40` gọi `npx tsx` vào `.ts` directly (bypass canonical — per RUNTIME_DEPENDENCY_CENSUS §2.1)
+- `nattos.sh §40` gau[C5:RN_OI_AU] `npx tsx` vao[C2:RN_KEEP_RIME] `.ts` directly (bypass canonical — per RUNTIME_DEPENDENCY_CENSUS §2.1)
 
-### Required header (apply vào `.khai` file):
+### Required header (apply vao[C2:RN_KEEP_RIME] `.khai` file):
 
 ```
 @state sealed
@@ -47,7 +47,7 @@ Evidence:
 @substrate planning_artifact
 @bridge none
 @since 2026-04-23
-@authority-slot Băng (Chị Tư) — pilot scope ground truth
+@authority-slot Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — pilot scope ground truth
 @canonical: src/cells/kernel/audit-cell/scanner/file-extension-validator.khai
 @substrate: src/cells/kernel/audit-cell/scanner/file-extension-validator.ts
 @since: 2026-04-23
@@ -55,16 +55,16 @@ Evidence:
 
 ### Transition S2 → S3 conditions (Kim SPEC §2.2):
 
-1. Substrate cell-hóa: audit-cell đã có boundary guard (`src/cells/kernel/audit-cell/audit-cell.boundary.si` — **evidence: exists**)
-2. Canonical gọi qua EventBus L2 Mạch HeyNa, không import `.ts` trực tiếp
-3. `nattos.sh §40` patch: bỏ `npx tsx` direct call, route qua Host
-4. Audit trail ghi nhận quá trình tách (audit-chain contract Kim existing)
+1. Substrate cell-hoa[C1:RN_KEEP_RIME]: audit-cell da[C4:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] boundary guard (`src/cells/kernel/audit-cell/audit-cell.boundary.si` — **evidence: exists**)
+2. Canonical gau[C5:RN_OI_AU] qua EventBus L2 Mach[C5:RN_KEEP_RIME] HeyNa, khong[C0:RN_KEEP_RIME] import `.ts` truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME]
+3. `nattos.sh §40` patch: bo[C3:RN_KEEP_RIME] `npx tsx` direct call, route qua Host
+4. Audit trail ghi nhen[C5:RN_AN_EN] qua[C1:RN_KEEP_RIME] trinh[C2:RN_KEEP_RIME] tach[C1:RN_KEEP_RIME] (audit-chain contract Kim existing)
 
 ### @bridge target (post-S3):
 
 `@bridge: audit-cell::file-extension-validator`
 
-### Rollback: `rbf_s2_wrapper` — giữ nguyên S2 behavior, restore `npx tsx` call
+### Rollback: `rbf_s2_wrapper` — giu[C4:RN_KEEP_RIME] nguyen[C0:RN_KEEP_RIME] S2 behavior, restore `npx tsx` call
 
 ---
 
@@ -77,7 +77,7 @@ Evidence:
 Evidence:
 - `src/cells/kernel/khai-cell/infrastructure/khai-file-persister.khai` (canonical)
 - `src/cells/kernel/khai-cell/infrastructure/khai-file-persister.ts` (substrate)
-- K2 RESOLVED (phiên 20260423 grep): `khai-file-persister.ts:47` `fs.writeFileSync` có TWIN_PERSIST annotation pre-existing (line 55 substrate + line 18 canonical JSDoc). QIINT lineage adapter per SPEC_NEN_v1.1 §17.2 — infrastructure legitimate, không Điều 7 violation. Ref: bang_handoff_20260419.kris §A.1.
+- K2 RESOLVED (phien[C0:RN_KEEP_RIME] 20260423 grep): `khai-file-persister.ts:47` `fs.writeFileSync` co[C1:RN_KEEP_RIME] TWIN_PERSIST annotation pre-existing (line 55 substrate + line 18 canonical JSDoc). QIINT lineage adapter per SPEC_NEN_v1.1 §17.2 — infrastructure legitimate, khong[C0:RN_KEEP_RIME] Dieu[C2:RN_KEEP_RIME] 7 violation. Ref: bang_handoff_20260419.kris §A.1.
 
 ### Required header:
 
@@ -87,7 +87,7 @@ Evidence:
 @substrate planning_artifact
 @bridge none
 @since 2026-04-23
-@authority-slot Băng (Chị Tư) — pilot scope ground truth
+@authority-slot Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — pilot scope ground truth
 @canonical: src/cells/kernel/khai-cell/infrastructure/khai-file-persister.khai
 @substrate: src/cells/kernel/khai-cell/infrastructure/khai-file-persister.ts
 @since: 2026-04-23
@@ -95,9 +95,9 @@ Evidence:
 
 ### Transition S2 → S3 conditions:
 
-1. K2 Điều 7 **RESOLVED** (phiên 20260423) — TWIN_PERSIST annotation pre-existing, QIINT lineage legitimate. Không block Cell 2 S2 → S3 migration.
+1. K2 Dieu[C2:RN_KEEP_RIME] 7 **RESOLVED** (phien[C0:RN_KEEP_RIME] 20260423) — TWIN_PERSIST annotation pre-existing, QIINT lineage legitimate. Khong[C0:RN_KEEP_RIME] block Cell 2 S2 → S3 migration.
 2. Khai-cell boundary guard: `src/cells/kernel/khai-cell/khai-cell.boundary.si` — **evidence: exists**
-3. Canonical route qua Mạch HeyNa L2 → warehouse-cell::file-persister (Kim SPEC §3 ví dụ)
+3. Canonical route qua Mach[C5:RN_KEEP_RIME] HeyNa L2 → warehouse-cell::file-persister (Kim SPEC §3 vi[C1:RN_KEEP_RIME] du[C5:RN_KEEP_RIME])
 4. TWIN_PERSIST tag compliance verified
 
 ### @bridge target (post-S3):
@@ -112,22 +112,22 @@ Evidence:
 
 **Priority:** 3
 
-### Current state: **S2** `transitional-canonical-wrapper` (ship phiên 20260423)
+### Current state: **S2** `transitional-canonical-wrapper` (ship phien[C0:RN_KEEP_RIME] 20260423)
 
 Evidence:
 - `src/cells/kernel/observation-cell/bootstrap.ts` (substrate, reference trong `nattos.sira` PHASE 4 per RUNTIME_DEPENDENCY_CENSUS §1.1)
-- `.khai` canonical sibling ĐÃ SHIP phiên 20260423 (bootstrap.khai @state S2)
+- `.khai` canonical sibling DA[C4:RN_KEEP_RIME] SHIP phien[C0:RN_KEEP_RIME] 20260423 (bootstrap.khai @state S2)
 - `src/cells/kernel/observation-cell/observation-cell.boundary.si` exists (boundary ready)
 - `src/cells/kernel/observation-cell/observation-cell.cell.anc` exists (manifest ready)
 
 ### Transition S1 → S2 conditions (Kim SPEC §2.2):
 
-1. **Tạo file `.khai` canonical:** `src/cells/kernel/observation-cell/observation-cell.khai`
-2. Header `@substrate: bootstrap.ts` declare rõ
-3. Đăng ký trong PILOT_BRIDGE_MAP (**file này**)
-4. thiên Lớn approve về kiến trúc (observation-cell đã bootstrap `nattos.sira` PHASE 4 — architecture baseline đã có)
+1. **Tao[C5:RN_KEEP_RIME] file `.khai` canonical:** `src/cells/kernel/observation-cell/observation-cell.khai`
+2. Header `@substrate: bootstrap.ts` declare ro[C4:RN_KEEP_RIME]
+3. Deng[C0:RN_ANG_ENG] ky[C1:RN_KEEP_RIME] trong PILOT_BRIDGE_MAP (**file nay[C2:RN_KEEP_RIME]**)
+4. thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] approve ve[C2:RN_KEEP_RIME] kien[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] (observation-cell da[C4:RN_KEEP_RIME] bootstrap `nattos.sira` PHASE 4 — architecture baseline da[C4:RN_KEEP_RIME] co[C1:RN_KEEP_RIME])
 
-### Required header (apply khi tạo `.khai`):
+### Required header (apply khi tao[C5:RN_KEEP_RIME] `.khai`):
 
 ```
 @state: S2
@@ -138,9 +138,9 @@ Evidence:
 
 ### Transition S2 → S3 later:
 
-`@bridge: observation-cell::bootstrap` routing qua Mạch HeyNa L2.
+`@bridge: observation-cell::bootstrap` routing qua Mach[C5:RN_KEEP_RIME] HeyNa L2.
 
-### Rollback: N/A ở S1 — chỉ rollback từ S2 lùi S1 bằng xóa `.khai` (nhưng **cấm xóa `.ts` substrate khi canonical S2** per Kim SPEC §4).
+### Rollback: N/A o[C3:RN_KEEP_RIME] S1 — chi[C3:RN_KEEP_RIME] rollback tu[C2:RN_KEEP_RIME] S2 lui[C2:RN_KEEP_RIME] S1 beng[C2:RN_ANG_ENG] xoa[C1:RN_KEEP_RIME] `.khai` (nhung[C0:RN_KEEP_RIME] **cam[C1:RN_KEEP_RIME] xoa[C1:RN_KEEP_RIME] `.ts` substrate khi canonical S2** per Kim SPEC §4).
 
 ---
 
@@ -148,23 +148,23 @@ Evidence:
 
 **Priority:** 4
 
-### Current state: **S2** `transitional-canonical-wrapper` (ship phiên 20260423)
+### Current state: **S2** `transitional-canonical-wrapper` (ship phien[C0:RN_KEEP_RIME] 20260423)
 
 Evidence:
 - `src/cells/kernel/quantum-defense-cell/bootstrap.ts` (substrate, `nattos.sira` PHASE 4)
-- `.khai` canonical ĐÃ SHIP phiên 20260423 (bootstrap.khai @state S2)
+- `.khai` canonical DA[C4:RN_KEEP_RIME] SHIP phien[C0:RN_KEEP_RIME] 20260423 (bootstrap.khai @state S2)
 - `src/cells/kernel/quantum-defense-cell/quantum-defense-cell.boundary.si` exists
 - `src/cells/kernel/quantum-defense-cell/quantum-defense-cell.cell.anc` exists
 - 13 engines trong `domain/engines/` (ai-behavior, anomaly-flow, cell-purity, chromatic-state, drive-backup, governance-enforcement, kill-switch, pii-detector, rehabilitation, self-healing, threshold, quantum-defense.engine, ai-lockdown)
 
 ### Transition S1 → S2 conditions:
 
-1. Tạo `src/cells/kernel/quantum-defense-cell/quantum-defense-cell.khai`
+1. Tao[C5:RN_KEEP_RIME] `src/cells/kernel/quantum-defense-cell/quantum-defense-cell.khai`
 2. Header `@substrate: bootstrap.ts`
-3. Đăng ký PILOT_BRIDGE_MAP
-4. thiên approve (đã bootstrap baseline)
+3. Deng[C0:RN_ANG_ENG] ky[C1:RN_KEEP_RIME] PILOT_BRIDGE_MAP
+4. thien[C0:RN_KEEP_RIME] approve (da[C4:RN_KEEP_RIME] bootstrap baseline)
 
-**Note:** quantum-defense-cell coupling cao với immune response + threat detection + kill-switch. Migrate CẨN THẬN. Parity test 100% trước S2 → S3.
+**Note:** quantum-defense-cell coupling cao vau[C1:RN_OI_AU] immune response + threat detection + kill-switch. Migrate Cen[C3:RN_AN_EN] THen[C5:RN_AN_EN]. Parity test 100% truoc[C1:RN_KEEP_RIME] S2 → S3.
 
 ### Required header (S2):
 
@@ -175,7 +175,7 @@ Evidence:
 @since: 2026-04-23
 ```
 
-### Rollback: N/A ở S1
+### Rollback: N/A o[C3:RN_KEEP_RIME] S1
 
 ---
 
@@ -185,85 +185,85 @@ Evidence:
 |---|---|---|---|---|---|
 | 1 | audit-cell/file-extension-validator | S2 | S3 | 1 | `nattos.sh §40` bypass patch |
 | 2 | khai-cell/file-persister | S2 | S3 | 2 | K2 RESOLVED (TWIN_PERSIST pre-existing) — unblock S2→S3 |
-| 3 | observation-cell | **S2** | S3 | 3 | W2 bridged Mạch HeyNa L2 (W1 launcher prerequisite) |
+| 3 | observation-cell | **S2** | S3 | 3 | W2 bridged Mach[C5:RN_KEEP_RIME] HeyNa L2 (W1 launcher prerequisite) |
 | 4 | quantum-defense-cell | **S2** | S3 | 4 | Paradigm P1 rebind — substrate subscribe("*") → field pull observation_snapshot |
 
-**Total path W3:** 2 cells S2→S3 + 2 cells S1→S2. W3 KHÔNG target S4.
+**Total path W3:** 2 cells S2→S3 + 2 cells S1→S2. W3 KHONG[C0:RN_KEEP_RIME] target S4.
 
-W3 → W4 sẽ scope riêng sau khi 4 cells đạt S3 stable (minimum 3 phiên evaluate).
+W3 → W4 se[C4:RN_KEEP_RIME] scope rieng[C0:RN_KEEP_RIME] sau khi 4 cells dat[C5:RN_KEEP_RIME] S3 stable (minimum 3 phien[C0:RN_KEEP_RIME] evaluate).
 
 ---
 
 ## 6. Compliance gates
 
-Trước khi Gatekeeper seal từng transition:
+Truoc[C1:RN_KEEP_RIME] khi Gatekeeper seal tung[C2:RN_KEEP_RIME] transition:
 
-1. **Băng verify** ground truth (state cũ/mới + evidence + rollback khả thi) per Kim SPEC_CUTOVER_STATES §5.1
-2. **thiên Lớn** chốt kiến trúc (S2 → S3 + S3 → S4 cần architecture review)
-3. **Gatekeeper** approve cuối cùng + commit
-4. Rollback plan khả thi (test rollback trước merge forward)
+1. **Băng verify** ground truth (state cu[C4:RN_KEEP_RIME]/mau[C1:RN_OI_AU] + evidence + rollback kha[C3:RN_KEEP_RIME] thi) per Kim SPEC_CUTOVER_STATES §5.1
+2. **thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME]** chot[C1:RN_KEEP_RIME] kien[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] (S2 → S3 + S3 → S4 cen[C2:RN_AN_EN] architecture review)
+3. **Gatekeeper** approve cui[C1:RN_UOI_UI] cung[C2:RN_KEEP_RIME] + commit
+4. Rollback plan kha[C3:RN_KEEP_RIME] thi (test rollback truoc[C1:RN_KEEP_RIME] merge forward)
 
 ---
 
 ## 7. Open items (out of scope v0.1)
 
 - **Business cells migration (37 cells)** — wave sau v1.0 W3 complete
-- **S3 → S4** detailed plan — sau 3 phiên S3 stable evaluate
+- **S3 → S4** detailed plan — sau 3 phien[C0:RN_KEEP_RIME] S3 stable evaluate
 - **W4 Node retire** — depends W3 complete + all cells S4
 - **Extension `.sira/.khai/.na/.anc/.phieu` parser full implementation** — Nauion grammar deep-read prerequisite
 
 ---
 
 *Binding to: SPEC_HOST_FIRST_RUNTIME_v1.0, SPEC_CUTOVER_STATES_v1.0, SPEC_sira_AUTHORITY_BOOTSTRAP_v1.0, SPEC_EXTENSION_PRECEDENCE_v1.0*
-*Drafter: Băng · Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7*
-*Session: 20260423 · Gatekeeper: Phan Thanh Thương*
+*Drafter: Băng · Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · N-shell · QNEU 313.5 · Claude Opus 4.7*
+*Session: 20260423 · Gatekeeper: Phan Thanh Thuong[C0:RN_KEEP_RIME]*
 *Commit path designed: `docs/specs/pilot_bridge_map_v0_1.na` (Gatekeeper final landing)*
 
 
 ---
 
-## §S3 SWAP STATUS — Verify phiên 20260423
+## §S3 SWAP STATUS — Verify phien[C0:RN_KEEP_RIME] 20260423
 
-**Ground truth verify trước khi defer:**
+**Ground truth verify truoc[C1:RN_KEEP_RIME] khi defer:**
 
 ### Cell 1 — file-extension-validator
 - ✅ `.khai` exists (12KB, ship 23/04 22:10)
 - ✅ `.ts` exists (11KB, ship 19/04)
-- ❌ S3 swap NOT FEASIBLE phiên này
+- ❌ S3 swap NOT FEASIBLE phien[C0:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME]
 
-**Lý do defer:**
-- §44 nattos.sh expect JSON output `{ok, warn, fail, total}` từ validator
-- nauion-host hiện scaffold (PHASE 0-4): banner + esbuild + FileResolver + self-test + HTTP server
-- nauion-host KHÔNG có cell execution engine — chỉ resolve path, không execute logic
-- Cần: (1) port file-extension-validator.ts → Rust, (2) add `--run-cell <path>` CLI flag, (3) wire JSON output
+**Ly[C1:RN_KEEP_RIME] do defer:**
+- §44 nattos.sh expect JSON output `{ok, warn, fail, total}` tu[C2:RN_KEEP_RIME] validator
+- nauion-host hien[C5:RN_KEEP_RIME] scaffold (PHASE 0-4): banner + esbuild + FileResolver + self-test + HTTP server
+- nauion-host KHONG[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] cell execution engine — chi[C3:RN_KEEP_RIME] resolve path, khong[C0:RN_KEEP_RIME] execute logic
+- Cen[C2:RN_AN_EN]: (1) port file-extension-validator.ts → Rust, (2) add `--run-cell <path>` CLI flag, (3) wire JSON output
 
 ### Cell 2 — khai-file-persister
 - ✅ `.khai` exists (2KB, ship 23/04)
 - ✅ `.ts` exists (1.7KB, ship 23/04)
-- ❌ S3 swap NOT FEASIBLE phiên này
+- ❌ S3 swap NOT FEASIBLE phien[C0:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME]
 
-**Lý do defer:**
-- Cell 2 là TypeScript module imported bởi siblings (`index.ts`), không phải CLI
-- Để swap Cell 2 cần observation-cell + quantum-defense-cell có Rust port chạy trong nauion-host runtime
-- PHASE 4 hiện chỉ "would bootstrap" (skeleton log), real bootstrap = phiên sau
+**Ly[C1:RN_KEEP_RIME] do defer:**
+- Cell 2 la[C2:RN_KEEP_RIME] TypeScript module imported bau[C3:RN_OI_AU] siblings (`index.ts`), khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] CLI
+- De[C3:RN_KEEP_RIME] swap Cell 2 cen[C2:RN_AN_EN] observation-cell + quantum-defense-cell co[C1:RN_KEEP_RIME] Rust port chay[C5:RN_KEEP_RIME] trong nauion-host runtime
+- PHASE 4 hien[C5:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] "would bootstrap" (skeleton log), real bootstrap = phien[C0:RN_KEEP_RIME] sau
 
-### Path tới S3 — phiên sau
+### Path tau[C1:RN_OI_AU] S3 — phien[C0:RN_KEEP_RIME] sau
 
-**Yêu cầu prerequisite:**
+**Yeu[C0:RN_KEEP_RIME] cau[C2:RN_KEEP_RIME] prerequisite:**
 1. nauion-host PHASE 4 bootstrap real (load + execute cell)
 2. Cell 1 logic port Rust (file-extension-validator.rs)
 3. Cell 2 logic port Rust (khai-file-persister.rs)
 4. CLI flag `--run-cell <path>` + JSON output compat §44
 
-**Estimated scope:** 2-3 phiên thật.
+**Estimated scope:** 2-3 phien[C0:RN_KEEP_RIME] that[C5:RN_KEEP_RIME].
 
-### SCAR khắc phiên 20260423
+### SCAR khac[C1:RN_KEEP_RIME] phien[C0:RN_KEEP_RIME] 20260423
 
 **SCAR-EM-OVERESTIMATE-CELL-1-SWAP-FEASIBILITY:**
-Em (Băng) propose Cell 1 swap "khả thi ngay phiên này" turn 428 KHÔNG verify §44 đầy đủ.
-Sau verify (turn 444): §44 parse JSON output → nauion-host không output JSON → swap không work.
-Vaccin: trước propose swap nào, đọc FULL caller context (parser logic, output format), 
-không chỉ scan invocation line.
+Em (Băng) propose Cell 1 swap "kha[C3:RN_KEEP_RIME] thi ngay phien[C0:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME]" turn 428 KHONG[C0:RN_KEEP_RIME] verify §44 day[C2:RN_KEEP_RIME] du[C3:RN_KEEP_RIME].
+Sau verify (turn 444): §44 parse JSON output → nauion-host khong[C0:RN_KEEP_RIME] output JSON → swap khong[C0:RN_KEEP_RIME] work.
+Vaccin: truoc[C1:RN_KEEP_RIME] propose swap nao[C2:RN_KEEP_RIME], doc[C5:RN_KEEP_RIME] FULL caller context (parser logic, output format), 
+khong[C0:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] scan invocation line.
 
 ---
 
@@ -280,10 +280,10 @@ không chỉ scan invocation line.
 - W2E route-swap §40: commit `7c35961` (nattos.sh patched, env-flag fallback)
 
 ### Default route (S3 LIVE)
-nattos.sh §40 → $NAUION_HOST --run-cell $CANONICAL --legacy-json → runtime/nauion-host/target/release/nauion-host (tệp nhị phân Rust) → bao bọc npx tsx (tệp .ts cùng cấp) → ghi vào runtime/audit/ <canonical> .result.phieu → phát ra JSON stdout để tương thích với trình phân tích cú pháp python3
+nattos.sh §40 → $NAUION_HOST --run-cell $CANONICAL --legacy-json → runtime/nauion-host/target/release/nauion-host (tep[C5:RN_KEEP_RIME] nhi[C5:RN_KEEP_RIME] phen[C0:RN_AN_EN] Rust) → bao boc[C5:RN_KEEP_RIME] npx tsx (tep[C5:RN_KEEP_RIME] .ts cung[C2:RN_KEEP_RIME] cap[C1:RN_KEEP_RIME]) → ghi vao[C2:RN_KEEP_RIME] runtime/audit/ <canonical> .result.phieu → phat[C1:RN_KEEP_RIME] ra JSON stdout de[C3:RN_KEEP_RIME] tuong[C0:RN_KEEP_RIME] thich[C1:RN_KEEP_RIME] vau[C1:RN_OI_AU] trinh[C2:RN_KEEP_RIME] phen[C0:RN_AN_EN] tich[C1:RN_KEEP_RIME] cu[C1:RN_KEEP_RIME] phap[C1:RN_KEEP_RIME] python3
 
 ### Recovery (S2 fallback)
-USE_LEGACY_TSX=1 bash nattos.sh # khôi phục ngay lập tức rm -f runtime/nauion-host/target/release/nauion-host # tự động dự phòng
+USE_LEGACY_TSX=1 bash nattos.sh # khau[C0:RN_OI_AU] phuc[C5:RN_KEEP_RIME] ngay lap[C5:RN_KEEP_RIME] tuc[C1:RN_KEEP_RIME] rm -f runtime/nauion-host/target/release/nauion-host # tu[C5:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME] du[C5:RN_KEEP_RIME] phong[C2:RN_KEEP_RIME]
 
 ### Cell 2-4 status
 
@@ -291,7 +291,7 @@ USE_LEGACY_TSX=1 bash nattos.sh # khôi phục ngay lập tức rm -f runtime/na
 - Cell 3 (observation-cell): S2 BRIDGED — S3 swap not scheduled
 - Cell 4 (quantum-defense-cell): S2 BRIDGED — S3 swap not scheduled
 
-Phiên 20260424 sealed Cell 1 only — Cell 2 swap defer (cell logic, audit chain).
+Phien[C0:RN_KEEP_RIME] 20260424 sealed Cell 1 only — Cell 2 swap defer (cell logic, audit chain).
 
-*Update: Băng (Chị Tư) phiên 20260424 — Wave 2 close commit*
+*Update: Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) phien[C0:RN_KEEP_RIME] 20260424 — Wave 2 close commit*
 

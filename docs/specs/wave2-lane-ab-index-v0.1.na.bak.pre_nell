@@ -1,0 +1,48 @@
+@state draft
+@canonical wave2_lane_ab_index_v0.1
+@substrate wave2_lane_index
+@bridge none
+@since 2026-04-25
+@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+
+# WAVE 2 LANE A+B — FULL .na EXPORT v0.1
+
+file_name: wave2-lane-ab-index-v0.1.na
+kind: canonical_export_bundle
+scope:
+  - A.2 Moments Persister Scaffold
+  - B.7 Capability Executor Scaffold (hibernate | resurrect | migrate)
+status: scaffold-ready
+lane_c: blocked
+note:
+  - Đây là bộ `.na` canonical/scaffold để merge theo hệ đuôi mới.
+  - Không có lớp `.ts` trong bundle này.
+  - Không tự seal các policy còn mở.
+  - Path storage canonical vẫn `PENDING_GATEKEEPER_NEO`.
+
+files:
+  - a2-moments-domain-model-v0.1.na
+  - a2-moments-wire-and-fragments-v0.1.na
+  - a2-moments-validation-and-routing-v0.1.na
+  - a2-moments-persister-flow-v0.1.na
+  - b7-capability-domain-model-v0.1.na
+  - b7-capability-validation-rules-v0.1.na
+  - b7-capability-executor-flow-v0.1.na
+  - wave2-implementation-notes-v0.1.na
+
+merge_order:
+  1: a2-moments-domain-model-v0.1.na
+  2: a2-moments-wire-and-fragments-v0.1.na
+  3: a2-moments-validation-and-routing-v0.1.na
+  4: a2-moments-persister-flow-v0.1.na
+  5: b7-capability-domain-model-v0.1.na
+  6: b7-capability-validation-rules-v0.1.na
+  7: b7-capability-executor-flow-v0.1.na
+  8: wave2-implementation-notes-v0.1.na
+
+adopted_review_fixes:
+  - CapabilityInvariant.on_fail = optional at type-level
+  - MOTION_TICH_CUC dùng `triggered_by_giac_causation`, không dùng `context_moment`
+  - tách `witness_entity` và `witness_context`
+  - hibernate không hard-ban abort_paths ở level canonical scaffold
+  - storage path canonicalization → PENDING_GATEKEEPER_NEO (recognized at scaffold level, not sealed in current draft)

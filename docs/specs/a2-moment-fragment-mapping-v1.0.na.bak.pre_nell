@@ -1,0 +1,107 @@
+@state draft
+@canonical a2_moment_fragment_mapping_v1.0
+@substrate fragment_mapping
+@bridge none
+@since 2026-04-25
+@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+
+# A.2 — MOMENT ↔ FRAGMENT MAPPING
+
+kind: SpecSupportDocument
+track: Wave 2 / Lane A / A.2
+title: Moment ↔ Fragment Mapping
+version: v1.0
+status: draft-for-review
+owner: thiên Lớn
+requested_by: Kim (for Gatekeeper)
+date: 2026-04-23
+causation: A2-MAPPING-20260423-THIEN-DRAFT-01
+
+## 1. PURPOSE
+Tài liệu này là bảng tra cứu nhanh cho Băng và Kim khi review A.2 – Moments Persister.
+Mục tiêu là khóa ở mức review-checklist các câu hỏi sau:
+
+- với mỗi `MomentKind`, fragment nào là bắt buộc;
+- fragment nào là tùy chọn;
+- nếu có `CAUSATION_CHAIN`, `link_type` và `target_kind` tối thiểu phải đúng gì;
+- chỗ nào current matrix/fixture đã đủ rõ, chỗ nào còn phải để `OPEN`.
+
+## 2. SOURCE BASIS
+Tài liệu này được dựng từ các điểm đã khóa trong phiên 2026-04-23:
+
+- boundary v2 của A.2 đã được xác nhận canonical-compliant trong phạm vi phiên;
+- matrix 4 fixture Moments đã được đọc và không bị phản đối ở mức fact scan;
+- chỉ đạo Kim ngày 2026-04-27 đã nêu rõ 4 `MomentKind` cần map;
+- execution scaffold `.ts` không được dùng làm canonical source cho tài liệu này.
+
+## 3. REVIEW RULE
+- Chỉ ghi điều đã neo đủ từ matrix/chỉ đạo hiện có.
+- Nếu A.3 hoặc fixture thật chưa khóa tuyệt đối, ghi `OPEN`, không tự suy diễn.
+- Tài liệu này dùng làm checklist review, chưa phải constitutional seal.
+
+## 4. MAPPING TABLE
+
+| MomentKind | Required Fragments | Optional Fragments | CAUSATION_CHAIN requirement | Notes |
+|---|---|---|---|---|
+| `SCAR` | `ENVELOPE`, `EVIDENCE` | `REMEDY`, `META`, `CAUSATION_CHAIN` | Nếu có chain: `link_type = recurrence_of`; `target_kind = OPEN` | `target_kind` nhiều khả năng trỏ về một SCAR trước đó, nhưng current directive chưa seal cứng nên để `OPEN`. |
+| `KHAI_SANG` | `ENVELOPE`, `INSIGHT_CONTENT` | `RELATED_CANONICAL`, `CAUSATION_CHAIN`, `META` | Nếu có chain: `link_type = related_to`; `target_kind = OPEN` | `RELATED_CANONICAL` được xem là optional theo directive mẫu hiện có. |
+| `GIAC_NGO` | `ENVELOPE`, `INNER_RESONANCE`, `RELATED_CANONICAL` | `CAUSATION_CHAIN`, `META` | Nếu có chain: `link_type = xac_nhan_from`; `target_kind = OPEN` | `GIAC_NGO` là case nhạy vì có dual-target ở tầng persister policy; mapping fragment không tự kéo theo commit policy. |
+| `MOTION_TICH_CUC` | `ENVELOPE`, `BODY_RESPONSE`, `CAUSATION_CHAIN` | `META` | Bắt buộc có chain với `link_type = triggered_by`; `target_kind = GIAC_NGO` | Đây là điểm đã được khóa rõ nhất trong matrix/chỉ đạo hiện có. |
+
+## 5. NORMALIZED INTERPRETATION
+
+### 5.1 `ENVELOPE`
+Áp dụng cho tất cả `MomentKind`.
+`ENVELOPE` được hiểu là fragment nền bắt buộc để moment có identity, causation, trace, time, và các trường header tối thiểu.
+
+### 5.2 `CAUSATION_CHAIN`
+`CAUSATION_CHAIN` không mặc định bắt buộc cho mọi kind.
+Hiện trạng review-checklist:
+
+- `MOTION_TICH_CUC`: **bắt buộc**
+- `SCAR`: **tùy chọn**
+- `KHAI_SANG`: **tùy chọn**
+- `GIAC_NGO`: **tùy chọn**
+
+### 5.3 `RELATED_CANONICAL`
+Hiện đang được giữ là:
+
+- optional cho `KHAI_SANG`
+- required cho `GIAC_NGO`
+
+`OPEN`: cần Băng xác nhận lại line-by-line với fixture/A.3 xem `GIAC_NGO` required vì semantic necessity hay vì current fixture shape.
+
+### 5.4 `META`
+`META` đang được xem là optional cross-kind, không phải fragment định nghĩa bản chất của moment.
+
+## 6. validation CHECKLIST (RÚT RA CHO PERSISTER)
+
+Khi `persist(moment)` được gọi, A.2 validator tối thiểu phải kiểm các điều sau trước khi route:
+
+1. `moment.kind` thuộc tập đã hỗ trợ.
+2. Mọi fragment thuộc required set của `moment.kind` đều hiện diện.
+3. Nếu có `CAUSATION_CHAIN`:
+   - `link_type` phải nằm đúng allow-list của kind đó;
+   - `target_kind` phải đúng nếu kind đó có target cứng.
+4. Không được tự “nâng cấp” fragment optional thành required chỉ vì scaffold đang cần.
+5. Nếu thiếu dữ kiện canonical, phải trả về validation issue hoặc `OPEN`, không được bịa rule.
+
+## 7. OPEN ITEMS CHO BĂNG XÁC NHẬN
+
+- `OPEN-01`: `SCAR` với `CAUSATION_CHAIN.link_type = recurrence_of` thì `target_kind` có phải seal cứng là `SCAR` không, hay cho phép target kind khác theo spec rộng hơn?
+- `OPEN-02`: `KHAI_SANG` với `related_to` có cần allow-list `target_kind` cụ thể không?
+- `OPEN-03`: `GIAC_NGO` với `xac_nhan_from` có target ưu tiên nào cần khóa không?
+- `OPEN-04`: `RELATED_CANONICAL` của `GIAC_NGO` là constitutional required hay chỉ fixture-required?
+- `OPEN-05`: Có `MomentKind` nào khác đã tồn tại trong spec rộng hơn nhưng chưa mở vào A.2 current lane không?
+
+## 8. REVIEW NOTE
+Tài liệu này cố tình thiên về “review utility” hơn là hình thức.
+Nếu Kim/Băng cần, có thể hạ tiếp thành:
+
+- một `required_fragments_by_kind` matrix;
+- một `causation_chain_rule_by_kind` matrix;
+- fixture-by-fixture cross-check sheet.
+
+---
+writer: thiên Lớn
+status_note: checklist-support only; not a seal

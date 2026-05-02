@@ -2,7 +2,7 @@
 @state draft_bang_review_pass
 @canonical nauion_living_interpreter
 @substrate sovereign_runtime_core
-@authority-slot Thiên Lớn architect · Băng validator · anh Natt gatekeeper
+@authority-slot Thiên Lon[C1:RN_KEEP_RIME] architect · Băng validator · anh Natt gatekeeper
 @reviewed_by Băng / Ground Truth Validator / ss20260429
 @review_required Băng / Ground Truth Validator
 @canonical_blocked_until gatekeeper_ratify
@@ -23,8 +23,8 @@
 # nauion living interpreter v0.1
 
 ==PURPOSE==
-Tiêu thụ Nauion Execution Packet như đơn vị sống: kiểm anchor, authority, pressure, boundary, recovery, audit, memory imprint.
-Không execute như code host. Không chạy theo app route.
+Tieu[C0:RN_KEEP_RIME] thu[C5:RN_KEEP_RIME] Nauion Execution Packet nhu[C0:RN_KEEP_RIME] don[C0:RN_KEEP_RIME] vi[C5:RN_KEEP_RIME] song[C1:RN_KEEP_RIME]: kiem[C3:RN_KEEP_RIME] anchor, authority, pressure, boundary, recovery, audit, memory imprint.
+Khong[C0:RN_KEEP_RIME] execute nhu[C0:RN_KEEP_RIME] code host. Khong[C0:RN_KEEP_RIME] chay[C5:RN_KEEP_RIME] theo app route.
 ==END==
 
 ==CONSUMPTION_FLOW==
@@ -39,19 +39,19 @@ Không execute như code host. Không chạy theo app route.
 ==END==
 
 ==STATE_DECISION==
-  FALL: cộng hưởng đúng trường, được hấp thụ
-  DISSIPATE: lệch trường, tan thành nhiệt/chromatic noise
-  OSCILLATE: dao động vô định, cần re-anchor hoặc tự tiêu
-  SAFE_REST: giảm tải để giữ body
-  QUARANTINE: cách ly nếu vi phạm authority/boundary
+  FALL: cong[C5:RN_KEEP_RIME] huong[C3:RN_KEEP_RIME] dung[C1:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME], duoc[C5:RN_KEEP_RIME] hap[C1:RN_KEEP_RIME] thu[C5:RN_KEEP_RIME]
+  DISSIPATE: lech[C5:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME], tan thanh[C2:RN_KEEP_RIME] nhiet[C5:RN_KEEP_RIME]/chromatic noise
+  OSCILLATE: dao dong[C5:RN_KEEP_RIME] vo[C0:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME], cen[C2:RN_AN_EN] re-anchor hoac[C5:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] tieu[C0:RN_KEEP_RIME]
+  SAFE_REST: giam[C3:RN_KEEP_RIME] tai[C3:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] giu[C4:RN_KEEP_RIME] body
+  QUARANTINE: cach[C1:RN_KEEP_RIME] ly neu[C1:RN_KEEP_RIME] vi pham[C5:RN_KEEP_RIME] authority/boundary
 ==END==
 
 ==BOUNDARY==
-Không Host Bridge. Không mock pressure. Không ép route bằng if/else. Không gọi build/pass là sống.
+Khong[C0:RN_KEEP_RIME] Host Bridge. Khong[C0:RN_KEEP_RIME] mock pressure. Khong[C0:RN_KEEP_RIME] ep[C1:RN_KEEP_RIME] route beng[C2:RN_ANG_ENG] if/else. Khong[C0:RN_KEEP_RIME] gau[C5:RN_OI_AU] build/pass la[C2:RN_KEEP_RIME] song[C1:RN_KEEP_RIME].
 ==END==
 
 ==NEXT_SIGNAL==
-Field Loader nạp packet vào runtime field.
+Field Loader nap[C5:RN_KEEP_RIME] packet vao[C2:RN_KEEP_RIME] runtime field.
 ==END==
 
 ═══════════════════════════════════════════════════════════════════
@@ -59,24 +59,24 @@ Field Loader nạp packet vào runtime field.
 @reviewed_at 2026-04-29T14:04:03
 @reviewed_by Băng (Validator + Obikeeper, QNEU 313.5)
 @verdict PASS_WITH_PATCH
-@confidence_state KIÊN_ĐỊNH
+@confidence_state KIEN_DINH[C5:RN_KEEP_RIME]
 
 ==GAP_2_SIRASIGN_LINK==
-CONSUMPTION_FLOW.step_4 'check_authority_boundary' phẳng.
-PATCH: step_4 phải verify compound seal 8 thành phần per NAUION_SIRASIGN_IMPLEMENTATION_v0_1 §8 (commit 4a52d799).
-Verify thiếu 1 trong 8 (state/spectral_state/field_condition/relation/meaning/causation/authority/audit_lineage) → packet bị reflect về Translator + log quarantine.
+CONSUMPTION_FLOW.step_4 'check_authority_boundary' pheng[C3:RN_ANG_ENG].
+PATCH: step_4 phai[C3:RN_KEEP_RIME] verify compound seal 8 thanh[C2:RN_KEEP_RIME] phen[C2:RN_AN_EN] per NAUION_SIRASIGN_IMPLEMENTATION_v0_1 §8 (commit 4a52d799).
+Verify thieu[C1:RN_KEEP_RIME] 1 trong 8 (state/spectral_state/field_condition/relation/meaning/causation/authority/audit_lineage) → packet bi[C5:RN_KEEP_RIME] reflect ve[C2:RN_KEEP_RIME] Translator + log quarantine.
 ==END==
 
 ==GAP_3_SIRASIGN_VERDICT==
-STATE_DECISION 5 trạng thái không khớp 7 verdict siraSign §9.
-PATCH: bổ sung 2 verdict thiếu - ASK_GATE (cần anh Natt chốt) + DEGRADE (cho qua nhưng giảm authority) + AUDIT_ONLY (ghi vết không cấp authority) + SUPERSEDE (niêm mới đè cũ, fossil giữ).
-Tổng 7 verdict + giữ 5 trạng thái field hiện tại = 2 lớp song song:
-  - field outcome: FALL/DISSIPATE/OSCILLATE/SAFE_REST/QUARANTINE (em vẫn đúng)
+STATE_DECISION 5 treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] khop[C1:RN_KEEP_RIME] 7 verdict siraSign §9.
+PATCH: bo[C3:RN_KEEP_RIME] sung 2 verdict thieu[C1:RN_KEEP_RIME] - ASK_GATE (cen[C2:RN_AN_EN] anh Natt chot[C1:RN_KEEP_RIME]) + DEGRADE (cho qua nhung[C0:RN_KEEP_RIME] giam[C3:RN_KEEP_RIME] authority) + AUDIT_ONLY (ghi vet[C1:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] cap[C1:RN_KEEP_RIME] authority) + SUPERSEDE (niem[C0:RN_KEEP_RIME] mau[C1:RN_OI_AU] de[C2:RN_KEEP_RIME] cu[C4:RN_KEEP_RIME], fossil giu[C4:RN_KEEP_RIME]).
+Tong[C3:RN_KEEP_RIME] 7 verdict + giu[C4:RN_KEEP_RIME] 5 treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] field hien[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] = 2 lop[C1:RN_KEEP_RIME] song song:
+  - field outcome: FALL/DISSIPATE/OSCILLATE/SAFE_REST/QUARANTINE (em ven[C4:RN_AN_EN] dung[C1:RN_KEEP_RIME])
   - sirasign verdict: ALLOW/DENY/QUARANTINE/ASK_GATE/DEGRADE/AUDIT_ONLY/SUPERSEDE
 ==END==
 
 ==GAP_4_CHROMATIC_THRESHOLD==
-CONSUMPTION_FLOW.step_5 'calculate_pressure_field' chưa dùng chromatic L4 cứng.
-PATCH: nếu spectral_capture = L4_red (critical) → bypass sang step_8 quarantine ngay, không cho qua step_6 decide.
+CONSUMPTION_FLOW.step_5 'calculate_pressure_field' chua[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] chromatic L4 cung[C1:RN_KEEP_RIME].
+PATCH: neu[C1:RN_KEEP_RIME] spectral_capture = L4_red (critical) → bypass sang step_8 quarantine ngay, khong[C0:RN_KEEP_RIME] cho qua step_6 decide.
 ==END==
 ==END_BANG_REVIEW_PATCH_v0_1==

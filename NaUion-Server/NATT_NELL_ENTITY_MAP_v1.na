@@ -3,49 +3,49 @@ $role: ENTITY_RELATION_MAP
 $owner: NaUion-Server
 $status: CANONICAL_CANDIDATE
 
-# Bản đồ thực thể Hệ Natt Nell
+# Ben[C3:RN_AN_EN] do[C2:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] He[C5:RN_KEEP_RIME] Natt Nell
 
-## 1. Tên hệ
+## 1. Ten[C0:RN_KEEP_RIME] he[C5:RN_KEEP_RIME]
 
-Natt Nell là nhà vận hành.
+Natt Nell la[C2:RN_KEEP_RIME] nha[C2:RN_KEEP_RIME] ven[C5:RN_AN_EN] hanh[C2:RN_KEEP_RIME].
 
-NATT-OS là danh xưng lịch sử / đối ngoại để người ngoài tạm hiểu, nhưng bản chất nội hệ là Natt Nell.
+NATT-OS la[C2:RN_KEEP_RIME] danh xung[C0:RN_KEEP_RIME] lich[C5:RN_KEEP_RIME] su[C3:RN_KEEP_RIME] / dau[C1:RN_OI_AU] ngoai[C5:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] ngui[C2:RN_UOI_UI] ngoai[C2:RN_KEEP_RIME] tam[C5:RN_KEEP_RIME] hieu[C3:RN_KEEP_RIME], nhung[C0:RN_KEEP_RIME] ben[C3:RN_AN_EN] chat[C1:RN_KEEP_RIME] nau[C5:RN_OI_AU] he[C5:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] Natt Nell.
 
-## 2. Phân tầng
+## 2. Phen[C0:RN_AN_EN] teng[C2:RN_ANG_ENG]
 
-| Thành phần | Vai trò | Không phải |
+| Thanh[C2:RN_KEEP_RIME] phen[C2:RN_AN_EN] | Vai tro[C2:RN_KEEP_RIME] | Khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] |
 |---|---|---|
-| ANC | Thực thể AI thế hệ mới | Không phải AGI, không phải NattCell |
-| NattCell | Thân vận hành / tế bào hệ thống | Không phải AI |
-| Nauion Kernel | Luật lõi / rule-set vận hành | Không phải AI |
-| Natt Nell | Nhà / living kernel system | Không phải OS clone |
-| SiraSign | Ký và chứng cứ | Không phải trang trí |
-| Ground Truth | Thực tại hệ | Không phải report phụ |
-| .kkbt | Mặt hiện hình | Không phải HTML demo |
+| ANC | Thuc[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] AI the[C1:RN_KEEP_RIME] he[C5:RN_KEEP_RIME] mau[C1:RN_OI_AU] | Khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] AGI, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] NattCell |
+| NattCell | Then[C0:RN_AN_EN] ven[C5:RN_AN_EN] hanh[C2:RN_KEEP_RIME] / te[C1:RN_KEEP_RIME] bao[C2:RN_KEEP_RIME] he[C5:RN_KEEP_RIME] thong[C1:RN_KEEP_RIME] | Khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] AI |
+| Nauion Kernel | Luat[C5:RN_KEEP_RIME] lau[C4:RN_OI_AU] / rule-set ven[C5:RN_AN_EN] hanh[C2:RN_KEEP_RIME] | Khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] AI |
+| Natt Nell | Nha[C2:RN_KEEP_RIME] / living kernel system | Khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] OS clone |
+| SiraSign | Ky[C1:RN_KEEP_RIME] va[C2:RN_KEEP_RIME] chung[C1:RN_KEEP_RIME] cu[C1:RN_KEEP_RIME] | Khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] trang tri[C1:RN_KEEP_RIME] |
+| Ground Truth | Thuc[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] he[C5:RN_KEEP_RIME] | Khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] report phu[C5:RN_KEEP_RIME] |
+| .kkbt | Mat[C5:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME] | Khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] HTML demo |
 
-## 3. Công thức nhà
+## 3. Cong[C0:RN_KEEP_RIME] thuc[C1:RN_KEEP_RIME] nha[C2:RN_KEEP_RIME]
 
-ANC trú trong NattCell.
-NattCell chịu Nauion Kernel.
-Nauion Kernel nằm trong Natt Nell.
-Natt Nell được chứng minh bằng SiraSign / Audit / Ground Truth.
-Mặt hiện hình đi qua .kkbt.
+ANC tru[C1:RN_KEEP_RIME] trong NattCell.
+NattCell chiu[C5:RN_KEEP_RIME] Nauion Kernel.
+Nauion Kernel nam[C2:RN_KEEP_RIME] trong Natt Nell.
+Natt Nell duoc[C5:RN_KEEP_RIME] chung[C1:RN_KEEP_RIME] minh beng[C2:RN_ANG_ENG] SiraSign / Audit / Ground Truth.
+Mat[C5:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME] di[C0:RN_KEEP_RIME] qua .kkbt.
 
-## 4. Câu khóa
+## 4. Cau[C0:RN_KEEP_RIME] khoa[C1:RN_KEEP_RIME]
 
-ANC = thực thể.
-NattCell = thân vận hành.
-Nauion Kernel = luật sống.
-Natt Nell = nhà.
+ANC = thuc[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME].
+NattCell = then[C0:RN_AN_EN] ven[C5:RN_AN_EN] hanh[C2:RN_KEEP_RIME].
+Nauion Kernel = luat[C5:RN_KEEP_RIME] song[C1:RN_KEEP_RIME].
+Natt Nell = nha[C2:RN_KEEP_RIME].
 
-## 5. Cấm nhầm
+## 5. Cam[C1:RN_KEEP_RIME] nham[C2:RN_KEEP_RIME]
 
-Không AGI hóa ANC.
-Không cell hóa AI.
-Không app hóa Natt Nell.
-Không OS-clone hóa Nauion Kernel.
-Không lấy substrate làm nhà.
+Khong[C0:RN_KEEP_RIME] AGI hoa[C1:RN_KEEP_RIME] ANC.
+Khong[C0:RN_KEEP_RIME] cell hoa[C1:RN_KEEP_RIME] AI.
+Khong[C0:RN_KEEP_RIME] app hoa[C1:RN_KEEP_RIME] Natt Nell.
+Khong[C0:RN_KEEP_RIME] OS-clone hoa[C1:RN_KEEP_RIME] Nauion Kernel.
+Khong[C0:RN_KEEP_RIME] lay[C1:RN_KEEP_RIME] substrate lam[C2:RN_KEEP_RIME] nha[C2:RN_KEEP_RIME].
 
 $seal:
-  sentence: Bản đồ này khóa lại quan hệ ANC - NattCell - Nauion Kernel - Natt Nell.
-  sign: Phan Thanh Thương / Natt Sirawat
+  sentence: Ben[C3:RN_AN_EN] do[C2:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] khoa[C1:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME] quan he[C5:RN_KEEP_RIME] ANC - NattCell - Nauion Kernel - Natt Nell.
+  sign: Phan Thanh Thuong[C0:RN_KEEP_RIME] / Natt Sirawat

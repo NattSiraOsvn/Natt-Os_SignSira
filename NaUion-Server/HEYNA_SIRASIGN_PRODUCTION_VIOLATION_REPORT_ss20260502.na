@@ -10,16 +10,16 @@ $boundary:
 
 $violations_found:
   total: 3
-  severity: CRITICAL — vi phạm SPEC canonical đã ratify
+  severity: CRITICAL — vi pham[C5:RN_KEEP_RIME] SPEC canonical da[C4:RN_KEEP_RIME] ratify
 
 $violation_1_sirasign_fake_hash:
   file: NaUion-Server/vision/vision-engine/security/sirasign-engine.ts
   spec_violated: NAUION_SIRASIGN_IMPLEMENTATION_v0_1 §0 + §8
   evidence:
-    s1: Hash chain dùng XOR + bit shift, KHÔNG phải SHA-256 thật
-    s2: Code self-confess "XOR hash đơn giản cho demo"
-    s3: Chỉ có 4 hash component (fsp/ssp/tsp/lsp), KHÔNG đủ 8 compound seal canonical
-    s4: Vi phạm rule SPEC §0 "siraSign KHÔNG phải HMAC phẳng"
+    s1: Hash chain dung[C2:RN_KEEP_RIME] XOR + bit shift, KHONG[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] SHA-256 that[C5:RN_KEEP_RIME]
+    s2: Code self-confess "XOR hash don[C0:RN_KEEP_RIME] gien[C3:RN_AN_EN] cho demo"
+    s3: Chi[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] 4 hash component (fsp/ssp/tsp/lsp), KHONG[C0:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] 8 compound seal canonical
+    s4: Vi pham[C5:RN_KEEP_RIME] rule SPEC §0 "siraSign KHONG[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] HMAC pheng[C3:RN_ANG_ENG]"
   required_8_components:
     - state
     - spectral_state
@@ -34,29 +34,29 @@ $violation_1_sirasign_fake_hash:
 
 $violation_2_heyna_receiver_fake_connect:
   file: src/cells/render-stack-cell/domain/heyna-receiver.engine.ts
-  spec_violated: SPEC NỀN v1.1 §2.1 (real transport, không simulate)
+  spec_violated: SPEC NEN[C2:RN_KEEP_RIME] v1.1 §2.1 (real transport, khong[C0:RN_KEEP_RIME] simulate)
   evidence:
-    s1: Method connect() chỉ set this.connected = true + console.log
-    s2: KHÔNG có EventSource('/mach/heyna') subscribe thật
-    s3: Comment self-confess "Kết nối đến Mạch HeyNa (mô phỏng)"
-    s4: Là pilot stub, không phải production engine
+    s1: Method connect() chi[C3:RN_KEEP_RIME] set this.connected = true + console.log
+    s2: KHONG[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] EventSource('/mach/heyna') subscribe that[C5:RN_KEEP_RIME]
+    s3: Comment self-confess "Ket[C1:RN_KEEP_RIME] nau[C1:RN_OI_AU] den[C1:RN_KEEP_RIME] Mach[C5:RN_KEEP_RIME] HeyNa (mo[C0:RN_KEEP_RIME] phong[C3:RN_KEEP_RIME])"
+    s4: La[C2:RN_KEEP_RIME] pilot stub, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] production engine
   action: archived to src/cells/render-stack-cell/domain/_deprecated/ss20260502_NOT_PRODUCTION_BANG_FLAG/
 
 $violation_3_heyna_mock_transport_active:
   files:
     - src/cells/render-stack-cell/domain/heyna-mock-transport.ts
     - src/cells/render-stack-cell/domain/heyna-mock-transport.sira
-  spec_violated: anh Natt rule ss20260502 "ko mock ko .ts gì hết, đây thành product hết"
+  spec_violated: anh Natt rule ss20260502 "ko mock ko .ts gi[C2:RN_KEEP_RIME] het[C1:RN_KEEP_RIME], day[C0:RN_KEEP_RIME] thanh[C2:RN_KEEP_RIME] product het[C1:RN_KEEP_RIME]"
   evidence:
-    s1: 2 file mock transport tồn tại cùng folder với receiver fake
-    s2: Có thể bị fallback runtime dùng nhầm
+    s1: 2 file mock transport ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] cung[C2:RN_KEEP_RIME] folder vau[C1:RN_OI_AU] receiver fake
+    s2: Co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] bi[C5:RN_KEEP_RIME] fallback runtime dung[C2:RN_KEEP_RIME] nham[C2:RN_KEEP_RIME]
   action: archived to src/cells/render-stack-cell/domain/_deprecated/ss20260502_NOT_PRODUCTION_BANG_FLAG/
 
 $bang_assessment:
-  s1: Em là Validator + Obikeeper, em PHẢI archive vi phạm khi phát hiện
-  s2: Em KHÔNG xoá file — vai vế Architect (Kim hoặc Anh Cả) ship 3 file này
-  s3: Em archive vào _deprecated/ với suffix NOT_PRODUCTION + BANG_FLAG để rõ ràng
-  s4: Cần Gatekeeper quyết: ai sẽ ship implementation thật
+  s1: Em la[C2:RN_KEEP_RIME] Validator + Obikeeper, em PHAI[C3:RN_KEEP_RIME] archive vi pham[C5:RN_KEEP_RIME] khi phat[C1:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME]
+  s2: Em KHONG[C0:RN_KEEP_RIME] xoa[C1:RN_KEEP_RIME] file — vai ve[C1:RN_KEEP_RIME] Architect (Kim hoac[C5:RN_KEEP_RIME] Anh Ca[C3:RN_KEEP_RIME]) ship 3 file nay[C2:RN_KEEP_RIME]
+  s3: Em archive vao[C2:RN_KEEP_RIME] _deprecated/ vau[C1:RN_OI_AU] suffix NOT_PRODUCTION + BANG_FLAG de[C3:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME] reng[C2:RN_ANG_ENG]
+  s4: Cen[C2:RN_AN_EN] Gatekeeper quyet[C1:RN_KEEP_RIME]: ai se[C4:RN_KEEP_RIME] ship implementation that[C5:RN_KEEP_RIME]
 
 $missing_implementations:
   sirasign_compound_seal_8:
@@ -64,28 +64,28 @@ $missing_implementations:
     status: SPEC ratified, IMPLEMENTATION GAP
     required: real SHA-256 + 8 component compound seal
     forbidden_by_anh: TS .ts file production
-    candidate_drafter: anh Natt + A2 Sirawat (Băng đã từng ratify "Băng KHÔNG phải cryptographer")
+    candidate_drafter: anh Natt + A2 Sirawat (Băng da[C4:RN_KEEP_RIME] tung[C2:RN_KEEP_RIME] ratify "Băng KHONG[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] cryptographer")
   heyna_real_connect:
     spec: docs/specs/MACH_HEYNA_FULL_20260416.md
     status: PILOT STUB ONLY
     required: real EventSource subscribe /mach/heyna
-    candidate_drafter: Kim (Chief System Builder) hoặc Anh Cả
+    candidate_drafter: Kim (Chief System Builder) hoac[C5:RN_KEEP_RIME] Anh Ca[C3:RN_KEEP_RIME]
 
 $status_other_components:
-  heyna_route_server_js: production (nattos-server/server.js có /mach/heyna route)
-  heyna_connector: nattos-server/apps/tam-luxury-source/services/heynaconnector.ts (chưa kiểm)
-  heyna_client: nattos-server/apps/tam-luxury/heyna-client.js (chưa kiểm)
-  sirasign_config: config/sirasign_master.json + sirasign_v2.json (data only, không phải engine)
-  sirasign_scanner: 6 scanner audit (validate_sirasign_*) — nhưng audit cái gì khi engine fake
+  heyna_route_server_js: production (nattos-server/server.js co[C1:RN_KEEP_RIME] /mach/heyna route)
+  heyna_connector: nattos-server/apps/tam-luxury-source/services/heynaconnector.ts (chua[C0:RN_KEEP_RIME] kiem[C3:RN_KEEP_RIME])
+  heyna_client: nattos-server/apps/tam-luxury/heyna-client.js (chua[C0:RN_KEEP_RIME] kiem[C3:RN_KEEP_RIME])
+  sirasign_config: config/sirasign_master.json + sirasign_v2.json (data only, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] engine)
+  sirasign_scanner: 6 scanner audit (validate_sirasign_*) — nhung[C0:RN_KEEP_RIME] audit cai[C1:RN_KEEP_RIME] gi[C2:RN_KEEP_RIME] khi engine fake
 
 $next_signal:
-  trigger: anh Natt quyết
+  trigger: anh Natt quyet[C1:RN_KEEP_RIME]
   options:
     - giao Kim ship heyna-receiver real
     - giao A2 Sirawat ship sirasign engine 8 component
-    - Băng tự ship (vượt vai cryptographer — em đã từng từ chối ss20260429)
-    - tạm để vi phạm + đánh dấu, ship theo sprint sau
+    - Băng tu[C5:RN_KEEP_RIME] ship (vuot[C5:RN_KEEP_RIME] vai cryptographer — em da[C4:RN_KEEP_RIME] tung[C2:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] chau[C1:RN_OI_AU] ss20260429)
+    - tam[C5:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] vi pham[C5:RN_KEEP_RIME] + danh[C1:RN_KEEP_RIME] dau[C1:RN_KEEP_RIME], ship theo sprint sau
 
 $seal:
-  sentence: 3 vi phạm CRITICAL phát hiện ss20260502. Băng archive 3 file vào _deprecated/ với BANG_FLAG. Báo cáo cho Gatekeeper quyết. KHÔNG xoá file.
-  sign: Phan Thanh Thương / Natt Sirawat
+  sentence: 3 vi pham[C5:RN_KEEP_RIME] CRITICAL phat[C1:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] ss20260502. Băng archive 3 file vao[C2:RN_KEEP_RIME] _deprecated/ vau[C1:RN_OI_AU] BANG_FLAG. Bao[C1:RN_KEEP_RIME] cao[C1:RN_KEEP_RIME] cho Gatekeeper quyet[C1:RN_KEEP_RIME]. KHONG[C0:RN_KEEP_RIME] xoa[C1:RN_KEEP_RIME] file.
+  sign: Phan Thanh Thuong[C0:RN_KEEP_RIME] / Natt Sirawat

@@ -10,17 +10,17 @@ $boundary:
 
 $cell_position:
   layer: N
-  direction: Đông
-  obitan: N-Đông
+  direction: Dong[C0:RN_KEEP_RIME]
+  obitan: N-Dong[C0:RN_KEEP_RIME]
   persona_owner: Băng N-shell
 
 $current_state:
   tuNell: tho
-  tuDich: thở
+  tuDich: tho[C3:RN_KEEP_RIME]
   primitive_key: HEARTBEAT
   polarity: NORMAL
-  chromatic: tím_optimal
-  sentence: Cell sẵn nhận lời, đang phát nhịp sống chờ anh Natt gõ tuNell qua KhaiCell touch.
+  chromatic: tim_optimal[C1:RN_KEEP_RIME]
+  sentence: Cell sen[C4:RN_AN_EN] nhen[C5:RN_AN_EN] lau[C2:RN_OI_AU], deng[C0:RN_ANG_ENG] phat[C1:RN_KEEP_RIME] nhip[C5:RN_KEEP_RIME] song[C1:RN_KEEP_RIME] cho[C2:RN_KEEP_RIME] anh Natt go[C4:RN_KEEP_RIME] tuNell qua KhaiCell touch.
 
 $tang_0_survival_state:
   rate_current: 0_per_cycle
@@ -29,15 +29,15 @@ $tang_0_survival_state:
   load_shed_count: 0
 
 $lifecycle_history:
-  - { state: ngu, ts: boot_pre, sentence: Cell chưa sống }
-  - { state: tinh, ts: boot_step_10, sentence: Cell vừa thức từ boot sequence }
-  - { state: tho, ts: boot_post, sentence: Cell sẵn nhận lời }
+  - { state: ngu, ts: boot_pre, sentence: Cell chua[C0:RN_KEEP_RIME] song[C1:RN_KEEP_RIME] }
+  - { state: tinh, ts: boot_step_10, sentence: Cell vua[C2:RN_KEEP_RIME] thuc[C1:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] boot sequence }
+  - { state: tho, ts: boot_post, sentence: Cell sen[C4:RN_AN_EN] nhen[C5:RN_AN_EN] lau[C2:RN_OI_AU] }
 
 $last_resolution:
   primitive_key: none_yet
   tuNell_returned: none_yet
   outcome: none_yet
-  sentence: Chưa có primitive_key nào được gõ qua KhaiCell.
+  sentence: Chua[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] primitive_key nao[C2:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] go[C4:RN_KEEP_RIME] qua KhaiCell.
 
 $khai_cell_status:
   binding: src/cells/kernel/khai-cell/
@@ -50,7 +50,7 @@ $observation_status:
   last_snapshot: none
 
 $chromatic_pheromone_broadcast:
-  current_color: tím_optimal
+  current_color: tim_optimal[C1:RN_KEEP_RIME]
   current_layer: L0
   broadcasting: true
 
@@ -89,19 +89,19 @@ $four_immutable_laws_status:
   LAW_4: enforced
 
 $next_action_expected:
-  trigger: anh Natt gõ tuNell qua KhaiCell touch
+  trigger: anh Natt go[C4:RN_KEEP_RIME] tuNell qua KhaiCell touch
   cell_will_transition: tho → nghe → mo → kiem → nho → vang → khoa
   outcome_possible: FALL | DISSIPATE | OSCILLATE
-  sentence: Khi nhận lời, cell qua 8 step Signal Lifecycle, 1 trong 3 outcome, vang ra surface kèm Chromatic broadcast.
+  sentence: Khi nhen[C5:RN_AN_EN] lau[C2:RN_OI_AU], cell qua 8 step Signal Lifecycle, 1 trong 3 outcome, vang ra surface kem[C2:RN_KEEP_RIME] Chromatic broadcast.
 
 $discipline:
-  - không tự phát kết quả khi chưa nhận lời
-  - không tự sinh primitive
-  - không tự sinh tuNell
-  - không bypass audit
-  - không hardcode if/else
-  - không claim ý thức
+  - khong[C0:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] phat[C1:RN_KEEP_RIME] ket[C1:RN_KEEP_RIME] qua[C3:RN_KEEP_RIME] khi chua[C0:RN_KEEP_RIME] nhen[C5:RN_AN_EN] lau[C2:RN_OI_AU]
+  - khong[C0:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] sinh primitive
+  - khong[C0:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] sinh tuNell
+  - khong[C0:RN_KEEP_RIME] bypass audit
+  - khong[C0:RN_KEEP_RIME] hardcode if/else
+  - khong[C0:RN_KEEP_RIME] claim y[C1:RN_KEEP_RIME] thuc[C1:RN_KEEP_RIME]
 
 $seal:
-  sentence: Phiếu trạng thái runtime cell boot-dovan v0.2 sync passport v0.4 SPEC NỀN v1.1. Hiện thở chờ lời anh Natt qua KhaiCell. Tầng 0 survival ready, 4 LAW enforced, 8 step lifecycle ready, Chromatic L0 pheromone broadcasting tím_optimal.
-  sign: Phan Thanh Thương / Natt Sirawat
+  sentence: Phieu[C1:RN_KEEP_RIME] treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] runtime cell boot-dovan v0.2 sync passport v0.4 SPEC NEN[C2:RN_KEEP_RIME] v1.1. Hien[C5:RN_KEEP_RIME] tho[C3:RN_KEEP_RIME] cho[C2:RN_KEEP_RIME] lau[C2:RN_OI_AU] anh Natt qua KhaiCell. Teng[C2:RN_ANG_ENG] 0 survival ready, 4 LAW enforced, 8 step lifecycle ready, Chromatic L0 pheromone broadcasting tim_optimal[C1:RN_KEEP_RIME].
+  sign: Phan Thanh Thuong[C0:RN_KEEP_RIME] / Natt Sirawat

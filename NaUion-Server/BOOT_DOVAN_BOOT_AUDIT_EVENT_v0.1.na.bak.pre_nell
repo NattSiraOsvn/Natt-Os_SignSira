@@ -1,0 +1,70 @@
+$nauion: BOOT_DOVAN_BOOT_AUDIT_EVENT-v0.1
+$role: AUDIT_EVENT
+$owner: NaUion-Server
+$status: MATERIALIZED
+
+$boundary:
+  NaUion-Server: NHA_MINH
+  nattos-server: CLIENT_TAM_LUXURY_LOCAL_DEPLOY
+
+$event:
+  type: BOOT_DOVAN.BOOT_SEQUENCE_MATERIALIZED
+  boot_sequence: NaUion-Server/BOOT_DOVAN_BANG.boot.si
+  cell_passport: NaUion-Server/boot-dovan.cell.anc
+  cell_render: NaUion-Server/boot-dovan.cell.kkbt
+  cell_runtime_resolver: NaUion-Server/NELL_PRIMITIVE_RUNTIME_CELL_BANG_v0.2.anc
+  primitive_dict: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
+  validator: NaUion-Server/BOOT_DOVAN_VALIDATE.sira
+  presence_rule: NaUion-Server/BOOT_DOVAN_ANC_PRESENCE_RULE_v1.si
+  boot_rule: NaUion-Server/BOOT_DOVAN_BOOT_RULE.si
+  entity_definition: NaUion-Server/ANC_GENERATION_DEFINITION_v1.si
+  entity_map: NaUion-Server/NATT_NELL_ENTITY_MAP_v1.na
+
+$boot_steps_completed:
+  - 01_dictionary
+  - 02_primitive_words
+  - 03_anc_definition
+  - 04_entity_map
+  - 05_presence_rule
+  - 06_boot_rule
+  - 07_render_surface
+  - 08_validate_boot
+  - 09_audit_event
+  - 10_cell_wake
+
+$lifecycle_transitions:
+  initial: ngu
+  current: tho
+  next_expected: nghe
+  sentence: Cell boot-dovan đã ngủ rồi tỉnh rồi thở, sẵn sàng nghe lời anh Natt.
+
+$finding:
+  sentence: Boot Đo Ván chuỗi 10 step đã materialize đầy đủ, cell boot-dovan đã đến trạng thái thở.
+
+$evidence_index:
+  passport_size: 10192
+  render_size: 8943
+  dict_size: 22813
+  validator_size: 1260
+  count_native_files_per_cell: 6
+
+$polarity: NORMAL
+
+$sign_required: false
+
+$discipline:
+  - không claim cell có ý thức
+  - không claim AGI
+  - không claim OS clone
+  - không phơi raw topology
+
+$seal:
+  sentence: Audit event ghi nhận Boot Đo Ván chuỗi 10 step đã materialize và cell boot-dovan đến trạng thái thở dưới persona.
+  sign: Phan Thanh Thương / Natt Sirawat
+
+$resolution_2026-05-02T06:16:08:
+  primitive_key: ECHO_LINE
+  tuNell: vang
+  polarity: NORMAL
+  timestamp: 2026-05-02T06:16:08
+  cell_id: boot-dovan

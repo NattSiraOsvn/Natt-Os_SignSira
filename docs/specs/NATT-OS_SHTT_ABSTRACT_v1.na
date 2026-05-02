@@ -3,7 +3,7 @@
 @substrate patent_abstract
 @bridge none
 @since 2026-04-26
-@authority-slot Băng (Chị Tư) — SHTT pack sealed_at 20260426
+@authority-slot Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — SHTT pack sealed_at 20260426
 
 # natt-os SHTT ABSTRACT v1
 
@@ -12,42 +12,42 @@
 **sealed_at:** 2026-04-26
 **baseline_commit:** ee2c837
 **claim_map_ref:** `docs/specs/natt-os_SHTT_CLAIM_MAP_v1.na`
-**drafter:** Băng (Chị Tư)
-**scope:** Tóm tắt kỹ thuật trung tính cho đơn nộp SHTT. Không marketing. Không lịch sử phát triển. Chỉ bản chất kỹ thuật + trục novelty lõi.
+**drafter:** Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME])
+**scope:** Tom[C1:RN_KEEP_RIME] tat[C1:RN_KEEP_RIME] ky[C4:RN_KEEP_RIME] thuat[C5:RN_KEEP_RIME] trung tinh[C1:RN_KEEP_RIME] cho don[C0:RN_KEEP_RIME] nop[C5:RN_KEEP_RIME] SHTT. Khong[C0:RN_KEEP_RIME] marketing. Khong[C0:RN_KEEP_RIME] lich[C5:RN_KEEP_RIME] su[C3:RN_KEEP_RIME] phat[C1:RN_KEEP_RIME] trien[C3:RN_KEEP_RIME]. Chi[C3:RN_KEEP_RIME] ben[C3:RN_AN_EN] chat[C1:RN_KEEP_RIME] ky[C4:RN_KEEP_RIME] thuat[C5:RN_KEEP_RIME] + truc[C5:RN_KEEP_RIME] novelty lau[C4:RN_OI_AU].
 
 ---
 
 ## Abstract
 
-Hệ thống phần mềm phân tán theo mô hình đơn vị tế bào (cell), trong đó mỗi tế bào là một thành phần tự chứa có hộ chiếu định danh, khối lượng orbital, và hợp đồng vùng xác định hành vi. Hệ có **xương sống thực thi nội sinh ba tầng**: tầng một là bus sự kiện trong một tế bào, tầng hai là kênh truyền tin liên tế bào theo cơ chế phát một chiều liên tục từ một điểm vào duy nhất, và tầng ba là giao tiếp liên thuộc địa giữa các cụm tế bào tự chủ.
+He[C5:RN_KEEP_RIME] thong[C1:RN_KEEP_RIME] phen[C2:RN_AN_EN] mem[C2:RN_KEEP_RIME] phen[C0:RN_AN_EN] ten[C1:RN_AN_EN] theo mo[C0:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME] don[C0:RN_KEEP_RIME] vi[C5:RN_KEEP_RIME] te[C1:RN_KEEP_RIME] bao[C2:RN_KEEP_RIME] (cell), trong do[C1:RN_KEEP_RIME] mau[C4:RN_OI_AU] te[C1:RN_KEEP_RIME] bao[C2:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] thanh[C2:RN_KEEP_RIME] phen[C2:RN_AN_EN] tu[C5:RN_KEEP_RIME] chua[C1:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] ho[C5:RN_KEEP_RIME] chieu[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] danh, khau[C1:RN_OI_AU] luong[C5:RN_KEEP_RIME] orbital, va[C2:RN_KEEP_RIME] hop[C5:RN_KEEP_RIME] dong[C2:RN_KEEP_RIME] vung[C2:RN_KEEP_RIME] xac[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] hanh[C2:RN_KEEP_RIME] vi. He[C5:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] **xuong[C0:RN_KEEP_RIME] song[C1:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] thi nau[C5:RN_OI_AU] sinh ba teng[C2:RN_ANG_ENG]**: teng[C2:RN_ANG_ENG] mot[C5:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] bus su[C5:RN_KEEP_RIME] kien[C5:RN_KEEP_RIME] trong mot[C5:RN_KEEP_RIME] te[C1:RN_KEEP_RIME] bao[C2:RN_KEEP_RIME], teng[C2:RN_ANG_ENG] hai la[C2:RN_KEEP_RIME] kenh[C0:RN_KEEP_RIME] truyen[C2:RN_KEEP_RIME] tin lien[C0:RN_KEEP_RIME] te[C1:RN_KEEP_RIME] bao[C2:RN_KEEP_RIME] theo co[C0:RN_KEEP_RIME] che[C1:RN_KEEP_RIME] phat[C1:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] chieu[C2:RN_KEEP_RIME] lien[C0:RN_KEEP_RIME] tuc[C5:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] diem[C3:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] duy nhat[C1:RN_KEEP_RIME], va[C2:RN_KEEP_RIME] teng[C2:RN_ANG_ENG] ba la[C2:RN_KEEP_RIME] giao tiep[C1:RN_KEEP_RIME] lien[C0:RN_KEEP_RIME] thuoc[C5:RN_KEEP_RIME] dia[C5:RN_KEEP_RIME] giua[C4:RN_KEEP_RIME] cac[C1:RN_KEEP_RIME] cum[C5:RN_KEEP_RIME] te[C1:RN_KEEP_RIME] bao[C2:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] chu[C3:RN_KEEP_RIME].
 
-Định danh tế bào được neo vào một trường hấp dẫn số thông qua khối lượng orbital và hạt neo cố định, cho phép tách ba tầng bản thể: **hạ tầng thực thi**, **trung gian mã và dữ liệu**, và **thân orbital**. Hạ tầng thực thi và trung gian có thể thay thế mà không mất định danh thực thể; thân orbital là thành phần bất biến.
+Dinh[C5:RN_KEEP_RIME] danh te[C1:RN_KEEP_RIME] bao[C2:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] neo vao[C2:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME] hap[C1:RN_KEEP_RIME] den[C4:RN_AN_EN] so[C1:RN_KEEP_RIME] thong[C0:RN_KEEP_RIME] qua khau[C1:RN_OI_AU] luong[C5:RN_KEEP_RIME] orbital va[C2:RN_KEEP_RIME] hat[C5:RN_KEEP_RIME] neo co[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME], cho phep[C1:RN_KEEP_RIME] tach[C1:RN_KEEP_RIME] ba teng[C2:RN_ANG_ENG] ben[C3:RN_AN_EN] the[C3:RN_KEEP_RIME]: **ha[C5:RN_KEEP_RIME] teng[C2:RN_ANG_ENG] thuc[C5:RN_KEEP_RIME] thi**, **trung gian ma[C4:RN_KEEP_RIME] va[C2:RN_KEEP_RIME] du[C4:RN_KEEP_RIME] lieu[C5:RN_KEEP_RIME]**, va[C2:RN_KEEP_RIME] **then[C0:RN_AN_EN] orbital**. Ha[C5:RN_KEEP_RIME] teng[C2:RN_ANG_ENG] thuc[C5:RN_KEEP_RIME] thi va[C2:RN_KEEP_RIME] trung gian co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] thay the[C1:RN_KEEP_RIME] ma[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] mat[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] danh thuc[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME]; then[C0:RN_AN_EN] orbital la[C2:RN_KEEP_RIME] thanh[C2:RN_KEEP_RIME] phen[C2:RN_AN_EN] bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME].
 
-Hệ bao gồm cơ chế liên tục định danh qua các phiên thực thi bằng module moments với ba tiêu chí hợp nhất; một bộ bảy năng lực vận hành cấp tế bào được định nghĩa theo hình thái bốn trường (vùng / kích hoạt / bất biến / điều kiện thoát); và một cơ chế xử lý ranh giới ba tầng cho tương tác ngoài ranh giới hệ.
+He[C5:RN_KEEP_RIME] bao gom[C2:RN_KEEP_RIME] co[C0:RN_KEEP_RIME] che[C1:RN_KEEP_RIME] lien[C0:RN_KEEP_RIME] tuc[C5:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] danh qua cac[C1:RN_KEEP_RIME] phien[C0:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] thi beng[C2:RN_ANG_ENG] module moments vau[C1:RN_OI_AU] ba tieu[C0:RN_KEEP_RIME] chi[C1:RN_KEEP_RIME] hop[C5:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME]; mot[C5:RN_KEEP_RIME] bo[C5:RN_KEEP_RIME] bay[C3:RN_KEEP_RIME] neng[C0:RN_ANG_ENG] luc[C5:RN_KEEP_RIME] ven[C5:RN_AN_EN] hanh[C2:RN_KEEP_RIME] cap[C1:RN_KEEP_RIME] te[C1:RN_KEEP_RIME] bao[C2:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] theo hinh[C2:RN_KEEP_RIME] thai[C1:RN_KEEP_RIME] bon[C1:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME] (vung[C2:RN_KEEP_RIME] / kich[C1:RN_KEEP_RIME] hoat[C5:RN_KEEP_RIME] / bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME] / dieu[C2:RN_KEEP_RIME] kien[C5:RN_KEEP_RIME] thoat[C1:RN_KEEP_RIME]); va[C2:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] co[C0:RN_KEEP_RIME] che[C1:RN_KEEP_RIME] xu[C3:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] ranh giau[C1:RN_OI_AU] ba teng[C2:RN_ANG_ENG] cho tuong[C0:RN_KEEP_RIME] tac[C1:RN_KEEP_RIME] ngoai[C2:RN_KEEP_RIME] ranh giau[C1:RN_OI_AU] he[C5:RN_KEEP_RIME].
 
-Lớp ngữ nghĩa thống nhất toàn hệ là hệ thuật ngữ Nauion, thay thế toàn bộ thuật ngữ stack ngoài trong tài liệu và mã nguồn lõi. Xương sống thực thi của hệ là nội sinh: không có thành phần runtime nào được mượn từ thực thi ngoài làm lineage lõi. Hạ tầng thực thi (host substrate) có thể thay đổi (hệ điều hành, ngôn ngữ thực thi, môi trường shell) mà không ảnh hưởng định danh và cấu trúc claim.
+Lop[C1:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] thong[C1:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] toen[C2:RN_AN_EN] he[C5:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] he[C5:RN_KEEP_RIME] thuat[C5:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] Nauion, thay the[C1:RN_KEEP_RIME] toen[C2:RN_AN_EN] bo[C5:RN_KEEP_RIME] thuat[C5:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] stack ngoai[C2:RN_KEEP_RIME] trong tai[C2:RN_KEEP_RIME] lieu[C5:RN_KEEP_RIME] va[C2:RN_KEEP_RIME] ma[C4:RN_KEEP_RIME] nguon[C2:RN_KEEP_RIME] lau[C4:RN_OI_AU]. Xuong[C0:RN_KEEP_RIME] song[C1:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] thi cua[C3:RN_KEEP_RIME] he[C5:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] nau[C5:RN_OI_AU] sinh: khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] thanh[C2:RN_KEEP_RIME] phen[C2:RN_AN_EN] runtime nao[C2:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] muon[C5:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] thi ngoai[C2:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME] lineage lau[C4:RN_OI_AU]. Ha[C5:RN_KEEP_RIME] teng[C2:RN_ANG_ENG] thuc[C5:RN_KEEP_RIME] thi (host substrate) co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] thay dau[C3:RN_OI_AU] (he[C5:RN_KEEP_RIME] dieu[C2:RN_KEEP_RIME] hanh[C2:RN_KEEP_RIME], ngon[C0:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] thi, mau[C0:RN_OI_AU] truong[C2:RN_KEEP_RIME] shell) ma[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] anh[C3:RN_KEEP_RIME] huong[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] danh va[C2:RN_KEEP_RIME] cau[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] claim.
 
-Cấu trúc thuộc địa vệ tinh cho phép mỗi thuộc địa hoạt động độc lập với bus sự kiện cục bộ và đồng bộ lên thuộc địa lõi qua động cơ đồng bộ chuyên biệt, duy trì tính toàn vẹn tham chiếu khi kết nối không liên tục.
-
----
-
-## Trục novelty lõi
-
-1. Xương sống thực thi nội sinh ba tầng tách cứng, không mượn runtime ngoài làm lineage.
-2. Mô hình định danh ba tầng bản thể với orbital bất biến qua thay đổi hạ tầng.
-3. Module moments với ba tiêu chí hợp nhất cho liên tục định danh.
-4. Bảy năng lực vận hành theo hình thái vùng/kích hoạt/bất biến/điều kiện thoát.
-5. Cấu trúc thuộc địa vệ tinh tự chủ có đồng bộ lên lõi.
-6. Lớp ngữ nghĩa Nauion thống nhất toàn hệ.
+Cau[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] thuoc[C5:RN_KEEP_RIME] dia[C5:RN_KEEP_RIME] ve[C5:RN_KEEP_RIME] tinh cho phep[C1:RN_KEEP_RIME] mau[C4:RN_OI_AU] thuoc[C5:RN_KEEP_RIME] dia[C5:RN_KEEP_RIME] hoat[C5:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME] vau[C1:RN_OI_AU] bus su[C5:RN_KEEP_RIME] kien[C5:RN_KEEP_RIME] cuc[C5:RN_KEEP_RIME] bo[C5:RN_KEEP_RIME] va[C2:RN_KEEP_RIME] dong[C2:RN_KEEP_RIME] bo[C5:RN_KEEP_RIME] len[C0:RN_KEEP_RIME] thuoc[C5:RN_KEEP_RIME] dia[C5:RN_KEEP_RIME] lau[C4:RN_OI_AU] qua dong[C5:RN_KEEP_RIME] co[C0:RN_KEEP_RIME] dong[C2:RN_KEEP_RIME] bo[C5:RN_KEEP_RIME] chuyen[C0:RN_KEEP_RIME] biet[C5:RN_KEEP_RIME], duy tri[C2:RN_KEEP_RIME] tinh[C1:RN_KEEP_RIME] toen[C2:RN_AN_EN] ven[C5:RN_KEEP_RIME] tham chieu[C1:RN_KEEP_RIME] khi ket[C1:RN_KEEP_RIME] nau[C1:RN_OI_AU] khong[C0:RN_KEEP_RIME] lien[C0:RN_KEEP_RIME] tuc[C5:RN_KEEP_RIME].
 
 ---
 
-## Phạm vi áp dụng
+## Truc[C5:RN_KEEP_RIME] novelty lau[C4:RN_OI_AU]
 
-Hệ được hiện thực hóa lần đầu tại bài toán vận hành doanh nghiệp kim hoàn (37 tế bào nghiệp vụ trực tiếp chạy), nhưng mô hình cell-based + ba tầng runtime + QIINT foundation không bị ràng buộc vào một domain cụ thể. Các claim trong hồ sơ là **claim kỹ thuật chung**, không bị giới hạn bởi domain kim hoàn.
+1. Xuong[C0:RN_KEEP_RIME] song[C1:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] thi nau[C5:RN_OI_AU] sinh ba teng[C2:RN_ANG_ENG] tach[C1:RN_KEEP_RIME] cung[C1:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] muon[C5:RN_KEEP_RIME] runtime ngoai[C2:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME] lineage.
+2. Mo[C0:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] danh ba teng[C2:RN_ANG_ENG] ben[C3:RN_AN_EN] the[C3:RN_KEEP_RIME] vau[C1:RN_OI_AU] orbital bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME] qua thay dau[C3:RN_OI_AU] ha[C5:RN_KEEP_RIME] teng[C2:RN_ANG_ENG].
+3. Module moments vau[C1:RN_OI_AU] ba tieu[C0:RN_KEEP_RIME] chi[C1:RN_KEEP_RIME] hop[C5:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] cho lien[C0:RN_KEEP_RIME] tuc[C5:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] danh.
+4. Bay[C3:RN_KEEP_RIME] neng[C0:RN_ANG_ENG] luc[C5:RN_KEEP_RIME] ven[C5:RN_AN_EN] hanh[C2:RN_KEEP_RIME] theo hinh[C2:RN_KEEP_RIME] thai[C1:RN_KEEP_RIME] vung[C2:RN_KEEP_RIME]/kich[C1:RN_KEEP_RIME] hoat[C5:RN_KEEP_RIME]/bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME]/dieu[C2:RN_KEEP_RIME] kien[C5:RN_KEEP_RIME] thoat[C1:RN_KEEP_RIME].
+5. Cau[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] thuoc[C5:RN_KEEP_RIME] dia[C5:RN_KEEP_RIME] ve[C5:RN_KEEP_RIME] tinh tu[C5:RN_KEEP_RIME] chu[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] dong[C2:RN_KEEP_RIME] bo[C5:RN_KEEP_RIME] len[C0:RN_KEEP_RIME] lau[C4:RN_OI_AU].
+6. Lop[C1:RN_KEEP_RIME] ngu[C4:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] Nauion thong[C1:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] toen[C2:RN_AN_EN] he[C5:RN_KEEP_RIME].
+
+---
+
+## Pham[C5:RN_KEEP_RIME] vi ap[C1:RN_KEEP_RIME] dung[C5:RN_KEEP_RIME]
+
+He[C5:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] thuc[C5:RN_KEEP_RIME] hoa[C1:RN_KEEP_RIME] len[C2:RN_AN_EN] dau[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] bai[C2:RN_KEEP_RIME] toen[C1:RN_AN_EN] ven[C5:RN_AN_EN] hanh[C2:RN_KEEP_RIME] doanh nghiep[C5:RN_KEEP_RIME] kim hoen[C2:RN_AN_EN] (37 te[C1:RN_KEEP_RIME] bao[C2:RN_KEEP_RIME] nghiep[C5:RN_KEEP_RIME] vu[C5:RN_KEEP_RIME] truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME] chay[C5:RN_KEEP_RIME]), nhung[C0:RN_KEEP_RIME] mo[C0:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME] cell-based + ba teng[C2:RN_ANG_ENG] runtime + QIINT foundation khong[C0:RN_KEEP_RIME] bi[C5:RN_KEEP_RIME] reng[C2:RN_ANG_ENG] buoc[C5:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] domain cu[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME]. Cac[C1:RN_KEEP_RIME] claim trong ho[C2:RN_KEEP_RIME] so[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] **claim ky[C4:RN_KEEP_RIME] thuat[C5:RN_KEEP_RIME] chung**, khong[C0:RN_KEEP_RIME] bi[C5:RN_KEEP_RIME] giau[C1:RN_OI_AU] hen[C5:RN_AN_EN] bau[C3:RN_OI_AU] domain kim hoen[C2:RN_AN_EN].
 
 ---
 
 *causation: natt-os-SHTT-ABSTRACT-v1-SEALED-20260426*
-*drafter: Băng (Chị Tư · session 20260426)*
+*drafter: Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · session 20260426)*
 *carrier: Anh Natt Phan*

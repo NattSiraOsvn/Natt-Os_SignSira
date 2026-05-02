@@ -1,9 +1,9 @@
 # VISUAL CONSTRAINT v0.3 — NAUION v10 UI SPEC
 # @state: active
-# @status: locked → chờ Kim ship ui-kernel-contract.sira
+# @status: locked → cho[C2:RN_KEEP_RIME] Kim ship ui-kernel-contract.sira
 
 obitan_ui_spec nauion_v10 {
-  domain: Π_medium
+  domain: Π_medium[C0:RN_KEEP_RIME][C0:RN_KEEP_RIME]
   obitan_layer: n=5 # L5 IMMUNE CAMOUFLAGE (O-shell)
   
   architectural_boundaries {

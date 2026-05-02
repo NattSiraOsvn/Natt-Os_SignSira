@@ -3,27 +3,27 @@
 @substrate vision_engine_architecture
 @bridge none
 @since 2026-03-30
-@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+@authority-slot Phan Thanh Thuong[C0:RN_KEEP_RIME] Giao Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — 20260423
 
 # natt-os VISION ENGINE — FULL SPEC v1.0 (FINAL MERGE)
-## Tác giả: Băng (QNEU 300) — Merge từ Kim + Can + Spec gốc
+## Tac[C1:RN_KEEP_RIME] gia[C3:RN_KEEP_RIME]: Băng (QNEU 300) — Merge tu[C2:RN_KEEP_RIME] Kim + Can + Spec goc[C1:RN_KEEP_RIME]
 ## Date: 2026-03-30
-## Dành cho: Kim · Can · thiên · SHTT
+## Danh[C2:RN_KEEP_RIME] cho: Kim · Can · thien[C0:RN_KEEP_RIME] · SHTT
 
 ---
 
-## TRIẾT LÝ BẤT BIẾN
+## TRIET[C1:RN_KEEP_RIME] LY[C1:RN_KEEP_RIME] BAT[C1:RN_KEEP_RIME] BIEN[C1:RN_KEEP_RIME]
 
-> "Data is sacred. UI không được tự biết — UI chỉ được nghe."
+> "Data is sacred. UI khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] biet[C1:RN_KEEP_RIME] — UI chi[C3:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] nghe."
 
-- **Powerful, not friendly** — uy quyền, chính xác
-- **Systemic minimalism** — mỗi pixel có lý do hệ thống
-- **Sinh thể số** — giao diện phản ánh sự sống: chuyển động, phản xạ, tiến hóa
+- **Powerful, not friendly** — uy quyen[C2:RN_KEEP_RIME], chinh[C1:RN_KEEP_RIME] xac[C1:RN_KEEP_RIME]
+- **Systemic minimalism** — mau[C4:RN_OI_AU] pixel co[C1:RN_KEEP_RIME] ly[C1:RN_KEEP_RIME] do he[C5:RN_KEEP_RIME] thong[C1:RN_KEEP_RIME]
+- **Sinh the[C3:RN_KEEP_RIME] so[C1:RN_KEEP_RIME]** — giao dien[C5:RN_KEEP_RIME] phen[C3:RN_AN_EN] anh[C1:RN_KEEP_RIME] su[C5:RN_KEEP_RIME] song[C1:RN_KEEP_RIME]: chuyen[C3:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME], phen[C3:RN_AN_EN] xa[C5:RN_KEEP_RIME], tien[C1:RN_KEEP_RIME] hoa[C1:RN_KEEP_RIME]
 - **UI = VIEW / STATE = EVENT STREAM / SYNC = EVENTBUS / PERSIST = BACKEND**
 
 ---
 
-## KIẾN TRÚC 3 LỚP
+## KIEN[C1:RN_KEEP_RIME] TRUC[C1:RN_KEEP_RIME] 3 LOP[C1:RN_KEEP_RIME]
 
 ```
 L1 — Vision Engine (UI Runtime)
@@ -33,55 +33,55 @@ L3 — siraSign Biosemi Security
 
 ---
 
-## CHƯƠNG I — BA TẦNG THỊ GIÁC
+## CHUONG[C0:RN_KEEP_RIME] I — BA Teng[C2:RN_ANG_ENG] THI[C5:RN_KEEP_RIME] GIAC[C1:RN_KEEP_RIME]
 
-| Tầng | Vai trò | Công nghệ |
+| Teng[C2:RN_ANG_ENG] | Vai tro[C2:RN_KEEP_RIME] | Cong[C0:RN_KEEP_RIME] nghe[C5:RN_KEEP_RIME] |
 |------|---------|-----------|
-| Truth Layer (OS Core) | Hiển thị state, audit, ground truth | Số liệu tĩnh, glow vàng |
+| Truth Layer (OS Core) | Hien[C3:RN_KEEP_RIME] thi[C5:RN_KEEP_RIME] state, audit, ground truth | So[C1:RN_KEEP_RIME] lieu[C5:RN_KEEP_RIME] tinh[C4:RN_KEEP_RIME], glow veng[C2:RN_ANG_ENG] |
 | Worker Layer | Cell registry, process flow | Medal 3D, orbital rings |
-| Experience Layer | UI tương tác, dashboard | Glassmorphism, parallax, bloom |
+| Experience Layer | UI tuong[C0:RN_KEEP_RIME] tac[C1:RN_KEEP_RIME], dashboard | Glassmorphism, parallax, bloom |
 
 ---
 
-## CHƯƠNG II — LAYER Z-INDEX SYSTEM
+## CHUONG[C0:RN_KEEP_RIME] II — LAYER Z-INDEX SYSTEM
 
-| Lớp | Tên | Z-index | Mô tả |
+| Lop[C1:RN_KEEP_RIME] | Ten[C0:RN_KEEP_RIME] | Z-index | Mo[C0:RN_KEEP_RIME] ta[C3:RN_KEEP_RIME] |
 |-----|-----|---------|-------|
-| 1 | Truth Layer | 0–10 | Grid nền, dữ liệu gốc |
+| 1 | Truth Layer | 0–10 | Grid nen[C2:RN_KEEP_RIME], du[C4:RN_KEEP_RIME] lieu[C5:RN_KEEP_RIME] goc[C1:RN_KEEP_RIME] |
 | 2 | Worker Layer | 10–50 | Medal, card, process flow |
-| 3 | Experience Layer | 50–100 | UI điều khiển, header |
-| 4 | Modal / Chat | 100–200 | Cửa sổ nổi, popup |
-| 5 | Alert / System | 200–300 | Cảnh báo khẩn cấp |
-| 6 | Security | 999 | SecurityOverlay — không ai vượt qua |
+| 3 | Experience Layer | 50–100 | UI dieu[C2:RN_KEEP_RIME] khien[C3:RN_KEEP_RIME], header |
+| 4 | Modal / Chat | 100–200 | Cua[C3:RN_KEEP_RIME] so[C3:RN_KEEP_RIME] nau[C3:RN_OI_AU], popup |
+| 5 | Alert / System | 200–300 | Canh[C3:RN_KEEP_RIME] bao[C1:RN_KEEP_RIME] khen[C3:RN_AN_EN] cap[C1:RN_KEEP_RIME] |
+| 6 | Security | 999 | SecurityOverlay — khong[C0:RN_KEEP_RIME] ai vuot[C5:RN_KEEP_RIME] qua |
 
 ---
 
-## CHƯƠNG III — NATT-CELL MEDAL (8 LỚP)
+## CHUONG[C0:RN_KEEP_RIME] III — NATT-CELL MEDAL (8 LOP[C1:RN_KEEP_RIME])
 
-| Layer | Mô tả | Kỹ thuật |
+| Layer | Mo[C0:RN_KEEP_RIME] ta[C3:RN_KEEP_RIME] | Ky[C4:RN_KEEP_RIME] thuat[C5:RN_KEEP_RIME] |
 |-------|-------|----------|
-| 0. Orbital rings | Vòng quỹ đạo kết nối | SVG animated, 3 vòng ngược chiều |
-| 1. PBR metallic shell | Vỏ kim loại theo góc chuột | conic-gradient xoay theo mouseAngle |
-| 2. Specular sweep | Ánh sáng lướt qua khi hover | Gradient translateX |
-| 3. Fresnel rim | Viền sáng cạnh | Border trắng mờ + blur |
-| 4. Holo prismatic | Cầu vồng ẩn (hover only) | conic-gradient + mix-blend-mode |
-| 5. Glass core | Lõi kính khúc xạ | backdrop-filter blur |
-| 6. Caustics | Gợn sáng dạng nước | SVG feTurbulence |
-| 7. Emissive icon | Biểu tượng phát sáng | drop-shadow nhiều lớp |
+| 0. Orbital rings | Vong[C2:RN_KEEP_RIME] quy[C4:RN_KEEP_RIME] dao[C5:RN_KEEP_RIME] ket[C1:RN_KEEP_RIME] nau[C1:RN_OI_AU] | SVG animated, 3 vong[C2:RN_KEEP_RIME] nguoc[C5:RN_KEEP_RIME] chieu[C2:RN_KEEP_RIME] |
+| 1. PBR metallic shell | Vo[C3:RN_KEEP_RIME] kim loai[C5:RN_KEEP_RIME] theo goc[C1:RN_KEEP_RIME] chuot[C5:RN_KEEP_RIME] | conic-gradient xoay theo mouseAngle |
+| 2. Specular sweep | Anh[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] luot[C1:RN_KEEP_RIME] qua khi hover | Gradient translateX |
+| 3. Fresnel rim | Vien[C2:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] canh[C5:RN_KEEP_RIME] | Border treng[C1:RN_ANG_ENG] mo[C2:RN_KEEP_RIME] + blur |
+| 4. Holo prismatic | Cau[C2:RN_KEEP_RIME] vong[C2:RN_KEEP_RIME] en[C3:RN_AN_EN] (hover only) | conic-gradient + mix-blend-mode |
+| 5. Glass core | Lau[C4:RN_OI_AU] kinh[C1:RN_KEEP_RIME] khuc[C1:RN_KEEP_RIME] xa[C5:RN_KEEP_RIME] | backdrop-filter blur |
+| 6. Caustics | Gon[C5:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] deng[C5:RN_ANG_ENG] nuoc[C1:RN_KEEP_RIME] | SVG feTurbulence |
+| 7. Emissive icon | Bieu[C3:RN_KEEP_RIME] tuong[C5:RN_KEEP_RIME] phat[C1:RN_KEEP_RIME] seng[C1:RN_ANG_ENG] | drop-shadow nhieu[C2:RN_KEEP_RIME] lop[C1:RN_KEEP_RIME] |
 
 ---
 
-## CHƯƠNG IV — SCENE SYSTEM
+## CHUONG[C0:RN_KEEP_RIME] IV — SCENE SYSTEM
 
-### Các scene hiện có
+### Cac[C1:RN_KEEP_RIME] scene hien[C5:RN_KEEP_RIME] co[C1:RN_KEEP_RIME]
 - `controlTower` — Kernel + Infrastructure cells
 - `showroom` — Business cells
 - `dashboard` — Intelligence + AI Entities + KPI
 
-### State-based Navigation (KHÔNG dùng react-router)
+### State-based Navigation (KHONG[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] react-router)
 ```
-currentScene = 'controlTower' → hiển thị ControlTower
-selectedCell = cellId → mở modal
+currentScene = 'controlTower' → hien[C3:RN_KEEP_RIME] thi[C5:RN_KEEP_RIME] ControlTower
+selectedCell = cellId → mo[C3:RN_KEEP_RIME] modal
 ```
 
 ### Scene Transition Flow
@@ -91,9 +91,9 @@ Truth Layer (50ms) → Worker Layer (100ms) → Experience Layer (150ms)
 
 ---
 
-## CHƯƠNG V — SCALING & BREAKPOINTS
+## CHUONG[C0:RN_KEEP_RIME] V — SCALING & BREAKPOINTS
 
-| Breakpoint | Màn hình | Cột | Gutter |
+| Breakpoint | Men[C2:RN_AN_EN] hinh[C2:RN_KEEP_RIME] | Cot[C5:RN_KEEP_RIME] | Gutter |
 |------------|----------|-----|--------|
 | xs | < 640px | 4 | 12px |
 | sm | 640–1024px | 8 | 16px |
@@ -107,7 +107,7 @@ Truth Layer (50ms) → Worker Layer (100ms) → Experience Layer (150ms)
 
 ---
 
-## CHƯƠNG VI — ADAPTIVE PERFORMANCE
+## CHUONG[C0:RN_KEEP_RIME] VI — ADAPTIVE PERFORMANCE
 
 | Device Memory | Particles | Blur | Caustics |
 |---------------|-----------|------|---------|
@@ -115,25 +115,25 @@ Truth Layer (50ms) → Worker Layer (100ms) → Experience Layer (150ms)
 | 4–8GB | 20 | ✅ | ❌ |
 | > 8GB | 30 | ✅ | ✅ |
 
-Mobile: tắt caustics, blur — bật lại khi desktop.
+Mobile: tat[C1:RN_KEEP_RIME] caustics, blur — bat[C5:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME] khi desktop.
 
 ---
 
-## CHƯƠNG VII — EVENT SYSTEM (NAUION PATTERN)
+## CHUONG[C0:RN_KEEP_RIME] VII — EVENT SYSTEM (NAUION PATTERN)
 
-### Luật bất biến
+### Luat[C5:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME]
 ```
-❌ Không tạo EventBus riêng
-❌ Không wrap lại EventBus
-❌ Không dùng setInterval để sync state
-❌ Không dùng window.dispatchEvent
-❌ Không dùng localStorage cho bất kỳ state nào
-✅ Import EventBus từ src/core/events/event-bus
-✅ Lắng Nahere: EventBus.on('event.type', handler)
-✅ Phát Nauion: EventBus.emit({ type, payload, event_id, ... })
+❌ Khong[C0:RN_KEEP_RIME] tao[C5:RN_KEEP_RIME] EventBus rieng[C0:RN_KEEP_RIME]
+❌ Khong[C0:RN_KEEP_RIME] wrap lai[C5:RN_KEEP_RIME] EventBus
+❌ Khong[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] setInterval de[C3:RN_KEEP_RIME] sync state
+❌ Khong[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] window.dispatchEvent
+❌ Khong[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] localStorage cho bat[C1:RN_KEEP_RIME] ky[C2:RN_KEEP_RIME] state nao[C2:RN_KEEP_RIME]
+✅ Import EventBus tu[C2:RN_KEEP_RIME] src/core/events/event-bus
+✅ Leng[C1:RN_ANG_ENG] Nahere: EventBus.on('event.type', handler)
+✅ Phat[C1:RN_KEEP_RIME] Nauion: EventBus.emit({ type, payload, event_id, ... })
 ```
 
-### Event Envelope chuẩn
+### Event Envelope chuen[C3:RN_AN_EN]
 ```ts
 {
   type: string,
@@ -148,18 +148,18 @@ Mobile: tắt caustics, blur — bật lại khi desktop.
 
 ### Vision Events
 ```
-vision.state.changed    — scene chuyển, cell select, modal open/close
+vision.state.changed    — scene chuyen[C3:RN_KEEP_RIME], cell select, modal open/close
 vision.density.changed  — low/medium/high
-vision.cell.selected    — cell được click
+vision.cell.selected    — cell duoc[C5:RN_KEEP_RIME] click
 security.failed         — siraSign verify fail → OMEGA_LOCKDOWN
-OMEGA_LOCKDOWN          — toàn hệ thống lock
+OMEGA_LOCKDOWN          — toen[C2:RN_AN_EN] he[C5:RN_KEEP_RIME] thong[C1:RN_KEEP_RIME] lock
 ```
 
 ---
 
-## CHƯƠNG VIII — siraSIGN BIOSEMI INTEGRATION
+## CHUONG[C0:RN_KEEP_RIME] VIII — siraSIGN BIOSEMI INTEGRATION
 
-### Flow bảo mật
+### Flow bao[C3:RN_KEEP_RIME] mat[C5:RN_KEEP_RIME]
 ```
 User action
   ↓
@@ -176,96 +176,96 @@ IF failED → EventBus.emit('security.failed') → OMEGA_LOCKDOWN
 lsp = SHA256(fsp_hash + ssp_hash + tsp_hash)
 ```
 
-### Anti-Replay (bắt buộc)
-Mỗi siraSign payload phải có:
+### Anti-Replay (bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME])
+Mau[C4:RN_OI_AU] siraSign payload phai[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME]:
 ```ts
 {
   fsp_hash, ssp_hash, tsp_hash, lsp_hash,
-  nonce: crypto.randomUUID(),    // chống replay
-  timestamp: Date.now(),         // window ±5 phút
+  nonce: crypto.randomUUID(),    // chong[C1:RN_KEEP_RIME] replay
+  timestamp: Date.now(),         // window ±5 phut[C1:RN_KEEP_RIME]
 }
 ```
 
 ---
 
-## CHƯƠNG IX — RBAC (ĐÚNG CHUẨN)
+## CHUONG[C0:RN_KEEP_RIME] IX — RBAC (DUNG[C1:RN_KEEP_RIME] CHUen[C3:RN_AN_EN])
 
 ```ts
-// Lấy từ server thật
+// Lay[C1:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] server that[C5:RN_KEEP_RIME]
 const rbac = await fetch('/api/state/rbac-cell').then(r => r.json())
 
-// Filter — KHÔNG dùng display:none
-if (!rbac?.permissions.includes(cell.id)) return null  // ✅ xóa khỏi DOM
+// Filter — KHONG[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] display:none
+if (!rbac?.permissions.includes(cell.id)) return null  // ✅ xoa[C1:RN_KEEP_RIME] khau[C3:RN_OI_AU] DOM
 ```
 
 ---
 
-## CHƯƠNG X — SECURITY OVERLAY
+## CHUONG[C0:RN_KEEP_RIME] X — SECURITY OVERLAY
 
-- Auto-lock sau 10 phút idle
-- Lắng `quantum.kill` → tự lock ngay
-- Lắng `OMEGA_LOCKDOWN` → lock + hiển thị breach screen
-- Unlock yêu cầu PIN + siraSign verify (khi production)
-- Z-index: 999 — không có gì vượt qua
+- Auto-lock sau 10 phut[C1:RN_KEEP_RIME] idle
+- Leng[C1:RN_ANG_ENG] `quantum.kill` → tu[C5:RN_KEEP_RIME] lock ngay
+- Leng[C1:RN_ANG_ENG] `OMEGA_LOCKDOWN` → lock + hien[C3:RN_KEEP_RIME] thi[C5:RN_KEEP_RIME] breach screen
+- Unlock yeu[C0:RN_KEEP_RIME] cau[C2:RN_KEEP_RIME] PIN + siraSign verify (khi production)
+- Z-index: 999 — khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] gi[C2:RN_KEEP_RIME] vuot[C5:RN_KEEP_RIME] qua
 
 ---
 
-## CHƯƠNG XI — DENSITY MODE
+## CHUONG[C0:RN_KEEP_RIME] XI — DENSITY MODE
 
 ```ts
-// In-memory only — KHÔNG localStorage
+// In-memory only — KHONG[C0:RN_KEEP_RIME] localStorage
 let densityState: 'low' | 'medium' | 'high' = 'medium'
 
-// Thay đổi → phát Nauion
+// Thay dau[C3:RN_OI_AU] → phat[C1:RN_KEEP_RIME] Nauion
 EventBus.emit({ type: 'vision.density.changed', payload: { mode } })
 
-// UI lắng Nahere
+// UI leng[C1:RN_ANG_ENG] Nahere
 EventBus.on('vision.density.changed', handler)
 ```
 
 ---
 
-## CHƯƠNG XII — COMPLIANCE CHECKLIST
+## CHUONG[C0:RN_KEEP_RIME] XII — COMPLIANCE CHECKLIST
 
-| ID | Tiêu chí | Điểm |
+| ID | Tieu[C0:RN_KEEP_RIME] chi[C1:RN_KEEP_RIME] | Diem[C3:RN_KEEP_RIME] |
 |----|----------|------|
-| V01 | EventBus thật, không mock | 5 |
-| V02 | Không localStorage | 5 |
-| V03 | Không setInterval sync | 5 |
-| V04 | Không window.dispatchEvent | 3 |
+| V01 | EventBus that[C5:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] mock | 5 |
+| V02 | Khong[C0:RN_KEEP_RIME] localStorage | 5 |
+| V03 | Khong[C0:RN_KEEP_RIME] setInterval sync | 5 |
+| V04 | Khong[C0:RN_KEEP_RIME] window.dispatchEvent | 3 |
 | V05 | crypto.randomUUID() thay uuid | 2 |
-| V06 | RBAC return null (không display:none) | 3 |
+| V06 | RBAC return null (khong[C0:RN_KEEP_RIME] display:none) | 3 |
 | V07 | caused_by trong event envelope | 2 |
 | V08 | Anti-replay nonce trong siraSign | 5 |
-| V09 | siraSign verify trước mọi secureAction | 5 |
+| V09 | siraSign verify truoc[C1:RN_KEEP_RIME] mau[C5:RN_OI_AU] secureAction | 5 |
 | V10 | SecurityOverlay z-index 999 | 3 |
-| S01 | Breakpoints đúng xs/sm/md/lg | 2 |
+| S01 | Breakpoints dung[C1:RN_KEEP_RIME] xs/sm/md/lg | 2 |
 | S02 | Medal clamp() | 2 |
 | S03 | Adaptive caustics/blur | 2 |
 | S04 | Scene transition sequence 50ms | 2 |
 
-**Tổng: 46 điểm — Pass ≥ 40**
+**Tong[C3:RN_KEEP_RIME]: 46 diem[C3:RN_KEEP_RIME] — Pass ≥ 40**
 
 ---
 
-## LUẬT KHÔNG ĐƯỢC VI PHẠM
+## LUAT[C5:RN_KEEP_RIME] KHONG[C0:RN_KEEP_RIME] DUOC[C5:RN_KEEP_RIME] VI PHAM[C5:RN_KEEP_RIME]
 
 ```
-❌ Không dùng react-router
-❌ Không mutate DOM trực tiếp
-❌ Không bypass EventBus
-❌ Không render scene ngoài SceneManager
-❌ Không localStorage / sessionStorage
-❌ Không uuid package (dùng crypto.randomUUID)
-❌ Không display:none cho RBAC filter
-❌ Không tạo EventBus riêng
-❌ Không setInterval để sync state
-❌ Không window.dispatchEvent
+❌ Khong[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME] react-router
+❌ Khong[C0:RN_KEEP_RIME] mutate DOM truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME]
+❌ Khong[C0:RN_KEEP_RIME] bypass EventBus
+❌ Khong[C0:RN_KEEP_RIME] render scene ngoai[C2:RN_KEEP_RIME] SceneManager
+❌ Khong[C0:RN_KEEP_RIME] localStorage / sessionStorage
+❌ Khong[C0:RN_KEEP_RIME] uuid package (dung[C2:RN_KEEP_RIME] crypto.randomUUID)
+❌ Khong[C0:RN_KEEP_RIME] display:none cho RBAC filter
+❌ Khong[C0:RN_KEEP_RIME] tao[C5:RN_KEEP_RIME] EventBus rieng[C0:RN_KEEP_RIME]
+❌ Khong[C0:RN_KEEP_RIME] setInterval de[C3:RN_KEEP_RIME] sync state
+❌ Khong[C0:RN_KEEP_RIME] window.dispatchEvent
 ```
 
 ---
 
-## TRẠNG THÁI SAU MERGE
+## TReng[C5:RN_ANG_ENG] THAI[C1:RN_KEEP_RIME] SAU MERGE
 
 | Layer | Status | Owner |
 |-------|--------|-------|
@@ -274,12 +274,12 @@ EventBus.on('vision.density.changed', handler)
 | Medal + Effects | ✅ Complete | Kim |
 | EventBus wiring | ✅ Fixed | Can |
 | Density (in-memory) | ✅ Fixed | Can |
-| siraSign Engine | ⚠️ Cần server | Can |
-| RBAC real | ⚠️ Cần /api/state/rbac-cell | Can |
-| SecurityOverlay | ⚠️ Cần integrate siraSign | Kim |
-| Anti-replay nonce | ⚠️ Cần add vào payload | Can |
+| siraSign Engine | ⚠️ Cen[C2:RN_AN_EN] server | Can |
+| RBAC real | ⚠️ Cen[C2:RN_AN_EN] /api/state/rbac-cell | Can |
+| SecurityOverlay | ⚠️ Cen[C2:RN_AN_EN] integrate siraSign | Kim |
+| Anti-replay nonce | ⚠️ Cen[C2:RN_AN_EN] add vao[C2:RN_KEEP_RIME] payload | Can |
 
 ---
 
-*Hiến pháp thị giác này có hiệu lực ngay lập tức.*  
-*Mọi thay đổi phải được Gatekeeper phê duyệt và ghi Audit Trail.*
+*Hien[C1:RN_KEEP_RIME] phap[C1:RN_KEEP_RIME] thi[C5:RN_KEEP_RIME] giac[C1:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] hieu[C5:RN_KEEP_RIME] luc[C5:RN_KEEP_RIME] ngay lap[C5:RN_KEEP_RIME] tuc[C1:RN_KEEP_RIME].*  
+*Mau[C5:RN_OI_AU] thay dau[C3:RN_OI_AU] phai[C3:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] Gatekeeper phe[C0:RN_KEEP_RIME] duyet[C5:RN_KEEP_RIME] va[C2:RN_KEEP_RIME] ghi Audit Trail.*

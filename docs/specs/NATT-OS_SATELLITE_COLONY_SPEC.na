@@ -3,7 +3,7 @@
 @substrate colony_architecture
 @bridge none
 @since 2026-03-25
-@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+@authority-slot Phan Thanh Thuong[C0:RN_KEEP_RIME] Giao Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — 20260423
 
 # natt-os — SATELLITE COLONY SPEC (v1.0)
 
@@ -11,12 +11,12 @@
 
 ## I. PURPOSE
 
-Satellite Colony là một node mở rộng độc lập của natt-os, có khả năng:
-- Vận hành riêng
-- Đồng bộ với Core qua EventBus
-- Duy trì audit + causality đầy đủ
+Satellite Colony la[C2:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] node mo[C3:RN_KEEP_RIME] rong[C5:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] natt-os, co[C1:RN_KEEP_RIME] kha[C3:RN_KEEP_RIME] neng[C0:RN_ANG_ENG]:
+- Ven[C5:RN_AN_EN] hanh[C2:RN_KEEP_RIME] rieng[C0:RN_KEEP_RIME]
+- Dong[C2:RN_KEEP_RIME] bo[C5:RN_KEEP_RIME] vau[C1:RN_OI_AU] Core qua EventBus
+- Duy tri[C2:RN_KEEP_RIME] audit + causality day[C2:RN_KEEP_RIME] du[C3:RN_KEEP_RIME]
 
-→ Không phải module → là sub-system có lifecycle riêng
+→ Khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] module → la[C2:RN_KEEP_RIME] sub-system co[C1:RN_KEEP_RIME] lifecycle rieng[C0:RN_KEEP_RIME]
 
 ---
 
@@ -30,7 +30,7 @@ Satellite Colony là một node mở rộng độc lập của natt-os, có kh�
 
 ### Satellite Colony
 - Local EventBus
-- Domain Engine riêng
+- Domain Engine rieng[C0:RN_KEEP_RIME]
 - Local State
 - Sync Layer
 
@@ -90,11 +90,11 @@ order.created
 
 ## VII. RULES
 
-- Bắt buộc có causality (causation_id, correlation_id, span_id)
+- Bat[C1:RN_KEEP_RIME] buoc[C5:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] causality (causation_id, correlation_id, span_id)
 - Audit full coverage
 - Idempotency = event_id + tenant_id
-- Không localStorage
-- Không bypass EventBus
+- Khong[C0:RN_KEEP_RIME] localStorage
+- Khong[C0:RN_KEEP_RIME] bypass EventBus
 
 ---
 
@@ -110,13 +110,13 @@ Example:
 
 - Retry sync
 - Ignore duplicate
-- Reject thiếu causality
-- Block nếu audit fail
+- Reject thieu[C1:RN_KEEP_RIME] causality
+- Block neu[C1:RN_KEEP_RIME] audit fail
 
 ---
 
 ## X. FINAL
 
-Satellite Colony = hệ con độc lập, event-driven, audit đầy đủ, sync được với core.
+Satellite Colony = he[C5:RN_KEEP_RIME] con doc[C5:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME], event-driven, audit day[C2:RN_KEEP_RIME] du[C3:RN_KEEP_RIME], sync duoc[C5:RN_KEEP_RIME] vau[C1:RN_OI_AU] core.
 
 END SPEC

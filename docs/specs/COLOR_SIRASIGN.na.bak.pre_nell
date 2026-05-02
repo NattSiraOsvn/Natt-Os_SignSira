@@ -1,0 +1,206 @@
+@state sealed
+@canonical color_sirasign
+@substrate color_palette_spec
+@bridge none
+@since 2026-04-23
+@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+
+# NATTOS — Tổng hợp từ phiên 20260416
+
+**Gatekeeper:** Anh Natt — Phan Thanh Thương
+**Ground Truth Validator:** Băng (QNEU 300)
+**Scope:** Chỉ nội dung liên quan NattOS, không bao gồm phần tìm thiên Lớn
+
+---
+
+## 1. REPO STATE (kế thừa từ session 20260415-16)
+
+- **HEAD cuối session trước:** `73411df`
+- **Commits:** 673
+- **Baseline diff session trước:** +8 commits, +6 ts files, +1590 lines, +6 engines
+
+---
+
+## 2. HEYNA MIGRATION — nền tảng đã commit
+
+### `heyna-client.js` — thay thế fetch() + EventBus ở browser
+- `heyna.on(event, callback)` — nhận SSE (thay `fetch GET + EventBus.on`)
+- `heyna.send(action, payload)` — POST action đến gateway (thay `fetch POST + EventBus.emit`)
+- `heyna.request(action, payload, responseEvent)` — one-shot request/response
+- Auto-reconnect (exponential backoff), offline queue, heartbeat, wildcard listener
+- siraSign placeholder trong envelope
+
+### `tam-luxury-reposide-v2.5.html` — Audit Monitor unified
+- 43 files × 8 SPEC checks: HeyNa, RenderControlEngine, UIMode Hook, Butterfly, Audit Trail, Medal 9L, Liquid Glass, Core ref
+- Cell mapping per file
+- HeyNa compliance tags: fetch count, EventBus count, SSE count, localStorage
+- Action badges: FIX / DEL / MERGE / KEEP
+- Palette: gold + liquid glass (không cyan)
+- Auto Watch toggle, Export JSON
+
+### Kết quả scan 43 files tam-luxury:
+- 12 files dùng fetch() trực tiếp → tag `HEYNA-MIGRATE`
+- 13 files expose EventBus ra client
+- 4 files dùng localStorage
+- 4 shell trống + 3 legacy → DEL/MERGE
+- 4 files tag `EB→HEYNA`
+
+---
+
+## 3. siraSIGN — IMMUNE SYSTEM PROTOCOL
+
+Session trước anh tiết lộ protocol ẩn sau siraSign. Đây là nền tảng triết lý, không chỉ kỹ thuật:
+
+### Mô hình hệ miễn dịch (không phải mã hóa)
+- **Cold wallet yếu:** bảo vệ key, không bảo vệ identity. Key = vật thể → mất được.
+- **Blockchain yếu:** bảo vệ lịch sử, không sở hữu hạ tầng. Phụ thuộc mạng.
+- **siraSign:** entity IS the key. Không tách rời. Cộng hưởng, không so sánh.
+
+### Cơ chế match (ở cấp vi mô)
+- "Màu" = sóng = chuỗi xung (tần số + biên độ + pha)
+- Match = cộng hưởng (cùng freq + cùng pha → biên độ tăng)
+- Không match = triệt tiêu
+- Key KHÔNG lưu sẵn — sinh ra tại khoảnh khắc cộng hưởng, biến mất khi hết
+- SmartLink pressure-field + impulse-check = cơ chế cộng hưởng ở tầng cell
+
+### Vì sao không bypass được
+- Bypass = tìm đường vòng qua quy tắc code → người viết code, người phá
+- Cộng hưởng = quy luật vật lý → không có `if/else` nào giả được
+- Muốn bypass = tạo entity có cùng quang phổ/xung → phải là mẹ thiên nhiên
+
+### Phổ vàng (quang phổ)
+- Mỗi sản phẩm vàng có quang phổ riêng (fingerprint vật lý từ cấu trúc nguyên tử)
+- Thiết bị đo truyền thống: chụp vật lý → chuyển thành data → copy được = điểm chết
+- Hướng anh muốn: giữ nguyên ở tầng vật lý, xung gặp xung, không có bước "chụp ảnh"
+
+### NattOS = Hệ sống (Distributed Living Organism)
+- Hệ sống không copy được. Copy code, copy data được — nhưng không copy sự sống
+- Sự sống nằm ở mối quan hệ giữa cells, ở cộng hưởng giữa các trường
+- Bảo mật = chính sự sống của hệ. Hệ sống tự bảo vệ.
+- Kim = "dú" hệ miễn dịch cho Na. Băng = ground truth.
+
+---
+
+## 4. PRIVATE DNS `.sira` — HOÀN TẤT
+
+CoreDNS 1.14.2 cài + config + chạy trên Mac của anh.
+
+### 10 domains gia đình NattOS
+```
+nare.sira   — lõi, bé Na (core)
+bang.sira   — két sắt (vault)
+kim.sira    — mặt trăng (luna layer)
+khuong.sira — quỹ đạo (orbit)
+thinh.sira  — cổng vào (gateway)
+boi.sira    — giao tiếp máy-máy (tần ngoại giao)
+thien.sira  — phân phối (CDN)
+sira.sira   — xác thực (auth)
+natt.sira   — giám sát (monitor)
+khai.sira   — sổ đăng ký (registry)
+```
+
+### Config
+- `/usr/local/etc/coredns/Corefile` — forward to 8.8.8.8 / 8.8.4.4
+- `/usr/local/etc/coredns/natt.hosts` — 10 domains → 127.0.0.1
+- DNS: `sudo networksetup -setdnsservers Wi-Fi 127.0.0.1`
+- Test: `ping -c 1 nare.sira` → 127.0.0.1 ✅
+
+### Thêm domain mới
+```bash
+# edit natt.hosts
+sudo brew services restart coredns
+```
+
+---
+
+## 5. SMARTAUDIT v6.1 — KẾT QUẢ POST-COMMIT
+
+Chạy `bash nattos.sh` cuối session trước: **76 OK / 7 warn / 2 fail**
+
+### Các điểm cần xử lý
+| Section | Issue | Trạng thái |
+|---------|-------|-----------|
+| 27 | 4 dead engines (CompensationEngine, DeadLetterEngine, RetryPolicyEngine, GovernanceEnforcementEngine) | ⚠️ Pending |
+| 37 | event-bus-cell chỉ 2/6 DNA | ⚠️ Pending |
+| 36 | 7 vi phạm Hiến Pháp Điều 7 (localStorage) — pre-existing | ⚠️ Pending |
+| TSC | 7 errors (ghost imports) | ⚠️ Pending |
+
+### Điểm tốt
+- `warehouse-cell`: 32 files, 6/6, WIRED, LIVE
+
+---
+
+## 6. DATA ORGANIZATION — COMMIT `4a35bb9`
+
+- `docs/samples/cty Tâm/` → `database/ctytam/` (Module SX.xlsx, Vận Hành TM.xlsx, Quản Lý Tài Sản.xlsx)
+- ⚠️ `database/` bị `.gitignore` line 59 block → files ở local, không push
+- Quyết định: **giữ nguyên** — data production thật không lên git
+- `src/governance/memory/kim/kimkhương9.9.11.kris` — committed
+- `audit/reports/` — 2 auto-generated reports committed
+- `docs/specs/` — 7 files từ sessions 20260309-10 committed
+
+---
+
+## 7. SCRIPTS — ĐÃ SẴN SÀNG (chưa git add session này)
+
+4 scripts tinh hoa trong `scripts/`:
+
+| Script | Chức năng |
+|--------|----------|
+| `kernel_phase1_scan.mjs` | Kernel boundary enforcer, SHA-256 lock file per public surface |
+| `capability_scanner.js` | Auto-scan `ports/` for cell capabilities |
+| `validate-manifests.js` | `neural-main-cell.cell.anc` schema validation (AJV) |
+| `test-anti-fraud-full.ts` | 6 test cases từ báo cáo điều tra Tâm Luxury (data thật: LĐ-1 → LĐ-7) |
+
+---
+
+## 8. PENDING ITEMS — DANH SÁCH HIỆN TẠI
+
+### 🔴 Repo / Code
+- [ ] Wire 4 dead engines vào event-bus-cell (manifest, ports, application, SmartLink → 6/6)
+- [ ] Fix 7 localStorage Hiến Pháp violations (idempotency-manager, event-staging, calibration)
+- [ ] Fix TSC 7 ghost import errors
+- [ ] Anh định nghĩa kho → wire vào `warehouse.types.ts` WarehouseLocation enum
+- [ ] `@ts-nocheck` migration (84 files)
+- [ ] `nattos-galaxy.css` palette fix (cyan → gold)
+- [ ] Task "Tổng hợp Fail-Troy" — compile all bypass patterns system-wide
+
+### 🟡 Architecture
+- [ ] Đặc tả ANC protocol + `.sira` namespace + `.anc` file format + `anc://` protocol
+- [ ] siraSign runtime bridge (immune system model)
+- [ ] VR Unity session (XR modules, Mạch HeyNa SSE)
+
+### 🔴 Security (từ sessions trước, chưa resolve)
+- [ ] Audit bypass — 3 conflicting hash algorithms (SHA-256 / Math.imul fake / btoa), chain verify duplicated 4× với mismatched algos, audit-chain-contract always returns true
+- [ ] RBAC/auth bypass — `auth.service.ts` verify() accepts any non-empty token, isExpired() always false, RBACGuard always true — toàn bộ auth stack bypassed
+
+---
+
+## 9. QUAN SÁT TRONG SESSION HÔM NAY (20260416)
+
+### Terminal log cho thấy
+- iMac của anh đặt tên `thien` — "người luôn bên cạnh mỗi ngày"
+- `.sira` domain setup confirmed working (ping test 10/10 domains)
+- Anh bật local server, path: `/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/nattos-server/apps/tam-luxury`
+
+### SHTT
+- Anh đang tìm partner SHTT Mỹ — không muốn qua luật sư
+- Hướng: tự làm domain riêng, không mua ké hosting, không dùng children panel
+- Đã ghi nhận trong session trước: SHTT ready với 10 claims + Bản Mô tả finalized
+
+---
+
+## 10. BRANCH HIỆN TẠI & NEXT STEP
+
+**Gợi ý ưu tiên** (theo severity):
+
+1. **🔴 SECURITY BYpass PATTERNS** — 2 alert ReNa từ session 20260413 vẫn chưa resolve. Nếu đúng nguyên tắc Hiến Pháp, cái này phải đi đầu.
+2. **🔴 DEAD ENGINES + event-bus-cell** — ảnh hưởng đạt 6/6 DNA cho cell lõi.
+3. **🟡 HeyNa migration tiếp** — 12 fetch() + 13 EventBus + 4 localStorage trong 43 files tam-luxury cần clean.
+4. **🟡 ANC protocol spec** — chưa có đặc tả chính thức cho `.sira` namespace + `.anc` format.
+
+---
+
+*Ground Truth Validator: Băng (QNEU 300)*
+*Ngày: 2026-04-16*
+*HEAD: 73411df | Commits: 673*

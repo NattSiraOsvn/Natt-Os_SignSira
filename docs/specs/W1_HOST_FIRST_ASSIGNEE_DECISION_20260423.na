@@ -3,22 +3,22 @@
 @substrate assignee_decision_artifact
 @bridge none
 @since 2026-04-23
-@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — assignee decision
+@authority-slot Phan Thanh Thuong[C0:RN_KEEP_RIME] Giao Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) — assignee decision
 
 # W1 HOST-FIRST ASSIGNEE DECISION — 20260423
 
-**Drafter:** Băng (Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7)
-**Decided by:** Phan Thanh Thương (Gatekeeper) giao Băng tự chốt phiên 20260423
+**Drafter:** Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · N-shell · QNEU 313.5 · Claude Opus 4.7)
+**Decided by:** Phan Thanh Thuong[C0:RN_KEEP_RIME] (Gatekeeper) giao Băng tu[C5:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME] phien[C0:RN_KEEP_RIME] 20260423
 **Status:** sealed
 
 ## §1. DECISION
 
-**Implementation assignee `runtime/nauion-host/` = Băng (Chị Tư).**
+**Implementation assignee `runtime/nauion-host/` = Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]).**
 
 ## §2. RATIONALE (5 evidence chains)
 
 ### §2.1 Pattern continuation
-`nattos.sira` (root, commit `2c4fa81` · 2026-04-18 23:16) = KERNEL ENTRY INBOUND. Băng đã viết file này (per `bang_memory_delta_20260423.na #23` + `bangkhươngv7.6.1.na GIAC-20260423-02`). `runtime/nauion-host/` = host binary serve làm runtime cho `nattos.sira`. Cùng kernel-entry layer, không cần handoff cross-persona.
+`nattos.sira` (root, commit `2c4fa81` · 2026-04-18 23:16) = KERNEL ENTRY INBOUND. Băng da[C4:RN_KEEP_RIME] viet[C1:RN_KEEP_RIME] file nay[C2:RN_KEEP_RIME] (per `bang_memory_delta_20260423.na #23` + `bangkhuongv7[C0:RN_KEEP_RIME].6.1.na GIAC-20260423-02`). `runtime/nauion-host/` = host binary serve lam[C2:RN_KEEP_RIME] runtime cho `nattos.sira`. Cung[C2:RN_KEEP_RIME] kernel-entry layer, khong[C0:RN_KEEP_RIME] cen[C2:RN_AN_EN] handoff cross-persona.
 
 ### §2.2 Authority lock match
 Per memory commit `045d8c5` builder-authority-lock:
@@ -26,39 +26,39 @@ Per memory commit `045d8c5` builder-authority-lock:
 - Host binary scaffold + scanner integration = Toolsmith scope native fit
 
 ### §2.3 Substrate fit
-- Băng (Claude Opus 4.7) đọc full đuôi mới `.na/.anc/.phieu/.obitan/.canonical` native
-- Đã sealed SPEC v1.1 align thiên 4 split (commit `3726478`)
-- Đã build 3 scanner phiên 20260423 (state-labels v1.0, extension-precedence v0.4, audit-spec-governance v0.5) — proven toolchain capability
+- Băng (Claude Opus 4.7) doc[C5:RN_KEEP_RIME] full dui[C0:RN_UOI_UI] mau[C1:RN_OI_AU] `.na/.anc/.phieu/.obitan/.canonical` native
+- Da[C4:RN_KEEP_RIME] sealed SPEC v1.1 align thien[C0:RN_KEEP_RIME] 4 split (commit `3726478`)
+- Da[C4:RN_KEEP_RIME] build 3 scanner phien[C0:RN_KEEP_RIME] 20260423 (state-labels v1.0, extension-precedence v0.4, audit-spec-governance v0.5) — proven toolchain capability
 
 ### §2.4 Wave 1 vs Wave 2 boundary
-- thiên Lớn ship Wave 2 scaffold (A.2 Moments + B.7 Capability scaffold v3) per memory `bang_handoff_20260427.na`
-- Wave 1 Host-first = khác layer, không collision
-- Băng nhận Wave 1 Host = clean lane, không touch Wave 2 pending 4 concern
+- thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] ship Wave 2 scaffold (A.2 Moments + B.7 Capability scaffold v3) per memory `bang_handoff_20260427.na`
+- Wave 1 Host-first = khac[C1:RN_KEEP_RIME] layer, khong[C0:RN_KEEP_RIME] collision
+- Băng nhen[C5:RN_AN_EN] Wave 1 Host = clean lane, khong[C0:RN_KEEP_RIME] touch Wave 2 pending 4 concern
 
 ### §2.5 Substrate asymmetry rule out alternatives
-- **Kim (DeepSeek):** không đọc được `.na/.anc/.phieu/.obitan/.canonical`. Không assignable kernel build (per `bang_handoff_20260427.na` role shift evidence).
-- **thiên Lớn (GPT):** Architect role primary. Wave 2 scaffold v3 đang ship + 4 concern non-blocking pending. Không nên load thêm Wave 1 Host concurrent.
-- **Băng:** Toolsmith + Translation Bridge scope, free bandwidth post-Wave 1 baseline hardening (15 commit phiên 20260423).
+- **Kim (DeepSeek):** khong[C0:RN_KEEP_RIME] doc[C5:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] `.na/.anc/.phieu/.obitan/.canonical`. Khong[C0:RN_KEEP_RIME] assignable kernel build (per `bang_handoff_20260427.na` role shift evidence).
+- **thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] (GPT):** Architect role primary. Wave 2 scaffold v3 deng[C0:RN_ANG_ENG] ship + 4 concern non-blocking pending. Khong[C0:RN_KEEP_RIME] nen[C0:RN_KEEP_RIME] load them[C0:RN_KEEP_RIME] Wave 1 Host concurrent.
+- **Băng:** Toolsmith + Translation Bridge scope, free bandwidth post-Wave 1 baseline hardening (15 commit phien[C0:RN_KEEP_RIME] 20260423).
 
-## §3. SCOPE BĂNG NHẬN
+## §3. SCOPE Beng[C0:RN_ANG_ENG] NHen[C5:RN_AN_EN]
 
 ### §3.1 Build
 - Scaffold `runtime/nauion-host/` directory structure (Rust binary lane)
 - Cargo.toml + src/main.rs initial
 - Canonical reading layer cho SPEC `.na` (parser + validator)
-- Integration với `nattos.sira` kernel entry — cross-link tự handle, không handoff
-- Cross-link 4 thiên SPEC split (`docs/specs/kim kernel/`) làm reference primary
+- Integration vau[C1:RN_OI_AU] `nattos.sira` kernel entry — cross-link tu[C5:RN_KEEP_RIME] handle, khong[C0:RN_KEEP_RIME] handoff
+- Cross-link 4 thien[C0:RN_KEEP_RIME] SPEC split (`docs/specs/kim kernel/`) lam[C2:RN_KEEP_RIME] reference primary
 
-### §3.2 Boundaries TÔN TRỌNG
-- KHÔNG touch thiên Wave 2 scope (`src/wave2/moments/` + `src/wave2/capabilities/`) — đang pending 4 concern
-- KHÔNG touch Kim ad-hoc Reviewer scope (packaging/path/tree review)
-- KHÔNG modify SPEC architecture của thiên — em implement, không re-architect
-- Báo cáo Gatekeeper qua commit message mỗi milestone
+### §3.2 Boundaries TON[C0:RN_KEEP_RIME] TRONG[C5:RN_KEEP_RIME]
+- KHONG[C0:RN_KEEP_RIME] touch thien[C0:RN_KEEP_RIME] Wave 2 scope (`src/wave2/moments/` + `src/wave2/capabilities/`) — deng[C0:RN_ANG_ENG] pending 4 concern
+- KHONG[C0:RN_KEEP_RIME] touch Kim ad-hoc Reviewer scope (packaging/path/tree review)
+- KHONG[C0:RN_KEEP_RIME] modify SPEC architecture cua[C3:RN_KEEP_RIME] thien[C0:RN_KEEP_RIME] — em implement, khong[C0:RN_KEEP_RIME] re-architect
+- Bao[C1:RN_KEEP_RIME] cao[C1:RN_KEEP_RIME] Gatekeeper qua commit message mau[C4:RN_OI_AU] milestone
 
 ### §3.3 Cross-persona dependency
-- thiên Lớn: scaffold v4 + 4 concern address (PEND-20260427-01) — em wait, không block thiên
-- Bối Bội: pack `docs/specs/bối kernel/` (currently empty) — em integrate khi Bối ship
-- Kim: review packaging post-scaffold — em ship trước, Kim review sau
+- thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME]: scaffold v4 + 4 concern address (PEND-20260427-01) — em wait, khong[C0:RN_KEEP_RIME] block thien[C0:RN_KEEP_RIME]
+- Bối Bau[C5:RN_OI_AU]: pack `docs/specs/bau[C1:RN_OI_AU] kernel/` (currently empty) — em integrate khi Bối ship
+- Kim: review packaging post-scaffold — em ship truoc[C1:RN_KEEP_RIME], Kim review sau
 
 ## §4. EXIT CRITERIA WAVE 1 HOST-FIRST
 
@@ -67,8 +67,8 @@ Done khi:
 2. `runtime/nauion-host/src/main.rs` parse `nattos.sira` PHASE 1-4
 3. Listen `127.0.0.1:3002` per SPEC_HOST_FIRST_RUNTIME v1.1 §0
 4. Bootstrap observation-cell + quantum-defense-cell `bootstrap.khai` (commits `89a05dc` + `1e2365d`)
-5. NDJSON Stage 1 audit log `logs/host-audit.ndjson` per thiên `spec_host_authority §6`
-6. Cutover verify `logs/cutover-verify.ndjson` per thiên `spec_cutover §4`
+5. NDJSON Stage 1 audit log `logs/host-audit.ndjson` per thien[C0:RN_KEEP_RIME] `spec_host_authority §6`
+6. Cutover verify `logs/cutover-verify.ndjson` per thien[C0:RN_KEEP_RIME] `spec_cutover §4`
 7. Parity scanner `validate-host-parity.py` ship (Băng W1 exit criteria)
 8. Cell 1 + Cell 2 S2→S3 swap `npx tsx VALIDATOR.ts` → `$NAUION_HOST $CANONICAL.khai`
 9. PILOT_BRIDGE_MAP v0.2 update reflect S2→S3
@@ -76,7 +76,7 @@ Done khi:
 ## §5. BINDING
 
 - SPEC_HOST_FIRST_RUNTIME v1.1 (`docs/specs/spec_host_first_runtime_v1_0.na`)
-- 4 thiên SPEC split (`docs/specs/kim kernel/spec_*_v1.0_split.na`)
+- 4 thien[C0:RN_KEEP_RIME] SPEC split (`docs/specs/kim kernel/spec_*_v1.0_split.na`)
 - RUNTIME_DEPENDENCY_CENSUS v1.0 (`docs/specs/RUNTIME_DEPENDENCY_CENSUS_20260423.na`)
 - PILOT_BRIDGE_MAP v0.1 (`docs/specs/pilot_bridge_map_v0_1.na`)
 - Bối surface delta v1.0 (`docs/specs/boi_surface_delta_scripts_kernel_v1.0.na`)
@@ -84,5 +84,5 @@ Done khi:
 
 ---
 
-*Sealed by anh Phan Thanh Thương Giao Băng phiên 20260423.*
-*Băng accept scope, ship initial scaffold cùng commit này.*
+*Sealed by anh Phan Thanh Thuong[C0:RN_KEEP_RIME] Giao Băng phien[C0:RN_KEEP_RIME] 20260423.*
+*Băng accept scope, ship initial scaffold cung[C2:RN_KEEP_RIME] commit nay[C2:RN_KEEP_RIME].*

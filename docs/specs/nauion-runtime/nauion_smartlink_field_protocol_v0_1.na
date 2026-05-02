@@ -6,7 +6,7 @@
 @substrate sovereign_runtime_core
 @bridge none
 @session ss20260429
-@authority-slot Thiên Lớn architect · Băng validator · anh Natt gatekeeper
+@authority-slot Thiên Lon[C1:RN_KEEP_RIME] architect · Băng validator · anh Natt gatekeeper
 @constitutional_birthmark dau_an_khai_sinh_hien_phap_natt_os_ss20260429
 @birthmark_kind founding_audit_trail
 @birthmark_scope anc_ai_digital_social_constitution
@@ -19,8 +19,8 @@
 # nauion smartlink field protocol v0.1
 
 ==PURPOSE==
-Định nghĩa giao thức trường SmartLink để vận chuyển Nauion Execution Packet qua biên cell / edge / substrate.
-Không phải API. Không phải REST. Không phải Host Bridge.
+Dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] giao thuc[C1:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME] SmartLink de[C3:RN_KEEP_RIME] ven[C5:RN_AN_EN] chuyen[C3:RN_KEEP_RIME] Nauion Execution Packet qua bien[C0:RN_KEEP_RIME] cell / edge / substrate.
+Khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] API. Khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] REST. Khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] Host Bridge.
 ==END==
 
 ==INPUT==
@@ -54,13 +54,13 @@ Không phải API. Không phải REST. Không phải Host Bridge.
 ==END==
 
 ==BOUNDARY==
-Không Host Bridge.
-Không API/REST endpoint.
-Không app/UI/server/client cleanup.
-Không rename/move/delete/archive prune.
-SmartLink là field protocol, không phải transport library.
+Khong[C0:RN_KEEP_RIME] Host Bridge.
+Khong[C0:RN_KEEP_RIME] API/REST endpoint.
+Khong[C0:RN_KEEP_RIME] app/UI/server/client cleanup.
+Khong[C0:RN_KEEP_RIME] rename/move/delete/archive prune.
+SmartLink la[C2:RN_KEEP_RIME] field protocol, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] transport library.
 ==END==
 
 ==NEXT_SIGNAL==
-Băng review SmartLink Field Protocol trước Gatekeeper ratify.
+Băng review SmartLink Field Protocol truoc[C1:RN_KEEP_RIME] Gatekeeper ratify.
 ==END==

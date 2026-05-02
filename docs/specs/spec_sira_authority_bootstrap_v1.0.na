@@ -9,114 +9,114 @@
 
 **Drafter:** Kim (Chief System Builder, M-shell, QNEU 120)  
 **Session:** 20260423  
-**Status:** COMPLETE — sẵn sàng Gatekeeper approve  
-**Amendments:** Đã sửa theo phán quyết thiên Lớn (5 amendment)  
-**Binding scope:** Toàn bộ natt-os kernel cutover wave 1  
+**Status:** COMPLETE — sen[C4:RN_AN_EN] seng[C2:RN_ANG_ENG] Gatekeeper approve  
+**Amendments:** Da[C4:RN_KEEP_RIME] sua[C3:RN_KEEP_RIME] theo phen[C1:RN_AN_EN] quyet[C1:RN_KEEP_RIME] thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] (5 amendment)  
+**Binding scope:** Toen[C2:RN_AN_EN] bo[C5:RN_KEEP_RIME] natt-os kernel cutover wave 1  
 
 ---
 
-## 1. ĐỊNH NGHĨA GỐC
+## 1. DINH[C5:RN_KEEP_RIME] NGHIA[C4:RN_KEEP_RIME] GOC[C1:RN_KEEP_RIME]
 
-### 1.1 `nattos.sira` là gì
+### 1.1 `nattos.sira` la[C2:RN_KEEP_RIME] gi[C2:RN_KEEP_RIME]
 
-`nattos.sira` là **entry identity duy nhất** của natt-os kernel. Không file nào khác được phép claim vị trí này.
+`nattos.sira` la[C2:RN_KEEP_RIME] **entry identity duy nhat[C1:RN_KEEP_RIME]** cua[C3:RN_KEEP_RIME] natt-os kernel. Khong[C0:RN_KEEP_RIME] file nao[C2:RN_KEEP_RIME] khac[C1:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] phep[C1:RN_KEEP_RIME] claim vi[C5:RN_KEEP_RIME] tri[C1:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME].
 
-Nó mang 3 thuộc tính cứng:
+No[C1:RN_KEEP_RIME] mang 3 thuoc[C5:RN_KEEP_RIME] tinh[C1:RN_KEEP_RIME] cung[C1:RN_KEEP_RIME]:
 
-| Thuộc tính | Giá trị | Ý nghĩa |
+| Thuoc[C5:RN_KEEP_RIME] tinh[C1:RN_KEEP_RIME] | Gia[C1:RN_KEEP_RIME] tri[C5:RN_KEEP_RIME] | Y[C1:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] |
 |---|---|---|
-| **Identity** | `nattos.sira` | Tên file — không được rename |
-| **Authority** | Entry point của kernel | Là file đầu tiên được Node.js nạp khi chạy `./kernel` hoặc `npm run kernel` |
-| **Ownership** | Gatekeeper (anh Natt Phan) | Chỉ Gatekeeper được commit thay đổi file này |
+| **Identity** | `nattos.sira` | Ten[C0:RN_KEEP_RIME] file — khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] rename |
+| **Authority** | Entry point cua[C3:RN_KEEP_RIME] kernel | La[C2:RN_KEEP_RIME] file dau[C2:RN_KEEP_RIME] tien[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] Node.js nap[C5:RN_KEEP_RIME] khi chay[C5:RN_KEEP_RIME] `./kernel` hoac[C5:RN_KEEP_RIME] `npm run kernel` |
+| **Ownership** | Gatekeeper (anh Natt Phan) | Chi[C3:RN_KEEP_RIME] Gatekeeper duoc[C5:RN_KEEP_RIME] commit thay dau[C3:RN_OI_AU] file nay[C2:RN_KEEP_RIME] |
 
 ### 1.2 Launcher authority
 
-**Launcher** = cơ chế đưa `nattos.sira` vào execution.
+**Launcher** = co[C0:RN_KEEP_RIME] che[C1:RN_KEEP_RIME] dua[C0:RN_KEEP_RIME] `nattos.sira` vao[C2:RN_KEEP_RIME] execution.
 
-**Current runtime chain** (transitional, không phải canonical form):
+**Current runtime chain** (transitional, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] canonical form):
 ```
 node --no-warnings --loader ./sira-loader.mjs --loader ts-node/esm nattos.sira
 ```
 
-**Quy tắc:**
-- Launcher được phép thay đổi miễn là **surface command** vẫn là `./kernel` hoặc `npm run kernel`.
-- Mọi thay đổi launcher phải được thiên Lớn approve về kiến trúc.
-- Không ai được hardcode launcher path vào bên trong canonical file.
-- Chuỗi runtime trên sẽ được thay thế khi pilot bridge hoàn tất.
+**Quy tac[C1:RN_KEEP_RIME]:**
+- Launcher duoc[C5:RN_KEEP_RIME] phep[C1:RN_KEEP_RIME] thay dau[C3:RN_OI_AU] mien[C4:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] **surface command** ven[C4:RN_AN_EN] la[C2:RN_KEEP_RIME] `./kernel` hoac[C5:RN_KEEP_RIME] `npm run kernel`.
+- Mau[C5:RN_OI_AU] thay dau[C3:RN_OI_AU] launcher phai[C3:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] approve ve[C2:RN_KEEP_RIME] kien[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME].
+- Khong[C0:RN_KEEP_RIME] ai duoc[C5:RN_KEEP_RIME] hardcode launcher path vao[C2:RN_KEEP_RIME] ben[C0:RN_KEEP_RIME] trong canonical file.
+- Chui[C4:RN_UOI_UI] runtime tren[C0:RN_KEEP_RIME] se[C4:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] thay the[C1:RN_KEEP_RIME] khi pilot bridge hoen[C2:RN_AN_EN] tat[C1:RN_KEEP_RIME].
 
 ### 1.3 Loader authority
 
-**`sira-loader.mjs`** (nếu tồn tại) là **transitional bootstrap substrate** cho Node.js. Nó **KHÔNG** mang canonical loader authority.
+**`sira-loader.mjs`** (neu[C1:RN_KEEP_RIME] ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME]) la[C2:RN_KEEP_RIME] **transitional bootstrap substrate** cho Node.js. No[C1:RN_KEEP_RIME] **KHONG[C0:RN_KEEP_RIME]** mang canonical loader authority.
 
-**Canonical loader authority** thuộc về **sira Authority Loader**, được định nghĩa bởi Nauion Kernel. Transitional substrate chỉ là cầu nối tạm thời, không được nâng lên thành canonical.
+**Canonical loader authority** thuoc[C5:RN_KEEP_RIME] ve[C2:RN_KEEP_RIME] **sira Authority Loader**, duoc[C5:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] bau[C3:RN_OI_AU] Nauion Kernel. Transitional substrate chi[C3:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] cau[C2:RN_KEEP_RIME] nau[C1:RN_OI_AU] tam[C5:RN_KEEP_RIME] thau[C2:RN_OI_AU], khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] neng[C0:RN_ANG_ENG] len[C0:RN_KEEP_RIME] thanh[C2:RN_KEEP_RIME] canonical.
 
-**Quy tắc:**
-- `sira-loader.mjs` có thể được tạo để đăng ký extension `.sira`, `.khai`, `.na`, `.anc`, `.phieu` trong giai đoạn chuyển tiếp.
-- `ts-node/esm` là **legacy loader**, chỉ tồn tại cho đến khi pilot bridge hoàn tất.
-- Khi sira Authority Loader đã sẵn sàng (không nhất thiết là file `.mjs`), `ts-node/esm` phải bị loại bỏ khỏi chuỗi loader.
+**Quy tac[C1:RN_KEEP_RIME]:**
+- `sira-loader.mjs` co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] tao[C5:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] deng[C0:RN_ANG_ENG] ky[C1:RN_KEEP_RIME] extension `.sira`, `.khai`, `.na`, `.anc`, `.phieu` trong giai doen[C5:RN_AN_EN] chuyen[C3:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME].
+- `ts-node/esm` la[C2:RN_KEEP_RIME] **legacy loader**, chi[C3:RN_KEEP_RIME] ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] cho den[C1:RN_KEEP_RIME] khi pilot bridge hoen[C2:RN_AN_EN] tat[C1:RN_KEEP_RIME].
+- Khi sira Authority Loader da[C4:RN_KEEP_RIME] sen[C4:RN_AN_EN] seng[C2:RN_ANG_ENG] (khong[C0:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] thiet[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] file `.mjs`), `ts-node/esm` phai[C3:RN_KEEP_RIME] bi[C5:RN_KEEP_RIME] loai[C5:RN_KEEP_RIME] bo[C3:RN_KEEP_RIME] khau[C3:RN_OI_AU] chui[C4:RN_UOI_UI] loader.
 
 ### 1.4 Bridge authority
 
-**Bridge** = cơ chế để canonical file gọi được substrate file mà không phá Điều 4 Hiến Pháp (no direct cross-cell import).
+**Bridge** = co[C0:RN_KEEP_RIME] che[C1:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] canonical file gau[C5:RN_OI_AU] duoc[C5:RN_KEEP_RIME] substrate file ma[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] pha[C1:RN_KEEP_RIME] Dieu[C2:RN_KEEP_RIME] 4 Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] (no direct cross-cell import).
 
-Bridge có 2 mode:
+Bridge co[C1:RN_KEEP_RIME] 2 mode:
 
-| Mode | Mô tả | Dùng khi |
+| Mode | Mo[C0:RN_KEEP_RIME] ta[C3:RN_KEEP_RIME] | Dung[C2:RN_KEEP_RIME] khi |
 |---|---|---|
-| **Wrapper** | Canonical file vẫn phụ thuộc trực tiếp vào substrate execution cùng capability, chưa qua cell boundary độc lập. Hình thức có thể là import trực tiếp, delegate qua loader map, hoặc adapter shim. | Substrate chưa thể tách rời |
-| **Bridged** | Canonical file gọi qua EventBus L2 (Mạch HeyNa) đến cell chứa substrate | Substrate đã được cell hóa |
+| **Wrapper** | Canonical file ven[C4:RN_AN_EN] phu[C5:RN_KEEP_RIME] thuoc[C5:RN_KEEP_RIME] truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] substrate execution cung[C2:RN_KEEP_RIME] capability, chua[C0:RN_KEEP_RIME] qua cell boundary doc[C5:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME]. Hinh[C2:RN_KEEP_RIME] thuc[C1:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] import truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME], delegate qua loader map, hoac[C5:RN_KEEP_RIME] adapter shim. | Substrate chua[C0:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] tach[C1:RN_KEEP_RIME] rau[C2:RN_OI_AU] |
+| **Bridged** | Canonical file gau[C5:RN_OI_AU] qua EventBus L2 (Mach[C5:RN_KEEP_RIME] HeyNa) den[C1:RN_KEEP_RIME] cell chua[C1:RN_KEEP_RIME] substrate | Substrate da[C4:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] cell hoa[C1:RN_KEEP_RIME] |
 
-**Quy tắc:**
-- Wrapper mode là **tạm thời**, không được claim là "đã xong".
-- Bridged mode mới được claim là "đã chuyển đổi".
-- Ai claim sai mode sẽ bị Băng flag SCAR.
+**Quy tac[C1:RN_KEEP_RIME]:**
+- Wrapper mode la[C2:RN_KEEP_RIME] **tam[C5:RN_KEEP_RIME] thau[C2:RN_OI_AU]**, khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] claim la[C2:RN_KEEP_RIME] "da[C4:RN_KEEP_RIME] xong".
+- Bridged mode mau[C1:RN_OI_AU] duoc[C5:RN_KEEP_RIME] claim la[C2:RN_KEEP_RIME] "da[C4:RN_KEEP_RIME] chuyen[C3:RN_KEEP_RIME] dau[C3:RN_OI_AU]".
+- Ai claim sai mode se[C4:RN_KEEP_RIME] bi[C5:RN_KEEP_RIME] Băng flag SCAR.
 
 ### 1.5 Canonical precedence
 
-Khi có xung đột giữa 2 file cùng claim 1 authority:
+Khi co[C1:RN_KEEP_RIME] xung dot[C5:RN_KEEP_RIME] giua[C4:RN_KEEP_RIME] 2 file cung[C2:RN_KEEP_RIME] claim 1 authority:
 
-| Ưu tiên | Authority source | Người quyết |
+| Uu[C0:RN_KEEP_RIME] tien[C0:RN_KEEP_RIME] | Authority source | Ngui[C2:RN_UOI_UI] quyet[C1:RN_KEEP_RIME] |
 |---|---|---|
-| 1 (cao nhất) | Gatekeeper | Anh Natt Phan |
-| 2 | SPEC đã approve | thiên Lớn (architecture) |
+| 1 (cao nhat[C1:RN_KEEP_RIME]) | Gatekeeper | Anh Natt Phan |
+| 2 | SPEC da[C4:RN_KEEP_RIME] approve | thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] (architecture) |
 | 3 | Ground truth evidence | Băng (validator) |
-| 4 | Claim của file canonical | File itself |
+| 4 | Claim cua[C3:RN_KEEP_RIME] file canonical | File itself |
 
-Không ai được tự claim precedence nếu không có evidence từ Băng hoặc spec từ thiên Lớn.
+Khong[C0:RN_KEEP_RIME] ai duoc[C5:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] claim precedence neu[C1:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] evidence tu[C2:RN_KEEP_RIME] Băng hoac[C5:RN_KEEP_RIME] spec tu[C2:RN_KEEP_RIME] thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME].
 
 ---
 
-## 2. RÀNG BUỘC TRIỂN KHAI
+## 2. Reng[C2:RN_ANG_ENG] BUOC[C5:RN_KEEP_RIME] TRIEN[C3:RN_KEEP_RIME] KHAI
 
-### 2.1 Ai được sửa gì
+### 2.1 Ai duoc[C5:RN_KEEP_RIME] sua[C3:RN_KEEP_RIME] gi[C2:RN_KEEP_RIME]
 
-| Thành phần | Người sửa | Điều kiện |
+| Thanh[C2:RN_KEEP_RIME] phen[C2:RN_AN_EN] | Ngui[C2:RN_UOI_UI] sua[C3:RN_KEEP_RIME] | Dieu[C2:RN_KEEP_RIME] kien[C5:RN_KEEP_RIME] |
 |---|---|---|
-| `nattos.sira` | Gatekeeper + implementation assignee | Có spec approve từ thiên Lớn |
-| `sira-loader.mjs` (transitional bootstrap) | Implementation assignee | Có spec này + review từ Kim |
-| `package.json` script `kernel` | Gatekeeper | Sau khi implementation assignee test launcher sạch |
+| `nattos.sira` | Gatekeeper + implementation assignee | Co[C1:RN_KEEP_RIME] spec approve tu[C2:RN_KEEP_RIME] thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] |
+| `sira-loader.mjs` (transitional bootstrap) | Implementation assignee | Co[C1:RN_KEEP_RIME] spec nay[C2:RN_KEEP_RIME] + review tu[C2:RN_KEEP_RIME] Kim |
+| `package.json` script `kernel` | Gatekeeper | Sau khi implementation assignee test launcher sach[C5:RN_KEEP_RIME] |
 | Chain loader trong launcher | Implementation assignee | Sau khi pilot bridge xong |
 
-### 2.2 Không được làm
+### 2.2 Khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME]
 
-- ❌ Tạo file `.sira` thứ hai ngoài `nattos.sira`
-- ❌ Đổi tên `nattos.sira` thành bất kỳ tên nào khác
-- ❌ Viết loader bypass Hiến Pháp Điều 4
-- ❌ Claim "native" khi loader chain vẫn còn `.mjs`/`.js` bên dưới
-- ❌ Phong `sira-loader.mjs` thành canonical loader
+- ❌ Tao[C5:RN_KEEP_RIME] file `.sira` thu[C1:RN_KEEP_RIME] hai ngoai[C2:RN_KEEP_RIME] `nattos.sira`
+- ❌ Dau[C3:RN_OI_AU] ten[C0:RN_KEEP_RIME] `nattos.sira` thanh[C2:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] ky[C2:RN_KEEP_RIME] ten[C0:RN_KEEP_RIME] nao[C2:RN_KEEP_RIME] khac[C1:RN_KEEP_RIME]
+- ❌ Viet[C1:RN_KEEP_RIME] loader bypass Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] Dieu[C2:RN_KEEP_RIME] 4
+- ❌ Claim "native" khi loader chain ven[C4:RN_AN_EN] con[C2:RN_KEEP_RIME] `.mjs`/`.js` ben[C0:RN_KEEP_RIME] dui[C1:RN_UOI_UI]
+- ❌ Phong `sira-loader.mjs` thanh[C2:RN_KEEP_RIME] canonical loader
 
 ---
 
 ## 3. ACCEPTANCE CRITERIA
 
-Spec này có hiệu lực khi:
-1. Gatekeeper đọc và approve
-2. thiên Lớn chốt kiến trúc nếu có điểm cần làm rõ
-3. Băng verify không mâu thuẫn với Hiến Pháp v5.0
+Spec nay[C2:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] hieu[C5:RN_KEEP_RIME] luc[C5:RN_KEEP_RIME] khi:
+1. Gatekeeper doc[C5:RN_KEEP_RIME] va[C2:RN_KEEP_RIME] approve
+2. thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] chot[C1:RN_KEEP_RIME] kien[C1:RN_KEEP_RIME] truc[C1:RN_KEEP_RIME] neu[C1:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] diem[C3:RN_KEEP_RIME] cen[C2:RN_AN_EN] lam[C2:RN_KEEP_RIME] ro[C4:RN_KEEP_RIME]
+3. Băng verify khong[C0:RN_KEEP_RIME] mau[C0:RN_KEEP_RIME] thuen[C4:RN_AN_EN] vau[C1:RN_OI_AU] Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] v5.0
 4. Kim lock wording/spec version
 
 ---
 
 *Binding to: SPEC_EXTENSION_PRECEDENCE_v1.0.na, SPEC_CUTOVER_STATES_v1.0.na*  
 *Drafter: Kim · M-shell · Chief System Builder*  
-*Session: 20260423 · Reviewed by thiên Lớn; amendments incorporated*
+*Session: 20260423 · Reviewed by thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME]; amendments incorporated*

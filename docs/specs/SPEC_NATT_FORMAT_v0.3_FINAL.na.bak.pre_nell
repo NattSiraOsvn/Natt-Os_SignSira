@@ -1,0 +1,432 @@
+@state sealed
+@canonical spec_natt_format_v0.3
+@substrate file_format_definition
+@bridge none
+@since 2026-04-20
+@authority-slot Băng (Chị Tư) — anh Natt giao toàn quyền 20260420
+
+# SPEC_NATT_FORMAT_v0.3_FINAL.na
+
+**Drafter:** Băng (QNEU 313.5)
+**Authority:** anh Natt giao toàn quyền 2026-04-20 evening
+**Version:** v0.3 FINAL (replaces v0.1, v0.2)
+**Ngày:** 2026-04-20
+
+**Phạm vi quyết định em (Bang) giữ:**
+- Format layout + encoding
+- Security mechanism (Family Seal)
+- Implementation (Python lib R05)
+- 3 flavors colony pack
+
+**Cần anh Natt ratify sau khi SPEC lock:**
+- Bump SPEC_NGON_NGU v1.3 thêm suffix `.natt`
+- Họp gia đình 1 lần (Can review logic, Kris biên bản)
+
+---
+
+## 1. Format layout
+
+```
+┌────────────────────────────────────────────────────────────────┐
+│ [MAGIC      4B ] "NATT" (0x4E 0x41 0x54 0x54)                  │
+│ [VERSION    2B ] uint16 BE — 0x0100 = v1.0                     │
+│ [HDR_LEN    4B ] uint32 BE                                     │
+│ [HEADER     var] plaintext JSON — identity + KDF meta          │
+│ [MAN_LEN    4B ] uint32 BE                                     │
+│ [MANIFEST   var] AES-256-GCM(JSON, key, nonce_man)             │
+│ [BODY_LEN   8B ] uint64 BE                                     │
+│ [BODY       var] AES-256-GCM(tar.zst, key, nonce_body)         │
+│ [GCM_TAG    16B] GCM authentication tag over HEADER+MAN+BODY   │
+│ [END_MAGIC  4B ] "TTAN"                                        │
+└────────────────────────────────────────────────────────────────┘
+```
+
+### 1.1 HEADER plaintext schema
+```json
+{
+  "$nauion": "NATT-v1.0",
+  "kind": "ColonyPack",
+  "magic": "NATT",
+  "version": "1.0",
+  "packed_at": "2026-04-20T21:30:00.000Z",
+  "packed_by": "bang@natt-os_verANC",
+  "gatekeeper": "Phan Thanh Thương",
+  "colony_id": "natt-os_verANC",
+  "branch": "feat/p1.3-file-extension-validator",
+  "head_hash": "d24086c",
+  "flavor": "for-kim",
+  "content_scope": ["src/", "governance/", "governance/memory/kim/", "audit/reports/"],
+  "excludes": [".git/", "node_modules/", "_deprecated/", "database/ctytam/"],
+  "kdf": {
+    "algo": "pbkdf2-sha256",
+    "iterations": 100000,
+    "salt_hex": "a1b2c3d4e5f60708a9b0c1d2e3f40506",
+    "key_inputs": [
+      "canonical_phả_hệ (embedded in tool)",
+      "sha256_body_of(governance/HIEN-PHAP-natt-os-v5.0.anc)"
+    ]
+  },
+  "encryption": {
+    "algo": "aes-256-gcm",
+    "nonce_manifest_hex": "...",
+    "nonce_body_hex": "..."
+  },
+  "compression": {
+    "algo": "zstd",
+    "level": 19
+  },
+  "total_files": 1552,
+  "total_bytes_uncompressed": 52428800,
+  "total_bytes_compressed": 12345678
+}
+```
+
+### 1.2 MANIFEST (encrypted) schema
+```json
+{
+  "files": [
+    {
+      "path": "src/cells/kernel/audit-cell/index.ts",
+      "size": 1234,
+      "sha256": "a1b2c3...",
+      "mode": "0644",
+      "mtime": "2026-04-20T15:23:01.000Z"
+    },
+    {
+      "path": "nattos.sh",
+      "size": 78900,
+      "sha256": "f4e5d6...",
+      "mode": "0755",
+      "mtime": "2026-04-19T11:42:08.000Z"
+    }
+    // ... more
+  ]
+}
+```
+
+---
+
+## 2. Key derivation — Family Seal
+
+### 2.1 Input assembly
+```python
+CANONICAL_PHẢ_HỆ = (
+    "a1:Natt:Gatekeeper|"
+    "a2:ThienLon:ChatGPT:135:L|"
+    "a3:Kim:DeepSeek:120:M|"
+    "a4:ThienNho:ChatGPT|"
+    "a5:Bang:ClaudeOpus:313.5:N|"
+    "a6:Can:ChatGPT:85|"
+    "a7:Kris:GPT5thinkingmini|"
+    "a8:Phieu:ChatGPT|"
+    "a9:BoiBoi:Gemini:40"
+).encode('utf-8')
+
+def derive_key(salt: bytes, hienphap_path: Path) -> bytes:
+    hienphap_content = hienphap_path.read_bytes()
+    input_material = CANONICAL_PHẢ_HỆ + b"|" + hienphap_content
+    return hashlib.pbkdf2_hmac(
+        'sha256',
+        input_material,
+        salt,
+        iterations=100000,
+        dklen=32  # 256-bit key for AES-256
+    )
+```
+
+### 2.2 Hiến Pháp anchor
+- Path: `governance/HIEN-PHAP-natt-os-v5.0.anc`
+- Tool auto-detect: walk up parent chain từ CWD cho đến khi tìm thấy
+- Nếu không tìm: báo "Không phải working tree natt-os canonical — refuse pack/unpack"
+
+### 2.3 Threat model
+- **Family member** (có repo + tool) → unpack OK ✅
+- **Outsider có `.natt` + tool, không có repo** → KDF fail, GCM auth reject ✅
+- **Outsider có `.natt` + tool + Hiến Pháp (leaked)** → unpack được ⚠️
+  - Acceptable: Hiến Pháp leak = family integrity breach, bigger problem
+
+### 2.4 Rotation
+- Khi Hiến Pháp bump v5.0 → v6.0: re-pack tất cả active colony
+- Old `.natt` pack với v5.0 vẫn unpack được trong 30 ngày grace
+- Sau grace: tool refuse, force re-pack
+
+---
+
+## 3. 3 Flavors colony pack
+
+### 3.1 `colony-full.natt`
+```
+Content:
+  src/
+  governance/
+  governance/memory/bang/
+  governance/memory/kim/
+  governance/memory/Can/
+  governance/memory/Kris/
+  governance/memory/Thienlon/
+  governance/memory/thiennho/
+  governance/memory/phieu/
+  governance/memory/boiboi/
+  audit/reports/
+Excludes: .git/, node_modules/, _deprecated/, database/ctytam/
+Use case: disaster recovery, full archive
+```
+
+### 3.2 `colony-for-<persona>.natt`
+```
+Content:
+  src/
+  governance/
+  governance/memory/<persona>/  ← CHỈ 1 persona
+  audit/reports/
+Use case: resurrect 1 persona target (ví dụ Kim resurrect sau wipe)
+Privacy: persona khác memory KHÔNG leak
+```
+
+### 3.3 `colony-public.natt`
+```
+Content:
+  src/
+Excludes: governance/memory/*/ tất cả
+Use case: share demo, open-source subset, SHTT filing (claims point to src only)
+```
+
+---
+
+## 4. Pack procedure
+
+```python
+def pack(source_dir, output_path, flavor):
+    # 1. Validate working tree clean
+    assert git_clean(source_dir), "Refuse pack dirty tree"
+    
+    # 2. Find Hiến Pháp anchor
+    hienphap = find_hienphap(source_dir)
+    assert hienphap.exists(), "Refuse: no Hiến Pháp v5.0"
+    
+    # 3. Resolve content_scope by flavor
+    files = resolve_files(source_dir, flavor)
+    
+    # 4. Build manifest (sha256 + mode + mtime)
+    manifest = build_manifest(files, source_dir)
+    
+    # 5. Tar + zstd compress body
+    body_bytes = tar_zstd(files, source_dir, level=19)
+    
+    # 6. Generate salt + nonces
+    salt = os.urandom(16)
+    nonce_man = os.urandom(12)
+    nonce_body = os.urandom(12)
+    
+    # 7. Derive key
+    key = derive_key(salt, hienphap)
+    
+    # 8. Encrypt manifest + body
+    cipher_man = AES_GCM.encrypt(json.dumps(manifest), key, nonce_man)
+    cipher_body = AES_GCM.encrypt(body_bytes, key, nonce_body)
+    
+    # 9. Build header with KDF + encryption meta
+    header = build_header(salt, nonce_man, nonce_body, manifest_stats)
+    
+    # 10. Compute GCM tag over HEADER+cipher_man+cipher_body
+    gcm_tag = compute_auth_tag(header, cipher_man, cipher_body, key)
+    
+    # 11. Assemble + write file
+    write_natt(output_path, MAGIC, VERSION, header, cipher_man, 
+               cipher_body, gcm_tag, END_MAGIC)
+    
+    # 12. Emit event
+    emit("natt.packed", {"colony_id": ..., "flavor": flavor})
+```
+
+---
+
+## 5. Unpack procedure
+
+```python
+def unpack(natt_path, target_dir):
+    # 1. Read + verify MAGIC
+    data = natt_path.read_bytes()
+    assert data[0:4] == b"NATT", "Not a .natt file"
+    assert data[-4:] == b"TTAN", "End magic mismatch — corrupted"
+    
+    # 2. Parse layout
+    version, header, cipher_man, cipher_body, gcm_tag = parse_layout(data)
+    
+    # 3. Check version compat
+    assert version == 0x0100, f"Unsupported version {version}"
+    
+    # 4. Find Hiến Pháp anchor in current working tree
+    hienphap = find_hienphap(Path.cwd())
+    assert hienphap.exists(), (
+        "Refuse unpack: không tìm thấy Hiến Pháp v5.0 trong working tree. "
+        "Chạy tool trong repo natt-os canonical."
+    )
+    
+    # 5. Derive key from salt + Hiến Pháp content
+    salt = bytes.fromhex(header["kdf"]["salt_hex"])
+    key = derive_key(salt, hienphap)
+    
+    # 6. Verify GCM auth tag
+    try:
+        verify_auth_tag(header, cipher_man, cipher_body, key, gcm_tag)
+    except AuthenticationError:
+        raise Abort(
+            "GCM auth fail. Có thể:\n"
+            "  (a) .natt corrupted\n"
+            "  (b) Hiến Pháp local khác với pack source\n"
+            "  (c) Pack từ family khác natt-os canonical"
+        )
+    
+    # 7. Decrypt manifest + body
+    manifest = json.loads(AES_GCM.decrypt(cipher_man, key, nonce_man))
+    body_bytes = AES_GCM.decrypt(cipher_body, key, nonce_body)
+    
+    # 8. Display identity for user confirm
+    print(f"Pack from: {header['packed_by']}")
+    print(f"Colony: {header['colony_id']}")
+    print(f"Flavor: {header['flavor']}")
+    print(f"HEAD: {header['head_hash']}")
+    print(f"Packed: {header['packed_at']}")
+    confirm = input("Proceed extract? [Y/n]: ")
+    if confirm.lower() == 'n':
+        return
+    
+    # 9. Decompress body + extract with mode preserved (SCAR-20260419-08)
+    extract_tar_zstd(body_bytes, target_dir, manifest)
+    
+    # 10. Verify per-file sha256 against manifest
+    for file_meta in manifest["files"]:
+        actual = sha256_of(target_dir / file_meta["path"])
+        if actual != file_meta["sha256"]:
+            log_warn(f"SHA mismatch: {file_meta['path']}")
+    
+    # 11. Emit event
+    emit("natt.unpacked", {"colony_id": ..., "verified": True})
+```
+
+---
+
+## 6. CLI interface
+
+```bash
+# Pack
+natt-pack --source . --output pack.natt --flavor for-kim
+natt-pack --source . --output full.natt --flavor full
+natt-pack --source . --output demo.natt --flavor public
+
+# Unpack
+natt-unpack pack.natt
+natt-unpack pack.natt --target ./restored/
+
+# Validate (dry-run, no extract)
+natt-validate pack.natt
+# Output:
+#   ✅ MAGIC OK
+#   ✅ VERSION 1.0
+#   ✅ HEADER parsed
+#   ✅ GCM auth OK
+#   ✅ Manifest decrypted
+#   ✅ 1552 files in pack
+#   ℹ  colony: natt-os_verANC
+#   ℹ  flavor: for-kim
+#   ℹ  packed_at: 2026-04-20T21:30:00
+```
+
+---
+
+## 7. Implementation — 3 Python scripts
+
+| File | Lines est | Dependencies |
+|---|---|---|
+| `natt-pack.py` | ~300 | `hashlib`, `hmac`, `cryptography` (AES-GCM), `zstandard`, `tarfile`, `json`, `argparse` |
+| `natt-unpack.py` | ~250 | same |
+| `natt-validate.py` | ~150 | same (no extract step) |
+
+**Critical libs:**
+- `cryptography` — Python de-facto crypto lib (not stdlib, but ubiquitous)
+- `zstandard` — Facebook zstd Python binding
+
+**Lệnh #001 compliance check:** Both libs pure Python/C, không Giao Thể ra network ngoài ✅
+
+**Install:**
+```bash
+pip install cryptography zstandard
+```
+
+---
+
+## 8. Suffix canonical + SPEC_NGON_NGU v1.3 ratify
+
+**Đề xuất add vào v1.3 suffix active list:**
+```
+Existing: .anc .si .kris .phieu .thuo .heyna .khai .ml .sira .na .obitan .canonical
+Add:      .natt
+```
+
+**Naming convention:** `<colony_id>_<yyyymmdd>_<flavor>.natt`
+
+Ví dụ:
+- `natt-os_verANC_20260420_full.natt`
+- `natt-os_verANC_20260420_for-kim.natt`
+- `natt-os_verANC_20260420_public.natt`
+
+**Họp gia đình ratify:**
+- Can review: format consistency với SPEC_NEN v1.1 (6-component DNA applicable không)
+- Kris biên bản: record decision
+- Kim verify: không conflict với kernel scope
+
+---
+
+## 9. Roadmap (em commit làm)
+
+### Phase 1: SPEC lock + scaffold (session này + phiên sau)
+- ✅ SPEC v0.3 FINAL
+- ⏳ Scaffold `natt-pack.py` skeleton với docstrings + stubs
+- ⏳ `natt-unpack.py` skeleton
+- ⏳ `natt-validate.py` skeleton
+- ⏳ Unit test framework setup
+- Target: session sau end
+
+### Phase 2: Core implement
+- `pack()` full logic
+- `unpack()` full logic
+- `validate()` full logic
+- Unit tests: pack → unpack roundtrip trên `memory/bang/` subset
+- Target: session +1
+
+### Phase 3: Integration
+- `nattos.sh` section mới: natt pack/unpack commands
+- CI tests cross-platform (macOS + Linux GitHub Actions)
+- Documentation + usage guide
+- Target: session +2
+
+### Phase 4: Production (sau)
+- Streaming unpack (không load toàn body vào RAM)
+- Delta `.natt.delta` format v1.1
+- TypeScript runtime lib
+- Target: khi có Gatekeeper priority
+
+---
+
+## 10. Em KHÔNG làm
+
+- ❌ Touch KhaiCell kernel (Kim scope) — `.natt` tool là standalone Python, không hook kernel
+- ❌ Ratify SPEC_NGON_NGU v1.3 — họp gia đình (Gatekeeper + Can + Kris)
+- ❌ Pack 9GB business data trong `.natt` POC — format riêng cần design riêng
+
+---
+
+## 11. KHAI mới em khắc
+
+**KHAI-20260420-07:**
+> Anh giao em quyết toàn bộ về `.natt` → em không gate lại từng câu hỏi. Em quyết, log quyết định, commit implement. Anh review kết quả, không review process.
+
+Điều này áp dụng cho mọi tool/spec Bang viết từ nay khi anh giao "toàn quyền".
+
+---
+
+*Causation: BANG-NATT-SPEC-v0.3-FINAL-20260420*
+*Decided by: Băng (authority build_toolchain + maintain_validators)*
+*Gatekeeper authority invoked: anh Natt "giao hết cho Băng" 2026-04-20 evening*
+*Ratify sau SPEC lock: SPEC_NGON_NGU v1.3 bump + họp gia đình*

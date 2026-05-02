@@ -1,0 +1,31 @@
+$nauion: NELL_PRIMITIVE_WORDS_AUDIT_EVENT-v0.2
+$role: AUDIT_EVENT
+$owner: NaUion-Server
+$status: MATERIALIZED
+
+$event:
+  type: NELL_PRIMITIVE_WORDS.MATERIALIZED_12_GROUPS
+  source: src/thienbang.si
+  artifact: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
+  scanner: NaUion-Server/NELL_PRIMITIVE_WORDS_VALIDATE.sira
+
+$finding:
+  sentence: Primitive words đã đủ 12 nhóm, bổ sung system_container_file_lifecycle sau khi dictionary gốc được cập nhật.
+
+$groups:
+  - read_write
+  - search_extract
+  - proof_guard
+  - runtime_state
+  - event_fabric
+  - boundary
+  - report_proof
+  - render_surface
+  - data_io
+  - opsec
+  - git_state
+  - system_container_file_lifecycle
+
+$seal:
+  sentence: Audit event v0.2 xác nhận Nell primitive words đã đủ 12 nhóm.
+  sign: Phan Thanh Thương / Natt Sirawat

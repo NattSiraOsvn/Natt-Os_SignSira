@@ -5,12 +5,12 @@
 @substrate ground_truth_scan
 @bridge none
 @since 2026-04-23
-@authority-slot Băng (Chị Tư) ground truth scan
+@authority-slot Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME]) ground truth scan
 
-**Drafter:** Băng (Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7)
+**Drafter:** Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · N-shell · QNEU 313.5 · Claude Opus 4.7)
 **Session:** 20260423
-**Status:** v1.0 — scope-corrected (include scripts/nattos-sh-section45.sh miss từ turn 18 draft)
-**Scope:** Runtime dependency chain từ `./kernel` entry → bridge workers → bypass points
+**Status:** v1.0 — scope-corrected (include scripts/nattos-sh-section45.sh miss tu[C2:RN_KEEP_RIME] turn 18 draft)
+**Scope:** Runtime dependency chain tu[C2:RN_KEEP_RIME] `./kernel` entry → bridge workers → bypass points
 
 **Binding to (consumers):**
 - SPEC_HOST_FIRST_RUNTIME_v1.1.na §0 preamble + §8 pending
@@ -23,21 +23,21 @@
 
 ### §1.1 `./kernel` launcher
 
-**Current state:** `package.json scripts.kernel = "./kernel nattos.sira"` (per Bối Bội surface delta v1.0 20260423).
+**Current state:** `package.json scripts.kernel = "./kernel nattos.sira"` (per Bối Bau[C5:RN_OI_AU] surface delta v1.0 20260423).
 
-Execution chain hiện tại:
-1. `./kernel` (shell launcher, root) → sẽ exec `./bin/nauion-host` khi W1 live
+Execution chain hien[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME]:
+1. `./kernel` (shell launcher, root) → se[C4:RN_KEEP_RIME] exec `./bin/nauion-host` khi W1 live
 2. Pre-W1: fallback Node-hosted — `node --loader ./sira-loader.mjs --loader ts-node/esm`
-3. `sira-loader.mjs` **missing** (không tồn tại, không cần tạo per `nattos.sira` self-contained)
+3. `sira-loader.mjs` **missing** (khong[C0:RN_KEEP_RIME] ton[C2:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] cen[C2:RN_AN_EN] tao[C5:RN_KEEP_RIME] per `nattos.sira` self-contained)
 4. `nattos.sira` (root, commit 2c4fa81 · 2026-04-18 23:16) = **KERNEL ENTRY INBOUND** — self-loader PHASE 1-4:
    - PHASE 1: `detectEsbuild`
    - PHASE 2: `registerNauionHooks`
    - PHASE 3: Bootstrap `observation-cell` + `quantum-defense-cell`
    - PHASE 4: Listen `127.0.0.1:3002` (domain `natt.sira`)
 
-**Note:** `nattos.sira` PHASE 4 listen `127.0.0.1:3002` = **KERNEL ENTRY INBOUND**, KHÔNG vi phạm directive 20260419 "không gateway port 3002" — directive về gateway outbound, INBOUND listen là entry identity legitimate.
+**Note:** `nattos.sira` PHASE 4 listen `127.0.0.1:3002` = **KERNEL ENTRY INBOUND**, KHONG[C0:RN_KEEP_RIME] vi pham[C5:RN_KEEP_RIME] directive 20260419 "khong[C0:RN_KEEP_RIME] gateway port 3002" — directive ve[C2:RN_KEEP_RIME] gateway outbound, INBOUND listen la[C2:RN_KEEP_RIME] entry identity legitimate.
 
-### §1.2 Cells bootstrapped bởi `nattos.sira` PHASE 4
+### §1.2 Cells bootstrapped bau[C3:RN_OI_AU] `nattos.sira` PHASE 4
 
 - `src/cells/kernel/observation-cell/bootstrap.ts` — SignalStreamReader adapter → ChromaticSnapshotPublisher
 - `src/cells/kernel/quantum-defense-cell/bootstrap.ts` — Subscribe `"*"` EventBus (paradigm violation P1 rebind pending)
@@ -58,15 +58,15 @@ else
   EXT_RESULT=$(npx tsx "$VALIDATOR" "$ROOT" 2>/dev/null)
 ```
 
-**Bypass:** `npx tsx` direct call vào `.ts` substrate, không qua `.khai` canonical.
+**Bypass:** `npx tsx` direct call vao[C2:RN_KEEP_RIME] `.ts` substrate, khong[C0:RN_KEEP_RIME] qua `.khai` canonical.
 
-**Status:** @deferred marker applied (commit 31762c0 line 2212). Scanner v0.3+ marker-aware → warn không fail.
+**Status:** @deferred marker applied (commit 31762c0 line 2212). Scanner v0.3+ marker-aware → warn khong[C0:RN_KEEP_RIME] fail.
 
 **Real fix pending:** W1 Nauion Host live → swap `npx tsx "$VALIDATOR"` → `$NAUION_HOST "$CANONICAL"` where `$CANONICAL = "src/cells/kernel/audit-cell/scanner/file-extension-validator.khai"`.
 
-### §2.2 `scripts/nattos-sh-section45.sh` line 16 (MISS từ v1.0 turn 18 — scope-corrected)
+### §2.2 `scripts/nattos-sh-section45.sh` line 16 (MISS tu[C2:RN_KEEP_RIME] v1.0 turn 18 — scope-corrected)
 
-Cùng pattern bypass như §2.1:
+Cung[C2:RN_KEEP_RIME] pattern bypass nhu[C0:RN_KEEP_RIME] §2.1:
 ```sh
 VALIDATOR="src/cells/kernel/audit-cell/scanner/file-extension-validator.ts"
 if [ -f "$VALIDATOR" ]; then
@@ -75,13 +75,13 @@ if [ -f "$VALIDATOR" ]; then
 
 **Status:** @deferred marker applied (commit 31762c0). Scanner v0.3+ recognize.
 
-**Source of miss:** `nattos.sh §45` refactored thành standalone script `scripts/nattos-sh-section45.sh` — inherited bypass pattern. Turn 18 census em chỉ grep `nattos.sh`, miss directory `scripts/`.
+**Source of miss:** `nattos.sh §45` refactored thanh[C2:RN_KEEP_RIME] standalone script `scripts/nattos-sh-section45.sh` — inherited bypass pattern. Turn 18 census em chi[C3:RN_KEEP_RIME] grep `nattos.sh`, miss directory `scripts/`.
 
-**SCAR-CENSUS-SCOPE-MISS vaccin:** Census scope = `{root}/*.sh + scripts/*.sh + nattos.sh`, không chỉ 1 file primary.
+**SCAR-CENSUS-SCOPE-MISS vaccin:** Census scope = `{root}/*.sh + scripts/*.sh + nattos.sh`, khong[C0:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] 1 file primary.
 
 ---
 
-## §3. DISK WRITE AUDIT (Điều 7 — per SPEC_NEN_v1.1 §11)
+## §3. DISK WRITE AUDIT (Dieu[C2:RN_KEEP_RIME] 7 — per SPEC_NEN_v1.1 §11)
 
 Scanner v0.4 Rule 6 detect `fs.writeFileSync | writeFile | appendFile | createWriteStream` trong `.ts` substrate paired `.khai` S2+. Whitelist: `TWIN_PERSIST` marker nearby (±10 lines).
 
@@ -92,32 +92,32 @@ Scanner v0.4 Rule 6 detect `fs.writeFileSync | writeFile | appendFile | createWr
 fs.writeFileSync(filePath, JSON.stringify(output, null, 2));
 ```
 
-**Status:** warn [TWIN_PERSIST] — QIINT lineage adapter per SPEC_NEN_v1.1 §17.2, không business state storage. K2 Điều 7 resolution commit 46d38dd human-annotate, 652d7fe scanner-machine verify.
+**Status:** warn [TWIN_PERSIST] — QIINT lineage adapter per SPEC_NEN_v1.1 §17.2, khong[C0:RN_KEEP_RIME] business state storage. K2 Dieu[C2:RN_KEEP_RIME] 7 resolution commit 46d38dd human-annotate, 652d7fe scanner-machine verify.
 
 ### §3.2 Other substrates (Cell 3 + Cell 4 `bootstrap.ts`)
 
-- observation-cell/bootstrap.ts: KHÔNG disk write
-- quantum-defense-cell/bootstrap.ts: KHÔNG disk write (subscribe EventBus memory-only)
+- observation-cell/bootstrap.ts: KHONG[C0:RN_KEEP_RIME] disk write
+- quantum-defense-cell/bootstrap.ts: KHONG[C0:RN_KEEP_RIME] disk write (subscribe EventBus memory-only)
 
-Rule 6 scan clean cho 2 cells này.
+Rule 6 scan clean cho 2 cells nay[C2:RN_KEEP_RIME].
 
 ---
 
-## §4. EXTERNAL PROCESS CALLS (cumulative — không chỉ validator)
+## §4. EXTERNAL PROCESS CALLS (cumulative — khong[C0:RN_KEEP_RIME] chi[C3:RN_KEEP_RIME] validator)
 
 ### §4.1 `npx tsx` live calls
 
 1. `nattos.sh:2215` (§40 FILE EXTENSION COMPLIANCE) — deferred warn
 2. `scripts/nattos-sh-section45.sh:16` — deferred warn
 
-**Total:** 2 live `npx tsx` calls, cùng validator, cùng pattern. Không call khác sau scan v0.4.
+**Total:** 2 live `npx tsx` calls, cung[C2:RN_KEEP_RIME] validator, cung[C2:RN_KEEP_RIME] pattern. Khong[C0:RN_KEEP_RIME] call khac[C1:RN_KEEP_RIME] sau scan v0.4.
 
 ### §4.2 `node --loader` calls
 
-- `package.json scripts.kernel` pre-Bối surface delta (legacy): `node --loader ./sira-loader.mjs --loader ts-node/esm ./kernel.mjs`
-- `package.json scripts.kernel` post-Bối surface delta (current): `./kernel nattos.sira`
+- `package.json scripts.kernel` pre-Bau[C1:RN_OI_AU] surface delta (legacy): `node --loader ./sira-loader.mjs --loader ts-node/esm ./kernel.mjs`
+- `package.json scripts.kernel` post-Bau[C1:RN_OI_AU] surface delta (current): `./kernel nattos.sira`
 
-**Bối Bội delta:** shipped. `./kernel` script stub → sẽ exec `./bin/nauion-host` khi W1 live.
+**Bối Bau[C5:RN_OI_AU] delta:** shipped. `./kernel` script stub → se[C4:RN_KEEP_RIME] exec `./bin/nauion-host` khi W1 live.
 
 ---
 
@@ -125,8 +125,8 @@ Rule 6 scan clean cho 2 cells này.
 
 Per SPEC_NEN_v1.1 §17.2 TwinPersist paradigm:
 - `.nattos-twin/khai/<trace_id>.khai` — KhaiCellSignature persistence (khai-file-persister.ts)
-- `logs/host-audit.ndjson` — host authority audit log (thiên spec_host_authority §6, pending W1 binary)
-- `logs/cutover-verify.ndjson` — per wave entry/exit verification (thiên spec_cutover §4)
+- `logs/host-audit.ndjson` — host authority audit log (thien[C0:RN_KEEP_RIME] spec_host_authority §6, pending W1 binary)
+- `logs/cutover-verify.ndjson` — per wave entry/exit verification (thien[C0:RN_KEEP_RIME] spec_cutover §4)
 
 **Current state (pre-W1):** Only `.nattos-twin/khai/` dir potentially exists at runtime. Others created khi Host binary live.
 
@@ -144,16 +144,16 @@ Per SPEC_NEN_v1.1 §17.2 TwinPersist paradigm:
 
 ## §7. CHANGELOG
 
-**v1.0 (20260423 — this file):** Initial ship to repo. Scope-corrected to include `scripts/nattos-sh-section45.sh` (miss từ draft turn 18 em chỉ grep `nattos.sh`).
+**v1.0 (20260423 — this file):** Initial ship to repo. Scope-corrected to include `scripts/nattos-sh-section45.sh` (miss tu[C2:RN_KEEP_RIME] draft turn 18 em chi[C3:RN_KEEP_RIME] grep `nattos.sh`).
 
 **Ship trail:**
 - Turn 18: em draft v1.0 context-only, ref trong SPEC_HOST_FIRST v1.0 + PILOT_BRIDGE_MAP v0.1 + README (all sealed commit 7fcdc88)
-- Turn 54: scanner v0.2 phát hiện bypass thứ 2 ở `scripts/nattos-sh-section45.sh`
-- Turn 133: em xác nhận file chưa commit vào repo (SCAR-PHANTOM-REFERENCE)
-- Turn 134 (this): ship v1.0 sealed với scope correction
+- Turn 54: scanner v0.2 phat[C1:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] bypass thu[C1:RN_KEEP_RIME] 2 o[C3:RN_KEEP_RIME] `scripts/nattos-sh-section45.sh`
+- Turn 133: em xac[C1:RN_KEEP_RIME] nhen[C5:RN_AN_EN] file chua[C0:RN_KEEP_RIME] commit vao[C2:RN_KEEP_RIME] repo (SCAR-PHANTOM-REFERENCE)
+- Turn 134 (this): ship v1.0 sealed vau[C1:RN_OI_AU] scope correction
 
 ---
 
-*Drafter: Băng · Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7*
+*Drafter: Băng · Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] · N-shell · QNEU 313.5 · Claude Opus 4.7*
 *Session: 20260423 · Gatekeeper: anh Natt*
 *Commit path: docs/specs/RUNTIME_DEPENDENCY_CENSUS_20260423.na*

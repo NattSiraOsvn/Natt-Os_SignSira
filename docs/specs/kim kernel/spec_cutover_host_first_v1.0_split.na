@@ -3,7 +3,7 @@
 @substrate cutover-plan
 @bridge none
 @since 2026-04-23
-@authority-slot thiên Lớn -> Kim
+@authority-slot thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] -> Kim
 @semantic-role migration_governance
 
 # SPEC_CUTOVER_HOST_FIRST_V1.0
@@ -13,53 +13,53 @@
 ### Wave 0 — Node-hosted (baseline)
 - **Rollback flag:** `rbf_w0_node_hosted = 1`
 - **Invariant guard:** 37 cells wired healthy + runtime parity baseline maintained.
-- **Entry:** khởi động từ `./kernel` gọi Node trực tiếp, không host.
-- **Exit:** khi `rbf_w0_node_hosted = 0` và `rbf_w1_host_live = 1` và host binary đã build & health check pass.
+- **Entry:** khau[C3:RN_OI_AU] dong[C5:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] `./kernel` gau[C5:RN_OI_AU] Node truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] host.
+- **Exit:** khi `rbf_w0_node_hosted = 0` va[C2:RN_KEEP_RIME] `rbf_w1_host_live = 1` va[C2:RN_KEEP_RIME] host binary da[C4:RN_KEEP_RIME] build & health check pass.
 
 ### Wave 1 — Host live (thin launcher + loader + delegate)
 - **Rollback flag:** `rbf_w1_host_live`
 - **Invariant guard:** 
-  - Host authority active, Node bridge workers hoạt động cho tất cả cells.
-  - Không regression so với baseline (latency P95, error rate, memory).
+  - Host authority active, Node bridge workers hoat[C5:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME] cho tat[C1:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] cells.
+  - Khong[C0:RN_KEEP_RIME] regression so vau[C1:RN_OI_AU] baseline (latency P95, error rate, memory).
   - 37 cells `WIRED HEALTHY` qua host.
 - **Entry criteria:**
   - Host binary `nauion-host` build & `--check` pass.
-  - `nattos.sira` đúng schema.
-  - Ít nhất 1 bridge worker chạy thử thành công.
+  - `nattos.sira` dung[C1:RN_KEEP_RIME] schema.
+  - It[C1:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] 1 bridge worker chay[C5:RN_KEEP_RIME] thu[C3:RN_KEEP_RIME] thanh[C2:RN_KEEP_RIME] cong[C0:RN_KEEP_RIME].
   - Health check interval 15s, 3 misses → unhealthy.
-- **Exit criteria:** bridge health check ổn định 24h, coupling graph scan xong, Gatekeeper set `rbf_w2_native_primitives = 1`.
+- **Exit criteria:** bridge health check on[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] 24h, coupling graph scan xong, Gatekeeper set `rbf_w2_native_primitives = 1`.
 
-### Wave 2 — Native primitives + per-cell migration mở đầu
+### Wave 2 — Native primitives + per-cell migration mo[C3:RN_KEEP_RIME] dau[C2:RN_KEEP_RIME]
 - **Rollback flag:** `rbf_w2_native_primitives`
 - **Invariant guard:**
-  - Native primitive (Rust) chạy song song với bridge, có thể switch.
-  - Không leak fd, không deadlock.
-  - Mỗi cell migrate có rollback plan riêng.
-- **Entry criteria:** ít nhất 2 cell theo D7 có native implementation + test pass; coupling graph không rủi ro block.
-- **Exit:** các D7 cells migrate xong, chạy 48h stable, set `rbf_w3_per_cell_migration`.
+  - Native primitive (Rust) chay[C5:RN_KEEP_RIME] song song vau[C1:RN_OI_AU] bridge, co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] switch.
+  - Khong[C0:RN_KEEP_RIME] leak fd, khong[C0:RN_KEEP_RIME] deadlock.
+  - Mau[C4:RN_OI_AU] cell migrate co[C1:RN_KEEP_RIME] rollback plan rieng[C0:RN_KEEP_RIME].
+- **Entry criteria:** it[C1:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] 2 cell theo D7 co[C1:RN_KEEP_RIME] native implementation + test pass; coupling graph khong[C0:RN_KEEP_RIME] rui[C3:RN_KEEP_RIME] ro block.
+- **Exit:** cac[C1:RN_KEEP_RIME] D7 cells migrate xong, chay[C5:RN_KEEP_RIME] 48h stable, set `rbf_w3_per_cell_migration`.
 
 ### Wave 3 — Node retire by cluster
 - **Rollback flag:** `rbf_w3_node_retire`
-- **Invariant guard:** không còn bridge worker Node cho cluster đã retire; audit trail host; hiệu năng không tệ hơn Wave 0 quá 20% (P95 latency).
-- **Entry criteria:** tất cả cells native hoặc bridge thay bằng native proxy.
+- **Invariant guard:** khong[C0:RN_KEEP_RIME] con[C2:RN_KEEP_RIME] bridge worker Node cho cluster da[C4:RN_KEEP_RIME] retire; audit trail host; hieu[C5:RN_KEEP_RIME] neng[C0:RN_ANG_ENG] khong[C0:RN_KEEP_RIME] te[C5:RN_KEEP_RIME] hon[C0:RN_KEEP_RIME] Wave 0 qua[C1:RN_KEEP_RIME] 20% (P95 latency).
+- **Entry criteria:** tat[C1:RN_KEEP_RIME] ca[C3:RN_KEEP_RIME] cells native hoac[C5:RN_KEEP_RIME] bridge thay beng[C2:RN_ANG_ENG] native proxy.
 
 ## §2. Rollback rule chung
-- Bất kỳ wave nào vi phạm invariant guard → rollback evaluation (dừng migration, báo Gatekeeper trong 5 phút).
-- Gatekeeper quyết định set rollback flag về wave trước, chạy `bin/rollback --to wave0`.
-- Không tiếp tục wave sau nếu rollback flag chưa clear.
+- Bat[C1:RN_KEEP_RIME] ky[C2:RN_KEEP_RIME] wave nao[C2:RN_KEEP_RIME] vi pham[C5:RN_KEEP_RIME] invariant guard → rollback evaluation (dung[C2:RN_KEEP_RIME] migration, bao[C1:RN_KEEP_RIME] Gatekeeper trong 5 phut[C1:RN_KEEP_RIME]).
+- Gatekeeper quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] set rollback flag ve[C2:RN_KEEP_RIME] wave truoc[C1:RN_KEEP_RIME], chay[C5:RN_KEEP_RIME] `bin/rollback --to wave0`.
+- Khong[C0:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME] tuc[C5:RN_KEEP_RIME] wave sau neu[C1:RN_KEEP_RIME] rollback flag chua[C0:RN_KEEP_RIME] clear.
 
 ## §3. Health check (D6)
-- Interval: 15 giây.
+- Interval: 15 giay[C0:RN_KEEP_RIME].
 - Failure threshold: 3 consecutive misses → unhealthy.
-- Hành vi: ghi audit, SIGTERM, spawn lại tối đa 2 lần, nếu fail → rollback evaluation.
+- Hanh[C2:RN_KEEP_RIME] vi: ghi audit, SIGTERM, spawn lai[C5:RN_KEEP_RIME] tau[C1:RN_OI_AU] da[C0:RN_KEEP_RIME] 2 len[C2:RN_AN_EN], neu[C1:RN_KEEP_RIME] fail → rollback evaluation.
 
 ## §4. Verification
-- Mỗi entry/exit criteria có script tự động. Kết quả ghi `logs/cutover-verify.ndjson`.
-- Bang có quyền veto.
+- Mau[C4:RN_OI_AU] entry/exit criteria co[C1:RN_KEEP_RIME] script tu[C5:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME]. Ket[C1:RN_KEEP_RIME] qua[C3:RN_KEEP_RIME] ghi `logs/cutover-verify.ndjson`.
+- Bang co[C1:RN_KEEP_RIME] quyen[C2:RN_KEEP_RIME] veto.
 
-## §5. Cấm
-- ❌ Chuyển wave không set đúng rollback flag.
-- ❌ Bỏ qua invariant guard.
-- ❌ Retire Node khi còn bridge worker chưa thay thế.
+## §5. Cam[C1:RN_KEEP_RIME]
+- ❌ Chuyen[C3:RN_KEEP_RIME] wave khong[C0:RN_KEEP_RIME] set dung[C1:RN_KEEP_RIME] rollback flag.
+- ❌ Bo[C3:RN_KEEP_RIME] qua invariant guard.
+- ❌ Retire Node khi con[C2:RN_KEEP_RIME] bridge worker chua[C0:RN_KEEP_RIME] thay the[C1:RN_KEEP_RIME].
 
 @end

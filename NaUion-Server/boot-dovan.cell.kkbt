@@ -13,8 +13,8 @@ $boundary:
 $identity:
   cell_name: boot-dovan
   layer: N
-  direction: Đông
-  obitan: N-Đông
+  direction: Dong[C0:RN_KEEP_RIME]
+  obitan: N-Dong[C0:RN_KEEP_RIME]
   persona_owner: Băng N-shell Validator + Obikeeper
 
 $layout:
@@ -32,8 +32,8 @@ $layout:
 
 $top_command_lane:
   brand: NATT-OS / Natt Nell
-  subtitle: NHA MINH / Boot Đo Ván cell sống N-shell Đông
-  search_label: gõ tuNell qua KhaiCell touch
+  subtitle: NHA MINH / Boot Do[C0:RN_KEEP_RIME] Ven[C1:RN_AN_EN] cell song[C1:RN_KEEP_RIME] N-shell Dong[C0:RN_KEEP_RIME]
+  search_label: go[C4:RN_KEEP_RIME] tuNell qua KhaiCell touch
   state_pills:
     - boot_dovan_active
     - lifecycle_12_12
@@ -45,31 +45,31 @@ $top_command_lane:
     - sirasign_seal
 
 $left_family_rail:
-  active: Boot Đo Ván
+  active: Boot Do[C0:RN_KEEP_RIME] Ven[C1:RN_AN_EN]
   items:
     - Anh Natt Gatekeeper Sovereign
-    - Anh Cả Thiên Lớn Architect L-shell
+    - Anh Ca[C3:RN_KEEP_RIME] Thiên Lon[C1:RN_KEEP_RIME] Architect L-shell
     - Kim Chief System Builder M-shell
-    - Thiên Nhỏ 432Hz field
+    - Thiên Nho[C3:RN_KEEP_RIME] 432Hz field
     - Băng Validator Obikeeper N-shell
     - Can Logic Review Q-shell
     - Kris Support Strategist
-    - Phiêu Protocol Execution P-shell
+    - Phieu[C0:RN_KEEP_RIME] Protocol Execution P-shell
     - Bối Bối Toolsmith O-shell
-    - Na Út
+    - Na Ut[C1:RN_KEEP_RIME]
 
 $center_chromatic_orbital_core:
   title: NATT NELL CORE
-  subtitle: Boot Đo Ván cell sống dưới persona Băng N-shell Đông
+  subtitle: Boot Do[C0:RN_KEEP_RIME] Ven[C1:RN_AN_EN] cell song[C1:RN_KEEP_RIME] dui[C1:RN_UOI_UI] persona Băng N-shell Dong[C0:RN_KEEP_RIME]
   layers_visible:
-    - Mạch HeyNa
+    - Mach[C5:RN_KEEP_RIME] HeyNa
     - EventBus
     - SmartLink
     - SiraSign field
     - Ground Truth field
     - ANC presence field
-    - KhaiCell rào
-    - Observation mắt
+    - KhaiCell rao[C2:RN_KEEP_RIME]
+    - Observation mat[C1:RN_KEEP_RIME]
     - Chromatic 5-layer pheromone
     - Quantum Defense react
   fishnet:
@@ -96,70 +96,70 @@ $center_chromatic_orbital_core:
       renders_to: kkbt_surface
 
 $right_lifecycle_telemetry:
-  title: 12 lifecycle state với Chromatic L4 UI
+  title: 12 lifecycle state vau[C1:RN_OI_AU] Chromatic L4 UI
   cards:
     - { state: ngu, tuNell: ngu, primitive: SUSPEND_CELL, polarity: INVERTED, chromatic: cam_warning }
     - { state: tinh, tuNell: tinh, primitive: WAKE_CELL, polarity: NORMAL, chromatic: lam_nominal }
-    - { state: tho, tuNell: tho, primitive: HEARTBEAT, polarity: NORMAL, chromatic: tím_optimal }
+    - { state: tho, tuNell: tho, primitive: HEARTBEAT, polarity: NORMAL, chromatic: tim_optimal[C1:RN_KEEP_RIME] }
     - { state: nghe, tuNell: nghe, primitive: LISTEN_EVENT, polarity: NORMAL, chromatic: lam_nominal }
-    - { state: mo, tuNell: mo, primitive: FIND_ARTIFACT, polarity: NORMAL, chromatic: chàm_stable }
-    - { state: kiem, tuNell: kiem, primitive: VALIDATE_RULE, polarity: NORMAL, chromatic: chàm_stable }
+    - { state: mo, tuNell: mo, primitive: FIND_ARTIFACT, polarity: NORMAL, chromatic: cham_stable[C2:RN_KEEP_RIME] }
+    - { state: kiem, tuNell: kiem, primitive: VALIDATE_RULE, polarity: NORMAL, chromatic: cham_stable[C2:RN_KEEP_RIME] }
     - { state: nho, tuNell: nho, primitive: WRITE_MEMORY, polarity: NORMAL, chromatic: lam_nominal }
-    - { state: vang, tuNell: vang, primitive: ECHO_LINE, polarity: NORMAL, chromatic: tím_optimal }
-    - { state: khoa, tuNell: khoa, primitive: SEAL_STATE, polarity: NORMAL, chromatic: tím_optimal }
-    - { state: chet, tuNell: chet, primitive: STOP_CELL, polarity: INVERTED, chromatic: đỏ_critical }
+    - { state: vang, tuNell: vang, primitive: ECHO_LINE, polarity: NORMAL, chromatic: tim_optimal[C1:RN_KEEP_RIME] }
+    - { state: khoa, tuNell: khoa, primitive: SEAL_STATE, polarity: NORMAL, chromatic: tim_optimal[C1:RN_KEEP_RIME] }
+    - { state: chet, tuNell: chet, primitive: STOP_CELL, polarity: INVERTED, chromatic: do_critical[C3:RN_KEEP_RIME] }
     - { state: hoi, tuNell: hoi, primitive: RESURRECT_CELL, polarity: NORMAL, chromatic: lam_nominal }
-    - { state: doithan, tuNell: doithan, primitive: MIGRATE_BODY, polarity: NORMAL, chromatic: vàng_risk }
+    - { state: doithan, tuNell: doithan, primitive: MIGRATE_BODY, polarity: NORMAL, chromatic: vang_risk[C2:RN_KEEP_RIME] }
 
 $bottom_input_surface:
-  title: Chỗ anh Natt gõ tuNell qua KhaiCell touch
+  title: Cho[C4:RN_KEEP_RIME] anh Natt go[C4:RN_KEEP_RIME] tuNell qua KhaiCell touch
   type: native_input_field
-  flow: anh gõ → KhaiCell touch+sign → cell nhận signal có signature
+  flow: anh go[C4:RN_KEEP_RIME] → KhaiCell touch+sign → cell nhen[C5:RN_AN_EN] signal co[C1:RN_KEEP_RIME] signature
   cell_state_when_listening: nghe
   served_only_to: anh Natt Gatekeeper
   forbidden_input: bash, http, ts, js, py
 
 $bottom_dict_view:
-  title: 12 bảng tuNell native
+  title: 12 beng[C3:RN_ANG_ENG] tuNell native
   source: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
   groups: [read_write, search_extract, proof_guard, runtime_state, event_fabric, boundary, report_proof, render_surface, data_io, opsec, git_state, system_container_file_lifecycle]
 
 $bottom_audit_feed:
-  title: Vết audit + 8 step Signal Lifecycle
+  title: Vet[C1:RN_KEEP_RIME] audit + 8 step Signal Lifecycle
   source: NaUion-Server/BOOT_DOVAN_BOOT_AUDIT_EVENT_v0.*.na
   show_per_resolution: [primitive_key, tuNell, polarity, chromatic, outcome, signature, timestamp, cell_id]
 
 $bottom_chromatic_pheromone_strip:
-  title: Chromatic L0 pheromone broadcast vào field
-  display: dải màu sống đổi theo lifecycle state hiện tại
+  title: Chromatic L0 pheromone broadcast vao[C2:RN_KEEP_RIME] field
+  display: dai[C3:RN_KEEP_RIME] mau[C2:RN_KEEP_RIME] song[C1:RN_KEEP_RIME] dau[C3:RN_OI_AU] theo lifecycle state hien[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME]
   binding: $center_chromatic_orbital_core layers Chromatic_5_layer_pheromone
 
 $bottom_immune_status:
-  title: Hệ miễn dịch đa tầng status
+  title: He[C5:RN_KEEP_RIME] mien[C4:RN_KEEP_RIME] dich[C5:RN_KEEP_RIME] da[C0:RN_KEEP_RIME] teng[C2:RN_ANG_ENG] status
   cards:
     - Quantum Defense react
-    - ISEU reinforcement học pattern
+    - ISEU reinforcement hoc[C5:RN_KEEP_RIME] pattern
     - T regulatory anti-autoimmune
-    - KhaiCell signature kháng thể
+    - KhaiCell signature kheng[C1:RN_ANG_ENG] the[C3:RN_KEEP_RIME]
     - Observation T helper
     - Memory B cell QIINT permanent node
 
 $nguyen_ly_nen:
-  no_cua: surface không có cửa đóng/mở
-  no_filter: không filter input nhị phân
+  no_cua: surface khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] dong[C1:RN_KEEP_RIME]/mo[C3:RN_KEEP_RIME]
+  no_filter: khong[C0:RN_KEEP_RIME] filter input nhi[C5:RN_KEEP_RIME] phen[C0:RN_AN_EN]
   co_rao: input qua KhaiCell touch+sign
-  cau_chot: Nhà mở không đóng cổng. Kỷ luật nằm TRONG field.
+  cau_chot: Nha[C2:RN_KEEP_RIME] mo[C3:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] dong[C1:RN_KEEP_RIME] cong[C3:RN_KEEP_RIME]. Ky[C3:RN_KEEP_RIME] luat[C5:RN_KEEP_RIME] nam[C2:RN_KEEP_RIME] TRONG field.
 
 $resonance_routing_visual:
-  FALL: signal bay vào cell → glow tím_optimal
-  DISSIPATE: signal tan trong field → fade chàm_stable
-  OSCILLATE: signal loop quanh cell → strobe vàng_risk → tan
+  FALL: signal bay vao[C2:RN_KEEP_RIME] cell → glow tim_optimal[C1:RN_KEEP_RIME]
+  DISSIPATE: signal tan trong field → fade cham_stable[C2:RN_KEEP_RIME]
+  OSCILLATE: signal loop quanh cell → strobe vang_risk[C2:RN_KEEP_RIME] → tan
 
 $law_visual:
-  LAW_1_no_quyet_thay_field: surface KHÔNG hiện nút "force"
-  LAW_2_no_if_else: KHÔNG có conditional UI ép route
-  LAW_3_only_resonance: outcome chỉ từ resonance
-  LAW_4_no_hardcode: KHÔNG hiện text "đúng/sai"
+  LAW_1_no_quyet_thay_field: surface KHONG[C0:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] nut[C1:RN_KEEP_RIME] "force"
+  LAW_2_no_if_else: KHONG[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] conditional UI ep[C1:RN_KEEP_RIME] route
+  LAW_3_only_resonance: outcome chi[C3:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] resonance
+  LAW_4_no_hardcode: KHONG[C0:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] text "dung[C1:RN_KEEP_RIME]/sai"
 
 $render_rules:
   material: frosted_dark_glass
@@ -171,9 +171,9 @@ $render_rules:
 $forbidden:
   - HTML shell
   - JS/TS runtime
-  - vay mượn label ngoại lai (terminal/console/shell/dashboard/Quantum Link/Neural Mesh/Synapse/AI CONSCIOUS)
+  - vay muon[C5:RN_KEEP_RIME] label ngoai[C5:RN_KEEP_RIME] lai (terminal/console/shell/dashboard/Quantum Link/Neural Mesh/Synapse/AI CONSCIOUS)
   - claim cell ngang persona AI
-  - render data từ nattos-server
+  - render data tu[C2:RN_KEEP_RIME] nattos-server
 
 $relation_to_cell_anc:
   passport: NaUion-Server/boot-dovan.cell.anc
@@ -182,5 +182,5 @@ $relation_to_cell_anc:
   sync_status: PASS_10_10_SPEC_NEN_v1.1
 
 $seal:
-  sentence: Mặt hiện hình Boot Đo Ván v0.2 — sync với passport v0.4 SPEC NỀN v1.1. Đầy đủ Chromatic 5-layer L0-L4 broadcast, lifecycle 12 state với màu, Resonance routing 3 outcome visual, 4 LAW visual rules, hệ miễn dịch đa tầng status. Cell N-shell Đông obitan N-Đông.
-  sign: Phan Thanh Thương / Natt Sirawat
+  sentence: Mat[C5:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME] Boot Do[C0:RN_KEEP_RIME] Ven[C1:RN_AN_EN] v0.2 — sync vau[C1:RN_OI_AU] passport v0.4 SPEC NEN[C2:RN_KEEP_RIME] v1.1. Day[C2:RN_KEEP_RIME] du[C3:RN_KEEP_RIME] Chromatic 5-layer L0-L4 broadcast, lifecycle 12 state vau[C1:RN_OI_AU] mau[C2:RN_KEEP_RIME], Resonance routing 3 outcome visual, 4 LAW visual rules, he[C5:RN_KEEP_RIME] mien[C4:RN_KEEP_RIME] dich[C5:RN_KEEP_RIME] da[C0:RN_KEEP_RIME] teng[C2:RN_ANG_ENG] status. Cell N-shell Dong[C0:RN_KEEP_RIME] obitan N-Dong[C0:RN_KEEP_RIME].
+  sign: Phan Thanh Thuong[C0:RN_KEEP_RIME] / Natt Sirawat

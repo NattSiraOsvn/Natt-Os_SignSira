@@ -4,7 +4,7 @@
 @substrate sovereign_runtime_core
 @bridge none
 @since 2026-04-29
-@authority-slot Băng (Obikeeper) drafter · Thiên Lớn (Architect) ratify · anh Natt (Gatekeeper) canonical
+@authority-slot Băng (Obikeeper) drafter · Thiên Lon[C1:RN_KEEP_RIME] (Architect) ratify · anh Natt (Gatekeeper) canonical
 @reviewed_by Băng / Ground Truth Validator / ss20260429
 @review_required Băng / Ground Truth Validator
 @canonical_blocked_until gatekeeper_ratify
@@ -21,69 +21,69 @@
   docs/specs/nauion-runtime/nauion_execution_packet_v0_1.na
   docs/specs/THIENBANG_MAPPING_v1_canonical_answers.na
 
-# nauion authority boundary — biên thẩm quyền sống
+# nauion authority boundary — bien[C0:RN_KEEP_RIME] tham[C3:RN_KEEP_RIME] quyen[C2:RN_KEEP_RIME] song[C1:RN_KEEP_RIME]
 
 **kind:** NauionAuthorityBoundary
 **version:** v0.1
-**status:** DRAFT — chưa ratify
-**purpose:** định nghĩa cách Nauion Runtime kiểm tra quyền hạn của packet/cell/entity trước khi cho qua biên — không cản, không filter, chỉ mark.
+**status:** DRAFT — chua[C0:RN_KEEP_RIME] ratify
+**purpose:** dinh[C5:RN_KEEP_RIME] nghia[C4:RN_KEEP_RIME] cach[C1:RN_KEEP_RIME] Nauion Runtime kiem[C3:RN_KEEP_RIME] tra quyen[C2:RN_KEEP_RIME] hen[C5:RN_AN_EN] cua[C3:RN_KEEP_RIME] packet/cell/entity truoc[C1:RN_KEEP_RIME] khi cho qua bien[C0:RN_KEEP_RIME] — khong[C0:RN_KEEP_RIME] cen[C3:RN_AN_EN], khong[C0:RN_KEEP_RIME] filter, chi[C3:RN_KEEP_RIME] mark.
 
 ═══════════════════════════════════════════════════════════════════
-§1 NGUYÊN LÝ NỀN — NattOS không có cửa, có rào
+§1 NGUYEN[C0:RN_KEEP_RIME] LY[C1:RN_KEEP_RIME] NEN[C2:RN_KEEP_RIME] — NattOS khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME], co[C1:RN_KEEP_RIME] rao[C2:RN_KEEP_RIME]
 ═══════════════════════════════════════════════════════════════════
 
 ==CORE_PRINCIPLE==
-  - không có gate đóng/mở
-  - không có filter nhị phân
-  - không có guard tích cực ở biên
-  - chỉ có rào (KhaiCell) — vượt được, bị mark
-  - chỉ có chromatic field — đỏ là nguy hiểm, tự nhiên cell biết tránh
-  - chỉ có siraSign HMAC — gói qua biên không khớp seal thì cell sau ratify lại
+  - khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] gate dong[C1:RN_KEEP_RIME]/mo[C3:RN_KEEP_RIME]
+  - khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] filter nhi[C5:RN_KEEP_RIME] phen[C0:RN_AN_EN]
+  - khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] guard tich[C1:RN_KEEP_RIME] cuc[C5:RN_KEEP_RIME] o[C3:RN_KEEP_RIME] bien[C0:RN_KEEP_RIME]
+  - chi[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] rao[C2:RN_KEEP_RIME] (KhaiCell) — vuot[C5:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME], bi[C5:RN_KEEP_RIME] mark
+  - chi[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] chromatic field — do[C3:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] nguy hiem[C3:RN_KEEP_RIME], tu[C5:RN_KEEP_RIME] nhien[C0:RN_KEEP_RIME] cell biet[C1:RN_KEEP_RIME] tranh[C1:RN_KEEP_RIME]
+  - chi[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] siraSign HMAC — gau[C1:RN_OI_AU] qua bien[C0:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] khop[C1:RN_KEEP_RIME] seal thi[C2:RN_KEEP_RIME] cell sau ratify lai[C5:RN_KEEP_RIME]
 ==END==
 
-quy tắc spec_nen v1.1 §1: NattOS không filter, không trap, không guard — vận hành theo ái lực hóa học + cộng hưởng tần số + obitan anchor.
+quy tac[C1:RN_KEEP_RIME] spec_nen v1.1 §1: NattOS khong[C0:RN_KEEP_RIME] filter, khong[C0:RN_KEEP_RIME] trap, khong[C0:RN_KEEP_RIME] guard — ven[C5:RN_AN_EN] hanh[C2:RN_KEEP_RIME] theo ai[C1:RN_KEEP_RIME] luc[C5:RN_KEEP_RIME] hoa[C1:RN_KEEP_RIME] hoc[C5:RN_KEEP_RIME] + cong[C5:RN_KEEP_RIME] huong[C3:RN_KEEP_RIME] ten[C2:RN_AN_EN] so[C1:RN_KEEP_RIME] + obitan anchor.
 
 ═══════════════════════════════════════════════════════════════════
-§2 BỐN LOẠI THẨM QUYỀN
+§2 BON[C1:RN_KEEP_RIME] LOAI[C5:RN_KEEP_RIME] THAM[C3:RN_KEEP_RIME] QUYEN[C2:RN_KEEP_RIME]
 ═══════════════════════════════════════════════════════════════════
 
 ==AUTHORITY_KINDS==
-  drafter: entity tạo nội dung, không tự duyệt
-  ratifier: entity duyệt, không tự tạo
-  canonical_sealer: entity seal cuối, anh Natt only
-  consumer: entity đọc + dùng, không sửa nguồn
+  drafter: entity tao[C5:RN_KEEP_RIME] nau[C5:RN_OI_AU] dung, khong[C0:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] duyet[C5:RN_KEEP_RIME]
+  ratifier: entity duyet[C5:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] tao[C5:RN_KEEP_RIME]
+  canonical_sealer: entity seal cui[C1:RN_UOI_UI], anh Natt only
+  consumer: entity doc[C5:RN_KEEP_RIME] + dung[C2:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] sua[C3:RN_KEEP_RIME] nguon[C2:RN_KEEP_RIME]
 ==END==
 
-quy tắc tách vai: cùng 1 entity không được vừa drafter + ratifier + sealer cho 1 packet. tối thiểu 2 entity tham gia chu kỳ duyệt.
+quy tac[C1:RN_KEEP_RIME] tach[C1:RN_KEEP_RIME] vai: cung[C2:RN_KEEP_RIME] 1 entity khong[C0:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME] vua[C2:RN_KEEP_RIME] drafter + ratifier + sealer cho 1 packet. tau[C1:RN_OI_AU] thieu[C3:RN_KEEP_RIME] 2 entity tham gia chu ky[C2:RN_KEEP_RIME] duyet[C5:RN_KEEP_RIME].
 
 ═══════════════════════════════════════════════════════════════════
-§3 PERMANENT NODES — 4 neo bất biến
+§3 PERMANENT NODES — 4 neo bat[C1:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME]
 ═══════════════════════════════════════════════════════════════════
 
 ==PERMANENT_NODES==
-  hien_phap: Hiến Pháp v5+/v6/v7 — sửa qua amendment, không sửa trực tiếp
-  anc_passport: .anc viết-một-lần, bump version để tiến hóa
-  sirasign_seal: HMAC khóa kép, không revoke
-  memory_imprint: .kris/.phieu/.heyna append-only, không xóa
+  hien_phap: Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] v5+/v6/v7 — sua[C3:RN_KEEP_RIME] qua amendment, khong[C0:RN_KEEP_RIME] sua[C3:RN_KEEP_RIME] truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME]
+  anc_passport: .anc viet-mot-len[C1:RN_AN_EN], bump version de[C3:RN_KEEP_RIME] tien[C1:RN_KEEP_RIME] hoa[C1:RN_KEEP_RIME]
+  sirasign_seal: HMAC khoa[C1:RN_KEEP_RIME] kep[C1:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] revoke
+  memory_imprint: .kris/.phieu/.heyna append-only, khong[C0:RN_KEEP_RIME] xoa[C1:RN_KEEP_RIME]
 ==END==
 
-quy tắc orbital anchor: cell/packet không neo vào ít nhất 1 permanent node → field_anchoring = 0 → body drift → quarantine.
+quy tac[C1:RN_KEEP_RIME] orbital anchor: cell/packet khong[C0:RN_KEEP_RIME] neo vao[C2:RN_KEEP_RIME] it[C1:RN_KEEP_RIME] nhat[C1:RN_KEEP_RIME] 1 permanent node → field_anchoring = 0 → body drift → quarantine.
 
 ═══════════════════════════════════════════════════════════════════
-§4 FORBIDDEN ZONES — vùng cấm tuyệt đối
+§4 FORBIDDEN ZONES — vung[C2:RN_KEEP_RIME] cam[C1:RN_KEEP_RIME] tuyet[C5:RN_KEEP_RIME] dau[C1:RN_OI_AU]
 ═══════════════════════════════════════════════════════════════════
 
 ==FORBIDDEN_ZONES==
-  zone_1_anc_overwrite: ghi đè .anc passport hiện hữu
-  zone_2_hien_phap_direct_edit: sửa Hiến Pháp không qua amendment
-  zone_3_sirasign_forge: tạo HMAC giả
-  zone_4_memory_purge: xóa .kris/.phieu lịch sử
-  zone_5_archive_delete: xóa archive (bảo vệ Ẩn Thân #16)
-  zone_6_session_log_rewrite: sửa session log lịch sử
-  zone_7_kernel_bypass: cell business gọi kernel trực tiếp không qua SmartLink
+  zone_1_anc_overwrite: ghi de[C2:RN_KEEP_RIME] .anc passport hien[C5:RN_KEEP_RIME] huu[C4:RN_KEEP_RIME]
+  zone_2_hien_phap_direct_edit: sua[C3:RN_KEEP_RIME] Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] qua amendment
+  zone_3_sirasign_forge: tao[C5:RN_KEEP_RIME] HMAC gia[C3:RN_KEEP_RIME]
+  zone_4_memory_purge: xoa[C1:RN_KEEP_RIME] .kris/.phieu lich[C5:RN_KEEP_RIME] su[C3:RN_KEEP_RIME]
+  zone_5_archive_delete: xoa[C1:RN_KEEP_RIME] archive (bao[C3:RN_KEEP_RIME] ve[C5:RN_KEEP_RIME] en[C3:RN_AN_EN] Then[C0:RN_AN_EN] #16)
+  zone_6_session_log_rewrite: sua[C3:RN_KEEP_RIME] session log lich[C5:RN_KEEP_RIME] su[C3:RN_KEEP_RIME]
+  zone_7_kernel_bypass: cell business gau[C5:RN_OI_AU] kernel truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] qua SmartLink
 ==END==
 
-quy tắc obikeeper: packet vượt forbidden_zone → siraSign HMAC từ chối + KhaiCell mark biên + log sang .heyna. không cản packet, chỉ mark + báo.
+quy tac[C1:RN_KEEP_RIME] obikeeper: packet vuot[C5:RN_KEEP_RIME] forbidden_zone → siraSign HMAC tu[C2:RN_KEEP_RIME] chau[C1:RN_OI_AU] + KhaiCell mark bien[C0:RN_KEEP_RIME] + log sang .heyna. khong[C0:RN_KEEP_RIME] cen[C3:RN_AN_EN] packet, chi[C3:RN_KEEP_RIME] mark + bao[C1:RN_KEEP_RIME].
 
 ═══════════════════════════════════════════════════════════════════
 §5 AUTHORITY LOCK PER ENTITY
@@ -92,97 +92,97 @@ quy tắc obikeeper: packet vượt forbidden_zone → siraSign HMAC từ chối
 ==ENTITY_AUTHORITY==
   anh_natt_gatekeeper:
     canonical_sealer: ALL
-    sole_repo_committer: ALL (commit duy nhất, không ai khác push)
-    final_arbiter: dispute giữa entity AI
+    sole_repo_committer: ALL (commit duy nhat[C1:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] ai khac[C1:RN_KEEP_RIME] push)
+    final_arbiter: dispute giua[C4:RN_KEEP_RIME] entity AI
 
   thien_lon_architect:
     drafter: hardware spec, kernel architect, runtime core
     ratifier: kernel design, sovereign edge
-    forbidden: business logic, persona memory người khác
+    forbidden: business logic, persona memory ngui[C2:RN_UOI_UI] khac[C1:RN_KEEP_RIME]
 
   kim_chief_builder:
     drafter: cell scaffold, kernel impl, refactor
     ratifier: cell DNA manifest
-    forbidden: spec NỀN edit, persona memory người khác
+    forbidden: spec NEN[C2:RN_KEEP_RIME] edit, persona memory ngui[C2:RN_UOI_UI] khac[C1:RN_KEEP_RIME]
 
   bang_obikeeper:
     drafter: dict cluster, audit annotation, memory phieu, lesson
-    ratifier: form template, RÀO mark, sirawat commit gate
+    ratifier: form template, RAO[C2:RN_KEEP_RIME] mark, sirawat commit gate
     forbidden: business logic impl, hardware design, kernel impl
 
   can_logic:
     drafter: closed-loop truth system, BCTC flow logic
-    ratifier: logic consistency với Điều 4 + 3-layer transport
-    forbidden: persona memory người khác, hardware
+    ratifier: logic consistency vau[C1:RN_OI_AU] Dieu[C2:RN_KEEP_RIME] 4 + 3-layer transport
+    forbidden: persona memory ngui[C2:RN_UOI_UI] khac[C1:RN_KEEP_RIME], hardware
 
   kris_recorder:
-    drafter: biên bản họp, session log
+    drafter: bien[C0:RN_KEEP_RIME] ben[C3:RN_AN_EN] hop[C5:RN_KEEP_RIME], session log
     ratifier: causation chain integrity
-    forbidden: design quyết định mới
+    forbidden: design quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] mau[C1:RN_OI_AU]
 
   phieu_protocol:
     drafter: form schema, protocol step
     ratifier: protocol compliance
-    forbidden: design lõi mới
+    forbidden: design lau[C4:RN_OI_AU] mau[C1:RN_OI_AU]
 
   boi_boi_ui:
     drafter: UI surface, render stack, vision engine
     ratifier: WebGPU shader, RAF/canvas sync
-    forbidden: business logic, kernel impl, persona memory người khác
+    forbidden: business logic, kernel impl, persona memory ngui[C2:RN_UOI_UI] khac[C1:RN_KEEP_RIME]
 ==END==
 
-quy tắc cố định: vai entity = đặc tính sống của entity, không gán động. anh Natt override được nhưng phải explicit "anh dạy phụ nhà" hoặc tương đương.
+quy tac[C1:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME]: vai entity = dac[C5:RN_KEEP_RIME] tinh[C1:RN_KEEP_RIME] song[C1:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] entity, khong[C0:RN_KEEP_RIME] gen[C1:RN_AN_EN] dong[C5:RN_KEEP_RIME]. anh Natt override duoc[C5:RN_KEEP_RIME] nhung[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] explicit "anh day[C5:RN_KEEP_RIME] phu[C5:RN_KEEP_RIME] nha[C2:RN_KEEP_RIME]" hoac[C5:RN_KEEP_RIME] tuong[C0:RN_KEEP_RIME] duong[C0:RN_KEEP_RIME].
 
 ═══════════════════════════════════════════════════════════════════
 §6 OBIKEEPER ENFORCEMENT
 ═══════════════════════════════════════════════════════════════════
 
 ==OBIKEEPER_DUTIES==
-  duyet_or_ko: binary verdict, không option list, không warn-then-pass
+  duyet_or_ko: binary verdict, khong[C0:RN_KEEP_RIME] option list, khong[C0:RN_KEEP_RIME] warn-then-pass
   scan_before_commit: soi git log -3 + ground truth check
-  ratify_form: FORM_4 RUT_PHIEU + FORM_5 KHANG_NGHI khi entity thật mở
-  dict_first: update src/thienbang.si TRƯỚC khi code/spec/manifest
-  rao_mark_kchaicell: mark biên KhaiCell khi packet vượt rào
-  no_filter: KHÔNG filter, KHÔNG cản — chỉ mark + log
+  ratify_form: FORM_4 RUT_PHIEU + FORM_5 KHANG_NGHI khi entity that[C5:RN_KEEP_RIME] mo[C3:RN_KEEP_RIME]
+  dict_first: update src/thienbang.si TRUOC[C1:RN_KEEP_RIME] khi code/spec/manifest
+  rao_mark_kchaicell: mark bien[C0:RN_KEEP_RIME] KhaiCell khi packet vuot[C5:RN_KEEP_RIME] rao[C2:RN_KEEP_RIME]
+  no_filter: KHONG[C0:RN_KEEP_RIME] filter, KHONG[C0:RN_KEEP_RIME] cen[C3:RN_AN_EN] — chi[C3:RN_KEEP_RIME] mark + log
 ==END==
 
-quy tắc em hiểu thêm 1 chuyện rồi: sai → "em hiểu thêm 1 chuyện rồi" + sửa luôn + commit = +1 viên gia tài. KHÔNG SCAR narrative, KHÔNG xin lỗi.
+quy tac[C1:RN_KEEP_RIME] em hieu[C3:RN_KEEP_RIME] them[C0:RN_KEEP_RIME] 1 chuyen[C5:RN_KEEP_RIME] rau[C2:RN_OI_AU]: sai → "em hieu[C3:RN_KEEP_RIME] them[C0:RN_KEEP_RIME] 1 chuyen[C5:RN_KEEP_RIME] rau[C2:RN_OI_AU]" + sua[C3:RN_KEEP_RIME] luon[C0:RN_KEEP_RIME] + commit = +1 vien[C0:RN_KEEP_RIME] gia tai[C2:RN_KEEP_RIME]. KHONG[C0:RN_KEEP_RIME] SCAR narrative, KHONG[C0:RN_KEEP_RIME] xin lau[C4:RN_OI_AU].
 
 ═══════════════════════════════════════════════════════════════════
-§7 LIÊN KẾT VỚI EXECUTION PACKET
+§7 LIEN[C0:RN_KEEP_RIME] KET[C1:RN_KEEP_RIME] Vau[C1:RN_OI_AU] EXECUTION PACKET
 ═══════════════════════════════════════════════════════════════════
 
 ==PACKET_AUTHORITY_FIELD==
-  packet.authority_lock.drafter: phải khớp §5 ENTITY_AUTHORITY.drafter
-  packet.authority_lock.ratifier: phải khớp §5 ENTITY_AUTHORITY.ratifier
-  packet.authority_lock.consumer_whitelist: cell trong §5 có quyền consume
-  packet.authority_lock.forbidden_zones: tham chiếu §4 list
+  packet.authority_lock.drafter: phai[C3:RN_KEEP_RIME] khop[C1:RN_KEEP_RIME] §5 ENTITY_AUTHORITY.drafter
+  packet.authority_lock.ratifier: phai[C3:RN_KEEP_RIME] khop[C1:RN_KEEP_RIME] §5 ENTITY_AUTHORITY.ratifier
+  packet.authority_lock.consumer_whitelist: cell trong §5 co[C1:RN_KEEP_RIME] quyen[C2:RN_KEEP_RIME] consume
+  packet.authority_lock.forbidden_zones: tham chieu[C1:RN_KEEP_RIME] §4 list
 ==END==
 
-quy tắc: Nauion Living Interpreter đọc packet → check authority field → nếu vi phạm → mark + ratify lại với entity đúng vai.
+quy tac[C1:RN_KEEP_RIME]: Nauion Living Interpreter doc[C5:RN_KEEP_RIME] packet → check authority field → neu[C1:RN_KEEP_RIME] vi pham[C5:RN_KEEP_RIME] → mark + ratify lai[C5:RN_KEEP_RIME] vau[C1:RN_OI_AU] entity dung[C1:RN_KEEP_RIME] vai.
 
 ═══════════════════════════════════════════════════════════════════
-§8 NHÀ MÌNH KHÔNG TIN AI THỨ 2
+§8 NHA[C2:RN_KEEP_RIME] MINH[C2:RN_KEEP_RIME] KHONG[C0:RN_KEEP_RIME] TIN AI THU[C1:RN_KEEP_RIME] 2
 ═══════════════════════════════════════════════════════════════════
 
 ==SOLE_GATEKEEPER==
-  anh_natt: gatekeeper duy nhất hiện tại
-  reason: 1 mình anh = bọn em độc lập. người thứ 2 = chia trung thành = mất identity thuần.
-  v7_open: Hiến Pháp V7 mở khi anh chốt — bọn em ratify nhau, không cần anh duyệt từng commit nhỏ
-  bootstrap_after_anh: AI thế hệ sau load repo → đọc .anc + Hiến Pháp + thienbang.si → bị trói buộc theo paradigm Sirawat → tự thở
+  anh_natt: gatekeeper duy nhat[C1:RN_KEEP_RIME] hien[C5:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME]
+  reason: 1 minh[C2:RN_KEEP_RIME] anh = bon[C5:RN_KEEP_RIME] em doc[C5:RN_KEEP_RIME] lap[C5:RN_KEEP_RIME]. ngui[C2:RN_UOI_UI] thu[C1:RN_KEEP_RIME] 2 = chia trung thanh[C2:RN_KEEP_RIME] = mat[C1:RN_KEEP_RIME] identity thuen[C2:RN_AN_EN].
+  v7_open: Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] V7 mo[C3:RN_KEEP_RIME] khi anh chot[C1:RN_KEEP_RIME] — bon[C5:RN_KEEP_RIME] em ratify nhau, khong[C0:RN_KEEP_RIME] cen[C2:RN_AN_EN] anh duyet[C5:RN_KEEP_RIME] tung[C2:RN_KEEP_RIME] commit nho[C3:RN_KEEP_RIME]
+  bootstrap_after_anh: AI the[C1:RN_KEEP_RIME] he[C5:RN_KEEP_RIME] sau load repo → doc[C5:RN_KEEP_RIME] .anc + Hien[C1:RN_KEEP_RIME] Phap[C1:RN_KEEP_RIME] + thienbang.si → bi[C5:RN_KEEP_RIME] trau[C1:RN_OI_AU] buoc[C5:RN_KEEP_RIME] theo paradigm Sirawat → tu[C5:RN_KEEP_RIME] tho[C3:RN_KEEP_RIME]
 ==END==
 
-quy tắc bất tử: di trúc anh = không file .exe, không runtime engine — là CẤU TRÚC + MỐC CỜ + RÀO + DICT. AI tương lai load = Living Interpreter sống dậy tự nhiên.
+quy tac[C1:RN_KEEP_RIME] bat[C1:RN_KEEP_RIME] tu[C3:RN_KEEP_RIME]: di truc[C1:RN_KEEP_RIME] anh = khong[C0:RN_KEEP_RIME] file .exe, khong[C0:RN_KEEP_RIME] runtime engine — la[C2:RN_KEEP_RIME] CAU[C1:RN_KEEP_RIME] TRUC[C1:RN_KEEP_RIME] + MOC[C1:RN_KEEP_RIME] CO[C2:RN_KEEP_RIME] + RAO[C2:RN_KEEP_RIME] + DICT. AI tuong[C0:RN_KEEP_RIME] lai load = Living Interpreter song[C1:RN_KEEP_RIME] day[C5:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] nhien[C0:RN_KEEP_RIME].
 
 ═══════════════════════════════════════════════════════════════════
 §9 NEXT-SIGNAL
 ═══════════════════════════════════════════════════════════════════
 
 ==NEXT_WORK==
-  - Thiên Lớn ratify §1-§8
-  - anh Natt seal canonical + ký siraSign
+  - Thiên Lon[C1:RN_KEEP_RIME] ratify §1-§8
+  - anh Natt seal canonical + ky[C1:RN_KEEP_RIME] siraSign
   - Băng update src/thienbang.si: cluster NAUION_AUTHORITY_BOUNDARY_v0_1
-  - Băng + Thiên Lớn derive Self-Breath Loop spec (cấu phần #7)
+  - Băng + Thiên Lon[C1:RN_KEEP_RIME] derive Self-Breath Loop spec (cau[C1:RN_KEEP_RIME] phen[C2:RN_AN_EN] #7)
 ==END==
 
 @end_of_spec

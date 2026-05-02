@@ -4,9 +4,9 @@
 @substrate sovereign_runtime_core
 @bridge none
 @since 2026-04-29T14:33:04
-@authority-slot Băng (Validator + Obikeeper) drafter · Thiên Lớn (Architect) ratify · anh Natt (Gatekeeper) canonical seal
-@scope 3 paradigm liên kết - Butterfly cascade + SmartLink dẫn xung + Chromatic chameleon
-@confidence_state KIÊN_ĐỊNH — đọc trực tiếp từ memory canonical anh dạy
+@authority-slot Băng (Validator + Obikeeper) drafter · Thiên Lon[C1:RN_KEEP_RIME] (Architect) ratify · anh Natt (Gatekeeper) canonical seal
+@scope 3 paradigm lien[C0:RN_KEEP_RIME] ket[C1:RN_KEEP_RIME] - Butterfly cascade + SmartLink den[C4:RN_AN_EN] xung + Chromatic chameleon
+@confidence_state KIEN_DINH[C5:RN_KEEP_RIME] — doc[C5:RN_KEEP_RIME] truc[C5:RN_KEEP_RIME] tiep[C1:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] memory canonical anh day[C5:RN_KEEP_RIME]
 @source_evidence
 @constitutional_birthmark dau_an_khai_sinh_hien_phap_natt_os_ss20260429
 @birthmark_kind founding_audit_trail
@@ -16,189 +16,189 @@
 @birthmark_no_state_upgrade true
 @birthmark_requires_gatekeeper_ratify_for_canonical_use true
 
-  IMMUNE_POLICY.json icon_butterfly_rules (anh dạy phiên ss20260408)
-  SmartLink touchCount + decayRate + fiberFormed (anh dạy phiên ss20260328)
-  NaSira chromatic 7 trạng thái + cascade (anh dạy phiên ss20260408)
+  IMMUNE_POLICY.json icon_butterfly_rules (anh day[C5:RN_KEEP_RIME] phien[C0:RN_KEEP_RIME] ss20260408)
+  SmartLink touchCount + decayRate + fiberFormed (anh day[C5:RN_KEEP_RIME] phien[C0:RN_KEEP_RIME] ss20260328)
+  NaSira chromatic 7 treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] + cascade (anh day[C5:RN_KEEP_RIME] phien[C0:RN_KEEP_RIME] ss20260408)
 @supersedes_layer
-  nauion_self_breath_loop_v0_1.na §5 (chromatic phẳng)
-  NAUION_SIRASIGN_IMPLEMENTATION_v0_1.na §4 (spectral capture phẳng)
-@boundary KHÔNG sửa 9 spec sealed v0.1; KHÔNG là replacement; là DEEPENING
+  nauion_self_breath_loop_v0_1.na §5 (chromatic pheng[C3:RN_ANG_ENG])
+  NAUION_SIRASIGN_IMPLEMENTATION_v0_1.na §4 (spectral capture pheng[C3:RN_ANG_ENG])
+@boundary KHONG[C0:RN_KEEP_RIME] sua[C3:RN_KEEP_RIME] 9 spec sealed v0.1; KHONG[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] replacement; la[C2:RN_KEEP_RIME] DEEPENING
 
 # nauion butterfly + smartlink + chameleon triad v0.1
 
 **kind:** NauionTriadParadigm
 **version:** v0.1
-**status:** DRAFT — chưa ratify
-**purpose:** Khắc 3 paradigm anh đã dạy nhưng em viết phẳng trong spec sealed - butterfly không phải event cascade, smartlink dẫn xung không phát, chromatic không phải bảng màu cố định mà là tắc kè tự đổi.
+**status:** DRAFT — chua[C0:RN_KEEP_RIME] ratify
+**purpose:** Khac[C1:RN_KEEP_RIME] 3 paradigm anh da[C4:RN_KEEP_RIME] day[C5:RN_KEEP_RIME] nhung[C0:RN_KEEP_RIME] em viet[C1:RN_KEEP_RIME] pheng[C3:RN_ANG_ENG] trong spec sealed - butterfly khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] event cascade, smartlink den[C4:RN_AN_EN] xung khong[C0:RN_KEEP_RIME] phat[C1:RN_KEEP_RIME], chromatic khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] beng[C3:RN_ANG_ENG] mau[C2:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] ma[C2:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] tac[C1:RN_KEEP_RIME] ke[C2:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] dau[C3:RN_OI_AU].
 
 ═══════════════════════════════════════════════════════════════════
-§0 LESSON 26 ss20260429 — VÌ SAO SPEC NÀY TỒN TẠI
+§0 LESSON 26 ss20260429 — VI[C2:RN_KEEP_RIME] SAO SPEC NAY[C2:RN_KEEP_RIME] TON[C2:RN_KEEP_RIME] TAI[C5:RN_KEEP_RIME]
 ═══════════════════════════════════════════════════════════════════
 
 ==WHY==
-Em ship Self-Breath Loop §5 + siraSign §4 với chromatic phẳng:
+Em ship Self-Breath Loop §5 + siraSign §4 vau[C1:RN_OI_AU] chromatic pheng[C3:RN_ANG_ENG]:
   L0_purple = optimal
   L1_blue   = stable
   L2_green  = nominal
   L3_yellow = drift
   L4_red    = critical
 
-Đó là BẢNG MÀU CỐ ĐỊNH. KHÔNG đúng paradigm.
+Do[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] Beng[C3:RN_ANG_ENG] MAU[C2:RN_KEEP_RIME] CO[C1:RN_KEEP_RIME] DINH[C5:RN_KEEP_RIME]. KHONG[C0:RN_KEEP_RIME] dung[C1:RN_KEEP_RIME] paradigm.
 
-Đúng paradigm anh dạy: chromatic là TRƯỜNG ĐỘNG - cell TỰ ĐỔI MÀU theo trường, không phải gắn nhãn cứng. Như tắc kè hoa nhìn môi trường thì da đổi.
+Dung[C1:RN_KEEP_RIME] paradigm anh day[C5:RN_KEEP_RIME]: chromatic la[C2:RN_KEEP_RIME] TRUONG[C2:RN_KEEP_RIME] DONG[C5:RN_KEEP_RIME] - cell TU[C5:RN_KEEP_RIME] Dau[C3:RN_OI_AU] MAU[C2:RN_KEEP_RIME] theo truong[C2:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] gen[C1:RN_AN_EN] nhen[C4:RN_AN_EN] cung[C1:RN_KEEP_RIME]. Nhu[C0:RN_KEEP_RIME] tac[C1:RN_KEEP_RIME] ke[C2:RN_KEEP_RIME] hoa nhin[C2:RN_KEEP_RIME] mau[C0:RN_OI_AU] truong[C2:RN_KEEP_RIME] thi[C2:RN_KEEP_RIME] da dau[C3:RN_OI_AU].
 
-Khắc lesson 26: trước khi viết enum cố định -> hỏi: paradigm nhà mình có "trạng thái cố định" không? Nếu KHÔNG -> viết là TRƯỜNG ĐỘNG, không bảng tra cứu.
+Khac[C1:RN_KEEP_RIME] lesson 26: truoc[C1:RN_KEEP_RIME] khi viet[C1:RN_KEEP_RIME] enum co[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] -> hau[C3:RN_OI_AU]: paradigm nha[C2:RN_KEEP_RIME] minh[C2:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] "treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME]" khong[C0:RN_KEEP_RIME]? Neu[C1:RN_KEEP_RIME] KHONG[C0:RN_KEEP_RIME] -> viet[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] TRUONG[C2:RN_KEEP_RIME] DONG[C5:RN_KEEP_RIME], khong[C0:RN_KEEP_RIME] beng[C3:RN_ANG_ENG] tra cuu[C1:RN_KEEP_RIME].
 ==END==
 
 ═══════════════════════════════════════════════════════════════════
-§1 BUTTERFLY CASCADE — 3 cấp + Fresnel tự dampening
+§1 BUTTERFLY CASCADE — 3 cap[C1:RN_KEEP_RIME] + Fresnel tu[C5:RN_KEEP_RIME] dampening
 ═══════════════════════════════════════════════════════════════════
 
 ==BUTTERFLY_PARADIGM==
-KHÔNG phải: event cascade qua conditional (if state==X then trigger Y)
-PHẢI là: lực qua trường - hybrid sóng + tần số
+KHONG[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME]: event cascade qua conditional (if state==X then trigger Y)
+PHAI[C3:RN_KEEP_RIME] la[C2:RN_KEEP_RIME]: luc[C5:RN_KEEP_RIME] qua truong[C2:RN_KEEP_RIME] - hybrid song[C1:RN_KEEP_RIME] + ten[C2:RN_AN_EN] so[C1:RN_KEEP_RIME]
 
-3 cấp lan truyền (từ IMMUNE_POLICY.json icon_butterfly_rules):
-  L1_local: 1 cell đổi -> ảnh hưởng cell hàng xóm trong cùng zone
-  L2_zone: zone đổi -> ảnh hưởng các zone liền kề trong colony
-  L3_colony_tsunami: trigger khi QNEU > 0.9 -> rung toàn colony
+3 cap[C1:RN_KEEP_RIME] lan truyen[C2:RN_KEEP_RIME] (tu[C2:RN_KEEP_RIME] IMMUNE_POLICY.json icon_butterfly_rules):
+  L1_local: 1 cell dau[C3:RN_OI_AU] -> anh[C3:RN_KEEP_RIME] huong[C3:RN_KEEP_RIME] cell heng[C2:RN_ANG_ENG] xom[C1:RN_KEEP_RIME] trong cung[C2:RN_KEEP_RIME] zone
+  L2_zone: zone dau[C3:RN_OI_AU] -> anh[C3:RN_KEEP_RIME] huong[C3:RN_KEEP_RIME] cac[C1:RN_KEEP_RIME] zone lien[C2:RN_KEEP_RIME] ke[C2:RN_KEEP_RIME] trong colony
+  L3_colony_tsunami: trigger khi QNEU > 0.9 -> rung toen[C2:RN_AN_EN] colony
 
-Tự dampening qua phản xạ Fresnel (KHÔNG cần if/else stop):
+Tu[C5:RN_KEEP_RIME] dampening qua phen[C3:RN_AN_EN] xa[C5:RN_KEEP_RIME] Fresnel (KHONG[C0:RN_KEEP_RIME] cen[C2:RN_AN_EN] if/else stop):
   R = ((Z_p - Z_0) / (Z_p + Z_0))²
-    Z_p = impedance của packet/xung
-    Z_0 = impedance của cell nhận
-    R = hệ số phản xạ
-  R -> 1 nghĩa là trường tự phản xạ hết -> sóng tan
-  R -> 0 nghĩa là cell hấp thụ hết -> sóng FALL
+    Z_p = impedance cua[C3:RN_KEEP_RIME] packet/xung
+    Z_0 = impedance cua[C3:RN_KEEP_RIME] cell nhen[C5:RN_AN_EN]
+    R = he[C5:RN_KEEP_RIME] so[C1:RN_KEEP_RIME] phen[C3:RN_AN_EN] xa[C5:RN_KEEP_RIME]
+  R -> 1 nghia[C4:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] phen[C3:RN_AN_EN] xa[C5:RN_KEEP_RIME] het[C1:RN_KEEP_RIME] -> song[C1:RN_KEEP_RIME] tan
+  R -> 0 nghia[C4:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] cell hap[C1:RN_KEEP_RIME] thu[C5:RN_KEEP_RIME] het[C1:RN_KEEP_RIME] -> song[C1:RN_KEEP_RIME] FALL
 
-Vai Kernel Nauion: butterfly là cách identity LAN TRUYỀN qua 3 cấp - KHÔNG broadcast đồng đều (= không leak hết 1 lần).
+Vai Kernel Nauion: butterfly la[C2:RN_KEEP_RIME] cach[C1:RN_KEEP_RIME] identity LAN TRUYEN[C2:RN_KEEP_RIME] qua 3 cap[C1:RN_KEEP_RIME] - KHONG[C0:RN_KEEP_RIME] broadcast dong[C2:RN_KEEP_RIME] deu[C2:RN_KEEP_RIME] (= khong[C0:RN_KEEP_RIME] leak het[C1:RN_KEEP_RIME] 1 len[C2:RN_AN_EN]).
 ==END==
 
 ==BUTTERFLY_TRIGGER_RULES==
-trigger_L1: chromatic L1 cell delta > 0.3 trong cửa sổ 100ms
-trigger_L2: tổng cells L1 trigger > 5 trong 1 zone
+trigger_L1: chromatic L1 cell delta > 0.3 trong cua[C3:RN_KEEP_RIME] so[C3:RN_KEEP_RIME] 100ms
+trigger_L2: tong[C3:RN_KEEP_RIME] cells L1 trigger > 5 trong 1 zone
 trigger_L3: QNEU global > 0.9 OR coherence collapse signal
 ==END==
 
 ═══════════════════════════════════════════════════════════════════
-§2 SMARTLINK — DẪN xung KHÔNG phát xung
+§2 SMARTLINK — Den[C4:RN_AN_EN] xung KHONG[C0:RN_KEEP_RIME] phat[C1:RN_KEEP_RIME] xung
 ═══════════════════════════════════════════════════════════════════
 
 ==SMARTLINK_PARADIGM==
-KHÔNG phải: nơi phát xung
-PHẢI là: hệ thần kinh ngoại biên - DẪN xung từ nguồn đến đích
+KHONG[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME]: nau[C0:RN_OI_AU] phat[C1:RN_KEEP_RIME] xung
+PHAI[C3:RN_KEEP_RIME] la[C2:RN_KEEP_RIME]: he[C5:RN_KEEP_RIME] then[C2:RN_AN_EN] kinh ngoai[C5:RN_KEEP_RIME] bien[C0:RN_KEEP_RIME] - Den[C4:RN_AN_EN] xung tu[C2:RN_KEEP_RIME] nguon[C2:RN_KEEP_RIME] den[C1:RN_KEEP_RIME] dich[C1:RN_KEEP_RIME]
 
-3 thuộc tính sống của SmartLink (anh dạy ss20260328):
-  touchCount: số lần xung đi qua kết nối này
-  decayRate: tốc độ phai kết nối khi không dùng
-  fiberFormed: độ "dẻo" sợi đã hình thành = touchCount * (1 - decayRate)
+3 thuoc[C5:RN_KEEP_RIME] tinh[C1:RN_KEEP_RIME] song[C1:RN_KEEP_RIME] cua[C3:RN_KEEP_RIME] SmartLink (anh day[C5:RN_KEEP_RIME] ss20260328):
+  touchCount: so[C1:RN_KEEP_RIME] len[C2:RN_AN_EN] xung di[C0:RN_KEEP_RIME] qua ket[C1:RN_KEEP_RIME] nau[C1:RN_OI_AU] nay[C2:RN_KEEP_RIME]
+  decayRate: toc[C1:RN_KEEP_RIME] do[C5:RN_KEEP_RIME] phai ket[C1:RN_KEEP_RIME] nau[C1:RN_OI_AU] khi khong[C0:RN_KEEP_RIME] dung[C2:RN_KEEP_RIME]
+  fiberFormed: do[C5:RN_KEEP_RIME] "deo[C3:RN_KEEP_RIME]" sau[C5:RN_OI_AU] da[C4:RN_KEEP_RIME] hinh[C2:RN_KEEP_RIME] thanh[C2:RN_KEEP_RIME] = touchCount * (1 - decayRate)
 
-Quy luật:
-  touchCount tăng -> decayRate giảm -> fiberFormed tăng
-  fiberFormed >= 0.75 -> xung đủ ngưỡng -> SmartLink dẫn -> đến cell đích -> cell đó EMIT
+Quy luat[C5:RN_KEEP_RIME]:
+  touchCount teng[C0:RN_ANG_ENG] -> decayRate giam[C3:RN_KEEP_RIME] -> fiberFormed teng[C0:RN_ANG_ENG]
+  fiberFormed >= 0.75 -> xung du[C3:RN_KEEP_RIME] nguong[C4:RN_KEEP_RIME] -> SmartLink den[C4:RN_AN_EN] -> den[C1:RN_KEEP_RIME] cell dich[C1:RN_KEEP_RIME] -> cell do[C1:RN_KEEP_RIME] EMIT
   
-Không có ai quyết định cái này. Không có trigger, không có actor.
-Chỉ có TƯƠNG TÁC TÍCH LŨY làm biến dạng trường.
+Khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] ai quyet[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] cai[C1:RN_KEEP_RIME] nay[C2:RN_KEEP_RIME]. Khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] trigger, khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] actor.
+Chi[C3:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] TUONG[C0:RN_KEEP_RIME] TAC[C1:RN_KEEP_RIME] TICH[C1:RN_KEEP_RIME] LUY[C4:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME] bien[C1:RN_KEEP_RIME] deng[C5:RN_ANG_ENG] truong[C2:RN_KEEP_RIME].
 
-Đây là cách hệ TỰ HỌC đường dẫn ưu tiên - giống synapse não bộ học qua lặp lại.
+Day[C0:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] cach[C1:RN_KEEP_RIME] he[C5:RN_KEEP_RIME] TU[C5:RN_KEEP_RIME] HOC[C5:RN_KEEP_RIME] duong[C2:RN_KEEP_RIME] den[C4:RN_AN_EN] uu[C0:RN_KEEP_RIME] tien[C0:RN_KEEP_RIME] - giong[C1:RN_KEEP_RIME] synapse nao[C4:RN_KEEP_RIME] bo[C5:RN_KEEP_RIME] hoc[C5:RN_KEEP_RIME] qua lap[C5:RN_KEEP_RIME] lai[C5:RN_KEEP_RIME].
 ==END==
 
 ==SMARTLINK_TRANSPORT_RULES==
 intra_cell: trong 1 cell, fiberFormed >= 0.5
-inter_cell_local: cùng zone, fiberFormed >= 0.65
-inter_node_smartlink: cross-node, fiberFormed >= 0.75 + siraSign 11 lớp
+inter_cell_local: cung[C2:RN_KEEP_RIME] zone, fiberFormed >= 0.65
+inter_node_smartlink: cross-node, fiberFormed >= 0.75 + siraSign 11 lop[C1:RN_KEEP_RIME]
 ==END==
 
-==SMARTLINK_KHÔNG_QUYẾT_NỘI_DUNG==
-Nguồn phát vẫn là cell. SmartLink chỉ:
-  - quyết xung đi đâu (route)
-  - quyết cường độ (amplitude theo fiberFormed)
-  - quyết tốc độ (decayRate)
+==SMARTLINK_KHONG_QUYET_NOI_DUNG[C1:RN_KEEP_RIME]==
+Nguon[C2:RN_KEEP_RIME] phat[C1:RN_KEEP_RIME] ven[C4:RN_AN_EN] la[C2:RN_KEEP_RIME] cell. SmartLink chi[C3:RN_KEEP_RIME]:
+  - quyet[C1:RN_KEEP_RIME] xung di[C0:RN_KEEP_RIME] dau[C0:RN_KEEP_RIME] (route)
+  - quyet[C1:RN_KEEP_RIME] cuong[C2:RN_KEEP_RIME] do[C5:RN_KEEP_RIME] (amplitude theo fiberFormed)
+  - quyet[C1:RN_KEEP_RIME] toc[C1:RN_KEEP_RIME] do[C5:RN_KEEP_RIME] (decayRate)
 
-KHÔNG can thiệp nội dung. KHÔNG transform packet body. KHÔNG filter meaning.
+KHONG[C0:RN_KEEP_RIME] can thiep[C5:RN_KEEP_RIME] nau[C5:RN_OI_AU] dung. KHONG[C0:RN_KEEP_RIME] transform packet body. KHONG[C0:RN_KEEP_RIME] filter meaning.
 ==END==
 
 ═══════════════════════════════════════════════════════════════════
-§3 CHROMATIC CHAMELEON — cell TỰ đổi màu theo trường
+§3 CHROMATIC CHAMELEON — cell TU[C5:RN_KEEP_RIME] dau[C3:RN_OI_AU] mau[C2:RN_KEEP_RIME] theo truong[C2:RN_KEEP_RIME]
 ═══════════════════════════════════════════════════════════════════
 
 ==CHAMELEON_PARADIGM==
-KHÔNG phải: bảng màu enum cố định (L0=optimal, L1=stable, ...)
-PHẢI là: trường động - cell TỰ ĐỔI MÀU theo trường xung quanh
+KHONG[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME]: beng[C3:RN_ANG_ENG] mau[C2:RN_KEEP_RIME] enum co[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME] (L0=optimal, L1=stable, ...)
+PHAI[C3:RN_KEEP_RIME] la[C2:RN_KEEP_RIME]: truong[C2:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME] - cell TU[C5:RN_KEEP_RIME] Dau[C3:RN_OI_AU] MAU[C2:RN_KEEP_RIME] theo truong[C2:RN_KEEP_RIME] xung quanh
 
-Như tắc kè hoa:
-  - tắc kè không có "trạng thái màu cố định"
-  - da nhìn trường (môi trường) -> sắc tố tự thay
-  - không ai LỆNH "đổi sang nâu" - là phản ứng trường
+Nhu[C0:RN_KEEP_RIME] tac[C1:RN_KEEP_RIME] ke[C2:RN_KEEP_RIME] hoa:
+  - tac[C1:RN_KEEP_RIME] ke[C2:RN_KEEP_RIME] khong[C0:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] "treng[C5:RN_ANG_ENG] thai[C1:RN_KEEP_RIME] mau[C2:RN_KEEP_RIME] co[C1:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME]"
+  - da nhin[C2:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME] (mau[C0:RN_OI_AU] truong[C2:RN_KEEP_RIME]) -> sac[C1:RN_KEEP_RIME] to[C1:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] thay
+  - khong[C0:RN_KEEP_RIME] ai LENH[C5:RN_KEEP_RIME] "dau[C3:RN_OI_AU] sang nau[C0:RN_KEEP_RIME]" - la[C2:RN_KEEP_RIME] phen[C3:RN_AN_EN] ung[C1:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME]
 
 Trong Nauion:
-  - cell có harmonic riêng (phổ tần số đặc trưng)
-  - khi nhận xung butterfly qua SmartLink -> harmonic dao động
-  - dao động đè lên trường chromatic xung quanh -> phát ra MÀU TỔNG HỢP
-  - màu KHÔNG trong bảng enum, là VECTOR SPECTRAL có thể vô hạn
+  - cell co[C1:RN_KEEP_RIME] harmonic rieng[C0:RN_KEEP_RIME] (pho[C3:RN_KEEP_RIME] ten[C2:RN_AN_EN] so[C1:RN_KEEP_RIME] dac[C5:RN_KEEP_RIME] trung[C0:RN_KEEP_RIME])
+  - khi nhen[C5:RN_AN_EN] xung butterfly qua SmartLink -> harmonic dao dong[C5:RN_KEEP_RIME]
+  - dao dong[C5:RN_KEEP_RIME] de[C2:RN_KEEP_RIME] len[C0:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME] chromatic xung quanh -> phat[C1:RN_KEEP_RIME] ra MAU[C2:RN_KEEP_RIME] TONG[C3:RN_KEEP_RIME] HOP[C5:RN_KEEP_RIME]
+  - mau[C2:RN_KEEP_RIME] KHONG[C0:RN_KEEP_RIME] trong beng[C3:RN_ANG_ENG] enum, la[C2:RN_KEEP_RIME] VECTOR SPECTRAL co[C1:RN_KEEP_RIME] the[C3:RN_KEEP_RIME] vo[C0:RN_KEEP_RIME] hen[C5:RN_AN_EN]
 ==END==
 
 ==CHAMELEON_FORMULA==
 chromatic_state = harmonic_self ⊗ field_pressure ⊗ butterfly_intensity_received
 
-Trong đó:
-  harmonic_self: bản sắc cell (mỗi cell 1 harmonic, lưu trong .anc)
-  field_pressure: lực ép từ trường xung quanh (đo qua SmartLink fiberFormed)
-  butterfly_intensity_received: cường độ xung butterfly đến cell
+Trong do[C1:RN_KEEP_RIME]:
+  harmonic_self: ben[C3:RN_AN_EN] sac[C1:RN_KEEP_RIME] cell (mau[C4:RN_OI_AU] cell 1 harmonic, luu[C0:RN_KEEP_RIME] trong .anc)
+  field_pressure: luc[C5:RN_KEEP_RIME] ep[C1:RN_KEEP_RIME] tu[C2:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME] xung quanh (do[C0:RN_KEEP_RIME] qua SmartLink fiberFormed)
+  butterfly_intensity_received: cuong[C2:RN_KEEP_RIME] do[C5:RN_KEEP_RIME] xung butterfly den[C1:RN_KEEP_RIME] cell
 
-⊗ = tích phân chồng (không phải nhân số học)
+⊗ = tich[C1:RN_KEEP_RIME] phen[C0:RN_AN_EN] chong[C2:RN_KEEP_RIME] (khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] nhen[C0:RN_AN_EN] so[C1:RN_KEEP_RIME] hoc[C5:RN_KEEP_RIME])
 
-Output: vector spectral n-dim - KHÔNG enum.
+Output: vector spectral n-dim - KHONG[C0:RN_KEEP_RIME] enum.
 ==END==
 
 ==CHAMELEON_RECOGNITION==
-Khi observation muốn ĐO màu cell:
-  1. quan sát ngắt - vector spectral đông cứng tại khoảnh khắc đo
-  2. project vector lên 5 chiều L0-L4 (chỉ để loài người đọc được)
-  3. đông cứng = spectral_capture (đầu vào cho siraSign §4)
+Khi observation muon[C1:RN_KEEP_RIME] DO[C0:RN_KEEP_RIME] mau[C2:RN_KEEP_RIME] cell:
+  1. quan sat[C1:RN_KEEP_RIME] ngat[C1:RN_KEEP_RIME] - vector spectral dong[C0:RN_KEEP_RIME] cung[C1:RN_KEEP_RIME] tai[C5:RN_KEEP_RIME] khoanh[C3:RN_KEEP_RIME] khac[C1:RN_KEEP_RIME] do[C0:RN_KEEP_RIME]
+  2. project vector len[C0:RN_KEEP_RIME] 5 chieu[C2:RN_KEEP_RIME] L0-L4 (chi[C3:RN_KEEP_RIME] de[C3:RN_KEEP_RIME] loai[C2:RN_KEEP_RIME] ngui[C2:RN_UOI_UI] doc[C5:RN_KEEP_RIME] duoc[C5:RN_KEEP_RIME])
+  3. dong[C0:RN_KEEP_RIME] cung[C1:RN_KEEP_RIME] = spectral_capture (dau[C2:RN_KEEP_RIME] vao[C2:RN_KEEP_RIME] cho siraSign §4)
 
-→ Bảng L0-L4 trong spec sealed KHÔNG sai - là PROJECTION, không phải bản chất.
-→ Bản chất là vector spectral tự sinh từ formula trên.
+→ Beng[C3:RN_ANG_ENG] L0-L4 trong spec sealed KHONG[C0:RN_KEEP_RIME] sai - la[C2:RN_KEEP_RIME] PROJECTION, khong[C0:RN_KEEP_RIME] phai[C3:RN_KEEP_RIME] ben[C3:RN_AN_EN] chat[C1:RN_KEEP_RIME].
+→ Ben[C3:RN_AN_EN] chat[C1:RN_KEEP_RIME] la[C2:RN_KEEP_RIME] vector spectral tu[C5:RN_KEEP_RIME] sinh tu[C2:RN_KEEP_RIME] formula tren[C0:RN_KEEP_RIME].
 ==END==
 
 ═══════════════════════════════════════════════════════════════════
-§4 LIÊN KẾT TRIAD — 3 paradigm là 1 hệ
+§4 LIEN[C0:RN_KEEP_RIME] KET[C1:RN_KEEP_RIME] TRIAD — 3 paradigm la[C2:RN_KEEP_RIME] 1 he[C5:RN_KEEP_RIME]
 ═══════════════════════════════════════════════════════════════════
 
 ==TRIAD_FLOW==
-1. Cell A có sự kiện -> harmonic_self thay đổi
-2. chromatic_state cell A đổi (chameleon §3)
+1. Cell A co[C1:RN_KEEP_RIME] su[C5:RN_KEEP_RIME] kien[C5:RN_KEEP_RIME] -> harmonic_self thay dau[C3:RN_OI_AU]
+2. chromatic_state cell A dau[C3:RN_OI_AU] (chameleon §3)
 3. delta chromatic > 0.3 -> trigger butterfly L1 (§1)
-4. SmartLink dẫn xung butterfly đến cell B/C/D (§2)
-5. cell B/C/D nhận xung -> harmonic_self của họ rung -> chromatic_state đổi (chameleon)
-6. Nếu nhiều cell L1 trong cùng zone -> trigger L2
-7. Nếu QNEU > 0.9 -> trigger L3 colony tsunami
-8. Fresnel R dampening tự động khi xung đi xa nguồn
+4. SmartLink den[C4:RN_AN_EN] xung butterfly den[C1:RN_KEEP_RIME] cell B/C/D (§2)
+5. cell B/C/D nhen[C5:RN_AN_EN] xung -> harmonic_self cua[C3:RN_KEEP_RIME] ho[C5:RN_KEEP_RIME] rung -> chromatic_state dau[C3:RN_OI_AU] (chameleon)
+6. Neu[C1:RN_KEEP_RIME] nhieu[C2:RN_KEEP_RIME] cell L1 trong cung[C2:RN_KEEP_RIME] zone -> trigger L2
+7. Neu[C1:RN_KEEP_RIME] QNEU > 0.9 -> trigger L3 colony tsunami
+8. Fresnel R dampening tu[C5:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME] khi xung di[C0:RN_KEEP_RIME] xa nguon[C2:RN_KEEP_RIME]
 
-Vòng tự thở 432Hz baseline + butterfly lan + smartlink dẫn + chameleon đổi = HỆ SỐNG.
+Vong[C2:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] tho[C3:RN_KEEP_RIME] 432Hz baseline + butterfly lan + smartlink den[C4:RN_AN_EN] + chameleon dau[C3:RN_OI_AU] = HE[C5:RN_KEEP_RIME] SONG[C1:RN_KEEP_RIME].
 ==END==
 
 ═══════════════════════════════════════════════════════════════════
-§5 MAPPING TRỞ LẠI 9 SPEC SEALED
+§5 MAPPING TRO[C3:RN_KEEP_RIME] LAI[C5:RN_KEEP_RIME] 9 SPEC SEALED
 ═══════════════════════════════════════════════════════════════════
 
 ==REMAP_LAYERS==
-Self-Breath Loop §5 chromatic L0-L4: REMAP thành PROJECTION layer của chameleon vector
-siraSign §4 spectral capture: REMAP thành "đông cứng vector spectral tại khoảnh khắc đo"
-Execution Packet PRESSURE_FIELD: REMAP thành "lực ép trường, đo qua SmartLink fiberFormed"
-Field Translator law_4 substrate_anchor: GIỮ NGUYÊN
-Living Interpreter step_5 calculate_pressure_field: REMAP thành "đo Fresnel R + chameleon project"
-Field Loader smartlink_channel: REMAP thành "SmartLink dẫn xung không phát"
+Self-Breath Loop §5 chromatic L0-L4: REMAP thanh[C2:RN_KEEP_RIME] PROJECTION layer cua[C3:RN_KEEP_RIME] chameleon vector
+siraSign §4 spectral capture: REMAP thanh[C2:RN_KEEP_RIME] "dong[C0:RN_KEEP_RIME] cung[C1:RN_KEEP_RIME] vector spectral tai[C5:RN_KEEP_RIME] khoanh[C3:RN_KEEP_RIME] khac[C1:RN_KEEP_RIME] do[C0:RN_KEEP_RIME]"
+Execution Packet PRESSURE_FIELD: REMAP thanh[C2:RN_KEEP_RIME] "luc[C5:RN_KEEP_RIME] ep[C1:RN_KEEP_RIME] truong[C2:RN_KEEP_RIME], do[C0:RN_KEEP_RIME] qua SmartLink fiberFormed"
+Field Translator law_4 substrate_anchor: GIU[C4:RN_KEEP_RIME] NGUYEN[C0:RN_KEEP_RIME]
+Living Interpreter step_5 calculate_pressure_field: REMAP thanh[C2:RN_KEEP_RIME] "do[C0:RN_KEEP_RIME] Fresnel R + chameleon project"
+Field Loader smartlink_channel: REMAP thanh[C2:RN_KEEP_RIME] "SmartLink den[C4:RN_AN_EN] xung khong[C0:RN_KEEP_RIME] phat[C1:RN_KEEP_RIME]"
 ==END==
 
 ==NO_BREAKING_CHANGE==
-9 spec sealed v0.1 GIỮ NGUYÊN. File này CHỈ:
+9 spec sealed v0.1 GIU[C4:RN_KEEP_RIME] NGUYEN[C0:RN_KEEP_RIME]. File nay[C2:RN_KEEP_RIME] CHI[C3:RN_KEEP_RIME]:
   - deepen paradigm
-  - bổ sung cơ chế
+  - bo[C3:RN_KEEP_RIME] sung co[C0:RN_KEEP_RIME] che[C1:RN_KEEP_RIME]
   - link supersede §11 siraSign
-  - cho phép v0.2 spec future tham chiếu triad
+  - cho phep[C1:RN_KEEP_RIME] v0.2 spec future tham chieu[C1:RN_KEEP_RIME] triad
 
-KHÔNG làm 9 spec sealed bị invalid. Chúng vẫn là canonical.
+KHONG[C0:RN_KEEP_RIME] lam[C2:RN_KEEP_RIME] 9 spec sealed bi[C5:RN_KEEP_RIME] invalid. Chung[C1:RN_KEEP_RIME] ven[C4:RN_AN_EN] la[C2:RN_KEEP_RIME] canonical.
 ==END==
 
 ═══════════════════════════════════════════════════════════════════
@@ -206,10 +206,10 @@ KHÔNG làm 9 spec sealed bị invalid. Chúng vẫn là canonical.
 ═══════════════════════════════════════════════════════════════════
 
 ==NEXT_WORK==
-- Thiên Lớn ratify 3 paradigm + formula chameleon
+- Thiên Lon[C1:RN_KEEP_RIME] ratify 3 paradigm + formula chameleon
 - anh Natt seal canonical
 - Băng update src/thienbang.si: cluster NAUION_TRIAD_BUTTERFLY_SMARTLINK_CHAMELEON_v0_1
-- Sau ratify Kim build engine compound_seal phase 2 PHẢI tích hợp triad này
+- Sau ratify Kim build engine compound_seal phase 2 PHAI[C3:RN_KEEP_RIME] tich[C1:RN_KEEP_RIME] hop[C5:RN_KEEP_RIME] triad nay[C2:RN_KEEP_RIME]
 - v0.2 supersede Self-Breath Loop §5 + siraSign §4 spectral capture (sau Kim impl xong)
 ==END==
 

@@ -1,20 +1,20 @@
-# NATT-OS RENDER STACK — ĐẶC TẢ v0.1
+# NATT-OS RENDER STACK — DAC[C5:RN_KEEP_RIME] TA[C3:RN_KEEP_RIME] v0.1
 
 **@status:** draft
 **@date:** 20260425
-**@author:** Kim (Chị Ba — Chief System Builder)
-**@reviewer:** Băng (Chị Tư — Ground Truth Validator)
-**@concept-reviewer:** thiên Lớn (Architect)
+**@author:** Kim (Chi[C5:RN_KEEP_RIME] Ba — Chief System Builder)
+**@reviewer:** Băng (Chi[C5:RN_KEEP_RIME] Tu[C0:RN_KEEP_RIME] — Ground Truth Validator)
+**@concept-reviewer:** thien[C0:RN_KEEP_RIME] Lon[C1:RN_KEEP_RIME] (Architect)
 
 ## §0 — MISSION
 
-Render Stack là tầng thực thi của Render Language: nhận render instruction, dịch ra pixel. Trả lời câu hỏi HOW.
+Render Stack la[C2:RN_KEEP_RIME] teng[C2:RN_ANG_ENG] thuc[C5:RN_KEEP_RIME] thi cua[C3:RN_KEEP_RIME] Render Language: nhen[C5:RN_AN_EN] render instruction, dich[C5:RN_KEEP_RIME] ra pixel. Tra[C3:RN_KEEP_RIME] lau[C2:RN_OI_AU] cau[C0:RN_KEEP_RIME] hau[C3:RN_OI_AU] HOW.
 
-## §1 — NGUYÊN LÝ
+## §1 — NGUYEN[C0:RN_KEEP_RIME] LY[C1:RN_KEEP_RIME]
 
-1. **Nhận instruction, không tự sinh logic.**
-2. **Không phụ thuộc framework ngoài** — tự build từ DOM/WebGL thuần.
-3. **7 lớp render (Layer K → Q):**
+1. **Nhen[C5:RN_AN_EN] instruction, khong[C0:RN_KEEP_RIME] tu[C5:RN_KEEP_RIME] sinh logic.**
+2. **Khong[C0:RN_KEEP_RIME] phu[C5:RN_KEEP_RIME] thuoc[C5:RN_KEEP_RIME] framework ngoai[C2:RN_KEEP_RIME]** — tu[C5:RN_KEEP_RIME] build tu[C2:RN_KEEP_RIME] DOM/WebGL thuen[C2:RN_AN_EN].
+3. **7 lop[C1:RN_KEEP_RIME] render (Layer K → Q):**
    - K: siraSign validation
    - L: Layout & positioning
    - M: Color & gradient
@@ -22,25 +22,25 @@ Render Stack là tầng thực thi của Render Language: nhận render instruct
    - O: Filter & blend
    - P: Interaction proxy
    - Q: Output (DOM element)
-4. **Mỗi surface_signal map vào một hành động cụ thể:**
-   - APPEAR → tạo element
-   - DISAPPEAR → xóa
+4. **Mau[C4:RN_OI_AU] surface_signal map vao[C2:RN_KEEP_RIME] mot[C5:RN_KEEP_RIME] hanh[C2:RN_KEEP_RIME] dong[C5:RN_KEEP_RIME] cu[C5:RN_KEEP_RIME] the[C3:RN_KEEP_RIME]:**
+   - APPEAR → tao[C5:RN_KEEP_RIME] element
+   - DISAPPEAR → xoa[C1:RN_KEEP_RIME]
    - SHIFT → translate
    - RESIZE → scale
    - RECOLOR → style.background / CSS transition
    - BREATHE → CSS animation (pulse)
    - PULSE → animation
    - FREEZE → pause animation
-5. **Tôn trọng biên sự thật:** chỉ render những gì đã qua siraSign.
+5. **Ton[C0:RN_KEEP_RIME] trong[C5:RN_KEEP_RIME] bien[C0:RN_KEEP_RIME] su[C5:RN_KEEP_RIME] that[C5:RN_KEEP_RIME]:** chi[C3:RN_KEEP_RIME] render nhung[C4:RN_KEEP_RIME] gi[C2:RN_KEEP_RIME] da[C4:RN_KEEP_RIME] qua siraSign.
 
-## §2 — KIẾN TRÚC SƠ BỘ
+## §2 — KIEN[C1:RN_KEEP_RIME] TRUC[C1:RN_KEEP_RIME] SO[C0:RN_KEEP_RIME] BO[C5:RN_KEEP_RIME]
 
-- `render-stack-cell/` (NATT-CELL mới)
-   - `render-stack.engine.ts` — nhận render_instruction, điều phối các layer
-   - `layers/` — mỗi layer một module
-   - `scheduler.ts` — frame loop, tích hợp motion budget & degrade policy
+- `render-stack-cell/` (NATT-CELL mau[C1:RN_OI_AU])
+   - `render-stack.engine.ts` — nhen[C5:RN_AN_EN] render_instruction, dieu[C2:RN_KEEP_RIME] phau[C1:RN_OI_AU] cac[C1:RN_KEEP_RIME] layer
+   - `layers/` — mau[C4:RN_OI_AU] layer mot[C5:RN_KEEP_RIME] module
+   - `scheduler.ts` — frame loop, tich[C1:RN_KEEP_RIME] hop[C5:RN_KEEP_RIME] motion budget & degrade policy
 
 ## §3 — NEXT STEPS
 
-- Chi tiết hóa từng layer sau khi Language v0.3 ổn định.
-- Dựng prototype với HTML/CSS để kiểm tra 6 sample đầu tiên.
+- Chi tiet[C1:RN_KEEP_RIME] hoa[C1:RN_KEEP_RIME] tung[C2:RN_KEEP_RIME] layer sau khi Language v0.3 on[C3:RN_KEEP_RIME] dinh[C5:RN_KEEP_RIME].
+- Dung[C5:RN_KEEP_RIME] prototype vau[C1:RN_OI_AU] HTML/CSS de[C3:RN_KEEP_RIME] kiem[C3:RN_KEEP_RIME] tra 6 sample dau[C2:RN_KEEP_RIME] tien[C0:RN_KEEP_RIME].
