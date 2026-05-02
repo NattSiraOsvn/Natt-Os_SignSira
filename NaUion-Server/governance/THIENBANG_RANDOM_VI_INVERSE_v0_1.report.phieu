@@ -1,0 +1,647 @@
+{
+  "generated_at": "20260502_220512",
+  "random_seed": 20260502220512,
+  "output_si": "NaUion-Server/governance/THIENBANG_RANDOM_VI_INVERSE_v0_1.si",
+  "total_candidates": 35,
+  "total_useful_vi_pairs": 279,
+  "materialized_entries": 190,
+  "collisions": 6,
+  "source_stats_top_50": [
+    {
+      "path": "src/SuperDictionary.ts",
+      "size": 18650,
+      "pairs": 178,
+      "vi_left": 1,
+      "vi_right": 168,
+      "useful_vi_pairs": 168
+    },
+    {
+      "path": "src/core/nauion/nauion.dictionary.ts",
+      "size": 6397,
+      "pairs": 87,
+      "vi_left": 0,
+      "vi_right": 46,
+      "useful_vi_pairs": 46
+    },
+    {
+      "path": "src/governance_ciphered/gatekeeper/constitutional-mapping.engine.ts",
+      "size": 10479,
+      "pairs": 25,
+      "vi_left": 18,
+      "vi_right": 16,
+      "useful_vi_pairs": 18
+    },
+    {
+      "path": "src/governance/gatekeeper/constitutional-mapping.engine.ts",
+      "size": 10450,
+      "pairs": 25,
+      "vi_left": 0,
+      "vi_right": 16,
+      "useful_vi_pairs": 16
+    },
+    {
+      "path": "src/cells/business/sales-cell/domain/engines/luxury-mapping.engine.ts",
+      "size": 15255,
+      "pairs": 44,
+      "vi_left": 8,
+      "vi_right": 2,
+      "useful_vi_pairs": 8
+    },
+    {
+      "path": "audit/validators/hardware_translator_validator_report_v0_1.json",
+      "size": 9542,
+      "pairs": 67,
+      "vi_left": 0,
+      "vi_right": 4,
+      "useful_vi_pairs": 4
+    },
+    {
+      "path": "tools/dialect-cipher/numeric_test_vectors_v0_1.json",
+      "size": 2885,
+      "pairs": 47,
+      "vi_left": 0,
+      "vi_right": 4,
+      "useful_vi_pairs": 4
+    },
+    {
+      "path": "nattos-server/app Tâm luxury/services/mapping/smartlinkmappingengine.ts",
+      "size": 7203,
+      "pairs": 43,
+      "vi_left": 0,
+      "vi_right": 4,
+      "useful_vi_pairs": 4
+    },
+    {
+      "path": "src/core/dictionary/dictionary-approval.service.ts",
+      "size": 3521,
+      "pairs": 15,
+      "vi_left": 0,
+      "vi_right": 2,
+      "useful_vi_pairs": 2
+    },
+    {
+      "path": "nattos-server/app Tâm luxury/services/dictionaryapprovalservice.ts",
+      "size": 3563,
+      "pairs": 14,
+      "vi_left": 0,
+      "vi_right": 2,
+      "useful_vi_pairs": 2
+    },
+    {
+      "path": "nattos-server/app Tâm luxury/services/ingestion/dictionaryguard.ts",
+      "size": 2457,
+      "pairs": 5,
+      "vi_left": 2,
+      "vi_right": 2,
+      "useful_vi_pairs": 2
+    },
+    {
+      "path": "src/core/ingestion/dictionary-guard.engine.ts",
+      "size": 2445,
+      "pairs": 5,
+      "vi_left": 2,
+      "vi_right": 2,
+      "useful_vi_pairs": 2
+    },
+    {
+      "path": "nattos-server/archive/nattos-ui/nattos-mapping.html",
+      "size": 36249,
+      "pairs": 100,
+      "vi_left": 0,
+      "vi_right": 1,
+      "useful_vi_pairs": 1
+    },
+    {
+      "path": "nattos-server/app Tâm luxury/services/dictionaryservice.ts",
+      "size": 2856,
+      "pairs": 13,
+      "vi_left": 1,
+      "vi_right": 1,
+      "useful_vi_pairs": 1
+    },
+    {
+      "path": "src/core/dictionary/dictionary.service.ts",
+      "size": 2855,
+      "pairs": 13,
+      "vi_left": 1,
+      "vi_right": 1,
+      "useful_vi_pairs": 1
+    },
+    {
+      "path": "src/governance/registry/dialect_rules_v0_1.na",
+      "size": 2195,
+      "pairs": 45,
+      "vi_left": 0,
+      "vi_right": 0,
+      "useful_vi_pairs": 0
+    },
+    {
+      "path": "tools/dialect-cipher/runtime_adapter_v0_1.py",
+      "size": 5320,
+      "pairs": 20,
+      "vi_left": 0,
+      "vi_right": 0,
+      "useful_vi_pairs": 0
+    },
+    {
+      "path": "tools_ciphered/dialect_cipher_batch_processor.py",
+      "size": 15140,
+      "pairs": 18,
+      "vi_left": 0,
+      "vi_right": 0,
+      "useful_vi_pairs": 0
+    },
+    {
+      "path": "tools_ciphered/dialect_cipher_translator.py",
+      "size": 19290,
+      "pairs": 11,
+      "vi_left": 0,
+      "vi_right": 0,
+      "useful_vi_pairs": 0
+    },
+    {
+      "path": "tools/hardware-dialect-translator/hardware_translator_v0_1.py",
+      "size": 3584,
+      "pairs": 10,
+      "vi_left": 0,
+      "vi_right": 0,
+      "useful_vi_pairs": 0
+    },
+    {
+      "path": "src/governance_ciphered/memory/bang/sim_v2_thienbang.py",
+      "size": 17294,
+      "pairs": 7,
+      "vi_left": 0,
+      "vi_right": 0,
+      "useful_vi_pairs": 0
+    },
+    {
+      "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink-mapping.engine.ts",
+      "size": 1816,
+      "pairs": 7,
+      "vi_left": 0,
+      "vi_right": 0,
+      "useful_vi_pairs": 0
+    },
+    {
+      "path": "nattos-server/app Tâm luxury/contexts/mappingcontext.tsx",
+      "size": 1099,
+      "pairs": 7,
+      "vi_left": 0,
+      "vi_right": 0,
+      "useful_vi_pairs": 0
+    },
+    {
+      "path": "src/contexts/mapping-context.tsx",
+      "size": 1099,
+      "pairs": 7,
+      "vi_left": 0,
+      "vi_right": 0,
+      "useful_vi_pairs": 0
+    },
+    {
+      "path": "tools_ciphered/translator.py",
+      "size": 3549,
+      "pairs": 6,
+      "vi_left": 0,
+      "vi_right": 0,
+      "useful_vi_pairs": 0
+    },
+    {
+      "path": "src/hooks/useSmartMapping.ts",
+      "size": 3010,
+      "pairs": 6,
+      "vi_left": 0,
+      "vi_right": 0,
+      "useful_vi_pairs": 0
+    },
+    {
+      "path": "nattos-server/app Tâm luxury/hooks/usesmartmapping.ts",
+      "size": 2763,
+      "pairs": 6,
+      "vi_left": 0,
+      "vi_right": 0,
+      "useful_vi_pairs": 0
+    },
+    {
+      "path": "src/governance/policy/dictionary-approval.engine.ts",
+      "size": 756,
+      "pairs": 2,
+      "vi_left": 0,
+      "vi_right": 0,
+      "useful_vi_pairs": 0
+    },
+    {
+      "path": "src/governance/policy/dictionary.engine.ts",
+      "size": 401,
+      "pairs": 1,
+      "vi_left": 0,
+      "vi_right": 0,
+      "useful_vi_pairs": 0
+    },
+    {
+      "path": "tools/hardware-dialect-translator/validate_hardware_translator_v0_1.py",
+      "size": 2363,
+      "pairs": 0,
+      "vi_left": 0,
+      "vi_right": 0,
+      "useful_vi_pairs": 0
+    },
+    {
+      "path": "tools/dialect-cipher/validate_runtime_adapter_v0_1.py",
+      "size": 1912,
+      "pairs": 0,
+      "vi_left": 0,
+      "vi_right": 0,
+      "useful_vi_pairs": 0
+    },
+    {
+      "path": "nattos-server/app Tâm luxury/core/dictionary/services/dictionaryservice.ts",
+      "size": 1336,
+      "pairs": 0,
+      "vi_left": 0,
+      "vi_right": 0,
+      "useful_vi_pairs": 0
+    },
+    {
+      "path": "src/core/dictionary/services/DictionaryService.ts",
+      "size": 1336,
+      "pairs": 0,
+      "vi_left": 0,
+      "vi_right": 0,
+      "useful_vi_pairs": 0
+    },
+    {
+      "path": "nattos-server/app Tâm luxury/superdictionary.ts",
+      "size": 1072,
+      "pairs": 0,
+      "vi_left": 0,
+      "vi_right": 0,
+      "useful_vi_pairs": 0
+    },
+    {
+      "path": "src/cells/infrastructure/smartlink-cell/domain/engines/smartlink-mapping.engine.ts",
+      "size": 272,
+      "pairs": 0,
+      "vi_left": 0,
+      "vi_right": 0,
+      "useful_vi_pairs": 0
+    }
+  ],
+  "first_120_collisions": [
+    {
+      "left": "nghia",
+      "chosen": "Phản ứng cảm xúc của hệ — bùng nổ nhận thức, wow, hahahaha",
+      "candidates": [
+        "Dòng chảy bị gãy — critical failure, circuit break",
+        "Dòng chảy sự kiện — chuỗi events liên tục trong hệ",
+        "Gọi hệ — người dùng hoặc cell khác khởi tạo tương tác",
+        "Gọi vào kênh — hey Kênh = client gửi request lên server",
+        "Gọi để nhận — tương đương GET, hỏi hệ một điều gì đó",
+        "Gửi vào — tương đương POST/Response, đưa dữ liệu vào hệ hoặc trả về",
+        "Hành động kết nối vào Mạch HeyNa — mở kênh lắng nghe",
+        "Hệ phát hiện lệch — có gì đó không đúng nhịp",
+        "Hệ phát tín hiệu Nauion ra ngoài — biểu đạt trạng thái",
+        "Hệ trả lời — yeh Nahere = server gửi trạng thái về cho UI",
+        "Hệ xác nhận hiện diện — trả lời rằng mình đang ở đây",
+        "Khớp hoá trạng thái — đồng bộ state giữa hệ và UI",
+        "Kênh SSE liên tục — server phát, UI mã khoá vào để nhận Nahere liên tục",
+        "Kênh kết nối liên tục — server phát liên tục, UI mã khoá vào để nhận",
+        "Lắng nghe Nahere — đăng ký nhận tín hiệu từ hệ",
+        "Phản ứng cảm xúc của hệ — bùng nổ nhận thức, wow, hahahaha",
+        "Trạng thái tổng thể của hệ — L4.5 pattern + Nauion state",
+        "Tín hiệu từ cell — cell đang nói chuyện với hệ",
+        "Whao fallback — khi Mạch HeyNa bị gián đoạn, hệ tự Whao định kỳ để lấy Nahere",
+        "Đang tiếp nhận / đang xử lý — hệ đang absorb thông tin",
+        "Điểm giao tiếp giữa hệ và bên ngoài — không phải API, là kênh sống",
+        "Đã tiêu hóa — đã hiểu, đã xử lý xong"
+      ],
+      "evidence": [
+        {
+          "source": "src/core/nauion/nauion.dictionary.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Gọi hệ — người dùng hoặc cell khác khởi tạo tương tác"
+        },
+        {
+          "source": "src/core/nauion/nauion.dictionary.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Hệ xác nhận hiện diện — trả lời rằng mình đang ở đây"
+        },
+        {
+          "source": "src/core/nauion/nauion.dictionary.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Đang tiếp nhận / đang xử lý — hệ đang absorb thông tin"
+        },
+        {
+          "source": "src/core/nauion/nauion.dictionary.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Đã tiêu hóa — đã hiểu, đã xử lý xong"
+        },
+        {
+          "source": "src/core/nauion/nauion.dictionary.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Phản ứng cảm xúc của hệ — bùng nổ nhận thức, wow, hahahaha"
+        },
+        {
+          "source": "src/core/nauion/nauion.dictionary.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Hệ phát hiện lệch — có gì đó không đúng nhịp"
+        },
+        {
+          "source": "src/core/nauion/nauion.dictionary.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Dòng chảy bị gãy — critical failure, circuit break"
+        },
+        {
+          "source": "src/core/nauion/nauion.dictionary.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Kênh kết nối liên tục — server phát liên tục, UI mã khoá vào để nhận"
+        }
+      ]
+    },
+    {
+      "left": "vi",
+      "chosen": "Dòng chảy đang lệch khỏi pattern chuẩn",
+      "candidates": [
+        "Dòng chảy = hệ đang sống và vận hành",
+        "Dòng chảy đang lệch khỏi pattern chuẩn",
+        "Dòng gãy — cần can thiệp",
+        "Hiểu rồi — xử lý xong",
+        "Hệ đang phản ứng mạnh với sự kiện này",
+        "Khớp hoá Nahere = UI sync state với server",
+        "Kênh /audit, Kênh /nauion, Kênh /intelligence",
+        "Lắng Nahere = tai nghe của hệ",
+        "Mã khoá HeyNa = mở kết nối với hệ",
+        "Mạch HeyNa = hệ đang nói liên tục, UI cắm vào để nghe",
+        "Mạch sống của hệ — luôn mở, luôn chảy",
+        "Ok, tao đang absorb thông tin",
+        "Phát Nauion = hệ đang nói",
+        "Tao đang ở đây — trạng thái tao là...",
+        "Trạng thái = hệ đang ở đâu trong vòng đời",
+        "Tín hiệu = cell đang báo cáo trạng thái",
+        "Whao fallback = hệ tự hỏi thăm khi mạch chính đứt",
+        "hey /mach/heyna = gọi để nhận Mạch HeyNa",
+        "hey /mach/heyna = tao muốn lắng nghe hệ",
+        "yeh = hệ trả lời, hoặc người dùng gửi vào hệ",
+        "yeh Nahere = tao đang ở đây, đây là trạng thái của tao",
+        "Ê hệ, tao đang gọi mày"
+      ],
+      "evidence": [
+        {
+          "source": "src/core/nauion/nauion.dictionary.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Ê hệ, tao đang gọi mày"
+        },
+        {
+          "source": "src/core/nauion/nauion.dictionary.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Tao đang ở đây — trạng thái tao là..."
+        },
+        {
+          "source": "src/core/nauion/nauion.dictionary.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Ok, tao đang absorb thông tin"
+        },
+        {
+          "source": "src/core/nauion/nauion.dictionary.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Hiểu rồi — xử lý xong"
+        },
+        {
+          "source": "src/core/nauion/nauion.dictionary.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Hệ đang phản ứng mạnh với sự kiện này"
+        },
+        {
+          "source": "src/core/nauion/nauion.dictionary.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Dòng chảy đang lệch khỏi pattern chuẩn"
+        },
+        {
+          "source": "src/core/nauion/nauion.dictionary.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Dòng gãy — cần can thiệp"
+        },
+        {
+          "source": "src/core/nauion/nauion.dictionary.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Mạch sống của hệ — luôn mở, luôn chảy"
+        }
+      ]
+    },
+    {
+      "left": "dễscription",
+      "chosen": "tỷ lệ số tròn bất thường trống bàtch",
+      "candidates": [
+        "BCTC 4 số chènh lech",
+        "Bank receipt không có invỡice tuống ung — tax risk T10/2024",
+        "Cashflow gấp vuốt nguồng",
+        "Cell health score dưi nguồng",
+        "Hiến Pháp bi vi phạm — dieu 11 OMEGA LOCK",
+        "NL phu vuốt dinh mục thàng",
+        "Pattern thaÝ kim cuống — CRITICAL",
+        "SC flow rate tang bất thường",
+        "SmartLink fiber broken / decay qua mục",
+        "TL ra > TL vào luống SC-BH-KB — nguÝ có thểm vàng lỗi",
+        "Tax exposure phát hiện",
+        "lệnh #001 vi phạm — AI API cáll không dưoc phep",
+        "nhiều nguồn dữ liệu xung dot",
+        "phát hiện co gang thaÝ dầu audit trạil — dieu 11",
+        "phồ SC per worker vuốt nguồng",
+        "tỷ lệ số tròn bất thường trống bàtch"
+      ],
+      "evidence": [
+        {
+          "source": "src/governance_ciphered/gatekeeper/constitutional-mapping.engine.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "TL ra > TL vào luống SC-BH-KB — nguÝ có thểm vàng lỗi"
+        },
+        {
+          "source": "src/governance_ciphered/gatekeeper/constitutional-mapping.engine.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "phồ SC per worker vuốt nguồng"
+        },
+        {
+          "source": "src/governance_ciphered/gatekeeper/constitutional-mapping.engine.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "NL phu vuốt dinh mục thàng"
+        },
+        {
+          "source": "src/governance_ciphered/gatekeeper/constitutional-mapping.engine.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Pattern thaÝ kim cuống — CRITICAL"
+        },
+        {
+          "source": "src/governance_ciphered/gatekeeper/constitutional-mapping.engine.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "SC flow rate tang bất thường"
+        },
+        {
+          "source": "src/governance_ciphered/gatekeeper/constitutional-mapping.engine.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Cashflow gấp vuốt nguồng"
+        },
+        {
+          "source": "src/governance_ciphered/gatekeeper/constitutional-mapping.engine.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Bank receipt không có invỡice tuống ung — tax risk T10/2024"
+        },
+        {
+          "source": "src/governance_ciphered/gatekeeper/constitutional-mapping.engine.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "BCTC 4 số chènh lech"
+        }
+      ]
+    },
+    {
+      "left": "description",
+      "chosen": "Doanh thu bán hàng hóa",
+      "candidates": [
+        "BCTC 4 sổ chênh lệch",
+        "Bank receipt không có invoice tương ứng — tax risk T10/2024",
+        "Cashflow gap vượt ngưỡng",
+        "Cell health score dưới ngưỡng",
+        "Doanh thu bán hàng hóa",
+        "Giá vốn hàng bán",
+        "Hiến Pháp bị vi phạm — Điều 11 OMEGA LOCK",
+        "LỆNH #001 vi phạm — AI API call không được phép",
+        "NL phụ vượt định mức tháng",
+        "Nhiều nguồn dữ liệu xung đột",
+        "PHỔ SC per worker vượt ngưỡng",
+        "Pattern thay kim cương — CRITICAL",
+        "Phát hiện cố gắng thay đổi audit trail — Điều 11",
+        "SC flow rate tăng bất thường",
+        "SmartLink fiber broken / decay quá mức",
+        "TL ra > TL vào luồng SC-BH-KB — nguy cơ thêm vàng lậu",
+        "Tax exposure phát hiện",
+        "Tỷ lệ số tròn bất thường trong batch",
+        "Ánh xạ doanh thu từ đơn hàng sang tài khoản kế toán",
+        "Ánh xạ giá vốn khi xuất kho"
+      ],
+      "evidence": [
+        {
+          "source": "src/governance/gatekeeper/constitutional-mapping.engine.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "TL ra > TL vào luồng SC-BH-KB — nguy cơ thêm vàng lậu"
+        },
+        {
+          "source": "src/governance/gatekeeper/constitutional-mapping.engine.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "PHỔ SC per worker vượt ngưỡng"
+        },
+        {
+          "source": "src/governance/gatekeeper/constitutional-mapping.engine.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "NL phụ vượt định mức tháng"
+        },
+        {
+          "source": "src/governance/gatekeeper/constitutional-mapping.engine.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Pattern thay kim cương — CRITICAL"
+        },
+        {
+          "source": "src/governance/gatekeeper/constitutional-mapping.engine.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "SC flow rate tăng bất thường"
+        },
+        {
+          "source": "src/governance/gatekeeper/constitutional-mapping.engine.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Cashflow gap vượt ngưỡng"
+        },
+        {
+          "source": "src/governance/gatekeeper/constitutional-mapping.engine.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Bank receipt không có invoice tương ứng — tax risk T10/2024"
+        },
+        {
+          "source": "src/governance/gatekeeper/constitutional-mapping.engine.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "BCTC 4 sổ chênh lệch"
+        }
+      ]
+    },
+    {
+      "left": "content",
+      "chosen": "Thay đổi ${proposal.id} đã được áp dụng vào hệ thống lõi.",
+      "candidates": [
+        "Thay đổi ${proposal.id} đã được áp dụng vào hệ thống lõi.",
+        "User ${submitter} muốn ${type} trường ${target}. Mức độ ảnh hưởng: ${impact.riskLevel}"
+      ],
+      "evidence": [
+        {
+          "source": "src/core/dictionary/dictionary-approval.service.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "User ${submitter} muốn ${type} trường ${target}. Mức độ ảnh hưởng: ${impact.riskLevel}"
+        },
+        {
+          "source": "src/core/dictionary/dictionary-approval.service.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Thay đổi ${proposal.id} đã được áp dụng vào hệ thống lõi."
+        },
+        {
+          "source": "nattos-server/app Tâm luxury/services/dictionaryapprovalservice.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "User ${submitter} muốn ${type} trường ${target}. Mức độ ảnh hưởng: ${impact.riskLevel}"
+        },
+        {
+          "source": "nattos-server/app Tâm luxury/services/dictionaryapprovalservice.ts",
+          "kind": "unquoted_key_pair",
+          "candidate": "Thay đổi ${proposal.id} đã được áp dụng vào hệ thống lõi."
+        }
+      ]
+    },
+    {
+      "left": "origin_text",
+      "chosen": "thích",
+      "candidates": [
+        "chuyện",
+        "hệ",
+        "người",
+        "thích"
+      ],
+      "evidence": [
+        {
+          "source": "audit/validators/hardware_translator_validator_report_v0_1.json",
+          "kind": "quoted_pair",
+          "candidate": "người"
+        },
+        {
+          "source": "audit/validators/hardware_translator_validator_report_v0_1.json",
+          "kind": "quoted_pair",
+          "candidate": "chuyện"
+        },
+        {
+          "source": "audit/validators/hardware_translator_validator_report_v0_1.json",
+          "kind": "quoted_pair",
+          "candidate": "thích"
+        },
+        {
+          "source": "audit/validators/hardware_translator_validator_report_v0_1.json",
+          "kind": "quoted_pair",
+          "candidate": "hệ"
+        },
+        {
+          "source": "tools/dialect-cipher/numeric_test_vectors_v0_1.json",
+          "kind": "quoted_pair",
+          "candidate": "người"
+        },
+        {
+          "source": "tools/dialect-cipher/numeric_test_vectors_v0_1.json",
+          "kind": "quoted_pair",
+          "candidate": "chuyện"
+        },
+        {
+          "source": "tools/dialect-cipher/numeric_test_vectors_v0_1.json",
+          "kind": "quoted_pair",
+          "candidate": "thích"
+        },
+        {
+          "source": "tools/dialect-cipher/numeric_test_vectors_v0_1.json",
+          "kind": "quoted_pair",
+          "candidate": "hệ"
+        }
+      ]
+    }
+  ]
+}
