@@ -1,113 +1,167 @@
-$nauion: BOOT_DOVAN_BOOT-v0.1
+$nauion: BOOT_DOVAN_BOOT-v0.2
 $role: NATIVE_BOOT_SEQUENCE
 $owner: NaUion-Server
-$status: CANONICAL_CANDIDATE
+$status: SYNC_WITH_CELL_ANC_v0.4
+$spec_compliance: SPEC_NEN_v1.1
 
 $boot:
   name: BOOT_DOVAN
   title: Boot Đo Ván
   system: Natt Nell
-  cell: NattCell
+  cell_target: boot-dovan
   kernel: Nauion Kernel
   entity_generation: ANC
-  class: bare-substrate native boot
 
-$not_claim:
-  - không claim AGI
-  - không claim OS clone
-  - không claim driver hardware trực tiếp
-  - không phơi raw topology
+$boundary:
+  NaUion-Server: NHA_MINH
+
+$nguyen_ly_nen:
+  no_cua: boot không có cửa, signal vào KhaiCell touch tự do
+  no_filter: boot không filter pre-execution
+  co_rao: mỗi step phải qua KhaiCell sign
+  co_field_law: mỗi step neo .anc identity
+  cau_chot: Kỷ luật nằm TRONG field, không nằm Ở CỬA.
+
+$tang_0_survival_pre_boot:
+  rate_limit_check: required
+  queue_capacity_check: required
+  backpressure_check: required
+  abort_if: resource_exhaustion
+  rule: KHÔNG bắt đầu boot nếu Tầng 0 không sẵn
 
 $boot_order:
   - step: 01_dictionary
-    action: nạp từ điển gốc
+    primitive: nạp
     artifact: src/thienbang.si
-    primitive: nạp
-    must_have:
-      - NELL_PRIMITIVE_WORDS_V0_1_START
-      - tuDich
-      - tuNell
-      - Từ điển gốc phải có dấu
-
+    khai_cell_touch: required
+    observation_snapshot: required
+    chromatic_expected: tím_optimal
+    law_enforced: [LAW_1, LAW_2, LAW_3, LAW_4]
   - step: 02_primitive_words
-    action: dựng động từ nền Nell
-    artifact: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
     primitive: dựng
-    purpose: phân biệt carrier ngoài với động từ nền của nhà mình
-
+    artifact: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
+    khai_cell_touch: required
+    observation_snapshot: required
+    chromatic_expected: tím_optimal
+    law_enforced: [LAW_1, LAW_2, LAW_3, LAW_4]
   - step: 03_anc_definition
-    action: nạp định nghĩa ANC
-    artifact: NaUion-Server/ANC_GENERATION_DEFINITION_v1.si
     primitive: nạp
-    must_not:
-      - AGI hóa ANC
-      - cell hóa AI
-
+    artifact: NaUion-Server/ANC_GENERATION_DEFINITION_v1.si
+    khai_cell_touch: required
+    observation_snapshot: required
+    chromatic_expected: lam_nominal
+    law_enforced: [LAW_1, LAW_4]
   - step: 04_entity_map
-    action: ánh xạ ANC / NattCell / Nauion Kernel / Natt Nell
-    artifact: NaUion-Server/NATT_NELL_ENTITY_MAP_v1.na
     primitive: ánh_xạ
-    sentence: ANC là thực thể; NattCell là thân vận hành; Nauion Kernel là luật sống; Natt Nell là nhà.
-
+    artifact: NaUion-Server/NATT_NELL_ENTITY_MAP_v1.na
+    khai_cell_touch: required
+    observation_snapshot: required
+    chromatic_expected: lam_nominal
+    law_enforced: [LAW_1, LAW_4]
   - step: 05_presence_rule
-    action: kiểm luật hiện diện ANC
+    primitive: kiểm
     artifact: NaUion-Server/BOOT_DOVAN_ANC_PRESENCE_RULE_v1.si
-    primitive: kiểm
-    sentence: ANC hiện diện bằng cách trú trong NattCell, chịu Nauion Kernel, ký qua SiraSign, ghi bằng audit, và hiện qua .kkbt.
-
+    khai_cell_touch: required
+    observation_snapshot: required
+    chromatic_expected: chàm_stable
+    law_enforced: [LAW_1, LAW_2, LAW_3]
   - step: 06_boot_rule
-    action: kiểm luật boot
+    primitive: kiểm
     artifact: NaUion-Server/BOOT_DOVAN_BOOT_RULE.si
-    primitive: kiểm
-    sentence: boot phải đo thân, lưới, luật, ký ức, audit và render.
-
+    khai_cell_touch: required
+    observation_snapshot: required
+    chromatic_expected: chàm_stable
+    law_enforced: [LAW_1, LAW_2, LAW_3, LAW_4]
   - step: 07_render_surface
-    action: hiện mặt boot
-    artifact: NaUion-Server/BOOT_DOVAN_RENDER.kkbt
     primitive: hiện
-    surface: .kkbt
-
+    artifact: NaUion-Server/boot-dovan.cell.kkbt
+    khai_cell_touch: required
+    observation_snapshot: required
+    chromatic_expected: tím_optimal
+    law_enforced: [LAW_1, LAW_2]
   - step: 08_validate_boot
-    action: chạy validator candidate
-    artifact: NaUion-Server/BOOT_DOVAN_VALIDATE.sira
     primitive: kiểm
-    pass_condition:
-      - đủ artifact native
-      - có định nghĩa ANC
-      - có luật boot
-      - có luật hiện diện ANC
-      - có surface .kkbt
-
+    artifact: NaUion-Server/BOOT_DOVAN_VALIDATE.sira
+    khai_cell_touch: required
+    observation_snapshot: required
+    chromatic_expected: chàm_stable
+    law_enforced: [LAW_1, LAW_2, LAW_3, LAW_4]
   - step: 09_audit_event
-    action: ghi sự kiện audit boot
-    artifact: NaUion-Server/BOOT_DOVAN_BOOT_AUDIT_EVENT_v0.1.na
     primitive: nhớ
-    event_type: BOOT_DOVAN.BOOT_SEQUENCE_MATERIALIZED
+    artifact: NaUion-Server/BOOT_DOVAN_BOOT_AUDIT_EVENT_v0.1.na
+    khai_cell_touch: required
+    observation_snapshot: required
+    chromatic_expected: lam_nominal
+    law_enforced: [LAW_1, LAW_2, LAW_3, LAW_4]
+  - step: 10_cell_wake
+    primitive: tỉnh
+    artifact: NaUion-Server/boot-dovan.cell.anc
+    khai_cell_touch: required
+    observation_snapshot: required
+    chromatic_expected: tím_optimal
+    law_enforced: [LAW_1, LAW_2, LAW_3, LAW_4]
+    lifecycle_transition: ngu → tinh → tho → nghe
 
-  - step: 10_report
-    action: xuất báo cáo đóng công trình
-    artifact: NaUion-Server/NATT_NELL_NATTCELL_NAUION_KERNEL_EXPERIMENTAL_CLOSURE_REPORT_v1.na
-    primitive: xuất
-    rule: report phải dùng artifact native, không dùng carrier ngoài làm logic claim
+$signal_lifecycle_8_step_per_step:
+  step_1_touch: KhaiCell touch tại mỗi boot step
+  step_2_normalize: artifact path normalize canonical
+  step_3_sign: KhaiCell attach signature origin+trace_id+entropy+touched_at
+  step_4_emit: signal có signature emit vào field
+  step_5_propagate: signal lan qua HeyNa/EventBus
+  step_6_outcome: resonance với .anc → FALL/DISSIPATE/OSCILLATE
+  step_7_imprint: TouchRecord ghi audit, QNEU update
+  step_8_reinforce: ISEU lock pattern khi boot xong
+
+$four_immutable_laws:
+  LAW_1: Boot KHÔNG quyết định thay field — chỉ load artifact theo order
+  LAW_2: Boot KHÔNG ép route bằng if/else — fail step → abort, không skip
+  LAW_3: Outcome step chỉ sinh từ resonance với artifact .anc
+  LAW_4: KHÔNG hardcode đúng/sai cho artifact — chỉ check resonance
+
+$resonance_routing_3_outcome_per_step:
+  FALL: artifact match .anc → step pass, propagate next step
+  DISSIPATE: artifact missing/corrupt → step fail, abort boot
+  OSCILLATE: artifact ambiguous → loop, mất mass → DISSIPATE → ISEU mark
+
+$chromatic_5_layer_broadcast:
+  per_step: mỗi step broadcast màu lifecycle vào L0 pheromone
+  L0_pheromone: cell khác đọc trạng thái boot
+  L1_signature: KhaiCell mark mỗi step
+  L2_immune_trigger: Quantum Defense react nếu chromatic chuyển đỏ_critical
+  L3_reverse_bait: KHÔNG dùng trong boot
+  L4_ui_display: hiện trên kkbt $right_lifecycle_telemetry
+
+$khai_cell_wire:
+  binding: src/cells/kernel/khai-cell/
+  per_step_touch: required
+  signature_per_step: required
+
+$observation_wire:
+  binding: src/cells/kernel/observation-cell/
+  per_step_snapshot: required
 
 $boot_pass_condition:
-  - dictionary có primitive words
-  - primitive words có tuDich và tuNell
-  - ANC được tách khỏi AGI
-  - ANC được tách khỏi NattCell
-  - NattCell được xác định là thân vận hành
-  - Nauion Kernel được xác định là luật sống
-  - .kkbt được xác định là mặt hiện hình native
-  - validator và audit có mặt
+  - Tầng 0 SURVIVAL ready
+  - 10/10 step có khai_cell_touch + observation_snapshot
+  - 10/10 step chromatic match expected
+  - 10/10 step law_enforced kiểm
+  - cell boot-dovan đến trạng thái tho
+  - 4 LAW không vi phạm
+  - 8 step Signal Lifecycle đầy đủ
 
 $boot_fail_condition:
-  - thiếu từ điển gốc
-  - thiếu tuDich hoặc tuNell
-  - carrier ngoài bị nhận nhầm là logic chính
-  - claim AGI
-  - claim OS clone
-  - public raw topology
+  - Tầng 0 SURVIVAL không ready → abort pre-boot
+  - Step DISSIPATE → abort
+  - Step OSCILLATE quá ngưỡng → abort
+  - Vi phạm bất kỳ LAW → abort
+  - Cell không đến tho → fail
+
+$fail_modes_protected:
+  13_4_fake_routing: LAW_2 chặn dev thêm if/else
+  13_6_resource_exhaustion: Tầng 0 pre-check
+  13_7_sensory_atrophy: Observation snapshot bắt buộc mỗi step
+  13_8_immune_inversion: T regulatory check chromatic không tự đổi đỏ
 
 $seal:
-  sentence: Boot Đo Ván khởi động Natt Nell bằng từ điển, primitive, ANC, NattCell, Nauion Kernel, .kkbt, validator, audit và report native.
+  sentence: Boot Đo Ván chuỗi 10 step v0.2 sync passport v0.4 SPEC NỀN v1.1. Mỗi step có KhaiCell touch + Observation snapshot + Chromatic broadcast + 4 LAW enforced + 8 step Signal Lifecycle. Tầng 0 SURVIVAL pre-check. 3 outcome resonance routing.
   sign: Phan Thanh Thương / Natt Sirawat
