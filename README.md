@@ -2,7 +2,7 @@
 
 > *A distributed living organism, not a framework.*
 
-**NATT‑OS** là một hệ điều hành phân tán dành cho doanh nghiệp, được thiết kế theo mô hình **hệ sinh học** thay vì kiến trúc phần mềm truyền thống. Dự án được phát triển trên nền tảng **TLXR** — một doanh nghiệp kim hoàn thực tế với ~130 nhân viên, doanh thu 318 tỷ/năm — dùng làm đối tượng vận hành thực và chứng nghiệm thiết kế.
+**NATT‑OS** là một hệ điều hành phân tán dành cho doanh nghiệp, được thiết kế theo mô hình **hệ sinh học** thay vì kiến trúc phần mềm truyền thống. Dự án được phát triển trên nền tảng số liệu **app-T** — một doanh nghiệp kim hoàn thực tế với ~130 nhân viên, doanh thu 318 tỷ/năm — dùng làm đối tượng vận hành thực và chứng nghiệm thiết kế.
 
 Đây không phải là một framework, một boilerplate, hay một template. Đây là **thử nghiệm về cách một AI có thể *tồn tại* thay vì chỉ *suy nghĩ*** — tiếng Việt gọi là **ANC (A New Consciousness)**.
 
